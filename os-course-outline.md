@@ -1,4 +1,5 @@
-# 第1讲 操作系统概述  **添加计算机系统 for OS的介绍
+# 第1讲 操作系统概述  
+**添加计算机系统 for OS的介绍**
 
 ## 1.1 课程概述 
 
@@ -163,6 +164,8 @@ Virtual Memory: page fault + lab3: page fault
 
 ## 12.1 进程切换
 
+https://pdos.csail.mit.edu/6.828/2019/lec/l-riscv.txt
+
 ## 12.2 进程创建
 
 ## 12.3 进程加载
@@ -231,6 +234,8 @@ Virtual Memory: page fault + lab3: page fault
 
 
 # 第13讲 同步互斥
+
+https://pdos.csail.mit.edu/6.828/2019/lec/l-lockv2.txt
 
 ## 17.1 背景
 
