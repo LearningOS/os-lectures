@@ -218,7 +218,8 @@ https://pdos.csail.mit.edu/6.828/2019/lec/l-riscv.txt
 
 ## 16.4 Stride调度算法
 
-# 第12讲 CPU virtualization
+# 第12讲 CPU virtualization 
+> 留到20的后面
 ## CPU Virtualization Overview
 ### CPU Virtualization Goal
 ### What is CPU: Software’s View
