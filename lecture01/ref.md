@@ -15,7 +15,7 @@
 
 ### 为什么/如何 学习操作系统 
 
- * [](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture01?action=AttachFile&do=get&target=20150213-3~4-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E4%B9%A0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.pptx)
+ * [20150213-3~4-为什么学习操作系统-如何学习操作系统.pptx](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture01?action=AttachFile&do=get&target=20150213-3~4-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AD%A6%E4%B9%A0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.pptx)
 
 ### 操作系统实例
 
