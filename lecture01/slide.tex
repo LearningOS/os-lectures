@@ -17,6 +17,14 @@
 
 \documentclass[UTF8]{ctexbeamer}
 
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=red,
+  anchorcolor=blue,
+  citecolor=green
+}
+
 \mode<presentation> {
 
 % The Beamer class comes with a number of default slide themes
@@ -78,7 +86,12 @@
 
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
-\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=green]{hyperref}
+
+% Fonts
+% \usepackage{libertine}
+% \setmonofont{Courier}
+\setCJKsansfont[ItalicFont=Noto Serif CJK SC Black, BoldFont=Noto Sans CJK SC Black]{Noto Sans CJK SC}
+
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -133,9 +146,9 @@
 \begin{frame}
 	\frametitle{课程信息}
 	\begin{itemize}
-		\item 主讲教师：向勇 陈渝
-		\item 助教: 王润基 贾越凯 戴臻杨 刘丰源 
-		\item 助教: 吴一凡 潘庆霖 张译仁 陈嘉杰
+		\item 主讲教师：向勇、陈渝
+		\item 助教: 王润基、贾越凯、戴臻旸、刘丰源
+		\item 助教: 吴一凡、潘庆霖、张译仁、陈嘉杰
 	\end{itemize}
 \end{frame}
 
@@ -145,7 +158,7 @@
 	\begin{itemize}
 		\item \href{http://os.cs.tsinghua.edu.cn/oscourse/OS2018spring}{\textbf{WIKI}}
 		\item 学堂在线
-		\item 网络学堂 
+		\item 网络学堂
 		\item 微信：OS课2O2O
 		\item 实验楼在线实验环境
 	\end{itemize}
@@ -293,4 +306,4 @@ This statement requires citation \cite{p1}.
 
 %----------------------------------------------------------------------------------------
 
-\end{document} 
+\end{document}
