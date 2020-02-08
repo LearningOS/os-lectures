@@ -1,0 +1,229 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[UTF8]{ctexbeamer}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=red,
+  anchorcolor=blue,
+  citecolor=green
+}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}\begin{frame}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\graphicspath{{./figs/}}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+% Fonts
+% \usepackage{libertine}
+% \setmonofont{Courier}
+\setCJKsansfont[ItalicFont=Noto Serif CJK SC Black, BoldFont=Noto Sans CJK SC Black]{Noto Sans CJK SC}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第1讲]{第1讲 ：操作系统概述} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+清华大学计算机系 \\ % Your institution for the title page
+\medskip
+\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{第七节：操作系统结构} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\begin{frame}
+
+\frametitle{简单结构}
+
+\begin{itemize}
+\item MS-DOS：在最小的空间,设计用于提供大部分功能 (1981--1994)
+	\begin{itemize}
+	\item 没有拆分为模块
+	\item 主要用汇编编写
+	\item 没有安全保护
+	\end{itemize}
+\end{itemize}
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{msdos}
+	\caption{MS-DOS操作系统}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\frametitle{分层结构}
+	
+	\begin{itemize}
+		\item 将操作系统分为多层 (levels)
+		\begin{itemize}
+			\item 每层建立在低层之上
+			\item 最底层(layer 0), 是硬件
+			\item 最高层(layer N) 是用户界面
+		\end{itemize}
+	\item 每一层仅使用更低一层的功能和服务。
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{multi-level-os-arch}
+		\caption{多层次结构操作系统}
+	\end{figure}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\frametitle{微内核结构}
+	
+	\begin{itemize}
+		\item 尽可能把内核功能移到用户空间
+		\item 用户模块间的通信使用消息传递
+		\item 好处: 灵活/安全...
+		\item 缺点: 性能
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{microkernel-arch}
+		\caption{微内核结构操作系统}
+	\end{figure}
+	
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\frametitle{外核结构 Exokernel}
+	
+	\begin{itemize}
+		\item 让内核分配机器的物理资源给多个应用程序, 并让每个程序决定如何处理这些资源
+		\item 程序能链接到操作系统库(libOS) 实现了操作系统抽象
+		\item 保护与控制分离
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{exokernel-arch}
+		\caption{外核结构操作系统}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	
+	\frametitle{虚拟机结构 VMM}
+	
+	\begin{itemize}
+		\item 虚拟机管理器将单独的机器接口转换成很多的虚拟机,每个虚拟机都是一个原始计算机系统的有效副本, 并能完成所有的处理器指令 。
+	\end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.45\linewidth]{vmm-arch}
+		\includegraphics[width=0.45\linewidth]{vmm-arch-view}
+		\caption{虚拟机结构"操作系统" -- VMM}
+	\end{figure}
+	
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\end{document}
