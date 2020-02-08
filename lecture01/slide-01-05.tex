@@ -1,0 +1,193 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[UTF8]{ctexbeamer}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=red,
+  anchorcolor=blue,
+  citecolor=green
+}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\graphicspath{{./figs/}}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+% Fonts
+% \usepackage{libertine}
+% \setmonofont{Courier}
+\setCJKsansfont[ItalicFont=Noto Serif CJK SC Black, BoldFont=Noto Sans CJK SC Black]{Noto Sans CJK SC}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第1讲]{第1讲 ：操作系统概述} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+清华大学计算机系 \\ % Your institution for the title page
+\medskip
+\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{第五节：操作系统实例} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\begin{frame}
+
+\frametitle{UNIX家族}
+
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{unix-family}
+	\caption{UNIX家族}
+\end{figure}
+
+\end{frame}
+
+
+\begin{frame}
+	
+	\frametitle{UNIX历史}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{unix-history}
+		\caption{UNIX历史}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{Linux家族}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{linux-family}
+	\caption{Linux家族}
+\end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}
+	
+	\frametitle{Windows家族}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{windows-family}
+		\caption{Windows家族}
+	\end{figure}
+	
+\end{frame}
+
+\begin{frame}
+	
+	\frametitle{MacOS家族}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{macos-family}
+		\caption{MacOS家族}
+	\end{figure}
+	
+\end{frame}
+%----------------------------------------------------------------------------------------
+
+\end{document}
