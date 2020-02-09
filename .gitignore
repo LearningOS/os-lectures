@@ -1,3 +1,5 @@
+*.org
+*.old
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

@@ -128,6 +128,7 @@
 %------------------------------------------------
 
 \subsection{隔离} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{虚拟内存}
 \subsection{特权模式}
 \subsection{中断}
 
@@ -200,13 +201,84 @@
 				\item 每个程序若无许可，则无法访问不属于自己的内存
 				\end{itemize}			
 			
-			\item CPU硬件中的特权模式
+			\item CPU硬件中的特权模式/中断机制
 				\begin{itemize}
 				\item 防止应用程序访问设备和敏感的CPU寄存器
 				\item 例如地址空间配置寄存器
+				\item 例如打断一直占用CPU的应用程序
 				\end{itemize}				
 		\end{itemize}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	
+	\frametitle{虚拟内存}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{vm}
+		\caption{虚拟内存}
+	\end{figure}
+	% CS152-berkeley L08-AddressTranslation
+	% 体系结构需要易于编程/编译/链接，易于软件管理	
+	
+\end{frame}
+
+\begin{frame}
+	
+	\frametitle{虚拟内存}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.65\linewidth]{vm-pagetable}
+		\caption{页表}
+	\end{figure}
+	% CS152-berkeley
+	% 体系结构需要易于编程/编译/链接，易于软件管理	
+	
+\end{frame}
+
+\begin{frame}
+	
+	\frametitle{虚拟内存}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=1\linewidth]{tlb}
+		\caption{TLB}
+	\end{figure}
+	% CS152-berkeley L08-AddressTranslation
+	% 体系结构需要易于编程/编译/链接，易于软件管理	
+	
+\end{frame}
+
+\begin{frame}
+	
+	\frametitle{虚拟内存}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.85\linewidth]{mmu}
+		\caption{MMU处理TLB Missing}
+	\end{figure}
+	% CS152-berkeley L08-AddressTranslation
+	% 体系结构需要易于编程/编译/链接，易于软件管理	
+	
+\end{frame}
+
+\begin{frame}
+	
+	\frametitle{虚拟内存}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\linewidth]{arch-with-tlb-mmu}
+		\caption{带MMU/TLB的计算机系统}
+	\end{figure}
+	% CS152-berkeley L08-AddressTranslation
+	% 体系结构需要易于编程/编译/链接，易于软件管理	
+	
 \end{frame}
 
 
