@@ -1,0 +1,311 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[UTF8]{ctexbeamer}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=red,
+  anchorcolor=blue,
+  citecolor=green
+}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\graphicspath{{./figs/}}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+% Fonts
+% \usepackage{libertine}
+% \setmonofont{Courier}
+\setCJKsansfont[ItalicFont=Noto Serif CJK SC Black, BoldFont=Noto Sans CJK SC Black]{Noto Sans CJK SC}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第1讲]{第1讲 ：操作系统概述} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+清华大学计算机系 \\ % Your institution for the title page
+\medskip
+\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%-----------------------------------------------\-----------------------------------------
+
+%------------------------------------------------
+\section{第四节：为什么要学习和如何学习操作系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%----------------------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{操作系统课是多门课程的综合}
+    \begin{itemize}
+        \item 综合课程-结合许多不同的课程
+        \begin{itemize}
+            \item 程序设计语言
+            \item 数据结构
+            \item 算法
+            \item 计算机组成原理/体系结构
+            \item 编译技术
+        \end{itemize}        
+        \item 材料
+        \begin{itemize}
+            \item 操作系统概念和原理、源代码
+        \end{itemize}
+        \item 技能
+        \begin{itemize}
+            \item 操作系统的设计和实现
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+    \frametitle{学习操作系统的目的}
+    \begin{columns}
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item 动机
+    \begin{itemize}
+    \item 已有操作系统很好，我将来的工作不会写操作系统
+    \begin{itemize}
+        \item Windows,Linux.
+    \end{itemize}
+    \item 已有操作系统是否解决了所有的事?
+    \item 为什么我要学习它？
+        \end{itemize}
+    \end{itemize}
+     
+    \column{0.5\textwidth}
+        \begin{itemize}
+            \item 收获
+        \begin{itemize}
+            \item 操作系统很有用!
+                \begin{itemize}
+                    \item 掌握OS的基本原理
+                \end{itemize}
+            \item 我想了解操作系统到底是如何工作的？
+                \begin{itemize}
+                    \item 掌握OS机制的实现技术
+                \end{itemize}
+            \item 写操作系统很酷!
+                \begin{itemize}
+                    \item 经历开发一个小型OS的主要阶段
+                \end{itemize}
+            \item 掌握操作系统是一个挑战!
+                \begin{itemize}
+                    \item 加深对计算机系统的理解
+                \end{itemize}
+            \item 我要参与系统软件开发
+                \begin{itemize}
+                    \item 会将所学知识灵活应用
+                \end{itemize}
+            \end{itemize}
+        \end{itemize}
+    \end{columns}
+    
+    \end{frame}
+%------------------------------------------------
+    
+\begin{frame}
+    \frametitle{操作系统软件的地位}
+    \begin{itemize}
+        \item 操作系统：计算机科学研究的基石之一
+        \begin{itemize}
+            \item 计算机系统的基本组成部分和核心支撑软件
+            \item 贯穿程序语言、运行时系统、应用、体系结构
+            \item 联系计算机科学和计算机系统的典范
+            \item 操作系统的知识影响到专业人员的素质
+            \item 大量专业工作与操作系统技术相关
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+    
+\begin{frame}
+    \frametitle{哪里在做操作系统研究？}
+    \begin{itemize}
+        \item 顶尖大学的计算机科学部门
+        \item 计算机产业
+        \begin{itemize}
+            \item 旧时：Xerox (PARC), IBM, DEC (SRC), Bell Labs
+            \item 现代：Microsoft, Google, Yahoo, IBM, HP, Sun, Intel, VMware, Amazon,  …
+            \item 国内：华为、阿里巴巴、腾讯 …
+        \end{itemize}
+
+        \item 学术研究协会
+        \begin{itemize}
+            \item ACM SIGOPS \hyperlink{http://www.sigops.org/award-hof.html}{Hall-of-Fame Awards} 
+            \item USENIX SOSP OSDI  USENIX-ATC
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+    
+\begin{frame}
+    \frametitle{掌握操作系统具有挑战性(1)}
+    \begin{itemize}
+        \item 操作系统很大
+            \begin{itemize}
+                \item Windows XP 有4500万行
+            \end{itemize}
+        \item 操作系统管理并发
+            \begin{itemize}
+                \item 并发导致有趣的编程挑战
+            \end{itemize}
+        \item 操作系统代码管理原始硬件
+            \begin{itemize}
+                \item 时间依赖行为, 非法行为, 硬件故障
+            \end{itemize}
+        \item 操作系统代码必须是高效的, 低耗CPU、内存、磁盘的
+        \item 操作系统出错，就意味着机器出错
+            \begin{itemize}
+                \item 操作系统必须比用户程序拥有更高的稳定性
+            \end{itemize}
+        \item 操作系统是系统安全的基础
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+    
+\begin{frame}
+    \frametitle{掌握操作系统具有挑战性(2)}
+    \begin{itemize}
+        \item 操作系统并不仅仅关于并发性和琐碎的调度算法
+        \item 并发性是一小部分
+            \begin{itemize}
+                \item 内核里不存在管程和哲学家问题
+                \item 内核中的锁问题需要太多的背景知识
+            \end{itemize}
+        \item 磁盘调度算法大多已被硬件实现
+        \item 进程调度是个比较小话题
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+    
+\begin{frame}
+    \frametitle{掌握操作系统具有挑战性(3)}
+    \begin{itemize}
+        \item 操作系统是关于：
+        \item 权衡
+            \begin{itemize}
+                \item 时间与空间
+                \item 性能与可预测性
+                \item 公平与性能（哪种设计能工作？为什么？）
+            \end{itemize}
+        \item 硬件
+            \begin{itemize}
+                \item 如何让中断、异常、上下文切换真正有效? 
+                \item TLB是如何工作的？这对页表又意味着什么？
+                \item 如果你不展示任何汇编代码，那么你就不是教操作系统的!
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+    
+\begin{frame}
+    \frametitle{如何学习操作系统？}
+    \begin{itemize}
+        \item "不闻不若闻之，闻之不若见之，见之不若知之，知之不若行之；学至于行之而止矣。" --荀子《儒效篇》 
+        \item “天才是1\%的灵感加上99\%的汗水"  -- Thomas Edison 
+        \item “最有趣的三年级课程！”
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
