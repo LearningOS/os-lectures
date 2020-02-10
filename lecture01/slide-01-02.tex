@@ -1,0 +1,278 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation
+% LaTeX Template
+% Version 1.0 (10/11/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND THEMES
+%----------------------------------------------------------------------------------------
+
+\documentclass[UTF8]{ctexbeamer}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=red,
+  anchorcolor=blue,
+  citecolor=green
+}
+
+\mode<presentation> {
+
+% The Beamer class comes with a number of default slide themes
+% which change the colors and layouts of slides. Below this is a list
+% of all the themes, uncomment each in turn to see what they look like.
+
+%\usetheme{default}
+%\usetheme{AnnArbor}
+%\usetheme{Antibes}
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin}
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Copenhagen}
+%\usetheme{Darmstadt}
+%\usetheme{Dresden}
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen}
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+\usetheme{Madrid}
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier}
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore}
+%\usetheme{Szeged}
+%\usetheme{Warsaw}
+
+% As well as themes, the Beamer class has a number of color themes
+% for any slide theme. Uncomment each of these in turn to see how it
+% changes the colors of your current slide theme.
+
+%\usecolortheme{albatross}
+%\usecolortheme{beaver}
+%\usecolortheme{beetle}
+%\usecolortheme{crane}
+%\usecolortheme{dolphin}
+%\usecolortheme{dove}
+%\usecolortheme{fly}
+%\usecolortheme{lily}
+%\usecolortheme{orchid}
+%\usecolortheme{rose}
+%\usecolortheme{seagull}
+%\usecolortheme{seahorse}
+%\usecolortheme{whale}
+%\usecolortheme{wolverine}
+
+%\setbeamertemplate{footline} % To remove the footer line in all slides uncomment this line
+%\setbeamertemplate{footline}[page number] % To replace the footer line in all slides with a simple slide count uncomment this line
+
+%\setbeamertemplate{navigation symbols}{} % To remove the navigation symbols from the bottom of all slides uncomment this line
+}
+
+\usepackage{graphicx} % Allows including images
+\graphicspath{{./figs/}}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
+
+% Fonts
+% \usepackage{libertine}
+% \setmonofont{Courier}
+\setCJKsansfont[ItalicFont=Noto Serif CJK SC Black, BoldFont=Noto Sans CJK SC Black]{Noto Sans CJK SC}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第1讲]{第1讲 ：操作系统概述} % The short title appears at the bottom of every slide, the full title is only on the title page
+
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+清华大学计算机系 \\ % Your institution for the title page
+\medskip
+\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+%------------------------------------------------
+\section{第二节：教学安排} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{教学内容}
+    \begin{itemize}
+		\item 操作系统结构
+		\item 中断及系统调用
+		\item 内存管理
+		\item 进程及线程
+		\item 处理机调度
+		\item 同步互斥
+		\item 文件系统
+		\item I/O子系统
+    \end{itemize}
+\end{frame}
+
+
+    \begin{frame}
+        \frametitle{练习与实验}
+        \begin{itemize}
+            \item 操作系统练习
+        \begin{itemize}
+    \begin{itemize}
+		\item 课堂练习
+		\item 课后练习
+    \end{itemize}
+        \end{itemize}
+
+            \item 操作系统实验
+    \begin{itemize}
+		\item uCore实验：基于X86用C写教学操作系统
+		\item rCore实验：基于RISC-V用rust写教学操作系统
+    \end{itemize}
+        \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{rCore实验：基于RISC-V用rust写教学操作系统}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{itemize}
+		\item 第一章：独立式可执行程序
+		\item 第二章：最小化内核
+		\item 第三章：中断
+		\item 第四章：内存管理
+		\item 第五章：内存虚拟化
+\end{itemize}
+ 
+\column{0.5\textwidth}
+    \begin{itemize}
+		\item 第六章：内核线程
+		\item 第七章：线程调度
+		\item 第八章：进程
+		\item 第九章：文件系统
+		\item 第十章：同步互斥
+    \end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{uCore实验：基于X86用C写教学操作系统}
+\begin{columns}
+\column{0.5\textwidth}
+\begin{itemize}
+		\item 实验零：操作系统实验准备
+		\item 实验一：系统软件启动过程
+		\item 实验二：物理内存管理
+		\item 实验三：虚拟内存管理
+		\item 实验四：内核线程管理
+\end{itemize}
+ 
+\column{0.5\textwidth}
+    \begin{itemize}
+		\item 实验五：用户进程管理
+		\item 实验六: 调度器
+		\item 实验七：同步互斥
+		\item 实验八：文件系统
+		\item 
+	\end{itemize}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{课程设计}
+    \begin{itemize}
+        \item 各种CPU平台上的操作系统移植
+        \subitem RISC-V、x86-64、x86-32、MIPS、ARM
+        \item 操作系统内核功能实现和扩展
+        \subitem GUI、驱动、内核可加载模块、微内核
+        \item 操作系统新方向探索
+        \subitem rust、内核语言
+        \item 操作系统分析工具
+        \subitem 错误分析、行为分析、模拟器
+        \item 操作系统教学实验设计
+    \end{itemize}
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
+    \frametitle{Two-column slide}
+    \begin{columns}
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item First item
+        \begin{itemize}
+            \item xx
+        \end{itemize}
+    
+    \item First item
+    \subitem Second item
+    \end{itemize}
+     
+    \column{0.5\textwidth}
+        \begin{itemize}
+            \item xx
+        \end{itemize}
+    \end{columns}
+     
+    \begin{columns}
+     
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item First item
+        \begin{itemize}
+            \item xx
+        \end{itemize}
+    
+    \item First item
+    \subitem Second item
+    \end{itemize}
+     
+    \column{0.5\textwidth}
+        \begin{itemize}
+            \item xx
+        \end{itemize}
+    \end{columns}
+    \end{frame}
+    
+    
+    
+    \begin{frame}
+        \frametitle{xx}
+        \begin{itemize}
+            \item xx
+        \end{itemize}
+    \end{frame}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
