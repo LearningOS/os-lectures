@@ -151,13 +151,13 @@
 
 \begin{frame}
 	
-	\frametitle{分层结构}
+	\frametitle{单体分层结构}
 	
 	\begin{itemize}
-		\item 将操作系统分为多层 (levels)
+		\item 将单体操作系统(Monolithic OS)划分为多层 (levels)
 		\begin{itemize}
 			\item 每层建立在低层之上
-			\item 最底层(layer 0), 是硬件
+			\item 最底层(layer 0), 是硬件驱动
 			\item 最高层(layer N) 是用户界面
 		\end{itemize}
 	\item 每一层仅使用更低一层的功能和服务。
@@ -165,7 +165,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.6\linewidth]{multi-level-os-arch}
-		\caption{多层次结构操作系统}
+		\caption{多层次结构单体操作系统}
 	\end{figure}
 	
 \end{frame}
