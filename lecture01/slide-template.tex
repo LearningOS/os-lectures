@@ -153,7 +153,7 @@
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{课程信息}
 	\begin{itemize}
 		\item \href{http://os.cs.tsinghua.edu.cn/oscourse/OS2018spring}{\textbf{WIKI}}
@@ -208,17 +208,17 @@ Suspendisse tincidunt sagittis gravida. Curabitur condimentum, enim sed venenati
 \frametitle{Multiple Columns}
 \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
 
-\column{.45\textwidth} % Left column and width
+\begin{column}{.45\textwidth} % Left column and width
 \textbf{Heading}
 \begin{enumerate}
 \item Statement
 \item Explanation
 \item Example
 \end{enumerate}
-
-\column{.5\textwidth} % Right column and width
+\end{column}
+\begin{column}{.5\textwidth} % Right column and width
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer lectus nisl, ultricies in feugiat rutrum, porttitor sit amet augue. Aliquam ut tortor mauris. Sed volutpat ante purus, quis accumsan dolor.
-
+\end{column}
 \end{columns}
 \end{frame}
 
@@ -302,7 +302,7 @@ This statement requires citation \cite{p1}.
 \begin{frame}
     \frametitle{Two-column slide}
     \begin{columns}
-    \column{0.5\textwidth}
+    \begin{column}{0.5\textwidth}
     \begin{itemize}
     \item First item
         \begin{itemize}
@@ -310,18 +310,19 @@ This statement requires citation \cite{p1}.
         \end{itemize}
     
     \item First item
-    \subitem Second item
+    \item Second item
     \end{itemize}
-     
-    \column{0.5\textwidth}
+    \end{column}
+    \begin{column}{0.5\textwidth}
         \begin{itemize}
             \item xx
         \end{itemize}
+    \end{column}
     \end{columns}
      
     \begin{columns}
      
-    \column{0.5\textwidth}
+    \begin{column}{0.5\textwidth}
     \begin{itemize}
     \item First item
         \begin{itemize}
@@ -329,14 +330,16 @@ This statement requires citation \cite{p1}.
         \end{itemize}
     
     \item First item
-    \subitem Second item
+    \item Second item
     \end{itemize}
-     
-    \column{0.5\textwidth}
+    \end{column}
+    \begin{column}{0.5\textwidth}
         \begin{itemize}
             \item xx
         \end{itemize}
+    \end{column}
     \end{columns}
+
     \end{frame}
     
     
