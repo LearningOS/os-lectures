@@ -129,6 +129,11 @@
 
 \begin{frame}
 	\frametitle{教学内容}
+
+	\begin{columns}
+	
+	\begin{column}{0.5\textwidth}
+	
     \begin{itemize}
 		\item 操作系统结构
 		\item 中断及系统调用
@@ -139,31 +144,43 @@
 		\item 文件系统
 		\item I/O子系统
     \end{itemize}
+    
+    \end{column}
+
+	\begin{column}{0.5\textwidth}
+	
+    \includegraphics[width=1\linewidth]{ucore-arch}
+    
+    \end{column}
+    
+\end{columns}
+
 \end{frame}
 
 %------------------------------------------------
 
     \begin{frame}
-        \frametitle{练习与实验}
+        \frametitle{作业与实验}
         \begin{itemize}
-            \item 练习
+            \item 平时作业
         \begin{itemize}
-    		\item 课堂练习
+    		\item 课上练习与交流
 	    	\item 课后练习
         \end{itemize}
 
-            \item 实验
+            \item 基础实验
     \begin{itemize}
 		\item uCore实验：基于X86用C写教学操作系统
 		\item rCore实验：基于RISC-V用rust写教学操作系统
     \end{itemize}
-            \item 课程设计
+            \item 课程设计（大实验）
         \end{itemize}
 \end{frame}
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{rCore实验：基于RISC-V用rust写教学操作系统}
+\frametitle{基础实验}
+\framesubtitle{rCore实验：基于RISC-V用rust写教学操作系统}
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \begin{itemize}
@@ -190,7 +207,8 @@
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{uCore实验：基于X86用C写教学操作系统}
+\frametitle{基础实验}
+\framesubtitle{uCore实验：基于X86用C写教学操作系统}
 \begin{columns}
 	
 \begin{column}{0.5\textwidth}
@@ -209,7 +227,6 @@
 		\item 实验六: 调度器
 		\item 实验七：同步互斥
 		\item 实验八：文件系统
-		\item 
 	\end{itemize}
 \end{column}
 
@@ -246,9 +263,9 @@
     \frametitle{成绩评定}
     \begin{itemize}
         \item 平时作业：5分
-        \item 实验：15分
+        \item 基础实验：15分
         \begin{itemize}
-            \item 独立完成8个教学实验，并提交实验报告
+            \item 独立完成8个基础教学实验，并提交实验报告
         \end{itemize}
         \item 考试或课程设计：80分
         \begin{itemize}
@@ -260,7 +277,8 @@
     \end{itemize}
 
     总成绩加权方法：上述各项成绩的总和会做一次调整，基本原则是，各分数段保持一定的比例，可能的参考比例为A+/A/A-占25\%、B+/B/B-占45\%、C+/C/C-占20\%和D+/D/F占10\%。 
-
+    \newline \newline 
+    
     详见：\href{http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/log#A20200210-.2BZM1PXHz7ft.2BL.2FnoLdoRiEH7pi8RbmmgHUcaL9GYO-}{20200210-操作系统课程的成绩评定标准说明}
     
 \end{frame}
@@ -277,7 +295,7 @@
             \item 以前的学习情况？
             \item 对计算机专业的看法是什么？
             \item 你希望在操作系统课上学到什么知识和什么能力？
-            \item 采集仅限于操作系统课内使用的同学信息
+            \item 采集仅限于操作系统课内注册的同学信息
         \end{itemize}
     \end{frame}
 %----------------------------------------------------------------------------------------

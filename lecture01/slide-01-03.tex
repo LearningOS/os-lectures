@@ -127,6 +127,28 @@
 %\section{第三节：什么是操作系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %%------------------------------------------------
 
+
+\begin{frame}
+
+\frametitle{操作系统定义}
+
+
+没有公认的精确定义
+
+\begin{block}{操作系统定义}
+操作系统是管理硬件资源、控制程序运行、改善人机界面和为应用软件提供支持的一种系统软件。[计算机百科全书]
+\end{block}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{os-position}
+	\caption{承上启下的操作系统}
+\end{figure}
+
+\end{frame}
+
+
 \begin{frame}
 
 \frametitle{操作系统定义}
@@ -221,7 +243,12 @@
 
 
 \begin{frame}
-	\frametitle{操作系统内核的特征}
+	\frametitle{操作系统内核的抽象与特征}
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{os-abstract}
+	\caption{操作系统抽象}
+\end{figure}
 	\textbf{操作系统内核的特征}
 	\begin{itemize}
 		\item 并发：计算机系统中同时存在多个运行程序
@@ -229,11 +256,7 @@
 		\item 虚拟：每个程序"独占"一个完整的计算机
 		\item 异步：服务的完成时间不确定，也可能失败
 	\end{itemize}
-	\begin{figure}
-	\centering
-	\includegraphics[width=0.6\linewidth]{os-abstract}
-	\caption{操作系统抽象}
-\end{figure}
+
 \end{frame}
 %----------------------------------------------------------------------------------------
 
