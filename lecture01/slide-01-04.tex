@@ -308,14 +308,16 @@
             \end{itemize}
         \item 操作系统代码管理原始硬件
             \begin{itemize}
+               \item CPU、内存、磁盘
                 \item 时间依赖行为, 非法行为, 硬件故障
             \end{itemize}
-        \item 操作系统代码必须是高效的, 低耗CPU、内存、磁盘的
-        \item 操作系统出错，就意味着机器出错
+        \item 操作系统代码必须是高效的, 低耗能
+        \item 操作系统是系统安全的基础
             \begin{itemize}
+                \item 操作系统出错，就意味着机器出错
                 \item 操作系统必须比用户程序拥有更高的稳定性
             \end{itemize}
-        \item 操作系统是系统安全的基础
+        
     \end{itemize}
 \end{frame}
 
@@ -324,14 +326,17 @@
 \begin{frame}
     \frametitle{掌握操作系统具有挑战性(2)}
     \begin{itemize}
-        \item 操作系统并不仅仅关于并发性和琐碎的调度算法
-        \item 并发性是一小部分
+        \item 操作系统并不仅仅是琐碎的调度算法
+            \begin{itemize}
+                \item 磁盘调度算法大多已被硬件实现
+                \item 进程调度是个比较小话题
+            \end{itemize}
+        \item 并发性是操作系统的一小部分内容
             \begin{itemize}
                 \item 内核里不存在管程和哲学家问题
                 \item 内核中的锁问题需要太多的背景知识
             \end{itemize}
-        \item 磁盘调度算法大多已被硬件实现
-        \item 进程调度是个比较小话题
+
     \end{itemize}
 \end{frame}
 
@@ -340,14 +345,14 @@
 \begin{frame}
     \frametitle{掌握操作系统具有挑战性(3)}
     \begin{itemize}
-        \item 操作系统是关于：
+        \item 学习操作系统需要具有系统思维：
         \item 权衡
             \begin{itemize}
                 \item 时间与空间
                 \item 性能与可预测性
                 \item 公平与性能（哪种设计能工作？为什么？）
             \end{itemize}
-        \item 硬件
+        \item 软硬协同
             \begin{itemize}
                 \item 如何让中断、异常、上下文切换真正有效? 
                 \item TLB是如何工作的？这对页表又意味着什么？
@@ -359,12 +364,18 @@
 %------------------------------------------------
     
 \begin{frame}
-    \frametitle{如何学习操作系统？}
-    \begin{itemize}
-        \item "不闻不若闻之，闻之不若见之，见之不若知之，知之不若行之；学至于行之而止矣。" --荀子《儒效篇》 
-        \item “天才是1\%的灵感加上99\%的汗水"  -- Thomas Edison 
-        \item “最有趣的三年级课程！”
-    \end{itemize}
+    \frametitle{如何上好操作系统这门课？}
+\begin{block}{《儒效篇》--荀子}
+不闻不若闻之，闻之不若见之，见之不若知之，
+知之不若行之；学至于行之而止矣。 
+\end{block}      
+\begin{block}{Thomas Edison }
+   天才是1\%的灵感加上99\%的汗水 
+\end{block}    
+\begin{block}{往届同学}
+   “最有趣的三年级课程！”  “最无聊的三年级课程！” “难过的三年级课程！”
+\end{block}    
+
 \end{frame}
 
 %----------------------------------------------------------------------------------------
