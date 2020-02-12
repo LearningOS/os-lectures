@@ -10,6 +10,8 @@ http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring
 ## 如何生成PDF
 - ubuntu 方式
 ```
+## add some chinese fonts
+$ sudo apt install fonts-noto-cjk  fonts-noto-cjk-extra  fonts-noto-mon
 $ sudo apt install texlive-full
 $ cd lectureXX
 ## for all slides
