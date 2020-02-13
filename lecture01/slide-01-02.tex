@@ -34,7 +34,7 @@
 %\section{第二节：教学安排} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %%------------------------------------------------
 \begin{frame}
-	\frametitle{教学内容}
+	\frametitle{参考教材}
 	
 %	\begin{columns}
 %		
@@ -45,11 +45,12 @@
 				\item \href{http://item.jd.com/10553956.html}{Operating System Concepts \\ 操作系统概念}
 				\item \href{http://item.jd.com/10255221.html}{Operating Systems:Internals and Design Principles \\ 操作系统：精髓与设计原理}
 			\end{itemize}
+			\pause
 		
 			\textbf{上课时间地点}
 			\begin{itemize}
-				\item 星期一(1-13周)　上午 第2大节  09:50-11:25  五教5105
-				\item 星期四(1-13周)　上午 第1大节  08:00-09:35  五教5105
+				\item 星期一(1-13周)　上午 第2大节  09:50-11:25  五教5105、五教5305
+				\item 星期四(1-13周)　上午 第1大节  08:00-09:35  五教5105、五教5305
 		    \end{itemize}
 %		\end{column}
 %		
@@ -68,28 +69,28 @@
 	\frametitle{教学内容}
 
 	\begin{columns}
-	
-	\begin{column}{0.5\textwidth}
-	\textbf{操作系统原理与工程}
-    \begin{itemize}
-		\item 操作系统结构
-		\item 中断及系统调用
-		\item 内存管理
-		\item 进程及线程
-		\item 处理机调度
-		\item 同步互斥
-		\item 文件系统
-		\item I/O子系统
-    \end{itemize}
-    
-    \end{column}
 
 	\begin{column}{0.5\textwidth}
 	
     \includegraphics[width=1\linewidth]{ucore-arch}
     
     \end{column}
+	
+	\begin{column}{0.5\textwidth}
+	\textbf{操作系统原理与实现}
+    \begin{itemize}
+		\item 操作系统结构
+		\item 中断及系统调用 \pause
+		\item 内存管理
+		\item 进程管理
+		\item 处理机调度
+		\item 同步互斥 \pause
+		\item 文件系统
+		\item I/O子系统
+    \end{itemize}
     
+    \end{column}
+
 \end{columns}
 
 \end{frame}
@@ -103,7 +104,7 @@
         \begin{itemize}
     		\item 课上练习与交流
 	    	\item 课后练习
-        \end{itemize}
+        \end{itemize} \pause
 
             \item 基础实验
     \begin{itemize}
@@ -117,35 +118,7 @@
 %------------------------------------------------
 \begin{frame}
 \frametitle{基础实验}
-\framesubtitle{rCore实验：基于RISC-V用rust写教学操作系统}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{itemize}
-		\item 第一章：独立式可执行程序
-		\item 第二章：最小化内核
-		\item 第三章：中断
-		\item 第四章：内存管理
-		\item 第五章：内存虚拟化
-\end{itemize}
-\end{column}
- 
-\begin{column}{0.5\textwidth}
-    \begin{itemize}
-		\item 第六章：内核线程
-		\item 第七章：线程调度
-		\item 第八章：进程
-		\item 第九章：文件系统
-		\item 第十章：同步互斥
-    \end{itemize}
-\end{column}
-
-\end{columns}
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}
-\frametitle{基础实验}
-\framesubtitle{uCore实验：基于X86用C写教学操作系统}
+\framesubtitle{uCore实验：基于X86用C写教学操作系统} \pause
 \begin{columns}
 	
 \begin{column}{0.5\textwidth}
@@ -173,6 +146,34 @@
 
 %------------------------------------------------
 \begin{frame}
+\frametitle{基础实验}
+\framesubtitle{rCore实验：基于RISC-V用rust写教学操作系统} \pause
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{itemize}
+		\item 第一章：独立式可执行程序
+		\item 第二章：最小化内核
+		\item 第三章：中断
+		\item 第四章：内存管理
+		\item 第五章：内存虚拟化
+\end{itemize}
+\end{column}
+ 
+\begin{column}{0.5\textwidth}
+    \begin{itemize}
+		\item 第六章：内核线程
+		\item 第七章：线程调度
+		\item 第八章：进程
+		\item 第九章：文件系统
+		\item 第十章：同步互斥
+    \end{itemize}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
 \frametitle{课程设计}
 	\begin{itemize}
 	\item 各种CPU平台上的操作系统移植
@@ -182,16 +183,19 @@
 	\item 操作系统内核功能实现和扩展
 		\begin{itemize}	
 		\item GUI、驱动、内核可加载模块、微内核
-		\end{itemize}
-	\item 操作系统新方向探索	
-		\begin{itemize}	
-		\item rust、内核语言
-		\end{itemize}
+		\end{itemize} \pause
 	\item 操作系统分析工具	
 		\begin{itemize}	
 		\item 错误分析、行为分析、模拟器
 		\end{itemize}
 	\item 操作系统教学实验设计
+		\begin{itemize}	
+		\item uCore、rCore、zCore
+		\end{itemize} \pause
+	\item 操作系统新方向探索	
+		\begin{itemize}	
+		\item rust、内核语言
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 %------------------------------------------------
@@ -199,11 +203,11 @@
 \begin{frame}[fragile]
     \frametitle{成绩评定}
     \begin{itemize}
-        \item 平时作业：5分
-        \item 基础实验：15分
+        \item 作业：5分
+        \item 实验：15分
         \begin{itemize}
-            \item 独立完成8个基础教学实验，并提交实验报告
-        \end{itemize}
+            \item 独立完成uCore或rCore中的操作系统功能实现，并提交实验报告
+        \end{itemize} \pause
         \item 考试或课程设计：80分
         \begin{itemize}
             \item 期中考试：35分
@@ -211,12 +215,12 @@
             \item 有余力和兴趣的同学，可用课程设计替代考试
         \end{itemize}
 
-    \end{itemize}
+    \end{itemize} \pause
 
     总成绩加权方法：上述各项成绩的总和会做一次调整，基本原则是，各分数段保持一定的比例，可能的参考比例为A+/A/A-占25\%、B+/B/B-占45\%、C+/C/C-占20\%和D+/D/F占10\%。 
     \newline \newline 
     
-    详见：\href{http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/log#A20200210-.2BZM1PXHz7ft.2BL.2FnoLdoRiEH7pi8RbmmgHUcaL9GYO-}{20200210-操作系统课程的成绩评定标准说明}
+    详见：\href{http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/log#A20200210-.2BZM1PXHz7ft.2BL.2FnoLdoRiEH7pi8RbmmgHUcaL9GYO-}{操作系统课程的成绩评定标准说明}
     
 \end{frame}
 
@@ -225,13 +229,13 @@
     \begin{frame}
         \frametitle{调查问卷}
         \begin{itemize}
-            \item 为什么要学这门课？
+            \item 为什么要学这门课？ \pause
             \item 你打算如何来学这门课？
             \item 对自己的课程学习要求是什么？
             \item 你愿意如实报告是否独立完成实验任务？
+            \item 你希望在操作系统课上学到什么知识和什么能力？ \pause
             \item 以前的学习情况？
-            \item 对计算机专业的看法是什么？
-            \item 你希望在操作系统课上学到什么知识和什么能力？
+            \item 对计算机专业的看法是什么？ \pause
             \item 采集仅限于操作系统课内注册的同学信息
         \end{itemize}
     \end{frame}
