@@ -1,6 +1,8 @@
 *.org
 *.old
 output
+lecture01/slide-test.tex
+lecture01/article-test.tex
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
