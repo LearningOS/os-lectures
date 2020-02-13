@@ -99,10 +99,16 @@
 
 \begin{frame}[fragile]
 	\frametitle{高级语言编译到机器指令}
-	\framesubtitle{C代码}
+	\framesubtitle{C/Rust代码}
 
-\small	
-\begin{lstlisting}[language = C]
+	\begin{columns}[t]
+	\begin{column}{.45\linewidth}
+		
+%\small	
+%\begin{lstlisting}[language = C]
+\begin{block}{}
+\begin{verbatim}
+//C CODE
 int sum_to(int n) {
   int acc = 0;
   for (int i = 0; i < n; i++) {
@@ -110,34 +116,61 @@ int sum_to(int n) {
   }
   return acc;
 }
-\end{lstlisting}
-	
-\end{frame}
+\end{verbatim}
+\end{block}
+%\end{lstlisting}
+\end{column}
 
-
-\begin{frame}[fragile]
-	\frametitle{高级语言编译到机器指令}
-	\framesubtitle{Rust代码}
-	
-\small	
-\begin{lstlisting}[language = C]
+\begin{column}{.45\linewidth}
+\begin{block}{}
+\begin{verbatim}
+//Rust CODE
 fn sum_to(n:i32)->i32 {
   let mut acc = 0;
   for i in 0..n {
     acc += i;
   }
-  acc
+  从acc
 }
-\end{lstlisting}
+\end{verbatim}
+\end{block}
+\end{column}
+\end{columns}
 	
 \end{frame}
+
+
+
+
+
+%\begin{frame}[fragile]
+%	\frametitle{高级语言编译到机器指令}
+%	\framesubtitle{Rust代码}
+%	
+%\small
+%%\begin{lstlisting}[language = C]
+%\begin{verbatim}
+%fn sum_to(n:i32)->i32 {
+%  let mut acc = 0;
+%  for i in 0..n {
+%    acc += i;
+%  }
+%  acc
+%}
+%\end{verbatim}
+%%\end{lstlisting}
+%	
+%\end{frame}
 
 \begin{frame}[fragile,plain]
 \frametitle{高级语言编译到机器指令}
 \framesubtitle{汇编代码}
 
 \small	
-\begin{lstlisting}
+%\begin{lstlisting}
+\centering
+\begin{block}{}
+\begin{verbatim}
 # sum_to(n)
 # expects argument in a0
 # returns result in a0
@@ -149,7 +182,9 @@ add a0, a0, t0     # a0 <- a0 + t0
 addi t0, t0, -1    # t0 <- t0 - 1
 bnez t0, loop      # if t0 != 0: pc <- loop
 ret
-\end{lstlisting}	
+\end{verbatim}
+\end{block}
+%\end{lstlisting}	
 
 \begin{itemize}
 	
@@ -224,13 +259,17 @@ main:
 	\item 函数调用的语义是什么？	
 
 
-\begin{lstlisting}
+%\begin{lstlisting}
+\begin{block}{}
+\begin{verbatim}
 call label :=
   ## ra <- address of next instruction
   ra <- pc + 4       ;
   ## jump to label
   pc <- label        ; 
-\end{lstlisting}
+\end{verbatim}
+\end{block}  
+%\end{lstlisting}
 \item 机器不理解标签
 \item 换为相对于PC的跳转或绝对跳转	
 \end{itemize}
@@ -249,13 +288,14 @@ call label :=
 		\item 函数返回（return）的语义是什么？？	
 		
 		
-		\begin{lstlisting}
+%		\begin{lstlisting}
+\begin{block}{}
+\begin{verbatim}
 ret :=  pc <- ra
 看看汇编代码: demo1.S
 (gdb) file user/_demo1
 (gdb) break main
 (gdb) continue
-Why does it stop before running demo1?
 (gdb) layout split
 (gdb) stepi
 (gdb) info registers\begin{itemize}
@@ -263,7 +303,9 @@ Why does it stop before running demo1?
 (gdb) advance 18
 (gdb) si
 (gdb) p $a0
-\end{lstlisting}
+\end{verbatim}
+\end{block}  
+%\end{lstlisting}
 
 	\end{itemize}
 	
@@ -302,44 +344,58 @@ Why does it stop before running demo1?
 \end{frame}
 
 
-\begin{frame}[fragile]
+\begin{frame}[fragile,plain]
 	\frametitle{高级语言编译到机器指令}
 	\framesubtitle{Stack Frames}
-6 
-\begin{lstlisting}
-+->          .
-|   +-----------------+   ^
-|   | return address  |   |
-|   |   previous fp ------+
-|   | saved registers |
-|   | local variables |
-|   |       ...       | <-+
-|   +-----------------+   |
-|   | return address  |   |
-+------ previous fp   |   |
-    | saved registers |   |
-    | local variables |   |
-+-> |       ...       |   |
-|   +-----------------+   |
-|   | return address  |   |
-|   |   previous fp ------+
-|   | saved registers |
-|   | local variables |
-|   |       ...       | <-+
-|   +-----------------+   |
-|   | return address  |   |
-+------ previous fp   |   |
-| saved registers |   |
-| local variables |   |
-$fp --> |       ...       |   |
-+-----------------+   |
-| return address  |   |
-|   previous fp ------+
-| saved registers |
-$sp --> | local variables |
-+-----------------+
-\end{lstlisting}	
+\small 
+%\begin{lstlisting}
+%\begin{block}{}
+%\begin{verbatim}
+%Stack
+%.
+%.
+%+->          .
+%|   +-----------------+   |
+%|   | return address  |   |
+%|   |   previous fp ------+
+%|   | saved registers |
+%|   | local variables |
+%|   |       ...       | <-+
+%|   +-----------------+   |
+%|   | return address  |   |
+%+------ previous fp   |   |
+%| saved registers |   |
+%| local variables |   |
+%+-> |       ...       |   |
+%|   +-----------------+   |
+%|   | return address  |   |
+%|   |   previous fp ------+
+%|   | saved registers |
+%|   | local variables |
+%|   |       ...       | <-+
+%|   +-----------------+   |
+%|   | return address  |   |
+%+------ previous fp   |   |
+%| saved registers |   |
+%| local variables |   |
+%$fp --> |       ...       |   |
+%+-----------------+   |
+%| return address  |   |
+%|   previous fp ------+
+%| saved registers |
+%$sp --> | local variables |
+%+-----------------+
+%\end{verbatim}
+%\end{block} 
+%\end{lstlisting}	
 	
+%\begin{figure}
+	\centering
+	\includegraphics[width=0.25\linewidth]{stack}
+	
+	%http://asciiflow.com/
+%	\caption{函数栈}
+%\end{figure}
 	
 \end{frame}
 

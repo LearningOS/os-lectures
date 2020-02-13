@@ -1,0 +1,33 @@
+                 .
+    Stack        .
+    +->          .
+    |   +-----------------+   +
+    |   | return address  |   |
+    |   |   previous fp +-----+
+    |   | saved registers |
+    |   | local variables |
+    |   |       ...       | <-+
+    |   +-----------------+   |
+    |   | return address  |   |
+    +-----+ previous fp   |   |
+        | saved registers |   |
+        | local variables |   |
+    +-> |       ...       |   |
+    |   +-----------------+   |
+    |   | return address  |   |
+    |   |   previous fp +-----+
+    |   | saved registers |
+    |   | local variables |
+    |   |       ...       | <-+
+    |   +-----------------+   |
+    |   | return address  |   |
+    +-----+ previous fp   |   |
+        | saved registers |   |
+        | local variables |   |
+$fp+--->+       ...       |   |
+        +-----------------+   |
+        | return address  |   |
+        |   previous fp +-----+
+        | saved registers |
+$sp+--->+ local ^ariables |
+        +-----------------+
