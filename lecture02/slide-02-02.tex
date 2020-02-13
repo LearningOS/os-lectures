@@ -43,7 +43,7 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.45\linewidth]{computer-arch-app}
+		\includegraphics[width=0.4\linewidth]{computer-arch-app}
 		\caption{计算机系统$_{[CS-152 Berkeley]}$}
 	\end{figure}
 	
@@ -57,13 +57,15 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.45\linewidth]{abstract-of-system}
+		\includegraphics[width=0.4\linewidth]{abstract-of-system}
 		\caption{计算机系统的抽象层次$ _{[CS-152 Berkeley]} $}
 	\end{figure}
 	
-	广义的定义, 计算机系统（computer architecture）是一种抽象层次的设计，用于实现可有效使用现有制造技术的信息处理应用。$_{[CS-152 Berkeley]}$
+	广义的定义, 计算机系统（computer architecture）是一种抽象层次的设计，用于实现可有效使用现有计算机物理功能和制造技术的信息处理应用。$_{[CS-152 Berkeley]}$
 	
 \end{frame}
+
+
 
 \begin{frame}[plain]
 	
@@ -71,14 +73,14 @@
 	% 软硬件接口
 	\begin{figure}
 		\centering
-		\includegraphics[width=1.4\linewidth]{hardware-software-interface}
+		\includegraphics[width=1.2\linewidth]{hardware-software-interface}
 		\caption{软硬件接口$ _{[CS-61C Berkeley]} $}
 	\end{figure}
 	
 	% 体系结构需要易于编程/编译/链接，易于软件管理	
+	广义的定义, 计算机系统（computer architecture）是一种抽象层次的设计，用于实现可有效使用现有计算机物理功能和制造技术的信息处理应用。$_{[CS-152 Berkeley]}$
 	
 \end{frame}
-
 
 \begin{frame}
 	
@@ -86,15 +88,28 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.75\linewidth]{mainstream-isas}
-		\caption{主流的ISAs$ _{[CS-61C Berkeley]} $}
+		\includegraphics[width=0.45\linewidth]{arch-os-relation}
+		\caption{计算机系统$_{[CS-152 Berkeley]}$}
 	\end{figure}
+	
+	广义的定义, 计算机系统（computer architecture）是一种抽象层次的设计，用于实现可有效使用现有计算机物理功能和制造技术的信息处理应用。$_{[CS-152 Berkeley]}$
+\end{frame}
+
+\begin{frame}
+	
+	\frametitle{Why RISC-V}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.65\linewidth]{x86-arm-rv-compare}
-		\caption{主流CPU指令集比较$ _{[Waterman 2017]} $}
+		\includegraphics[width=0.6\linewidth]{mainstream-isas}
+		\caption{主流的ISAs$ _{[CS-61C Berkeley]} $}
 	\end{figure}
+	
+%	\begin{figure}
+		\centering
+		\includegraphics[width=0.6\linewidth]{x86-arm-rv-compare}
+%		\caption{主流CPU指令集比较$ _{[Waterman 2017]} $}
+%	\end{figure}
 	
 	
 	% x86指令集自诞生以来指令数量的增长。x86在1978年诞生时有80条指令,到2015年增长了16倍	
@@ -113,7 +128,7 @@
 	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{rv-privil-arch}
+	\includegraphics[width=0.8\linewidth]{rv-privil-arch}
 	\caption{RISC-V特权架构}
 	\end{figure}
 
@@ -170,13 +185,16 @@
 	\begin{itemize}
 		\item 强制隔离以避免对整个系统的可用性/可靠性/安全影响
 		\begin{itemize}
-		\item 运行的程序通常是是隔离的单元
+		\item 运行的程序通常是隔离的单元
 		\item 防止恶意程序、病毒、木马破坏或监视程序Y,扰操作系统	
 			\begin{itemize}
 			\item 读/写内存: mstatus/satp CSR
 			\item 使用100％的CPU：mstatus/stvec CSR
 			\item 更改FD：??? CSR
-			% mstatus/satp/stvec CSR 页表异常处理
+			\pause
+
+			 	\item mstatus/satp/stvec CSR 页表异常处理
+
 			\end{itemize}
 		\end{itemize}
 	\end{itemize}
@@ -185,17 +203,55 @@
 
 
 
-\begin{frame}{plain}
+\begin{frame}[plain]
 	
 	\frametitle{RISC-V虚拟内存}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.65\linewidth]{riscv_pagetable}
+		\includegraphics[width=0.6\linewidth]{riscv_pagetable}
 		\caption{RISC-V虚拟内存}
 	\end{figure}
 	
 	
+\end{frame}
+
+\begin{frame}[plain]
+	
+	\frametitle{RISC-V虚拟内存}
+	
+	\begin{itemize}
+	\item 有虚拟内存的好处/坏处
+	  \begin{itemize}
+		\item 灵活的不连续内存分配
+		\item 多个运行程序的地址空间相互隔离/共享
+		\item 进一步隔离应用程序与OS内核
+		\item \textit{多了访问页表的开销} 
+	  \end{itemize} 
+	\end{itemize}
+	
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{RISC-V中断机制}
+	\begin{itemize}
+		\item 中断是异步发生，是来自处理器外部的I/O设备的信号的结果。
+		
+		
+		\item Timer可以稳定定时地产生中断
+		\begin{itemize}
+			\item 防止应用程序死占着CPU不放,让OS Kernel能得到执行权...
+		\end{itemize}				
+		
+	\end{itemize}
+
+%	\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{fu540-top-block}
+%	\caption{RISC-V中断机制}
+%\end{figure}
+
 \end{frame}
 
 
@@ -207,17 +263,19 @@
 		
 		\item Timer可以稳定定时地产生中断
 		\begin{itemize}
-			\item 防止应用程序死占着CPU不放,让OS kernel能得到执行权...
+			\item 防止应用程序死占着CPU不放,让OS Kernel能得到执行权...
+			\item 由高特权模式下的软件获得CPU控制权
+			\item 也可由高特权模式下的软件授权低特权模式软件处理中断
 		\end{itemize}				
 		
 	\end{itemize}
-
-	\begin{figure}
+	
+	%	\begin{figure}
 	\centering
-	\includegraphics[width=0.65\linewidth]{fu540-top-block}
-	\caption{RISC-V中断机制}
-\end{figure}
-
+	\includegraphics[width=0.7\linewidth]{rv-privil-arch}
+	%	\caption{RISC-V中断机制}
+	%\end{figure}
+	
 \end{frame}
 
 %----------------------------------------------------------------------------------------

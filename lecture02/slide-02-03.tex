@@ -37,43 +37,75 @@
 \subsection{高级语言编译到机器指令} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 \subsection{理解stack}
 
-\begin{frame}
-	
-	\frametitle{高级语言编译到机器指令}
-	\framesubtitle{RISC-V寄存器}	
-\begin{table}[h]
-		\caption{RISC-V寄存器描述}
-		\begin{tabular}{|l|l|l|l|}
-			\hline
-			Register & ABI Name & Description                      & Saver  \\\hline
-			x0       & zero     & Hard-wired zero                  & ------ \\\hline
-			x1       & ra       & Return address                   & Caller \\\hline
-			x2       & sp       & Stack pointer                    & Callee \\\hline
-			x3       & gp       & Global pointer                   & ------ \\\hline
-			x4       & tp       & Thread pointer                   & ------ \\\hline
-			x5-7     & t0-2     & Temporaries                      & Caller \\\hline
-			x8       & s0/fp    & Saved register/frame pointer     & Callee \\\hline
-			x9       & s1       & Saved register                   & Callee \\\hline
-			x10-11   & a0-1     & Function arguments/return values & Caller \\\hline
-			x12-17   & a2-7     & Function arguments               & Caller \\\hline
-			x18-27   & s2-11    & Saved registers                  & Callee \\\hline
-			x28-31   & t3-6     & Temporaries                      & Caller \\
-			\hline
-		\end{tabular}
-\end{table}
 
+\begin{frame}
+	\frametitle{高级语言}
+	\framesubtitle{系统编程语言}
+
+\begin{itemize}
+	
+	\item 对当前编程语言的理解
+	\begin{itemize}
+		\item 系统编程语言（system language）定义现在似乎没有特别严谨和一致的定义
+		\item 系统编程语言用于构建控制底层计算机硬件的软件系统，并提供由用于构建应用程序和服务的更高级应用程序编程语言使用的软件平台。
+		\item 开发操作系统的系统编程语言其实很多；还离不开汇编语言。
+	\end{itemize}
+	\centering
+	\includegraphics[width=0.7\linewidth]{go-rust-4-os}
+\end{itemize}	
 \end{frame}
+
+\begin{frame}
+	\frametitle{高级语言}
+	\framesubtitle{Why Rust}
+	
+	\begin{itemize}
+		
+		\item Why Rust?
+		\begin{itemize}
+			\item CS140e：Stanford 实验性课程，Rust OS for Raspi3
+			\item RVirt：MIT RISC-V Hypervisor
+			\item Writing an OS in Rust —— BlogOS：详尽的 Rust OS 教程
+			\item 产业界： 蚂蚁金服：Occlum  -- Facebook：Libra
+		\end{itemize}
+
+	\end{itemize}	
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{高级语言}
+	\framesubtitle{Why Rust}
+	
+	\begin{itemize}
+		
+		\item Rust 的主要特性
+		\begin{itemize}
+			\item 内存+线程安全
+			\item 高级语言特性
+			\item 成熟的工具链
+			\item 友好的助教+社区（OS示例代码+文档）生态
+			\item 学习Rust的入门门槛比较高(认清你自己，量力而行)
+		\end{itemize}
+		
+	\end{itemize}	
+	
+\end{frame}
+
+
 
 
 
 \begin{frame}[fragile]
 	\frametitle{高级语言编译到机器指令}
 	\framesubtitle{C代码}
-	
+
+\small	
 \begin{lstlisting}[language = C]
 int sum_to(int n) {
   int acc = 0;
-  for (int i = 0; i <= n; i++) {
+  for (int i = 0; i < n; i++) {
     acc += i;
   }
   return acc;
@@ -83,11 +115,28 @@ int sum_to(int n) {
 \end{frame}
 
 
-
 \begin{frame}[fragile]
+	\frametitle{高级语言编译到机器指令}
+	\framesubtitle{Rust代码}
+	
+\small	
+\begin{lstlisting}[language = C]
+fn sum_to(n:i32)->i32 {
+  let mut acc = 0;
+  for i in 0..n {
+    acc += i;
+  }
+  acc
+}
+\end{lstlisting}
+	
+\end{frame}
+
+\begin{frame}[fragile,plain]
 \frametitle{高级语言编译到机器指令}
 \framesubtitle{汇编代码}
-	
+
+\small	
 \begin{lstlisting}
 # sum_to(n)
 # expects argument in a0
@@ -113,7 +162,32 @@ ret
 	
 \end{frame}
 
-
+\begin{frame}[plain]
+	
+	\frametitle{高级语言编译到机器指令}
+	\framesubtitle{RISC-V寄存器}	
+	\begin{table}[h]
+		\caption{RISC-V寄存器描述}\small
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Register & ABI Name & Description                      & Saver  \\\hline
+			x0       & zero     & Hard-wired zero                  & ------ \\\hline
+			x1       & ra       & Return address                   & Caller \\\hline
+			x2       & sp       & Stack pointer                    & Callee \\\hline
+			x3       & gp       & Global pointer                   & ------ \\\hline
+			x4       & tp       & Thread pointer                   & ------ \\\hline
+			x5-7     & t0-2     & Temporaries                      & Caller \\\hline
+			x8       & s0/fp    & Saved register/frame pointer     & Callee \\\hline
+			x9       & s1       & Saved register                   & Callee \\\hline
+			x10-11   & a0-1     & Function arguments/return values & Caller \\\hline
+			x12-17   & a2-7     & Function arguments               & Caller \\\hline
+			x18-27   & s2-11    & Saved registers                  & Callee \\\hline
+			x28-31   & t3-6     & Temporaries                      & Caller \\
+			\hline
+		\end{tabular}
+	\end{table}
+	
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{高级语言编译到机器指令}
@@ -231,7 +305,7 @@ Why does it stop before running demo1?
 \begin{frame}[fragile]
 	\frametitle{高级语言编译到机器指令}
 	\framesubtitle{Stack Frames}
-
+6 
 \begin{lstlisting}
 +->          .
 |   +-----------------+   ^
