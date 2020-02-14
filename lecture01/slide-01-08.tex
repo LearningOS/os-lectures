@@ -42,7 +42,7 @@
 \begin{itemize}
 \item 设计思路
     \begin{itemize}
-    \item 采用小巧全面的操作系统ucore并进行改进，需要覆盖操作系统的关键点，为此增加：
+    \item 设计ucore/rcore，覆盖操作系统的关键点，内容如下：
     \begin{itemize}
         \item 外设：I/O管理/中断管理
         \item 内存：虚存管理/页表/缺页处理/页替换算法
@@ -63,7 +63,7 @@
 	\frametitle{OS实验内容}
 
 	\begin{columns}[t]
-    \begin{column}{.35\linewidth}
+    \begin{column}{.5\textwidth}
      \\
      OS实验内容
      
@@ -79,10 +79,10 @@
 	\end{enumerate}
 	\end{column}
 	
-	\begin{column}{.7\linewidth}
+	\begin{column}{.5\textwidth}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.8\linewidth]{oslab-overview}
+		\includegraphics[width=1.0\linewidth]{oslab-overview}
 		\caption{OS实验框架}
 	\end{figure}
 	\end{column}
@@ -234,7 +234,7 @@ buffer cache和disk driver之间的关系。
 \end{frame}
 
 
-\begin{frame}
+\begin{frame}[plain]
 \frametitle{OS实验内容}
 \framesubtitle{labX}
 

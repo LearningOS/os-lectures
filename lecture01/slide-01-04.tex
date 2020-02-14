@@ -37,11 +37,18 @@
 %------------------------------------------------
 \begin{frame}
     \frametitle{操作系统课是多门课程的综合}
+    
+        \begin{columns}
+    	
+    	
+    	\begin{column}{0.4\textwidth}	
+    		\includegraphics[width=1\linewidth]{lang-arch-os-relation}	
+    	\end{column}
+    	
+    	\begin{column}{0.5\textwidth}
+    		
     \begin{itemize}
-        \item 理论基础
-        \begin{itemize}
-            \item 操作系统概念和原理
-        \end{itemize} \pause
+
         \item 综合课程-结合许多不同的课程
         \begin{itemize}
             \item 程序设计语言
@@ -49,32 +56,59 @@
             \item 计算机组成原理/体系结构
             \item 编译技术
         \end{itemize} \pause
-        \item 理解源代码\&实践技能
+        \item OS基本理论基础
+    	\begin{itemize}
+    		\item 操作系统概念和原理
+    	\end{itemize} \pause
+        \item OS设计和实现
         \begin{itemize}
-            \item 操作系统的设计和实现
+            \item 操作系统源代码\&实践技能
         \end{itemize}
     \end{itemize}
+
+     \end{column}
+\end{columns}
+
 \end{frame}
     
 \begin{frame}
     \frametitle{操作系统软件的地位}
-        \textbf{操作系统：计算机科学研究的基石之一}
+    
+            \begin{columns}
+    	
+    	
+    	\begin{column}{0.35\textwidth}	
+    		\includegraphics[width=1\linewidth]{lang-arch-os-relation}	
+    	\end{column}
+    	
+    	\begin{column}{0.65\textwidth}
+    		
+        操作系统：计算机科学研究的基石之一
         \pause
         \begin{itemize}
             \item 计算机系统的基本组成部分和核心支撑软件
             \item 贯穿程序语言、运行时系统、应用、体系结构
-            \item 联系计算机科学和计算机系统的典范
+            \item 联系计算机科学和计算机系统的典范 \pause 
             \item 操作系统的知识影响到专业人员的素质
             \item 大量专业工作与操作系统技术相关
         \end{itemize}
+
+         \end{column}
+\end{columns}
+
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain]
     \frametitle{操作系统研究相关的图灵奖}
+    \centering
      \includegraphics[width=0.8\linewidth]{turing-os}
      \\
      from sjtu os course
      %sjtu os course 
+%http://www-31.ibm.com/ibm/cn/ibm100/icons/system360/index.shtml
+%https://blog.csdn.net/deep_explore/article/details/6930582
+%https://zhuanlan.zhihu.com/p/59664012 https://tech.ifeng.com/c/7oXlxnl6R5f
+%https://kb.cnblogs.com/page/79904/
 \end{frame}
 
 \begin{frame}
@@ -88,17 +122,21 @@
 \begin{frame}
     \frametitle{哪里在做操作系统研究？}
     \begin{itemize}
+%    	\pause
         \item 顶尖大学的计算机科学部门
+         \begin{itemize}
+        	\item MIT， Stanford, Berkeley, ...
+         \end{itemize} \pause
         \item 计算机产业
         \begin{itemize}
             \item 旧时：Xerox (PARC), IBM, DEC (SRC), Bell Labs
             \item 现代：Microsoft, Google, Yahoo, IBM, HP, Sun, Intel, VMware, Amazon,  …
             \item 国内：华为、阿里巴巴、腾讯 …
-        \end{itemize}
+        \end{itemize}\pause
 
         \item 学术研究协会
         \begin{itemize}
-            \item SOSP OSDI
+            \item SOSP OSDI HotOS
             \item ACM SIGOPS \href{http://www.sigops.org/award-hof.html}{Hall-of-Fame Awards} 
             \item USENIX USENIX-ATC
         \end{itemize}
@@ -111,7 +149,13 @@
 
 \begin{frame}
     \frametitle{学习操作系统的目的}
-    \begin{columns}[t]
+    \begin{columns}
+    	
+    	
+   \begin{column}{0.5\textwidth}	
+   	\includegraphics[width=1\linewidth]{linux-family}	
+   \end{column}
+ 	
     \begin{column}{0.5\textwidth}
     \begin{itemize}
     \item 动机
@@ -119,7 +163,7 @@
     \item 已有操作系统很好，我将来的工作不会写操作系统
     \begin{itemize}
         \item Windows,Linux.android,ios
-    \end{itemize}
+    \end{itemize}\pause
     \item 已有操作系统是否解决了所有的事?
         \begin{itemize}
         \item multi-core/parallel
@@ -128,84 +172,94 @@
         \item Energy
         \item mobility/AIoT
         \item correct/verification
-    \end{itemize}
-    \item 为什么我要学习它？
+    \end{itemize}\pause
+    \item \textit{为什么我要学习它？}
         \end{itemize}
     \end{itemize}
      \end{column}
 
      
-    \begin{column}{0.5\textwidth}
-    
-    \end{column}
+%    \begin{column}{0.5\textwidth}
+%    
+%    \end{column}
     
     \end{columns}
     
     \end{frame}
 %------------------------------------------------
 
-\begin{frame}
-    \frametitle{学习操作系统的目的}
-    \begin{columns}[t]
-    \begin{column}{0.5\textwidth}
-    \begin{itemize}
-    \item 动机
-    \begin{itemize}
-    \item 已有操作系统很好，我将来的工作不会写操作系统
-    \begin{itemize}
-        \item Windows,Linux.android,ios
-    \end{itemize}
-    \item 已有操作系统是否解决了所有的事?
-        \begin{itemize}
-        \item multi-core/parallel
-        \item Non-Volatile Storage
-        \item security
-        \item Energy
-        \item mobility/AIoT
-        \item correct/verification
-        \end{itemize}
-    \item 为什么我要学习它？
-       \end{itemize}
-    \end{itemize}
-     \end{column}
-     
-    \begin{column}{0.5\textwidth}
-        \begin{itemize}
-            \item 收获
-        \begin{itemize}
-            \item 操作系统很有用!
-                \begin{itemize}
-                    \item 掌握OS的基本原理
-                \end{itemize}
-            \item 我想了解操作系统到底是如何工作的？
-                \begin{itemize}
-                    \item 掌握OS机制的实现技术
-                \end{itemize}
-            \item 写操作系统很酷!
-                \begin{itemize}
-                    \item 经历开发一个小型OS的主要阶段
-                \end{itemize}
-            \item 掌握操作系统是一个挑战!
-                \begin{itemize}
-                    \item 加深对计算机系统的理解
-                \end{itemize}
-            \item 我要参与系统软件开发
-                \begin{itemize}
-                    \item 会将所学知识灵活应用
-                \end{itemize}
-            \end{itemize}
-        \end{itemize}
-        \end{column}
-    \end{columns}
-    
-    \end{frame}
+%\begin{frame}
+%    \frametitle{学习操作系统的目的}
+%    \begin{columns}[t]
+%    \begin{column}{0.5\textwidth}
+%    \begin{itemize}
+%    \item 动机
+%    \begin{itemize}
+%    \item 已有操作系统很好，我将来的工作不会写操作系统
+%    \begin{itemize}
+%        \item Windows,Linux.android,ios
+%    \end{itemize}
+%    \item 已有操作系统是否解决了所有的事?
+%        \begin{itemize}
+%        \item multi-core/parallel
+%        \item Non-Volatile Storage
+%        \item security
+%        \item Energy
+%        \item mobility/AIoT
+%        \item correct/verification
+%        \end{itemize}
+%    \item 为什么我要学习它？
+%       \end{itemize}
+%    \end{itemize}
+%     \end{column}
+%     
+%    \begin{column}{0.5\textwidth}
+%        \begin{itemize}
+%            \item 收获
+%        \begin{itemize}
+%            \item 操作系统很有用!
+%                \begin{itemize}
+%                    \item 掌握OS的基本原理
+%                \end{itemize}
+%            \item 我想了解操作系统到底是如何工作的？
+%                \begin{itemize}
+%                    \item 掌握OS机制的实现技术
+%                \end{itemize}
+%            \item 写操作系统很酷!
+%                \begin{itemize}
+%                    \item 经历开发一个OS的主要阶段
+%                \end{itemize}
+%            \item 掌握操作系统是一个挑战!
+%                \begin{itemize}
+%                    \item 加深对计算机系统的理解
+%                \end{itemize}
+%            \item 我要参与系统软件开发
+%                \begin{itemize}
+%                    \item 会将所学知识灵活应用
+%                \end{itemize}
+%            \end{itemize}
+%        \end{itemize}
+%        \end{column}
+%    \end{columns}
+%    
+%    \end{frame}
 
 %------------------------------------------------
     
 \begin{frame}
     \frametitle{掌握操作系统具有挑战性(1)}
+    
+    \begin{columns}
+    	
+    \begin{column}{0.3\textwidth}	
+      \includegraphics[width=1\linewidth]{os-challenge}	
+    \end{column}
+
+	\begin{column}{0.7\textwidth}
+    
+    \textbf{抓住操作系统的关键问题}
     \begin{itemize}
-        \item 操作系统很大
+        \item 操作系统很庞大
             \begin{itemize}
                 \item Windows XP 有4500万行
             \end{itemize} \pause
@@ -218,56 +272,87 @@
                \item CPU、内存、磁盘
                 \item 时间依赖行为, 非法行为, 硬件故障
             \end{itemize} \pause
-        \item 操作系统代码必须是高效的, 低耗能 \pause
-        \item 操作系统是系统安全的基础
+        \item 操作系统代码必须是高效的, 低耗能，安全可靠 \pause
+%        \item 操作系统是系统安全的基础
             \begin{itemize}
+            	\item 操作系统要及时地给应用提供合理资源
                 \item 操作系统出错，就意味着机器出错
                 \item 操作系统必须比用户程序拥有更高的稳定性
             \end{itemize}
         
     \end{itemize}
+    \end{column}
+
+    \end{columns}
+
 \end{frame}
 
 %------------------------------------------------
     
 \begin{frame}
     \frametitle{掌握操作系统具有挑战性(2)}
+    
+        \begin{columns}
+    	
+    	\begin{column}{0.3\textwidth}	
+    		\includegraphics[width=1\linewidth]{os-challenge}	
+    	\end{column}
+    
+    	\begin{column}{0.7\textwidth}
+    		
+     \textbf{学习操作系统需要具有系统思维} 
     \begin{itemize}
         \item 操作系统并不仅仅是琐碎的调度算法
             \begin{itemize}
                 \item 磁盘调度算法大多已被硬件实现
                 \item 进程调度是个比较小话题
-            \end{itemize}
+            \end{itemize} \pause
         \item 并发性是操作系统的一小部分内容
             \begin{itemize}
                 \item 内核里不存在管程和哲学家问题
-                \item 内核中的锁问题需要太多的背景知识
-            \end{itemize}
-
+                \item 内核中锁机制需要考虑应用和硬件
+            \end{itemize} \pause
     \end{itemize}
+
+    \begin{itemize}
+	\item 权衡资源
+	\begin{itemize}
+		\item 时间与空间 --性能的可预测性与公平性
+	\end{itemize} \pause
+	\item 软硬协同
+	\begin{itemize}
+		\item 如何让中断、异常、上下文切换真正有效? 
+		\item TLB是如何工作的？这对页表又意味着什么？
+	\end{itemize}
+\end{itemize}
+
+    \end{column}
+
+\end{columns}
+
 \end{frame}
 
 %------------------------------------------------
-    
-\begin{frame}
-    \frametitle{掌握操作系统具有挑战性(3)}
-    \textbf{学习操作系统需要具有系统思维} \pause
-
-    \begin{itemize}
-        \item 权衡
-            \begin{itemize}
-                \item 时间与空间
-                \item 性能与可预测性
-                \item 公平与性能（哪种设计能工作？为什么？）
-            \end{itemize} \pause
-        \item 软硬协同
-            \begin{itemize}
-                \item 如何让中断、异常、上下文切换真正有效? 
-                \item TLB是如何工作的？这对页表又意味着什么？
-                \item 如果你不展示任何汇编代码，那么你就不是教操作系统的!
-            \end{itemize}
-    \end{itemize}
-\end{frame}
+%    
+%\begin{frame}
+%    \frametitle{掌握操作系统具有挑战性(3)}
+%    \textbf{学习操作系统需要具有系统思维} \pause
+%
+%    \begin{itemize}
+%        \item 权衡
+%            \begin{itemize}
+%                \item 时间与空间
+%                \item 性能与可预测性
+%                \item 公平与性能（哪种设计能工作？为什么？）
+%            \end{itemize} \pause
+%        \item 软硬协同
+%            \begin{itemize}
+%                \item 如何让中断、异常、上下文切换真正有效? 
+%                \item TLB是如何工作的？这对页表又意味着什么？
+%                \item 如果你不展示任何汇编代码，那么你就不是教操作系统的!
+%            \end{itemize}
+%    \end{itemize}
+%\end{frame}
 
 %------------------------------------------------
     
