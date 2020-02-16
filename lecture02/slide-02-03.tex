@@ -49,6 +49,7 @@
 		\item 系统编程语言用于构建控制底层计算机硬件的软件系统，并提供由用于构建应用程序和服务的更高级应用程序编程语言使用的软件平台。
 		\item 开发操作系统的系统编程语言其实很多；还离不开汇编语言。
 	\end{itemize}
+	\pause
 	\centering
 	\includegraphics[width=0.7\linewidth]{go-rust-4-os}
 %\end{itemize}	
@@ -130,7 +131,7 @@ fn sum_to(n:i32)->i32 {
   for i in 0..n {
     acc += i;
   }
-  从acc
+  return acc
 }
 \end{verbatim}
 \end{block}
@@ -298,7 +299,7 @@ ret :=  pc <- ra
 (gdb) continue
 (gdb) layout split
 (gdb) stepi
-(gdb) info registers\begin{itemize}
+(gdb) info registers
 (gdb) p $a0
 (gdb) advance 18
 (gdb) si
