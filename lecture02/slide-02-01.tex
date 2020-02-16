@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第2讲]{第2讲 ：操作系统与系统结构和程序设计语言} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第一节：再看计算机系统 -- 从OS角度}
+\subtitle{第一节：从OS角度看计算机系统}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -31,13 +31,10 @@
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{第一节：再看计算机系统 -- 从OS角度 } % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第一节：从OS角度看计算机系统 } % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 
 \subsection{隔离} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-\subsection{虚拟内存}
-\subsection{特权模式}
-\subsection{中断}
 
 \begin{frame}
 
@@ -57,11 +54,12 @@
 
 
 \begin{frame}
-	\frametitle{隔离}
+	\frametitle{隔离：\small{程序调用}}
 	\begin{itemize}
 		\item 程序调用 \textit{ssize\_t read(int fd, void *buf, size\_t count);}会发生什么？
 		\item 我们可以在应用程序中直接调用内核的函数吗？
-		\item 我们可以在内核中使用应用程序普通的函数调用吗？
+		\item 我们可以在内核中使用应用程序普通的函数调用吗？ \pause
+		\item 程序调用的特征
 		\begin{itemize}
 			\item 好处：执行很快；
 			\item 好处：灵活-易于传递和返回复杂数据类型；
@@ -75,13 +73,15 @@
 
 
 \begin{frame}
-	\frametitle{隔离}
-	\begin{itemize}
-		\item 什么是隔离？
+	\frametitle{隔离：\small{什么是隔离？}}
+%	\begin{itemize}
+%		\item 什么是隔离？
 		\begin{itemize}
 
 		\item 强制隔离以避免对整个系统的可用性/可靠性/安全影响
 		\item 运行的程序通常是是隔离的单元
+		\pause
+		
 		\item 防止程序X破坏或监视程序Y
 			\begin{itemize}
 			\item 读/写内存，使用100％的CPU，更改文件描述符
@@ -92,21 +92,22 @@
 			\item 错误的过程可能会试图欺骗硬件或内核
 			\end{itemize}
 		\end{itemize}
-	\end{itemize}
+%	\end{itemize}
 \end{frame}
 
 
 
 \begin{frame}
-	\frametitle{隔离}
-	\begin{itemize}
-		\item 主要的隔离方法？
+	\frametitle{隔离：\small{主要的隔离方法？}}
+%	\begin{itemize}
+%		\item 主要的隔离方法？
 		\begin{itemize}
 			\item 地址空间 address spaces
 				\begin{itemize}
 				\item 一个程序仅寻址其自己的内存
 				\item 每个程序若无许可，则无法访问不属于自己的内存
 				\end{itemize}			
+				\pause
 			
 			\item CPU硬件中的特权模式/中断机制
 				\begin{itemize}
@@ -115,8 +116,10 @@
 				\item 例如打断一直占用CPU的应用程序
 				\end{itemize}				
 		\end{itemize}
-	\end{itemize}
+%	\end{itemize}
 \end{frame}
+
+\subsection{虚拟内存}
 
 \begin{frame}[plain]
 	
@@ -188,6 +191,7 @@
 	
 \end{frame}
 
+\subsection{特权模式}
 
 \begin{frame}
 	\frametitle{特权模式}
@@ -210,6 +214,7 @@
 	\end{itemize}
 \end{frame}
 
+\subsection{中断}
 
 \begin{frame}
 	\frametitle{中断机制}
@@ -218,19 +223,21 @@
 		\item 中断是异步发生，是来自处理器外部的I/O设备的信号的结果。
 		\begin{itemize}
 			\item 硬件中断不是由任何一条专门的CPU指令造成，从这个意义上它是异步的。
+			
+		\end{itemize}
+\pause
 			\item 硬件中断的异常处理程序通常称为中断处理程序（interrupt handle）
 			\begin{itemize}
 				\item I/O设备通过向处理器芯片的一个引脚发信号，并将异常号放到系统总线上，以触发中断；
 				\item 在当前指令执行完后，处理器从系统总线读取异常号，保存现场，切换到Kernel Mode；
 				\item 调用中断处理程序，当中断处理程序完成后，它将控制返回给下一条本来要执行的指令。
 			\end{itemize}			
-			
+\pause
 			\item Timer可以稳定定时地产生中断
 			\begin{itemize}
 				\item 防止应用程序死占着CPU不放
 				\item 让OS kernel能周期性地进行资源管理
 			\end{itemize}				
-		\end{itemize}
 	\end{itemize}
 \end{frame}
 
