@@ -41,13 +41,14 @@
 
 \begin{frame}
 	
-	\frametitle{Why RISC-V}
+	\frametitle{Why RISC-V：\small{计算机系统$_{[CS-152 Berkeley]}$}}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.4\linewidth]{computer-arch-app}
-		\caption{计算机系统$_{[CS-152 Berkeley]}$}
+		\includegraphics[width=0.35\linewidth]{computer-arch-app}
+%		\caption{计算机系统$_{[CS-152 Berkeley]}$}
 	\end{figure}
+	\pause
 	
 	广义的定义, 计算机系统（computer architecture）是一种抽象层次的设计，用于实现可有效使用现有制造技术的信息处理应用。$_{[CS-152 Berkeley]}$
 \end{frame}
@@ -56,32 +57,41 @@
 
 \begin{frame}
 	
-	\frametitle{Why RISC-V}
+	\frametitle{Why RISC-V：\small{计算机系统的抽象层次$ _{[CS-152 Berkeley]} $}}
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.4\linewidth]{abstract-of-system}
-		\caption{计算机系统的抽象层次$ _{[CS-152 Berkeley]} $}
+%		\caption{计算机系统的抽象层次$ _{[CS-152 Berkeley]} $}
 	\end{figure}
-	
-	广义的定义, 计算机系统（computer architecture）是一种抽象层次的设计，用于实现可有效使用现有计算机物理功能和制造技术的信息处理应用。$_{[CS-152 Berkeley]}$
-	
+
 \end{frame}
 
 %------------------------------------------------
 
 \begin{frame}[plain]
 	
-	\frametitle{Why RISC-V}
+	\frametitle{Why RISC-V：\small{软硬件接口$ _{[CS-152 Berkeley]} $}}
 	% 软硬件接口
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.8\linewidth]{hardware-software-interface}
-		\caption{软硬件接口$ _{[CS-61C Berkeley]} $}
+		\includegraphics[width=0.9\linewidth]{hardware-software-interface}
 	\end{figure}
 	
 	% 体系结构需要易于编程/编译/链接，易于软件管理	
-	广义的定义, 计算机系统（computer architecture）是一种抽象层次的设计，用于实现可有效使用现有计算机物理功能和制造技术的信息处理应用。$_{[CS-152 Berkeley]}$
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	
+	\frametitle{Why RISC-V：\small{OS与体系结构的关系}}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.55\linewidth]{arch-os-relation}
+	\end{figure}
 	
 \end{frame}
 
@@ -89,34 +99,20 @@
 
 \begin{frame}
 	
-	\frametitle{Why RISC-V}
+	\frametitle{Why RISC-V：\small{主流CPU指令集比较$ _{[Waterman 2017]} $}}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.45\linewidth]{arch-os-relation}
-		\caption{计算机系统$_{[CS-152 Berkeley]}$}
+		\includegraphics[width=0.65\linewidth]{mainstream-isas}
+%		\caption{主流的ISAs$ _{[CS-61C Berkeley]} $}
 	\end{figure}
-	
-	广义的定义, 计算机系统（computer architecture）是一种抽象层次的设计，用于实现可有效使用现有计算机物理功能和制造技术的信息处理应用。$_{[CS-152 Berkeley]}$
-\end{frame}
-
-%------------------------------------------------
-
-\begin{frame}
-	
-	\frametitle{Why RISC-V}
+	\pause
 	
 	\begin{figure}
-		\centering
-		\includegraphics[width=0.6\linewidth]{mainstream-isas}
-		\caption{主流的ISAs$ _{[CS-61C Berkeley]} $}
-	\end{figure}
-	
-%	\begin{figure}
 		\centering
 		\includegraphics[width=0.6\linewidth]{x86-arm-rv-compare}
 %		\caption{主流CPU指令集比较$ _{[Waterman 2017]} $}
-%	\end{figure}
+	\end{figure}
 	
 	
 	% x86指令集自诞生以来指令数量的增长。x86在1978年诞生时有80条指令,到2015年增长了16倍	
@@ -132,13 +128,13 @@
 %------------------------------------------------
 
 \begin{frame}
-	\frametitle{RISC-V特权架构}
-	\framesubtitle{隔离}
+	\frametitle{RISC-V特权架构：\small{隔离}}
+%	\framesubtitle{隔离}
 	
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.8\linewidth]{rv-privil-arch}
-	\caption{RISC-V特权架构}
+	\includegraphics[width=0.9\linewidth]{rv-privil-arch}
+%	\caption{RISC-V特权架构}
 	\end{figure}
 
 \begin{itemize}
@@ -155,10 +151,10 @@
 %------------------------------------------------
 
 \begin{frame}
-		\frametitle{RISC-V特权模式架构}
-		\framesubtitle{隔离}
+		\frametitle{RISC-V特权模式架构：\small{模式组合}}
+%		\framesubtitle{隔离}
 \begin{table}[h]
-	\caption{RISC-V的特权模式组合}
+%	\caption{RISC-V的特权模式组合}
  	\centering
  	\begin{tabular}{|c|c|l|c|l|}
  	\hline
@@ -181,8 +177,8 @@
 %------------------------------------------------
 
 \begin{frame}
-	\frametitle{RISC-V特权模式架构}
-	\framesubtitle{隔离}
+	\frametitle{RISC-V特权模式架构：\small{控制状态寄存器}}
+%	\framesubtitle{隔离}
 
 	\begin{itemize}
 		\item 设置CSR(控制状态寄存器)实现隔离
@@ -196,11 +192,11 @@
 		\item 强制隔离以避免对整个系统的可用性/可靠性/安全影响
 		\begin{itemize}
 		\item 运行的程序通常是隔离的单元
-		\item 防止恶意程序、病毒、木马破坏或监视应用程序、操作系统	
+		\item 防止恶意程序、病毒、木马破坏或监视应用程序或干扰操作系统	
 			\begin{itemize}
 			\item 读/写内存: mstatus/satp CSR
 			\item 使用100％的CPU：mstatus/stvec CSR
-			\item 更改FD：??? CSR
+%			\item 更改FD：??? CSR
 			\pause
 
 			 	\item mstatus/satp/stvec CSR 页表异常处理
@@ -215,23 +211,21 @@
 
 \begin{frame}[plain]
 	
-	\frametitle{RISC-V虚拟内存}
+    \begin{columns}
+    \begin{column}{0.6\textwidth}
+
+    \frametitle{RISC-V虚拟内存}
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.45\linewidth]{riscv_pagetable}
-		\caption{RISC-V虚拟内存}
+		\includegraphics[width=0.8\linewidth]{riscv_pagetable}
+%		\caption{RISC-V虚拟内存}
 	\end{figure}
-	
-	
-\end{frame}
 
-%------------------------------------------------
+    \end{column}
 
-\begin{frame}[plain]
-	
-	\frametitle{RISC-V虚拟内存}
-	
+    \begin{column}{0.4\textwidth}
+
 	\begin{itemize}
 	\item 有虚拟内存的好处/坏处
 	  \begin{itemize}
@@ -241,6 +235,10 @@
 		\item \textit{多了访问页表的开销} 
 	  \end{itemize} 
 	\end{itemize}
+
+    \end{column}
+
+    \end{columns}
 	
 	
 \end{frame}
