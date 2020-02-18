@@ -27,11 +27,11 @@
 
 ##  再看Rust/汇编 函数调用 （C有对应rust的code）
 
-# 第3讲 中断、异常、系统调用 
-
-## RISC-V Intro (Intr/syscall )
+# 第3讲 中断、异常和系统调用 
 
 ## 中断、异常和系统调用
+
+## RISC-V Intro (Intr/syscall )
 
 ## 中断、异常、系统调用示例 (各种小例子)
 
