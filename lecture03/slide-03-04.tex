@@ -30,15 +30,63 @@
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{第一节：中断的概念}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第四节：中断、异常和系统调用示例}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
-
-\subsection{背景} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+% ### 第4节 中断、异常和系统调用示例
+% 
+\subsection{系统调用流程}
+% #### 系统调用示例
 %------------------------------------------------
 \begin{frame}
-	\frametitle{xxxx}
+	\frametitle{文件复制过程中的系统调用序列}
 	\framesubtitle{xxxx}
 \end{frame}
-
+% 2018-lec3-chy.pdf：P44
+% 文件复制过程中的系统调用序列
+% 
+\subsection{中断}
+% #### rCore系统调用示例
+% 类似2018-lec3-chy.pdf：P45
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{手动触发断点中断}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### 手动触发断点中断
+% https://rcore-os.github.io/rCore_tutorial_doc/chapter3/part2.html
+% 
+\subsection{系统调用}
+%------------------------------------------------
+\begin{frame}
+	\frametitle{访问系统调用}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### 访问系统调用
+% https://rcore-os.github.io/rCore_tutorial_doc/chapter8/part1.html
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{访问系统调用}
+	\framesubtitle{xxxx}
+\end{frame}
+% https://github.com/rcore-os/rCore_tutorial/blob/ch8-pa1/usr/rust/src/syscall.rs
+% 访问系统调用的用户态代码
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{println}
+	\framesubtitle{xxxx}
+\end{frame}
+% https://github.com/rcore-os/rCore_tutorial/blob/ch8-pa1/usr/rust/src/io.rs
+% println的用户态代码
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{使用 OpenSBI 提供的服务}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### 使用 OpenSBI 提供的服务
+% https://rcore-os.github.io/rCore_tutorial_doc/chapter2/part6.html
 %----------------------------------------------------------------------------------------
 \end{document}
