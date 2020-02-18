@@ -119,6 +119,26 @@ POSIX API 用于 POSIX-based systems (包括UNIX，LINUX， Mac OS X的所有版
 Java API 用于JAVA虚拟机(JVM)
 ABI和API的区别
 
+#### 使用 OpenSBI 提供的服务
+https://rcore-os.github.io/rCore_tutorial_doc/chapter2/part6.html
+
+https://stackoverflow.com/questions/3784389/difference-between-api-and-abi
+
+
+API: Application Program Interface
+
+This is the set of public types/variables/functions that you expose from your application/library.
+
+In C/C++ this is what you expose in the header files that you ship with the application.
+ABI: Application Binary Interface
+
+This is how the compiler builds an application.
+It defines things (but is not limited to):
+
+    How parameters are passed to functions (registers/stack).
+    Who cleans parameters from the stack (caller/callee).
+    Where the return value is placed for return.
+    How exceptions propagate.
 #### 系统调用的实现
 2018-lec3-chy.pdf：P40
 
