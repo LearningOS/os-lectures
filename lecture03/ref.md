@@ -184,3 +184,14 @@ RISC-V-Reader-Chinese-v2p1.pdf：p102
 #### 手动触发断点中断
 https://rcore-os.github.io/rCore_tutorial_doc/chapter3/part2.html
 
+#### 访问系统调用
+https://rcore-os.github.io/rCore_tutorial_doc/chapter8/part1.html
+
+https://github.com/rcore-os/rCore_tutorial/blob/ch8-pa1/usr/rust/src/syscall.rs
+访问系统调用的用户态代码
+
+https://github.com/rcore-os/rCore_tutorial/blob/ch8-pa1/usr/rust/src/io.rs
+println的用户态代码
+
+
+
