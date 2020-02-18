@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第3讲]{第3讲 中断、异常和系统调用} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第一节：xxxx}
+\subtitle{第三节：RISC-V中断和系统调用}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -30,15 +30,132 @@
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{第一节：中断的概念}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第三节：RISC-V中断和系统调用}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
+% ### 第3节 RISC-V的中断和系统调用
+% 
+% https://riscv.org/wp-content/uploads/2016/07/Tue0900_RISCV-20160712-Interrupts.pdf
+% 
+% http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf
+% RISC-V手册
 
-\subsection{背景} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+\subsection{Interrupt Design Goals} 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{RISC-V Interrupt Design Goals}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### RISC-V Interrupt Design Goals
+% Tue0900_RISCV-20160712-Interrupts.pdf：p3
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Categorizing Sources of RISC-V Interrupts}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### Categorizing Sources of RISC-V Interrupts
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Machine Interrupt Pending CSR (mip)}
+	\framesubtitle{xxxx}
+\end{frame}
+% Machine Interrupt Pending CSR (mip)
+%------------------------------------------------
+\begin{frame}
+	\frametitle{PlaCorm-Level Interrupt Controller (PLIC)}
+	\framesubtitle{xxxx}
+\end{frame}
+% PlaCorm-Level Interrupt Controller (PLIC)
+% SoGware Interrupts
+% Timer Interrupts
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Machine Interrupt Enable CSR (mie)}
+	\framesubtitle{xxxx}
+\end{frame}
+% Machine Interrupt Enable CSR (mie)
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Interrupts in mstatus}
+	\framesubtitle{xxxx}
+\end{frame}
+% Interrupts in mstatus
 %------------------------------------------------
 \begin{frame}
 	\frametitle{xxxx}
 	\framesubtitle{xxxx}
 \end{frame}
+% All interrupts trap to M-mode by default
+% Optional Interrupt Handler Delegation
 
+\subsection{Platform-Level Interrupt Controller (PLIC)} 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{PLIC Conceptual Block Diagram}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### PLIC Conceptual Block Diagram
+% Tue0900_RISCV-20160712-Interrupts.pdf：p14
+% PLIC Interrupt Gateways
+% PLIC Per-Interrupt ID and Priority
+%------------------------------------------------
+\begin{frame}
+	\frametitle{PLIC Interrupt Flow}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### PLIC Interrupt Flow
+% Tue0900_RISCV-20160712-Interrupts.pdf：p21
+%------------------------------------------------
+\begin{frame}
+	\frametitle{PLIC Interrupt Preemption/Nesting}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### PLIC Interrupt Preemption/Nesting
+% PLIC Access Control
+% SiFive Freedom Platform PLIC Mapping
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Interrupt/Trap Vectors}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### Interrupt/Trap Vectors
+
+\subsection{User-Level Interrupts}
+%------------------------------------------------
+\begin{frame}
+	\frametitle{User-Level Interrupts “N”}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### User-Level Interrupts “N”
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Interrupts in Secure Embedded Systems}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### Interrupts in Secure Embedded Systems
+\subsection{系统调用}
+%------------------------------------------------
+\begin{frame}
+	\frametitle{函数调用规范(Calling convention)}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### 函数调用规范(Calling convention)
+% RISC-V-Reader-Chinese-v2p1.pdf：p43
+% RISC-V 应用程序二进制接口(ABI)
+% 	图 3.2 RISC-V 整数和浮点寄存器的汇编助记符
+% 	标准的 RV32I 函数入口和出口
+% 	结尾部分释放栈帧并返回调用点: RISC-V-Reader-Chinese-v2p1.pdf：p45
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{RISC-V 异常和中断的原因}
+	\framesubtitle{xxxx}
+\end{frame}
+% #### 异常和中断的原因
+% RISC-V-Reader-Chinese-v2p1.pdf：p102
+% 图 10.3:RISC-V 异常和中断的原因% 
 %----------------------------------------------------------------------------------------
 \end{document}
