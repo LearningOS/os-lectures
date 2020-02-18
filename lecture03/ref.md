@@ -130,6 +130,11 @@ ABI和API的区别
 
 ### 第1节 RISC-V Intro (Intr/syscall )
 
+https://riscv.org/wp-content/uploads/2016/07/Tue0900_RISCV-20160712-Interrupts.pdf
+
+http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf
+RISC-V手册
+
 ### 第1节 中断、异常、系统调用示例 (各种小例子)
 
 #### 系统调用示例
