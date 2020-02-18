@@ -30,15 +30,115 @@
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{第一节：中断的概念}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%------------------------------------------------
-
-\subsection{背景} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\section{第二节：系统调用}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 \begin{frame}
-	\frametitle{xxxx}
+	\frametitle{系统调用}
+	\framesubtitle{xxxx}
+    \begin{itemize}
+        \item 操作系统服务的应用编程接口（API）
+	    \begin{itemize}
+        	\item 通常由高级语言编写(C、C++和rust等)
+        	\item 程序访问通常是通过高层次的API接口而不是直接进行系统调用
+    	\end{itemize}
+        \item 三种最常用的应用程序编程接口(API)
+	    \begin{itemize}
+        	\item Win32 API 用于 Windows
+        	\item POSIX API 用于 POSIX-based systems (包括UNIX，LINUX， Mac OS X的所有版本)
+        	\item Java API 用于JAVA虚拟机(JVM)
+    	\end{itemize}
+    \end{itemize}
+\end{frame}
+% 2018-lec3-chy.pdf：P39
+%------------------------------------------------
+\begin{frame}
+	\frametitle{系统调用的实现}
 	\framesubtitle{xxxx}
 \end{frame}
+% 2018-lec3-chy.pdf：P40
+%------------------------------------------------
+\begin{frame}
+	\frametitle{函数调用和系统调用的不同处}
+	\framesubtitle{xxxx}
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}
+%			\includegraphics[width=0.55\linewidth]{xxxx}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+	    \begin{itemize}
+		    \item 每个系统调用对应一个系统调用号
+		    \begin{itemize}
+		    	\item 系统调用接口根据系统调用号来维护表的索引
+	    	\end{itemize}
+		    \item 系统调用接口调用内核态中的系统调用功能实现，并返回系统调用的状态和结果
+		    \item 用户不需要知道系统调用的实现
+	 		\begin{itemize}
+		    	\item 需要设置调用参数和获取返回结果
+		    	\item 操作系统接口的细节大部分都隐藏在应用编程接口后
+			    \begin{itemize}
+		    		\item 通过运行程序支持的库来管理
+	    		\end{itemize}
+			\end{itemize}
+	    \end{itemize}
+    \end{column}
+    \end{columns}
+\end{frame}
+% 2018-lec3-chy.pdf：P41
+%------------------------------------------------
+\begin{frame}
+	\frametitle{函数调用和系统调用的不同处}
+%	\framesubtitle{xxxx}
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+        \begin{figure}
+%			\includegraphics[width=0.55\linewidth]{xxxx}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+	    \begin{itemize}
+	        \item 系统调用
+		    \begin{itemize}
+	        	\item ECALL和SRET指令用于系统调用
+	        	\item 系统调用时，堆栈切换和特权级的转换
+	    	\end{itemize}
+	        \item 函数调用
+		    \begin{itemize}
+	        	\item JAL和RET用于常规调用
+	        	\item 常规调用时没有堆栈切换
+	    	\end{itemize}
 
+	        \item RISC-V手册
+		    \begin{itemize}
+	        	\item \href{http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf}{RISC-V-Reader-Chinese-v2p1.pdf}
+	    	\end{itemize}
+	    \end{itemize}
+    \end{column}
+    \end{columns}
+\end{frame}
+%------------------------------------------------
+\begin{frame}
+	\frametitle{中断、异常和系统调用的开销}
+%	\framesubtitle{xxxx}
+	\begin{itemize}
+        \item 超过函数调用
+        \item 开销:
+	    \begin{itemize}
+	        \item 引导机制
+	        \item 建立内核堆栈
+	        \item 验证参数
+	        \item 内核态映射到用户态的地 址空间
+		    \begin{itemize}
+	        	\item 更新页面映射权限
+	    	\end{itemize}
+        	\item 内核态独立地址空间
+		    \begin{itemize}
+        		\item TLB
+	    	\end{itemize}
+    	\end{itemize}
+	\end{itemize}
+\end{frame}
+% 2018-lec3-chy.pdf：P42
 %----------------------------------------------------------------------------------------
 \end{document}
