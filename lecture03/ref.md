@@ -193,5 +193,9 @@ https://github.com/rcore-os/rCore_tutorial/blob/ch8-pa1/usr/rust/src/syscall.rs
 https://github.com/rcore-os/rCore_tutorial/blob/ch8-pa1/usr/rust/src/io.rs
 println的用户态代码
 
+#### 使用 OpenSBI 提供的服务
+https://rcore-os.github.io/rCore_tutorial_doc/chapter2/part6.html
+
+
 
 
