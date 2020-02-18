@@ -74,151 +74,185 @@
 	\frametitle{SiFive FE310-G002 top-level block diagram}
 %	\framesubtitle{xxxx}
 \begin{figure}
-    \includegraphics[width=1.0\linewidth]{sifive-board}
+    \includegraphics[width=0.55\linewidth]{sifive-board}
 \end{figure}
 \end{frame}
 % https://cdn.sparkfun.com/assets/5/b/e/6/2/fe310-g002-ds.pdf
 %------------------------------------------------
-% #### RV板级图
-% 
-% 需要补充（类似2018-lec3-chy.pdf：P9）
-% 
-%------------------------------------------------
 \subsection{内核的进入与退出}
 %------------------------------------------------
 \begin{frame}
-	\frametitle{xxxx}
-	\framesubtitle{xxxx}
+	\frametitle{内核的进入与退出}
+%	\framesubtitle{xxxx}
+\begin{figure}
+%    \includegraphics[width=0.55\linewidth]{kernel-interrupt}
+\end{figure}
 \end{frame}
-
-%------------------------------------------------
-% ### 内核的进入与退出
-% 
-% #### 内核的进入与退出
-% 
 % 2018-lec3-chy.pdf：P31
 % 插图
-% 
-
 %------------------------------------------------
 \subsection{中断、异常和系统调用}
 %------------------------------------------------
 \begin{frame}
-	\frametitle{xxxx}
-	\framesubtitle{xxxx}
-\end{frame}
+	\frametitle{中断、异常和系统调用}
+%	\framesubtitle{xxxx}
 
-%------------------------------------------------
-% ### 中断、异常和系统调用
-% 
-% #### 中断、异常和系统调用
-% 
+    \begin{itemize}
+        \item 源头
+        \begin{itemize}
+            \item 中断:外设
+            \item 异常:应用程序意想不到的行为
+            \item 系统调用:应用程序请求操作提供服务
+        \end{itemize}
+        \item 响应方式
+        \begin{itemize}
+            \item 中断:异步
+            \item 异常:同步
+            \item 系统调用:异步或同步
+        \end{itemize}
+        \item 处理机制
+        \begin{itemize}
+            \item 中断:持续，对用户应用程序是透明的
+            \item 异常:杀死或者重新执行意想不到的应用程序指令
+            \item 系统调用:等待和持续
+        \end{itemize}
+    \end{itemize}
+\end{frame}
 % 2018-lec3-chy.pdf：P25
-% 源头
-% 	中断:外设
-% 	异常:应用程序意想不到的行为
-% 	系统调用:应用程序请求操作提供服务
-% 响应方式
-% 	中断:异步
-% 	异常:同步
-% 	系统调用:异步或同步
-% 处理机制
-% 	中断:持续，对用户应用程序是透明的
-% 	异常:杀死或者重新执行意想不到的应用程序指令
-% 	系统调用:等待和持续
-% 
 %------------------------------------------------
 \begin{frame}
-	\frametitle{xxxx}
-	\framesubtitle{xxxx}
+	\frametitle{RISC-V异常和中断的原因}
+%	\framesubtitle{xxxx}
+%\begin{figure}
+%    \includegraphics[width=0.55\linewidth]{rv-interrupt}
+%\end{figure}
 \end{frame}
-%------------------------------------------------
-% #### 中断向量
-% ref：
+% ref：http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf
+%      p102: rv-interrupt
 % rv的中断编号
 % 
 %------------------------------------------------
 \begin{frame}
-	\frametitle{xxxx}
-	\framesubtitle{xxxx}
+	\frametitle{中断、异常和系统调用比较}
+%	\framesubtitle{xxxx}
+    \begin{columns}
+    \begin{column}{0.4\textwidth}
+        \begin{figure}
+%            \includegraphics[width=0.55\linewidth]{kernel-interrupt}
+        \end{figure}
+    \end{column}
+    \begin{column}{0.6\textwidth}
+    \begin{itemize}
+        \item 源头
+	    \begin{itemize}
+	       \item 中断:外设
+	       \item 异常:应用程序意想不到的行为
+	       \item 系统调用:应用程序请求操作提供服务
+    	\end{itemize}
+        \item 响应方式
+	    \begin{itemize}
+        	\item 中断:异步
+        	\item 异常:同步
+        	\item 系统调用:异步或同步
+    	\end{itemize}
+        \item 处理机制
+	    \begin{itemize}
+        	\item 中断:持续，对用户应用程序是透明的
+        	\item 异常:杀死或者重新执行意想不到的应用程序指令
+        	\item 系统调用:等待和持续
+    	\end{itemize}
+    \end{itemize}
+    \end{column}
+    \end{columns}
 \end{frame}
-%------------------------------------------------
-% #### 中断、异常和系统调用比较
-% 
 % 插图2018-lec3-chy.pdf：P32
-% 
-% 源头
-% 	中断:外设
-% 	异常:应用程序意想不到的行为
-% 	系统调用:应用程序请求操作提供服务
-% 响应方式
-% 	中断:异步
-% 	异常:同步
-% 	系统调用:异步或同步
-% 处理机制
-% 	中断:持续，对用户应用程序是透明的
-% 	异常:杀死或者重新执行意想不到的应用程序指令
-% 	系统调用:等待和持续
-% 
 %------------------------------------------------
 \begin{frame}
-	\frametitle{xxxx}
+	\frametitle{中断、异常和系统调用的用途}
 	\framesubtitle{xxxx}
+    \begin{itemize}
+        \item 系统调用(system call)
+	    \begin{itemize}
+        	\item 应用程序主动向操作系统发出的服务请求
+    	\end{itemize}
+        \item 异常(exception)
+	    \begin{itemize}
+        	\item 非法指令或者其他原因导致当前指令执行失败 (如:内存出错)后的处理请求
+    	\end{itemize}
+        \item 中断(hardware interrupt)
+	    \begin{itemize}
+        	\item 来自硬件设备的处理请求
+    	\end{itemize}
+    \end{itemize}
 \end{frame}
-%------------------------------------------------
-% #### 中断、异常和系统调用的用途
 % 2018-lec3-chy.pdf：P33
-% 系统调用(system call)
-% 	应用程序主动向操作系统发出的服务请求
-% 异常(exception)
-% 	非法指令或者其他原因导致当前指令执行失败 (如:内存出错)后的处理请求
-% 中断(hardware interrupt)
-% 	来自硬件设备的处理请求
-% 
-
 %------------------------------------------------
 \subsection{中断处理机制}
-
 %------------------------------------------------
 \begin{frame}
-	\frametitle{xxxx}
-	\framesubtitle{xxxx}
-\end{frame}
-%------------------------------------------------
-% ### 中断处理
-% 
-% #### 中断处理-硬件
-% 
+	\frametitle{中断处理-硬件}
+%	\framesubtitle{xxxx}
+    \begin{columns}
+	    \begin{column}{0.5\textwidth}
+        \begin{figure}
+%			\includegraphics[width=0.55\linewidth]{xxxx}
 % 插图2018-lec3-chy.pdf：P34
-% 
-% 硬件处理
-% 在CPU初始化时设置中断使能标志
-% 	依据内部或外部事件设置中断标志
-% 	依据中断向量调用相应中断服务例程
-% 
-%------------------------------------------------
-\begin{frame}
-	\frametitle{xxxx}
-	\framesubtitle{xxxx}
+        \end{figure}
+	    \end{column}
+	    \begin{column}{0.5\textwidth}
+    \begin{itemize}
+        \item 在CPU初始化时设置中断使能标志
+	    \begin{itemize}
+    	    \item 依据内部或外部事件设置中断标志
+    	    \item 依据中断向量调用相应中断服务例程
+    	\end{itemize}
+    \end{itemize}
+	    \end{column}
+    \end{columns}
 \end{frame}
 %------------------------------------------------
-% #### 中断处理-软件
-% 
+\begin{frame}
+	\frametitle{中断处理-软件}
+%	\framesubtitle{xxxx}
+    \begin{columns}
+	    \begin{column}{0.5\textwidth}
+        \begin{figure}
+%			\includegraphics[width=0.55\linewidth]{xxxx}
 % 插图2018-lec3-chy.pdf：P35
-% 
-% 软件
-% 现场保存(CPU+编译器)
-% 中断服务处理(服务例程)
-% 清除中断标记(服务例程)
-% 现场恢复(CPU+编译器)
-% 
-%------------------------------------------------
-\begin{frame}
-	\frametitle{xxxx}
-	\framesubtitle{xxxx}
+        \end{figure}
+	    \end{column}
+	    \begin{column}{0.5\textwidth}
+    		\begin{itemize}
+    		    \item 现场保存(CPU+编译器)
+    		    \item 中断服务处理(服务例程)
+    		    \item 清除中断标记(服务例程)
+    		    \item 现场恢复(CPU+编译器)
+    		\end{itemize}
+	    \end{column}
+    \end{columns}
 \end{frame}
 %------------------------------------------------
-% #### 中断嵌套
+\begin{frame}
+	\frametitle{中断嵌套}
+%	\framesubtitle{xxxx}
+    \begin{itemize}
+        \item 硬件中断服务例程可被打断
+	    \begin{itemize}
+        	\item 不同硬件中断源可能在硬件中断处理时出现
+        	\item 硬件中断服务例程中需要临时禁止中断请求
+        	\item 中断请求会保持到CPU做出响应
+    	\end{itemize}
+        \item 异常服务例程可被打断
+	    \begin{itemize}
+        	\item 异常服务例程执行时可能出现硬件中断
+    	\end{itemize}
+
+        \item 异常服务例程可嵌套
+	    \begin{itemize}
+        	\item 异常服务例程可能出现缺页
+    	\end{itemize}
+    \end{itemize}
+\end{frame}
 % 2018-lec3-chy.pdf：P36
 % 硬件中断服务例程可被打断
 % 	不同硬件中断源可能在硬件中断处理时出现
