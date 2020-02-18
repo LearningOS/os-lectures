@@ -128,14 +128,51 @@ ABI和API的区别
 #### 中断、异常和系统调用的开销
 2018-lec3-chy.pdf：P42
 
-### 第1节 RISC-V Intro (Intr/syscall )
+### 第3节 RISC-V Intro (Intr/syscall )
 
 https://riscv.org/wp-content/uploads/2016/07/Tue0900_RISCV-20160712-Interrupts.pdf
 
 http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf
 RISC-V手册
 
-### 第1节 中断、异常、系统调用示例 (各种小例子)
+#### RISC-V Interrupt Design Goals
+Tue0900_RISCV-20160712-Interrupts.pdf：p3
+
+#### Categorizing Sources of RISC-V Interrupts
+
+Machine Interrupt Pending CSR (mip)
+PlaCorm-Level Interrupt Controller (PLIC)
+SoGware Interrupts
+Timer Interrupts
+Machine Interrupt Enable CSR (mie)
+Interrupts in mstatus
+All interrupts trap to M-mode by default
+Optional Interrupt Handler Delegation
+#### PLIC Conceptual Block Diagram
+Tue0900_RISCV-20160712-Interrupts.pdf：p14
+PLIC Interrupt Gateways
+PLIC Per-Interrupt ID and Priority
+#### PLIC Interrupt Flow
+Tue0900_RISCV-20160712-Interrupts.pdf：p21
+#### PLIC Interrupt Preemption/Nesting
+PLIC Access Control
+SiFive Freedom Platform PLIC Mapping
+
+#### Interrupt/Trap Vectors
+#### User-Level Interrupts “N”
+#### Interrupts in Secure Embedded Systems
+#### 函数调用规范(Calling convention)
+RISC-V-Reader-Chinese-v2p1.pdf：p43
+RISC-V 应用程序二进制接口(ABI)
+	图 3.2 RISC-V 整数和浮点寄存器的汇编助记符
+	标准的 RV32I 函数入口和出口
+	结尾部分释放栈帧并返回调用点: RISC-V-Reader-Chinese-v2p1.pdf：p45
+
+#### 异常和中断的原因
+RISC-V-Reader-Chinese-v2p1.pdf：p102
+图 10.3:RISC-V 异常和中断的原因
+
+### 第4节 中断、异常、系统调用示例 (各种小例子)
 
 #### 系统调用示例
 2018-lec3-chy.pdf：P44
@@ -143,3 +180,7 @@ RISC-V手册
 
 #### rCore系统调用示例
 类似2018-lec3-chy.pdf：P45
+
+#### 手动触发断点中断
+https://rcore-os.github.io/rCore_tutorial_doc/chapter3/part2.html
+
