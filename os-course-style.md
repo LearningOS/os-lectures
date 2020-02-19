@@ -2,7 +2,7 @@
 
 ## **课前**
 
-* 鼓励课前预习：浏览一下[视频和slides](http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture02)和[课堂问题](https://chyyuu.gitbooks.io/os_course_exercises/content/)
+* 鼓励课前预习：浏览下次课[视频和slides](http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/#A.2Bi.2F56C4uyTkk-)，以及对应的[课堂问题](https://chyyuu.gitbooks.io/os_course_exercises/content/)
 * 注意上课时间，提前几分钟登陆会议，按时上课。
 
 ## **课中（0-95分钟）**
