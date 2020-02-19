@@ -1,4 +1,4 @@
-1. 多种语言协同构造的 OS
+# 1. 多种语言协同构造的 OS
 
 已有工作：
 
@@ -7,7 +7,8 @@
 参考资料：
 
 1. [Typekernel](http://os.cs.tsinghua.edu.cn/oscourse/OsTrain2019/g6)，[给后来者的话](https://github.com/typekernel/typekernel-doc/blob/master/TO_FOLLOWERS.md)
-2. 为 rcore 实现更多 Linux 系统调用
+
+# 2. 为 rcore 实现更多 Linux 系统调用
 
 主要目标：
 
@@ -25,7 +26,8 @@
 3. [在 rCore 中实现 epoll](http://os.cs.tsinghua.edu.cn/oscourse/OsTrain2019/g4)
 4. [在 rCore 中实现 SystemV 信号量和共享内存](http://os.cs.tsinghua.edu.cn/oscourse/OsTrain2019/g3)
 5. [在 rCore 中实现 Framebuffer 运行 mgba](http://os.cs.tsinghua.edu.cn/oscourse/OS2019spring/projects/g02)
-3. 用 RUST 重写 zircon（zCore）
+
+# 3. 用 RUST 重写 zircon（zCore）
 
 主要目标：
 
@@ -49,7 +51,8 @@
 PS：
 
 * 此项目是某位助教哥哥的毕设课题，和另一位助教哥哥本学期的个人娱乐项目：）））
-4. 用 RUST 实现 KVM 功能
+
+# 4. 用 RUST 实现 KVM 功能
 
 主要目标：
 
@@ -63,7 +66,8 @@ PS：
 1. [JailHouse：Linux-based Hypervisor](https://github.com/siemens/jailhouse)
 2. [RVirt：MIT 用 Rust 写的 RISCV Hypervisor](https://github.com/siemens/jailhouse)
 3. [Linux KVM](https://www.linux-kvm.org/page/Main_Page), [Apple Hypervisor Framework](https://developer.apple.com/documentation/hypervisor)
-5. RISCV 用户态中断
+
+# 5. RISCV 用户态中断
 
 主要目标：
 
@@ -72,7 +76,8 @@ PS：
 参考资料：
 
 1. [RISCV 特权级手册](https://riscv.org/specifications/privileged-isa)
-6. 重构 rcore 内核组件形成 OS-Kit
+
+# 6. 重构 rcore 内核组件形成 OS-Kit
 
 主要目标：
 
@@ -85,7 +90,8 @@ PS：
 参考资料：
 
 * [JudgeDuckOS64](https://github.com/wangrunji0408/JudgeDuck-OS-64)：利用 rCore 现有模块重新实现的[应用程序稳态测试系统（评测鸭）](http://os.cs.tsinghua.edu.cn/oscourse/OS2018spring/projects/g04)
-7. 为 rcore 适配树莓派4（ARM64）
+
+# 7. 为 rcore 适配树莓派4（ARM64）
 
 主要目标：
 
@@ -98,9 +104,12 @@ PS：
 2. [在 rCore 中支持树莓派3声卡](http://os.cs.tsinghua.edu.cn/oscourse/OS2019spring/projects/g08)
 3. [在 rCore 中支持树莓派3 SD卡](http://os.cs.tsinghua.edu.cn/oscourse/OS2019spring/projects/g11)
 4. [在 rCore 中移植 VideoCore IV 驱动](http://os.cs.tsinghua.edu.cn/oscourse/OsTrain2019/g2)
-8. 为 rcore 适配基于 rv64 的物理硬件（如 K210、FPGA+Rocket Chip等）
-9. 形式化验证的OS
-10. 基于 rcore 的网络路由器
+
+# 8. 为 rcore 适配基于 rv64 的物理硬件（如 K210、FPGA+Rocket Chip等）
+
+# 9. 形式化验证的OS
+
+# 10. 基于 rcore 的网络路由器
 
 主要目标：
 
@@ -112,19 +121,24 @@ PS：
 
 1. [FPGA 上运行 RISC-V rCore 构建路由器](http://os.cs.tsinghua.edu.cn/oscourse/OS2019spring/projects/g05)
 2. [计网联合实验](https://github.com/z4yx/Router-Lab/tree/master/Joint)
-11. 改进rust语言的async on no-std
-12. 内核态的rust std实现
-13. 基于Labeled RISCV的OS kernel支持
+
+# 11. 改进rust语言的async on no-std
+
+# 12. 内核态的rust std实现
+
+# 13. 基于Labeled RISCV的OS kernel支持
 
 参考资料：
 
 1. [为 rCore 适配 PARD / Labeled RISCV](http://os.cs.tsinghua.edu.cn/oscourse/OsTrain2018/g3)
-14. 在 rcore 中支持 container
-1. 自由选择 OS 相关的论文、改进结果
+
+# 14. 在 rcore 中支持 container
+
+# 1. 自由选择 OS 相关的论文、改进结果
 
 参考资料
 
-1. 为 rcore 添加 USB 驱动支持
+# 1. 为 rcore 添加 USB 驱动支持
 
 主要目标：
 
