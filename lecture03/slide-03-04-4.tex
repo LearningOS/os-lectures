@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第3讲]{第3讲 中断、异常和系统调用} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第二节：硬件架构支持}
+\subtitle{第三节：中断处理机制--Summary}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -30,16 +30,10 @@
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
-%------------------------------------------------
-\section{第二节：硬件架构支持}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%------------------------------------------------
-
-%\subsection{背景} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%------------------------------------------------
 
 %------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{硬件架构支持}
+\begin{frame}[plain,t]
+	\frametitle{中断处理机制--中断执行过程}
 	%	\framesubtitle{xxxx}
 	\begin{columns}
 		
@@ -53,29 +47,46 @@
 			
 		\end{column}
 		
-		\begin{column}{0.6\textwidth}
+		\begin{column}{0.5\textwidth}
 			
 			\centering
-			\includegraphics[width=1.0\linewidth]{fu540-intr-arch}	
-			
-			%			\begin{itemize}
-			%				\item 在 RISC-V中,ebreak指令或其他错误可向运行时环境发出异常请求
-			%			\end{itemize}		
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+%			\includegraphics[width=.2\linewidth]{timer}
+			%show rcore tutorial	
+			产生中断后：
+			\begin{itemize} \small 
+				\item 硬件设置：\pause
+				\begin{itemize} \small 
+					\item sepc：保存中断的指令地址	
+					\item pc：设置为 stvec
+					\item scause：设置中断的来源
+					\item sstatus：SIE位置零以禁用中断					
+					\item \underline{stval：保存了异常相关的附加信息}
+			   \end{itemize}	
+				\item 软件保存被打断现场：\pause
+				\begin{itemize} \small 
+					\item x[0--32]：通用寄存器 	
+					\item sepc：保存中断的指令地址
+					\item scause：设置中断的来源
+					\item sstatus：SIE位置零以禁用中断					
+					\item \underline{stval：保存了异常相关的附加信息}
+				\end{itemize}											
+%				show code
+			\end{itemize}
 			
 		\end{column}
 		
 	\end{columns}
 	
-\end{frame}
-
+\end{frame}	
 
 %------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{硬件架构支持}
+\begin{frame}[plain,t]
+	\frametitle{中断处理机制--中断执行过程}
 	%	\framesubtitle{xxxx}
 	\begin{columns}
 		
-		\begin{column}{0.45\textwidth}
+		\begin{column}{0.4\textwidth}
 			\centering
 			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
 			\begin{itemize} \small
@@ -87,31 +98,48 @@
 		
 		\begin{column}{0.5\textwidth}
 			
-%			\centering
-			\includegraphics[width=0.6\linewidth]{fu540-intr-arch}	
-			
-			三种标准的中断源:
-			\begin{itemize}
-				\item 软件中断通过向内存映射寄存器中存数来触发，如 IPI \pause
-				\item 时钟中断,如 stimecmp > stime  \pause
-				\item 由平台级中断控制器引发外部中断
-			\end{itemize}		
+			\centering
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+			%			\includegraphics[width=.2\linewidth]{timer}
+			%show rcore tutorial	
+			产生中断后：
+			\begin{itemize} \small 
+				\item 硬件设置
+%				\begin{itemize} \small 
+%					\item sepc：保存中断的指令地址	
+%					\item pc：设置为 stvec
+%					\item scause：设置中断的来源
+%					\item sstatus：SIE位置零以禁用中断					
+%					\item stval：保存了中断相关的附加信息
+%				\end{itemize}	
+				\item 软件保存被打断现场\pause
+%				\begin{itemize} \small 
+%					\item x[0--32]：通用寄存器 	
+%					\item pc：设置为 stvec
+%					\item scause：设置中断的来源
+%					\item sstatus：SIE位置零以禁用中断					
+%					\item stval：保存了中断相关的附加信息
+%				\end{itemize}											
+				\item 执行软件实现的中断服务例程
+				\item 软件恢复被打断现场
+				\item 继续执行
+				
+			\end{itemize}
 			
 		\end{column}
 		
 	\end{columns}
 	
-\end{frame}
-
+\end{frame}	
 
 
 %------------------------------------------------
 \begin{frame}[plain,t]
-	\frametitle{中断处理机制}
+	\frametitle{中断嵌套}
 	%	\framesubtitle{xxxx}
 	\begin{columns}
 		
-		\begin{column}{0.45\textwidth}
+		\begin{column}{0.4\textwidth}
 			\centering
 			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
 			\begin{itemize} \small
@@ -123,25 +151,25 @@
 		
 		\begin{column}{0.5\textwidth}
 			
-			%			\centering
-			\includegraphics[width=0.6\linewidth]{fu540-intr-arch}	
+			\centering
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+			%			\includegraphics[width=.2\linewidth]{timer}
+			%show rcore tutorial	
 			
-			建立中断机制
-			\begin{itemize}
-				\item 让CPU能响应中断 \pause
-					\begin{itemize}
-						\item sstatus:保存全局中断使能位	 \pause
-						\item sie:指出CPU目前能处理或忽略的中断 \pause
-					\end{itemize}		
-			\end{itemize}		
+			\begin{itemize} \small 
+				\item 硬件中断服务例程可被打断	
+				\begin{itemize} \small										
+					\item 不同硬件中断源可能在硬件中断处理时出现
+					\item 中断请求会保持到CPU做出响应
+					\item 硬件中断服务例程中需要临时禁止中断请求
+				\end{itemize}
+			\end{itemize}
 			
-		\end{column}他
+		\end{column}
 		
 	\end{columns}
 	
-\end{frame}
-
-
+\end{frame}	
 %----------------------------------------------------------------------------------------
 
 \end{document}

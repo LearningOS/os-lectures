@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第3讲]{第3讲 中断、异常和系统调用} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第二节：硬件架构支持}
+\subtitle{第三节：中断处理机制--Detail}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -30,16 +30,11 @@
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
-%------------------------------------------------
-\section{第二节：硬件架构支持}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%------------------------------------------------
 
-%\subsection{背景} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%------------------------------------------------
 
 %------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{硬件架构支持}
+\begin{frame}[plain,t]
+	\frametitle{中断处理机制--让CPU能响应中断}
 	%	\framesubtitle{xxxx}
 	\begin{columns}
 		
@@ -56,58 +51,19 @@
 		\begin{column}{0.6\textwidth}
 			
 			\centering
-			\includegraphics[width=1.0\linewidth]{fu540-intr-arch}	
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
 			
-			%			\begin{itemize}
-			%				\item 在 RISC-V中,ebreak指令或其他错误可向运行时环境发出异常请求
-			%			\end{itemize}		
-			
+			\includegraphics[width=1.\linewidth]{showmethecode}
+			%show rcore tutorial	
+		
 		\end{column}
 		
 	\end{columns}
 	
 \end{frame}
-
-
-%------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{硬件架构支持}
-	%	\framesubtitle{xxxx}
-	\begin{columns}
-		
-		\begin{column}{0.45\textwidth}
-			\centering
-			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
-			\begin{itemize} \small
-				\item Core Local	Interruptor (CLINT)
-				\item Platform-Level Interrupt Controller (PLIC)
-			\end{itemize}
-			
-		\end{column}
-		
-		\begin{column}{0.5\textwidth}
-			
-%			\centering
-			\includegraphics[width=0.6\linewidth]{fu540-intr-arch}	
-			
-			三种标准的中断源:
-			\begin{itemize}
-				\item 软件中断通过向内存映射寄存器中存数来触发，如 IPI \pause
-				\item 时钟中断,如 stimecmp > stime  \pause
-				\item 由平台级中断控制器引发外部中断
-			\end{itemize}		
-			
-		\end{column}
-		
-	\end{columns}
-	
-\end{frame}
-
-
-
 %------------------------------------------------
 \begin{frame}[plain,t]
-	\frametitle{中断处理机制}
+	\frametitle{中断处理机制--让CPU能响应中断}
 	%	\framesubtitle{xxxx}
 	\begin{columns}
 		
@@ -124,14 +80,16 @@
 		\begin{column}{0.5\textwidth}
 			
 			%			\centering
-			\includegraphics[width=0.6\linewidth]{fu540-intr-arch}	
+			\includegraphics[width=0.6\linewidth]{fu540-intr-arch}
 			
 			建立中断机制
 			\begin{itemize}
 				\item 让CPU能响应中断 \pause
-					\begin{itemize}
-						\item sstatus:保存全局中断使能位	 \pause
-						\item sie:指出CPU目前能处理或忽略的中断 \pause
+					\begin{itemize} \small
+%						\item 启动：OpenSBI：在M-Mode初始化，进入S-Mode \pause
+						\item 硬件：sstatus:保存全局中断使能位	 \pause
+						\item 硬件：sie:指出CPU目前能处理|忽略的中断 \pause
+						\item 硬件：stvec:中断入口地址
 					\end{itemize}		
 			\end{itemize}		
 			
@@ -141,6 +99,48 @@
 	
 \end{frame}
 
+
+%------------------------------------------------
+\begin{frame}[plain,t]
+	\frametitle{中断处理机制--让CPU能响应中断}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			\begin{itemize} \small
+				\item Core Local	Interruptor (CLINT)
+				\item Platform-Level Interrupt Controller (PLIC)
+			\end{itemize}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+			\centering
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+			
+			\includegraphics[width=.3\linewidth]{timer}
+			%show rcore tutorial	
+			
+			\begin{itemize} \small 
+				\item 初始化：设置 sie 的 TI 使能 STIE 位 \pause
+				\item 初始化：设置 sstatus 的使能中断 SIE 位  \pause
+				\item 初始化：实现中断服务总控函数 \pause
+				\item 初始化：设置 stvec指向中断服务总控函数的入口地址
+				
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}
+
+
+
+		
 
 %----------------------------------------------------------------------------------------
 

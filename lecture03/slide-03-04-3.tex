@@ -1,0 +1,233 @@
+\input{../preamble}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第3讲]{第3讲 中断、异常和系统调用} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第三节：中断处理机制--Detail}
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+清华大学计算机系 \\ % Your institution for the title page
+\medskip
+\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%\begin{frame}
+%\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+%\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+
+
+%------------------------------------------------
+\begin{frame}[plain,t]
+	\frametitle{中断处理机制--保存恢复现场}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			\begin{itemize} \small
+				\item Core Local	Interruptor (CLINT)
+				\item Platform-Level Interrupt Controller (PLIC)
+			\end{itemize}
+			
+		\end{column}
+		
+		\begin{column}{0.6\textwidth}
+			
+			\centering
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+			
+			\includegraphics[width=1.\linewidth]{showmethecode}
+			%show rcore tutorial	
+		
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[plain,t]
+	\frametitle{中断处理机制--保存恢复现场}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			\begin{itemize} \small
+				\item Core Local	Interruptor (CLINT)
+				\item Platform-Level Interrupt Controller (PLIC)
+			\end{itemize}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+			\centering
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+			
+			\includegraphics[width=.3\linewidth]{timer}
+			%show rcore tutorial	
+			
+			\begin{itemize} \small 
+				\item 还需为被中断的程序保存和恢复当时程序运行时的上下文：\pause
+				\item SAVE\_ALL  \pause 寄存器 \pause
+				
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}
+
+
+
+%------------------------------------------------
+\begin{frame}[plain,t]
+	\frametitle{中断处理机制--保存恢复现场}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			\begin{itemize} \small
+				\item Core Local	Interruptor (CLINT)
+				\item Platform-Level Interrupt Controller (PLIC)
+			\end{itemize}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+			\centering
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+			
+			\includegraphics[width=.2\linewidth]{timer}
+			%show rcore tutorial	
+			
+			\begin{itemize} \small 
+				\item 要保存和恢复当时程序运行时的上下文：\pause
+				\item x[0--32]：通用寄存器 \pause
+				\item sstatus：系统系状态
+				\item sepc：触发异常/中断的指令地址
+				\item scause：指示发生异常/中断的种类
+				\item stval：保存了发生异常/中断的附加信息
+				%show code
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}
+
+
+%------------------------------------------------
+%\begin{frame}[plain,t]
+%	\frametitle{中断处理机制--保存恢复现场}
+%	%	\framesubtitle{xxxx}
+%	\begin{columns}
+%		
+%		\begin{column}{0.4\textwidth}
+%			\centering
+%			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+%			\begin{itemize} \small
+%				\item Core Local	Interruptor (CLINT)
+%				\item Platform-Level Interrupt Controller (PLIC)
+%			\end{itemize}
+%			
+%		\end{column}
+%		
+%		\begin{column}{0.5\textwidth}
+%			
+%			\centering
+%			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+%			
+%			\includegraphics[width=.3\linewidth]{timer}
+%			%show rcore tutorial	
+%			产生异常/中断时
+%			\begin{itemize} \small 
+%				\item sstatus：系统系状态
+%				\item sepc：触发异常/中断的指令地址
+%				\item scause：指示发生异常/中断的种类
+%				\item stval：保存了发生异常/中断的附加信息
+%				%show code
+%			\end{itemize}
+%
+%	\end{column}
+%	
+%	\end{columns}
+%
+%\end{frame}				
+%------------------------------------------------
+\begin{frame}[plain,t]
+	\frametitle{中断处理机制--还原整个过程}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			\begin{itemize} \small
+				\item Core Local	Interruptor (CLINT)
+				\item Platform-Level Interrupt Controller (PLIC)
+			\end{itemize}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+			\centering
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+%			\includegraphics[width=.2\linewidth]{timer}
+			%show rcore tutorial	
+			产生中断后：
+			\begin{itemize} \small 
+				\item 硬件设置：\pause
+				\begin{itemize} \small 
+					\item sepc：保存中断的指令地址	
+					\item pc：设置为 stvec
+					\item scause：设置中断的来源
+					\item sstatus：SIE位置零以禁用中断					
+					\item stval：保存了中断相关的附加信息
+			   \end{itemize}	
+				\item 软件保存：\pause
+				\begin{itemize} \small 
+					\item x[0--32]：通用寄存器 	
+					\item pc：设置为 stvec
+					\item scause：设置中断的来源
+					\item sstatus：SIE位置零以禁用中断					
+					\item stval：保存了中断相关的附加信息
+				\end{itemize}											
+%				show code
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}	
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
