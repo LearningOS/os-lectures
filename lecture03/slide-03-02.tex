@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第3讲]{第3讲 中断、异常和系统调用} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第一节：xxxx}
+\subtitle{第二节：系统调用}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -21,124 +21,278 @@
 \titlepage % Print the title page as the first slide
 \end{frame}
 %----------------------------------------------------------------------------------------
-\begin{frame}
-\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-\end{frame}
+%\begin{frame}
+%\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+%\end{frame}
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
 \section{第二节：系统调用}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+
+%----------------------------------------------
+\begin{frame}[plain]	
+	\frametitle{}
+	
+	\begin{itemize}
+		\item 应用程序要输出字符串时，会触发系统调用write()
+	\end{itemize}
+	
+	
+	\centering
+	\includegraphics[width=1.\textwidth]{write-syscall}
+	
+\end{frame}
+
 %------------------------------------------------
 \begin{frame}
 	\frametitle{系统调用}
-	\framesubtitle{xxxx}
+
+
+ 	\begin{columns}
+ 	
+ 	\begin{column}{0.4\textwidth}
+ 		\centering
+ 		\includegraphics[width=1.0\linewidth]{syscalls}
+
+ 		
+ 	\end{column}
+ 	
+ 	\begin{column}{0.5\textwidth}
+ 		
     \begin{itemize}
-        \item 操作系统服务的应用编程接口（API）
+        \item 操作系统服务的应用编程接口
 	    \begin{itemize}
-        	\item 通常由高级语言编写(C、C++和rust等)
-        	\item 程序访问通常是通过高层次的API接口而不是直接进行系统调用
+        	\item 通常由高级语言编写(C、C++、go和rust等)
+        	\item 程序访问通常是通过高层次的API接口
     	\end{itemize}
-        \item 三种最常用的应用程序编程接口(API)
+        \item 三种最常用的应用程序编程接口
 	    \begin{itemize}
         	\item Win32 API 用于 Windows
-        	\item POSIX API 用于 POSIX-based systems (包括UNIX，LINUX， Mac OS X的所有版本)
+        	\item POSIX API 用于 POSIX-based systems
         	\item Java API 用于JAVA虚拟机(JVM)
     	\end{itemize}
     \end{itemize}
-\end{frame}
-% 2018-lec3-chy.pdf：P39
-%------------------------------------------------
-\begin{frame}
-	\frametitle{系统调用的实现}
-	\framesubtitle{xxxx}
-\end{frame}
-% 2018-lec3-chy.pdf：P40
-%------------------------------------------------
-\begin{frame}
-	\frametitle{函数调用和系统调用的不同处}
-	\framesubtitle{xxxx}
-    \begin{columns}
-    \begin{column}{0.5\textwidth}
-        \begin{figure}
-%			\includegraphics[width=0.55\linewidth]{xxxx}
-        \end{figure}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-	    \begin{itemize}
-		    \item 每个系统调用对应一个系统调用号
-		    \begin{itemize}
-		    	\item 系统调用接口根据系统调用号来维护表的索引
-	    	\end{itemize}
-		    \item 系统调用接口调用内核态中的系统调用功能实现，并返回系统调用的状态和结果
-		    \item 用户不需要知道系统调用的实现
-	 		\begin{itemize}
-		    	\item 需要设置调用参数和获取返回结果
-		    	\item 操作系统接口的细节大部分都隐藏在应用编程接口后
-			    \begin{itemize}
-		    		\item 通过运行程序支持的库来管理
-	    		\end{itemize}
-			\end{itemize}
-	    \end{itemize}
-    \end{column}
-    \end{columns}
-\end{frame}
-% 2018-lec3-chy.pdf：P41
-%------------------------------------------------
-\begin{frame}
-	\frametitle{函数调用和系统调用的不同处}
-%	\framesubtitle{xxxx}
-    \begin{columns}
-    \begin{column}{0.5\textwidth}
-        \begin{figure}
-%			\includegraphics[width=0.55\linewidth]{xxxx}
-        \end{figure}
-    \end{column}
-    \begin{column}{0.5\textwidth}
-	    \begin{itemize}
-	        \item 系统调用
-		    \begin{itemize}
-	        	\item ECALL和SRET指令用于系统调用
-	        	\item 系统调用时，堆栈切换和特权级的转换
-	    	\end{itemize}
-	        \item 函数调用
-		    \begin{itemize}
-	        	\item JAL和RET用于常规调用
-	        	\item 常规调用时没有堆栈切换
-	    	\end{itemize}
 
-	        \item RISC-V手册
-		    \begin{itemize}
-	        	\item \href{http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf}{RISC-V-Reader-Chinese-v2p1.pdf}
-	    	\end{itemize}
-	    \end{itemize}
-    \end{column}
-    \end{columns}
+		\end{column}
+\end{columns}
+
 \end{frame}
+
+
 %------------------------------------------------
 \begin{frame}
-	\frametitle{中断、异常和系统调用的开销}
+	\frametitle{系统调用}
+	
+	
+	\begin{columns}
+		
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{syscalls}
+			
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+			\begin{itemize}
+				\item 操作系统服务的应用编程接口
+				\begin{itemize}
+					\item 通常由高级语言编写(C、C++、go和rust等)
+					\item 程序访问通常是通过高层次的API接口
+				\end{itemize}
+				\item 三种最常用的应用程序编程接口
+				\begin{itemize}
+					\item Win32 API 用于 Windows
+					\item POSIX API 用于 POSIX-based systems
+					\item Java API 用于JAVA虚拟机(JVM)
+				\end{itemize}
+			\end{itemize}
+			
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[plain]
+	\frametitle{系统调用的实现概述}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.45\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+			\begin{itemize}  
+				\item 每个系统调用对应一个系统调用号
+				\item 内核态中的系统调用功能实现
+				\item 通过运行程序支持的库来管理
+				
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}[plain]
+	\frametitle{函数调用和系统调用的不同处}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.45\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+		
+		  \begin{itemize}  
+			\item 系统调用
+			\begin{itemize}  
+				\item RISC-V中，ecall和sret指令用于系统调用
+				\item 堆栈切换和特权级的转换
+			\end{itemize}	
+
+
+			\item 函数调用
+			\begin{itemize}  
+				\item RISC-V中，call和ret指令用于系统调用
+				\item 无堆栈切换和特权级的转换
+			\end{itemize}	
+			
+			\end{itemize}			
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}
+	\frametitle{系统调用的开销}
 %	\framesubtitle{xxxx}
+
+	\begin{columns}
+	
+	\begin{column}{0.45\textwidth}
+		\centering
+		\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+		
+	\end{column}
+	
+	\begin{column}{0.5\textwidth}
+		
 	\begin{itemize}
         \item 超过函数调用
         \item 开销:
 	    \begin{itemize}
-	        \item 引导机制
-	        \item 建立内核堆栈
+
+	        \item 切换内核堆栈
 	        \item 验证参数
-	        \item 内核态映射到用户态的地 址空间
-		    \begin{itemize}
-	        	\item 更新页面映射权限
-	    	\end{itemize}
-        	\item 内核态独立地址空间
-		    \begin{itemize}
-        		\item TLB
-	    	\end{itemize}
+	        \item 可能切换页表
+        	\item 需要拷贝书记
+
     	\end{itemize}
 	\end{itemize}
+
+	\end{column}
+
+\end{columns}
+
 \end{frame}
-% 2018-lec3-chy.pdf：P42
+
+
+%------------------------------------------------
+\begin{frame}[plain]
+	\frametitle{系统调用的具体实现}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.45\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+			\begin{itemize}  
+				\item 每个系统调用对应一个系统调用号
+				\item 内核态中的系统调用功能实现
+				\item 通过运行程序支持的库来管理
+				
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}[plain,t]
+	\frametitle{系统调用机制--还原整个过程}
+	%	\framesubtitle{xxxx}
+	\begin{columns}
+		
+		\begin{column}{0.4\textwidth}
+			\centering
+			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
+			\begin{itemize} \small
+				\item Core Local	Interruptor (CLINT)
+				\item Platform-Level Interrupt Controller (PLIC)
+			\end{itemize}
+			
+		\end{column}
+		
+		\begin{column}{0.5\textwidth}
+			
+%			\centering
+			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
+			%			\includegraphics[width=.2\linewidth]{timer}
+			%show rcore tutorial	
+			应用发起请求
+			\begin{itemize} \small 
+				\item std lib 发出系统调用请求
+				\begin{itemize} \small 
+					\item 发出 设置系统调用号和参数，发出ecall	
+
+				\end{itemize}				
+				\item 硬件设置
+				\begin{itemize} \small 
+					\item sepc：保存请求后的指令地址	
+					\item pc：设置为 stvec
+					\item scause：设置为ecall from u-mode
+					\item sstatus：SIE位置零以禁用中断					
+					\item stval：保存了相关的附加信息
+				\end{itemize}
+				\item 软件保存被打断现场\pause
+				\item 执行软件实现的中断服务例程
+				\item 软件恢复现场
+				\item 应用继续执行
+				
+			\end{itemize}
+			
+		\end{column}
+		
+	\end{columns}
+	
+\end{frame}	
+
 %----------------------------------------------------------------------------------------
 \end{document}
