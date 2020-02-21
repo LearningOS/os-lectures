@@ -12,6 +12,3 @@ cleanall:
 
 clean:
 	rm -f *.out *.toc *.aux *.log *.nav *.gz *.snm *.vrb
-
-merge:
-	pdfunite slide-03-0*.pdf lecture03.pdf
