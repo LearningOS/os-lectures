@@ -3,7 +3,7 @@
 | 知识点   | RISC-V   | X86   | 
 |:----:|:----|:----|
 | 硬件规范手册 | [https://riscv.org/specifications/privileged-isa/](https://riscv.org/specifications/privileged-isa/)   | [https://software.intel.com/en-us/articles/intel-sdm#combined](https://software.intel.com/en-us/articles/intel-sdm#combined)   | 
-| 硬件简要手册   | [http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf](http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf)  Chap 1-2-3-6-9-10 |  https://pdos.csail.mit.edu/6.828/2016/readings/i386/toc.htm  | 
+| 硬件简要手册   | [http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf](http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf)  Chapt 1-2-3-6-9-10 |  https://pdos.csail.mit.edu/6.828/2016/readings/i386/toc.htm  | 
 | 硬件概述   | [https://www.bilibili.com/video/av88639783?p=10](https://www.bilibili.com/video/av88639783?p=10)   | [https://www.bilibili.com/video/av28416094?p=12](https://www.bilibili.com/video/av28416094?p=12)   | 
 | 硬件启动   | [https://www.bilibili.com/video/av88639783?p=12](https://www.bilibili.com/video/av88639783?p=12)   | [https://www.bilibili.com/video/av28416094?p=15](https://www.bilibili.com/video/av28416094?p=15)   | 
 | 中断处理   |    | [https://www.bilibili.com/video/av28416094?p=24](https://www.bilibili.com/video/av28416094?p=24)   | 
