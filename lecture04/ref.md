@@ -235,6 +235,9 @@ CPU
 
 http://en.wikipedia.org/wiki/Buddy_memory_allocation
 
+
+## 第6节 slab分配器
+
 ### rCore中的物理内存管理
 
 https://github.com/rcore-os/rCore_tutorial/blob/ch4-pa2/os/src/memory/frame_allocator.rs
@@ -248,8 +251,6 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 
 没有段，所有支持都在页表中；
 reader
-
-## 第6节 slab分配器
 
 https://www.ibm.com/developerworks/cn/linux/l-cn-slub/
 
