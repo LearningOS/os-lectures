@@ -35,24 +35,29 @@
 %------------------------------------------------
 \subsection{地址空间} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
-
 \begin{frame}[plain,t]
-    
-    \frametitle{xxxx}
-    
-    
-    \begin{block}{xxxx}
-        xxxx
-
-    \end{block} 
-    
-    
-    \begin{figure}
-        \centering
-%        \includegraphics[width=0.7\linewidth]{os-position}
-%        \caption{xxxx}
-    \end{figure}
-    
+    \frametitle{地址空间定义}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+		    \begin{figure}
+		        \centering
+		%        \includegraphics[width=0.7\linewidth]{address-space}
+		%        \caption{xxxx}
+		    \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+			\begin{itemize}
+			    \item 物理地址空间 — 硬件支持的地址空间
+			    \begin{itemize}
+				    \item 起始地址0，直到\begin{math}MAX_{sys}\end{math}
+			    \end{itemize}
+			    \item 逻辑地址空间 — 在CPU运行的进程看到的地址
+			    \begin{itemize}
+			        \item 起始地址0，直到\begin{math}MAX_{prog}\end{math}
+			    \end{itemize}
+			\end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 %------------------------------------------------
 
@@ -61,41 +66,81 @@
 
 \begin{frame}[plain,t]
     
-    \frametitle{xxxx}
-    
-    
-    \begin{block}{xxxx}
-        xxxx
-
-    \end{block} 
-    
-    
+    \frametitle{逻辑地址生成}
     \begin{figure}
         \centering
-%        \includegraphics[width=0.7\linewidth]{os-position}
+%        \includegraphics[width=0.7\linewidth]{add-generation}
 %        \caption{xxxx}
     \end{figure}
     
 \end{frame}
 %------------------------------------------------
-\subsection{地址检查} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\begin{frame}[plain,t]
+    \frametitle{地址生成时机和限制}
+	\begin{itemize}
+	    \item 编译时
+	    \begin{itemize}
+	        \item 假设起始地址已知
+	        \item 如果起始地址改变，必须重新编译
+	    \end{itemize}
+	    \item 加载时
+	    \begin{itemize}
+	        \item 如编译时起始位置未知，编译器需生成可重定位的代码(relocatable code) 
+	        \item 加载时，生成绝对地址
+	    \end{itemize}
+	    \item 执行时
+	    \begin{itemize}
+	        \item 执行时代码可移动
+	        \item 需地址转换(映射)硬件支持
+	    \end{itemize}
+	\end{itemize}    
+\end{frame}
 %------------------------------------------------
-
 \begin{frame}[plain,t]
     
-    \frametitle{xxxx}
+    \frametitle{地址生成过程}
     
+	\begin{columns}
+	    \begin{column}{0.5\textwidth}
+		    \begin{figure}
+		        \centering
+		        \includegraphics[width=0.7\linewidth]{flow}
+		        \caption{xxxx}
+		    \end{figure}
+	    \end{column}
+	    \begin{column}{0.5\textwidth}
+			\begin{itemize}
+			    \item CPU
+			    \begin{itemize}
+			        \item ALU:需要逻辑地址的内存内容
+			        \item MMU:进行逻辑地址和物理地址的转换
+			        \item CPU控制逻辑:给总线发送物理地址请求
+			    \end{itemize}
+			    \item 内存
+			    \begin{itemize}
+			        \item 发送物理地址的内容给CPU
+			        \item 或接收CPU数据到物理地址
+			    \end{itemize}
+			    \item 操作系统
+			    \begin{itemize}
+			        \item 建立逻辑地址LA和物理地址PA的映射
+			    \end{itemize}
+			\end{itemize}
+	    \end{column}
+	\end{columns}
     
-    \begin{block}{xxxx}
-        xxxx
-
-    \end{block} 
+\end{frame}
+%------------------------------------------------
+\subsection{地址检查} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+\begin{frame}[plain,t]
     
+    \frametitle{地址检查}
     
     \begin{figure}
         \centering
-%        \includegraphics[width=0.7\linewidth]{os-position}
-%        \caption{xxxx}
+        \includegraphics[width=0.7\linewidth]{addr-check}
+        \caption{xxxx}
     \end{figure}
     
 \end{frame}
