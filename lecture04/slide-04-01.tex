@@ -38,46 +38,100 @@
 
 \begin{frame}[plain,t]
     
-    \frametitle{xxxx}
-    
-    
-    \begin{block}{xxxx}
-        xxxx
-
-    \end{block} 
-    
-    
+    \frametitle{计算机体系结构}
     \begin{figure}
         \centering
-%        \includegraphics[width=0.7\linewidth]{os-position}
+%        \includegraphics[width=0.7\linewidth]{arch1}
 %        \caption{xxxx}
     \end{figure}
     
 \end{frame}
-%------------------------------------------------
-
-\subsection{操作系统的内存管理} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 
 \begin{frame}[plain,t]
     
-    \frametitle{xxxx}
-    
-    
-    \begin{block}{xxxx}
-        xxxx
-
-    \end{block} 
-    
-    
+    \frametitle{计算机体系结构}
     \begin{figure}
         \centering
-%        \includegraphics[width=0.7\linewidth]{os-position}
+%        \includegraphics[width=0.7\linewidth]{arch2}
 %        \caption{xxxx}
     \end{figure}
     
 \end{frame}
 %------------------------------------------------
-%----------------------------------------------------------------------------------------
+\begin{frame}[plain,t]
+    
+    \frametitle{计算机体系结构}
+    \begin{figure}
+        \centering
+%        \includegraphics[width=0.7\linewidth]{arch3}
+%        \caption{xxxx}
+    \end{figure}
+    
+\end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]
+    
+    \frametitle{内存层次}
+    \begin{figure}
+        \centering
+%        \includegraphics[width=0.7\linewidth]{hierarchy}
+%        \caption{xxxx}
+    \end{figure}
+    
+\end{frame}
+%------------------------------------------------
+\subsection{操作系统的内存管理} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 
+%------------------------------------------------
+\begin{frame}[plain,t]
+    
+    \frametitle{操作系统的内存管理}
+	\begin{itemize}
+	    \item 抽象
+		
+	    \begin{itemize}
+	        \item 逻辑地址空间
+	    \end{itemize}
+	    \item 保护
+		
+	    \begin{itemize}
+	        \item 独立地址空间
+	    \end{itemize}
+	    \item 共享
+		
+	    \begin{itemize}
+	        \item 访问相同内存
+	    \end{itemize}
+	    \item 虚拟化
+		
+	    \begin{itemize}
+	        \item 更大的地址空间
+	    \end{itemize}
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]
+    
+    \frametitle{操作系统的内存管理方式}
+	\begin{itemize}
+	    \item 操作系统中采用的内存管理方式
+	    \begin{itemize}
+	        \item 重定位(relocation)
+	        \item 分段(segmentation)
+	        \item 分页(paging)
+	        \item 虚拟存储(virtual memory)
+		    \begin{itemize}
+		        \item 目前多数系统(如 Linux)采用按需页式虚拟存储
+		    \end{itemize}
+	    \end{itemize}
+	    \item 实现高度依赖硬件
+	    \begin{itemize}
+	        \item 与计算机存储架构紧耦合
+	        \item MMU(内存管理单元): 处理CPU存储访问请求的硬件
+	    \end{itemize}
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+%----------------------------------------------------------------------------------------
 \end{document}
