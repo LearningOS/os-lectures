@@ -35,69 +35,79 @@
 %------------------------------------------------
 \subsection{System Components around Slab Allocators} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
+\begin{frame}[fragile]   
+    \frametitle{rCore中的物理内存管理}
 
-\begin{frame}[plain,t]
-    
-    \frametitle{xxxx}
-    
-    
-    \begin{block}{xxxx}
-        xxxx
+\begin{block}{}
+\begin{verbatim}
+//Rust CODE
+pub fn init(l: usize, r: usize)
+pub fn init_allocator(l: usize, r: usize)
+pub fn alloc_frame() -> Option<Frame>
+pub fn alloc_frames(cnt: usize) -> Option<Frame>
+pub fn dealloc_frame(f: Frame)
+pub fn dealloc_frames(f: Frame, cnt: usize) 
+\end{verbatim}
+\end{block}
 
-    \end{block} 
-    
-    
-    \begin{figure}
-        \centering
-%        \includegraphics[width=0.7\linewidth]{os-position}
-%        \caption{xxxx}
-    \end{figure}
-    
+出处：\href{https://github.com/rcore-os/rCore_tutorial/blob/ch4-pa2/os/src/memory/frame_allocator.rs}{frame_allocator.rs}
+
 \end{frame}
 %------------------------------------------------
-
-\subsection{SLOB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%------------------------------------------------
-
-\begin{frame}[plain,t]
-    
-    \frametitle{xxxx}
-    
-    
-    \begin{block}{xxxx}
-        xxxx
-
-    \end{block} 
-    
-    
+\begin{frame}[plain,t]    
+    \frametitle{System Components around Slab Allocators}
     \begin{figure}
         \centering
-%        \includegraphics[width=0.7\linewidth]{os-position}
-%        \caption{xxxx}
+%        \includegraphics[width=0.7\linewidth]{system-components}
+        \caption{xxxx}
     \end{figure}
-    
+
+    ref: \href{https://events.static.linuxfound.org/sites/events/files/slides/slaballocators.pdf}{slaballocators.pdf}
+
+\end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{Slab Allocation}
+    \begin{figure}
+        \centering
+%        \includegraphics[width=0.7\linewidth]{Slab-Allocation}
+        \caption{xxxx}
+    \end{figure}
+
+    SLAB分配器源于 Solaris 2.4 的分配算法，工作于物理内存页框分配器之上，管理特定大小对象的缓存，进行快速而高效的内存分配。
+
+\end{frame}
+%------------------------------------------------
+\subsection{SLOB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{Basic structures of SLOB}
+    \begin{itemize}
+        \item Simply manages list of free objects within the space of the free objects.
+        \item Allocation requires traversing the list to find an object of sufficient size. If nothing is found the page allocator is used to increase the size of the heap.
+        \item Optimization: Multiple list of free objects according to size reducing fragmentation.
+    \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{SLOB data structures}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{slob}
+        \caption{xxxx}
+    \end{figure}
+
 \end{frame}
 %------------------------------------------------
 \subsection{SLAB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
-
-\begin{frame}[plain,t]
-    
-    \frametitle{xxxx}
-    
-    
-    \begin{block}{xxxx}
-        xxxx
-
-    \end{block} 
-    
-    
+\begin{frame}[plain,t]    
+    \frametitle{SLAB data structures}
     \begin{figure}
         \centering
-%        \includegraphics[width=0.7\linewidth]{os-position}
-%        \caption{xxxx}
+        \includegraphics[width=0.7\linewidth]{slab}
+        \caption{xxxx}
     \end{figure}
-    
 \end{frame}
 %------------------------------------------------
 \subsection{SLUB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
@@ -120,6 +130,15 @@
 %        \caption{xxxx}
     \end{figure}
     
+\end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{SLUB data structures}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\linewidth]{slub}
+        \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------------------------------------------------
 
