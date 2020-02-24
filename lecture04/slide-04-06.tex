@@ -68,14 +68,27 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 %------------------------------------------------
 \begin{frame}[plain,t]    
     \frametitle{Slab Allocation}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.5\linewidth]{Slab-Allocation}
-%        \caption{xxxx}
-    \end{figure}
 
     SLAB分配器源于 Solaris 2.4 的分配算法，工作于物理内存页框分配器之上，管理特定大小对象的缓存，进行快速而高效的内存分配。
-
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+          \begin{figure}
+              \centering
+              \includegraphics[width=0.9\linewidth]{Slab-Allocation}
+      %        \caption{xxxx}
+          \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+          \begin{itemize}
+              \item 想解决的问题
+              \begin{itemize}
+                  \item 内核对象远小于页的大小
+                  \item 内核对象会被频繁的申请和释放
+                  \item 内核对象初始化时间超过分配和释放内存总时间
+              \end{itemize}
+          \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 %------------------------------------------------
 \subsection{SLOB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
@@ -102,6 +115,27 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \subsection{SLAB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[plain,t]    
+    \frametitle{slab}
+    \begin{itemize}
+        \item 为每种使用的内核对象建立单独的缓冲区
+        \item 按对象大小分组
+        \item slab对象的状态：已分配或空闲
+        \item 缓冲区队列：Full、Partial、Empty
+        \item 优先从Partial队列中分配对象
+        \item 缓冲区为每个处理器维护一个本地缓存
+    \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{slab分配器的主要结构}
+    \begin{figure}
+        \centering
+%        \includegraphics[width=0.7\linewidth]{slab-structure}
+        \caption{xxxx}
+    \end{figure}
+\end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]    
     \frametitle{SLAB data structures}
     \begin{figure}
         \centering
@@ -110,7 +144,36 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
     \end{figure}
 \end{frame}
 %------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{单个SLAB分配器结构}
+    \begin{figure}
+        \centering
+%        \includegraphics[width=0.7\linewidth]{single-slab}
+        \caption{xxxx}
+    \end{figure}
+\end{frame}
+%------------------------------------------------
 \subsection{SLUB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{slub}
+
+    \begin{itemize}
+        \item 目标
+
+        \begin{itemize}
+            \item 简化设计理念
+        \end{itemize}
+        \item 思路
+
+        \begin{itemize}
+            \item 简化 slab 的结构：取消了大量的队列和相关开销
+            \item 一个slab是一组一个或多个页面，封装了固定大小的对象，内部没有元数据
+            \item 将元数据存储在页面相关的页结构
+            \item 没有单独的Empty slab队列
+        \end{itemize}
+    \end{itemize}
+\end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
     \frametitle{SLUB data structures}
@@ -120,6 +183,16 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 %        \caption{xxxx}
     \end{figure}
 \end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{单个SLUB分配器结构}
+    \begin{figure}
+        \centering
+%        \includegraphics[width=0.7\linewidth]{single-slub}
+        \caption{xxxx}
+    \end{figure}
+\end{frame}
+% https://www.cnblogs.com/tolimit/p/4654109.html
 %----------------------------------------------------------------------------------------
 
 \end{document}
