@@ -33,7 +33,7 @@
 %------------------------------------------------
 \section{第6节 slab分配器}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
-\subsection{System Components around Slab Allocators} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{与slab分配器相关的系统组成部件} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]   
     \frametitle{rCore中的物理内存管理}
@@ -50,12 +50,12 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{verbatim}
 \end{block}
 
-出处：\href{https://github.com/rcore-os/rCore_tutorial/blob/ch4-pa2/os/src/memory/frame_allocator.rs}{frame_allocator.rs}
+出处：\href{https://github.com/rcore-os/rCore_tutorial/blob/ch4-pa2/os/src/memory/frame_allocator.rs}{frame\uline{ }allocator.rs}
 
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{System Components around Slab Allocators}
+    \frametitle{与slab分配器相关的系统组成部件}
     \begin{figure}
         \centering
         \includegraphics[width=0.7\linewidth]{system-components}
@@ -67,14 +67,14 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{Slab Allocation}
+    \frametitle{slab分配器}
 
     SLAB分配器源于 Solaris 2.4 的分配算法，工作于物理内存页框分配器之上，管理特定大小对象的缓存，进行快速而高效的内存分配。
     \begin{columns}
         \begin{column}{0.5\textwidth}
           \begin{figure}
               \centering
-              \includegraphics[width=0.9\linewidth]{Slab-Allocation}
+              \includegraphics[width=1.0\linewidth]{Slab-Allocation}
       %        \caption{xxxx}
           \end{figure}
         \end{column}
@@ -91,31 +91,10 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
     \end{columns}
 \end{frame}
 %------------------------------------------------
-\subsection{SLOB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%------------------------------------------------
-\begin{frame}[plain,t]    
-    \frametitle{Basic structures of SLOB}
-    \begin{itemize}
-        \item Simply manages list of free objects within the space of the free objects.
-        \item Allocation requires traversing the list to find an object of sufficient size. If nothing is found the page allocator is used to increase the size of the heap.
-        \item Optimization: Multiple list of free objects according to size reducing fragmentation.
-    \end{itemize}
-\end{frame}
-%------------------------------------------------
-\begin{frame}[plain,t]    
-    \frametitle{SLOB data structures}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.65\linewidth]{slob}
-%        \caption{xxxx}
-    \end{figure}
-
-\end{frame}
-%------------------------------------------------
 \subsection{SLAB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{slab}
+    \frametitle{slab分配器的特征}
     \begin{itemize}
         \item 为每种使用的内核对象建立单独的缓冲区
         \item 按对象大小分组
@@ -127,16 +106,16 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{slab分配器的主要结构}
+    \frametitle{slab分配器的结构}
     \begin{figure}
         \centering
-        \includegraphics[width=0.7\linewidth]{slab-structure}
+        \includegraphics[width=0.9\linewidth]{slab-structure}
 %        \caption{xxxx}
     \end{figure}
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{SLAB data structures}
+    \frametitle{slab的数据结构}
     \begin{figure}
         \centering
         \includegraphics[width=0.65\linewidth]{slab}
@@ -148,9 +127,33 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
     \frametitle{单个SLAB分配器结构}
     \begin{figure}
         \centering
-%        \includegraphics[width=0.7\linewidth]{single-slab}
-        \caption{xxxx}
+        \includegraphics[width=0.4\linewidth]{single-slab}
+%        \caption{xxxx}
     \end{figure}
+\end{frame}
+%------------------------------------------------
+\subsection{SLOB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{Slob分配器}
+    \begin{itemize}
+        \item Slob分配器是针对嵌入式系统的Slab简化版本
+        \begin{itemize}
+            \item 没有本地CPU高速缓存和本地节点的概念
+            \item 只存在三个全局partial free链表
+            \item 链表按对象大小来划分
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{slob分配器的数据结构}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\linewidth]{slob}
+%        \caption{xxxx}
+    \end{figure}
+
 \end{frame}
 %------------------------------------------------
 \subsection{SLUB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
@@ -176,7 +179,7 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{SLUB data structures}
+    \frametitle{slub分配器的数据结构}
     \begin{figure}
         \centering
         \includegraphics[width=0.65\linewidth]{slub}
@@ -188,8 +191,8 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
     \frametitle{单个SLUB分配器结构}
     \begin{figure}
         \centering
-%        \includegraphics[width=0.7\linewidth]{single-slub}
-        \caption{xxxx}
+        \includegraphics[width=0.45\linewidth]{single-slub}
+%        \caption{xxxx}
     \end{figure}
 \end{frame}
 % https://www.cnblogs.com/tolimit/p/4654109.html
