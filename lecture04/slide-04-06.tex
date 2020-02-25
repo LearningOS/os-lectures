@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第4讲]{第四讲 物理内存管理 ：连续内存分配} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第6节 slab分配器}
+\subtitle{第6节 SLAB分配器}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -31,9 +31,9 @@
 %   PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
 %------------------------------------------------
-\section{第6节 slab分配器}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第6节 SLAB分配器}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
-\subsection{与slab分配器相关的系统组成部件} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{与SLAB分配器相关的系统组成部件} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]   
     \frametitle{rCore中的物理内存管理}
@@ -55,7 +55,7 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{与slab分配器相关的系统组成部件}
+    \frametitle{与SLAB分配器相关的系统组成部件}
     \begin{figure}
         \centering
         \includegraphics[width=0.7\linewidth]{system-components}
@@ -67,17 +67,10 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{slab分配器}
+    \frametitle{SLAB分配器}
 
-    SLAB分配器源于 Solaris 2.4 的分配算法，工作于物理内存页框分配器之上，管理特定大小对象的缓存，进行快速而高效的内存分配。
+    SLAB分配器源于 Solaris 2.4 的分配算法，工作于内存物理页分配算法之上，管理特定大小对象的缓存，进行快速高效的物理内存分配。\pause
     \begin{columns}
-        \begin{column}{0.5\textwidth}
-          \begin{figure}
-              \centering
-              \includegraphics[width=1.0\linewidth]{Slab-Allocation}
-      %        \caption{xxxx}
-          \end{figure}
-        \end{column}
         \begin{column}{0.5\textwidth}
           \begin{itemize}
               \item 想解决的问题
@@ -87,6 +80,13 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
                   \item 内核对象初始化时间超过分配和释放内存总时间
               \end{itemize}
           \end{itemize}
+        \end{column} \pause
+        \begin{column}{0.5\textwidth}
+          \begin{figure}
+              \centering
+              \includegraphics[width=1.0\linewidth]{Slab-Allocation}
+      %        \caption{xxxx}
+          \end{figure}
         \end{column}
     \end{columns}
 \end{frame}
@@ -94,19 +94,19 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \subsection{SLAB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{slab分配器的特征}
+    \frametitle{SLAB分配器的特征}
     \begin{itemize}
         \item 为每种使用的内核对象建立单独的缓冲区
         \item 按对象大小分组
-        \item slab对象的状态：已分配或空闲
-        \item 缓冲区队列：Full、Partial、Empty
+        \item 两种SLAB对象状态：已分配或空闲
+        \item 三类缓冲区队列：Full、Partial、Empty
         \item 优先从Partial队列中分配对象
         \item 缓冲区为每个处理器维护一个本地缓存
     \end{itemize}
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{slab分配器的结构}
+    \frametitle{SLAB分配器的结构}
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{slab-structure}
@@ -115,7 +115,7 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{CPU缓存着色与slab}
+    \frametitle{CPU缓存着色与SLAB}
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{slabcolor.png}
@@ -126,7 +126,7 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 % Figure 5. Cache Coloring within slabs
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{slab的数据结构}
+    \frametitle{SLAB的数据结构}
     \begin{figure}
         \centering
         \includegraphics[width=0.65\linewidth]{slab}
@@ -138,7 +138,7 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
     \frametitle{单个SLAB分配器结构}
     \begin{figure}
         \centering
-        \includegraphics[width=0.4\linewidth]{single-slab}
+        \includegraphics[width=0.45\linewidth]{single-slab}
 %        \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -146,9 +146,9 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \subsection{SLOB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{Slob分配器}
+    \frametitle{SLOB分配器}
     \begin{itemize}
-        \item Slob分配器是针对嵌入式系统的Slab简化版本
+        \item SLOB分配器是针对嵌入式系统的SLAB简化版本
         \begin{itemize}
             \item 没有本地CPU高速缓存和本地节点的概念
             \item 只存在三个全局partial free链表
@@ -158,7 +158,7 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{slob分配器的数据结构}
+    \frametitle{SLOB分配器的数据结构}
     \begin{figure}
         \centering
         \includegraphics[width=0.65\linewidth]{slob}
@@ -170,32 +170,23 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \subsection{SLUB} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[plain,t]    
-    \frametitle{slub}
+    \frametitle{SLUB分配器}
 
     \begin{itemize}
         \item 目标
 
         \begin{itemize}
             \item 简化设计理念
-        \end{itemize}
+        \end{itemize}\pause
         \item 思路
 
         \begin{itemize}
-            \item 简化 slab 的结构：取消了大量的队列和相关开销
-            \item 一个slab是一组一个或多个页面，封装了固定大小的对象，内部没有元数据
+            \item 简化 SLAB 的结构：取消了大量的队列和相关开销
+            \item 一个SLAB是一组一个或多个页面，封装了固定大小的对象，内部没有元数据
             \item 将元数据存储在页面相关的页结构
-            \item 没有单独的Empty slab队列
+            \item 没有单独的Empty SLAB队列
         \end{itemize}
     \end{itemize}
-\end{frame}
-%------------------------------------------------
-\begin{frame}[plain,t]    
-    \frametitle{slub分配器的数据结构}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.65\linewidth]{slub}
-%        \caption{xxxx}
-    \end{figure}
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
@@ -207,6 +198,15 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
     \end{figure}
 \end{frame}
 % https://www.cnblogs.com/tolimit/p/4654109.html
+%------------------------------------------------
+\begin{frame}[plain,t]    
+    \frametitle{SLUB分配器的数据结构}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.65\linewidth]{slub}
+%        \caption{xxxx}
+    \end{figure}
+\end{frame}
 %----------------------------------------------------------------------------------------
 
 \end{document}
