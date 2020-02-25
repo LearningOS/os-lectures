@@ -115,6 +115,17 @@ pub fn dealloc_frames(f: Frame, cnt: usize)
 \end{frame}
 %------------------------------------------------
 \begin{frame}[plain,t]    
+    \frametitle{CPU缓存着色与slab}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{slabcolor.png}
+%        \caption{xxxx}
+    \end{figure}
+\end{frame}
+% http://www.secretmango.com/jimb/Whitepapers/slabs/slab.html
+% Figure 5. Cache Coloring within slabs
+%------------------------------------------------
+\begin{frame}[plain,t]    
     \frametitle{slab的数据结构}
     \begin{figure}
         \centering
