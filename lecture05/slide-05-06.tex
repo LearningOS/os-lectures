@@ -1,0 +1,241 @@
+\input{../preamble}
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第5讲]{第五讲 物理内存管理: 非连续内存分配} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第6节 RISC-V页机制}
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+清华大学计算机系 \\ % Your institution for the title page
+\medskip
+\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%\begin{frame}
+%\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+%\end{frame}
+
+%----------------------------------------------------------------------------------------
+%   PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+%------------------------------------------------
+\section{第6节 RISC-V页机制}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+%\subsection{与SLAB分配器相关的系统组成部件} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+    \frametitle{RISC-V Supervisor特权模式}
+
+\begin{block}{}
+\begin{verbatim}
+
+\end{verbatim}
+\end{block}
+
+出处：\href{https://rcore-os.github.io/rCore_tutorial_doc/chapter5/introduction.html}{参考实例}
+
+\end{frame}
+
+
+
+%----------------------------------------------
+\begin{frame}[fragile,plain] 
+\frametitle{RISC-V 页表机制}
+
+\begin{columns}
+	
+	\begin{column}{.5\textwidth}
+		
+		\includegraphics[width=1.\textwidth]{os-position}
+		
+	\end{column}
+	
+	
+	\begin{column}{.5\textwidth}
+		
+		\begin{itemize}\Large
+			\item RV32
+			\begin{itemize}\large
+				\item Sv32
+				
+			\end{itemize}
+		\end{itemize}
+		
+	\end{column}
+	
+	
+\end{columns}
+\end{frame}
+
+
+
+
+%----------------------------------------------
+\begin{frame}[fragile,plain] 
+	\frametitle{RISC-V 页表机制}
+	
+	\begin{columns}
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{os-position}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\Large
+				\item RV64
+				\begin{itemize}\large
+					\item Sv39/48/57/64
+					
+				\end{itemize}
+			\end{itemize}
+			
+		\end{column}
+		
+		
+	\end{columns}
+\end{frame}
+
+
+
+%----------------------------------------------
+\begin{frame}[fragile,plain] 
+	\frametitle{管理RISC-V 页表}
+	
+	\begin{columns}
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{os-position}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\Large
+				\item 启动
+				\begin{itemize}\large
+					\item Sv64
+					
+				\end{itemize}
+			\end{itemize}
+			
+		\end{column}
+		
+		
+	\end{columns}
+\end{frame}
+
+
+
+%----------------------------------------------
+\begin{frame}[fragile,plain] 
+	\frametitle{管理RISC-V 页表}
+	
+	\begin{columns}
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{os-position}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\Large
+				\item 重映射
+				\begin{itemize}\large
+					\item Sv64
+					
+				\end{itemize}
+			\end{itemize}
+			
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
+
+
+%----------------------------------------------
+\begin{frame}[fragile,plain] 
+	\frametitle{管理RISC-V 页表}
+	
+	\begin{columns}
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{os-position}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\Large
+				\item 异常处理
+				\begin{itemize}\large
+					\item Sv64
+					
+				\end{itemize}
+			\end{itemize}
+			
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
+
+
+
+%----------------------------------------------
+\begin{frame}[fragile,plain] 
+	\frametitle{管理RISC-V 页表}
+	
+	\begin{columns}
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{os-position}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\Large
+				\item 完整流程
+				\begin{itemize}\large
+					\item Sv64
+					
+				\end{itemize}
+			\end{itemize}
+			
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
+
+%----------------------------------------------
+\end{document}
