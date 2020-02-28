@@ -34,44 +34,340 @@
 \section{第6节 RISC-V页机制}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 %\subsection{与SLAB分配器相关的系统组成部件} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+
 %------------------------------------------------
 \begin{frame}[fragile,plain]   
-    \frametitle{RISC-V Supervisor特权模式}
+	\frametitle{回顾}
+	
+	\begin{columns}
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{os-position}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\large
+				\item 通过页表来实现隔离与共享
+				\begin{itemize}
+					\item 运行的应用程序之间的隔离与共享
+					\item 应用与内核之间的隔离与共享
+					\item 便于非连续内存管理								
+				\end{itemize}
+			\end{itemize}
+			
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
 
-\begin{block}{}
-\begin{verbatim}
 
-\end{verbatim}
-\end{block}
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{RISC-V Supervisor特权模式}
+	
+	\begin{columns}[t]
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{riscv_address}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\large
+				\item RISC-V对页表的硬件支持
+				\begin{itemize}
+					\item 页表基址 \pause : satp
+					\item  Supervisor Address Translation and Protection (satp) Register
+					
+							
+				\end{itemize}
+			\end{itemize}
+			
+			\includegraphics[width=1.\textwidth]{satp32}
+%			\begin{figure}[h!]
+%				{\footnotesize
+%					\begin{center}
+%						\begin{tabular}{c@{}E@{}K}
+%							\instbit{31} &
+%							\instbitrange{30}{22} &
+%							\instbitrange{21}{0} \\
+%							\hline
+%							\multicolumn{1}{|c|}{{\tt MODE} (\warl)} &
+%							\multicolumn{1}{|c|}{{\tt ASID} (\warl)} &
+%							\multicolumn{1}{|c|}{{\tt PPN}  (\warl)} \\
+%							\hline
+%							1 & 9 & 22 \\
+%						\end{tabular}
+%					\end{center}
+%				}
+			
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
 
-出处：\href{https://rcore-os.github.io/rCore_tutorial_doc/chapter5/introduction.html}{参考实例}
 
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{RISC-V Supervisor特权模式}
+	
+	\begin{columns}[t]
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{riscv_address}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\large
+				\item RISC-V对页表的硬件支持
+				\begin{itemize}
+					\item 页表基址 : satp
+					\item  Supervisor Address Translation and Protection (satp) Register
+					
+					
+				\end{itemize}
+			\end{itemize}
+             \includegraphics[width=1.\textwidth]{satp64}
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{RISC-V Supervisor特权模式}
+	
+	\begin{columns}[t]
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{riscv_address}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\large
+				\item RISC-V对页表的硬件支持
+				\begin{itemize}
+					\item 页表基址 : satp
+					\item  Supervisor Address Translation and Protection (satp) Register
+					
+					
+				\end{itemize}
+			\end{itemize}
+			\includegraphics[width=1.\textwidth]{satp-value}
+		\end{column}
+		
+		
+	\end{columns}
+	
 \end{frame}
 
 
 
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{RISC-V Supervisor特权模式}
+	
+	\begin{columns}[t]
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{sv39-pagetable}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\large
+				\item RISC-V对页表的硬件支持
+				\begin{itemize}
+					\item 地址保护
+					\item 页表项（page table entry）
+					
+					
+				\end{itemize}
+			\end{itemize}
+			\includegraphics[width=1.\textwidth]{pte-rwx}
+		\end{column}
+		
+%		 R、W 和 X 位分别表示此页是否可以读取、写入和执行。如果这三个位都是 0,
+%		那么这个页表项是指向下一级页表的指针,否则它是页表树的一个叶节点。
+		
+	\end{columns}
+	
+\end{frame}
+
+
+
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{RISC-V Supervisor特权模式}
+	
+	\begin{columns}[t]
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{sv39-pagetable}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\large
+				\item RISC-V对页表的硬件支持
+				\begin{itemize}
+					\item 地址保护
+					\item 页表项（page table entry）
+					
+					
+				\end{itemize}
+			\end{itemize}
+			\includegraphics[width=1.\textwidth]{pte-flagbits}
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{RISC-V Supervisor特权模式}
+	
+	\begin{columns}[t]
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{sv39-pagetable}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\large
+				\item RISC-V对页表的硬件支持
+				\begin{itemize}
+					\item 地址保护
+					\item 页表项（page table entry）
+					
+					
+				\end{itemize}
+			\end{itemize}
+			\includegraphics[width=1.\textwidth]{sv39pte}
+%			Bits 63–54 are reserved for future use and must be zeroed by software for forward compatibility.
+
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
+
+
+
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{RISC-V Supervisor特权模式}
+	
+	\begin{columns}[t]
+		
+		\begin{column}{.5\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{sv39-pagetable}
+			
+		\end{column}
+		
+		
+		\begin{column}{.5\textwidth}
+			
+			\begin{itemize}\large
+				\item RISC-V对页表的硬件支持
+				\begin{itemize}
+					\item 地址保护
+					\item 页表项（page table entry）
+					
+					
+				\end{itemize}
+			\end{itemize}
+			\includegraphics[width=1.\textwidth]{sv39pte}
+			\includegraphics[width=1.\textwidth]{sv39-3ppns}
+%			Bits 63–54 are reserved for future use and must be zeroed by software for forward compatibility.
+%			PPN 域包含物理页号,这是物理地址的一部分。若这个页表项是一个叶节点,那
+%			么 PPN 是转换后物理地址的一部分。否则 PPN 给出下一节页表的地址。
+			
+%Sv39 的 512GiB 地址空间划分为 29 个 1 GiB 大小的吉页。每个吉页被进一步划分为 29 个巨页。在
+%Sv39 中这些巨页大小为 2 MiB,比 Sv32 中略小。每个巨页再进一步分为 29 个 。Sv39 的 512
+%GiB 地址空间划分为 29 个 1 GiB 大小的吉页。每个吉页被进一步划分为 29 个巨页。在
+%Sv39 中这些巨页大小为 2 MiB,比 Sv32 中略小。每个巨页再进一步分为 29 个 4 KiB 大小
+%的基页。4 KiB 大小的基页。
+
+			
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile,plain] 
-\frametitle{RISC-V 页表机制}
+\frametitle{RISC-V 地址转换}
 
 \begin{columns}
 	
-	\begin{column}{.5\textwidth}
+	\begin{column}{.4\textwidth}
 		
-		\includegraphics[width=1.\textwidth]{os-position}
+		\includegraphics[width=1.\textwidth]{sv32-addr-trans}
 		
 	\end{column}
 	
 	
-	\begin{column}{.5\textwidth}
+	\begin{column}{.6\textwidth}
 		
-		\begin{itemize}\Large
+		\begin{itemize}
 			\item RV32
-			\begin{itemize}\large
-				\item Sv32
+			\begin{itemize}
+				\item 当在 satp 寄存器中启用了分页时,虚拟地址映射启动。
+				 \item 1. satp.PPN 给出一级页表基址,VA[31:22]给出一级页号,CPU会读取
+				位于地址(satp. PPN × 4096 + VA[31: 22] × 4)的页表项。 \pause
+				\item 2. 该 PTE 包含二级页表的基址,VA[21:12]给出二级页号,CPU读取位于地
+				址(PTE. PPN × 4096 + VA[21: 12] × 4)的叶节点页表项。  \pause
+				\item 3. 叶节点页表项的 PPN 字段和页内偏移(原始虚址的最低 12 个有效位)组成了最
+				终结果:物理地址就是(LeafPTE. PPN × 4096 + VA[11: 0])
 				
+%				随后处理器会进行物理内存的访问。Sv39 的转换过程几乎和 Sv32 相同,区别在于其
+%				具有较大的 PTE 和更多级页表。
+%so in addition to 4 KiB pages, Sv39 supports 2 MiB megapages
+%and 1 GiB gigapages, e
 			\end{itemize}
 		\end{itemize}
+		
+		
 		
 	\end{column}
 	
@@ -84,26 +380,26 @@
 
 %----------------------------------------------
 \begin{frame}[fragile,plain] 
-	\frametitle{RISC-V 页表机制}
+	\frametitle{OS配置页表的流程}
 	
 	\begin{columns}
 		
-		\begin{column}{.5\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{os-position}
+		\begin{column}{1.\textwidth}
+			\centering
+			\includegraphics[width=.8\textwidth]{sv39-pagetable}
 			
 		\end{column}
 		
 		
-		\begin{column}{.5\textwidth}
+		\begin{column}{.1\textwidth}
 			
-			\begin{itemize}\Large
-				\item RV64
-				\begin{itemize}\large
-					\item Sv39/48/57/64
-					
-				\end{itemize}
-			\end{itemize}
+%			\begin{itemize}\Large
+%%				\item 
+%				\begin{itemize}\large
+%%					\item 
+%					
+%				\end{itemize}
+%			\end{itemize}
 			
 		\end{column}
 		
@@ -112,29 +408,28 @@
 \end{frame}
 
 
-
 %----------------------------------------------
 \begin{frame}[fragile,plain] 
-	\frametitle{管理RISC-V 页表}
+	\frametitle{OS配置页表的流程}
 	
 	\begin{columns}
 		
-		\begin{column}{.5\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{os-position}
+		\begin{column}{1.\textwidth}
+			\centering
+			\includegraphics[width=.7\textwidth]{rcore_memory_layout}
 			
 		\end{column}
 		
 		
-		\begin{column}{.5\textwidth}
+		\begin{column}{.1\textwidth}
 			
-			\begin{itemize}\Large
-				\item 启动
-				\begin{itemize}\large
-					\item Sv64
-					
-				\end{itemize}
-			\end{itemize}
+			%			\begin{itemize}\Large
+			%%				\item 
+			%				\begin{itemize}\large
+			%%					\item 
+			%					
+			%				\end{itemize}
+			%			\end{itemize}
 			
 		\end{column}
 		
@@ -143,98 +438,33 @@
 \end{frame}
 
 
-
 %----------------------------------------------
 \begin{frame}[fragile,plain] 
-	\frametitle{管理RISC-V 页表}
+	\frametitle{OS配置页表的流程}
 	
 	\begin{columns}
 		
-		\begin{column}{.5\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{os-position}
+		\begin{column}{.4\textwidth}
+%			\centering
+			\includegraphics[width=1.\textwidth]{rcore_memory_layout}
 			
 		\end{column}
 		
 		
-		\begin{column}{.5\textwidth}
+		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}\Large
-				\item 重映射
-				\begin{itemize}\large
-					\item Sv64
-					
-				\end{itemize}
+			\begin{itemize}
+			\item 为页表分配物理内存 
+			\item 确定映射的物理空间与虚拟空间
+			\item 创建页表
+			\item 设置sapt,使能页表 \pause
+		
 			\end{itemize}
-			
+			\includegraphics[width=1.\textwidth]{showmethecode}
 		\end{column}
 		
 		
 	\end{columns}
-	
-\end{frame}
-
-
-%----------------------------------------------
-\begin{frame}[fragile,plain] 
-	\frametitle{管理RISC-V 页表}
-	
-	\begin{columns}
-		
-		\begin{column}{.5\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{os-position}
-			
-		\end{column}
-		
-		
-		\begin{column}{.5\textwidth}
-			
-			\begin{itemize}\Large
-				\item 异常处理
-				\begin{itemize}\large
-					\item Sv64
-					
-				\end{itemize}
-			\end{itemize}
-			
-		\end{column}
-		
-		
-	\end{columns}
-	
-\end{frame}
-
-
-
-%----------------------------------------------
-\begin{frame}[fragile,plain] 
-	\frametitle{管理RISC-V 页表}
-	
-	\begin{columns}
-		
-		\begin{column}{.5\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{os-position}
-			
-		\end{column}
-		
-		
-		\begin{column}{.5\textwidth}
-			
-			\begin{itemize}\Large
-				\item 完整流程
-				\begin{itemize}\large
-					\item Sv64
-					
-				\end{itemize}
-			\end{itemize}
-			
-		\end{column}
-		
-		
-	\end{columns}
-	
 \end{frame}
 
 %----------------------------------------------
