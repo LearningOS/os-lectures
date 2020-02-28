@@ -56,9 +56,48 @@
 				\begin{itemize}
 					\item 运行的应用程序之间的隔离与共享
 					\item 应用与内核之间的隔离与共享
-					\item 便于非连续内存管理								
+					\item 便于非连续内存管理						
+					\item RISC-V Privileged Architecture Version 1.10
+					\item \href{http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf}{The RISC-V Reader第10.6节}	
 				\end{itemize}
 			\end{itemize}
+			\centering
+			\includegraphics[width=.3\textwidth]{rv-reader-book}
+		\end{column}
+		
+		
+	\end{columns}
+	
+\end{frame}
+
+
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{RISC-V Supervisor特权模式}
+	
+	\begin{columns}[t]
+		
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{riscv_address}
+			
+		\end{column}
+		
+		
+		\begin{column}{.6\textwidth}
+			
+			\begin{itemize}\large
+				\item RISC-V对页表的硬件支持
+				\begin{itemize}
+					\item RISC-V 64的Sv39虚地址与物理地址
+%					\item 
+					
+					
+				\end{itemize}
+			\end{itemize}
+			
+			\includegraphics[width=1.\textwidth]{sv39va} \pause
+			\includegraphics[width=1.\textwidth]{sv39pa}
 			
 		\end{column}
 		
@@ -86,7 +125,7 @@
 			\begin{itemize}\large
 				\item RISC-V对页表的硬件支持
 				\begin{itemize}
-					\item 页表基址 \pause : satp
+					\item 页表基址 \pause : satp in RISC-V 32
 					\item  Supervisor Address Translation and Protection (satp) Register
 					
 							
@@ -137,7 +176,7 @@
 			\begin{itemize}\large
 				\item RISC-V对页表的硬件支持
 				\begin{itemize}
-					\item 页表基址 : satp
+					\item 页表基址 : satp in RISC-V 64
 					\item  Supervisor Address Translation and Protection (satp) Register
 					
 					
@@ -170,7 +209,7 @@
 			\begin{itemize}\large
 				\item RISC-V对页表的硬件支持
 				\begin{itemize}
-					\item 页表基址 : satp
+					\item 页表基址 : satp in RV32/64
 					\item  Supervisor Address Translation and Protection (satp) Register
 					
 					
@@ -457,7 +496,7 @@
 			\item 为页表分配物理内存 
 			\item 确定映射的物理空间与虚拟空间
 			\item 创建页表
-			\item 设置sapt,使能页表 \pause
+			\item 设置sapt,刷新TLB，使能页表 \pause
 		
 			\end{itemize}
 			\includegraphics[width=1.\textwidth]{showmethecode}
