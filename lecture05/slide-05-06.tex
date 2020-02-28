@@ -315,7 +315,7 @@
 					\item 地址保护
 					\item 页表项（page table entry）
 					
-					
+					当在 satp 寄存器中启用了分页时,虚拟地址映射启动。
 				\end{itemize}
 			\end{itemize}
 			\includegraphics[width=1.\textwidth]{sv39pte}
@@ -330,7 +330,7 @@
 
 
 
-%------------------------------------------------
+%------------------------------------------------当在 satp 寄存器中启用了分页时,虚拟地址映射启动。
 \begin{frame}[fragile,plain]   
 	\frametitle{RISC-V Supervisor特权模式}
 	
@@ -348,7 +348,7 @@
 			\begin{itemize}\large
 				\item RISC-V对页表的硬件支持
 				\begin{itemize}
-					\item 地址保护
+					\item 地址保护当在 satp 寄存器中启用了分页时,虚拟地址映射启动。
 					\item 页表项（page table entry）
 					
 					
@@ -389,10 +389,10 @@
 	\begin{column}{.6\textwidth}
 		
 		\begin{itemize}
-			\item RV32
+			\item Sv32 in RV32
 			\begin{itemize}
 				\item 当在 satp 寄存器中启用了分页时,虚拟地址映射启动。
-				 \item 1. satp.PPN 给出一级页表基址,VA[31:22]给出一级页号,CPU会读取
+				 \item 1. satp.PPN 给出一级页表基址,VA[31:22] VPN[1]给出一级页号,CPU会读取
 				位于地址(satp. PPN × 4096 + VA[31: 22] × 4)的页表项。 \pause
 				\item 2. 该 PTE 包含二级页表的基址,VA[21:12]给出二级页号,CPU读取位于地
 				址(PTE. PPN × 4096 + VA[21: 12] × 4)的叶节点页表项。  \pause
@@ -414,9 +414,6 @@
 \end{columns}
 \end{frame}
 
-
-
-
 %----------------------------------------------
 \begin{frame}[fragile,plain] 
 	\frametitle{OS配置页表的流程}
@@ -432,13 +429,13 @@
 		
 		\begin{column}{.1\textwidth}
 			
-%			\begin{itemize}\Large
-%%				\item 
-%				\begin{itemize}\large
-%%					\item 
-%					
-%				\end{itemize}
-%			\end{itemize}
+			%			\begin{itemize}\Large
+			%%				\item 
+			%				\begin{itemize}\large
+			%%					\item 
+			%					
+			%				\end{itemize}
+			%			\end{itemize}
 			
 		\end{column}
 		
@@ -449,13 +446,54 @@
 
 %----------------------------------------------
 \begin{frame}[fragile,plain] 
+	\frametitle{RISC-V 地址转换}
+	
+	\begin{columns}
+		
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{sv39-pagetable}
+			
+		\end{column}
+		
+		
+		\begin{column}{.6\textwidth}
+			
+			\begin{itemize}
+				\item Sv39 in RV64 
+				\begin{itemize}\small
+				 	\item 地址映射要计算三次
+					\item (satp.PPN × 4K + L2 × 8)的页目录项
+					\item (PTE.PPN × 4K + L1 × 8)的二级页目录项
+					\item (LeafPTE.PPN × 4K +L0 x 8)叶节点页表项
+					\item 叶节点页表项的PPN 字段 × 4K + Offset
+					
+					%				随后处理器会进行物理内存的访问。Sv39 的转换过程几乎和 Sv32 相同,区别在于其
+					%				具有较大的 PTE 和更多级页表。
+					%so in addition to 4 KiB pages, Sv39 supports 2 MiB megapages
+					%and 1 GiB gigapages, e
+				\end{itemize}
+			\end{itemize}
+			
+			
+			
+		\end{column}
+		
+		
+	\end{columns}
+\end{frame}
+
+
+
+%----------------------------------------------
+\begin{frame}[fragile,plain] 
 	\frametitle{OS配置页表的流程}
 	
 	\begin{columns}
 		
 		\begin{column}{1.\textwidth}
 			\centering
-			\includegraphics[width=.7\textwidth]{rcore_memory_layout}
+			\includegraphics[width=.9\textwidth]{rcore_memory_layout}
 			
 		\end{column}
 		
