@@ -1,0 +1,77 @@
+\input{../preamble}
+
+%----------------------------------------------------------------------------------------
+%   TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第6讲]{第六讲 虚拟存储概念} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第7节 RISC-V缺页异常}
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+清华大学计算机系 \\ % Your institution for the title page
+\medskip
+\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%\begin{frame}
+%\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+%\end{frame}
+
+%----------------------------------------------------------------------------------------
+%   PRESENTATION SLIDES
+%----------------------------------------------------------------------------------------
+%------------------------------------------------
+\section{第7节 RISC-V缺页异常}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+%\subsection{与SLAB分配器相关的系统组成部件} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
+
+%------------------------------------------------
+\begin{frame}[fragile,plain]
+	\frametitle{回顾：内核态的中断处理机制}
+	\begin{figure}
+	\includegraphics[width=0.8\linewidth]{SupervisorTrapHandling}
+	\end{figure}
+\end{frame}
+%riscv-privileged-v1.10.pdf
+%page 20
+%
+%Supervisor Trap Handling
+%与中断相关的寄存器
+%
+%![SupervisorTrapHandling](/Users/xyong/Desktop/figs/SupervisorTrapHandling.png)
+%
+%
+%
+%At the beginning of a trap handler, sscratch is swapped with a user register to provide an initial working register.
+%
+%When a trap is taken into S-mode, sepc is written with the virtual address of the instruction that encountered the exception.
+%
+%The Interrupt bit in the scause register is set if the contains a code identifying the last exception.
+%
+%When a hardware breakpoint is triggered, or an instruction-fetch, load, or store access or page-fault exception occurs, or an instruction-fetch or AMO address-misaligned exception occurs, stval is written with the faulting address.
+%
+%The sip register is an XLEN-bit read/write register containing information on pending interrupts, while sie is the corresponding XLEN-bit read/write register containing interrupt enable bits.
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{中断原因寄存器（scause）}
+	\begin{figure}
+	\includegraphics[width=0.8\linewidth]{scause-CSR}
+	\end{figure}
+\end{frame}
+%https://content.riscv.org/wp-content/uploads/2018/05/riscv-privileged-BCN.v7-2.pdf
+%Page 25
+%
+%![scause-CSR](/Users/xyong/Desktop/figs/scause-CSR.png)
+%------------------------------------------------
+\end{document}
