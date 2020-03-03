@@ -96,9 +96,9 @@
 \begin{frame}[fragile,plain]   
 	\frametitle{rCore的缺页异常处理}
     \begin{itemize}
-        \item 缺页异常只会在 MMU 启用后，虚拟地址翻译失败时产生，这时候根据是取指还是访存，分别触发 Instruction Abort 与 Data Abort。 \pause
-        \item 当状态码是 translation fault、access flag fault、permission fault 时，将被判断为是缺页异常，并调用 `handle\_page\_fault()` 处理缺页异常。 \pause
-        \item 发生 Instruction page fault 和 Load/Store page access时，虚拟地址将会被保存到stval寄存器中；再调用 `crate::memory::page\_fault\_handler(addr)` 来做具体的缺页处理。\pause
+        \item 缺页异常只会在 MMU 启用后，虚拟地址翻译失败时产生，这时候根据是取指还是访存，分别触发 不同的缺页异常。 \pause
+        \item 当状态码是 Instruction page fault、Load page fault、Store page fault 时，将被判断为是缺页异常，并调用 `handle\_page\_fault()` 处理缺页异常。 \pause
+        \item 发生缺页异常时，虚拟地址将会被保存到stval寄存器中；再调用 `crate::memory::page\_fault\_handler(addr)` 来做具体的缺页处理。\pause
         \item 出处：rCore (Commit ID \href{https://github.com/rcore-os/rCore/tree/cd81f4cc73ea3302ed0356398525b0b56c4fca92}{cd81f4c})
     \end{itemize}
 \end{frame}
@@ -125,24 +125,19 @@ fn rust_trap(tf: &mut TrapFrame)
 \begin{verbatim}
 fn page_fault(tf: &mut TrapFrame)
 \end{verbatim} \pause
-        \item \href{https://github.com/rcore-os/rCore/blob/master/kernel/src/memory.rs#L132}{kernel/src/memory.rs}
+        \item \href{https://github.com/rcore-os/rCore/blob/master/kernel/src/memory.rs\#L132}{kernel/src/memory.rs}
 \begin{verbatim}
 pub fn handle_page_fault(addr: usize) -> bool
 \end{verbatim} \pause
-        \item \href{https://github.com/rcore-os/rCore/blob/master/crate/memory/src/memory_set/mod.rs#L379}{crate/memory/src/memory_set/mod.rs}
+        \item \href{https://github.com/rcore-os/rCore/blob/master/crate/memory/src/memory_set/mod.rs#L379}{crate/memory/src/memory\_set/mod.rs}
 \begin{verbatim}
 pub fn handle_page_fault(&mut self, addr: VirtAddr) -> bool
 \end{verbatim}
 \pause
-\begin{block}{}
+        \item \href{https://github.com/rcore-os/rCore/blob/master/crate/memory/src/memory_set/handler/delay.rs#L52}{crate/memory/src/memory\_set/handler/delay.rs}
 \begin{verbatim}
-let frame = self.allocator.alloc().expect("failed to alloc frame");
-                          ///分配物理页面
-entry.set_target(frame);  ///设置物理页号
-entry.set_present(true);  ///设置页表项标志位
-entry.update();           ///TLB刷新
+fn handle_page_fault(&self, pt: &mut dyn PageTable, addr: VirtAddr) -> bool
 \end{verbatim}
-\end{block}
     \end{itemize}
 \end{frame}
 % ### handle_page_fault
@@ -161,5 +156,23 @@ entry.update();           ///TLB刷新
 % entry.set_target(frame);
 % entry.set_present(true);
 % entry.update();
+%------------------------------------------------
+\begin{frame}[fragile,plain]   
+	\frametitle{crate/memory/src/memory\_set/handler/delay.rs}
+\begin{verbatim}
+fn handle_page_fault(&self, pt: &mut dyn PageTable, addr: VirtAddr) -> bool
+\end{verbatim}
+\begin{block}{}
+\begin{verbatim}
+......
+let frame = self.allocator.alloc().expect("failed to alloc frame");
+                          ///分配物理页面
+entry.set_target(frame);  ///设置物理页号
+entry.set_present(true);  ///设置页表项标志位
+entry.update();           ///TLB刷新
+......
+\end{verbatim}
+\end{block}
+\end{frame}
 %------------------------------------------------
 \end{document}
