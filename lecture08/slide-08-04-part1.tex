@@ -11,7 +11,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第8讲]{第8讲 ：全局页替换算法} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第四节：面向缓存的页替换算法-part1}
+\subtitle{第四节：面向缓存的页替换算法-FBR}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -222,38 +222,6 @@
 
 
 
-%----------------------------------------------
-\begin{frame}[plain]
-	\frametitle{ }
-	\begin{columns}
-		\begin{column}{.5\textwidth}
-			\centering
-			\includegraphics[width=.6\textwidth]{mem-trash}
-%			\includegraphics[width=1.2\textwidth]{btree}
-		\end{column}
-		
-		\begin{column}{.5\textwidth}
-			
-			\begin{itemize}
-				\item 为何LRU失效?
-				\begin{itemize}
-					
-					\item 顺序块访问会把hot块替换出cache
-					\item 对于索引块和数据块的循环访问时，不会根据访问概率缓存索引块
-					
-					\item “最近使用过1次”
-					\item 致命缺陷：就是没有考虑缓存单元的使用频率
-				\end{itemize}
-			\end{itemize}
-			
-			
-		\end{column}
-		
-		
-	\end{columns}
-\end{frame}
-
-
 
 %----------------------------------------------
 \begin{frame}[plain]
@@ -273,6 +241,8 @@
 					
 					\item 顺序块访问会把hot块替换出cache
 					\item 对于索引块和数据块的循环访问时，不会根据访问概率缓存索引块
+					
+					\pause
 					
 					\item 完全从最近使用的时间角度考虑
 					\item “最近使用过1次”
@@ -332,16 +302,19 @@
 		\begin{column}{1.0\textwidth}
 			
 			\begin{itemize}
-				\item LRU+LFU?
+				\item LRU+LFU? 
+				
+				
 				\begin{itemize}
+					\item THE LEAST RECENTLY/FREQUENTLY USED (LRFU) POLICY?
 					
-					\item   在短周期中使用LRU算法，而在长周期中使用LFU算法
+					\item   在短周期中使用LRU算法，而在长周期中使用LFU算法?
 					
 					
 				\end{itemize}
 			\end{itemize}
 			
-			
+			\tiny LRFU: A Spectrum of Policies that Subsumes the Least Recently Used and Least Frequently Used Policies  ,Donghee Lee，IEEE-TC 2001
 		\end{column}
 		
 		
@@ -443,13 +416,13 @@
 				\item FBR 访问频率置换算法的问题
 				
 					\begin{itemize}
-					\item 需要可调参数：缓存中三块的大小，Cmax 和Amax：
+					\item 需要可调参数：缓存中三块的大小，Cmax 和Amax
 					\item 调整可调参数的时间周期
 %					LRFU.pdf有讲Cmax 选择替换块的一个选择策略的阈值（zzz是smallest reference count block OR LRU block）, Amax 用于调整 引用计数的一个阈值
 				\end{itemize}
 			\end{itemize}
 			\centering
-			\includegraphics[width=.5\textwidth]{fbr}
+			\includegraphics[width=.7\textwidth]{fbr}
 		\end{column}
 		
 		
