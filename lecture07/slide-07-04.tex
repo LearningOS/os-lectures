@@ -54,7 +54,7 @@
 % ![2-level-pagetable](figs/2-level-pagetable.png)
 %------------------------------------------------
 \begin{frame}
-    \frametitle{地址转换的计算过程}
+    \frametitle{地址转换过程}
     \begin{figure}
     \includegraphics[width=0.75\linewidth]{figs/addr-translation.png}
 %    \caption{xxxx}
@@ -120,7 +120,7 @@
 % ![x86-32-page-tabel-entry](figs/x86-32-page-tabel-entry.png)
 %------------------------------------------------
 \begin{frame}[fragile,plain]
-    \frametitle{用C语言宏表示的地址转换中虚拟地址字段获取}
+    \frametitle{地址转换中的虚拟地址字段获取(C语言)}
     \begin{block}{}
     \begin{verbatim}
 // page directory index
@@ -152,7 +152,7 @@
 % ```
 %------------------------------------------------
 \begin{frame}
-    \frametitle{X86-32的第一级页表的自映射}
+    \frametitle{X86-32的第一级页表自映射}
     \begin{figure}
     \includegraphics[width=0.63\linewidth]{figs/1-level-self-mapping-pt.png}
 %    \caption{xxxx}
@@ -180,11 +180,10 @@
 % ![2-level-self-mapping-pt](figs/2-level-self-mapping-pt.png)
 %------------------------------------------------
 \begin{frame}[fragile,plain]
-    \frametitle{X86-32自映射页表项初始化}
+    \frametitle{X86-32自映射页表项初始化(C语言)}
 %% C Code
     \begin{block}{}
     \begin{verbatim}
-//C CODE
 // recursively insert boot_pgdir in itself
 // to form a virtual pate table at virtual address VPT
 boot_pgdir[PDX(VPT)] = PADDR(boot_pgdir) | PTE_P | PTE_W;
@@ -204,7 +203,7 @@ boot_pgdir[PDX(VPT)] = PADDR(boot_pgdir) | PTE_P | PTE_W;
 % ### riscv32页表自映射
 %------------------------------------------------
 \begin{frame}
-    \frametitle{RISC-V Sv32二级页表}
+    \frametitle{基于 4KB 页面的RISC-V Sv32二级页表}
     \begin{figure}
     \includegraphics[width=0.5\linewidth]{figs/riscv32-pagetable.png}
 %    \caption{xxxx}
