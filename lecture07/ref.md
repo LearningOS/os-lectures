@@ -218,7 +218,7 @@ Page 10
 
 ![self-mapping-PTE](figs/self-mapping-PTE.png)
 
-### X86-32的页表自映射
+### X86-32页表自映射
 
 #### 基于4KB页面的X86-32二级页表
 
@@ -273,7 +273,7 @@ Page 24
 // to form a virtual pate table at virtual address VPT
 boot_pgdir[PDX(VPT)] = PADDR(boot_pgdir) | PTE_P | PTE_W;
 ```
-### riscv32上页表自映射
+### riscv32页表自映射
 
 #### RISC-V Sv32的二级页表
 
@@ -307,7 +307,3 @@ Table 4.4: Encoding of PTE R/W/X fields.
 RISCV页表项中的flags，明确表示它指向的是数据页（VRW），还是下层页表（V）。
 在访问一级页表虚地址期间，将它所对应的二级页表项flags置为VRW。
 访问二级页表本身，还需要再加一个自映射的二级页表项，其flags为VRW。
-
-#### 
-20130326-lecture05-mm-instance.pptx
-Page
