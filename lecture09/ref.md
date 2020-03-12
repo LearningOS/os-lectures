@@ -1,5 +1,9 @@
 ### 进程地址空间与熔断(meltdown)漏洞
 
+#### 历史版本
+
+[v1](https://github.com/LearningOS/os-lectures/blob/4e63cef831187f880bb46e32122344be5182c8e4/lecture09/ref.md)
+
 #### ref
 
 https://mp.weixin.qq.com/s/zlspXeDGlAEzVsq2h6gg8w
