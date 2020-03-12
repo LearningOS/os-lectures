@@ -4,6 +4,8 @@
 
 [v1](https://github.com/LearningOS/os-lectures/blob/eeab82b9b9682d079b2ad7e63e522e48079d1098/lecture09/ref.md)
 
+[v2](https://github.com/LearningOS/os-lectures/blob/9019d3ae3a8b18c6a0ec1a230652bf0f24714066/lecture09/ref.md)
+
 #### ref
 
 https://mp.weixin.qq.com/s/zlspXeDGlAEzVsq2h6gg8w
