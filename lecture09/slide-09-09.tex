@@ -42,27 +42,27 @@
 \subsection{背景知识回顾} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{侧信道问题}
+    \frametitle{侧信道攻击}
     \begin{block}{}
-    假设有abc三个地址，其中a地址没有访问的权限，但是b和c可以访问，此时执行下面这个条件表达式：
+    假设有abc三个变量，其中a没有访问权限，但是b和c可以访问，此时执行下面这个条件表达式：
     \begin{lstlisting}[language = C]
         x = a ？b:c
     \end{lstlisting}
     \end{block} \pause
 	    \begin{itemize}
-	        \item a地址无法访问，系统会直接报错！ \pause
-	        \item 采用多流水线的CPU在检查a的访问权限时，预先往下执行。 \pause
-	        \item 权限检查完成时，已经根据a的结果完成了b或者c的加载到高速缓存，只还没有赋给x。
+	        \item a无法访问，系统会直接报错！ \pause
+	        \item 采用多流水线的CPU在检查a的访问权限时，继续往下执行。 \pause
+	        \item a的权限检查完成时，CPU已依据a的值完成了b或者c的读取，只是还没有赋值给x。
 	    \end{itemize}
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{侧信道问题的影响}
+    \frametitle{侧信道攻击的影响}
 	    \begin{itemize}
-	        \item 虽然报错，但再次访问时会比较快；
-	        \item 再次访问b和c，根据返回的时间快慢，可猜到a的值； \pause
-	        \item 这个问题导致了2018年元旦前后熔断漏洞(CVE-2017-5754:meltdown)； \pause
-	        \item 操作系统需要来补救这个CPU设计问题：KAISER \pause
+	        \item 虽然表达式报错，但再次访问变量的速度会变快；
+	        \item 后续访问b和c时，依据访问时间长短，可猜到a的值； \pause
+	        \item 这个问题导致了2018年元旦前后熔断漏洞(CVE-2017-5754: meltdown)； \pause
+	        \item 需要操作系统来补救这个CPU设计问题：KAISER \pause
 	        \item 类似问题不止这一个......
 	    \end{itemize}
 \end{frame}
