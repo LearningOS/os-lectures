@@ -5,7 +5,7 @@ https://tablesgenerator.com/
 
 [v2](https://github.com/LearningOS/os-lectures/blob/89a0b1654c051eee1070a8253c38f06234aa90ac/lecture10/ref.md)
 
-[v3]()
+[v3](https://github.com/LearningOS/os-lectures/blob/92dc37fecb82c3844fd7ec2aad2beead492c7683/lecture10/ref.md)
 
 ## 10.1 进程切换 
 ## 10.2 进程创建 
