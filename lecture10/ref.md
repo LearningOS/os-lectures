@@ -34,6 +34,8 @@ pub struct Pid(usize);
 Line 119:
 pub struct MemorySet
 
+![MemorySet](figs/MemorySet.png)
+
 ```rust
 pub struct MemorySet<T: PageTableExt> {
     areas: Vec<MemoryArea>,
@@ -46,6 +48,9 @@ pub struct MemorySet<T: PageTableExt> {
 /Users/xyong/github/rCore/crate/memory/src/memory_set/mod.rs
 Line 17:
 pub struct MemoryArea
+
+![MemoryArea](figs/MemoryArea.png)
+
 ```rust
 pub struct MemoryArea {
     start_addr: VirtAddr,
@@ -58,12 +63,18 @@ pub struct MemoryArea {
 
 /Users/xyong/github/rCore/kernel/src/memory.rs
 Line 29:
+
+![type-MemorySet](figs/type-MemorySet.png)
+
 ```rust
 pub type MemorySet = rcore_memory::memory_set::MemorySet<PageTableImpl>;
 ```
 /Users/xyong/github/rCore/kernel/src/arch/riscv/paging.rs
 Line 20:
 pub struct PageTableImpl
+
+![PageTableImpl](figs/PageTableImpl.png)
+
 ```rust
 pub struct PageTableImpl {
     page_table: TopLevelPageTable<'static>,
@@ -74,6 +85,9 @@ pub struct PageTableImpl {
 /Users/xyong/github/riscv/src/paging/multi_level.rs
 Line 8:
 pub struct Rv32PageTable
+
+![Rv32PageTable](figs/Rv32PageTable.png)
+
 ```rust
 pub struct Rv32PageTable<'a> {
     root_table: &'a mut PageTable,
@@ -81,12 +95,17 @@ pub struct Rv32PageTable<'a> {
 }
 ```
 Line 16:
+
+![TopLevelPageTable](figs/TopLevelPageTable.png)
+
 ```rust
 type TopLevelPageTable<'a> = riscv::paging::Rv32PageTable<'a>;
 ```
 /Users/xyong/github/rCore/crate/memory/src/paging/mod.rs
 Line 111:
 unsafe fn activate(&self)
+
+![fn-activate](figs/fn-activate.png)
 
 ```rust
     /// Activate this page table
@@ -103,6 +122,9 @@ unsafe fn activate(&self)
 /Users/xyong/github/rCore/kernel/src/arch/riscv/paging.rs
 Line 258:
 unsafe fn set_token(token: usize)
+
+![fn-set_token](figs/fn-set_token.png)
+
 ```rust
     unsafe fn set_token(token: usize) {
         asm!("csrw satp, $0" :: "r"(token) :: "volatile");
@@ -117,6 +139,9 @@ pub struct Thread
 https://github.com/rcore-os/rcore-thread/blob/master/src/thread_pool.rs#L8
 struct Thread
 /Users/xyong/github/rcore-thread/src/thread_pool.rs
+
+![struct-Thread](figs/struct-Thread.png)
+
 ```rust
 struct Thread {
     /// Current status of the thread.
@@ -149,6 +174,8 @@ pub fn thread_manager() -> &'static ThreadPool
 
 /Users/xyong/github/rcore-thread/src/thread_pool.rs
 
+![enum-Status](figs/enum-Status.png)
+
 ```rust
 pub enum Status {
     Ready,
@@ -161,6 +188,8 @@ pub enum Status {
 ##### 4-线程状态转换
 
 /Users/xyong/github/rcore-thread/src/thread_pool.rs
+
+![fn-set-status](figs/fn-set-status.png)
 
 ```rust
 fn set_status(&self, tid: Tid, status: Status)
@@ -179,6 +208,8 @@ fn set_status(&self, tid: Tid, status: Status)
 
 
 1. `TrapFrame`:
+
+    ![struct-TrapFrame](figs/struct-TrapFrame.png)
 
     ```rust
     pub struct TrapFrame {
@@ -199,6 +230,8 @@ fn set_status(&self, tid: Tid, status: Status)
 
 2. `ContextData`:
 
+3. ![struct-ContextData](figs/struct-ContextData.png)
+
     ```rust
     struct ContextData {
         /// Return address
@@ -212,7 +245,11 @@ fn set_status(&self, tid: Tid, status: Status)
 
     执行上下文切换时向栈中压入的内容，由 `__switch()` 函数构建。
 
-3. `InitStack`:
+4. `InitStack`:
+
+    
+
+    ![struct-InitStack](figs/struct-InitStack.png)
 
     ```rust
     pub struct InitStack {
@@ -223,7 +260,9 @@ fn set_status(&self, tid: Tid, status: Status)
 
     对于新创建的线程，不仅要向栈中压入 `ContextData` 结构，还需手动构造 `TrapFrame` 结构。为了方便管理就定义了 `InitStack` 包含这两个结构体。
 
-4. `Context`:
+5. `Context`:
+
+    ![struct-Context](figs/struct-Context.png)
 
     ```rust
     pub struct Context {
@@ -231,7 +270,7 @@ fn set_status(&self, tid: Tid, status: Status)
         /// A `ContextData` is stored here.
         sp: usize,
     }
-	```
+    ```
 
     每个进程控制块 `Process` ([kernel/src/process/context.rs](../../../kernel/src/process/structs.rs#L13)) 都会维护一个平台相关的 `Context` 对象。
 
