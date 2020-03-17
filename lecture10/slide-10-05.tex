@@ -38,7 +38,7 @@
 %------------------------------------------------
 \section{第5节：rCore进程和线程控制}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
-\subsection{进程和线程数据结构} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{进程和线程控制块} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{rCore进程控制块结构}
@@ -66,51 +66,30 @@
 % 
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Core的内存地址空间结构}
-    \subframetitle{rCore/crate/memory/src/memory_set/mod.rs}
-%% lstlisting
-    \begin{lstlisting}[language = rust]
-pub struct MemorySet<T: PageTableExt> {
-    areas: Vec<MemoryArea>,
-    page_table: T,
-}
-    \end{lstlisting}
-
-\end{frame}
+    \frametitle{rCore内存地址空间结构}
+%\end{frame}
 %------------------------------------------------
 % ##### 2-rCore的内存地址空间结构MemorySet
-% 
-% /Users/xyong/github/rCore/crate/memory/src/memory_set/mod.rs
-% Line 119:
-% pub struct MemorySet
-% 
-% ```rust
-% pub struct MemorySet<T: PageTableExt> {
-%     areas: Vec<MemoryArea>,
-%     page_table: T,
-% }
-% ```
-% 
-% 
-% 
-% /Users/xyong/github/rCore/crate/memory/src/memory_set/mod.rs
-% Line 17:
-% pub struct MemoryArea
-% ```rust
-% pub struct MemoryArea {
-%     start_addr: VirtAddr,
-%     end_addr: VirtAddr,
-%     attr: MemoryAttr,
-%     handler: Box<dyn MemoryHandler>,
-%     name: &'static str,
-% }
-% ```
-% 
+    \subframetitle{rCore/kernel/src/memory.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/type-MemorySet.png}
+%   \caption{xxxx}
+    \end{figure}
+
 % /Users/xyong/github/rCore/kernel/src/memory.rs
 % Line 29:
 % ```rust
 % pub type MemorySet = rcore_memory::memory_set::MemorySet<PageTableImpl>;
 % ```
+
+    \subframetitle{rCore/kernel/src/arch/riscv/paging.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.5\linewidth]{figs/PageTableImpl.png}
+%   \caption{xxxx}
+    \end{figure}
+
 % /Users/xyong/github/rCore/kernel/src/arch/riscv/paging.rs
 % Line 20:
 % pub struct PageTableImpl
@@ -121,6 +100,31 @@ pub struct MemorySet<T: PageTableExt> {
 %     entry: Option<PageEntry>,
 % }
 % ```
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{rCore内存地址空间结构}
+%\end{frame}
+%------------------------------------------------
+    \subframetitle{rCore/crate/memory/src/memory\_set/mod.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/TopLevelPageTable.png}
+%   \caption{xxxx}
+    \end{figure}
+
+% Line 16:
+% ```rust
+% type TopLevelPageTable<'a> = riscv::paging::Rv32PageTable<'a>;
+% ```
+
+    \subframetitle{riscv/src/paging/multi\_level.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.6\linewidth]{figs/Rv32PageTable.png}
+%   \caption{xxxx}
+    \end{figure}
+
 % /Users/xyong/github/riscv/src/paging/multi_level.rs
 % Line 8:
 % pub struct Rv32PageTable
@@ -130,10 +134,20 @@ pub struct MemorySet<T: PageTableExt> {
 %     linear_offset: usize, // VA = PA + linear_offset
 % }
 % ```
-% Line 16:
-% ```rust
-% type TopLevelPageTable<'a> = riscv::paging::Rv32PageTable<'a>;
-% ```
+
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{rCore内存地址空间结构}
+%\end{frame}
+%------------------------------------------------
+    \subframetitle{rCore/crate/memory/src/paging/mod.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.7\linewidth]{figs/fn-activate.png}
+%   \caption{xxxx}
+    \end{figure}
+
 % /Users/xyong/github/rCore/crate/memory/src/paging/mod.rs
 % Line 111:
 % unsafe fn activate(&self)
@@ -150,6 +164,14 @@ pub struct MemorySet<T: PageTableExt> {
 %         }
 %     }
 % ```
+
+    \subframetitle{rCore/kernel/src/arch/riscv/paging.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.6\linewidth]{figs/fn-set_token.png}
+%   \caption{xxxx}
+    \end{figure}
+
 % /Users/xyong/github/rCore/kernel/src/arch/riscv/paging.rs
 % Line 258:
 % unsafe fn set_token(token: usize)
@@ -159,9 +181,17 @@ pub struct MemorySet<T: PageTableExt> {
 %     }
 % ```
 % 
+\end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{rCore线程控制块}
+    \subframetitle{rCore/kernel/src/process/structs.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/struct-Thread.png}
+%   \caption{xxxx}
+    \end{figure}
+
 \end{frame}
 %------------------------------------------------
 % ##### 3-线程
@@ -202,7 +232,14 @@ pub struct MemorySet<T: PageTableExt> {
 \subsection{线程状态转换} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{线程状态数据结构}
+    \subframetitle{rcore-thread/src/thread\_pool.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.5\linewidth]{figs/enum-Status.png}
+%   \caption{xxxx}
+    \end{figure}
+
 \end{frame}
 %------------------------------------------------
 % #### 线程状态转换
@@ -220,6 +257,25 @@ pub struct MemorySet<T: PageTableExt> {
 %     Exited(ExitCode),
 % }
 % ```
+%------------------------------------------------
+
+\begin{frame}[fragile]
+    \frametitle{线程状态转换}
+    \subframetitle{rcore-thread/src/thread\_pool.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.6\linewidth]{figs/fn-set-status.png}
+%   \caption{xxxx}
+    \end{figure}
+
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/set-status.png}
+%   \caption{xxxx}
+    \end{figure}
+
+\end{frame}
+%------------------------------------------------
 % ##### 4-线程状态转换
 % 
 % /Users/xyong/github/rcore-thread/src/thread_pool.rs
@@ -229,11 +285,21 @@ pub struct MemorySet<T: PageTableExt> {
 % ```
 % 
 % ![set-status](figs/set-status.png)
-% %------------------------------------------------
+% 
+%------------------------------------------------
 \subsection{线程上下文切换} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{线程上下文切换数据结构}
+%    \subframetitle{TrapFrame}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.5\linewidth]{figs/struct-TrapFrame.png}
+%   \caption{xxxx}
+    \end{figure}
+
+在陷入异常时向栈中压入的内容，由 trap.S 的 \_\_alltraps 构建。
+
 \end{frame}
 
 % #### 线程上下文切换
@@ -265,6 +331,21 @@ pub struct MemorySet<T: PageTableExt> {
 % 
 %     在陷入异常时向栈中压入的内容，由 [trap.S](../../../kernel/src/arch/aarch64/interrupt/trap.S#L92) 的 `__alltraps` 构建。
 % 
+
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{线程上下文切换数据结构}
+%    \subframetitle{ContextData}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.4\linewidth]{figs/struct-ContextData.png}
+%   \caption{xxxx}
+    \end{figure}
+
+执行上下文切换时向栈中压入的内容，由 $\_\_switch()$ 函数构建。
+
+\end{frame}
+
 % 2. `ContextData`:
 % 
 %     ```rust
@@ -280,6 +361,21 @@ pub struct MemorySet<T: PageTableExt> {
 % 
 %     执行上下文切换时向栈中压入的内容，由 `__switch()` 函数构建。
 % 
+
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{线程上下文切换数据结构}
+%    \subframetitle{InitStack}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.35\linewidth]{figs/struct-InitStack.png}
+%   \caption{xxxx}
+    \end{figure}
+
+对于新创建的线程，不仅要向栈中压入 ContextData 结构，还需手动构造 TrapFrame 结构。为了方便管理就定义了 InitStack 包含这两个结构体。
+
+\end{frame}
+
 % 3. `InitStack`:
 % 
 %     ```rust
@@ -291,6 +387,21 @@ pub struct MemorySet<T: PageTableExt> {
 % 
 %     对于新创建的线程，不仅要向栈中压入 `ContextData` 结构，还需手动构造 `TrapFrame` 结构。为了方便管理就定义了 `InitStack` 包含这两个结构体。
 % 
+
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{线程上下文切换数据结构}
+%    \subframetitle{Context}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.7\linewidth]{figs/struct-Context.png}
+%   \caption{xxxx}
+    \end{figure}
+
+每个进程控制块 Process 都会维护一个平台相关的 Context 对象。
+
+\end{frame}
+
 % 4. `Context`:
 % 
 %     ```rust
@@ -299,10 +410,32 @@ pub struct MemorySet<T: PageTableExt> {
 %         /// A `ContextData` is stored here.
 %         sp: usize,
 %     }
-% 	```
+%   ```
 % 
 %     每个进程控制块 `Process` ([kernel/src/process/context.rs](../../../kernel/src/process/structs.rs#L13)) 都会维护一个平台相关的 `Context` 对象。
 % 
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{切换函数}
+    \subframetitle{rCore/kernel/src/process/structs.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.9\linewidth]{figs/switch-to.png}
+%   \caption{xxxx}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{切换函数}
+    \subframetitle{rCore/kernel/src/arch/riscv/context.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.6\linewidth]{riscv-32-switch.png}
+%   \caption{xxxx}
+    \end{figure}
+
+\end{frame}
+%------------------------------------------------
 % ##### 6-切换函数
 % 
 % /Users/xyong/github/rCore/kernel/src/process/structs.rs
@@ -315,6 +448,28 @@ pub struct MemorySet<T: PageTableExt> {
 % 
 % ![riscv-32-switch](figs/riscv-32-switch.png)
 % 
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{线程切换过程}
+    \subframetitle{rcore-thread/src/processor.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/fn-tick.png}
+%   \caption{xxxx}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{线程切换过程}
+    \subframetitle{rcore-thread/src/scheduler/mod.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.65\linewidth]{figs/scheduler.png}
+%   \caption{xxxx}
+    \end{figure}
+
+\end{frame}
+%------------------------------------------------
 % ##### 7-线程切换过程
 % 
 % /Users/xyong/github/rcore-thread/src/processor.rs
@@ -329,7 +484,14 @@ pub struct MemorySet<T: PageTableExt> {
 \subsection{进程和线程控制接口} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{进程管理的系统调用}
+    \subframetitle{rCore/kernel/src/syscall/proc.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.7\linewidth]{figs/proc-syscall.png}
+%   \caption{xxxx}
+    \end{figure}
+
 \end{frame}
 % #### 进程和线程控制接口
 % 
@@ -343,6 +505,18 @@ pub struct MemorySet<T: PageTableExt> {
 % 
 % ![proc-syscall](figs/proc-syscall.png)
 % 
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{内核中线程模块接口}
+    \subframetitle{rcore-thread/src/std_thread.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.7\linewidth]{figs/rcore-thread.png}
+%   \caption{xxxx}
+    \end{figure}
+
+\end{frame}
+%------------------------------------------------
 % ##### 9-线程模块接口
 % /Users/xyong/github/rcore-thread/src/std_thread.rs
 % 
