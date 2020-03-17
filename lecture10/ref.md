@@ -3,7 +3,9 @@ https://tablesgenerator.com/
 
 [v1](https://github.com/LearningOS/os-lectures/blob/3f429b1e5c7fba1ae1dde052794698dc85024ec4/lecture10/ref.md)
 
-[v2]()
+[v2](https://github.com/LearningOS/os-lectures/blob/89a0b1654c051eee1070a8253c38f06234aa90ac/lecture10/ref.md)
+
+[v3]()
 
 ## 10.1 进程切换 
 ## 10.2 进程创建 
@@ -11,9 +13,7 @@ https://tablesgenerator.com/
 ## 10.4 进程等待与退出 
 ## 10.5 rCore的进程和线程控制
 
-### rCore的进程相关代码分析
-
-#### 进程和线程的数据结构
+#### 进程和线程数据结构
 
 ##### 1-rCore的进程控制块结构struct Process
 
@@ -108,57 +108,6 @@ unsafe fn set_token(token: usize)
         asm!("csrw satp, $0" :: "r"(token) :: "volatile");
     }
 ```
-##### proc.exit
-
-/Users/xyong/github/rCore/kernel/src/syscall/proc.rs
-Line 211:
-pub fn sys_kill(&mut self, pid: usize, sig: usize) -> SysResult
-Line 256:
-pub fn sys_exit(&mut self, exit_code: usize) -> ! 
-Line 289:
-pub fn sys_exit_group(&mut self, exit_code: usize) -> !
-
-
-
-##### Scheduler
-
-https://rcore-os.github.io/rCore_tutorial_doc/chapter7/part3.html
-线程调度之 Round Robin 算法
-
-https://github.com/rcore-os/rcore-thread/blob/master/src/scheduler/rr.rs#L20
-impl Scheduler for RRScheduler
-
-/Users/xyong/github/rcore-thread/src/scheduler/mod.rs
-Line 19:
-pub trait Scheduler: 'static
-
-/Users/xyong/github/rCore/kernel/src/arch/riscv/context.rs
-Line 9:
-pub struct TrapFrame
-
-/Users/xyong/github/rCore/kernel/src/arch/riscv/interrupt.rs
-Line 56:
-pub extern "C" fn rust_trap(tf: &mut TrapFrame)
-
-pub fn set_timer(stime_value: u64)
-pub fn set_next() 
-pub fn timer
-timer()
-pub extern "C" fn rust_trap(tf: &mut TrapFrame)
-
-###### 用Pid(0)创建新进程
-/Users/xyong/github/rCore/kernel/src/process/structs.rs
-Line 113:
-pub fn new_kernel(entry: extern "C" fn(usize) -> !, arg: usize) -> Box<Thread>
-Line 248:
-pub fn new_user(
-        inode: &Arc<dyn INode>,
-        exec_path: &str,
-        args: Vec<String>,
-        envs: Vec<S/tring>,
-    ) -> Box<Thread>
-Line 327:
-pub fn fork(&self, tf: &TrapFrame) -> Box<Thread>
 
 ##### 3-线程
 /Users/xyong/github/rCore/kernel/src/process/structs.rs
@@ -194,22 +143,9 @@ fn new() -> ThreadId
 Line 106:
 pub fn thread_manager() -> &'static ThreadPool
 
-#### 4-线程状态转换
+#### 线程状态转换
 
-/Users/xyong/github/rCore/docs/2_OSLab/g5/exp3.md
-Line 87:
-多核线程管理
-每个进程有3个状态：Ready等待执行，Running正在执行，Sleep不可执行
-
-https://rcore-os.github.io/rCore_tutorial_doc/chapter6/part1.html
-线程状态与保存
-
-https://github.com/rcore-os/rcore-thread/blob/master/src/thread_pool.rs#L151
-fn set_status(&self, tid: Tid, status: Status)
-
-Status::Ready
-proc.status
-set_status
+##### 4-线程状态数据结构
 
 /Users/xyong/github/rcore-thread/src/thread_pool.rs
 
@@ -222,16 +158,19 @@ pub enum Status {
     Exited(ExitCode),
 }
 ```
+##### 4-线程状态转换
+
 /Users/xyong/github/rcore-thread/src/thread_pool.rs
+
 ```rust
 fn set_status(&self, tid: Tid, status: Status)
 ```
 
 ![set-status](/Users/xyong/Desktop/os-lectures/lecture10/figs/set-status.png)
 
-#### 上下文切换的数据结构和函数
+#### 线程上下文切换
 
-##### 5-上下文切换的数据结构文档
+##### 5-上下文切换数据结构
 
 /Users/xyong/github/rCore/docs/2_OSLab/g2/context.md
 上下文切换的文档
@@ -296,56 +235,31 @@ fn set_status(&self, tid: Tid, status: Status)
 
     每个进程控制块 `Process` ([kernel/src/process/context.rs](../../../kernel/src/process/structs.rs#L13)) 都会维护一个平台相关的 `Context` 对象。
 
-
-##### 数据结构
-
-/Users/xyong/github/rCore/kernel/src/arch/riscv/context.rs
-Line 105:
-struct ContextData
-Line 127:
-pub struct Context
-Line 133:
-impl Context
-
-/Users/xyong/github/rCore/kernel/src/memory.rs
-Line 103:
-pub struct KernelStack(usize)
-
-/Users/xyong/github/rCore/kernel/src/arch/riscv/context.rs
-Line 84:
-pub struct InitStack
-
 ##### 6-切换函数
-
-https://rcore-os.github.io/rCore_tutorial_doc/chapter6/part2.html
-线程切换
 
 /Users/xyong/github/rCore/kernel/src/process/structs.rs
 Line 89：
-unsafe fn switch_to(&mut self, target: &mut dyn rcore_thread::Context)
 
 ![switch-to](/Users/xyong/Desktop/os-lectures/lecture10/figs/switch-to.png)
 
-https://github.com/rcore-os/rcore-thread/blob/master/src/context/riscv.rs#L110
-pub unsafe extern "C" fn switch(_from: &mut *mut Self, _to: &mut *mut Self)
-
 /Users/xyong/github/rCore/kernel/src/arch/riscv/context.rs
 Line 141:
-pub unsafe extern "C" fn switch(&mut self, _target: &mut Self) 
 
 ![riscv-32-switch](/Users/xyong/Desktop/os-lectures/lecture10/figs/riscv-32-switch.png)
 
 ##### 7-线程切换过程
 
-scheduler.push
-need_reschedule
+/Users/xyong/github/rcore-thread/src/processor.rs
+
+![fn-tick](/Users/xyong/Desktop/os-lectures/lecture10/figs/fn-tick.png)
 
 /Users/xyong/github/rcore-thread/src/scheduler/mod.rs
-pub trait Scheduler
 
 ![scheduler](/Users/xyong/Desktop/os-lectures/lecture10/figs/scheduler.png)
 
-#### 8-与进程管理相关的系统调用
+#### 进程和线程控制接口
+
+##### 8-进程控制系统调用
 
 /Users/xyong/github/rCore/kernel/src/syscall/proc.rs
 与进程管理相关的系统调用
@@ -355,55 +269,8 @@ fn sys_
 
 ![proc-syscall](/Users/xyong/Desktop/os-lectures/lecture10/figs/proc-syscall.png)
 
-
-#### 线程管理的接口
-/Users/xyong/github/rCore/docs/2_OSLab/os2atc/ucore_os_in_rust.md
-
-线程模块——接口与实现
-
-线程模块——面向接口的上层实现
-
-线程模块——兼容标准库的高层封装
-
-/Users/xyong/github/rCore/kernel/src/lib.rs
-Line 24:
-pub use crate::process::{new_kernel_context, processor};
-
-##### 线程模块——接口与实现
-
-##### 9-线程模块——面向接口的上层实现
-/Users/xyong/github/rCore/docs/2_OSLab/os2atc/ucore_os_in_rust.md
-Line 418:
-
-https://doc.rust-lang.org/std/thread/
-Module std::thread
-
-```rust
-// thread.rs
-pub fn current() -> Thread {...}
-pub fn sleep(dur: Duration) {...}
-pub fn spawn<F, T>(f: F) -> JoinHandle<T> {...}
-pub fn yield_now() {...}
-pub fn park() {...}
-```
-在上页基础上进一步封装。
-提供和标准库`std::thread`完全一致的上层接口。
-使得依赖std的多线程代码，可以方便地迁移到内核中。
-
-/Users/xyong/github/rCore/kernel/src/lib.rs
-Line 26:
-pub use rcore_thread::std_thread as thread;
-
-/Users/xyong/github/rCore/kernel/src/process/structs.rs
-Line 88:
-impl rcore_thread::Context for Thread
-
-/Users/xyong/github/rcore-thread/examples/riscv/src/main.rs
-thread::spawn
-使用spawn的例子；
-
+##### 9-线程模块接口
 /Users/xyong/github/rcore-thread/src/std_thread.rs
-pub fn
 
 ![rcore-thread](/Users/xyong/Desktop/os-lectures/lecture10/figs/rcore-thread.png)
 
@@ -411,4 +278,4 @@ https://doc.rust-lang.org/std/thread/#functions
 
 ![thread-function](/Users/xyong/Desktop/os-lectures/lecture10/figs/thread-function.png)
 
-##### 线程模块——兼容标准库的高层封装
+##### 
