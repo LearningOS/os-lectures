@@ -32,7 +32,7 @@ pub struct Pid(usize);
 
 /Users/xyong/github/rCore/crate/memory/src/memory_set/mod.rs
 Line 119:
-pub struct MemorySet
+pub struct MemorySet/
 
 ![MemorySet](figs/MemorySet.png)
 
