@@ -22,7 +22,7 @@ https://github.com/rcore-os/rCore/blob/master/kernel/src/process/structs.rs#L61
 Line 61
 pub struct Process
 
-![process](/Users/xyong/Desktop/os-lectures/lecture10/figs/process.png)
+![process](figs/process.png)
 
 /Users/xyong/github/rCore/kernel/src/process/structs.rs
 Line 42:
@@ -166,7 +166,7 @@ pub enum Status {
 fn set_status(&self, tid: Tid, status: Status)
 ```
 
-![set-status](/Users/xyong/Desktop/os-lectures/lecture10/figs/set-status.png)
+![set-status](figs/set-status.png)
 
 #### 线程上下文切换
 
@@ -240,22 +240,22 @@ fn set_status(&self, tid: Tid, status: Status)
 /Users/xyong/github/rCore/kernel/src/process/structs.rs
 Line 89：
 
-![switch-to](/Users/xyong/Desktop/os-lectures/lecture10/figs/switch-to.png)
+![switch-to](figs/switch-to.png)
 
 /Users/xyong/github/rCore/kernel/src/arch/riscv/context.rs
 Line 141:
 
-![riscv-32-switch](/Users/xyong/Desktop/os-lectures/lecture10/figs/riscv-32-switch.png)
+![riscv-32-switch](figs/riscv-32-switch.png)
 
 ##### 7-线程切换过程
 
 /Users/xyong/github/rcore-thread/src/processor.rs
 
-![fn-tick](/Users/xyong/Desktop/os-lectures/lecture10/figs/fn-tick.png)
+![fn-tick](figs/fn-tick.png)
 
 /Users/xyong/github/rcore-thread/src/scheduler/mod.rs
 
-![scheduler](/Users/xyong/Desktop/os-lectures/lecture10/figs/scheduler.png)
+![scheduler](figs/scheduler.png)
 
 #### 进程和线程控制接口
 
@@ -267,15 +267,15 @@ Line 141:
 /Users/xyong/github/rCore/kernel/src/syscall/proc.rs
 fn sys_
 
-![proc-syscall](/Users/xyong/Desktop/os-lectures/lecture10/figs/proc-syscall.png)
+![proc-syscall](figs/proc-syscall.png)
 
 ##### 9-线程模块接口
 /Users/xyong/github/rcore-thread/src/std_thread.rs
 
-![rcore-thread](/Users/xyong/Desktop/os-lectures/lecture10/figs/rcore-thread.png)
+![rcore-thread](figs/rcore-thread.png)
 
 https://doc.rust-lang.org/std/thread/#functions
 
-![thread-function](/Users/xyong/Desktop/os-lectures/lecture10/figs/thread-function.png)
+![thread-function](figs/thread-function.png)
 
 ##### 
