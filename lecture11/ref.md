@@ -2,7 +2,8 @@
 2020春,操作系统课,准备
 第十一讲 处理机调度
 
-[v1]()
+[v1](https://github.com/LearningOS/os-lectures/blob/2ee6a37e314bd4fe2e9d57899b66d5cacd0ebada/lecture11/ref.md)
+
 ### ref
 
 http://os.cs.tsinghua.edu.cn/oscourse/OS2019spring/lecture15
