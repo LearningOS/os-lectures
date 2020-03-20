@@ -38,7 +38,7 @@
 %------------------------------------------------
 \section{第7节：rCore调度框架}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
-\subsection{调度框架与线程控制} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{调度框架} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{rCore调度框架}
@@ -78,7 +78,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{与调度相关的线程控制函数}
-    \framesubtitle{rcore-thread/src/thread\_pool.rs}
+    \subframetitle{rcore-thread/src/thread\_pool.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=1.0\linewidth]{figs/thread-pool-scheduler.png}
@@ -102,11 +102,11 @@
 % pub fn wakeup(&self, tid: Tid)
 % ```
 %------------------------------------------------
-\subsection{调度数据结构} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%\subsection{调度数据结构} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{调度数据结构}
-    \framesubtitle{struct ThreadPool}
+    \subframetitle{struct ThreadPool}
     \subframetitle{rcore-thread/src/thread\_pool.rs}
 %% figure
 \begin{figure}
@@ -171,10 +171,10 @@
 % ```
 % 
 %------------------------------------------------
-\subsection{时间片轮转调度算法} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{时间片轮转(Round Robin)调度算法} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{RR调度算法数据结构}
+    \frametitle{时间片轮转（Round Robin)调度算法：数据结构}
 %    \framesubtitle{yyyy}
 %% figure
     \begin{figure}
@@ -226,14 +226,18 @@
 % 
 % 
 %------------------------------------------------
-\subsection{线程调度和切换过程} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%\subsection{线程调度和切换过程} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
-    \framesubtitle{yyyy}
+    \frametitle{时间片用完时的线程调度和切换过程}
+%    \framesubtitle{yyyy}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/RR-timeout.png}
+%    \caption{xxxx}
+    \end{figure}
 \end{frame}
 %------------------------------------------------
-
 % #### 时间片用完时的线程调度和切换过程
 % 
 % /Users/xyong/github/rCore/kernel/src/arch/riscv/interrupt.rs
