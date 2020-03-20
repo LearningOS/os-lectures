@@ -41,8 +41,13 @@
 \subsection{调度框架与线程控制} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
-    \subframetitle{yyyy}
+    \frametitle{rCore调度框架}
+    \framesubtitle{rcore-thread/src/scheduler/mod.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/Scheduler.png}
+%    \caption{xxxx}
+    \end{figure}
 \end{frame}
 %------------------------------------------------
 % ### 11.7 rCore调度框架和时间片轮转调度算法
@@ -70,6 +75,17 @@
 % }
 % ```
 % 
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{与调度相关的线程控制函数}
+    \framesubtitle{rcore-thread/src/thread_pool.rs}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/thread-pool-scheduler.png}
+%    \caption{xxxx}
+    \end{figure}
+\end{frame}
+%------------------------------------------------
 % /Users/xyong/github/rcore-thread/src/thread_pool.rs
 % self.scheduler.
 % 与调度相关的线程控制函数
@@ -90,7 +106,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{xxxx}
-    \subframetitle{yyyy}
+    \framesubtitle{yyyy}
 \end{frame}
 %------------------------------------------------
 
@@ -143,7 +159,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{xxxx}
-    \subframetitle{yyyy}
+    \framesubtitle{yyyy}
 \end{frame}
 %------------------------------------------------
 
@@ -183,7 +199,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{xxxx}
-    \subframetitle{yyyy}
+    \framesubtitle{yyyy}
 \end{frame}
 %------------------------------------------------
 
