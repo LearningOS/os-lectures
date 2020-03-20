@@ -23,7 +23,7 @@ rCore调度框架
 /Users/xyong/github/rcore-thread/src/scheduler/mod.rs
 pub trait Scheduler: 'static
 
-![Scheduler](/Users/xyong/Desktop/figs/Scheduler.png)
+![Scheduler](figs/Scheduler.png)
 
 ```rust
 /// The scheduler for a ThreadPool
@@ -46,7 +46,7 @@ pub trait Scheduler: 'static {
 self.scheduler.
 与调度相关的线程控制函数
 
-![thread-pool-scheduler](/Users/xyong/Desktop/figs/thread-pool-scheduler.png)
+![thread-pool-scheduler](figs/thread-pool-scheduler.png)
 
 ```rust
 pub fn add(&self, mut context: Box<dyn Context>) -> Tid
@@ -68,7 +68,7 @@ pub struct ThreadPool
 线程池数据结构
 记录调度算法相关信息和参数；
 
-![ThreadPool](/Users/xyong/Desktop/figs/ThreadPool.png)
+![ThreadPool](figs/ThreadPool.png)
 
 ```rust 
 pub struct ThreadPool {
@@ -84,7 +84,7 @@ pub fn init()
 指定调度算法；
 初始化线程池；
 
-![scheduler-init](/Users/xyong/Desktop/figs/scheduler-init.png)
+![scheduler-init](figs/scheduler-init.png)
 
 ```rust
 pub fn init() {
@@ -108,7 +108,7 @@ pub struct RRScheduler RR调度算法数据结构
 struct RRSchedulerInner 线程双向链表表头数据结构
 struct RRProcInfo 线程双向链表节点数据结构
 
-![RRScheduler](/Users/xyong/Desktop/figs/RRScheduler.png)
+![RRScheduler](figs/RRScheduler.png)
 
 ```rust
 pub struct RRScheduler {
@@ -129,7 +129,7 @@ struct RRProcInfo {
 impl RRSchedulerInner
 具体的调度接口实现函数
 
-![RRSchedulerInner](/Users/xyong/Desktop/figs/RRSchedulerInner.png)
+![RRSchedulerInner](figs/RRSchedulerInner.png)
 
 
 #### 时间片用完时的线程调度和切换过程
