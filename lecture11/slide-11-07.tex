@@ -45,7 +45,7 @@
     \framesubtitle{rcore-thread/src/scheduler/mod.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/Scheduler.png}
+    \includegraphics[width=0.65\linewidth]{figs/Scheduler.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -78,10 +78,10 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{与调度相关的线程控制函数}
-    \framesubtitle{rcore-thread/src/thread_pool.rs}
+    \framesubtitle{rcore-thread/src/thread\_pool.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/thread-pool-scheduler.png}
+    \includegraphics[width=1.0\linewidth]{figs/thread-pool-scheduler.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -105,11 +105,16 @@
 \subsection{调度数据结构} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
-    \framesubtitle{yyyy}
+    \frametitle{调度数据结构}
+    \framesubtitle{struct ThreadPool}
+    \subframetitle{rcore-thread/src/thread\_pool.rs}
+%% figure
+\begin{figure}
+    \includegraphics[width=0.55\linewidth]{figs/ThreadPool.png}
+%    \caption{xxxx}
+    \end{figure}
 \end{frame}
 %------------------------------------------------
-
 % #### 调度数据结构
 % 
 % /Users/xyong/github/rcore-thread/src/scheduler/mod.rs
@@ -131,6 +136,17 @@
 % }
 % ```
 % 
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{调度算法和参数设置}
+%    \framesubtitle{调度算法和参数设置}
+    \subframetitle{rCore/kernel/src/process/mod.rs}
+%% figure
+\begin{figure}
+    \includegraphics[width=0.9\linewidth]{figs/scheduler-init.png}
+%    \caption{xxxx}
+    \end{figure}
+\end{frame}
 % /Users/xyong/github/rCore/kernel/src/process/mod.rs
 % pub fn init()
 % 初始化函数
@@ -158,8 +174,13 @@
 \subsection{时间片轮转调度算法} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
-    \framesubtitle{yyyy}
+    \frametitle{RR调度算法数据结构}
+%    \framesubtitle{yyyy}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.5\linewidth]{figs/RRScheduler.png}
+%    \caption{xxxx}
+    \end{figure}
 \end{frame}
 %------------------------------------------------
 
@@ -188,6 +209,16 @@
 %     next: Tid,
 % }
 % ```
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{RR调度算法实现}
+%    \framesubtitle{yyyy}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.45\linewidth]{figs/RRSchedulerInner.png}
+%    \caption{xxxx}
+    \end{figure}
+\end{frame}
 % impl RRSchedulerInner
 % 具体的调度接口实现函数
 % 
