@@ -4,6 +4,8 @@
 
 [v1](https://github.com/LearningOS/os-lectures/blob/2ee6a37e314bd4fe2e9d57899b66d5cacd0ebada/lecture11/ref.md)
 
+[v2](https://github.com/LearningOS/os-lectures/blob/3b6dbf6f3fca2abceed7a872b773d1c1758d5880/lecture11/ref.md)
+
 ### ref
 
 http://os.cs.tsinghua.edu.cn/oscourse/OS2019spring/lecture15
