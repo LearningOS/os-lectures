@@ -218,4 +218,5 @@ Brain Fuck Scheduler
 https://www.cs.mcgill.ca/~mxia3/pdfs/Case_study__formal_verification_of_the_brain_fuck_scheduler.pdf
 Formal verification of the Brain Fuck Scheduler
 
-
+### Linux 和对称多处理
+https://www.ibm.com/developerworks/cn/linux/l-linux-smp/index.html
