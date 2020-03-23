@@ -175,6 +175,11 @@ http://people.cs.ksu.edu/~gud/docs/ppt/scheduler.pdf
 Linux O(1) CPU Scheduler
 P6-16: O(1) CPU Scheduler
 
+http://www.wowotech.net/process_management/scheduler-history.html
+O(n)、O(1)和CFS调度器
+
+关于O(1)的几个插图不错。
+
 #### work-stealing scheduler
 1.pdf - P44-53: work-stealing scheduler
 work stealing [FLR98]: [FLR98] “The Implementation of the Cilk-5 Multithreaded Language” by Matteo Frigo, Charles E. Leiserson, Keith Randall. PLDI ’98, Montreal, Canada, June 1998.
