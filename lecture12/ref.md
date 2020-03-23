@@ -175,6 +175,11 @@ http://people.cs.ksu.edu/~gud/docs/ppt/scheduler.pdf
 Linux O(1) CPU Scheduler
 P6-16: O(1) CPU Scheduler
 
+http://www.wowotech.net/process_management/scheduler-history.html
+O(n)、O(1)和CFS调度器
+
+关于O(1)的几个插图不错。
+
 #### work-stealing scheduler
 1.pdf - P44-53: work-stealing scheduler
 work stealing [FLR98]: [FLR98] “The Implementation of the Cilk-5 Multithreaded Language” by Matteo Frigo, Charles E. Leiserson, Keith Randall. PLDI ’98, Montreal, Canada, June 1998.
@@ -197,13 +202,79 @@ P23: Work Stealing
 
 #### CFS算法
 
+https://www.ics.uci.edu/~aburtsev/cs5460/lectures/lecture15-scheduling/lecture15-scheduling.pdf
+CS5460/6460: Operating Systems
+Lecture 15: Process scheduling
+P28： CFS
+可参考的幻灯片；
+
+https://developer.ibm.com/technologies/linux/tutorials/l-completely-fair-scheduler
+Inside the Linux 2.6 Completely Fair Scheduler
+
+关于CFS的两个插图很好。
+
+http://www.eecs.harvard.edu/~cs161/notes/scheduling-case-studies.pdf
+Scheduling: Case Studies
+P28-35：Linux’s “Completely Fair Scheduler” (CFS)
+
 cpu-sched-multi.pdf - 10.6 Linux Multiprocessor Schedulers - Completely Fair Scheduler (CFS)
+这里对CFS的介绍十分简单，就是按比例分配CPU时间；
+
 Elc2013_Na.pdf - P13: CFS
 
 https://algorithmsandme.com/scheduling-o1-and-completely-fair-scheduler-cfs/
 Scheduling : O(1) and Completely Fair Scheduler (CFS)
-Internal implementation
+Internal implementation （插图）
+Red-Black Tree
 
+https://trepo.tuni.fi/bitstream/handle/10024/96864/GRADU-1428493916.pdf
+
+https://www.eit.lth.se/fileadmin/eit/courses/eitf60/Rapporter/Ludwig_Hellgren_Winblad_4547_assignsubmission_file_ludwig.hellgren.winblad.pdf
+CFS (Completely Fair Scheduler) in the Linux kernel
+
+Figure 2：CFS的红黑树表示
+Figure 3 (load-balancing operation in Linux)
+
+https://opensource.com/article/19/2/fair-scheduling-linux
+CFS: Completely fair process scheduling in Linux
+
+https://blog.csdn.net/yetaibing1990/article/details/82716593
+CFS（完全公平调度算法）
+
+https://blog.csdn.net/weixin_42092278/article/details/83959440?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+浅析Linux中完全公平调度——CFS
+
+CFS算法设计核心：CFS的三个公式
+
+https://blog.csdn.net/haidao2009/article/details/8970422
+Linux 内核 Completely Fair Scheduler （cfs）调度算法
+
+这里有两个图很好。可以直接引用。
+
+https://www.ibm.com/developerworks/cn/linux/l-cfs/index.html
+使用完全公平调度程序（CFS）进行多任务处理
+
+
+#####  Load Balancing of CFS
+Elc2013_Na.pdf - P14
+
+插图可以引用；
+
+Start Load Balancing in CFS
+ 1. Task Fok, Exec, Wakeup
+ 2. Idle Runqueue
+ 3. Periodic Checking Algorithm (check and find busiest runqueue)
+
+##### Multicore and CFS
+Elc2013_Na.pdf - P17
+
+Load Balancing
+ - The most effective distribution is to have equal amounts of each core
+ - Global fairness is most important
+
+Caches of Processors
+ - CPU-affinity should be considered
+ - Cache effectiveness vs. Global fairness
 
 #### BFS算法
 
