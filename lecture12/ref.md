@@ -202,6 +202,21 @@ P23: Work Stealing
 
 #### CFS算法
 
+https://www.ics.uci.edu/~aburtsev/cs5460/lectures/lecture15-scheduling/lecture15-scheduling.pdf
+CS5460/6460: Operating Systems
+Lecture 15: Process scheduling
+P28： CFS
+可参考的幻灯片；
+
+https://developer.ibm.com/technologies/linux/tutorials/l-completely-fair-scheduler
+Inside the Linux 2.6 Completely Fair Scheduler
+
+关于CFS的两个插图很好。
+
+http://www.eecs.harvard.edu/~cs161/notes/scheduling-case-studies.pdf
+Scheduling: Case Studies
+P28-35：Linux’s “Completely Fair Scheduler” (CFS)
+
 cpu-sched-multi.pdf - 10.6 Linux Multiprocessor Schedulers - Completely Fair Scheduler (CFS)
 这里对CFS的介绍十分简单，就是按比例分配CPU时间；
 
