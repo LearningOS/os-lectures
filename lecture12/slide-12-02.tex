@@ -1,0 +1,67 @@
+\input{../preamble}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第1讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第二节：多处理器调度概述}
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+	清华大学计算机系 \\ % Your institution for the title page
+	\medskip
+	\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+%\begin{frame}
+%\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+%\end{frame}
+%
+%%----------------------------------------------------------------------------------------
+%%	PRESENTATION SLIDES
+%%----------------------------------------------------------------------------------------
+%
+%%------------------------------------------------
+%\section{第一节：课程概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%%------------------------------------------------
+
+\begin{frame}
+	\begin{columns}
+	\begin{column}{.5\textwidth}
+	\Large \centering
+	单队列调度
+    \includegraphics[width=1.\textwidth]{single-queue}
+	\includegraphics[width=1.\textwidth]{sqms}	
+	\end{column}
+	
+	\begin{column}{.5\textwidth}
+		\large
+		最基本的方式是简单地复用单处理器调度的基本架构，将所有需要调度的工作放入 一个单独的队列中，我们称之为单队列多处理器调度(Single Queue Multiprocessor Scheduling，SQMS)。
+
+		
+	\end{column}
+\end{columns}
+\end{frame}
+
+
+
+%----------------------------------------------
+
+
+
+
+
+
+
+
+\end{document}
