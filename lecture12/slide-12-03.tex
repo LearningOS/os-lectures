@@ -35,6 +35,8 @@
 %\section{第一节：课程概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %%------------------------------------------------
 
+%谈谈调度 - Linux O(1)  https://cloud.tencent.com/developer/article/1077507
+
 \begin{frame}
 	\frametitle{SMP 和 Linux 内核}
 	\begin{columns}
@@ -229,7 +231,7 @@
 			\Large \centering
 			O(1) 调度器
 			\includegraphics[width=1.\textwidth]{O1-2}
-			
+			谈谈调度 - Linux O(1)
 		\end{column}
 		
 		\begin{column}{.4\textwidth}
@@ -267,8 +269,8 @@
 					\begin{itemize}
 					\item bitarray，它为每种优先级分配一个 bit，如果这个优先级队列下面有 process，那么就对相应的 bit 染色，置为 1，否则置为 0。
 					
-					\item 问题就简化成寻找一个 bitarray 里面最高位是 1 的 bit（left-most bit），这基本上是一条 CPU 指令的事（fls）。
-					
+					\item 问题就简化成寻找一个 bitarray 里面最高位是 1 的 bit（left-most bit），这基本上是一条 CPU 指令的事。
+%					BSR BSF  指令 Intel 80386 https://docs.oracle.com/cd/E19120-01/open.solaris/817-5477/eoizi/index.html
 					\end{itemize}
 				
 			\end{itemize}
@@ -298,6 +300,37 @@
 			\item 对于当前执行完的 process，重新计算其 priority，然后 enqueue 到 expired priority array(EPA)相应的队里 EPA[priority]。
 			\item 如果 priority 在 expired bitarray 里对应的 bit 为 0，将其置 1。
 			\item 如果 active bitarray 全为零，将 active bitarray 和 expired bitarray 交换一下。
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+
+%%------------------------------------------------
+\begin{frame}
+	\frametitle{ O(1) 调度器}
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			\Large \centering
+			O(1) 调度器
+			\includegraphics[width=1.\textwidth]{O1-2}
+			
+		\end{column}
+		
+		\begin{column}{.6\textwidth}
+			%			\large
+			O(1) 调度器：多核/SMP支持\\
+			
+			\begin{itemize}
+				\item 在一定时间间隔后，进行load balance分析
+				\item  rq­> cpu\_load : represents load on the CPU
+				
+				\item 在每个时钟中断后进行计算
+				\item current\_load = rq­>nr\_running * SCHED\_LOAD\_SCALE;
+				
+				\item Pulling 进程而不是 pushing进程
+				
 			\end{itemize}
 		\end{column}
 	\end{columns}
