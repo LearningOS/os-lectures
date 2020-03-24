@@ -202,6 +202,15 @@ P23: Work Stealing
 
 #### CFS算法
 
+https://www.linux-magazine.com/Online/News/Completely-Fair-Scheduler-Analyzed
+Completely Fair Scheduler Analyzed
+
+https://developer.ibm.com/tutorials/l-completely-fair-scheduler/
+Inside the Linux 2.6 Completely Fair Scheduler
+
+https://www.linux-magazine.com/Online/News/Ingo-Molnar-Tests-New-BF-Scheduler
+Ingo Molnar Tests New BF Scheduler
+
 https://www.ics.uci.edu/~aburtsev/cs5460/lectures/lecture15-scheduling/lecture15-scheduling.pdf
 CS5460/6460: Operating Systems
 Lecture 15: Process scheduling
@@ -288,6 +297,90 @@ Brain Fuck Scheduler
 
 https://www.cs.mcgill.ca/~mxia3/pdfs/Case_study__formal_verification_of_the_brain_fuck_scheduler.pdf
 Formal verification of the Brain Fuck Scheduler
+
+
+https://www.linux-magazine.com/Online/News/Con-Kolivas-Introduces-New-BFS-Scheduler
+Con Kolivas Introduces New BFS Scheduler
+
+http://ck.kolivas.org/patches/bfs/bfs-faq.txt
+FAQS about BFS
+
+http://ck.kolivas.org/
+The BFS patch along with benchmark diagrams and other details are on ck.kolivas.org.
+
+https://wikimili.com/en/Brain_Fuck_Scheduler
+Brain Fuck Scheduler
+
+##### BFS vs.CFS Scheduler Comparison
+https://www.cs.unm.edu/~eschulte/classes/cs587/data/bfs-v-cfs_groves-knockel-schulte.pdf
+BFS vs.CFS Scheduler Comparison
+
+P7: Figure4: BFS data structure
+
+BFS has only one system-wide runqueue containing all non-running tasks.
+BFS removes the need for these complicated heuristics and algorithms by using a single system-wide queue to determine the next scheduled task.
+BFS implements an earliest effective virtual deadline first policy and keeps track of the  virtual deadline of each task.
+P7：这一段文字大致描述了BFS的思路：只使用一个队列；所有线程按优先级排队；相同优先级的每个线程有一个时间片长度和虚拟最长等待时间；线程时间片用完时，重新计算时间片长度；线程进入等待状态时，等待时间保持；为了让线程在上次运行的CPU上运行，不同CPU对线程的虚拟截止时间加一个权重；
+
+##### BFS的算法描述
+
+##### wikimili
+
+https://wikimili.com/en/Brain_Fuck_Scheduler
+Brain Fuck Scheduler
+
+BFS uses a doubly linked list data structure.
+The execution behavior is still a weighted variation of the Round-Robin Scheduler
+
+virtual deadline formula
+
+##### 新加坡的项目报告
+
+http://vellvisher.github.io/papers_reports/doc/BFS_FreeBSD.pdf
+Analysis of the BFS Scheduler in FreeBSD
+
+###### Single Runqueue
+
+single run-queue which is a double linked list shared by all the CPU’s
+
+###### Interactivity
+
+I/O Bound tasks or interactive tasks are decided basis on thefact that the tasks which wake uphave not used their quota of CPU time and have earlier effectivedeadlines making them likelyto preempt CPU bound tasks of same priority.
+
+###### Round Robin Interval
+
+This is the only tunable value and it is set to 6ms by default with a range from 1ms to 1000ms.
+
+###### Task Insertion
+
+The task is inserted as an O(1) insertion to the double link list run-queue.
+Thelookup is O(n) in the worst casewhere n is the number of CPUs on the system.
+
+###### Task Lookup
+
+BFS has 103 priority queues with 100 dedicated to the static priority of realtime tasks, and theremaining 3 are, in order of best to worst priority, SCHEDISO (isochronous), SCHEDNORMAL,and SCHEDIDLEPRIO (idle priority scheduling).
+
+a bitmap of running priorities
+the lookup is O(n) in the worst case, where n is the totalnumber of CPUs.
+
+###### Task Switching
+
+Time Slice:  its time slicereplenished and the virtual deadline reset
+Sleep: virtual deadline remain the same and the same values will be used again
+Preemption: higher priority than a currently running task on any CPUs.
+
+###### Virtual Deadline
+
+no guarantee
+a quota (time slice)equal to the rr_interval and a virtual deadline.
+
+The virtual deadline is offset from the current time in jiffies.
+jiffies + (prior_atio ∗ rr_interval)
+prioratio increases by 10% for every nice level
+
+##### BFS的性能分析
+http://repo-ck.com/bench/cpu_schedulers_compared.pdf
+CPU SCHEDULERS COMPARED
 
 ### Linux 和对称多处理
 https://www.ibm.com/developerworks/cn/linux/l-linux-smp/index.html
