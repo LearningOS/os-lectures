@@ -116,7 +116,7 @@
 			\begin{itemize}
 			\item 在MQMS中，基本调度框架包含多个调度队列，每个队列可以使用不同的调度规则，比如轮转或其他任何可能的算法。
 			
-			\item 当一个工作进入系统后，系统会依照 一些启发性规则(如随机或选择较空的队列)将其放入某个调度队列。这样一来，每个CPU调度之间相互独立，就避免了单队列的方式中由于数据共享及同步带来 的问题。
+			\item 当一个工作进入系统后，系统会依照 一些启发性规则(如随机或选择较空的队列)将其放入某个调度队列。这样一来，每个CPU调度之间相互独立，就避免了单队列的方式中由于数据共享及同步带来的问题。
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -137,9 +137,37 @@
 			\large
 			多队列多处理器调度(MQMS) 
 			\normalsize
-			\\
-			根据不同队列的调度策略，每个CPU从两个工作中选择，决定谁将运行。例如，利用轮转调度
+			\begin{itemize}
+			\item 根据不同队列的调度策略，每个CPU从两个工作中选择，决定谁将运行。例如，轮转调度
+			\item 具有可扩展性。队列的数量会随着CPU的增加而增加，因此锁和缓存争用的开销不是大问题。
+			\item 具有良好的缓存亲和度。所有工作都保持在固定的CPU上，因而可以很好地利用缓存数据。
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
 
+
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			多队列调度
+			\includegraphics[width=1.\textwidth]{mqms-problem-1}
+			\includegraphics[width=1.\textwidth]{mqms-problem-2}	
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+			\large
+			多队列多处理器调度(MQMS) \\
+			负载不均(load imbalance) \\ 
+			\normalsize
+			假定和上面设定一样(4个工作，2个CPU)，但假设一个工作(如C)这时执行完毕。如果对系统中每个队列都执行轮转调度策略：
+			
+			\begin{itemize}
+				\item A获得了B和D两倍的CPU时间
+
+			\end{itemize}
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -147,7 +175,98 @@
 %----------------------------------------------
 
 
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			多队列调度
+			\includegraphics[width=1.\textwidth]{mqms-problem-3}
+			\includegraphics[width=1.\textwidth]{mqms-problem-4}	
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+			\large
+			多队列多处理器调度(MQMS) \\
+			负载不均(load imbalance) \\ 
+			\normalsize
+			假定和上面设定一样(4个工作，2个CPU)，但假设A和C都执行完毕，系统中只有B和D。如果对系统中每个队列都执行轮转调度策略：
+			
+			\begin{itemize}
+				\item CPU1很忙
+				\item CPU0空闲
+				
+			\end{itemize}
+		\Large
+		怎样才能克服潜伏的负载不均问题？
+		\end{column}
+	\end{columns}
+\end{frame}
 
+
+
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			多队列调度
+			\includegraphics[width=1.\textwidth]{mqms-problem-3}
+			\includegraphics[width=1.\textwidth]{mqms-problem-4}	
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+			\large
+			\begin{block}{关键问题：如何应对负载不均}
+			多队列多处理器调度程序应该如何处理负载不均问题，从而更好地实现预期的调度目标?
+			\end{block} 
+			\normalsize
+			最明显的答案是让工作移动，这种技术我们称为迁移(migration)。通过工作的跨CPU迁移，可以真正实现负载均衡。
+			
+			\begin{itemize}
+				\item 情况：有一个CPU空闲，另一个CPU有一些工作。
+				\item 迁移：将B或D迁移到CPU0。
+		
+			\end{itemize}
+			\Large
+
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			多队列调度
+			\includegraphics[width=1.\textwidth]{mqms-problem-5}
+			\includegraphics[width=1.\textwidth]{mqms-problem-6}	
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+			\large
+			\begin{block}{关键问题：如何应对负载不均}
+				多队列多处理器调度程序应该如何处理负载不均问题，从而更好地实现预期的调度目标?
+			\end{block} 
+			\normalsize
+			最明显的答案是让工作移动，这种技术我们称为迁移(migration)。通过工作的跨CPU迁移，可以真正实现负载均衡。
+			
+			\begin{itemize}
+				\item 情况：A独自留在CPU 0上，B和D在CPU 1上交替运行。
+				\item 迁移：不断地迁移和切换一个或多个工作。
+				
+			\end{itemize}
+		\large
+		系统如何决定发起这样的迁移?
+			\Large
+			
+		\end{column}
+	\end{columns}
+\end{frame}
+%----------------------------------------------
 
 
 
