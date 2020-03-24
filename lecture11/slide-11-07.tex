@@ -42,7 +42,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{rCore调度框架}
-    \framesubtitle{rcore-thread/src/scheduler/mod.rs}
+    \subframetitle{rcore-thread/src/scheduler/mod.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.65\linewidth]{figs/Scheduler.png}
@@ -105,8 +105,8 @@
 %\subsection{调度数据结构} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{调度数据结构}
-    \subframetitle{struct ThreadPool}
+    \frametitle{调度数据结构：struct ThreadPool}
+%    \subframetitle{struct ThreadPool}
     \subframetitle{rcore-thread/src/thread\_pool.rs}
 %% figure
 \begin{figure}
@@ -175,10 +175,10 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{时间片轮转（Round Robin)调度算法：数据结构}
-%    \framesubtitle{yyyy}
+    \subframetitle{rcore-thread/src/scheduler/rr.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.5\linewidth]{figs/RRScheduler.png}
+    \includegraphics[width=0.45\linewidth]{figs/RRScheduler.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
