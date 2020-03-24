@@ -216,7 +216,7 @@
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
-			\large
+%			\large
 			\begin{block}{关键问题：如何应对负载不均}
 			多队列多处理器调度程序应该如何处理负载不均问题，从而更好地实现预期的调度目标?
 			\end{block} 
@@ -247,21 +247,61 @@
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
-			\large
+%			\large
 			\begin{block}{关键问题：如何应对负载不均}
 				多队列多处理器调度程序应该如何处理负载不均问题，从而更好地实现预期的调度目标?
 			\end{block} 
-			\normalsize
+%			\normalsize
 			最明显的答案是让工作移动，这种技术我们称为迁移(migration)。通过工作的跨CPU迁移，可以真正实现负载均衡。
 			
 			\begin{itemize}
-				\item 情况：A独自留在CPU 0上，B和D在CPU 1上交替运行。
-				\item 迁移：不断地迁移和切换一个或多个工作。
-				
+				\item 情况：A独自留在CPU 0上，B和D在CPU 1上交替运行
+				\item 迁移：不断地迁移和切换一个或多个工作
+
 			\end{itemize}
 		\large
 		系统如何决定发起这样的迁移?
 			\Large
+			
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			多队列调度
+			\includegraphics[width=1.\textwidth]{mqms-problem-5}
+			\includegraphics[width=1.\textwidth]{mqms-problem-6}	
+			
+			\normalsize
+			
+			\begin{itemize}
+				\item 工作量较少的(源)队列不定期地“偷看”其他(目标)队列是不是比自己的工作多
+				\item 如果目标队列比源队列 (显著地)更满，就从目标队列“窃取”一个或多个工作，实现负载均衡。
+				
+			\end{itemize}
+
+		
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+%			\large
+			\begin{block}{关键问题：系统如何决定发起这样的迁移?}
+				一个基本的方法是采用一种技术，名为工作窃取(work stealing)
+			\end{block} 
+			\pause
+			\normalsize
+		
+			\begin{itemize}
+				\item 如果太频繁地检查其他队列，就会带来较高的开销，可扩展性不好
+				\item 如果检查间隔太长，又可能会带来严重的负载不均
+			\end{itemize}
+
 			
 		\end{column}
 	\end{columns}
