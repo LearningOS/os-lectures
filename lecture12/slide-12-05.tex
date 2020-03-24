@@ -75,7 +75,7 @@
     \begin{block}{线程优先级：有103个优先级}
 	    \begin{itemize}
 	        \item 100个静态的实时优先级；
-	        \item 3个普通优级SCHEDISO (isochronous)、SCHEDNORMAL和SCHEDIDLEPRIO (idle priority scheduling)；
+	        \item 3个普通优先级SCHEDISO (isochronous)、SCHEDNORMAL和SCHEDIDLEPRIO (idle priority scheduling)；
 % BFS有103个优先级，其中100个静态的实时优先级，3个普通优级SCHEDISO (isochronous)、SCHEDNORMAL和SCHEDIDLEPRIO (idle priority scheduling)；
 	    \end{itemize}
     \end{block} \pause
@@ -84,7 +84,7 @@
 	    \begin{itemize}
 	        \item 所有CPU共享一个双向链表结构的单就绪队列；
 	        \item 所有线程按优先级排队；
-	        \item 相同优先级的每个线程有一个时间片长度和虚拟最长等待时间；
+	        \item 相同优先级的每个线程有一个时间片长度和虚拟截止时间；
 	    \end{itemize}
     \end{block}
 \end{frame}
@@ -97,7 +97,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{虚拟截止时间（Virtual Deadline}
+    \frametitle{虚拟截止时间（Virtual Deadline）}
 %    \subframetitle{yyyy}
 %% block
     \begin{block}{时间片大小}
