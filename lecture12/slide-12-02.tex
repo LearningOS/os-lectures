@@ -52,8 +52,97 @@
 	\end{column}
 \end{columns}
 \end{frame}
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			单队列调度
+			\includegraphics[width=1.\textwidth]{single-queue}
+			\includegraphics[width=1.\textwidth]{sqms}	
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+			\large
+			单队列多处理器调度(SQMS)
+			
+
+			\begin{itemize}\large
+				\item 缺乏可扩展性(scalability)
+				\item 缓存亲和性(cache affinity)弱
+			\end{itemize}
+			
+		\end{column}
+	\end{columns}
+\end{frame}
 
 
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			单队列调度
+			\includegraphics[width=1.\textwidth]{single-queue}
+			\includegraphics[width=1.\textwidth]{sqms}	
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+			\large
+			单队列多处理器调度(SQMS) \\
+			\normalsize
+			尽可能让进程在同一个CPU上运行。保持一些工作的亲和度的同时，可能需要牺牲其他工作的亲和度来实现负载均衡。
+			\includegraphics[width=1.\textwidth]{sqms-cache-affinity}
+
+			
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			多队列调度
+			\includegraphics[width=1.\textwidth]{multi-queue}
+			\includegraphics[width=1.\textwidth]{mqms}	
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+			\large
+			多队列多处理器调度(Multi-Queue Multiprocessor Scheduling，MQMS) \\
+			\normalsize
+			\begin{itemize}
+			\item 在MQMS中，基本调度框架包含多个调度队列，每个队列可以使用不同的调度规则，比如轮转或其他任何可能的算法。
+			
+			\item 当一个工作进入系统后，系统会依照 一些启发性规则(如随机或选择较空的队列)将其放入某个调度队列。这样一来，每个CPU调度之间相互独立，就避免了单队列的方式中由于数据共享及同步带来 的问题。
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+%%------------------------------------------------
+\begin{frame}
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			\Large \centering
+			多队列调度
+			\includegraphics[width=1.\textwidth]{multi-queue}
+			\includegraphics[width=1.\textwidth]{mqms}	
+		\end{column}
+		
+		\begin{column}{.5\textwidth}
+			\large
+			多队列多处理器调度(MQMS) 
+			\normalsize
+			\\
+			根据不同队列的调度策略，每个CPU从两个工作中选择，决定谁将运行。例如，利用轮转调度
+
+		\end{column}
+	\end{columns}
+\end{frame}
 
 %----------------------------------------------
 
