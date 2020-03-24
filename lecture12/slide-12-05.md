@@ -7,7 +7,7 @@ BFS vs.CFS Scheduler Comparison
 
 P7: Figure4: BFS data structure
 
-![bfs-struct](/Users/xyong/Desktop/figs/bfs-struct.png)
+![bfs-struct](figs/bfs-struct.png)
 
 在多处理机情况的单就绪队列（双向链表）选择，增加了队列互斥访问的开销，但减少了负载均衡算法开销。
 
@@ -66,19 +66,19 @@ CPU SCHEDULERS COMPARED
 
 ##### 测试硬件环境
 
-![test-machines](/Users/xyong/Desktop/figs/test-machines.png)
+![test-machines](figs/test-machines.png)
 
 ##### 压缩测试
 
-![compression-test](/Users/xyong/Desktop/figs/compression-test.png)
+![compression-test](figs/compression-test.png)
 
 ##### 编译测试
 
-![make-test](/Users/xyong/Desktop/figs/make-test.png)
+![make-test](figs/make-test.png)
 
 ##### 视频编码测试
 
-![video-test](/Users/xyong/Desktop/figs/video-test.png)
+![video-test](figs/video-test.png)
 
 
 
