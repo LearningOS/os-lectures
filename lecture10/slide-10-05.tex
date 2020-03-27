@@ -73,7 +73,7 @@
  	\begin{block}{rCore/kernel/src/memory.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/type-MemorySet.png}
+    \includegraphics[width=1.0\linewidth]{figs/type-MemorySet.png}
 %   \caption{xxxx}
     \end{figure}
  	\end{block}
@@ -84,12 +84,14 @@
 % pub type MemorySet = rcore_memory::memory_set::MemorySet<PageTableImpl>;
 % ```
 
-    \subframetitle{rCore/kernel/src/arch/riscv/paging.rs}
+ 	\begin{block}{rCore/kernel/src/arch/riscv/paging.rs}
+%    \subframetitle{rCore/kernel/src/arch/riscv/paging.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.5\linewidth]{figs/PageTableImpl.png}
+    \includegraphics[width=0.65\linewidth]{figs/PageTableImpl.png}
 %   \caption{xxxx}
     \end{figure}
+ 	\end{block}
 
 % /Users/xyong/github/rCore/kernel/src/arch/riscv/paging.rs
 % Line 20:
@@ -107,24 +109,28 @@
     \frametitle{rCore内存地址空间结构}
 %\end{frame}
 %------------------------------------------------
-    \subframetitle{rCore/crate/memory/src/memory\_set/mod.rs}
+ 	\begin{block}{rCore/crate/memory/src/memory\_set/mod.rs}
+%    \subframetitle{rCore/crate/memory/src/memory\_set/mod.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/TopLevelPageTable.png}
+    \includegraphics[width=1.0\linewidth]{figs/TopLevelPageTable.png}
 %   \caption{xxxx}
     \end{figure}
+ 	\end{block}
 
 % Line 16:
 % ```rust
 % type TopLevelPageTable<'a> = riscv::paging::Rv32PageTable<'a>;
 % ```
 
-    \subframetitle{riscv/src/paging/multi\_level.rs}
+ 	\begin{block}{riscv/src/paging/multi\_level.rs}
+%    \subframetitle{riscv/src/paging/multi\_level.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.6\linewidth]{figs/Rv32PageTable.png}
+    \includegraphics[width=0.7\linewidth]{figs/Rv32PageTable.png}
 %   \caption{xxxx}
     \end{figure}
+ 	\end{block}
 
 % /Users/xyong/github/riscv/src/paging/multi_level.rs
 % Line 8:
@@ -142,12 +148,15 @@
     \frametitle{rCore内存地址空间结构}
 %\end{frame}
 %------------------------------------------------
-    \subframetitle{rCore/crate/memory/src/paging/mod.rs}
+
+ 	\begin{block}{rCore/crate/memory/src/paging/mod.rs}
+% 	\framesubtitle{rCore/crate/memory/src/paging/mod.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.7\linewidth]{figs/fn-activate.png}
 %   \caption{xxxx}
     \end{figure}
+ 	\end{block}
 
 % /Users/xyong/github/rCore/crate/memory/src/paging/mod.rs
 % Line 111:
@@ -165,13 +174,14 @@
 %         }
 %     }
 % ```
-
-    \subframetitle{rCore/kernel/src/arch/riscv/paging.rs}
+ 	\begin{block}{rCore/kernel/src/arch/riscv/paging.rs}
+%    \subframetitle{rCore/kernel/src/arch/riscv/paging.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.6\linewidth]{figs/fn-set_token.png}
 %   \caption{xxxx}
     \end{figure}
+ 	\end{block}
 
 % /Users/xyong/github/rCore/kernel/src/arch/riscv/paging.rs
 % Line 258:
@@ -186,10 +196,10 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{rCore线程控制块}
-    \subframetitle{rCore/kernel/src/process/structs.rs}
+    \framesubtitle{rCore/kernel/src/process/structs.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/struct-Thread.png}
+    \includegraphics[width=0.9\linewidth]{figs/struct-Thread.png}
 %   \caption{xxxx}
     \end{figure}
 
@@ -234,10 +244,10 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{线程状态数据结构}
-    \subframetitle{rcore-thread/src/thread\_pool.rs}
+    \framesubtitle{rcore-thread/src/thread\_pool.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.5\linewidth]{figs/enum-Status.png}
+    \includegraphics[width=0.7\linewidth]{figs/enum-Status.png}
 %   \caption{xxxx}
     \end{figure}
 
@@ -262,7 +272,7 @@
 
 \begin{frame}[fragile]
     \frametitle{线程状态转换}
-    \subframetitle{rcore-thread/src/thread\_pool.rs}
+    \framesubtitle{rcore-thread/src/thread\_pool.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.6\linewidth]{figs/fn-set-status.png}
@@ -295,7 +305,7 @@
 %    \subframetitle{TrapFrame}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.5\linewidth]{figs/struct-TrapFrame.png}
+    \includegraphics[width=0.6\linewidth]{figs/struct-TrapFrame.png}
 %   \caption{xxxx}
     \end{figure}
 
@@ -339,7 +349,7 @@
 %    \subframetitle{ContextData}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/struct-ContextData.png}
+    \includegraphics[width=0.55\linewidth]{figs/struct-ContextData.png}
 %   \caption{xxxx}
     \end{figure}
 
@@ -369,7 +379,7 @@
 %    \framesubtitle{InitStack}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.35\linewidth]{figs/struct-InitStack.png}
+    \includegraphics[width=0.5\linewidth]{figs/struct-InitStack.png}
 %   \caption{xxxx}
     \end{figure}
 
@@ -395,7 +405,7 @@
 %    \framesubtitle{Context}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.7\linewidth]{figs/struct-Context.png}
+    \includegraphics[width=0.9\linewidth]{figs/struct-Context.png}
 %   \caption{xxxx}
     \end{figure}
 
@@ -421,7 +431,7 @@
     \framesubtitle{rCore/kernel/src/process/structs.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.9\linewidth]{figs/switch-to.png}
+    \includegraphics[width=1.0\linewidth]{figs/switch-to.png}
 %   \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -455,7 +465,7 @@
     \framesubtitle{rcore-thread/src/processor.rs}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/fn-tick.png}
+    \includegraphics[width=1.0\linewidth]{figs/fn-tick.png}
 %   \caption{xxxx}
     \end{figure}
 \end{frame}
