@@ -42,7 +42,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{rCore进程控制块结构}
-    \subframetitle{rCore/kernel/src/process/structs.rs}
+    \framesubtitle{rCore/kernel/src/process/structs.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.8\linewidth]{figs/process.png}
@@ -70,12 +70,13 @@
 %\end{frame}
 %------------------------------------------------
 % ##### 2-rCore的内存地址空间结构MemorySet
-    \subframetitle{rCore/kernel/src/memory.rs}
+ 	\begin{block}{rCore/kernel/src/memory.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.8\linewidth]{figs/type-MemorySet.png}
 %   \caption{xxxx}
     \end{figure}
+ 	\end{block}
 
 % /Users/xyong/github/rCore/kernel/src/memory.rs
 % Line 29:
@@ -365,7 +366,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{线程上下文切换数据结构}
-%    \subframetitle{InitStack}
+%    \framesubtitle{InitStack}
 %% figure
     \begin{figure}
     \includegraphics[width=0.35\linewidth]{figs/struct-InitStack.png}
@@ -391,7 +392,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{线程上下文切换数据结构}
-%    \subframetitle{Context}
+%    \framesubtitle{Context}
 %% figure
     \begin{figure}
     \includegraphics[width=0.7\linewidth]{figs/struct-Context.png}
@@ -417,7 +418,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{切换函数}
-    \subframetitle{rCore/kernel/src/process/structs.rs}
+    \framesubtitle{rCore/kernel/src/process/structs.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.9\linewidth]{figs/switch-to.png}
@@ -427,7 +428,7 @@
 
 \begin{frame}[fragile]
     \frametitle{切换函数}
-    \subframetitle{rCore/kernel/src/arch/riscv/context.rs}
+    \framesubtitle{rCore/kernel/src/arch/riscv/context.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.6\linewidth]{riscv-32-switch.png}
@@ -451,7 +452,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{线程切换过程}
-    \subframetitle{rcore-thread/src/processor.rs}
+    \framesubtitle{rcore-thread/src/processor.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.8\linewidth]{figs/fn-tick.png}
@@ -461,7 +462,7 @@
 
 \begin{frame}[fragile]
     \frametitle{线程切换过程}
-    \subframetitle{rcore-thread/src/scheduler/mod.rs}
+    \framesubtitle{rcore-thread/src/scheduler/mod.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.65\linewidth]{figs/scheduler.png}
@@ -485,7 +486,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{进程管理的系统调用}
-    \subframetitle{rCore/kernel/src/syscall/proc.rs}
+    \framesubtitle{rCore/kernel/src/syscall/proc.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.7\linewidth]{figs/proc-syscall.png}
@@ -508,7 +509,7 @@
 %------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{内核中线程模块接口}
-    \subframetitle{rcore-thread/src/std\_thread.rs}
+    \framesubtitle{rcore-thread/src/std\_thread.rs}
 %% figure
     \begin{figure}
     \includegraphics[width=0.7\linewidth]{figs/rcore-thread.png}
