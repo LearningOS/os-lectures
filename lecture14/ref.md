@@ -2,8 +2,9 @@
 
 [v1](https://github.com/LearningOS/os-lectures/blob/b054e185e1fceeace368bb5dc255ea06ab1235b5/lecture14/ref.md)
 
-[v2]()
+[v2](https://github.com/LearningOS/os-lectures/blob/1a5b66d056c2f3f73e5e8e7bd91837e5bb84e0fe/lecture14/ref.md)
 
+[v3]()
 ### 14.6 Synchronization in Rust
 
 #### Higher-level synchronization objects in Rust
@@ -11,7 +12,7 @@
 https://doc.rust-lang.org/std/sync/index.html#higher-level-synchronization-objects
 Higher-level synchronization objects
 
-![sync-obj](/Users/xyong/Desktop/os-lectures/lecture14/figs/sync-obj.png)
+![sync-obj](figs/sync-obj.png)
 
 Arc: A thread-safe reference-counting pointer.
 
@@ -38,7 +39,7 @@ A single-threaded reference-counting pointer. 'Rc' stands for 'Reference Counted
 
 https://doc.rust-lang.org/1.37.0/src/alloc/rc.rs.html#273-276
 
-![struct-rc](/Users/xyong/Desktop/os-lectures/lecture14/figs/struct-rc.png)
+![struct-rc](figs/struct-rc.png)
 
 ```rust
 pub struct Rc<T: ?Sized> {
@@ -49,7 +50,7 @@ pub struct Rc<T: ?Sized> {
 
 #### Example of Reference Counting
 
-![rc-example](/Users/xyong/Desktop/os-lectures/lecture14/figs/rc-example.png)
+![rc-example](figs/rc-example.png)
 
 
 
@@ -62,7 +63,7 @@ A thread-safe reference-counting pointer. 'Arc' stands for 'Atomically Reference
 
 https://doc.rust-lang.org/src/alloc/sync.rs.html#196-199
 
-![struct-arc](/Users/xyong/Desktop/os-lectures/lecture14/figs/struct-arc.png)
+![struct-arc](figs/struct-arc.png)
 
 ```rust
 pub struct Arc<T: ?Sized> {
@@ -71,7 +72,7 @@ pub struct Arc<T: ?Sized> {
 }
 ```
 
-![methods-arc](/Users/xyong/Desktop/os-lectures/lecture14/figs/methods-arc.png)
+![methods-arc](figs/methods-arc.png)
 
 ```rust
 pub fn new(data: T) -> Arc<T>
@@ -105,7 +106,7 @@ Atomic types provide primitive shared-memory communication between threads, and 
 
 https://doc.rust-lang.org/src/core/sync/atomic.rs.html#1229-1231
 
-![struct-atomic](/Users/xyong/Desktop/os-lectures/lecture14/figs/struct-atomic.png)
+![struct-atomic](figs/struct-atomic.png)
 
 ```rust
 pub struct $atomic_type {
@@ -113,7 +114,7 @@ pub struct $atomic_type {
 }
 ```
 
-![methods-atomic](/Users/xyong/Desktop/os-lectures/lecture14/figs/methods-atomic.png)
+![methods-atomic](figs/methods-atomic.png)
 
 
 ```rust
@@ -146,7 +147,7 @@ Struct std::sync::Barrier
 
 A barrier enables multiple threads to synchronize the beginning of some computation.
 
-![struct-barrier](/Users/xyong/Desktop/os-lectures/lecture14/figs/struct-barrier.png)
+![struct-barrier](figs/struct-barrier.png)
 
 ```rust
 pub struct Barrier {
@@ -166,7 +167,7 @@ https://doc.rust-lang.org/std/sync/struct.Barrier.html
 
 有一个例子可演示；
 
-![demo-barrier](/Users/xyong/Desktop/os-lectures/lecture14/figs/demo-barrier.png)
+![demo-barrier](figs/demo-barrier.png)
 
 https://doc.rust-lang.org/src/std/sync/barrier.rs.html#128-145
 pub fn wait(&self) -> BarrierWaitResult
@@ -180,7 +181,7 @@ Struct std::sync::Condvar
 
 Condition variables represent the ability to block a thread such that it consumes no CPU time while waiting for an event to occur. Condition variables are typically associated with a boolean predicate (a condition) and a mutex. The predicate is always verified inside of the mutex before determining that a thread must block.
 
-![struct-condvar](/Users/xyong/Desktop/os-lectures/lecture14/figs/struct-condvar.png)
+![struct-condvar](figs/struct-condvar.png)
 
 ```rust
 pub struct Condvar {
@@ -204,7 +205,7 @@ pub fn notify_all(&self)
 ```
 ##### Example of Condvar
 
-![demo-condvar](/Users/xyong/Desktop/os-lectures/lecture14/figs/demo-condvar.png)
+![demo-condvar](figs/demo-condvar.png)
 
 ```rust
 #![allow(unused)]
@@ -248,7 +249,7 @@ struct Mutex的实现
 
 
 
-![struct-mutex](/Users/xyong/Desktop/os-lectures/lecture14/figs/struct-mutex.png)
+![struct-mutex](figs/struct-mutex.png)
 
 ```rust
 pub struct Mutex<T: ?Sized> {
@@ -278,7 +279,7 @@ Struct std::sync::RwLock
 
 This type of lock allows a number of readers or at most one writer at any point in time. The write portion of this lock typically allows modification of the underlying data (exclusive access) and the read portion of this lock typically allows for read-only access (shared access).
 
-![struct-rwlock](/Users/xyong/Desktop/os-lectures/lecture14/figs/struct-rwlock.png)
+![struct-rwlock](figs/struct-rwlock.png)
 
 ```rust
 pub struct RwLock<T: ?Sized> {
@@ -287,7 +288,7 @@ pub struct RwLock<T: ?Sized> {
     data: UnsafeCell<T>,
 }
 ```
-![methods-rwlock](/Users/xyong/Desktop/os-lectures/lecture14/figs/methods-rwlock.png)
+![methods-rwlock](figs/methods-rwlock.png)
 
 ```rust
 impl<T: ?Sized> RwLock<T>
