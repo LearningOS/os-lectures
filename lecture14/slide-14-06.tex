@@ -4,7 +4,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第1讲]{第十四讲 ：信号量与管程} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第14讲]{第十四讲 ：信号量与管程} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第6节：Rust语言中的同步机制}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -278,7 +278,7 @@ Atomic types provide primitive shared-memory communication between threads, and 
 % ```
 % 
 %----------------------------------------------
-\subsection{内存屏障} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{执行同步} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{\href{https://doc.rust-lang.org/std/sync/struct.Barrier.html}{Barrier}}
@@ -317,7 +317,7 @@ A barrier enables multiple threads to synchronize the beginning of some computat
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Example of Barrier}
+    \frametitle{\href{https://doc.rust-lang.org/std/sync/struct.Barrier.html}{Example of Barrier}}
 %    \framesubtitle{yyyy}
 %% figure
     \begin{figure}
