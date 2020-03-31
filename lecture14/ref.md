@@ -4,7 +4,7 @@
 
 [v2](https://github.com/LearningOS/os-lectures/blob/1a5b66d056c2f3f73e5e8e7bd91837e5bb84e0fe/lecture14/ref.md)
 
-[v3]()
+[v3](https://github.com/LearningOS/os-lectures/blob/37757c3a41a3b40e59680279417730b9a6105730/lecture14/ref.md)
 ### 14.6 Synchronization in Rust
 
 #### Higher-level synchronization objects in Rust
@@ -98,7 +98,7 @@ pub fn downcast<T>(self) -> Result<Arc<T>, Arc<dyn Any + 'static + Send + Sync>>
 https://doc.rust-lang.org/src/alloc/sync.rs.html#943
 fn clone(&self)
 
-#### atomic
+#### atomic(原子操作)
 https://doc.rust-lang.org/core/sync/atomic/index.html
 Module core::sync::atomic
 
