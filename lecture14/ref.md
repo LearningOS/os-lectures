@@ -1,6 +1,6 @@
 ## 20200331-第十四讲内容准备
 
-[v1]()
+[v1](https://github.com/LearningOS/os-lectures/blob/b054e185e1fceeace368bb5dc255ea06ab1235b5/lecture14/ref.md)
 
 https://doc.rust-lang.org/std/sync/struct.RwLock.html
 Struct std::sync::RwLock
