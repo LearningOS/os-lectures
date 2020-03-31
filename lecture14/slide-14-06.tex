@@ -35,13 +35,23 @@
 \subsection{引用计数} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{href{https://doc.rust-lang.org/std/sync/index.html#higher-level-synchronization-objects}{Higher-level synchronization objects in Rust}}
+    \frametitle{\href{https://doc.rust-lang.org/std/sync/index.html}{Higher-level synchronization objects in Rust}}
 %    \framesubtitle{xxxx}
+
+%% itemize
+    \begin{itemize}
+        \item Arc: A thread-safe atomically Reference-Counted pointer, which can be used in multithreaded environments. \pause
+        \item Barrier: Ensures multiple threads will wait for each other to reach a point in the program, before continuing execution all together. \pause
+        \item Condvar: Condition Variable, providing the ability to block a thread while waiting for an event to occur. \pause
+        \item Mutex: Mutual Exclusion mechanism, which ensures that at most one thread at a time is able to access some data. \pause
+        \item RwLock: Provides a mutual exclusion mechanism which allows multiple readers at the same time, while allowing only one writer at a time.
+    \end{itemize}
+
 %% figure
-    \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/sync-obj.png}
+%    \begin{figure}
+%    \includegraphics[width=1.0\linewidth]{figs/sync-obj.png}
 %    \caption{xxxx}
-    \end{figure}
+%    \end{figure}
 
 \end{frame}
 %----------------------------------------------
@@ -79,9 +89,11 @@
 
 A single-threaded reference-counting pointer. 'Rc' stands for 'Reference Counted'.
 
+ \pause
+ 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/struct-rc.png}
+    \includegraphics[width=0.4\linewidth]{figs/struct-rc.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -107,11 +119,11 @@ A single-threaded reference-counting pointer. 'Rc' stands for 'Reference Counted
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Example of Reference Counting}
+    \frametitle{\href{https://doc.rust-lang.org/rust-by-example/std/rc.html}{Example of Reference Counting}}
 %    \framesubtitle{yyyy}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/rc-example.png}
+    \includegraphics[width=0.37\linewidth]{figs/rc-example.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -128,11 +140,11 @@ A single-threaded reference-counting pointer. 'Rc' stands for 'Reference Counted
     \frametitle{\href{https://doc.rust-lang.org/std/sync/struct.Arc.html}{Arc: Atomically Reference-Counted pointer}}
 %    \framesubtitle{yyyy}
 
-A thread-safe reference-counting pointer. 'Arc' stands for 'Atomically Reference Counted'.
+A thread-safe reference-counting pointer. 'Arc' stands for 'Atomically Reference Counted'. \pause
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/struct-arc.png}
+    \includegraphics[width=0.5\linewidth]{figs/struct-arc.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -205,7 +217,7 @@ Atomic types provide primitive shared-memory communication between threads, and 
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/struct-atomic.png}
+    \includegraphics[width=0.5\linewidth]{figs/struct-atomic.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -233,7 +245,7 @@ Atomic types provide primitive shared-memory communication between threads, and 
 %    \framesubtitle{yyyy}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/methods-atomic.png}
+    \includegraphics[width=0.55\linewidth]{figs/methods-atomic.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -272,11 +284,11 @@ Atomic types provide primitive shared-memory communication between threads, and 
     \frametitle{\href{https://doc.rust-lang.org/std/sync/struct.Barrier.html}{Barrier}}
 %    \framesubtitle{yyyy}
 
-A barrier enables multiple threads to synchronize the beginning of some computation.
+A barrier enables multiple threads to synchronize the beginning of some computation. \pause
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/struct-barrier.png}
+    \includegraphics[width=0.6\linewidth]{figs/struct-barrier.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -309,7 +321,7 @@ A barrier enables multiple threads to synchronize the beginning of some computat
 %    \framesubtitle{yyyy}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/demo-barrier.png}
+    \includegraphics[width=1.0\linewidth]{figs/demo-barrier.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -335,11 +347,11 @@ A barrier enables multiple threads to synchronize the beginning of some computat
     \frametitle{\href{https://doc.rust-lang.org/std/sync/struct.Condvar.html}{Condvar}}
 %    \framesubtitle{yyyy}
 
-Condition variables represent the ability to block a thread such that it consumes no CPU time while waiting for an event to occur. Condition variables are typically associated with a boolean predicate (a condition) and a mutex. The predicate is always verified inside of the mutex before determining that a thread must block.
+Condition variables represent the ability to block a thread such that it consumes no CPU time while waiting for an event to occur. \pause
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{test}
+    \includegraphics[width=0.37\linewidth]{figs/struct-condvar.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -380,7 +392,7 @@ Condition variables represent the ability to block a thread such that it consume
 %    \framesubtitle{yyyy}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/demo-condvar.png}
+    \includegraphics[width=1.0\linewidth]{figs/demo-condvar.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -426,11 +438,11 @@ Condition variables represent the ability to block a thread such that it consume
     \frametitle{\href{https://doc.rust-lang.org/std/sync/struct.Mutex.html}{Mutex}}
 %    \framesubtitle{yyyy}
 
-A mutual exclusion primitive useful for protecting shared data.
+A mutual exclusion primitive useful for protecting shared data. \pause
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/struct-mutex.png}
+    \includegraphics[width=0.7\linewidth]{figs/struct-mutex.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -478,9 +490,12 @@ A mutual exclusion primitive useful for protecting shared data.
 \begin{frame}[fragile]
     \frametitle{\href{https://doc.rust-lang.org/std/sync/struct.RwLock.html}{RwLock}}
 %    \framesubtitle{yyyy}
+
+Rwlock allows a number of readers or at most one writer at any point in time. The write portion of this lock typically allows modification of the underlying data (exclusive access). \pause
+
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{test}
+    \includegraphics[width=0.5\linewidth]{figs/struct-rwlock.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -508,7 +523,7 @@ A mutual exclusion primitive useful for protecting shared data.
 %    \framesubtitle{yyyy}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/methods-rwlock.png}
+    \includegraphics[width=1.0\linewidth]{figs/methods-rwlock.png}
 %    \caption{xxxx}
     \end{figure}
 
