@@ -4,7 +4,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第15讲]{第十五讲 ：死锁和并发错误} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第15讲]{第十五讲 ：死锁和并发错误检测} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第5节：并发错误检测}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -172,35 +172,35 @@ What ordering is guaranteed?
 % 
 %----------------------------------------------
 \subsection{Concurrency Bug Detection} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{What is the causality relationship here?}
-%    \framesubtitle{xxxx}
-    \begin{columns}
-    \begin{column}{0.5\textwidth}
-        Example1
-
-    %% figure
-        \begin{figure}
-        \includegraphics[width=0.7\linewidth]{figs/data-race-example-1.png}
-    %    \caption{xxxx}
-        \end{figure}
-        
-	\end{column} \pause
-    \begin{column}{0.5\textwidth}
-
-        Example2
-
-%% figure
-    \begin{figure}
-    \includegraphics[width=0.85\linewidth]{figs/data-race-example-2.png}
-%    \caption{xxxx}
-    \end{figure}
-
-\end{column}
-	\end{columns}
-\end{frame}
-%----------------------------------------------
+% %----------------------------------------------
+% \begin{frame}[fragile]
+%     \frametitle{What is the causality relationship here?}
+% %    \framesubtitle{xxxx}
+%     \begin{columns}
+%     \begin{column}{0.5\textwidth}
+%         Example1
+% 
+%     %% figure
+%         \begin{figure}
+%         \includegraphics[width=0.7\linewidth]{figs/data-race-example-1.png}
+%     %    \caption{xxxx}
+%         \end{figure}
+%         
+% 	\end{column} \pause
+%     \begin{column}{0.5\textwidth}
+% 
+%         Example2
+% 
+% %% figure
+%     \begin{figure}
+%     \includegraphics[width=0.85\linewidth]{figs/data-race-example-2.png}
+% %    \caption{xxxx}
+%     \end{figure}
+% 
+% \end{column}
+% 	\end{columns}
+% \end{frame}
+% %----------------------------------------------
 % ### Concurrency bug detection
 % 
 % #### What is the causality relationship here?
