@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第15讲]{第十五讲 ：死锁和并发错误} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第5节：并发错误分析和检测}
+\subtitle{第5节：并发错误检测}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -44,7 +44,7 @@ What ordering is guaranteed?
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/ordering.png}
+    \includegraphics[width=0.45\linewidth]{figs/ordering.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -68,7 +68,7 @@ What ordering is guaranteed?
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/root-cause-patterns-violation.png}
+    \includegraphics[width=0.75\linewidth]{figs/root-cause-patterns-violation.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -85,7 +85,7 @@ What ordering is guaranteed?
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/root-cause-patterns-variable.png}
+    \includegraphics[width=0.56\linewidth]{figs/root-cause-patterns-variable.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -100,7 +100,7 @@ What ordering is guaranteed?
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/atomic-region.png}
+    \includegraphics[width=1.0\linewidth]{figs/atomic-region.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -118,7 +118,7 @@ What ordering is guaranteed?
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/order-violation.png}
+    \includegraphics[width=0.65\linewidth]{figs/order-violation.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -134,7 +134,7 @@ What ordering is guaranteed?
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/mutli-variable-ordering-violation.png}
+    \includegraphics[width=0.8\linewidth]{figs/mutli-variable-ordering-violation.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -153,7 +153,7 @@ What ordering is guaranteed?
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/bug-lifecycle.png}
+    \includegraphics[width=0.9\linewidth]{figs/bug-lifecycle.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -182,15 +182,18 @@ What ordering is guaranteed?
 
     %% figure
         \begin{figure}
-        \includegraphics[width=0.4\linewidth]{figs/data-race-example-1.png}
+        \includegraphics[width=0.7\linewidth]{figs/data-race-example-1.png}
     %    \caption{xxxx}
         \end{figure}
         
-	\end{column}
+	\end{column} \pause
     \begin{column}{0.5\textwidth}
+
+        Example2
+
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/data-race-example-2.png}
+    \includegraphics[width=0.85\linewidth]{figs/data-race-example-2.png}
 %    \caption{xxxx}
     \end{figure}
 
@@ -217,10 +220,10 @@ What ordering is guaranteed?
 %    \framesubtitle{xxxx}
 
 Use logic time‐stamps to find concurrent accesses
-
+\pause
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/Happen‐before.png}
+    \includegraphics[width=0.45\linewidth]{figs/Happen‐before.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -239,10 +242,10 @@ Use logic time‐stamps to find concurrent accesses
 %    \framesubtitle{xxxx}
 
 A common lock should protect all conflicting accesses to a shared variable
-
+\pause
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/Lock‐set.png}
+    \includegraphics[width=0.5\linewidth]{figs/Lock‐set.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -262,15 +265,15 @@ A common lock should protect all conflicting accesses to a shared variable
 Know which code region should maintain atomicity
 
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/atomicity.png}
+    \includegraphics[width=0.27\linewidth]{figs/atomicity.png}
 %    \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
 
 Judge whether a code region’s atomicity is violated
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/atomic-region.png}
+    \includegraphics[width=0.6\linewidth]{figs/atomic-region.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -293,14 +296,14 @@ Judge whether a code region’s atomicity is violated
 \subsection{AVIO} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{AVIO: Detecting Atomicity Violations via Access-Interleaving Invariants (ASPLOS’06)}
+    \frametitle{AVIO: \small{Detecting Atomicity Violations via Access-Interleaving Invariants (ASPLOS’06)}}
 %    \framesubtitle{xxxx}
 
 Atomicity violation = unserializable interleaving
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/serialization.png}
+    \includegraphics[width=1.0\linewidth]{figs/serialization.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -317,14 +320,14 @@ Atomicity violation = unserializable interleaving
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{AVIO: Detecting Atomicity Violations via Access-Interleaving Invariants (ASPLOS’06)}
+    \frametitle{AVIO: \small{Detecting Atomicity Violations via Access-Interleaving Invariants (ASPLOS’06)}}
 %    \framesubtitle{xxxx}
 
 Totally 8 cases of interleaving
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{xxfigs/interleaving-cases.pngxx}
+    \includegraphics[width=1.0\linewidth]{figs/interleaving-cases.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -337,16 +340,16 @@ Totally 8 cases of interleaving
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{AVIO: Detecting Atomicity Violations via Access-Interleaving Invariants (ASPLOS’06)}
+    \frametitle{AVIO: \small{Detecting Atomicity Violations via Access-Interleaving Invariants (ASPLOS’06)}}
 %    \framesubtitle{xxxx}
 
 4 out of 8 cases are interleaving violations
 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/interleaving-violations.png}
+    \includegraphics[width=1.0\linewidth]{figs/interleaving-violations.png}
 %    \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
 
 Both hardware and software solutions exist
 
@@ -367,17 +370,23 @@ Both hardware and software solutions exist
 \subsection{ConSeq \& ConMem} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{ConSeq & ConMem}
+    \frametitle{ConSeq \& ConMem}
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/ConSeq-idea.png}
+    \includegraphics[width=0.85\linewidth]{figs/ConSeq-idea.png}
 %    \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
 
     \begin{itemize}
-	    \item ConMem: Detecting Severe Concurrency Bugs through an Effect-Oriented Approach, ASPLOS’10
-	    \item ConSeq: Detecting Concurrency Bugs through Sequential Errors, ASPLOS’11
+	    \item ConMem
+    	\begin{itemize}
+    	    \item Detecting Severe Concurrency Bugs through an Effect-Oriented Approach, ASPLOS’10
+    	\end{itemize} \pause
+	    \item ConSeq
+    	\begin{itemize}
+    	    \item Detecting Concurrency Bugs through Sequential Errors, ASPLOS’11
+    	\end{itemize}
 	\end{itemize}
 \end{frame}
 %----------------------------------------------
@@ -397,7 +406,7 @@ Both hardware and software solutions exist
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/fault.png}
+    \includegraphics[width=0.62\linewidth]{figs/fault.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -413,7 +422,7 @@ Both hardware and software solutions exist
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/error.png}
+    \includegraphics[width=0.6\linewidth]{figs/error.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -429,7 +438,7 @@ Both hardware and software solutions exist
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/failure.png}
+    \includegraphics[width=0.75\linewidth]{figs/failure.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -445,9 +454,9 @@ Both hardware and software solutions exist
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/cause-oriented-approach.png}
+    \includegraphics[width=0.55\linewidth]{figs/cause-oriented-approach.png}
 %    \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
 	\begin{block}{Limitations}
 
         \begin{itemize}
@@ -469,18 +478,18 @@ Both hardware and software solutions exist
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Effect‐oriented approach}
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/Effect‐oriented-approach.png}
+    \includegraphics[width=0.7\linewidth]{figs/Effect‐oriented-approach.png}
 %    \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
 
     \begin{itemize}
-        \item Step 1: *Statically* identify potential failure/error site
-        \item Step 2: *Statically* look for critical reads
-        \item Step 3: *Dynamically* identify buggy interleaving
+        \item Step 1: Statically identify potential failure/error site \pause
+        \item Step 2: Statically look for critical reads \pause
+        \item Step 3: Dynamically identify buggy interleaving
     \end{itemize}
 
 \end{frame}
@@ -498,11 +507,11 @@ Both hardware and software solutions exist
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{ConMem: Detecting Severe Concurrency Bugs through an Effect-Oriented Approach, ASPLOS’10}
-%    \framesubtitle{xxxx}
+    \frametitle{ConMem}
+    \framesubtitle{Detecting Severe Concurrency Bugs through an Effect-Oriented Approach, ASPLOS’10}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/ConMem.png}
+    \includegraphics[width=0.73\linewidth]{figs/ConMem.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -515,11 +524,11 @@ Both hardware and software solutions exist
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{ConSeq: Detecting Concurrency Bugs through Sequential Errors, ASPLOS’11}
+    \frametitle{ConSeq: \small{Detecting Concurrency Bugs through Sequential Errors, ASPLOS’11}}
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/ConSeq.png}
+    \includegraphics[width=0.75\linewidth]{figs/ConSeq.png}
 %    \caption{xxxx}
     \end{figure}
 \end{frame}
