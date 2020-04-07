@@ -1,6 +1,6 @@
 # 20200407-第十五讲 死锁和并发错误
 
-[v1]()
+[v1](https://github.com/LearningOS/os-lectures/blob/02180890691ccfd54d6d5664831c2a9663419266/lecture15/ref.md)
 
 ## 15.5 并发错误分析和检测
 
