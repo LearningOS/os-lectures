@@ -33,7 +33,7 @@ Ref: 20200410-09-ipc.pdf-Page:8
 #### Signal Handler Control Flow
 Ref: 20200410-09-ipc.pdf-Page:9
 
-![signal-control-flow](/Users/xyong/Desktop/figs/signal-control-flow.png)
+![signal-control-flow](figs/signal-control-flow.png)
 
 #### Alternate Stacks
 Ref: 20200410-09-ipc.pdf-Page:10
@@ -47,7 +47,7 @@ Ref: 20200410-09-ipc.pdf-Page:10
 #### Frame on the User Mode stack
 Ref: https://www.halolinux.us/kernel-reference/figure-103-frame-on-the-user-mode-stack.html
 
-![signal-stack-frame](/Users/xyong/Desktop/figs/signal-stack-frame.png)
+![signal-stack-frame](figs/signal-stack-frame.png)
 
  * pretcode: Return address of the signal handler function;
  * sig: The signal number; 
