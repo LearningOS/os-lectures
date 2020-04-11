@@ -1,5 +1,5 @@
 ## 20200410-第十六讲 进程通信
-
+[v1](https://github.com/LearningOS/os-lectures/blob/2f1d9c5b9494e0d2c25afa3102884380991840c4/lecture16/ref.md)
 ### 目录
 第十六讲 进程通信
 16.1 进程通信概念
@@ -13,8 +13,8 @@
 
 20200410-09-ipc.pdf
 20200410-understanding.linux.kernel.pdf
-### Basic Model
-#### Basic Model
+### Signal Model
+#### Signal Model
 Ref: 20200410-09-ipc.pdf-Page:6
 
  * Application registers handlers with signal() or sigaction()
