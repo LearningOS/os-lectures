@@ -1,5 +1,7 @@
 ## 20200410-第十六讲 进程通信
 [v1](https://github.com/LearningOS/os-lectures/blob/2f1d9c5b9494e0d2c25afa3102884380991840c4/lecture16/ref.md)
+[v2](https://github.com/LearningOS/os-lectures/blob/49cfe2da914e337c08b0356ce136dcc4c7b5a6bb/lecture16/ref.md)
+[v3]()
 ### 目录
 第十六讲 进程通信
 16.1 进程通信概念
@@ -103,74 +105,3 @@ Ref: 20200410-09-ipc.pdf-Page: 17
     * What signals are blocked (and delivered on sigreturn)
     * Similar to disabling hardware interrupts
  * Blocking system calls inside of a signal handler are only safe with careful use of sigaction()
-
-### ref
-
-https://github.com/LearningOS/os-lectures/blob/master/os-course-outline.md#%E7%AC%AC16%E8%AE%B2-%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1-14%E5%B9%B4ppt
-大纲
-
-http://os.cs.tsinghua.edu.cn/oscourse/OS2019spring/lecture20
-去年的相关讲义
-
-http://os.cs.tsinghua.edu.cn/oscourse/OS2014/lecture15
-2014年的相关讲义
-
-#### Understanding the Linux Kernel
-Understanding the Linux Kernel
-http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf
-20200410-understanding.linux.kernel.pdf
-
-P252: Figure 9-1. Catching a signal
-
-Figure 9-2. Frame on the User Mode stack 
-
-#### signal trampoline
-https://www.systutorials.com/docs/linux/man/2-sigreturn/
-sigreturn(2)
-
-signal trampoline
-
-https://blog.netbsd.org/tnf/entry/towards_backtracing_through_signal_trampolines
-Towards backtracing through signal trampolines and fresh libc++
-
-Signal trampolines on NetBSD
-
-https://www.netbsd.org/docs/internals/en/chap-processes.html#signal
-3.5. Signal delivery
-
-a small piece of assembly code (called a "signal trampoline") to perform cleanup after handling the signal.
-
-native signal trampoline for i386 is called sigcode
-src/sys/arch/i386/i386/locore.S
-
-signal trampoline provided by libc
-The trampoline is now stored in the code segment of libc. For instance, for i386, the signal trampoline is named __sigtramp_siginfo_2
-src/lib/libc/arch/i386/sys/__sigtramp2.S
-
-#### Nima Honarmand: Fall 2014:: CSE 506
-https://compas.cs.stonybrook.edu/~nhonarmand/courses/fa14/cse506.2/slides/ipc.pdf
-20200410-09-ipc.pdf
-Signals andInter-Process Communication (IPC)
-
-这个幻灯片对信号的机制做了介绍，有很好的一个图，并有实现原理介绍；
-
-Signal Handler Control Flow
-第9页：很好的一个图；
-
-Alternate Stacks
-
-Nested Signals
-
-P16: Interrupted System Calls
-
-https://www.cs.drexel.edu/~jjohnson/wi03/cs370/lectures/lec9.html
-Lecture 9: Unix Signals and IPC
-
-https://www.win.tue.nl/~aeb/linux/lk/lk-5.html
-5. Signals
-
-https://stackoverflow.com/questions/6949025/how-are-asynchronous-signal-handlers-executed-on-linux
-How are asynchronous signal handlers executed on Linux?
-
-https://csprojectedu.com/2017/04/09/CS416-AddingSignalsToXV6/
-CS416 Adding Signals to XV6
