@@ -26,7 +26,11 @@
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
-Ref: \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf }{Understanding the Linux Kernel}
+\pause
+
+Ref: 
+\href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf }{Understanding the Linux Kernel}
+
 \href{https://compas.cs.stonybrook.edu/~nhonarmand/courses/fa14/cse506.2/slides/ipc.pdf}{Signals and Inter-Process Communication}
 \end{frame}
 %----------------------------------------------
@@ -40,11 +44,11 @@ Ref: \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf }{Understandin
     \frametitle{Signal Model}
 %    \framesubtitle{xxxx}
     \begin{itemize}
-        \item Application registers handlers with signal() or sigaction()
+        \item Application registers handlers with signal() or sigaction() \pause
         \item Send signals with kill() and friends
         \begin{itemize}
             \item Or raised by hardware exception handlers in kernel
-        \end{itemize}
+        \end{itemize} \pause
         \item Signal delivery jumps to signal handler
         \begin{itemize}
             \item Irregular control flow, similar to an interrupt
@@ -105,7 +109,7 @@ Ref: \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf }{Understandin
         \item Signal handlers can execute on a different stack than program execution.
         \begin{itemize}
             \item Set with sigaltstack() system call
-        \end{itemize}
+        \end{itemize} \pause
         \item Like an interrupt handler, kernel pushes register state on interrupt stack
         \begin{itemize}
             \item Return to kernel with sigreturn() system call
@@ -137,11 +141,11 @@ Ref: \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf }{Understandin
 	\begin{column}{0.5\textwidth}
         \begin{itemize}
             \item pretcode: Return address of the signal handler function
-            \item sig: The signal number
-            \item sc: hardware context of the User Mode process
-            \item fpstate: floating point registers of the User Mode process
-            \item extramask: blocked real-time signals
-            \item retcode: Eight-byte code issuing a sigreturn( ) system call
+            \item sig: Signal number
+            \item sc: Hardware context of the User Mode process
+            \item fpstate: Floating point registers of the User Mode process
+            \item extramask: Blocked real-time signals
+            \item retcode: Eight-byte code issuing a sigreturn() system call
         \end{itemize}
     \end{column}
 	\end{columns}
@@ -164,15 +168,15 @@ Ref: \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf }{Understandin
 \begin{frame}[fragile]
     \frametitle{Signal trampoline \& sigreturn() syscall}
 %    \framesubtitle{xxxx}
-A small piece of assembly code to perform cleanup after handling the signal.
+A small piece of assembly code to perform cleanup after handling the signal. \pause
     \begin{itemize}
-        \item Signal trampoline code calls sigreturn().
+        \item Signal trampoline code calls sigreturn(). \pause
         \item sigreturn() undoes everything that was done in order to invoke the signal handler
         \begin{itemize}
-            \item Changing the process's signal mask, switching signal stacks (see sigaltstack(2))
+            \item Changing the process's signal mask, switching signal stacks
             \item switches stacks, and restores the process's context
             \item sigreturn() never returns
-        \end{itemize}
+        \end{itemize} \pause
         \item Signal trampoline code lives either in the vDSO or in the C library.
         \begin{itemize}
             \item vDSO (virtual dynamic shared object): a small shared library that the kernel automatically maps into the address space of all user-space applications.
@@ -197,10 +201,10 @@ A small piece of assembly code to perform cleanup after handling the signal.
 \begin{frame}[fragile]
     \frametitle{Dealing With Asynchronous Signals In Multi Threaded Program}
 %    \framesubtitle{xxxx}
+The first available thread gets the signal. \pause
     \begin{itemize}
-        \item The first available thread gets the signal
-        \item Most handlers run on the thread's stack.
-        \item A handler can run on an alternate stack
+        \item Most handlers run on the thread's stack
+        \item A handler can run on an alternate stack \pause
         \item The thread is running in the kernel does not run the handler until it goes to userspace.
     \end{itemize}
 \end{frame}
@@ -223,7 +227,7 @@ A small piece of assembly code to perform cleanup after handling the signal.
         \item Signals have default handlers:
         \begin{itemize}
             \item Ignore, kill, suspend, continue, dump core
-            \item These execute inside the kernel    
+            \item These execute inside the kernel \pause
         \end{itemize}
         \item Installing a handler with signal()/sigaction() overrides the default
         \item A few (SIGKILL, SIGSTOP) cannot be overridden
@@ -248,8 +252,8 @@ A small piece of assembly code to perform cleanup after handling the signal.
     \begin{itemize}
         \item Send a signal == mark a pending signal in the task
         \begin{itemize}
-            \item And make runnable if blocked with TASK_INTERRUPTIBLE flag
-        \end{itemize}
+            \item And make runnable if blocked with TASK\_INTERRUPTIBLE flag
+        \end{itemize} \pause
         \item Check pending signals on return from interrupt or syscall
         \begin{itemize}
             \item Deliver if pending
@@ -274,7 +278,7 @@ A small piece of assembly code to perform cleanup after handling the signal.
         \begin{itemize}
             \item What signals are blocked (and delivered on sigreturn)
             \item Similar to disabling hardware interrupts
-        \end{itemize}
+        \end{itemize} \pause
         \item Blocking system calls inside of a signal handler are only safe with careful use of sigaction()
     \end{itemize}
 \end{frame}
