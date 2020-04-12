@@ -71,8 +71,8 @@ Ref:
     \frametitle{Language Exceptions}
 %    \framesubtitle{xxxx}
     \begin{itemize}
-        \item Signals are the underlying mechanism for Exceptions and catch blocks
-        \item JVM or other runtime system sets signal handlers
+        \item Signals are the underlying mechanism for Exceptions and catch blocks \pause
+        \item JVM or other runtime system sets signal handlers \pause
         \item Signal handler causes execution to jump to the catch block
     \end{itemize}
 \end{frame}
@@ -141,10 +141,10 @@ Ref:
 	\begin{column}{0.5\textwidth}
         \begin{itemize}
             \item pretcode: Return address of the signal handler function
-            \item sig: Signal number
+            \item sig: Signal number \pause
             \item sc: Hardware context of the User Mode process
             \item fpstate: Floating point registers of the User Mode process
-            \item extramask: Blocked real-time signals
+            \item extramask: Blocked real-time signals \pause
             \item retcode: Eight-byte code issuing a sigreturn() system call
         \end{itemize}
     \end{column}
