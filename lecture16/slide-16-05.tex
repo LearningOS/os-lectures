@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第16讲]{第十六讲 ：进程通信} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第5节：Binder机制}
+\subtitle{第5节：D-Bus机制}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -22,281 +22,275 @@
 \end{frame}
 
 %----------------------------------------------
-\begin{frame}
-\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-
-\end{frame}
+%\begin{frame}
+%\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+%\end{frame}
 %----------------------------------------------
 %%	PRESENTATION SLIDES
 %----------------------------------------------
-\section{第5节：Binder机制} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第4节：D-Bus机制} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{Binder介绍} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%----------------------------------------------
-\begin{frame}[plain]
-	\frametitle{背景介绍}
-	\centering
-	\includegraphics[width=.7\textwidth]{android-history}
-	\includegraphics[width=.8\textwidth]{binder-history}
-\end{frame}
-
-%----------------------------------------------
-\begin{frame}[plain]
-	\frametitle{背景介绍}
-	\centering
-	\includegraphics[width=.7\textwidth]{android-arch}
-	
-\end{frame}
+\subsection{D-Bus介绍} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{背景介绍}
-	%    \framesubtitle{xxxx}
-	
+    \frametitle{D-Bus介绍}
+%    \framesubtitle{xxxx}
+
 	\begin{columns}
-		\begin{column}{.4\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{android-arch}
-			
-		\end{column}
-		\begin{column}{.6\textwidth}
-			Linux kernel v.s. Android
-			\begin{itemize}
-				\item binder -- 新的IPC机制
-				\item ashmem -- 新的shared memory机制
-				\item logger
-				\item ......
-			\end{itemize}
+	\begin{column}{.4\textwidth}
 		
-			\begin{block}{Binder: Android's Solution}
-			“In the Android platform, the binder is used for
-			nearly everything that happens across processes
-			in the core platform. " – Dianne Hackborn
-			https://lkml.org/lkml/2009/6/25/3
-			
-		\end{block} 
-		\end{column}
+	\includegraphics[width=.6\textwidth]{redhat-fd}
+	\includegraphics[width=.3\textwidth]{gnome3}
+	\includegraphics[width=.3\textwidth]{kde}	
+	\includegraphics[width=.3\textwidth]{x11}
+	\end{column}
+	\begin{column}{.6\textwidth}
+		\large
+    \begin{itemize}
+        \item 2002年创建的一种进程间通信机制
+        \item 是freedesktop.org项目的一部分
+        \item 有Redhat和FreeDesktop社区维护
+		\item 主要Linux桌面环境中的通信服务
+    \end{itemize}
+	\end{column}
 	\end{columns}
 \end{frame}
-
-
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{背景介绍}
-	%    \framesubtitle{xxxx}
-	
-	\begin{columns}
-		\begin{column}{.4\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{android-arch}
-			
-		\end{column}
-		\begin{column}{.6\textwidth}
-			Android进程
-			\includegraphics[width=1.\textwidth]{android-fork}
-
-		\end{column}
-	\end{columns}
-\end{frame}
-
-
-%----------------------------------------------
-\begin{frame}[fragile]
-	\frametitle{背景介绍}
+	\frametitle{D-Bus介绍}
 	%    \framesubtitle{xxxx}
 	
 	\begin{columns}
 		\begin{column}{.5\textwidth}
-			Android进程
-			\includegraphics[width=1.\textwidth]{android-fork}
-			
-		\end{column}
-		\begin{column}{.5\textwidth}
-			Android任务 task
-			\includegraphics[width=1.\textwidth]{android-task}
-			
-		\end{column}
-	\end{columns}
-\end{frame}
-
-%----------------------------------------------
-\begin{frame}[fragile]
-	\frametitle{背景介绍}
-	%    \framesubtitle{xxxx}
-	
-	\begin{columns}
-		\begin{column}{.5\textwidth}
-			Android任务task
-			\includegraphics[width=1.\textwidth]{android-task}
-			
-		\end{column}
-		\begin{column}{.5\textwidth}
-			Android任务如何跨进程交互？
-			\includegraphics[width=1.\textwidth]{android-how-ipc}
-			
-		\end{column}
-	\end{columns}
-\end{frame}
-
-
-%----------------------------------------------
-\begin{frame}[fragile]
-	\frametitle{Binder机制}
-	
-	\begin{columns}
-		\begin{column}{.5\textwidth}
-			Android任务如何跨进程交互？
-			\includegraphics[width=1.\textwidth]{android-how-ipc}
-			
-		\end{column}
-		\begin{column}{.5\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{binder-simple1}
-			
-		\end{column}
-	\end{columns}
-\end{frame}
-
-
-%----------------------------------------------
-\begin{frame}[fragile]
-	\frametitle{Binder机制}
-	%    \framesubtitle{xxxx}
-	
-	\begin{columns}
-		\begin{column}{.5\textwidth}
-			Android任务如何跨进程交互？
-			\includegraphics[width=1.\textwidth]{android-how-ipc}
-			
-		\end{column}
-		\begin{column}{.5\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{binder-simple2}
-			
-		\end{column}
-	\end{columns}
-\end{frame}
-
-
-%----------------------------------------------
-\begin{frame}[fragile]
-	\frametitle{Binder机制}
-	%    \framesubtitle{xxxx}
-	
-	\begin{columns}
-		\begin{column}{.5\textwidth}
-			Android任务如何跨进程交互？
-			\includegraphics[width=1.\textwidth]{android-how-ipc}
-			
-		\end{column}
-		\begin{column}{.5\textwidth}
-			
-			\includegraphics[width=1.\textwidth]{binder-idl}
-			
-		\end{column}
-	\end{columns}
-\end{frame}
-
-%----------------------------------------------
-\begin{frame}[fragile]
-	\frametitle{Binder机制}
-	%    \framesubtitle{xxxx}
-	
-	\begin{columns}
-		\begin{column}{.5\textwidth}
-%			Android任务如何跨进程交互？
-			\includegraphics[width=1.\textwidth]{binder-layer}
-			
-		\end{column}
-		\begin{column}{.5\textwidth}
-		\includegraphics[width=.5\textwidth]{binder-abstract}	
-				\begin{itemize}
-		\item Intent -- 最高层的IPC抽象
-		\item AIDL -- Android Interface Definition Language
-		\item binder: kernel driver
-		\item ashmem: shared memory
-		\end{itemize}
-			
-		\end{column}
-	\end{columns}
-\end{frame}
-%----------------------------------------------
-\begin{frame}[plain]
-	\frametitle{Binder机制}
-	\centering
-	\includegraphics[width=.8\textwidth]{binder-call}
-	
-\end{frame}
-
-\begin{frame}[plain]
-	\frametitle{Binder机制}
-%	\centering
-%	\includegraphics[width=1.\textwidth]{binder-infoflow}
-	
-	
-		\begin{columns}
-		\begin{column}{.6\textwidth}
-
-			\includegraphics[width=1.\textwidth]{binder-infoflow}
-			
-		\end{column}
-		\begin{column}{.4\textwidth}
-			\includegraphics[width=1.\textwidth]{binder-buf}	
-%			\begin{itemize}
-%				\item Intent -- 最高层的IPC抽象
-%				\item AIDL -- Android Interface Definition Language
-%				\item binder: kernel driver
-%				\item ashmem: shared memory
-%			\end{itemize}
-			
-		\end{column}
-	\end{columns}
-
-\end{frame}
-
-\begin{frame}[plain]
-	\frametitle{Binder机制}
-	\centering
-	\includegraphics[width=1.\textwidth]{binder-ctr-layers}
-	
-\end{frame}
-
-\begin{frame}[plain]
-	\frametitle{Binder机制}
-	\centering
-	
-\includegraphics[width=.6\textwidth]{binder-ex1}
-\includegraphics[width=.6\textwidth]{binder-ex3}
-	
-\end{frame}
-
-%----------------------------------------------
-\begin{frame}[plain]
-	\frametitle{Binder机制 }
-	
-	\includegraphics[width=.9\textwidth]{binder-arch-sm}
-	
-\end{frame}
-%-------------------------
-%----------------------------------------------
-\begin{frame}[plain]
-	\frametitle{Binder机制 -- 一次拷贝}
-
-	\includegraphics[width=1.\textwidth]{binder-one-copy}
-
-\end{frame}
-
-%----------------------------------------------
-\begin{frame}[plain]
-	\frametitle{参考}
-	
 			\begin{itemize}
-				\item Android IPC Mechanism， Jim Huang ( 黃敬群 ), 2012
-				\item Lec20: CS 318 Principles of Operating Systems, Ryan Huang, 2018			
-				\item Deep Dive into Android IPC/Binder Framework at Android Builders Summit, Aleksandar Gargenta, 2013				
-				\item 彻底理解Android Binder通信架构, Gityuan, 2016
+			\item 早期的IPC机制
+			\item socket相对使用广泛
+			\item 某些机制已经很少使用
+			\end{itemize}			
+			\includegraphics[width=.8\textwidth]{normal-ipc}
+			
+		\end{column}
+		\pause
+		\begin{column}{.5\textwidth}
+			\begin{itemize}
+				\item 使用socket机制
+				\item 提供了软件总线抽象
+				\item 比传统IPC机制简单
 			\end{itemize}
+			\includegraphics[width=.8\textwidth]{dbus-ipc}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{D-Bus介绍}
+	%    \framesubtitle{xxxx}
 	
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{dbus-ipc}
+			
+		\end{column}
+		\begin{column}{.6\textwidth}
+%			\large
+			基本特征
+			\begin{itemize}
+				\item 高层次的IPC
+				\item Multicast \& point-to-point
+				\item OS/architecture/language无关
+				\item GNOME， KDE， xfce
+			\end{itemize}
+			优势
+			\begin{itemize}
+				\item 低延迟：无socket的循环的等待
+				\item 低开销：使用一个二进制的协议
+				\item 高可用性：基于消息机制而不是字节流机制
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+%----------------------------------------------
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{D-Bus运行机制}
+	%    \framesubtitle{xxxx}
+	
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=.8\textwidth]{dbus-simple}
+			\includegraphics[width=.8\textwidth]{dbus-diagram}
+			
+		\end{column}
+		\begin{column}{.6\textwidth}
+%			\large
+			D-Bus结构
+			\begin{itemize}
+				\item 一个库libdbus，它允许两个应用程序相互连接并交换消息
+				\item 一个消息总线守护程序(daemon)，建立在libdbus，多个应用程序可以连接到
+				\item 包装程序库或基于特定应用程序框架的绑定
+				\item System Bus \& Session Bus
+				\item 通过policy文件制定安全机制
+
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[plain]
+	\frametitle{D-Bus运行机制}
+	\centering
+				\includegraphics[width=.75\textwidth]{dbus-diagram}
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{D-Bus运行机制}
+	%    \framesubtitle{xxxx}
+	
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{dbus-diagram}
+			
+		\end{column}
+		\begin{column}{.6\textwidth}
+			%			\large
+			D-Bus的总线 bus
+			\begin{itemize}
+				\item 相当于D-BUS的通信链路，应用之间通过总线进行通信。应用在总线上寻找service
+				\item 系统总线 System Bus：用于kernel,系统应用/服务
+				\item 任务总线 Session Bus：用于gnome/kde等应用通信
+				
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{D-Bus运行机制}
+	%    \framesubtitle{xxxx}
+	
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{dbus-diagram}
+			
+		\end{column}
+		\begin{column}{.6\textwidth}
+			%			\large
+			D-Bus的服务 service
+			\begin{itemize}
+				\item 服务是提供IPC API的程序，每个服务都有一个reverse domain name结构的标识名称
+				\item org.freedesktop.NetworkManager对应系统总线上的NetworkManager
+				\item org.freedesktop.login1对应系统总线上的systemd-logind
+				
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{D-Bus运行机制}
+	%    \framesubtitle{xxxx}
+	
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{dbus-diagram}
+			
+		\end{column}
+		\begin{column}{.6\textwidth}
+			%			\large
+			D-Bus的对象(object)
+			\begin{itemize}
+				\item 相当于通信的地址，每个service的object都通过object path来标识
+				\item object path类似文件系统的路径
+				\item 如/org/freedesktop/login1是服务org.freedesktop.login1的manager对象的路径
+				
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{D-Bus运行机制}
+	%    \framesubtitle{xxxx}
+	
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{dbus-diagram}
+			
+		\end{column}
+		\begin{column}{.6\textwidth}
+			%			\large
+			D-Bus的接口
+			\begin{itemize}
+				\item D-Bus接口定义了D-Bus对象支持的方法 method 和信号 signal
+				\item 每个object包含一个或者多个interfaces				
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{D-Bus运行机制}
+	%    \framesubtitle{xxxx}
+	
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{dbus-diagram}
+			
+		\end{column}
+		\begin{column}{.6\textwidth}
+			%			\large
+			D-Bus的方法(method)
+			\begin{itemize}
+				\item D-Bus方法可以接受任意数量的参数，并且可以返回任意数量的值，包括任何值。				
+			\end{itemize}
+			D-Bus的信号(signal)
+			\begin{itemize}
+				\item D-Bus信号提供了一对多的发布-订阅机制
+				\item 与方法返回值类似，D-Bus信号可能包含任意数量的数据
+				\item 与方法不同，信号是完全异步的，并且可以随时由D-Bus对象发出 			
+			\end{itemize}		
+		\end{column}
+	\end{columns}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{D-Bus运行机制}
+	%    \framesubtitle{xxxx}
+	
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			
+			\includegraphics[width=1.\textwidth]{dbus-diagram}
+			
+		\end{column}
+		\begin{column}{.6\textwidth}
+			%			\large
+			D-Bus的方法(method)的执行流程
+			\begin{itemize}				
+				\item 应用调用代理上的方法，代理将构造一个方法调用消息给远端的进程
+				\item 方法调用消息发送到bus daemon中
+				\item bus daemon查找目标的bus name，如果找到，就把这个方法发送到该进程中
+				\item 在dbus高层接口中，会先检测并转换成对应的对象的方法，然后再将应答结果转换成应答消息发给daemon
+				\item bus daemon接受到应答消息，将把应答消息直接发给发出调用消息的进程		
+			\end{itemize}		
+		\end{column}
+	\end{columns}
 \end{frame}
 %----------------------------------------------
 %----------------------------------------------
