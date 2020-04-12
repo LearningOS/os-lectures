@@ -39,7 +39,7 @@
     \framesubtitle{出处：\href{http://vellvisher.github.io/papers_reports/doc/BFS_FreeBSD.pdf}{Analysis of the BFS Scheduler in FreeBSD}}
 % http://vellvisher.github.io/papers_reports/doc/BFS_FreeBSD.pdf
 % Analysis of the BFS Scheduler in FreeBSD
-    \subframetitle{BFS调度算法是一种时间片轮转算法的变种}
+    BFS调度算法是一种时间片轮转算法的变种.
 %% figure
     \begin{figure}
 %    \includegraphics[width=1.0\linewidth]{figs/bfs-struct.png}
@@ -75,7 +75,7 @@
     \begin{block}{线程优先级：有103个优先级}
 	    \begin{itemize}
 	        \item 100个静态的实时优先级；
-	        \item 3个普通优级SCHEDISO (isochronous)、SCHEDNORMAL和SCHEDIDLEPRIO (idle priority scheduling)；
+	        \item 3个普通优先级SCHEDISO (isochronous)、SCHEDNORMAL和SCHEDIDLEPRIO (idle priority scheduling)；
 % BFS有103个优先级，其中100个静态的实时优先级，3个普通优级SCHEDISO (isochronous)、SCHEDNORMAL和SCHEDIDLEPRIO (idle priority scheduling)；
 	    \end{itemize}
     \end{block} \pause
@@ -84,7 +84,7 @@
 	    \begin{itemize}
 	        \item 所有CPU共享一个双向链表结构的单就绪队列；
 	        \item 所有线程按优先级排队；
-	        \item 相同优先级的每个线程有一个时间片长度和虚拟最长等待时间；
+	        \item 相同优先级的每个线程有一个时间片长度和虚拟截止时间；
 	    \end{itemize}
     \end{block}
 \end{frame}
@@ -97,7 +97,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{虚拟截止时间（Virtual Deadline}
+    \frametitle{虚拟截止时间（Virtual Deadline）}
 %    \subframetitle{yyyy}
 %% block
     \begin{block}{时间片大小}
@@ -161,7 +161,7 @@ prioratio increases by 10% for every nice level
  %   \subframetitle{yyyy}
     \begin{itemize}
         \item 时间片用完：重新设置虚拟截止时间后，插入就绪队列；
-        \item 事件等待结束：虚拟截止时间保持不变，抢先低优先级线程或插入就绪队列；
+        \item 等待事件出现：虚拟截止时间保持不变，抢先低优先级线程或插入就绪队列；
     \end{itemize}
 
 \end{frame}
@@ -176,7 +176,7 @@ prioratio increases by 10% for every nice level
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{BFS与CFS的性能对比(2012)}
-    \subframetitle{测试硬件环境}
+    \framesubtitle{测试硬件环境}
 %% figure
     \begin{figure}
 %    \includegraphics[width=0.6\linewidth]{test-machines}
