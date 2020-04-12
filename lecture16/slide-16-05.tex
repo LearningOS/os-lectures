@@ -37,15 +37,15 @@
 \begin{frame}[plain]
 	\frametitle{背景介绍}
 	\centering
-	\includegraphics[width=1.\textwidth]{android-history}
-	
+	\includegraphics[width=.7\textwidth]{android-history}
+	\includegraphics[width=.8\textwidth]{binder-history}
 \end{frame}
 
 %----------------------------------------------
 \begin{frame}[plain]
 	\frametitle{背景介绍}
 	\centering
-	\includegraphics[width=1.\textwidth]{android-arch}
+	\includegraphics[width=.7\textwidth]{android-arch}
 	
 \end{frame}
 %----------------------------------------------
@@ -67,6 +67,14 @@
 				\item logger
 				\item ......
 			\end{itemize}
+		
+			\begin{block}{Binder: Android's Solution}
+			“In the Android platform, the binder is used for
+			nearly everything that happens across processes
+			in the core platform. " – Dianne Hackborn
+			https://lkml.org/lkml/2009/6/25/3
+			
+		\end{block} 
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -197,11 +205,11 @@
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 %			Android任务如何跨进程交互？
-			\includegraphics[width=.6\textwidth]{binder-abstract}
+			\includegraphics[width=1.\textwidth]{binder-layer}
 			
 		\end{column}
 		\begin{column}{.5\textwidth}
-			
+		\includegraphics[width=.5\textwidth]{binder-abstract}	
 				\begin{itemize}
 		\item Intent -- 最高层的IPC抽象
 		\item AIDL -- Android Interface Definition Language
@@ -213,11 +221,43 @@
 	\end{columns}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[plain]
+	\frametitle{Binder机制}
+	\centering
+	\includegraphics[width=.8\textwidth]{binder-call}
+	
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Binder机制}
+%	\centering
+%	\includegraphics[width=1.\textwidth]{binder-infoflow}
+	
+	
+		\begin{columns}
+		\begin{column}{.6\textwidth}
+
+			\includegraphics[width=1.\textwidth]{binder-infoflow}
+			
+		\end{column}
+		\begin{column}{.4\textwidth}
+			\includegraphics[width=1.\textwidth]{binder-buf}	
+%			\begin{itemize}
+%				\item Intent -- 最高层的IPC抽象
+%				\item AIDL -- Android Interface Definition Language
+%				\item binder: kernel driver
+%				\item ashmem: shared memory
+%			\end{itemize}
+			
+		\end{column}
+	\end{columns}
+
+\end{frame}
 
 \begin{frame}[plain]
 	\frametitle{Binder机制}
 	\centering
-	\includegraphics[width=1.\textwidth]{binder-infoflow}
+	\includegraphics[width=1.\textwidth]{binder-ctr-layers}
 	
 \end{frame}
 
@@ -229,23 +269,34 @@
 \includegraphics[width=.6\textwidth]{binder-ex3}
 	
 \end{frame}
+
 %----------------------------------------------
-\begin{frame}[fragile]
-	\frametitle{Binder机制}
-	%    \framesubtitle{xxxx}
-%	
-%	\begin{columns}
-%		\begin{column}{.4\textwidth}
-%			Android任务如何跨进程交互？
-%			\includegraphics[width=.8\textwidth]{binder-ex1}
-%			\includegraphics[width=.8\textwidth]{binder-ex3}
-%		\end{column}
-%		\begin{column}{.6\textwidth}
-%			
-%			\includegraphics[width=.6\textwidth]{binder-ex2}
-%			
-%		\end{column}
-%	\end{columns}
+\begin{frame}[plain]
+	\frametitle{Binder机制 }
+	
+	\includegraphics[width=.9\textwidth]{binder-arch-sm}
+	
+\end{frame}
+%-------------------------
+%----------------------------------------------
+\begin{frame}[plain]
+	\frametitle{Binder机制 -- 一次拷贝}
+
+	\includegraphics[width=1.\textwidth]{binder-one-copy}
+
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[plain]
+	\frametitle{参考}
+	
+			\begin{itemize}
+				\item Android IPC Mechanism， Jim Huang ( 黃敬群 ), 2012
+				\item Lec20: CS 318 Principles of Operating Systems, Ryan Huang, 2018			
+				\item Deep Dive into Android IPC/Binder Framework at Android Builders Summit, Aleksandar Gargenta, 2013				
+				\item 彻底理解Android Binder通信架构, Gityuan, 2016
+			\end{itemize}
+	
 \end{frame}
 %----------------------------------------------
 %----------------------------------------------
