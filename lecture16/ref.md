@@ -108,3 +108,27 @@ Ref: 20200410-09-ipc.pdf-Page: 17
     * What signals are blocked (and delivered on sigreturn)
     * Similar to disabling hardware interrupts
  * Blocking system calls inside of a signal handler are only safe with careful use of sigaction()
+
+
+### dbus 
+- [dbus in baidu](https://baike.baidu.com/item/dbus/17507523)
+- [IPC机制学习---D-BUS](https://my.oschina.net/u/158589/blog/59218)
+- [一个dbus精简IPC实例源码](http://blog.chinaunix.net/uid-20564848-id-73694.html)
+- [dbus和经典IPC的对比](http://www.voidcn.com/article/p-uisjqenm-bae.html)
+
+- [ D-Bus in freedesktop.org](https://www.freedesktop.org/wiki/Software/dbus/)
+- [D-BUS详细分析](https://blog.csdn.net/iteye_8149/article/details/82236708?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2)
+- [DBus学习笔记](https://blog.csdn.net/lvliang2008/article/details/6214955)
+- [IntroductionToDBus-freedesktop.net](https://www.freedesktop.org/wiki/IntroductionToDBus/)
+- [dbus-tutorial-freedesktip.net](https://dbus.freedesktop.org/doc/dbus-tutorial.html)
+
+### binder
+- [[Android Binder机制原理](https://www.cnblogs.com/qingchen1984/p/5212755.html)](https://www.cnblogs.com/qingchen1984/p/5212755.html)
+- [简单理解Binder机制的原理](https://www.jianshu.com/p/4920c7781afe)
+- [Binder系列—开篇](http://gityuan.com/2015/10/31/binder-prepare/)
+- [Binder IPC Mechanism](http://www.angryredplanet.com/~hackbod/openbinder/docs/html/BinderIPCMechanism.html)
+- [深刻理解Linux进程间通信（IPC）](https://www.ibm.com/developerworks/cn/linux/l-ipc/)
+- [为什么 Android 要采用 Binder 作为 IPC 机制？--知乎](https://www.zhihu.com/question/39440766?sort=created)
+- [A Good Understanding of D-BUS - An IPC Mechanism in Linux](https://linoxide.com/how-tos/d-bus-ipc-mechanism-linux/)
+- [图文详解 Android Binder跨进程通信的原理](https://www.jianshu.com/p/4ee3fd07da14)
+- [DBUS和Binder对比](https://blog.csdn.net/vastyh/article/details/8690175)
