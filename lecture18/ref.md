@@ -17,7 +17,7 @@
 ##### Structure of a FAT Volume
 
 - Boot sector
-- FAT1
+- FAT1
 - FAT2
 - Root directory
 - Other directories and all files
@@ -153,7 +153,7 @@ ZFS is a new kind of filesystem that provides simple administration, transaction
  * Many file system share pool。
  * And share all I/O channel in the pool.
 
-##### FS/Volume Model vs. ZFS
+##### FS/Volume Model vs. ZFS
 
 ![ZFS-pooled-storage](figs/ZFS-pooled-storage.png)
 
@@ -248,7 +248,7 @@ Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 18
     * Checksum-driven combinatorial reconstruction
  * **No special hardware** – ZFS loves cheap disks
 
-##### Dynamic Striping
+##### Dynamic Striping
 
 Automatically distributes load across all devices
 
