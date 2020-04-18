@@ -27,10 +27,10 @@
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
 %% itemize
+Ref:
     \begin{itemize}
         \item Richard McDougall, Jim Mauro, Solaris Internals:Solaris 10 and OpenSolaris Kernel Architecture, 2nd Edition, Prentice Hall, July 10, 2006, ISBN 0-13-148209-2
-        \item \href{http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf}{ZFS: The Last WordIn File Systems}
-        \item \href{https://nasa.cs.nctu.edu.tw/sa/2019/slides/14_ZFS.pdf}{ZFS -The Last Word in Filesystem}
+        \item \href{http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf}{ZFS: The Last Word in File Systems}
     \end{itemize}
 
 \end{frame}
@@ -181,8 +181,8 @@
     \begin{itemize}
         \item No volume
         \item Pooled storage
-        \item Many file system share pool。
-        \item And share all I/O channel in the pool.
+        \item Many file system share pool
+        \item And share all I/O channel in the pool
     \end{itemize}
 \end{frame}
 %----------------------------------------------
@@ -227,7 +227,7 @@
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-io-stack.png}
+    \includegraphics[width=0.7\linewidth]{figs/ZFS-io-stack.png}
   % \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -248,7 +248,7 @@
     \frametitle{ZFS I/O Stack}
 %    \framesubtitle{xxxx}
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-stack.png}
+    \includegraphics[width=0.65\linewidth]{figs/ZFS-stack.png}
   % \caption{xxxx}
     \end{figure}  
 \end{frame}
@@ -267,7 +267,7 @@
     \frametitle{ZFL (ZFS POSIX Layer)}
 %    \framesubtitle{xxxx}
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-zpl.png}
+    \includegraphics[width=0.75\linewidth]{figs/ZFS-zpl.png}
   % \caption{xxxx}
     \end{figure}  
 \end{frame}
@@ -286,7 +286,7 @@
     \frametitle{DMU (Data Management Unit)}
 %    \framesubtitle{xxxx}
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-dmu.png}
+    \includegraphics[width=0.75\linewidth]{figs/ZFS-dmu.png}
   % \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -427,7 +427,7 @@
     \frametitle{Constant-Time Snapshots}
 %    \framesubtitle{xxxx}
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-snapshot2.png}
+    \includegraphics[width=0.6\linewidth]{figs/ZFS-snapshot2.png}
   % \caption{xxxx}
     \end{figure}
 %% itemize
@@ -464,7 +464,7 @@
     \frametitle{End-to-End Checksums}
 %    \framesubtitle{xxxx}
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-checksum.png}
+    \includegraphics[width=0.7\linewidth]{figs/ZFS-checksum.png}
   % \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -500,30 +500,37 @@
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{RAID-Z}
-%    \framesubtitle{xxxx}
-    \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-raidz.png}
-  % \caption{xxxx}
-    \end{figure}
-%% itemize
-    \begin{itemize}
-        \item Dynamic stripe width
+%% columns
+      \begin{columns}
+      \begin{column}{0.4\textwidth}
+%       \framesubtitle{xxxx}
+        \begin{figure}
+        \includegraphics[width=0.8\linewidth]{figs/ZFS-raidz.png}
+      % \caption{xxxx}
+        \end{figure}
+      \end{column}
+      \begin{column}{0.6\textwidth}
+    %% itemize
         \begin{itemize}
-            \item Variable block size: 512 – 128K
-            \item Each logical block is its own stripe
+            \item Dynamic stripe width
+            \begin{itemize}
+                \item Variable block size: 512 – 128K
+                \item Each logical block is its own stripe
+            \end{itemize}
+            \item All writes are full-stripe writes
+            \begin{itemize}
+                \item Eliminates read-modify-write (it's fast)
+                \item Eliminates the RAID-5 write hole(no need for NVRAM)
+            \end{itemize}
+            \item Both single- and double-parity
+            \item Detects and corrects silent data corruption
+            \begin{itemize}
+                \item Checksum-driven combinatorial reconstruction
+            \end{itemize}
+            \item {\color{red}No special hardware} – ZFS loves cheap disks
         \end{itemize}
-        \item All writes are full-stripe writes
-        \begin{itemize}
-            \item Eliminates read-modify-write (it's fast)
-            \item Eliminates the RAID-5 write hole(no need for NVRAM)
-        \end{itemize}
-        \item Both single- and double-parity
-        \item Detects and corrects silent data corruption
-        \begin{itemize}
-            \item Checksum-driven combinatorial reconstruction
-        \end{itemize}
-        \item {\color{red}No special hardware} – ZFS loves cheap disks
-    \end{itemize}
+      \end{column}
+      \end{columns}
 \end{frame}
 %----------------------------------------------
 % ##### RAID-Z
@@ -578,7 +585,7 @@
     \frametitle{Object-Based Storage}
 %    \framesubtitle{xxxx}
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-storage.png}
+    \includegraphics[width=0.7\linewidth]{figs/ZFS-storage.png}
   % \caption{xxxx}
     \end{figure}
 
