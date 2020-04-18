@@ -79,6 +79,7 @@ Below shows all of the folder entries for the file **Thequi~1.fox**, which has a
 ![FAT-filename](figs/FAT-filename.png)
 
 ### 18.2 ext4 fs
+- Log-structured File System介绍 https://zhuanlan.zhihu.com/p/41358013
 - http://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf
 - http://pages.cs.wisc.edu/~remzi/OSTEP/file-lfs.pdf
 - https://pdos.csail.mit.edu/6.828/2018/lec/l-crash.txt
