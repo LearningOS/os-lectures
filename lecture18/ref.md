@@ -109,15 +109,6 @@ ZFS: The Last WordIn File Systems
 https://nasa.cs.nctu.edu.tw/sa/2019/slides/14_ZFS.pdf
 ZFS -The Last Word in Filesystem
 
-https://www.bsdcan.org/2019/schedule/attachments/500_How%20ZFS%20Snapshots%20Really%20Work.pdf
-How ZFS Snapshots Really Work
-
-https://github.com/OpenZFS/zfs
-OpenZFS on Linux and FreeBSD
-
-https://docs.oracle.com/cd/E19253-01/819-5461/index.html
-Oracle Solaris ZFS Administration Guide
-
 #### ZFS overview
 
 ##### What is ZFS？
