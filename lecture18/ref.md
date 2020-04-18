@@ -79,6 +79,8 @@ Below shows all of the folder entries for the file **Thequi~1.fox**, which has a
 ![FAT-filename](figs/FAT-filename.png)
 
 ### 18.2 ext4 fs
+- http://pages.cs.wisc.edu/~remzi/OSTEP/file-journaling.pdf
+- http://pages.cs.wisc.edu/~remzi/OSTEP/file-lfs.pdf
 - https://pdos.csail.mit.edu/6.828/2018/lec/l-crash.txt
 - https://pdos.csail.mit.edu/6.828/2018/lec/l-journal.txt
 - https://pdos.csail.mit.edu/6.828/2018/homework/xv6-new-log.html
