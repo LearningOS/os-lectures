@@ -26,7 +26,28 @@
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
+%% itemize
+    \begin{itemize}
+        \item Richard McDougall, Jim Mauro, Solaris Internals:Solaris 10 and OpenSolaris Kernel Architecture, 2nd Edition, Prentice Hall, July 10, 2006, ISBN 0-13-148209-2
+        \item \href{http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf}{ZFS: The Last WordIn File Systems}
+        \item \href{https://nasa.cs.nctu.edu.tw/sa/2019/slides/14_ZFS.pdf}{ZFS -The Last Word in Filesystem}
+    \end{itemize}
+
 \end{frame}
+% #### Ref
+% 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
+% Richard McDougall, Jim Mauro, Solaris Internals:Solaris 10 and OpenSolaris Kernel Architecture, 2nd Edition, Prentice Hall, July 10, 2006, ISBN 0-13-148209-2
+% 
+% http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf
+% ZFS: The Last WordIn File Systems
+% 
+% https://nasa.cs.nctu.edu.tw/sa/2019/slides/14_ZFS.pdf
+% ZFS -The Last Word in Filesystem
+% 
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
@@ -37,19 +58,21 @@
 \begin{frame}[fragile]
     \frametitle{What is ZFS?}
 %    \framesubtitle{xxxx}
+    ZFS is a new kind of filesystem that provides simple administration, transactional semantics, end-to-end data integrity, and immense scalability .
+
+%% itemize
+    \begin{itemize}
+        \item SPA (Storage Pool Allocator)
+        \item DSL (Dataset and Snapshot Layer)
+        \item DMU (Data Management Layer)
+        \item ZAP (ZFS Attribute Processor)
+        \item ZPL (ZFS Posix layer)
+        \item ZIL (ZFS Intent Log)
+        \item ZVOL (ZFS Volume)
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ### 18.3 Zettabyte File System (ZFS)
-% 
-% #### Ref
-% 
-% Richard McDougall, Jim Mauro, Solaris Internals:Solaris 10 and OpenSolaris Kernel Architecture, 2nd Edition, Prentice Hall, July 10, 2006, ISBN 0-13-148209-2
-% 
-% http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf
-% ZFS: The Last WordIn File Systems
-% 
-% https://nasa.cs.nctu.edu.tw/sa/2019/slides/14_ZFS.pdf
-% ZFS -The Last Word in Filesystem
 % 
 % #### ZFS overview
 % 
@@ -58,6 +81,10 @@
 % Zettabyte File System
 % ZFS is a new kind of filesystem that provides simple administration, transactional semantics, end-to-end data integrity, and immense scalability .
 % 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
 %  * SPA (Storage Pool Allocator)
 %  * DSL (Dataset and Snapshot Layer)
 %  * DMU (Data Management Layer)
@@ -70,10 +97,36 @@
 \begin{frame}[fragile]
     \frametitle{ZFS overview}
 %    \framesubtitle{xxxx}
+%% itemize
+    \begin{itemize}
+        \item Pooled storage
+        \begin{itemize}
+            \item Completely eliminates the antique notion of volumes
+            \item Does for storage what VM did for memory
+        \end{itemize}
+        \item Transactional object system
+        \begin{itemize}
+            \item Always consistent on disk – no fsck, ever
+            \item Universal – file, block, iSCSI, swap ...
+        \end{itemize}
+        \item Provable end-to-end data integrity
+        \begin{itemize}
+            \item Detects and corrects silent data corruption
+            \item Historically considered “too expensive” – no longer true
+        \end{itemize}
+        \item Simple administration
+        \begin{itemize}
+            \item Concisely express your intent
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### ZFS overview
 % 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
 %  * Pooled storage
 %     * Completely eliminates the antique notion of volumes
 %     * Does for storage what VM did for memory
@@ -90,10 +143,29 @@
 \begin{frame}[fragile]
     \frametitle{ZFS Features}
 %    \framesubtitle{xxxx}
+%% itemize
+    \begin{itemize}
+        \item Immense capacity
+        \begin{itemize}
+            \item 128bit
+        \end{itemize}
+        \item Provable data integrity
+        \begin{itemize}
+            \item Detects and corrects silent data corruption
+        \end{itemize}
+        \item Simple administration
+        \begin{itemize}
+            \item a pleasure to use
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### ZFS Features
 % 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
 %  * Immense capacity
 %     * 128bit
 %  * Provable data integrity
@@ -105,10 +177,21 @@
 \begin{frame}[fragile]
     \frametitle{Pooled storage}
 %    \framesubtitle{xxxx}
+%% itemize
+    \begin{itemize}
+        \item No volume
+        \item Pooled storage
+        \item Many file system share pool。
+        \item And share all I/O channel in the pool.
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Pooled storage
 % 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
 %  * No volume
 %  * Pooled storage
 %  * Many file system share pool。
@@ -118,10 +201,20 @@
 \begin{frame}[fragile]
     \frametitle{FS/Volume Model vs. ZFS}
 %    \framesubtitle{xxxx}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-pooled-storage.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### FS/Volume Model vs. ZFS
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-pooled-storage](figs/ZFS-pooled-storage.png)
 % 
 % 
@@ -132,72 +225,136 @@
 \begin{frame}[fragile]
     \frametitle{FS/Volume Interfaces vs. ZFS}
 %    \framesubtitle{xxxx}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-io-stack.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % #### ZFS I/O Stack
 % 
 % ##### FS/Volume Interfaces vs. ZFS
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-io-stack](figs/ZFS-io-stack.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{ZFS I/O Stack}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-stack.png}
+  % \caption{xxxx}
+    \end{figure}  
 \end{frame}
 %----------------------------------------------
 % ##### ZFS I/O Stack
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-stack](figs/ZFS-stack.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{ZFL (ZFS POSIX Layer)}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-zpl.png}
+  % \caption{xxxx}
+    \end{figure}  
 \end{frame}
 %----------------------------------------------
 % ##### ZFL (ZFS POSIX Layer)
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-zpl](figs/ZFS-zpl.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{DMU (Data Management Unit)}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-dmu.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### DMU (Data Management Unit)
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-dmu](figs/ZFS-dmu.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{ARC (Adaptive Replacement Cache)}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-arc.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### ARC (Adaptive Replacement Cache)
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-arc](figs/ZFS-arc.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{ZIO (ZFS I/O Pipeline}
+    \frametitle{ZIO (ZFS I/O Pipeline)}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-zio.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### ZIO (ZFS I/O Pipeline)
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-zio](figs/ZFS-zio.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{VDEV (Virtual Devices)}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-vdev.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### VDEV (Virtual Devices)
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-vdev](figs/ZFS-vdev.png)
 % 
 %----------------------------------------------
@@ -206,6 +363,24 @@
 \begin{frame}[fragile]
     \frametitle{ZFS Data Integrity Model}
 %    \framesubtitle{xxxx}
+%% itemize
+    \begin{itemize}
+        \item Everything is copy-on-write
+        \begin{itemize}
+            \item Never overwrite live data
+            \item On-disk state always valid – no “windows of vulnerability”
+            \item No need for fsck(1M)
+        \end{itemize}
+        \item Everything is transactional
+        \begin{itemize}
+            \item Related changes succeed or fail as a whole
+            \item No need for journaling
+        \end{itemize}
+        \item Everything is checksummed
+        \begin{itemize}
+            \item No silent data corruption
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % #### ZFS Data Integrity Model
@@ -214,6 +389,10 @@
 % 
 % ##### ZFS Data Integrity Model
 % 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
 %  * Everything is copy-on-write
 %     * Never overwrite live data
 %     * On-disk state always valid – no “windows of vulnerability”
@@ -228,22 +407,48 @@
 \begin{frame}[fragile]
     \frametitle{Copy-On-Write Transactions}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-cow.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Copy-On-Write Transactions
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-cow](figs/ZFS-cow.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Constant-Time Snapshots}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-snapshot2.png}
+  % \caption{xxxx}
+    \end{figure}
+%% itemize
+    \begin{itemize}
+        \item At end of TX group, don't free COWed blocks
+        \begin{itemize}
+            \item Actually cheaper to take a snapshot than not!
+        \end{itemize}
+        \item The tricky part:  how do you know when a block is free?
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Constant-Time Snapshots
 % Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf - Page 11
 % http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf P10
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-snapshot](figs/ZFS-snapshot2.png)
 % 
 % At end of TX group, don't free COWed blocks
@@ -258,34 +463,84 @@
 \begin{frame}[fragile]
     \frametitle{End-to-End Checksums}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-checksum.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### End-to-End Checksums
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-checksum](figs/ZFS-checksum.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Self-Healing Data in ZFS}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-self-healing.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Self-Healing Data in ZFS
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-self-healing](figs/ZFS-self-healing.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{RAID-Z}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-raidz.png}
+  % \caption{xxxx}
+    \end{figure}
+%% itemize
+    \begin{itemize}
+        \item Dynamic stripe width
+        \begin{itemize}
+            \item Variable block size: 512 – 128K
+            \item Each logical block is its own stripe
+        \end{itemize}
+        \item All writes are full-stripe writes
+        \begin{itemize}
+            \item Eliminates read-modify-write (it's fast)
+            \item Eliminates the RAID-5 write hole(no need for NVRAM)
+        \end{itemize}
+        \item Both single- and double-parity
+        \item Detects and corrects silent data corruption
+        \begin{itemize}
+            \item Checksum-driven combinatorial reconstruction
+        \end{itemize}
+        \item {\color{red}No special hardware} – ZFS loves cheap disks
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### RAID-Z
 % 
 % Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 18
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-raidz](figs/ZFS-raidz.png)
 % 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
 %  * Dynamic stripe width
 %     * Variable block size: 512 – 128K
 %     * Each logical block is its own stripe
@@ -301,22 +556,41 @@
 \begin{frame}[fragile]
     \frametitle{Dynamic Striping}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-striping.png}
+  % \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Dynamic Striping
 % 
 % Automatically distributes load across all devices
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-striping](figs/ZFS-striping.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Object-Based Storage}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-storage.png}
+  % \caption{xxxx}
+    \end{figure}
+
 \end{frame}
 %----------------------------------------------
 % ##### Object-Based Storage
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-storage](figs/ZFS-storage.png)
 % 
 % 
@@ -325,12 +599,30 @@
 \begin{frame}[fragile]
     \frametitle{Variable Block Size}
 %    \framesubtitle{xxxx}
+%% itemize
+    \begin{itemize}
+        \item No single block size is optimal for everything
+        \begin{itemize}
+            \item Large blocks: less metadata, higher bandwidth
+            \item Small blocks: more space-efficient for small objects
+            \item Record-structured files (e.g. databases) have natural granularity; filesystem must match it to avoid read/modify/write
+        \end{itemize}
+        \item Per-object granularity
+        \begin{itemize}
+            \item A 37k file consumes 37k – no wasted space
+        \end{itemize}
+        \item Enables transparent block-based compression
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Variable Block Size
 % 
 % Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 28
 % 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
 %  * No single block size is optimal for everything
 %     * Large blocks: less metadata, higher bandwidth
 %     * Small blocks: more space-efficient for small objects
@@ -343,14 +635,35 @@
 \begin{frame}[fragile]
     \frametitle{Built-in Compression}
 %    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/ZFS-compression.png}
+  % \caption{xxxx}
+    \end{figure}
+%% itemize
+    \begin{itemize}
+        \item Block-level compression in SPA
+        \item Transparent to all other layers
+        \item Each block compressed independently
+        \item All-zero blocks converted into file holes
+        \item LZJB and GZIP available today; more on the way
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Built-in Compression
 % 
 % Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 29
 % 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
 % ![ZFS-compression](figs/ZFS-compression.png)
 % 
+% %% itemize
+%     \begin{itemize}
+%         \item xx
+%     \end{itemize}
 %  * Block-level compression in SPA
 %  * Transparent to all other layers
 %  * Each block compressed independently
