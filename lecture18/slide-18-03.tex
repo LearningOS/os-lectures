@@ -1,0 +1,246 @@
+\input{../preamble}
+
+%----------------------------------------------------------------------------------------
+% TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第18讲]{第十八讲 ：文件系统实例} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第3节：Zettabyte File System (ZFS)}
+\author{向勇、陈渝} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+  清华大学计算机系 \\ % Your institution for the title page
+  \medskip
+  \textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+\end{frame}
+%----------------------------------------------
+%%  PRESENTATION SLIDES
+%----------------------------------------------
+\section{第3节：Zettabyte File System (ZFS)} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%----------------------------------------------
+\subsection{ZFS overview} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ZFS overview}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
+% ### 18.3 Zettabyte File System (ZFS)
+% 
+% #### Ref
+% 
+% Richard McDougall, Jim Mauro, Solaris Internals:Solaris 10 and OpenSolaris Kernel Architecture, 2nd Edition, Prentice Hall, July 10, 2006, ISBN 0-13-148209-2
+% 
+% http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf
+% ZFS: The Last WordIn File Systems
+% 
+% https://nasa.cs.nctu.edu.tw/sa/2019/slides/14_ZFS.pdf
+% ZFS -The Last Word in Filesystem
+% 
+% #### ZFS overview
+% 
+% ##### What is ZFS？
+% 
+% Zettabyte File System
+% ZFS is a new kind of filesystem that provides simple administration, transactional semantics, end-to-end data integrity, and immense scalability .
+% 
+%  * SPA (Storage Pool Allocator)
+%  * DSL (Dataset and Snapshot Layer)
+%  * DMU (Data Management Layer)
+%  * ZAP (ZFS Attribute Processor)
+%  * ZPL (ZFS Posix layer)
+%  * ZIL (ZFS Intent Log)
+%  * ZVOL (ZFS Volume)
+% 
+% ##### ZFS overview
+% 
+%  * Pooled storage
+%     * Completely eliminates the antique notion of volumes
+%     * Does for storage what VM did for memory
+%  * Transactional object system
+%     * Always consistent on disk – no fsck, ever
+%     * Universal – file, block, iSCSI, swap ...
+%  * Provable end-to-end data integrity
+%     * Detects and corrects silent data corruption
+%     * Historically considered “too expensive” – no longer true
+%  * Simple administration
+%     * Concisely express your intent
+% 
+% ##### ZFS Features
+% 
+%  * Immense capacity
+%     * 128bit
+%  * Provable data integrity
+%     * Detects and corrects silent data corruption
+%  * Simple administration
+%     * a pleasure to use. 
+% 
+% ##### Pooled storage
+% 
+%  * No volume
+%  * Pooled storage
+%  * Many file system share pool。
+%  * And share all I/O channel in the pool.
+% 
+% ##### FS/Volume Model vs. ZFS
+% 
+% ![ZFS-pooled-storage](figs/ZFS-pooled-storage.png)
+% 
+% 
+% 
+%----------------------------------------------
+\subsection{ZFS I/O Stack} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
+% #### ZFS I/O Stack
+% 
+% ##### FS/Volume Interfaces vs. ZFS
+% 
+% ![ZFS-io-stack](figs/ZFS-io-stack.png)
+% 
+% ##### ZFS I/O Stack
+% 
+% ![ZFS-stack](figs/ZFS-stack.png)
+% 
+% ##### ZFL (ZFS POSIX Layer)
+% 
+% ![ZFS-zpl](figs/ZFS-zpl.png)
+% 
+% ##### DMU (Data Management Unit)
+% 
+% ![ZFS-dmu](figs/ZFS-dmu.png)
+% 
+% ##### ARC (Adaptive Replacement Cache)
+% 
+% ![ZFS-arc](figs/ZFS-arc.png)
+% 
+% ##### ZIO (ZFS I/O Pipeline)
+% 
+% ![ZFS-zio](figs/ZFS-zio.png)
+% 
+% ##### VDEV (Virtual Devices)
+% 
+% ![ZFS-vdev](figs/ZFS-vdev.png)
+% 
+%----------------------------------------------
+\subsection{ZFS Data Integrity Model} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ZFS Data Integrity Model}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
+% #### ZFS Data Integrity Model
+% 
+% 
+% 
+% ##### ZFS Data Integrity Model
+% 
+%  * Everything is copy-on-write
+%     * Never overwrite live data
+%     * On-disk state always valid – no “windows of vulnerability”
+%     * No need for fsck(1M)
+%  * Everything is transactional
+%     * Related changes succeed or fail as a whole
+%     * No need for journaling
+%  * Everything is checksummed
+%     * No silent data corruption
+% 
+% ##### Copy-On-Write Transactions
+% 
+% ![ZFS-cow](figs/ZFS-cow.png)
+% 
+% ##### Constant-Time Snapshots
+% Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf - Page 11
+% http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf P10
+% 
+% ![ZFS-snapshot](figs/ZFS-snapshot2.png)
+% 
+% At end of TX group, don't free COWed blocks
+% 
+% Actually cheaper to take a snapshot than not!
+% 
+% The tricky part:  how do you know when a block is free?
+% 
+% 
+% 
+% ##### End-to-End Checksums
+% 
+% ![ZFS-checksum](figs/ZFS-checksum.png)
+% 
+% ##### Self-Healing Data in ZFS
+% 
+% ![ZFS-self-healing](figs/ZFS-self-healing.png)
+% 
+% ##### RAID-Z
+% 
+% Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 18
+% 
+% ![ZFS-raidz](figs/ZFS-raidz.png)
+% 
+%  * Dynamic stripe width
+%     * Variable block size: 512 – 128K
+%     * Each logical block is its own stripe
+%  * All writes are full-stripe writes
+%     * Eliminates read-modify-write (it's fast)
+%     * Eliminates the RAID-5 write hole(no need for NVRAM)
+%  * Both single- and double-parity
+%  * Detects and corrects silent data corruption
+%     * Checksum-driven combinatorial reconstruction
+%  * **No special hardware** – ZFS loves cheap disks
+% 
+% ##### Dynamic Striping
+% 
+% Automatically distributes load across all devices
+% 
+% ![ZFS-striping](figs/ZFS-striping.png)
+% 
+% ##### Object-Based Storage
+% 
+% ![ZFS-storage](figs/ZFS-storage.png)
+% 
+% 
+% 
+% ##### Variable Block Size
+% 
+% Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 28
+% 
+%  * No single block size is optimal for everything
+%     * Large blocks: less metadata, higher bandwidth
+%     * Small blocks: more space-efficient for small objects
+%     * Record-structured files (e.g. databases) have natural granularity; filesystem must match it to avoid read/modify/write
+%  * Per-object granularity
+%     * A 37k file consumes 37k – no wasted space
+%  * Enables transparent block-based compression
+% 
+% ##### Built-in Compression
+% 
+% Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 29
+% 
+% ![ZFS-compression](figs/ZFS-compression.png)
+% 
+%  * Block-level compression in SPA
+%  * Transparent to all other layers
+%  * Each block compressed independently
+%  * All-zero blocks converted into file holes
+%  * LZJB and GZIP available today; more on the way
+%----------------------------------------------
+\end{document}
