@@ -79,6 +79,10 @@ Below shows all of the folder entries for the file **Thequi~1.fox**, which has a
 ![FAT-filename](figs/FAT-filename.png)
 
 ### 18.2 ext4 fs
+- https://pdos.csail.mit.edu/6.828/2018/lec/l-crash.txt
+- https://pdos.csail.mit.edu/6.828/2018/lec/l-journal.txt
+- https://pdos.csail.mit.edu/6.828/2018/homework/xv6-new-log.html
+- https://pdos.csail.mit.edu/6.828/2018/readings/journal-design.pdf
 - 深入理解 ext4 等 Linux 文件系统 https://zhuanlan.zhihu.com/p/44267768
 - ext4 slide https://compas.cs.stonybrook.edu/~nhonarmand/courses/fa14/cse506.2/slides/ext4.pdf
 - ext2/ext3/ext4简介（PPT）http://itindex.net/detail/8288-ext2-ext3-ext4
