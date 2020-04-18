@@ -1,8 +1,7 @@
 ## 第十八讲 文件系统实例
 
 [v1](https://github.com/LearningOS/os-lectures/blob/355c18947ee357239ca441d69dd26c83896abb9b/lecture18/ref.md)
-
-
+[v2]
 ### 	18.1  File Allocation Table (FAT)
 
 #### FAT Volume
@@ -36,10 +35,10 @@
 ##### File Allocation System
 
 The file allocation table contains the following **types** of information about each cluster on the volume (see example below for FAT16):
- * Unused (0x0000)‏
+ * Unused (0x0000)
  * Cluster in use by a file
- * Bad cluster (0xFFF7)‏
- * Last cluster in a file (0xFFF8-0xFFFF)‏
+ * Bad cluster (0xFFF7)
+ * Last cluster in a file (0xFFF8-0xFFFF)
 
 ##### Example of File Allocation Table
 
@@ -52,15 +51,15 @@ The root folder contains an entry for each file and folder on the root. The only
 ##### Folder Entry
 
 The Folder Entry includes the following information:
- * Name (eight-plus-three characters)‏
- * Attribute byte (8 bits worth of information, described later in this section)‏
- * Create time (24 bits)‏
- * Create date (16 bits)‏
- * Last access date (16 bits)‏
- * Last modified time (16 bits)‏
- * Last modified date (16 bits.)‏
- * Starting cluster number in the file allocation table (16 bits)‏
- * File size (32 bits)‏
+ * Name (eight-plus-three characters)
+ * Attribute byte (8 bits worth of information, described later in this section)
+ * Create time (24 bits)
+ * Create date (16 bits)
+ * Last access date (16 bits)
+ * Last modified time (16 bits)
+ * Last modified date (16 bits.)
+ * Starting cluster number in the file allocation table (16 bits)
+ * File size (32 bits)
 
 #### Filenames on FAT Volumes
 
