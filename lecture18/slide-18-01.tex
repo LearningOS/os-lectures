@@ -1,7 +1,7 @@
 \input{../preamble}
 
 %----------------------------------------------------------------------------------------
-%	TITLE PAGE
+% TITLE PAGE
 %----------------------------------------------------------------------------------------
 
 \title[第16讲]{第十八讲 ：文件系统实例} % The short title appears at the bottom of every slide, the full title is only on the title page
@@ -9,9 +9,9 @@
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-	清华大学计算机系 \\ % Your institution for the title page
-	\medskip
-	\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+  清华大学计算机系 \\ % Your institution for the title page
+  \medskip
+  \textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
 }
 \date{\today} % Date, can be changed to a custom date
 
@@ -28,7 +28,7 @@
 
 \end{frame}
 %----------------------------------------------
-%%	PRESENTATION SLIDES
+%%  PRESENTATION SLIDES
 %----------------------------------------------
 \section{第1节：FAT文件系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
@@ -39,10 +39,10 @@
 %    \framesubtitle{xxxx}
 %% itemize
 \begin{itemize}
-    \item A simple file system originally **designed for small disks and simple folder structures**. 
-    \item The FAT file system is named for its method of organization, the **file allocation table**, which resides at the beginning of the volume.
+    \item A simple file system originally {\color{red}designed for small disks and simple folder structures}. 
+    \item The FAT file system is named for its method of organization, the {\color{red}file allocation table}, which resides at the beginning of the volume.
     \item To protect the volume, two copies of the table are kept, in case one becomes damaged.
-    \item **The file allocation tables and the root folder must be stored in a fixed location** so that the files needed to start the system can be correctly located.
+    \item {\color{red}The file allocation tables and the root folder must be stored in a fixed location} so that the files needed to start the system can be correctly located.
 \end{itemize}
 \end{frame}
 %----------------------------------------------
@@ -76,8 +76,8 @@
 
     %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/FAT-volume.png}
-    \caption{xxxx}
+    \includegraphics[width=1.0\linewidth]{figs/FAT-volume.png}
+%   \caption{xxxx}
     \end{figure}
 \end{frame}
 %----------------------------------------------
@@ -94,10 +94,10 @@
 % - Other directories and all files
 % 
 % %% figure
-% 	\begin{figure}
-% 	\includegraphics[width=0.8\linewidth]{test}
-% 	\caption{xxxx}
-% 	\end{figure}
+%   \begin{figure}
+%   \includegraphics[width=0.8\linewidth]{test}
+%   \caption{xxxx}
+%   \end{figure}
 % ![FAT-volume](figs/FAT-volume.png)
 % 
 %----------------------------------------------
@@ -106,9 +106,9 @@
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-	\includegraphics[width=0.8\linewidth]{figs/FAT-version.png}
-%	\caption{xxxx}
-	\end{figure}
+  \includegraphics[width=1.0\linewidth]{figs/FAT-version.png}
+% \caption{xxxx}
+  \end{figure}
 
 %% itemize
     \begin{itemize}
@@ -120,10 +120,10 @@
 % ##### Differences Between FAT Systems
 % 
 % %% figure
-% 	\begin{figure}
-% 	\includegraphics[width=0.8\linewidth]{test}
-% 	\caption{xxxx}
-% 	\end{figure}
+%   \begin{figure}
+%   \includegraphics[width=0.8\linewidth]{test}
+%   \caption{xxxx}
+%   \end{figure}
 % ![FAT-version](figs/FAT-version.png)
 % 
 % %% itemize
@@ -134,12 +134,12 @@
 % - FAT32 drives can contain more than 65,526 clusters and results in more efficient space allocation on the FAT32 drive.
 % 
 %----------------------------------------------
-\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{File Allocation System} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{File Allocation System}
 %    \framesubtitle{xxxx}
-    The file allocation table contains the following **types** of information about each cluster on the volume (see example below for FAT16):
+    The file allocation table contains the following {\color{red}types} of information about each cluster on the volume (see example below for FAT16):
 
 %% itemize
     \begin{itemize}
@@ -170,25 +170,25 @@
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-	\includegraphics[width=0.8\linewidth]{figs/FAT-example.png}
-%	\caption{xxxx}
-	\end{figure}
+  \includegraphics[width=0.9\linewidth]{figs/FAT-example.png}
+% \caption{xxxx}
+  \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Example of File Allocation Table
 % 
 % %% figure
-% 	\begin{figure}
-% 	\includegraphics[width=0.8\linewidth]{test}
-% 	\caption{xxxx}
-% 	\end{figure}
+%   \begin{figure}
+%   \includegraphics[width=0.8\linewidth]{test}
+%   \caption{xxxx}
+%   \end{figure}
 % ![FAT-example](figs/FAT-example.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{FAT Root Folder}
 %    \framesubtitle{xxxx}
-    The root folder contains an entry for each file and folder on the root. The only difference between the root folder and other folders is that **the root folder is on a specified location on the disk and has a fixed size** (512 entries for a hard disk, number of entries on a floppy disk depends on the size of the disk).
+    The root folder contains an entry for each file and folder on the root. The only difference between the root folder and other folders is that {\color{red}the root folder is on a specified location on the disk and has a fixed size} (512 entries for a hard disk, number of entries on a floppy disk depends on the size of the disk).
 
 \end{frame}
 %----------------------------------------------
@@ -198,7 +198,7 @@
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Folder Entry}
 %    \framesubtitle{xxxx}
     The Folder Entry includes the following information:
 
@@ -234,16 +234,16 @@
 %  * File size (32 bits)
 % 
 %----------------------------------------------
-\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{Filenames on FAT Volumes} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Filenames on FAT Volumes}
 %    \framesubtitle{xxxx}
 %% itemize
     \begin{itemize}
-        \item FAT creates an **eight-plus-three name** for the file. In addition to this conventional entry. 
-        \item FAT creates **one or more secondary folder entries** for the file, one for each 13 characters in the **long filename**. Each of these secondary folder entries stores a corresponding part of the long filename in Unicode.
-        \item FAT sets the volume, read-only, system, and hidden **file attribute bits** of the secondary folder entry to mark it as part of a long filename. 
+        \item FAT creates an {\color{red}eight-plus-three name} for the file. In addition to this conventional entry. 
+        \item FAT creates {\color{red}one or more secondary folder entries} for the file, one for each 13 characters in the {\color{red}long filename}. Each of these secondary folder entries stores a corresponding part of the long filename in Unicode.
+        \item FAT sets the volume, read-only, system, and hidden {\color{red}file attribute bits} of the secondary folder entry to mark it as part of a long filename. 
     \end{itemize}
 \end{frame}
 %----------------------------------------------
@@ -263,7 +263,7 @@
 \begin{frame}[fragile]
     \frametitle{Folder Entries for the long filename}
 %    \framesubtitle{xxxx}
-    Below shows all of the folder entries for the file **Thequi~1.fox**, which has a long name of **The quick brown.fox**. The long name is in Unicode, so each character in the name uses two bytes in the folder entry. The **attribute field** for the long name entries has the value **0x0F**. The attribute field for the short name is **0x20**
+    Below shows all of the folder entries for the file {\color{red}Thequi $~$1.fox}, which has a long name of {\color{red}The quick brown.fox}. The long name is in Unicode, so each character in the name uses two bytes in the folder entry. The {\color{red}attribute field} for the long name entries has the value {\color{red}0x0F}. The attribute field for the short name is {\color{red}0x20}.
 \end{frame}
 %----------------------------------------------
 % ##### Folder Entries for the long filename
@@ -272,22 +272,22 @@
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Filenames on FAT Volumes}
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-	\includegraphics[width=0.8\linewidth]{figs/FAT-filename.png}
-%	\caption{xxxx}
-	\end{figure}
+  \includegraphics[width=0.8\linewidth]{figs/FAT-filename.png}
+% \caption{xxxx}
+  \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Filenames on FAT Volumes
 % 
 % %% figure
-% 	\begin{figure}
-% 	\includegraphics[width=0.8\linewidth]{test}
-% 	\caption{xxxx}
-% 	\end{figure}
+%   \begin{figure}
+%   \includegraphics[width=0.8\linewidth]{test}
+%   \caption{xxxx}
+%   \end{figure}
 % ![FAT-filename](figs/FAT-filename.png)
 %----------------------------------------------
 \end{document}
