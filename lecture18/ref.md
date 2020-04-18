@@ -109,20 +109,11 @@ ZFS: The Last WordIn File Systems
 https://nasa.cs.nctu.edu.tw/sa/2019/slides/14_ZFS.pdf
 ZFS -The Last Word in Filesystem
 
-http://www.osdevcon.org/2009/slides/zfs_internals_uli_graef.pdf
-ZFS Internal Structure
-
-http://www.giis.co.in/Zfs_ondiskformat.pdf
-ZFS On-Disk Specification
-
-https://docs.oracle.com/cd/E19253-01/819-5461/6n7ht6r60/index.html
-ZFS Volumes
+https://www.bsdcan.org/2019/schedule/attachments/500_How%20ZFS%20Snapshots%20Really%20Work.pdf
+How ZFS Snapshots Really Work
 
 https://github.com/OpenZFS/zfs
 OpenZFS on Linux and FreeBSD
-
-http://open-zfs.org/wiki/Main_Page
-OpenZFS site - for conference videos and info on other platforms (illumos, OSX, Windows, etc)
 
 https://docs.oracle.com/cd/E19253-01/819-5461/index.html
 Oracle Solaris ZFS Administration Guide
@@ -286,10 +277,7 @@ Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 28
  * No single block size is optimal for everything
     * Large blocks: less metadata, higher bandwidth
     * Small blocks: more space-efficient for small objects
-    * Record-structured files (e.g. databases) have natural granularity;filesystem must match it to avoid read/modify/write
- * Why not arbitrary extents?
-    * Extents don't COW or checksum nicely (too big)
-    * Large blocks suffice to run disks at platter speed
+    * Record-structured files (e.g. databases) have natural granularity; filesystem must match it to avoid read/modify/write
  * Per-object granularity
     * A 37k file consumes 37k – no wasted space
  * Enables transparent block-based compression
@@ -311,21 +299,11 @@ Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 29
 
 #### ref
 
-##### 文档
-
 http://www.cs.ucf.edu/~eurip/papers/sandbergnfs.pdf
 The Sun Network Filesystem: Design, Implementation and Experience
 
 https://searchenterprisedesktop.techtarget.com/definition/Network-File-System
 Network File System (NFS) 
-
-https://web.cs.wpi.edu/~cs4513/b05/week5-dfs.pdf
-Distributed File Systems
-这是一份比较几种分布式文件系统的文档，有一些基本特征的比较。
-
-https://www.researchgate.net/publication/220566486_Distributed_File_Systems_Concepts_and_Examples
-Distributed File Systems: Concepts and Examples
-ACM Computing Surveys, Vol. 22, No. 4, December 1990
 
 http://pages.cs.wisc.edu/~remzi/OSTEP/dist-nfs.pdf
 Sun’s Network File System (NFS)
@@ -336,32 +314,20 @@ The Andrew File System (AFS)
 https://www.openafs.org/
 OpenAFS
 
-##### 幻灯片
 https://web.cs.wpi.edu/~cs3013/c07/lectures/Section10-File_Systems.pdf
 OPERATING SYSTEMS FILE SYSTEMS
-Page 36 - 42
-介绍了NFS的基本概念；
 
 https://web.cs.wpi.edu/~rek/DCS/D04/DFS.pdf
 Distributed File Systems
-描述了分布式文件系统需要解决的问题，比较了AFS和NFS的特征；
 
 http://cse.iitkgp.ac.in/~pallab/dist_sys/Lec-12-DFS.pdf
 Distributed File Systems
-这是一个幻灯片，介绍分布式文件系统要解决的问题，然后介绍了NFS和AFS；
 
 https://www.cs.helsinki.fi/u/jakangas/Teaching/DistSys/DistSys-08f-1.pdf
 Distributed Systems
-这是一个关于分布式系统的幻灯片。
-
-##### NFS & AFS比较
 
 http://www.cs.cmu.edu/~410-s05/lectures/L30_NFSAFS.pdf
 NFS & AFS
-
-http://web.math.jjay.cuny.edu/reports/NFS%26AFS%20File%20Systems.pdf
-Comparison and Evaluation of NFSv3, NFSv4, and AFS Distributed Filesystems
-比较NFS和AFS性能的文章；
 
 #### What is DFS?
 
@@ -374,7 +340,6 @@ A distributed implementation of the classical time-sharing model of a file syste
 
  * A DFS manages set of dispersed storage devices.
  * Overall storage space managed by a DFS is composed of different, remotely located, smaller storage spaces.
- * There is usually a correspondence between constituent storage spaces and sets of files.
 
 ![DFS-example](figs/DFS-example.png)
 
@@ -382,10 +347,10 @@ A distributed implementation of the classical time-sharing model of a file syste
 
 Ref: https://web.cs.wpi.edu/~rek/DCS/D04/DFS.pdf Page 4
 
- * **Service**: software entity running on one or more machines and providing a particular type of function to a priori unknown clients.
+ * **Service**: software entity providing a particular type of function to a priori unknown clients.
  * **Server**: service software running on a single machine.
- * **Client**: process that can invoke a service using a set of operations that forms its client interface.
- * A client interface for a file service is formed by a set of primitive file operations(create, delete, read, write).
+ * **Client**: process that can **invoke a service** using a set of operations that forms its client interface.
+ * Client interface for a file service: a set of primitive file operations(create, delete, read, write).
  * Client interface of a DFS should be transparent, i.e., not distinguish between local and remote files.
 
 #### DFS Issues
@@ -404,23 +369,22 @@ Ref: https://web.cs.wpi.edu/~rek/DCS/D04/DFS.pdf Page 5
 Ref: https://web.cs.wpi.edu/~rek/DCS/D04/DFS.pdf Page 6
 
  * **Naming**: mapping between logical and physical objects.
- * Multilevel mapping: abstraction of a file that hides the details of how and where on the disk the file is actually stored.
- * A transparent DFS hides the location where in the network the file is stored.
- * For a file being replicated in several sites, the mapping returns a set of the locations of this file’s replicas; both the existence of multiple copies and their location are hidden.
+ * **Multilevel mapping**: abstraction of a file that hides the details of how and where on the disk the file is actually stored.
+ * **File replication**: the mapping returns a set of the locations of this file’s replicas; both the existence of multiple copies and their location are hidden.
 
-##### DFS Approaches (Files Access)
+##### Files Access in DFS
 Ref: https://web.cs.wpi.edu/~rek/DCS/D04/DFS.pdf Page 9
  * Computation Migration
     * Remote Service Oriented
     * Caching (Blocks) for Performance
-    * Server Centric Data Management →Simple and Reliable
+    * Server Centric Data Management → Simple and Reliable
     * Ex) NFS
  * Data Migration
     * File Caching Oriented
-    * Cooperative Data Management →Complex but Scalable
+    * Cooperative Data Management → Complex but Scalable
     * Ex) Andrew File System (AFS)
 
-##### Remote File Access (Caching)
+##### Cache of Remote File
 
 Ref: https://web.cs.wpi.edu/~rek/DCS/D04/DFS.pdf Page 10
 
@@ -433,19 +397,19 @@ Reduce network traffic by retaining recently accessed disk blocks in a cache, so
 ##### Stateful File Service
 
  * Mechanism.
-    * Client opens a file.
-    * Server fetches information about the file from its disk, stores it in its memory, and gives the client a connection identifier unique to the client and the open file. 
-    * Identifier is used for subsequent accesses until the session ends. 
-    * Server must reclaim the main-memory space used by clients who are no longer active.
- * Increased performance.
-    * Fewer disk accesses.
-    * Stateful server knows if a file was opened for sequential access and can thus read ahead the next blocks.
+    * Client opens a file
+    * Server fetches information about the file, stores it in its memory, and gives a connection identifier
+    * Identifier is used for subsequent accesses until the session ends
+    * Server must reclaim the main-memory space used by clients
+ * Feature: Increased performance
+    * Fewer disk accesses
+    * If a file was opened for sequential access and can thus read ahead the next blocks
 
 ##### Stateless File Service
 
- * Avoids state information by making each request self-contained.
- * Each request identifies the file and position in the file.
- * No need to establish and terminate a connection by open and close operations.
+ * Avoids state information by making each request self-contained
+ * Each request identifies the file and position in the file
+ * No need to establish and terminate a connection by open and close operations
  * Feature
     * Server failure sand recovery are almost unnoticeable
     * Longer request messages
@@ -454,11 +418,11 @@ Reduce network traffic by retaining recently accessed disk blocks in a cache, so
 ##### File Replication
 
  * Replicas of the same file reside on failure-independent machines.
- * Improves availability and can shorten service time.
+ * Improves availability and can shorten access time.
  * Naming scheme maps a replicated file name to a particular replica.
     * Existence of replicas should be invisible to higher levels. 
     * Replicas must be distinguished from one another by different lower-level names.
- * Updates – replicas of a file denote the same logical entity, and thus an update to any replica must be reflected on all other replicas.
+ * Updates – an update to any replica must be reflected on all other replicas
  * Demand replication – reading a nonlocal replica causes it to be cached locally, thereby generating a new nonprimary replica.
 
 #### Andrew File System (AFS)
@@ -478,7 +442,7 @@ A distributed computing environment under development since 1983 at Carnegie-Mel
 ##### AFS feature
 
  * Dedicated servers, called Vice, present the shared name space to the clients as an homogeneous, identical, and location transparent file hierarchy.
- * Clients are presented with a partitioned space of file names:  a local name spaceand a shared name space.
+ * Clients are presented with a partitioned space of file names:  a local name space and a shared name space.
  * Workstations run the Virtue protocol to communicate with Vice, and are required to have local disks where they store their local name space.
 
 ##### AFS Implementation
@@ -490,13 +454,13 @@ A distributed computing environment under development since 1983 at Carnegie-Mel
 
 #### SUN Network File System (NFS)
 
-##### NFS
+##### SUN Network File System (NFS)
 
 Ref: http://cse.iitkgp.ac.in/~pallab/dist_sys/Lec-12-DFS.pdf Page 23
 
-Sun instead developed an **open protocol** which simply specified the exact message formats that clients and servers would use to communicate.
+NFS is an **open protocol** developed in 1984, which simply specified the exact message formats that clients and servers would use to communicate.
 
- * Sun Network File System (NFS) has become de de facto standard for distributed UNIX file access.
+ * NFS has become **de facto standard** for distributed UNIX file access.
  * Any system may be both a client and server.
  * Basic idea:
     * Remote directory is mounted onto local directory
@@ -512,12 +476,12 @@ Ref: https://web.cs.wpi.edu/~cs3013/c07/lectures/Section10-File_Systems.pdf Page
 
 1. UNIX filesystem layer - does normal open / read / etc. commands.
 2. Virtual file system ( VFS ) layer
-   1. Gives clean layer between user and filesystem.
-   2. Acts as deflection point by using global vnodes.
-   3. Understands the difference between local and remote names.
-   4. Keeps in memory information about what should be deflected (mounted directories) and how to get to these remote directories.
+   a. Gives clean layer between user and filesystem.
+   b. Acts as deflection point by using global vnodes.
+   c. Understands the difference between local and remote names.
+   d. Keeps in memory information about mounted local directories and remote directories.
 3. System call interface layer
-   1. Presents sanitized validated requests in a uniform way to the VFS.
+   * Presents sanitized validated requests in a uniform way to the VFS.
 
 ##### NFS: v-nodes
 Ref: http://cse.iitkgp.ac.in/~pallab/dist_sys/Lec-12-DFS.pdf Page 25
@@ -554,10 +518,44 @@ Ref: https://web.cs.wpi.edu/~cs3013/c07/lectures/Section10-File_Systems.pdf Page
     * Server consistency problems.
     * Good performance.
 
+#### Google File System (GFS)
+
+##### documents
+
+https://pdos.csail.mit.edu/6.824/papers/gfs.pdf
+The Google File System
+SOSP’03
+
+https://zhuanlan.zhihu.com/p/28155582
+Google File System
+
+https://zhuanlan.zhihu.com/p/50825652
+小白带你学习google三篇论文————Google File System
+
+https://zhuanlan.zhihu.com/p/20673524
+硅谷之路9：深入浅出理解GFS
+
+https://zhuanlan.zhihu.com/p/33944479
+Google File System 论文详析
+
+https://zhuanlan.zhihu.com/p/104427782
+[Paper Reading]2003-The Google File System
+
+##### slides
+
+https://www.cs.brandeis.edu/~dilant/WebPage_TA160/The%20Google%20File%20System.pdf
+The Google File System
+
+http://courses.cs.vt.edu/cs5204/fall09-kafura/Presentations/Google-Filesystem.pdf
+Google File System
+
 #### ASF vs. NFS
 
 https://web.cs.wpi.edu/~rek/DCS/D04/DFS.pdf Page 31
 
 ![NFS-AFS-comparison](figs/NFS-AFS-comparison.png)
+
+
+
 
 
