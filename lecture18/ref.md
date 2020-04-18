@@ -91,6 +91,10 @@ Below shows all of the folder entries for the file **Thequi~1.fox**, which has a
 - 【转】深入理解 ext4 等 Linux 文件系统（ Understanding Linux filesystems : ext4 and beyond ）https://ccie.lol/knowledge-base/linux-file-system-ext4/
 - An introduction to Linux's EXT4 filesystem https://opensource.com/article/17/5/introduction-ext4-filesystem
 - 干货！大话EXT4文件系统完整版 https://cloud.tencent.com/developer/article/1551286
+- https://compas.cs.stonybrook.edu/~nhonarmand/courses/fa14/cse506.2/slides/ext4.pdf
+- http://www.linux-kongress.org/2009/slides/ext4+btrfs_jan_kara.pdf
+- https://ext4.wiki.kernel.org/index.php/Publications
+- https://www.usenix.org/sites/default/files/conference/protected-files/fast17_slides_aghayev_0.pdf
 
 ### 18.3 Zettabyte File System (ZFS)
 
