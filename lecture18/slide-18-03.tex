@@ -35,7 +35,7 @@
 \subsection{ZFS overview} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{ZFS overview}
+    \frametitle{What is ZFS?}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -66,6 +66,12 @@
 %  * ZIL (ZFS Intent Log)
 %  * ZVOL (ZFS Volume)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ZFS overview}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### ZFS overview
 % 
 %  * Pooled storage
@@ -80,6 +86,12 @@
 %  * Simple administration
 %     * Concisely express your intent
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ZFS Features}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### ZFS Features
 % 
 %  * Immense capacity
@@ -89,6 +101,12 @@
 %  * Simple administration
 %     * a pleasure to use. 
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Pooled storage}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### Pooled storage
 % 
 %  * No volume
@@ -96,6 +114,12 @@
 %  * Many file system share pool。
 %  * And share all I/O channel in the pool.
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{FS/Volume Model vs. ZFS}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### FS/Volume Model vs. ZFS
 % 
 % ![ZFS-pooled-storage](figs/ZFS-pooled-storage.png)
@@ -106,7 +130,7 @@
 \subsection{ZFS I/O Stack} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{FS/Volume Interfaces vs. ZFS}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -116,26 +140,62 @@
 % 
 % ![ZFS-io-stack](figs/ZFS-io-stack.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ZFS I/O Stack}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### ZFS I/O Stack
 % 
 % ![ZFS-stack](figs/ZFS-stack.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ZFL (ZFS POSIX Layer)}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### ZFL (ZFS POSIX Layer)
 % 
 % ![ZFS-zpl](figs/ZFS-zpl.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{DMU (Data Management Unit)}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### DMU (Data Management Unit)
 % 
 % ![ZFS-dmu](figs/ZFS-dmu.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ARC (Adaptive Replacement Cache)}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### ARC (Adaptive Replacement Cache)
 % 
 % ![ZFS-arc](figs/ZFS-arc.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ZIO (ZFS I/O Pipeline}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### ZIO (ZFS I/O Pipeline)
 % 
 % ![ZFS-zio](figs/ZFS-zio.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{VDEV (Virtual Devices)}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### VDEV (Virtual Devices)
 % 
 % ![ZFS-vdev](figs/ZFS-vdev.png)
@@ -164,10 +224,22 @@
 %  * Everything is checksummed
 %     * No silent data corruption
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Copy-On-Write Transactions}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### Copy-On-Write Transactions
 % 
 % ![ZFS-cow](figs/ZFS-cow.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Constant-Time Snapshots}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### Constant-Time Snapshots
 % Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf - Page 11
 % http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf P10
@@ -182,14 +254,32 @@
 % 
 % 
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{End-to-End Checksums}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### End-to-End Checksums
 % 
 % ![ZFS-checksum](figs/ZFS-checksum.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Self-Healing Data in ZFS}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### Self-Healing Data in ZFS
 % 
 % ![ZFS-self-healing](figs/ZFS-self-healing.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{RAID-Z}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### RAID-Z
 % 
 % Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 18
@@ -207,18 +297,36 @@
 %     * Checksum-driven combinatorial reconstruction
 %  * **No special hardware** – ZFS loves cheap disks
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Dynamic Striping}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### Dynamic Striping
 % 
 % Automatically distributes load across all devices
 % 
 % ![ZFS-striping](figs/ZFS-striping.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Object-Based Storage}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### Object-Based Storage
 % 
 % ![ZFS-storage](figs/ZFS-storage.png)
 % 
 % 
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Variable Block Size}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### Variable Block Size
 % 
 % Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 28
@@ -231,6 +339,12 @@
 %     * A 37k file consumes 37k – no wasted space
 %  * Enables transparent block-based compression
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Built-in Compression}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % ##### Built-in Compression
 % 
 % Ref: http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf Page 29
