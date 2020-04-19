@@ -279,7 +279,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节}
+	\frametitle{细节 -- 支持大容量存储}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	
@@ -290,14 +290,14 @@
 			\includegraphics[width=0.5\textwidth]{ext4-logo}
 			%			\includegraphics[width=0.4\textwidth]{ext4-logo}
 			\begin{itemize}
-				\item EXT4的重要特征：适配大容量存储和快速恢复异常状态
+				\item EXT4的重要特征：支持大容量存储和快速恢复异常状态
 				
 			\end{itemize}
 			
 		\end{column}
 		
 		\begin{column}{.7\textwidth}			
-			EXT4 FS： 适配大容量存储
+			EXT4 FS： 支持大容量存储
 			\includegraphics[width=.8\textwidth]{avatar}
 			\begin{itemize}
 				\item 一部蓝光 8K 3D电影，512GB～1TB
@@ -312,7 +312,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节}
+	\frametitle{细节 -- 支持大容量存储}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	\centering
@@ -322,7 +322,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节}
+	\frametitle{细节 -- 支持大容量存储}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 %		\centering
@@ -363,7 +363,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节}
+	\frametitle{细节 -- 支持大容量存储}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -379,7 +379,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节}
+	\frametitle{细节 -- 支持恢复异常}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -394,7 +394,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节}
+	\frametitle{细节 -- 支持恢复异常}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -431,7 +431,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节}
+	\frametitle{细节 -- 支持恢复异常 -- Crash 场景}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -443,21 +443,368 @@
 	\centering
 	\includegraphics[width=1.\textwidth]{crash-ex-ver2}
 %	\centering
-	\includegraphics[width=.7\textwidth]{crash-ex-iv2}	
+	\includegraphics[width=.8\textwidth]{crash-ex-iv2}	
 	\end{column}
 	\pause
 	\begin{column}{.6\textwidth}			
-			Crash Scenarios
+			Crash 场景
 			\begin{itemize}
 				\item 只有data block (Db) 写入磁盘
 				\item 只有 inode (I[v2])  写入磁盘
 				\item 只有 bitmap (B[v2])  写入磁盘
 				\pause
-				\item 只有inode (I[v2]) 和 bitmap (B[v2])写入磁盘
-				\item 只有 inode (I[v2])和 data block (Db) 写入磁盘
-				\item 只有 bitmap (B[v2])和 data block (Db)  写入磁盘
+				\item inode(I[v2]) 和 bitmap (B[v2])写入磁盘
+				\item inode(I[v2])和 data block(Db)写入磁盘
+				\item bitmap(B[v2])和 data block(Db)写入磁盘
 			\end{itemize}
 			
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常 -- FSCK}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			EXT4: 恢复异常文件系统 for crash-consistency problem
+			
+			\centering
+			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
+			%	\centering
+			\includegraphics[width=.8\textwidth]{crash-ex-iv2}	
+		\end{column}
+%		\pause
+		\begin{column}{.6\textwidth}			
+			解决方法1 ： File System Checker (fsck)
+			\begin{itemize}
+				\item Superblock:文件系统大小大于已分配的块数 \pause
+				\item Free blocks: bitmap v.s. Free blocks \pause
+				\item Inode state/links:有效的类型字段/链接计数 \pause
+				\item Duplicates:两个inode指向同一data  \pause
+				\item Bad blocks:指针显然指向超出其有效范围 \pause
+				\item Directory：“.”和“..”是头两项
+			\end{itemize}
+			\pause
+			\Large 太慢
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常 -- Journaling}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}
+		\begin{column}{.4\textwidth}
+			EXT4: 恢复异常文件系统 for crash-consistency problem
+			
+			\centering
+			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
+			%	\centering
+			\includegraphics[width=.8\textwidth]{crash-ex-iv2}	
+		\end{column}
+		%		\pause
+		\begin{column}{.6\textwidth}			
+			解决方法2 ： 日志 Journaling （Write-Ahead Logging)
+			\begin{itemize}
+				\item 从数据库管理系统的世界中窃取一个想法
+				\item 最早（1987）在Cedar文件系统中出现
+				\item 出现在EXT3/4，JFS，XFS，NTFS等
+			\end{itemize}
+			\pause
+			基本思路
+			\begin{itemize}	
+				\item 更新磁盘时，在覆盖相关结构之前，先写下一点日志（在磁盘上某个设定好的其他位置），以描述要执行的操作。
+			\end{itemize}
+
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常 -- Journaling}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}磁盘可以在内部执行调度并以任何顺序完成小部分的大写入
+		\begin{column}{.5\textwidth}
+			EXT4: 恢复异常文件系统 for crash-consistency problem
+			
+			\centering
+			\includegraphics[width=1.\textwidth]{ext3-journal}
+			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
+			
+			\includegraphics[width=1.\textwidth]{ext3-journal-struct}	
+		\end{column}
+		%		\pause
+		\begin{column}{.5\textwidth}			
+			解决方法2 ： Data Journaling
+			\begin{itemize}
+				\item TxB:transaction 开始
+				\item TxE:transaction 结束
+				\item logical logging:中间3块数据
+			\end{itemize}
+			\pause
+			上述transaction写到磁盘上后,更新磁盘，覆盖相关结构(checkpoint)
+			\begin{itemize}	
+				\item I[V2]
+				\item B[v2]
+				\item Db
+			\end{itemize}
+			
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			EXT4: 恢复异常文件系统 for crash-consistency problem
+			
+			\centering
+			\includegraphics[width=1.\textwidth]{ext3-journal}
+			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
+			
+			\includegraphics[width=1.\textwidth]{ext3-journal-struct}	
+		\end{column}
+		%		\pause
+		\begin{column}{.5\textwidth}			
+		   方法2 ： Data Journaling
+			\begin{itemize}
+				\item TxB:transaction 开始
+				\item TxE:transaction 结束
+				\item logical logging:中间3块数据
+			\end{itemize}
+			\pause
+			上述transaction写到磁盘上后,更新磁盘，覆盖相关结构(checkpoint)
+			\begin{itemize}	
+				\item I[V2]
+				\item B[v2]
+				\item Db
+			\end{itemize}
+			
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			EXT4: 恢复异常文件系统 for crash-consistency problem
+%			\centering
+%			\includegraphics[width=1.\textwidth]{ext3-journal}
+%			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
+			\includegraphics[width=1.\textwidth]{ext3-journal-struct-err}
+			\pause
+			\includegraphics[width=1.\textwidth]{ext3-journal-write}
+			\includegraphics[width=1.\textwidth]{ext3-journal-commit}
+		\end{column}
+		%		\pause
+		\begin{column}{.5\textwidth}			
+			方法2 ： Data Journaling
+			\begin{itemize}
+				\item  Journal write
+				\item  Journal commit
+				\item  Checkpoint
+			\end{itemize}
+			\pause
+			恢复(Recovery):在此更新序列期间的任何时间都可能发生崩溃。
+			\begin{itemize}	
+				\item 如果崩溃发生在将事务安全地写入日志之前
+				\item 如果崩溃是在事务提交到日志之后但在检查点完成之前发生
+
+			\end{itemize}
+			\pause
+			\Large 太多写，慢！
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			EXT4: 恢复异常文件系统 for crash-consistency problem
+			%			\centering
+			%			\includegraphics[width=1.\textwidth]{ext3-journal}
+			%			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
+%			\includegraphics[width=1.\textwidth]{ext3-journal-struct-err}
+%			\pause
+			\includegraphics[width=1.\textwidth]{ext3-journal-commit}
+			\includegraphics[width=1.\textwidth]{ext3-journal-batch}
+			\includegraphics[width=1.\textwidth]{ext3-journal-superblock}
+		\end{column}
+		%		\pause
+		\begin{column}{.5\textwidth}			
+			方法2 ： Data Journaling: 提高速度
+			\begin{itemize}
+				\item  批处理日志更新
+				\item  使日志有限：循环日志
+				\item 日志超级块 journal	superblock
+			\end{itemize}
+			\pause
+			新的更新过程
+			\begin{itemize}	
+				\item Journal write
+				\item Journal commit
+				\item Checkpoint
+				\item Free:一段时间后，通过更新日记帐超级块将交易记录标记为空闲
+				
+			\end{itemize}
+
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常 -- Metadata Journaling}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			EXT4: 恢复异常文件系统 for crash-consistency problem
+			%			\centering
+			%			\includegraphics[width=1.\textwidth]{ext3-journal}
+			%			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
+			%			\includegraphics[width=1.\textwidth]{ext3-journal-struct-err}
+			%			\pause
+			\includegraphics[width=1.\textwidth]{ext3-journal-commit}
+			\includegraphics[width=1.\textwidth]{ext3-journal-metadata}
+			\includegraphics[width=1.\textwidth]{ext3-journal-batch}
+			\includegraphics[width=1.\textwidth]{ext3-journal-superblock}
+		\end{column}
+		%		\pause
+		\begin{column}{.5\textwidth}			
+			方法2 ： Metadata Journaling: 进一步提高速度
+			\begin{itemize}
+				\item  我们什么时候应该将数据块Db写入磁盘？ \pause
+				\item 事实证明，数据写入的顺序对于仅元数据的日记记录确实很重要。
+				\item  如果在事务（包含I [v2]和B [v2]）完成后将 Db写入磁盘，这样有问题吗？
+			\end{itemize}
+%			\pause
+%			新的更新过程
+%			\begin{itemize}	
+%				\item Data write
+%				\item Journal metadata write
+%				\item Journal commit
+%				\item Checkpoint metadata
+%				\item Free
+%				
+%			\end{itemize}
+%			通过强制首先写入数据，文件系统可以保证指针永远不会指向垃圾数据。
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常 -- Metadata Journaling}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			EXT4: 恢复异常文件系统 for crash-consistency problem
+			%			\centering
+			%			\includegraphics[width=1.\textwidth]{ext3-journal}
+			%			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
+			%			\includegraphics[width=1.\textwidth]{ext3-journal-struct-err}
+			%			\pause
+			\includegraphics[width=1.\textwidth]{ext3-journal-commit}
+			\includegraphics[width=1.\textwidth]{ext3-journal-metadata}
+			\includegraphics[width=1.\textwidth]{ext3-journal-batch}
+			\includegraphics[width=1.\textwidth]{ext3-journal-superblock}
+		\end{column}
+		%		\pause
+		\begin{column}{.5\textwidth}			
+			方法2 ： Metadata Journaling: 进一步提高速度 \\
+%			\begin{itemize}
+%				\item  我们什么时候应该将数据块Db写入磁盘？ \pause
+%				\item 事实证明，数据写入的顺序对于仅元数据的日记记录确实很重要。
+%				\item  如果在事务（包含I [v2]和B [v2]）完成后将 Db写入磁盘，这样有问题吗？
+%			\end{itemize}
+%			\pause
+			新的更新过程
+			\begin{itemize}	
+				\item Data write
+				\item Journal metadata write
+				\item Journal commit
+				\item Checkpoint metadata
+				\item Free
+				
+			\end{itemize}
+			通过强制首先写入数据，文件系统可以保证指针永远不会指向垃圾数据。
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+
+
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{细节 -- 支持恢复异常 -- Metadata Journaling}
+	%    \framesubtitle{xxxx}
+	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
+	%		\centering
+	%	\Large
+	\begin{columns}[t]
+		\begin{column}{.5\textwidth}
+			\centering
+			Data Journaling时间线
+			\includegraphics[width=1.\textwidth]{ext3-journal-data-timeline}
+
+
+		\end{column}
+		%		\pause
+		\begin{column}{.5\textwidth}	
+			\centering
+			Metadata Journaling时间线		
+			\includegraphics[width=1.\textwidth]{ext3-journal-metadata-timeline}
 		\end{column}
 	\end{columns}
 	
