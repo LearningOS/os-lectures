@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第18讲]{第十八讲 ：文件系统实例} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第1节：EXT4文件系统}
+\subtitle{第2节：EXT4文件系统}
 \author{向勇、陈渝} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -50,7 +50,7 @@
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
-		
+		把
 		  	\begin{block}{Linux文件系统历史}
 		  	尽管EXT[1-4]文件系统家族是为Linux编写的，但它的根源是Minix操作系统和Minix文件系统，它们早于Linux大约五年，于1987年首次发布。如果我们回顾一下EXT文件系统家族历史和技术从其Minix根源的演变，了解EXT4文件系统要容易得多。
 		  \end{block}
@@ -77,7 +77,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			\includegraphics[width=0.8\textwidth]{ext-fs-layout}
 	
 			\begin{itemize}
-				\item Linus Torvalds在编写原始的Linux内核时，他需要一个文件系统，但是不想编写一个文件系统。
+				\item Linus Torvalds刚开始编写Linux内核时，他需要一个文件系统，但是不想编写一个文件系统。
 				\item 拿来主义：直接采用Andrew S. Tanenbaum编写Minix文件系统
 			\end{itemize}
 		
@@ -338,7 +338,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节}
+	\frametitle{细节 -- 支持大容量存储}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -443,6 +443,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 	EXT4: 恢复异常文件系统 for crash-consistency problem
 	
 	\centering
+	\includegraphics[width=1.\textwidth]{crash-ex}
 	\includegraphics[width=1.\textwidth]{crash-ex-ver2}
 %	\centering
 	\includegraphics[width=.8\textwidth]{crash-ex-iv2}	
@@ -478,6 +479,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			EXT4: 恢复异常文件系统 for crash-consistency problem
 			
 			\centering
+			\includegraphics[width=1.\textwidth]{crash-ex}
 			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
 			%	\centering
 			\includegraphics[width=.8\textwidth]{crash-ex-iv2}	
@@ -512,6 +514,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			EXT4: 恢复异常文件系统 for crash-consistency problem
 			
 			\centering
+			\includegraphics[width=1.\textwidth]{crash-ex}
 			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
 			%	\centering
 			\includegraphics[width=.8\textwidth]{crash-ex-iv2}	
@@ -538,12 +541,12 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Journaling}
+	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
 	%	\Large
-	\begin{columns}磁盘可以在内部执行调度并以任何顺序完成小部分的大写入
+	\begin{columns}
 		\begin{column}{.5\textwidth}
 			EXT4: 恢复异常文件系统 for crash-consistency problem
 			
@@ -555,7 +558,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 		\end{column}
 		%		\pause
 		\begin{column}{.5\textwidth}			
-			解决方法2 ： Data Journaling
+			方法2 ： Data Journaling
 			\begin{itemize}
 				\item TxB:transaction 开始
 				\item TxE:transaction 结束
@@ -615,7 +618,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常}
+	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -655,7 +658,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常}
+	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
