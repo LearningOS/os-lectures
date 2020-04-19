@@ -26,6 +26,7 @@
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
+\pause
 %% itemize
 Ref:
     \begin{itemize}
@@ -59,16 +60,29 @@ Ref:
     \frametitle{What is ZFS?}
 %    \framesubtitle{xxxx}
     ZFS is a new kind of filesystem that provides simple administration, transactional semantics, end-to-end data integrity, and immense scalability .
+    \pause
 
-%% itemize
+    %% itemize
     \begin{itemize}
-        \item SPA (Storage Pool Allocator)
-        \item DSL (Dataset and Snapshot Layer)
-        \item DMU (Data Management Layer)
-        \item ZAP (ZFS Attribute Processor)
-        \item ZPL (ZFS Posix layer)
-        \item ZIL (ZFS Intent Log)
-        \item ZVOL (ZFS Volume)
+        \item Pooled storage
+        \begin{itemize}
+            \item Completely eliminates the antique notion of volumes
+            \item Does for storage what VM did for memory
+        \end{itemize} \pause
+        \item Transactional object system
+        \begin{itemize}
+            \item Always consistent on disk – no fsck, ever
+            \item Universal – file, block, iSCSI, swap ...
+        \end{itemize} \pause
+        \item Provable end-to-end data integrity
+        \begin{itemize}
+            \item Detects and corrects silent data corruption
+            \item Historically considered “too expensive” – no longer true
+        \end{itemize} \pause
+        \item Simple administration
+        \begin{itemize}
+            \item Concisely express your intent
+        \end{itemize}
     \end{itemize}
 \end{frame}
 %----------------------------------------------
@@ -93,34 +107,6 @@ Ref:
 %  * ZIL (ZFS Intent Log)
 %  * ZVOL (ZFS Volume)
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{ZFS overview}
-%    \framesubtitle{xxxx}
-%% itemize
-    \begin{itemize}
-        \item Pooled storage
-        \begin{itemize}
-            \item Completely eliminates the antique notion of volumes
-            \item Does for storage what VM did for memory
-        \end{itemize}
-        \item Transactional object system
-        \begin{itemize}
-            \item Always consistent on disk – no fsck, ever
-            \item Universal – file, block, iSCSI, swap ...
-        \end{itemize}
-        \item Provable end-to-end data integrity
-        \begin{itemize}
-            \item Detects and corrects silent data corruption
-            \item Historically considered “too expensive” – no longer true
-        \end{itemize}
-        \item Simple administration
-        \begin{itemize}
-            \item Concisely express your intent
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-%----------------------------------------------
 % ##### ZFS overview
 % 
 % %% itemize
@@ -181,7 +167,7 @@ Ref:
     \begin{itemize}
         \item No volume
         \item Pooled storage
-        \item Many file system share pool
+        \item Many file systems share pool
         \item And share all I/O channel in the pool
     \end{itemize}
 \end{frame}
@@ -196,6 +182,27 @@ Ref:
 %  * Pooled storage
 %  * Many file system share pool。
 %  * And share all I/O channel in the pool.
+% 
+%----------------------------------------------
+\subsection{ZFS I/O Stack} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{ZFS I/O Stack}
+%    \framesubtitle{xxxx}
+    \begin{figure}
+    \includegraphics[width=0.65\linewidth]{figs/ZFS-stack.png}
+  % \caption{xxxx}
+    \end{figure}  
+\end{frame}
+%----------------------------------------------
+% ##### ZFS I/O Stack
+% 
+% %% figure
+% 	\begin{figure}
+% 	\includegraphics[width=0.8\linewidth]{test}
+% %	\caption{xxxx}
+% 	\end{figure}
+% ![ZFS-stack](figs/ZFS-stack.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -220,8 +227,6 @@ Ref:
 % 
 % 
 %----------------------------------------------
-\subsection{ZFS I/O Stack} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{FS/Volume Interfaces vs. ZFS}
 %    \framesubtitle{xxxx}
@@ -242,25 +247,6 @@ Ref:
 % %	\caption{xxxx}
 % 	\end{figure}
 % ![ZFS-io-stack](figs/ZFS-io-stack.png)
-% 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{ZFS I/O Stack}
-%    \framesubtitle{xxxx}
-    \begin{figure}
-    \includegraphics[width=0.65\linewidth]{figs/ZFS-stack.png}
-  % \caption{xxxx}
-    \end{figure}  
-\end{frame}
-%----------------------------------------------
-% ##### ZFS I/O Stack
-% 
-% %% figure
-% 	\begin{figure}
-% 	\includegraphics[width=0.8\linewidth]{test}
-% %	\caption{xxxx}
-% 	\end{figure}
-% ![ZFS-stack](figs/ZFS-stack.png)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -324,7 +310,7 @@ Ref:
     \frametitle{ZIO (ZFS I/O Pipeline)}
 %    \framesubtitle{xxxx}
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/ZFS-zio.png}
+    \includegraphics[width=0.85\linewidth]{figs/ZFS-zio.png}
   % \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -370,12 +356,12 @@ Ref:
             \item Never overwrite live data
             \item On-disk state always valid – no “windows of vulnerability”
             \item No need for fsck(1M)
-        \end{itemize}
+        \end{itemize} \pause
         \item Everything is transactional
         \begin{itemize}
             \item Related changes succeed or fail as a whole
             \item No need for journaling
-        \end{itemize}
+        \end{itemize} \pause
         \item Everything is checksummed
         \begin{itemize}
             \item No silent data corruption
@@ -514,20 +500,20 @@ Ref:
         \begin{itemize}
             \item Dynamic stripe width
             \begin{itemize}
-                \item Variable block size: 512 – 128K
+                \item Variable block size: 512–128K
                 \item Each logical block is its own stripe
-            \end{itemize}
+            \end{itemize} \pause
             \item All writes are full-stripe writes
             \begin{itemize}
                 \item Eliminates read-modify-write (it's fast)
                 \item Eliminates the RAID-5 write hole(no need for NVRAM)
-            \end{itemize}
-            \item Both single- and double-parity
+            \end{itemize} \pause
+            \item Both single and double parity
             \item Detects and corrects silent data corruption
             \begin{itemize}
                 \item Checksum-driven combinatorial reconstruction
-            \end{itemize}
-            \item {\color{red}No special hardware} – ZFS loves cheap disks
+            \end{itemize} \pause
+            \item {\color{red}No special hardware}–ZFS loves cheap disks
         \end{itemize}
       \end{column}
       \end{columns}
@@ -613,7 +599,7 @@ Ref:
             \item Large blocks: less metadata, higher bandwidth
             \item Small blocks: more space-efficient for small objects
             \item Record-structured files (e.g. databases) have natural granularity; filesystem must match it to avoid read/modify/write
-        \end{itemize}
+        \end{itemize} \pause
         \item Per-object granularity
         \begin{itemize}
             \item A 37k file consumes 37k – no wasted space
@@ -649,7 +635,7 @@ Ref:
 %% itemize
     \begin{itemize}
         \item Block-level compression in SPA
-        \item Transparent to all other layers
+        \item Transparent to all other layers \pause
         \item Each block compressed independently
         \item All-zero blocks converted into file holes
         \item LZJB and GZIP available today; more on the way
