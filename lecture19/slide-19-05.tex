@@ -44,6 +44,11 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Linux I/O Architecture}
 %    \framesubtitle{xxxx}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/io-architecture.png}
+  %  \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % #### Linux I/O Architecture
@@ -56,6 +61,11 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Block Driver}
 %    \framesubtitle{xxxx}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/block-driver.png}
+  %  \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Block Driver
@@ -66,6 +76,11 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Network Driver}
 %    \framesubtitle{xxxx}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/network-driver.png}
+  %  \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Network Driver
@@ -78,6 +93,11 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Device Driver interface}
 %    \framesubtitle{xxxx}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/driver-interface.png}
+  %  \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % #### Device Driver
@@ -90,6 +110,11 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Interface between a Device Driver and Linux Kernel}
 %    \framesubtitle{xxxx}
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/kernel-interface.png}
+  %  \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Interface between a Device Driver and Linux Kernel
@@ -100,6 +125,16 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Device Driver Implementation}
 %    \framesubtitle{xxxx}
+Assuming that your device name is xxxx
+    \begin{itemize}
+        \item xxxx_init() initialize the device when OS is booted
+        \item xxxx_open() open a device 
+        \item xxxx_read() read from kernel memory 
+        \item xxxx_write() write 
+        \item xxxx_release() clean-up (close)
+        \item init_module()
+        \item cleanup_module()
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Device Driver Implementation
@@ -117,6 +152,24 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Kernel Support Functions}
 %    \framesubtitle{xxxx}
+    \begin{itemize}
+        \item I/O ports reservations
+        \begin{itemize}
+            \item request_region()
+        \end{itemize}
+        \item Memory Allocations   
+        \begin{itemize}
+            \item kmalloc(), vmalloc(), get_free_page()
+        \end{itemize}
+        \item Interrupt Handler Registration
+        \begin{itemize}
+            \item request_irq()
+        \end{itemize}
+        \item Data Transfer between User/Kernel
+        \begin{itemize}
+            \item memcpy_fromfs()
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Kernel Support Functions
@@ -136,6 +189,15 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{API requirements}
 %    \framesubtitle{xxxx}
+    \begin{itemize}
+        \item Driver functions return positive ints on success, negative ints on failure
+        \item Kernel won’t call non-blocking I/O functions if previous request still pending
+        \item Every kernel function that calls kmalloc (GFP_KERNEL) should be reentrant
+        \item Common Mistakes
+        \begin{itemize}
+            \item Locking, Interrupt time, resource allocation
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % #### Device Driver Programming
@@ -154,6 +216,21 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Locking}
 %    \framesubtitle{xxxx}
+    \begin{itemize}
+        \item Four kinds of locks in kernel
+        \begin{itemize}
+            \item Spin locks and read-write locks
+            \item Interrupt enable/disable
+            \begin{itemize}
+                \item Sometimes combined, e.g., spin_lock_irq
+            \end{itemize}
+            \item Whole kernel lock
+        \end{itemize}
+        \item Locks are used all over the place
+        \begin{itemize}
+            \item Are they used correctly?  consistently?
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Locking
@@ -169,6 +246,14 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Interrupt Time}
 %    \framesubtitle{xxxx}
+When in_interrupt is true, code cannot
+    \begin{itemize}
+        \item Access current
+        \item Call the scheduler (may sleep)
+        \item Call kmalloc(GFP_KERNEL) (may sleep)
+        \item Copy to/from user-space (may sleep)
+        \item more?
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Interrupt Time
@@ -184,6 +269,19 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Resource Allocation}
 %    \framesubtitle{xxxx}
+    \begin{itemize}
+        \item Drivers get and release system resources
+        \begin{itemize}
+            \item Memory
+            \item IRQs
+            \item module numbers (maybe)
+            \item space for their code (mod usage count)
+        \end{itemize}
+        \item Are the resources handled correctly?
+        \begin{itemize}
+            \item Leaks lead to instability -- reboot to reclaim
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 %----------------------------------------------
 % ##### Resource Allocation
