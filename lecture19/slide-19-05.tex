@@ -128,12 +128,12 @@ Ref:
 Assuming that your device name is xxxx
     \begin{itemize}
         \item xxxx\_init() initialize the device when OS is booted
+        \item init\_module()
+        \item cleanup\_module() \pause
         \item xxxx\_open() open a device 
         \item xxxx\_read() read from kernel memory 
         \item xxxx\_write() write 
         \item xxxx\_release() clean-up (close)
-        \item init\_module()
-        \item cleanup\_module()
     \end{itemize}
 \end{frame}
 %----------------------------------------------
@@ -157,14 +157,14 @@ Assuming that your device name is xxxx
         \begin{itemize}
             \item request\_region()
         \end{itemize}
-        \item Memory Allocations   
-        \begin{itemize}
-            \item kmalloc(), vmalloc(), get\_free\_page()
-        \end{itemize}
         \item Interrupt Handler Registration
         \begin{itemize}
             \item request\_irq()
-        \end{itemize}
+        \end{itemize} \pause
+        \item Memory Allocations   
+        \begin{itemize}
+            \item kmalloc(), vmalloc(), get\_free\_page()
+        \end{itemize} \pause
         \item Data Transfer between User/Kernel
         \begin{itemize}
             \item memcpy\_fromfs()
@@ -192,7 +192,7 @@ Assuming that your device name is xxxx
     \begin{itemize}
         \item Driver functions return positive ints on success, negative ints on failure
         \item Kernel won’t call non-blocking I/O functions if previous request still pending
-        \item Every kernel function that calls kmalloc() should be reentrant
+        \item Every kernel function that calls kmalloc() should be reentrant \pause
         \item Common Mistakes
         \begin{itemize}
             \item Locking, Interrupt time, resource allocation
@@ -225,7 +225,7 @@ Assuming that your device name is xxxx
                 \item Sometimes combined, e.g., spin\_lock\_irq
             \end{itemize}
             \item Whole kernel lock
-        \end{itemize}
+        \end{itemize} \pause
         \item Locks are used all over the place
         \begin{itemize}
             \item Are they used correctly?  consistently?
@@ -246,7 +246,7 @@ Assuming that your device name is xxxx
 \begin{frame}[fragile]
     \frametitle{Interrupt Time}
 %    \framesubtitle{xxxx}
-When in\_interrupt is true, code cannot
+When in\_interrupt is true, code cannot \pause
     \begin{itemize}
         \item Access current
         \item Call the scheduler (may sleep)
@@ -276,7 +276,7 @@ When in\_interrupt is true, code cannot
             \item IRQs
             \item module numbers (maybe)
             \item space for their code (mod usage count)
-        \end{itemize}
+        \end{itemize} \pause
         \item Are the resources handled correctly?
         \begin{itemize}
             \item Leaks lead to instability -- reboot to reclaim
