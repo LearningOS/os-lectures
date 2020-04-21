@@ -1,11 +1,12 @@
 ## 19.5 Linux I/O子系统
 
-[v1]
+[v1](https://github.com/LearningOS/os-lectures/blob/c4b987ce66a217941f7427d06985ec0def4c0073/lecture19/ref.md)
 
 ### ref
 
 20140504-lecture19-io-instances-usb.pptx
 
+http://osq.cs.berkeley.edu/public/JFoster-Drivers.ppt
 JFoster-Drivers.ppt
 Linux Device Drivers Overview
 
