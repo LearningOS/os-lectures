@@ -127,13 +127,13 @@ Ref:
 %    \framesubtitle{xxxx}
 Assuming that your device name is xxxx
     \begin{itemize}
-        \item xxxx_init() initialize the device when OS is booted
-        \item xxxx_open() open a device 
-        \item xxxx_read() read from kernel memory 
-        \item xxxx_write() write 
-        \item xxxx_release() clean-up (close)
-        \item init_module()
-        \item cleanup_module()
+        \item xxxx\_init() initialize the device when OS is booted
+        \item xxxx\_open() open a device 
+        \item xxxx\_read() read from kernel memory 
+        \item xxxx\_write() write 
+        \item xxxx\_release() clean-up (close)
+        \item init\_module()
+        \item cleanup\_module()
     \end{itemize}
 \end{frame}
 %----------------------------------------------
@@ -155,19 +155,19 @@ Assuming that your device name is xxxx
     \begin{itemize}
         \item I/O ports reservations
         \begin{itemize}
-            \item request_region()
+            \item request\_region()
         \end{itemize}
         \item Memory Allocations   
         \begin{itemize}
-            \item kmalloc(), vmalloc(), get_free_page()
+            \item kmalloc(), vmalloc(), get\_free\_page()
         \end{itemize}
         \item Interrupt Handler Registration
         \begin{itemize}
-            \item request_irq()
+            \item request\_irq()
         \end{itemize}
         \item Data Transfer between User/Kernel
         \begin{itemize}
-            \item memcpy_fromfs()
+            \item memcpy\_fromfs()
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -192,7 +192,7 @@ Assuming that your device name is xxxx
     \begin{itemize}
         \item Driver functions return positive ints on success, negative ints on failure
         \item Kernel won’t call non-blocking I/O functions if previous request still pending
-        \item Every kernel function that calls kmalloc (GFP_KERNEL) should be reentrant
+        \item Every kernel function that calls kmalloc() should be reentrant
         \item Common Mistakes
         \begin{itemize}
             \item Locking, Interrupt time, resource allocation
@@ -222,7 +222,7 @@ Assuming that your device name is xxxx
             \item Spin locks and read-write locks
             \item Interrupt enable/disable
             \begin{itemize}
-                \item Sometimes combined, e.g., spin_lock_irq
+                \item Sometimes combined, e.g., spin\_lock\_irq
             \end{itemize}
             \item Whole kernel lock
         \end{itemize}
@@ -246,11 +246,11 @@ Assuming that your device name is xxxx
 \begin{frame}[fragile]
     \frametitle{Interrupt Time}
 %    \framesubtitle{xxxx}
-When in_interrupt is true, code cannot
+When in\_interrupt is true, code cannot
     \begin{itemize}
         \item Access current
         \item Call the scheduler (may sleep)
-        \item Call kmalloc(GFP_KERNEL) (may sleep)
+        \item Call kmalloc() (may sleep)
         \item Copy to/from user-space (may sleep)
         \item more?
     \end{itemize}
