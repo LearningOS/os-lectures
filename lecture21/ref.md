@@ -1,141 +1,126 @@
-## 20200430-第二十一讲内容准备
+## 第二十一讲 异步编程(Asynchronous Programming)
 
 [v1](https://github.com/LearningOS/os-lectures/blob/13a92296aa1a93c0fc54b244539a4f21791d52ac/lecture21/ref.md)
 
-2020春,操作系统课,课堂内容,准备
+[v2]
 
-### 结论
+### ref
 
-讲课内容基本按两个参考文献的内容来组织。
-https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/
+https://cfsamson.github.io/books-futures-explained/
 https://github.com/cfsamson/books-futures-explained
 关于异步的思路很清楚；
 
 https://os.phil-opp.com/async-await/#futures-in-rust
 有两个插图很好；
 
-### 调研
+### Background Information
+ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#some-background-information
 
-deadlock async rust
 
-multithreaded `Future` executor
+#### Multitasking
 
-https://github.com/fede1024/rust-scheduled-executor
-Single and multi-threaded task scheduler
+参考： https://cfsamson.github.io/book-exploring-async-basics/2_async_history.html#non-preemptive-multitasking
 
-https://zhuanlan.zhihu.com/p/66028983
-Rust Async: 标准库futures api解析
+**Non-Preemptive multitasking**
+- The programmer `yielded` control to the OS
+- Every bug out there could halt the entire system
+- Windows 95
 
-### 讨论
+**Preemptive multitasking**
+- OS can stop the execution of a process, do something else, and switch back
+- OS is responsible for scheduling tasks
 
-#### 函数指针的安全使用
-https://cfsamson.github.io/books-futures-explained/2_waker_context.html
-基于这里的描述，我可以认为“在rust中可以安全地使用函数指针”吗？
+#### Kernel-supported Threads
+ref: https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads
+https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system
 
-函数指针一直可以是safe的
-核心是所有extern fn都是 unsafe 的
+**Advantages:**
 
-然后 fn(A)->B 和 unsafe fn(A)->B 是两个不一样的类型
-所以传递函数指针一直都很safe，但是只要出现调用就得unsafe
-前面说的这段代码用了函数指针的调用，只是不是外部定义的。所以是安全的。
+- Simple
+- Easy to use
+- Switching between tasks is reasonably fast
+- You get parallelism for free
 
-#### 外部函数的安全问题
+**Drawbacks:**
 
-一个问题，在假定rCore的内核是安全的。然后用可加载内核模块写了个rust的FS，在rCore中引用它。能保证它是安全的吗？
+- OS level threads come with a rather large stack.
+- There are a lot of syscalls involved.
+- Might not be an option on some systems
 
-Rust 链接 Rust 模块，不过 FFI 的话，现在方法应该只有静态链接
-如果要做动态链接的内核模块，估计还得写成 FFI 那种，这样跨 FFI 边界就是 C ABI 了
-这个时候可能还得 unsafe
+Example:
 
-两边都是rust安全的模块，可以不用FFI而实现动态链接吗？直观感觉，应该是可能的。
-假定在rCore中对FS使用固定的ABI，这时动态加载内核模块，应该能rust安全。能确认吗？
-这是写可加载内核模块必须的，应该也是rust安全关心的。如果可能，找找解决方案。
+- [Using OS threads in Rust](https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system)
 
-#### 没有FFI的动态链接
-
-主要问题是Rust lang team故意没有固定 ABI
-他们的理由好象是为了方便以后语言功能的改动
-一方面，有没有办法指挥编译器暴露特定的符号
-另一方面，因为 Rust 里面没有“声明”这么回事儿，所以不知道有没有办法用某个接口，但是不把接口的实现包含在输出的object里？
-
-暴露函数可以用no_mangle
-不过由于abi不固定可能还是需要暴露C接口
-我觉得可能比较靠谱的，能做成的
-是模块分发的时候同时包含源码和 rlib
-然后 OS 内核内嵌一个编译器，小一点的，只做 typecheck
-好像 rlib 里面就包含接口信息了
-但是这个链接就比.so 之类的的链接复杂多了
-虽然abi可能会变但是同一天的toolchain不会变，这样就不需要暴露c接口了
-直接提供rlib
-缺点是如果toolchain升级，所有程序都要重新编译
-
-### 背景
-
-#### 抢先式和非抢先式调度
-
-参考： https://cfsamson.github.io/book-exploring-async-basics/2_async_history.html#non-preemptive-multitasking Non-Preemptive multitasking
-
-非抢先式： yielded
-
-抢先式：时钟中断
-
-#### 进程、内核线程和用户线程
-
-参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/ 线程
-
-线程的概念（待补充）
-
-内核线程的特征
-
- * 优点:
-    * 简单
-    * 易用
-    * 线程切换快
-    * 支持多处理机上并行
- * 缺点:
-    * 线程堆栈开销：大量线程并发执行时，可能导致内存耗尽
-    * 内核线程的用户态与内核态的切换开销：大量线程并发执行时，切换操作占用CPU时间多
-    * 响应时间问题：内核其他功能执行影响线程快速切换回来
- * 结论：使用线程并发执行大量小任务时，开销很大；
-
-#### 用户线程（绿色线程，green thread）
+#### User-level Thread
 
 参考： https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads
-https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/  绿色线程(Green threads)
 
-OS-level threads
-native threads
-Kernel-level threads
+https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads
 
-a green thread that is managed by your language
-coroutines in C, goroutines in Go, fibers in Ruby, etc
-the language translates it into async calls to the OS.
-The language then allows other green threads to run while waiting for the result.
+**Advantages:**
 
-The best of both worlds is to have one OS thread per CPU, and many green threads that are magically moved around onto OS threads. Languages like Go and Erlang can do this.
+1. Simple to use.
+2. A "context switch" is reasonably fast.
+3. Each stack only gets a little memory to start with so you can have hundreds of thousands of green threads running.
+4. It's easy to incorporate [*preemption*](https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/green-threads#preemptive-multitasking) which puts a lot of control in the hands of the runtime implementors.
 
-Rust曾经支持绿色线程，但他们它达到1.0之前被删除了
+**Drawbacks:**
 
-用户线程的特征
- * 堆栈开销：解决这个问题不容易,并且有成本
- * 跨平台实验困难：支持许多不同的平台，就很难正确实现
+1. The stacks might need to grow. Solving this is not easy and will have a cost.
+2. You need to save all the CPU state on every switch.
+3. It's not a *zero cost abstraction* (Rust had green threads early on and this was one of the reasons they were removed).
+4. Complicated to implement correctly if you want to support many different platforms.
 
-https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/
-Green Threads Explained in 200 Lines of Rust...
+Example:
 
-#### 从回调到承诺 (promises)
+- [Green Threads](https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads)
 
-参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/ 从回调到承诺 (promises)
+#### Callback based approaches
 
-承诺是解决回调带来的复杂性的一种方法，承诺被重写为状态机。
+Ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches
 
-从语法上讲，Rusts Futures 0.1很像上面的承诺示例，Rusts Futures 0.3很像我们上一个示例中的 async / await。
+A callback based approach is to save a pointer to a set of instructions we want to run later together with whatever state is needed.
 
-#### Readiness-based event queues
+**Advantages:**
 
-参考： https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#readiness-based-event-queues
+- Easy to implement in most languages
+- No context switching
+- Relatively low memory overhead (in most cases)
 
-**Basically this happens when we want to read data from a socket using epoll/kqueue:**
+**Drawbacks:**
+
+- Since each task must save the state it needs for later, the memory usage will grow linearly with the number of callbacks in a chain of computations.
+- Can be hard to reason about. Many people already know this as "callback hell".
+- It's a very different way of writing a program, and will require a substantial rewrite to go from a "normal" program flow to one that uses a "callback based" flow.
+- Sharing state between tasks is a hard problem in Rust using this approach due to its ownership model.
+
+Example:
+
+- [Callback based approaches](https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches)
+
+#### Event queue: Epoll, Kqueue and IOCP
+
+参考： https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#epoll
+https://zhuanlan.zhihu.com/p/39970630 select poll epoll的区别
+
+There are some well-known libraries which implement a cross platform event queue using Epoll, Kqueue and IOCP for Linux, Mac, and Windows, respectively.
+
+- Epoll
+  - Epoll is the Linux way of implementing an event queue.
+  - Epoll was designed to work very efficiently with a large number of events.
+- Kqueue
+  - Kqueue is the MacOS way of implementing an event queue, which originated from BSD.
+  - In terms of high level functionality, it's similar to Epoll in concept but different in actual use.
+- IOCP
+  - IOCP or Input Output Completion Ports is the way Windows handles this type of event queue.
+
+#### Epoll
+
+参考： https://zhuanlan.zhihu.com/p/39970630
+
+https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#readiness-based-event-queues
+
+**This happens when we want to read data from a socket using epoll/kqueue:**
 
 1. We create an event queue by calling the syscall `epoll_create` or `kqueue`.
 2. We ask the OS for a file descriptor representing a network socket.
@@ -144,164 +129,320 @@ Green Threads Explained in 200 Lines of Rust...
 5. When the event is ready, our thread is unblocked (resumed), and we return from our "wait" call with data about the event that occurred.
 6. We call `read` on the socket we created in 2.
 
-#### Completion-based event queues
-
-参考： https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#completion-based-event-queues
-
-IOCP stands for I/O Completion Ports and is a completion-based event queue. This type of queue notifies you when events are completed. 
-
-basic breakdown of what happens in this type of event queue:
-
-1. We create an event queue by calling the syscall `CreateIoCompletionPort`.
-2. We create a buffer and ask the OS to give us a handle to a socket.
-3. We register an interest in `Read` events on this socket with another syscall, but this time we also pass in the buffer we created in (2) to which the data will be read.
-4. Next, we call `GetQueuedCompletionStatusEx`, which will block until an event has completed.
-5. Our thread is unblocked, and our buffer is now filled with the data we're interested in.
-
-#### Epol, Kqueue and IOCP
-
-参考： https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#epoll
-https://zhuanlan.zhihu.com/p/39970630 select poll epoll的区别
-
-Epoll
-
-Epoll is the Linux way of implementing an event queue. In terms of functionality, it has a lot in common with Kqueue. The advantage of using epoll over other similar methods on Linux like select or poll is that epoll was designed to work very efficiently with a large number of events.
-
-Kqueue
-
-Kqueue is the MacOS way of implementing an event queue, which originated from BSD, in operating systems such as FreeBSD, OpenBSD, etc. In terms of high level functionality, it's similar to Epoll in concept but different in actual use.
-
-Some argue it's a bit more complex to use and a bit more abstract and "general".
-
-IOCP
-
-IOCP or Input Output Completion Ports is the way Windows handles this type of event queue.
-
-#### Epoll
-
-参考： https://zhuanlan.zhihu.com/p/39970630
-
-在调用epoll_create时，内核在epoll文件系统里建了个file结点，在内核cache里建了个红黑树用于存储以后epoll_ctl传来的socket；
-
-再建立一个list链表，用于存储准备就绪的事件，当epoll_wait调用时，仅仅观察这个list链表里有没有数据即可。有数据就返回，没有数据就sleep，等到timeout时间到后即使链表没数据也返回。
-
-epoll用kmem_cache_create（slab分配器）分配内存用来存放struct epitem和struct eppoll_entry。
-
-当调用epoll_wait检查是否有事件发生时，只需要检查eventpoll对象中的rdlist双链表中是否有epitem元素即可。如果rdlist不为空，则把发生的事件复制到用户态，同时将事件数量返回给用户。
-
 参考： https://zhuanlan.zhihu.com/p/39970630
 
 ![epoll](/Users/xyong/Desktop/os-lectures/lecture21/figs/epoll.jpg)
 
-### rust future
+#### From callbacks to futures (deferred computation)
 
-参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/
+ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#from-callbacks-to-promises
+
+Future is one way to deal with the complexity which comes with a callback based approach.
+
+```rust
+async function run() {
+    await timer(200);
+    await timer(100);
+    await timer(50);
+    console.log("I'm the last one");
+}
+```
+
+- The `run` function as a *pausable* task consisting of several sub-tasks. On each "await" point it yields control to the scheduler
+- Once one of the sub-tasks changes state to either `fulfilled` or `rejected`, the task is scheduled to continue to the next step.
+
+#### Difference betwee JavaScript promises and Rust futures
+
+- JavaScript promises are *eagerly* evaluated.
+  - Once it's created, it starts running a task.
+- Rust's Futures on the other hand are *lazily* evaluated.
+  - They need to be polled once before they do any work.
+
+### Futures in Rust
+
+参考： https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#futures-in-rust
 参考： https://github.com/cfsamson/books-futures-explained
-参考： https://cfsamson.github.io/books-futures-explained/conclusion.html
 参考： Evernote： 20200402-异步消息调研
 
-#### 什么是`Future`?
+#### Futures
 
-`Future`是一些将在未来完成的操作。
- Rust中的异步实现基于轮询,每个异步任务分成三个阶段:
+Ref: https://os.phil-opp.com/async-await/#example
 
-1. 轮询阶段(The Poll phase). 一个`Future`被轮询后,会开始执行,直到被阻塞. 我们经常把轮询一个Future这部分称之为执行器(executor)
-2. 等待阶段.  事件源(通常称为reactor)注册等待一个事件发生，并确保当该事件准备好时唤醒相应的`Future`
-3. 唤醒阶段.  事件发生,相应的`Future`被唤醒。 现在轮到执行器(executor),就是第一步中的那个执行器，调度`Future`再次被轮询，并向前走一步，直到它完成或达到一个阻塞点，不能再向前走, 如此往复,直到最终完成.
+A future is a representation of some operation which will complete in the future.
+
+![async-example](/Users/xyong/Desktop/os-lectures/lecture21/figs/async-example.svg)
+
+Three phases in asynchronous task:
+
+1. **Executor**: A Future is polled which result in the task progressing until a point where it can no longer make progress. We often refer to the part of the runtime which polls a Future as an executor.
+2. **Reactor**: An event source, most often referred to as a reactor, registers that a Future is waiting for an event to happen and makes sure that it will wake the Future when that event is ready.
+3. **Waker**: The event happens and the Future is woken up. It's now up to the executor which polled the Future in step 1 to schedule the future to be polled again and make further progress until it completes or reaches a new point where it can't make further progress and the cycle repeats.
 
 #### Leaf futures & Non-leaf-futures
 
+Ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#leaf-futures
+
+Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
+
  * Leaf future
-    * 由运行时创建`leaf futures`, 代表资源。
-    * 对这些资源的操作，比如套接字上的 Read 操作，将是非阻塞的，并返回一个我们称之为`leaf-future`的Future.
+     * Runtimes create *leaf futures* which represents a resource like a socket.
+    * Operations on these resources will be non-blocking and return a future which we call a leaf future.
+
+```rust
+// stream is a **leaf-future**
+let mut stream = tokio::net::TcpStream::connect("127.0.0.1:3000");
+```
+
  * Non-leaf-future
-    * Non-leaf-futures指的是那些我们用`async`关键字创建的Future.
-    * 异步程序的大部分是Non-leaf-futures，这是一种可暂停的计算。
-    * 通常由`await` 一系列`leaf-future`组成.能够将控制权交给运行时的调度程序，然后在稍后停止的地方继续执行。
+    * The bulk of an async program will consist of non-leaf-futures, which are a kind of pause-able computation.
+    * Non-leaf-futures represents a *set of operations*. 
 
-#### 运行时（runtime）与rust
+```rust
+// Non-leaf-future
+async fn example(min_len: usize) -> String {
+    let content = async_read_file("foo.txt").await;
+    if content.len() < min_len {
+        content + &async_read_file("bar.txt").await
+    } else {
+        content
+    }
+}
+```
 
-一些高级语言提供“运行时”，用于处理并发；
+#### Runtimes
+- Languages like C#, JavaScript, Java, GO and many others comes with a runtime for handling concurrency.
+- Rust uses a library for handling concurrency.
 
-rust的并发处理运行时由函数库实现，分为两部分：
+The two most popular runtimes for Futures:
 
-执行器(The Executor)：实际要执行的未来操作；
+- [async-std](https://github.com/async-rs/async-std)
+- [Tokio](https://github.com/tokio-rs/tokio)
 
-分析器 (The Reactor)：通知机制
+#### What Rust's standard library takes care of
+ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#what-rusts-standard-library-takes-care-of
 
-#### Rust future使用
+1. A common interface representing an operation which will be completed in the future through the `Future` trait.
+2. An ergonomic way of creating tasks which can be suspended and resumed through the `async` and `await` keywords.
+3. A defined interface wake up a suspended task through the `Waker` type.
 
-1. 一个公共接口，`Future trait`
-2. 通过async和await关键字进行暂停和恢复`Future`
-3. `Waker`接口, 可以唤醒暂停的`Future`
+#### Rust future example
 
-#### concept of futures
-https://os.phil-opp.com/async-await/#example
+Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
 
-#### Futures in Rust
-https://os.phil-opp.com/async-await/#futures-in-rust
+```rust
+use futures::future::{self, Future};
+
+fn main() {
+    let _ = example(100);
+}
+
+async fn example(min_len: usize) -> String {
+    let content = async_read_file("foo.txt").await;
+    if content.len() < min_len {
+        content + &async_read_file("bar.txt").await
+    } else {
+        content
+    }
+}
+
+fn async_read_file(name: &str) -> impl Future<Output = String> {
+    future::ready(String::from(name))
+}
+```
 
 #### Zero-cost futures in Rust
-https://aturon.github.io/blog/2016/08/11/futures/
 
-#### The Async/Await Pattern
-https://os.phil-opp.com/async-await/#the-async-await-pattern
+Ref: https://aturon.github.io/blog/2016/08/11/futures/
 
-### 生成器（状态机）
+- Build up a big `enum` that represents the state machine. (There is one allocation needed per “task”, which usually works out to one per connection.)
+- When an event arrives, only one dynamic dispatch is required.
+- There are essentially no imposed synchronization costs.
+
+
+
+Here are the results, in number of “Hello world!"s served per second on an 8 core Linux machine.
+
+![bench-pipelined](/Users/xyong/Desktop/os-lectures/lecture21/figs/bench-pipelined.png)
+
+### Waker and Context
+
+Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#waker-and-context
+
+#### Waker
+
+Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#the-waker
+
+- The `Waker` type allows for a loose coupling between the reactor-part and the executor-part of a runtime.
+- By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms. 
+- Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves.
+
+#### Fat pointers in Rust
+
+Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust
+
+**Example `&[i32]` :**
+
+- The first 8 bytes is the actual pointer to the first element in the array (or part of an array the slice refers to)
+- The second 8 bytes is the length of the slice.
+
+**Example `&dyn SomeTrait`:**
+
+- The first 8 bytes points to the `data` for the trait object
+- The second 8 bytes points to the `vtable` for the trait object
+
+**trait object**
+
+- `&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
+- we implement our own `Waker` we'll actually set up a `vtable`
+
+Example:
+
+- [Fat pointers in Rust](https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust)
+
+### Generators and async/await
+
+Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#generators-and-asyncawait
+
+#### Concurrency in Rust
+
+Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html
+
+1. Stackful coroutines, better known as green threads.
+2. Using combinators.
+3. Stackless coroutines, better known as generators.
 
 #### State Machine Transformation
 
-https://os.phil-opp.com/async-await/#state-machine-transformation
-异步机制的工作流程图；
+Ref: https://os.phil-opp.com/async-await/#state-machine-transformation
+https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#stackless-coroutinesgenerators
 
-#### Self-Referential Structs
-https://os.phil-opp.com/async-await/#self-referential-structs
+- Async in Rust is implemented using Generators.
+- Generators in Rust are implemented as state machines.
+- What the compiler does behind this scenes is to transform the body of the `async` function into a [*state machine*](https://en.wikipedia.org/wiki/Finite-state_machine), with each `.await` call representing a different state.
+- Each state represents a different pause point of the function.
 
-#### The Problem with Self-Referential Structs
-https://os.phil-opp.com/async-await/#the-problem-with-self-referential-structs
-自引用数据结构的插图；
+![async-state-machine-states](/Users/xyong/Desktop/os-lectures/lecture21/figs/async-state-machine-states.svg)
 
-### *Rust future的实现
+- Arrows represent state switches and diamond shapes represent alternative ways.
 
-参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/#四-唤醒器和上下文waker-and-context
+![async-state-machine-basic](/Users/xyong/Desktop/os-lectures/lecture21/figs/async-state-machine-basic.svg)
 
-#### 唤醒器
+#### The Full State Machine Type
 
-注：waker相当于是一个动态函数指针的定义和引用方法；其中有一处代码是不安全的。
+Ref: https://os.phil-opp.com/async-await/#the-full-state-machine-type
 
-`Waker`类型允许在运行时的reactor 部分和执行器部分之间进行松散耦合。
+- Create a state machine and combine them into an [`enum`](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html):
 
-通过使用不与`Future`执行绑定的唤醒机制，我们将得到一个松散耦合，其中很容易使用新的`leaf-future`来扩展生态系统。
+```rust
+enum ExampleStateMachine {
+    Start(StartState),
+    WaitingOnFooTxt(WaitingOnFooTxtState),
+    WaitingOnBarTxt(WaitingOnBarTxtState),
+    End(EndState),
+}
+```
 
-创建一个 Waker 需要创建一个 vtable，这个vtable允许我们使用动态方式调用我们真实的Waker实现.
+- Generates an implementation of the state transitions in the `poll` function.
 
-引用的大小是不同的。 许多是8字节(在64位系统中是指针大小) ，但有些是16字节。
+```rust
+impl Future for ExampleStateMachine {
+    type Output = String; // return type of `example`
 
-##### 胖指针
+    fn poll(self: Pin<&mut Self>, cx: &mut Context) -> Poll<Self::Output> {
+        loop {
+            match self { // TODO: handle pinning
+                ExampleStateMachine::Start(state) => {…}
+                ExampleStateMachine::WaitingOnFooTxt(state) => {…}
+                ExampleStateMachine::WaitingOnBarTxt(state) => {…}
+                ExampleStateMachine::End(state) => {…}
+            }
+        }
+    }
+}
+```
 
-16字节大小的指针被称为“胖指针” ，因为它们携带额外的信息。
+#### Example of Generator
 
-- 前8个字节是指向数组中第一个元素的实际指针(或 slice 引用的数组的一部分)
-- 第二个8字节是切片的长度
+Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#how-generators-work
 
-##### trait对象
+```rust
+#![feature(generators, generator_trait)]
+use std::ops::{Generator, GeneratorState};
 
-指向 trait 对象的指针布局如下:
+fn main() {
+    let a: i32 = 4;
+    let mut gen = move || {
+        println!("Hello");
+        yield a * 2;
+        println!("world!");
+    };
 
-- 前8个字节指向trait 对象的data
-- 后八个字节指向trait对象的 vtable
+    if let GeneratorState::Yielded(n) = gen.resume() {
+        println!("Got value {}", n);
+    }
 
-使用动态分发，引用一个trait对象，除了它实现了 trait 定义的方法之外，我们对这个对象一无所知。
-
-#### 生成器 coroutines, generators
-
-参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/#五 生成器和async/await
-
-https://github.com/rust-lang/rfcs/blob/master/text/2033-experimental-coroutines.md coroutine
+    if let GeneratorState::Complete(()) = gen.resume() {
+        ()
+    };
+}
+```
 
 ### Pin
 
-参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/#六 Pin
+Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pin
+
+#### Defination of Pin
+
+Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#definitions
+
+- Pin wraps a pointer. A reference to an object is a pointer.
+- Pin gives some guarantees about the *pointee* (the data it points to).
+
+#### Self-Referential Structs
+
+Ref: https://os.phil-opp.com/async-await/#self-referential-structs
+
+```rust
+async fn pin_example() -> i32 {
+    let array = [1, 2, 3];
+    let element = &array[2];
+    async_write_file("foo.txt", element.to_string()).await;
+    *element
+}
+```
+
+The struct for the "waiting on write" state
+
+```rust
+struct WaitingOnWriteState {
+    array: [1, 2, 3],
+    element: 0x1001c, // address of the last array element
+}
+```
+
+#### The Problem with Self-Referential Structs
+
+Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-structs
+
+**memory layout of self-referential struct**
+
+![self-referential-struct](/Users/xyong/Desktop/os-lectures/lecture21/figs/self-referential-struct.svg)
+
+**After moving this struct to a different memory address**
+
+![self-referential-struct-moved](/Users/xyong/Desktop/os-lectures/lecture21/figs/self-referential-struct-moved.svg)
+
+#### Possible approaches to solve the dangling pointer problem
+
+Ref: https://os.phil-opp.com/async-await/#possible-solutions
+
+- **Update the pointer on move:** Require extensive changes to Rust that would result in potentially huge  performance losses.
+- **Store an offset instead of self-references:**: Require the compiler to detect all self-references or need a runtime system again to analyze references and correctly create the  state structs.
+- **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs. It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer.
+
+#### xxxx Pinning to the stack
+
+Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-stack
 
 #### pinning API
 
