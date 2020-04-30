@@ -1,6 +1,6 @@
 ## 20200430-第二十一讲内容准备
 
-[v1]()
+[v1](https://github.com/LearningOS/os-lectures/blob/13a92296aa1a93c0fc54b244539a4f21791d52ac/lecture21/ref.md)
 
 2020春,操作系统课,课堂内容,准备
 
