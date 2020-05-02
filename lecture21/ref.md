@@ -461,3 +461,10 @@ Pin<Box<T>> and Unpin
 ### Reactor
 
 参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/#reactor
+
+
+
+### 内核中的async
+
+https://os.phil-opp.com/async-await/
+
