@@ -482,8 +482,9 @@ Since concurrency mostly makes sense when interacting with the outside world (or
 Our example task is a timer that only spawns a thread and puts it to sleep for the number of seconds we specify. The reactor we create here will create a **leaf-future** representing each timer. In return the Reactor receives a waker which it will call once the task is finished.
 
 - [Our Reactor](https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor)
+  - Be dependent on thread::spawn
 
-#### Complete Exampe
+#### Complete Example
 
 Ref: https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code
 
@@ -520,6 +521,35 @@ fn good() -> impl Future<Output = u8> {
     }
 }
 ```
+
+#### Async implementation in kernel mode
+
+Ref: https://os.phil-opp.com/async-await/#simple-executor
+
+```rust
+// in src/task/simple_executor.rs
+
+use super::Task;
+use alloc::collections::VecDeque;
+
+pub struct SimpleExecutor {
+    task_queue: VecDeque<Task>,
+}
+
+impl SimpleExecutor {
+    pub fn new() -> SimpleExecutor {
+        SimpleExecutor {
+            task_queue: VecDeque::new(),
+        }
+    }
+
+    pub fn spawn(&mut self, task: Task) {
+        self.task_queue.push_back(task)
+    }
+}
+```
+
+- Only dependent on queue, No dependent on thread
 
 ### 内核中的async
 
