@@ -440,29 +440,86 @@ Ref: https://os.phil-opp.com/async-await/#possible-solutions
 - **Store an offset instead of self-references:**: Require the compiler to detect all self-references or need a runtime system again to analyze references and correctly create the  state structs.
 - **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs. It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer.
 
-#### xxxx Pinning to the stack
+#### xxxx 
 
-Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-stack
-
-#### pinning API
+#### Pinning API
 
 https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
 the pinning API was proposed in RFC 2349
 
-#### Pin
+- **Reference type**. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`. 
+- **Never to move before being dropped**. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again.
 
-https://os.phil-opp.com/async-await/#pin-box-t-and-unpin
-Pin<Box<T>> and Unpin
+```rust
+trait Future {
+    type Item;
+    type Error;
 
-#### Pinning和自引用结构
+    fn poll(self: Pin<Self>, cx: &mut task::Context) -> Poll<Self::Item, Self::Error>;
+}
+```
 
-参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/#六-pin
+#### Pinning to the heap
+
+Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap
+
+Pinning to the heap is safe so the user doesn't need to implement any unsafe code.
+
+Once the data is allocated on the heap it will have a stable address.
+
+Examp: [Pinning to the heap](https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap)
 
 ### Reactor
 
-参考： https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/#reactor
+Ref: https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor
 
+Since concurrency mostly makes sense when interacting with the outside world (or at least some peripheral), we need something to actually abstract over this interaction in an asynchronous way.
 
+[Mio](https://github.com/tokio-rs/mio): Library of reactors in Rust provides non blocking APIs and event notification for several platforms.
+
+#### Reactor example
+
+Our example task is a timer that only spawns a thread and puts it to sleep for the number of seconds we specify. The reactor we create here will create a **leaf-future** representing each timer. In return the Reactor receives a waker which it will call once the task is finished.
+
+- [Our Reactor](https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor)
+
+#### Complete Exampe
+
+Ref: https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code
+
+- [Finished Example](https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code)
+
+#### async Lifetimes
+
+Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
+
+- `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
+
+```rust
+// This function:
+async fn foo(x: &u8) -> u8 { *x }
+
+// Is equivalent to this function:
+fn foo_expanded<'a>(x: &'a u8) -> impl Future<Output = u8> + 'a {
+    async move { *x }
+}
+```
+
+- By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
+
+```rust
+fn bad() -> impl Future<Output = u8> {
+    let x = 5;
+    borrow_x(&x) // ERROR: `x` does not live long enough
+}
+
+fn good() -> impl Future<Output = u8> {
+    async {
+        let x = 5;
+        borrow_x(&x).await
+    }
+}
+```
 
 ### 内核中的async
 
