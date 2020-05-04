@@ -4,7 +4,7 @@
 
 [v2](https://github.com/LearningOS/os-lectures/blob/13735ecd36723347059e662d986f4642b887252d/lecture21/ref.md)
 
-[v3]
+[v3](https://github.com/LearningOS/os-lectures/blob/485c97b7fb6e45428339d043fe1d4cc58802cd26/lecture21/ref.md)
 
 ### ref
 
