@@ -117,7 +117,7 @@ There are some well-known libraries which implement a cross platform event queue
 
 参考： https://zhuanlan.zhihu.com/p/39970630
 
-![epoll](/Users/xyong/Desktop/os-lectures/lecture21/figs/epoll.jpg)
+![epoll](figs/epoll.jpg)
 
 #### Read data from a socket using epoll
 
@@ -191,7 +191,7 @@ Ref: https://os.phil-opp.com/async-await/#example
 
 A future is a representation of some operation which will complete in the future.
 
-![async-example](/Users/xyong/Desktop/os-lectures/lecture21/figs/async-example.svg)
+![async-example](figs/async-example.svg)
 
 Three phases in asynchronous task:
 
@@ -207,7 +207,7 @@ Three phases in asynchronous task:
 - 像这样来回穿梭，直到最终被解决（resolved）。
 - 在被解决并得出最终结果时，执行器知道它已经完成，就会释放句柄和整个`Future`，整个调用过程就完成了。
 
-![future-loop](/Users/xyong/Desktop/os-lectures/lecture21/figs/future-loop.jpg)
+![future-loop](figs/future-loop.jpg)
 
 #### Leaf futures & Non-leaf-futures
 
@@ -325,7 +325,7 @@ Ref: https://aturon.github.io/blog/2016/08/11/futures/
 
 Here are the results, in number of “Hello world!"s served per second on an 8 core Linux machine.
 
-![bench-pipelined](/Users/xyong/Desktop/os-lectures/lecture21/figs/bench-pipelined.png)
+![bench-pipelined](figs/bench-pipelined.png)
 
 ### 21.3 Generators and async/await
 
@@ -349,11 +349,11 @@ https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html
 - What the compiler does behind this scenes is to transform the body of the `async` function into a [*state machine*](https://en.wikipedia.org/wiki/Finite-state_machine), with each `.await` call representing a different state.
 - Each state represents a different pause point of the function.
 
-![async-state-machine-states](/Users/xyong/Desktop/os-lectures/lecture21/figs/async-state-machine-states.svg)
+![async-state-machine-states](figs/async-state-machine-states.svg)
 
 - Arrows represent state switches and diamond shapes represent alternative ways.
 
-![async-state-machine-basic](/Users/xyong/Desktop/os-lectures/lecture21/figs/async-state-machine-basic.svg)
+![async-state-machine-basic](figs/async-state-machine-basic.svg)
 
 #### The Full State Machine Type
 
@@ -447,11 +447,11 @@ Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-stru
 
 **memory layout of self-referential struct**
 
-![self-referential-struct](/Users/xyong/Desktop/os-lectures/lecture21/figs/self-referential-struct.svg)
+![self-referential-struct](figs/self-referential-struct.svg)
 
 **After moving this struct to a different memory address**
 
-![self-referential-struct-moved](/Users/xyong/Desktop/os-lectures/lecture21/figs/self-referential-struct-moved.svg)
+![self-referential-struct-moved](figs/self-referential-struct-moved.svg)
 
 #### Possible approaches to solve the dangling pointer problem
 
@@ -580,7 +580,7 @@ Our simple executor does not utilize the `Waker` notifications and simply loops 
 
 we will create an asynchronous task based on the keyboard interrupt. 
 
-![scancode-queue](/Users/xyong/Desktop/os-lectures/lecture21/figs/scancode-queue.svg)
+![scancode-queue](figs/scancode-queue.svg)
 
 A simple implementation of that queue could be a mutex-protected [`VecDeque`](https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html).
 
