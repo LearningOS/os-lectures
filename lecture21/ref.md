@@ -2,7 +2,7 @@
 
 [v1](https://github.com/LearningOS/os-lectures/blob/13a92296aa1a93c0fc54b244539a4f21791d52ac/lecture21/ref.md)
 
-[v2]
+[v2](https://github.com/LearningOS/os-lectures/blob/13735ecd36723347059e662d986f4642b887252d/lecture21/ref.md)
 
 ### ref
 
