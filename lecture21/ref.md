@@ -443,8 +443,6 @@ Ref: https://os.phil-opp.com/async-await/#possible-solutions
 - **Store an offset instead of self-references:**: Require the compiler to detect all self-references or need a runtime system again to analyze references and correctly create the  state structs.
 - **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs. It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer.
 
-#### xxxx 
-
 #### Pinning API
 
 https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
