@@ -172,18 +172,19 @@ async function run() {
 - 中文 https://zhuanlan.zhihu.com/p/97574385
 - async汇总 https://areweasyncyet.rs/
 
+Future的设计目标
+
+- 调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作
+- I/O完成时，回到调用该异步 I/O 暂停的那个任务线上
+- **一种通过对异步 I/O 的良好抽象形成的基于库的解决方案**
+  - 它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库
+
 **零成本抽象**
 
 - 不给不使用该功能的用户增加成本
-- 使用该功能时，它的速度不会比不使用它的速度慢。
+- 使用该功能时，它的速度不会比不使用它的速度慢
 
-通常 I/O 处于阻塞状态，因此当你使用 I/O 时，它会阻塞线程，中止你的程序，然后必须通过操作系统重新调度。
-
-在你调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作，但你的程序需要决定如何回到调用该异步 I/O 暂停的那个任务线上
-
-异步 I/O 解决方案；但是我们意识到 **这应该是一个基于库的解决方案，我们需要为异步 I/O 提供良好的抽象，它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库。**
-
-#### Futures
+#### Concept of Future
 
 Ref: https://os.phil-opp.com/async-await/#example
 
@@ -193,17 +194,21 @@ A future is a representation of some operation which will complete in the future
 
 Three phases in asynchronous task:
 
-1. **Executor**: A Future is polled which result in the task progressing until a point where it can no longer make progress. We often refer to the part of the runtime which polls a Future as an executor.
-2. **Reactor**: An event source, most often referred to as a reactor, registers that a Future is waiting for an event to happen and makes sure that it will wake the Future when that event is ready.
-3. **Waker**: The event happens and the Future is woken up. It's now up to the executor which polled the Future in step 1 to schedule the future to be polled again and make further progress until it completes or reaches a new point where it can't make further progress and the cycle repeats.
+1. **Executor**: A Future is polled which result in the task progressing
+   - Until a point where it can no longer make progress
+2. **Reactor**: Register an event source that a Future is waiting for
+   - Makes sure that it will wake the Future when that event is ready
+3. **Waker**: The event happens and the Future is woken up
+   - Wake up to the executor which polled the Future
+   - Schedule the future to be polled again and make further progress
 
 #### 基于轮询的 Future的异步执行过程
 
-- 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 。
-- 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 。
-- 在该 I/O 事件发生时，反应器将使用你在轮询它时传递的Waker 参数唤醒 `Future` ，将其传回执行器；
-- 像这样来回穿梭，直到最终被解决（resolved）。
-- 在被解决并得出最终结果时，执行器知道它已经完成，就会释放句柄和整个`Future`，整个调用过程就完成了。
+- 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 
+- 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 
+- I/O 事件发生时，反应器将使用传递的`Waker` 参数唤醒 `Future` ，传回执行器
+- 循环上述三步，直到最终`future`任务完成（resolved）
+- 任务完成并得出结果时，执行器释放句柄和整个`Future`，整个调用过程就完成了
 
 ![future-loop](figs/future-loop.jpg)
 
@@ -214,8 +219,8 @@ Ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#l
 Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
 
  * Leaf future
-     * Runtimes create *leaf futures* which represents a resource like a socket.
-    * Operations on these resources will be non-blocking and return a future which we call a leaf future.
+     * Runtimes create *leaf futures* which represents a resource like a socket
+    * Operations on these resources will be non-blocking and return a future which we call a leaf future
 
 ```rust
 // stream is a **leaf-future**
@@ -223,8 +228,8 @@ let mut stream = tokio::net::TcpStream::connect("127.0.0.1:3000");
 ```
 
  * Non-leaf-future
-    * The bulk of an async program will consist of non-leaf-futures, which are a kind of pause-able computation.
-    * Non-leaf-futures represents a *set of operations*. 
+    * The bulk of an async program will consist of non-leaf-futures, which are a kind of pause-able computation
+    * Non-leaf-futures represents a *set of operations*
 
 ```rust
 // Non-leaf-future
@@ -239,19 +244,18 @@ async fn example(min_len: usize) -> String {
 ```
 
 #### Runtimes
-- Languages like C#, JavaScript, Java, GO and many others comes with a runtime for handling concurrency.
-- Rust uses a library for handling concurrency.
+- Languages like C#, JavaScript, Java, GO and many others comes with a runtime for handling concurrency
+- Rust uses a library for handling concurrency
 
-The two most popular runtimes for Futures:
-
-- [async-std](https://github.com/async-rs/async-std)
-- [Tokio](https://github.com/tokio-rs/tokio)
+- The two most popular runtimes for Futures:
+  - [async-std](https://github.com/async-rs/async-std)
+  - [Tokio](https://github.com/tokio-rs/tokio)
 
 **What Rust's standard library takes care of**
 ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#what-rusts-standard-library-takes-care-of
 
-1. A common interface representing an operation which will be completed in the future through the `Future` trait.
-2. An ergonomic way of creating tasks which can be suspended and resumed through the `async` and `await` keywords.
+1. A **common interface** representing an operation which will be completed in the future through the `Future` trait.
+2. An ergonomic way of **creating tasks** which can be suspended and resumed through the `async` and `await` keywords.
 3. A defined interface wake up a suspended task through the `Waker` type.
 
 #### Rust future example
@@ -315,11 +319,10 @@ fn good() -> impl Future<Output = u8> {
 
 Ref: https://aturon.github.io/blog/2016/08/11/futures/
 
-- Build up a big `enum` that represents the state machine. (There is one allocation needed per “task”, which usually works out to one per connection.)
-- When an event arrives, only one dynamic dispatch is required.
-- There are essentially no imposed synchronization costs.
-
-
+- Build up a big `enum` that represents the state machine
+  - There is one allocation needed per “task”, which usually works out to one per connection
+- When an event arrives, only one dynamic dispatch is required
+- There are essentially no imposed synchronization costs
 
 Here are the results, in number of “Hello world!"s served per second on an 8 core Linux machine.
 
@@ -337,27 +340,27 @@ Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await
 2. Using combinators.
 3. Stackless coroutines, better known as generators.
 
-#### State Machine Transformation
+#### State Machine Transformation in Future
 
 Ref: https://os.phil-opp.com/async-await/#state-machine-transformation
 https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#stackless-coroutinesgenerators
 
-- Async in Rust is implemented using Generators.
-- Generators in Rust are implemented as state machines.
-- What the compiler does behind this scenes is to transform the body of the `async` function into a [*state machine*](https://en.wikipedia.org/wiki/Finite-state_machine), with each `.await` call representing a different state.
-- Each state represents a different pause point of the function.
+- Async in Rust is implemented using Generators
+- Generators in Rust are implemented as state machines
+- Compiler transforms the body of the `async` function into a [*state machine*](https://en.wikipedia.org/wiki/Finite-state_machine), with each `.await` call representing a different state.
+- Each state represents a different pause point of the function
 
 ![async-state-machine-states](figs/async-state-machine-states.svg)
 
-- Arrows represent state switches and diamond shapes represent alternative ways.
+- Arrows represent state switches and diamond shapes represent alternative ways
 
 ![async-state-machine-basic](figs/async-state-machine-basic.svg)
 
-#### The Full State Machine Type
+#### State Machine Type
 
 Ref: https://os.phil-opp.com/async-await/#the-full-state-machine-type
 
-- Create a state machine and combine them into an [`enum`](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html):
+- Create a state machine and combine them into an [`enum`](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html)
 
 ```rust
 enum ExampleStateMachine {
@@ -368,7 +371,7 @@ enum ExampleStateMachine {
 }
 ```
 
-- Generates an implementation of the state transitions in the `poll` function.
+- Generates an implementation of the state transitions in the `poll` function
 
 ```rust
 impl Future for ExampleStateMachine {
@@ -456,8 +459,9 @@ Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-stru
 Ref: https://os.phil-opp.com/async-await/#possible-solutions
 
 - **Update the pointer on move:** Require extensive changes to Rust that would result in potentially huge  performance losses.
-- **Store an offset instead of self-references:**: Require the compiler to detect all self-references or need a runtime system again to analyze references and correctly create the  state structs.
-- **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs. It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer.
+- **Store an offset instead of self-references:**: Require the compiler to **detect all self-references** or need a runtime system again to analyze references and correctly create the  state structs.
+- **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs
+  - It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
 
 #### Defination of Pin
 
@@ -465,10 +469,10 @@ Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#definitions
 https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
 the pinning API was proposed in RFC 2349
 
-- **Reference type**. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`. 
-  - Pin wraps a pointer. A reference to an object is a pointer.
-- **Never to move before being dropped**. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again.
-  - Pin gives some guarantees about the *pointee* (the data it points to).
+- Pin wraps a pointer. A reference to an object is a pointer
+  - **Reference type**. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
+- Pin gives some guarantees about the *pointee* (the data it points to)
+  - **Never to move before being dropped**. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
 
 ```rust
 trait Future {
@@ -485,9 +489,8 @@ Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-th
 
 Pinning to the heap is safe so the user doesn't need to implement any unsafe code.
 
-Once the data is allocated on the heap it will have a stable address.
-
-Examp: [Pinning to the heap](https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap)
+- Once the data is allocated on the heap it will have a stable address
+- Examp: [Pinning to the heap](https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap)
 
 ### 21.5 Waker and Reactor
 
@@ -497,28 +500,28 @@ Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#wak
 
 Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#the-waker
 
-- The `Waker` type allows for a loose coupling between the reactor-part and the executor-part of a runtime.
-- By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms. 
-- Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves.
+- The `Waker` type allows for a loose coupling between the reactor-part and the executor-part of a runtime
+- By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms
+- Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves
 
 #### Fat pointers in Rust
 
 Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust
 
-**Example `&[i32]` :**
+**Example `&[i32]`**
 
 - The first 8 bytes is the actual pointer to the first element in the array (or part of an array the slice refers to)
 - The second 8 bytes is the length of the slice.
 
-**Example `&dyn SomeTrait`:**
+**Example `&dyn SomeTrait`**
 
 - The first 8 bytes points to the `data` for the trait object
 - The second 8 bytes points to the `vtable` for the trait object
 
-**trait object**
+**Trait object**
 
 - `&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
-- we implement our own `Waker` we'll actually set up a `vtable`
+- Implement `Waker:` we'll actually set up a `vtable`
 
 Example:
 
@@ -527,14 +530,18 @@ Example:
 #### Reactor
 
 Ref: https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor
+https://docs.rs/tokio/0.1.22/tokio/reactor/index.html
 
-Since concurrency mostly makes sense when interacting with the outside world (or at least some peripheral), we need something to actually abstract over this interaction in an asynchronous way.
+- To actually abstract over this interaction with the outside world in an asynchronous way
+  - Receive events from the operating system or peripherals
+  - Forward them to waiting tasks
 
-[Mio](https://github.com/tokio-rs/mio): Library of reactors in Rust provides non blocking APIs and event notification for several platforms.
+- [Mio](https://github.com/tokio-rs/mio): Library of reactors in Rust
+  - Provide non blocking APIs and event notification for several platforms
 
 #### Reactor example
 
-Our example task is a timer that only spawns a thread and puts it to sleep for the number of seconds we specify. The reactor we create here will create a **leaf-future** representing each timer. In return the Reactor receives a waker which it will call once the task is finished.
+The example task is a timer that only spawns a thread and puts it to sleep for the number of seconds we specify. The reactor we create here will create a **leaf-future** representing each timer. In return the Reactor receives a waker which it will call once the task is finished.
 
 - [Our Reactor](https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor)
   - Be dependent on thread::spawn
@@ -572,22 +579,22 @@ impl SimpleExecutor {
 
 Ref: https://os.phil-opp.com/async-await/#async-keyboard-input
 
-To support such a task in an efficient way, it will be essential that the executor has proper support for `Waker` notifications.
+- The executor has proper support for `Waker` notifications
+  - The simple executor does not utilize the `Waker` notifications
+  - Simply loops over all tasks until they are done
 
-Our simple executor does not utilize the `Waker` notifications and simply loops over all tasks until they are done.
-
-we will create an asynchronous task based on the keyboard interrupt. 
+- Create an asynchronous task based on the keyboard interrupt
 
 ![scancode-queue](figs/scancode-queue.svg)
 
-A simple implementation of that queue could be a mutex-protected [`VecDeque`](https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html).
+- A simple implementation of that queue could be a mutex-protected [`VecDeque`](https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html)
+  - Using mutexes in interrupt handlers is not a good idea since it can easily lead to deadlocks.
 
-using mutexes in interrupt handlers is not a good idea since it can easily lead to deadlocks.
-
-https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
+- Example: https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
 
 #### Complete Example
 
 Ref: https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code
 
 - [Finished Example](https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code)
+
