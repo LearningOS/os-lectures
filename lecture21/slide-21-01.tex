@@ -29,10 +29,18 @@
 %% itemize
 Ref:
     \begin{itemize}
-        \item \href{}{xxxx}
+        \item \href{https://cfsamson.github.io/books-futures-explained/#futures-explained-in-200-lines-of-rust}{Futures Explained in 200 Lines of Rust}
+        \item Writing an OS in Rust - \href{https://os.phil-opp.com/async-await/}{Async/Await}
+        \item \href{https://zhuanlan.zhihu.com/p/97574385}{零成本异步I/O}
     \end{itemize}
 
 \end{frame}
+% ### ref
+% 
+% - [Futures Explained in 200 Lines of Rust](https://cfsamson.github.io/books-futures-explained/#futures-explained-in-200-lines-of-rust) [repo at github](https://github.com/cfsamson/books-futures-explained)
+% - Writing an OS in Rust - [Async/Await](https://os.phil-opp.com/async-await/)
+% - [零成本异步I/O](https://zhuanlan.zhihu.com/p/97574385)
+% 
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
@@ -45,5 +53,149 @@ Ref:
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+% ### 21.1 Background
+% ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#some-background-information
+% 
+% 
+% #### Multitasking
+% 
+% 参考： https://cfsamson.github.io/book-exploring-async-basics/2_async_history.html#non-preemptive-multitasking
+% 
+% **Non-Preemptive multitasking**
+% - The programmer `yielded` control to the OS
+% - Every bug could halt the entire system
+% - Example: Windows 95
+% 
+% **Preemptive multitasking**
+% - OS can stop the execution of a process, do something else, and switch back
+% - OS is responsible for scheduling tasks
+% - Example: UNIX, Linux
+% 
+% #### User-level Thread
+% 
+% 参考： https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads
+% 
+% https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads
+% 
+% **Advantages**
+% 
+% - Simple to use
+% - A "context switch" is reasonably fast
+% - Each stack only gets a little memory
+%   - You can have hundreds of thousands of user-level threads running
+% - Easy to incorporate [*preemption*](https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/green-threads#preemptive-multitasking)
+% 
+% **Drawbacks**
+% 
+% - The stacks might need to grow
+%   - Solving this is not easy and will have a cost
+% - Need to save all the CPU state on every switch
+% - Complicated to implement correctly if you want to support many different platforms
+% 
+% Example: [Green Threads](https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads)
+% 
+% #### Kernel-supported Threads
+% 
+% ref: https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads
+% https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system
+% 
+% **Advantages**
+% 
+% - Easy to use
+% - Switching between tasks is reasonably fast
+% - Geting parallelism for free
+% 
+% **Drawbacks**
+% 
+% - OS level threads come with a rather large stack
+% - There are a lot of syscalls involved
+% - Might not be an option on some systems, such as http server
+% 
+% Example:
+% 
+% - [Using OS threads in Rust](https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system)
+% 
+% #### Callback based approaches
+% 
+% Ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches
+% 
+% A callback based approach is to save a pointer to a set of instructions we want to run later together with whatever state is needed.
+% 
+% **Advantages**
+% 
+% - Easy to implement in most languages
+% - No context switching
+% - Relatively low memory overhead
+% 
+% **Drawbacks**
+% 
+% - Memory usage grows linearly with the number of callbacks
+%   - Each task must save the state it needs for later
+% - Callback hell: Hard to debug
+% - Require a substantial rewrite to go from a "normal" program flow to one that uses a "callback based" flow
+% 
+% Example: [Callback based approaches](https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches)
+% 
+% #### Event queue: Epoll, Kqueue and IOCP
+% 
+% 参考： https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#epoll
+% https://zhuanlan.zhihu.com/p/39970630 select poll epoll的区别
+% 
+% There are some well-known libraries which implement a cross platform event queue using Epoll, Kqueue and IOCP for Linux, Mac, and Windows, respectively.
+% 
+% - Epoll
+%   - Epoll is the Linux way of implementing an event queue
+%   - Epoll was designed to work very efficiently with a large number of events
+% - Kqueue
+%   - Kqueue is the MacOS way of implementing an event queue, which originated from BSD
+%   - In terms of high level functionality, it's similar to Epoll in concept but different in actual use
+% - IOCP
+%   - IOCP or Input Output Completion Ports is the way Windows handles this type of event queue
+% 
+% #### Epoll
+% 
+% 参考： https://zhuanlan.zhihu.com/p/39970630
+% 
+% ![epoll](figs/epoll.png)
+% 
+% #### Read data from a socket using epoll
+% 
+% https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#readiness-based-event-queues
+% 
+% **Workflow to read data from a socket using epoll/kqueue**
+% 
+% 1. Create an event queue by calling the syscall `epoll_create` or `kqueue`
+% 2. Ask the OS for a file descriptor representing a network socket
+% 3. Register an interest in `Read` events on this socket
+%    - In order to receive a notification when the event is ready in the event queue we created
+% 4. Call `epoll_wait` or `kevent` to wait for an event
+%    - Block (suspend) the thread it's called on
+% 5. When the event is ready, our thread is resumed, and return from our "wait" call with data about the event
+% 6. Call `read` on the socket we created
+% 
+% **Example**
+% 
+% - [epoll example](http://man7.org/linux/man-pages/man7/epoll.7.html)
+% - [Complete example](https://www.suchprogramming.com/epoll-in-3-easy-steps/)
+% 
+% #### From callbacks to futures (deferred computation)
+% 
+% ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#from-callbacks-to-promises
+% 
+% Future is one way to deal with the complexity which comes with a callback based approach.
+% 
+% ```rust
+% async function run() {
+%     await timer(200);
+%     await timer(100);
+%     await timer(50);
+%     console.log("I'm the last one");
+% }
+% ```
+% 
+% - The `run` function as a *pausable* task consisting of several sub-tasks
+%   - On each "await" point it yields control to the scheduler
+% - When the sub-tasks changes state to either `fulfilled` or `rejected`, the task is scheduled to continue to the next step
+% 
 %----------------------------------------------
 \end{document}

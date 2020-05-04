@@ -45,5 +45,81 @@ Ref:
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+% ### 21.4 Self-Referential Structs & Pin
+% 
+% Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pin
+% 
+% #### Self-Referential Structs
+% 
+% Ref: https://os.phil-opp.com/async-await/#self-referential-structs
+% 
+% ```rust
+% async fn pin_example() -> i32 {
+%     let array = [1, 2, 3];
+%     let element = &array[2];
+%     async_write_file("foo.txt", element.to_string()).await;
+%     *element
+% }
+% ```
+% 
+% The struct for the "waiting on write" state
+% 
+% ```rust
+% struct WaitingOnWriteState {
+%     array: [1, 2, 3],
+%     element: 0x1001c, // address of the last array element
+% }
+% ```
+% 
+% #### The Problem with Self-Referential Structs
+% 
+% Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-structs
+% 
+% **memory layout of self-referential struct**
+% 
+% ![self-referential-struct](figs/self-referential-struct.svg)
+% 
+% **After moving this struct to a different memory address**
+% 
+% ![self-referential-struct-moved](figs/self-referential-struct-moved.svg)
+% 
+% #### Possible approaches to solve the dangling pointer problem
+% 
+% Ref: https://os.phil-opp.com/async-await/#possible-solutions
+% 
+% - **Update the pointer on move:** Require extensive changes to Rust that would result in potentially huge  performance losses.
+% - **Store an offset instead of self-references:**: Require the compiler to **detect all self-references** or need a runtime system again to analyze references and correctly create the  state structs.
+% - **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs
+%   - It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
+% 
+% #### Defination of Pin
+% 
+% Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#definitions
+% https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
+% the pinning API was proposed in RFC 2349
+% 
+% - Pin wraps a pointer. A reference to an object is a pointer
+%   - **Reference type**. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
+% - Pin gives some guarantees about the *pointee* (the data it points to)
+%   - **Never to move before being dropped**. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
+% 
+% ```rust
+% trait Future {
+%     type Item;
+%     type Error;
+% 
+%     fn poll(self: Pin<Self>, cx: &mut task::Context) -> Poll<Self::Item, Self::Error>;
+% }
+% ```
+% 
+% #### Pinning to the heap
+% 
+% Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap
+% 
+% Pinning to the heap is safe so the user doesn't need to implement any unsafe code.
+% 
+% - Once the data is allocated on the heap it will have a stable address
+% - Examp: [Pinning to the heap](https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap)
+% 
 %----------------------------------------------
 \end{document}

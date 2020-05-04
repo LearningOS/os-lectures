@@ -45,5 +45,93 @@ Ref:
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+% ### 21.3 Generators and async/await
+% 
+% Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#generators-and-asyncawait
+% 
+% #### Concurrency in Rust
+% 
+% Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html
+% 
+% 1. Stackful coroutines, better known as green threads.
+% 2. Using combinators.
+% 3. Stackless coroutines, better known as generators.
+% 
+% #### State Machine Transformation in Future
+% 
+% Ref: https://os.phil-opp.com/async-await/#state-machine-transformation
+% https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#stackless-coroutinesgenerators
+% 
+% - Async in Rust is implemented using Generators
+% - Generators in Rust are implemented as state machines
+% - Compiler transforms the body of the `async` function into a [*state machine*](https://en.wikipedia.org/wiki/Finite-state_machine), with each `.await` call representing a different state.
+% - Each state represents a different pause point of the function
+% 
+% ![async-state-machine-states](figs/async-state-machine-states.svg)
+% 
+% - Arrows represent state switches and diamond shapes represent alternative ways
+% 
+% ![async-state-machine-basic](figs/async-state-machine-basic.svg)
+% 
+% #### State Machine Type
+% 
+% Ref: https://os.phil-opp.com/async-await/#the-full-state-machine-type
+% 
+% - Create a state machine and combine them into an [`enum`](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html)
+% 
+% ```rust
+% enum ExampleStateMachine {
+%     Start(StartState),
+%     WaitingOnFooTxt(WaitingOnFooTxtState),
+%     WaitingOnBarTxt(WaitingOnBarTxtState),
+%     End(EndState),
+% }
+% ```
+% 
+% - Generates an implementation of the state transitions in the `poll` function
+% 
+% ```rust
+% impl Future for ExampleStateMachine {
+%     type Output = String; // return type of `example`
+% 
+%     fn poll(self: Pin<&mut Self>, cx: &mut Context) -> Poll<Self::Output> {
+%         loop {
+%             match self { // TODO: handle pinning
+%                 ExampleStateMachine::Start(state) => {…}
+%                 ExampleStateMachine::WaitingOnFooTxt(state) => {…}
+%                 ExampleStateMachine::WaitingOnBarTxt(state) => {…}
+%                 ExampleStateMachine::End(state) => {…}
+%             }
+%         }
+%     }
+% }
+% ```
+% 
+% #### Example of Generator
+% 
+% Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#how-generators-work
+% 
+% ```rust
+% #![feature(generators, generator_trait)]
+% use std::ops::{Generator, GeneratorState};
+% 
+% fn main() {
+%     let a: i32 = 4;
+%     let mut gen = move || {
+%         println!("Hello");
+%         yield a * 2;
+%         println!("world!");
+%     };
+% 
+%     if let GeneratorState::Yielded(n) = gen.resume() {
+%         println!("Got value {}", n);
+%     }
+% 
+%     if let GeneratorState::Complete(()) = gen.resume() {
+%         ()
+%     };
+% }
+% ```
+% 
 %----------------------------------------------
 \end{document}
