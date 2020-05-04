@@ -4,16 +4,15 @@
 
 [v2](https://github.com/LearningOS/os-lectures/blob/13735ecd36723347059e662d986f4642b887252d/lecture21/ref.md)
 
+[v3]
+
 ### ref
 
-https://cfsamson.github.io/books-futures-explained/
-https://github.com/cfsamson/books-futures-explained
-关于异步的思路很清楚；
+- [Futures Explained in 200 Lines of Rust](https://cfsamson.github.io/books-futures-explained/#futures-explained-in-200-lines-of-rust) [repo at github](https://github.com/cfsamson/books-futures-explained)
+- Writing an OS in Rust - [Async/Awai](https://os.phil-opp.com/async-await/)
+- [零成本异步I/O](https://zhuanlan.zhihu.com/p/97574385)
 
-https://os.phil-opp.com/async-await/#futures-in-rust
-有两个插图很好；
-
-### Background Information
+### 21.1 Background
 ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#some-background-information
 
 
@@ -118,6 +117,10 @@ There are some well-known libraries which implement a cross platform event queue
 
 参考： https://zhuanlan.zhihu.com/p/39970630
 
+![epoll](/Users/xyong/Desktop/os-lectures/lecture21/figs/epoll.jpg)
+
+#### Read data from a socket using epoll
+
 https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#readiness-based-event-queues
 
 **This happens when we want to read data from a socket using epoll/kqueue:**
@@ -131,10 +134,6 @@ https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#
 
 - [epoll example](http://man7.org/linux/man-pages/man7/epoll.7.html)
 - [Complete example](https://www.suchprogramming.com/epoll-in-3-easy-steps/)
-
-参考： https://zhuanlan.zhihu.com/p/39970630
-
-![epoll](/Users/xyong/Desktop/os-lectures/lecture21/figs/epoll.jpg)
 
 #### From callbacks to futures (deferred computation)
 
@@ -161,11 +160,30 @@ async function run() {
 - Rust's Futures on the other hand are *lazily* evaluated.
   - They need to be polled once before they do any work.
 
-### Futures in Rust
+### 21.2 Futures in Rust
 
 参考： https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#futures-in-rust
 参考： https://github.com/cfsamson/books-futures-explained
 参考： Evernote： 20200402-异步消息调研
+
+#### 零成本异步I/O
+
+参考：
+
+- video https://www.youtube.com/watch?v=skos4B5x7qE
+- 中文 https://zhuanlan.zhihu.com/p/97574385
+- async汇总 https://areweasyncyet.rs/
+
+**零成本抽象**
+
+- 不给不使用该功能的用户增加成本
+- 使用该功能时，它的速度不会比不使用它的速度慢。
+
+通常 I/O 处于阻塞状态，因此当你使用 I/O 时，它会阻塞线程，中止你的程序，然后必须通过操作系统重新调度。
+
+在你调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作，但你的程序需要决定如何回到调用该异步 I/O 暂停的那个任务线上
+
+异步 I/O 解决方案；但是我们意识到 **这应该是一个基于库的解决方案，我们需要为异步 I/O 提供良好的抽象，它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库。**
 
 #### Futures
 
@@ -180,6 +198,16 @@ Three phases in asynchronous task:
 1. **Executor**: A Future is polled which result in the task progressing until a point where it can no longer make progress. We often refer to the part of the runtime which polls a Future as an executor.
 2. **Reactor**: An event source, most often referred to as a reactor, registers that a Future is waiting for an event to happen and makes sure that it will wake the Future when that event is ready.
 3. **Waker**: The event happens and the Future is woken up. It's now up to the executor which polled the Future in step 1 to schedule the future to be polled again and make further progress until it completes or reaches a new point where it can't make further progress and the cycle repeats.
+
+#### 基于轮询的 Future的异步执行过程
+
+- 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 。
+- 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 。
+- 在该 I/O 事件发生时，反应器将使用你在轮询它时传递的Waker 参数唤醒 `Future` ，将其传回执行器；
+- 像这样来回穿梭，直到最终被解决（resolved）。
+- 在被解决并得出最终结果时，执行器知道它已经完成，就会释放句柄和整个`Future`，整个调用过程就完成了。
+
+![future-loop](/Users/xyong/Desktop/os-lectures/lecture21/figs/future-loop.jpg)
 
 #### Leaf futures & Non-leaf-futures
 
@@ -221,7 +249,7 @@ The two most popular runtimes for Futures:
 - [async-std](https://github.com/async-rs/async-std)
 - [Tokio](https://github.com/tokio-rs/tokio)
 
-#### What Rust's standard library takes care of
+**What Rust's standard library takes care of**
 ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#what-rusts-standard-library-takes-care-of
 
 1. A common interface representing an operation which will be completed in the future through the `Future` trait.
@@ -253,6 +281,38 @@ fn async_read_file(name: &str) -> impl Future<Output = String> {
 }
 ```
 
+#### async Lifetimes
+
+Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
+
+- `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
+
+```rust
+// This function:
+async fn foo(x: &u8) -> u8 { *x }
+
+// Is equivalent to this function:
+fn foo_expanded<'a>(x: &'a u8) -> impl Future<Output = u8> + 'a {
+    async move { *x }
+}
+```
+
+- By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
+
+```rust
+fn bad() -> impl Future<Output = u8> {
+    let x = 5;
+    borrow_x(&x) // ERROR: `x` does not live long enough
+}
+
+fn good() -> impl Future<Output = u8> {
+    async {
+        let x = 5;
+        borrow_x(&x).await
+    }
+}
+```
+
 #### Zero-cost futures in Rust
 
 Ref: https://aturon.github.io/blog/2016/08/11/futures/
@@ -267,42 +327,7 @@ Here are the results, in number of “Hello world!"s served per second on an 8 c
 
 ![bench-pipelined](/Users/xyong/Desktop/os-lectures/lecture21/figs/bench-pipelined.png)
 
-### Waker and Context
-
-Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#waker-and-context
-
-#### Waker
-
-Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#the-waker
-
-- The `Waker` type allows for a loose coupling between the reactor-part and the executor-part of a runtime.
-- By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms. 
-- Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves.
-
-#### Fat pointers in Rust
-
-Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust
-
-**Example `&[i32]` :**
-
-- The first 8 bytes is the actual pointer to the first element in the array (or part of an array the slice refers to)
-- The second 8 bytes is the length of the slice.
-
-**Example `&dyn SomeTrait`:**
-
-- The first 8 bytes points to the `data` for the trait object
-- The second 8 bytes points to the `vtable` for the trait object
-
-**trait object**
-
-- `&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
-- we implement our own `Waker` we'll actually set up a `vtable`
-
-Example:
-
-- [Fat pointers in Rust](https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust)
-
-### Generators and async/await
+### 21.3 Generators and async/await
 
 Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#generators-and-asyncawait
 
@@ -390,16 +415,9 @@ fn main() {
 }
 ```
 
-### Pin
+### 21.4 Self-Referential Structs & Pin
 
 Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pin
-
-#### Defination of Pin
-
-Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#definitions
-
-- Pin wraps a pointer. A reference to an object is a pointer.
-- Pin gives some guarantees about the *pointee* (the data it points to).
 
 #### Self-Referential Structs
 
@@ -443,13 +461,16 @@ Ref: https://os.phil-opp.com/async-await/#possible-solutions
 - **Store an offset instead of self-references:**: Require the compiler to detect all self-references or need a runtime system again to analyze references and correctly create the  state structs.
 - **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs. It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer.
 
-#### Pinning API
+#### Defination of Pin
 
+Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#definitions
 https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
 the pinning API was proposed in RFC 2349
 
 - **Reference type**. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`. 
+  - Pin wraps a pointer. A reference to an object is a pointer.
 - **Never to move before being dropped**. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again.
+  - Pin gives some guarantees about the *pointee* (the data it points to).
 
 ```rust
 trait Future {
@@ -470,7 +491,42 @@ Once the data is allocated on the heap it will have a stable address.
 
 Examp: [Pinning to the heap](https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap)
 
-### Reactor
+### 21.5 Waker and Reactor
+
+Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#waker-and-context
+
+#### Waker
+
+Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#the-waker
+
+- The `Waker` type allows for a loose coupling between the reactor-part and the executor-part of a runtime.
+- By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms. 
+- Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves.
+
+#### Fat pointers in Rust
+
+Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust
+
+**Example `&[i32]` :**
+
+- The first 8 bytes is the actual pointer to the first element in the array (or part of an array the slice refers to)
+- The second 8 bytes is the length of the slice.
+
+**Example `&dyn SomeTrait`:**
+
+- The first 8 bytes points to the `data` for the trait object
+- The second 8 bytes points to the `vtable` for the trait object
+
+**trait object**
+
+- `&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
+- we implement our own `Waker` we'll actually set up a `vtable`
+
+Example:
+
+- [Fat pointers in Rust](https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust)
+
+#### Reactor
 
 Ref: https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor
 
@@ -484,44 +540,6 @@ Our example task is a timer that only spawns a thread and puts it to sleep for t
 
 - [Our Reactor](https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor)
   - Be dependent on thread::spawn
-
-#### Complete Example
-
-Ref: https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code
-
-- [Finished Example](https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code)
-
-#### async Lifetimes
-
-Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
-
-- `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
-
-```rust
-// This function:
-async fn foo(x: &u8) -> u8 { *x }
-
-// Is equivalent to this function:
-fn foo_expanded<'a>(x: &'a u8) -> impl Future<Output = u8> + 'a {
-    async move { *x }
-}
-```
-
-- By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
-
-```rust
-fn bad() -> impl Future<Output = u8> {
-    let x = 5;
-    borrow_x(&x) // ERROR: `x` does not live long enough
-}
-
-fn good() -> impl Future<Output = u8> {
-    async {
-        let x = 5;
-        borrow_x(&x).await
-    }
-}
-```
 
 #### Async implementation in kernel mode
 
@@ -552,7 +570,7 @@ impl SimpleExecutor {
 
 - Only dependent on queue, No dependent on thread
 
-#### Async in kernel
+#### Asynchronous task based on the keyboard interrupt
 
 Ref: https://os.phil-opp.com/async-await/#async-keyboard-input
 
@@ -570,49 +588,8 @@ using mutexes in interrupt handlers is not a good idea since it can easily lead 
 
 https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
 
-### 零成本异步I/O (Withoutboats)
-- video https://www.youtube.com/watch?v=skos4B5x7qE
-- 中文 https://zhuanlan.zhihu.com/p/97574385
-- async汇总 https://areweasyncyet.rs/
+#### Complete Example
 
-零成本
+Ref: https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code
 
-- 不给不使用该功能的用户增加成本
-- 使用该功能时，它的速度不会比不使用它的速度慢。
-
-通常 I/O 处于阻塞状态，因此当你使用 I/O 时，它会阻塞线程，中止你的程序，然后必须通过操作系统重新调度。
-
-在你调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作，但你的程序需要决定如何回到调用该异步 I/O 暂停的那个任务线上
-
-异步 I/O 解决方案；但是我们意识到 **这应该是一个基于库的解决方案，我们需要为异步 I/O 提供良好的抽象，它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库。**
-
-`Future` 表示一个尚未得出的值，你可以在它被解决（resolved）以得出那个值之前对它进行各种操作。
-
-回调函数：`Future` 负责弄清楚什么时候被解决，无论你的回调是什么，它都会运行；
-
-回调函数：非常难用，需要写很多分配性的代码以及使用动态派发；每个回调都必须获得自己独立的存储空间
-
-#### 基于轮询的 Future
-
-- 轮询 `Future`：执行器的工作就是轮询 `Future` ，而 `Future` 可能返回“尚未准备就绪（Pending）”，也可能被解决就返回“已就绪（Ready）”。
-- 与回调相比，非常容易地取消 `Future` ，因为取消 `Future` 只需要停止持有 `Future`。
-- 执行器（executor）负责调度你的 `Future` ，反应器（reactor）处理所有的 I/O ，然后是你的实际代码。
-- 最终用户可以自行决定使用什么执行器，使用他们想使用的反应器，从而获得更强的控制力。
-- 整个 `Future` 只需要一次堆内存分配，其大小就是你将这个状态机分配到堆中的大小，并且没有额外的开销。
-
-#### 生成器
-
-当你编写的 `Future` 代码被编译成实际的本地（native）代码时，它就像一个状态机；在该状态机中，每次 I/O  的暂停点都有一个变体（variant），而每个变体都保存了恢复执行所需的状态。这表示为一个枚举（enum）结构，即一个包含变体判别式及所有可能状态的联合体（union）。
-
-#### 异步执行过程
-
-- 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 。
-- 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 。
-- 在该 I/O 事件发生时，反应器将使用你在轮询它时传递的Waker 参数唤醒 `Future` ，将其传回执行器；
-- 像这样来回穿梭，直到最终被解决（resolved）。
-- 在被解决并得出最终结果时，执行器知道它已经完成，就会释放句柄和整个`Future`，整个调用过程就完成了。
-
-![future-loop](/Users/xyong/Desktop/os-lectures/lecture21/figs/future-loop.jpg)
-
-后置运算符 `.await`
-
+- [Finished Example](https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code)
