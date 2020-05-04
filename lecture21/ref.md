@@ -129,6 +129,9 @@ https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#
 5. When the event is ready, our thread is unblocked (resumed), and we return from our "wait" call with data about the event that occurred.
 6. We call `read` on the socket we created in 2.
 
+- [epoll example](http://man7.org/linux/man-pages/man7/epoll.7.html)
+- [Complete example](https://www.suchprogramming.com/epoll-in-3-easy-steps/)
+
 参考： https://zhuanlan.zhihu.com/p/39970630
 
 ![epoll](/Users/xyong/Desktop/os-lectures/lecture21/figs/epoll.jpg)
@@ -551,12 +554,67 @@ impl SimpleExecutor {
 
 - Only dependent on queue, No dependent on thread
 
-### 内核中的async
+#### Async in kernel
 
-https://os.phil-opp.com/async-await/
+Ref: https://os.phil-opp.com/async-await/#async-keyboard-input
+
+To support such a task in an efficient way, it will be essential that the executor has proper support for `Waker` notifications.
+
+Our simple executor does not utilize the `Waker` notifications and simply loops over all tasks until they are done.
+
+we will create an asynchronous task based on the keyboard interrupt. 
+
+![scancode-queue](/Users/xyong/Desktop/os-lectures/lecture21/figs/scancode-queue.svg)
+
+A simple implementation of that queue could be a mutex-protected [`VecDeque`](https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html).
+
+using mutexes in interrupt handlers is not a good idea since it can easily lead to deadlocks.
+
+https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
 
 ### 零成本异步I/O (Withoutboats)
 - video https://www.youtube.com/watch?v=skos4B5x7qE
 - 中文 https://zhuanlan.zhihu.com/p/97574385
 - async汇总 https://areweasyncyet.rs/
+
+零成本
+
+- 不给不使用该功能的用户增加成本
+- 使用该功能时，它的速度不会比不使用它的速度慢。
+
+通常 I/O 处于阻塞状态，因此当你使用 I/O 时，它会阻塞线程，中止你的程序，然后必须通过操作系统重新调度。
+
+在你调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作，但你的程序需要决定如何回到调用该异步 I/O 暂停的那个任务线上
+
+异步 I/O 解决方案；但是我们意识到 **这应该是一个基于库的解决方案，我们需要为异步 I/O 提供良好的抽象，它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库。**
+
+`Future` 表示一个尚未得出的值，你可以在它被解决（resolved）以得出那个值之前对它进行各种操作。
+
+回调函数：`Future` 负责弄清楚什么时候被解决，无论你的回调是什么，它都会运行；
+
+回调函数：非常难用，需要写很多分配性的代码以及使用动态派发；每个回调都必须获得自己独立的存储空间
+
+#### 基于轮询的 Future
+
+- 轮询 `Future`：执行器的工作就是轮询 `Future` ，而 `Future` 可能返回“尚未准备就绪（Pending）”，也可能被解决就返回“已就绪（Ready）”。
+- 与回调相比，非常容易地取消 `Future` ，因为取消 `Future` 只需要停止持有 `Future`。
+- 执行器（executor）负责调度你的 `Future` ，反应器（reactor）处理所有的 I/O ，然后是你的实际代码。
+- 最终用户可以自行决定使用什么执行器，使用他们想使用的反应器，从而获得更强的控制力。
+- 整个 `Future` 只需要一次堆内存分配，其大小就是你将这个状态机分配到堆中的大小，并且没有额外的开销。
+
+#### 生成器
+
+当你编写的 `Future` 代码被编译成实际的本地（native）代码时，它就像一个状态机；在该状态机中，每次 I/O  的暂停点都有一个变体（variant），而每个变体都保存了恢复执行所需的状态。这表示为一个枚举（enum）结构，即一个包含变体判别式及所有可能状态的联合体（union）。
+
+#### 异步执行过程
+
+- 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 。
+- 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 。
+- 在该 I/O 事件发生时，反应器将使用你在轮询它时传递的Waker 参数唤醒 `Future` ，将其传回执行器；
+- 像这样来回穿梭，直到最终被解决（resolved）。
+- 在被解决并得出最终结果时，执行器知道它已经完成，就会释放句柄和整个`Future`，整个调用过程就完成了。
+
+![future-loop](/Users/xyong/Desktop/os-lectures/lecture21/figs/future-loop.jpg)
+
+后置运算符 `.await`
 
