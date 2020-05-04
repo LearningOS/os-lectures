@@ -57,6 +57,12 @@ Ref:
 % - By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms
 % - Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Fat pointers in Rust
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust
@@ -80,6 +86,12 @@ Ref:
 % 
 % - [Fat pointers in Rust](https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Reactor
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor
@@ -92,6 +104,12 @@ Ref:
 % - [Mio](https://github.com/tokio-rs/mio): Library of reactors in Rust
 %   - Provide non blocking APIs and event notification for several platforms
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Reactor example
 % 
 % The example task is a timer that only spawns a thread and puts it to sleep for the number of seconds we specify. The reactor we create here will create a **leaf-future** representing each timer. In return the Reactor receives a waker which it will call once the task is finished.
@@ -99,6 +117,12 @@ Ref:
 % - [Our Reactor](https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor)
 %   - Be dependent on thread::spawn
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Async implementation in kernel mode
 % 
 % Ref: https://os.phil-opp.com/async-await/#simple-executor
@@ -128,6 +152,12 @@ Ref:
 % 
 % - Only dependent on queue, No dependent on thread
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Asynchronous task based on the keyboard interrupt
 % 
 % Ref: https://os.phil-opp.com/async-await/#async-keyboard-input
@@ -145,6 +175,12 @@ Ref:
 % 
 % - Example: https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Complete Example
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code

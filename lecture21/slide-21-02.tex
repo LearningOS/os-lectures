@@ -51,6 +51,12 @@ Ref:
 % 参考： https://github.com/cfsamson/books-futures-explained
 % 参考： Evernote： 20200402-异步消息调研
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### 零成本异步I/O
 % 
 % 参考：
@@ -71,6 +77,12 @@ Ref:
 % - 不给不使用该功能的用户增加成本
 % - 使用该功能时，它的速度不会比不使用它的速度慢
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Concept of Future
 % 
 % Ref: https://os.phil-opp.com/async-await/#example
@@ -89,6 +101,12 @@ Ref:
 %    - Wake up to the executor which polled the Future
 %    - Schedule the future to be polled again and make further progress
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### 基于轮询的 Future的异步执行过程
 % 
 % - 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 
@@ -99,6 +117,12 @@ Ref:
 % 
 % ![future-loop](figs/future-loop.jpg)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Leaf futures & Non-leaf-futures
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#leaf-futures
@@ -130,6 +154,12 @@ Ref:
 % }
 % ```
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Runtimes
 % - Languages like C#, JavaScript, Java, GO and many others comes with a runtime for handling concurrency
 % - Rust uses a library for handling concurrency
@@ -145,6 +175,12 @@ Ref:
 % 2. An ergonomic way of **creating tasks** which can be suspended and resumed through the `async` and `await` keywords.
 % 3. A defined interface wake up a suspended task through the `Waker` type.
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Rust future example
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
@@ -170,6 +206,12 @@ Ref:
 % }
 % ```
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### async Lifetimes
 % 
 % Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
@@ -202,6 +244,12 @@ Ref:
 % }
 % ```
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{xxxx}
+%    \framesubtitle{xxxx}
+\end{frame}
+%----------------------------------------------
 % #### Zero-cost futures in Rust
 % 
 % Ref: https://aturon.github.io/blog/2016/08/11/futures/
