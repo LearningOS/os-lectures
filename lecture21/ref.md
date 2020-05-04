@@ -6,6 +6,8 @@
 
 [v3](https://github.com/LearningOS/os-lectures/blob/485c97b7fb6e45428339d043fe1d4cc58802cd26/lecture21/ref.md)
 
+[v4]
+
 ### ref
 
 - [Futures Explained in 200 Lines of Rust](https://cfsamson.github.io/books-futures-explained/#futures-explained-in-200-lines-of-rust) [repo at github](https://github.com/cfsamson/books-futures-explained)
@@ -22,33 +24,13 @@ ref: https://cfsamson.github.io/books-futures-explained/0_background_information
 
 **Non-Preemptive multitasking**
 - The programmer `yielded` control to the OS
-- Every bug out there could halt the entire system
-- Windows 95
+- Every bug could halt the entire system
+- Example: Windows 95
 
 **Preemptive multitasking**
 - OS can stop the execution of a process, do something else, and switch back
 - OS is responsible for scheduling tasks
-
-#### Kernel-supported Threads
-ref: https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads
-https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system
-
-**Advantages:**
-
-- Simple
-- Easy to use
-- Switching between tasks is reasonably fast
-- You get parallelism for free
-
-**Drawbacks:**
-
-- OS level threads come with a rather large stack.
-- There are a lot of syscalls involved.
-- Might not be an option on some systems
-
-Example:
-
-- [Using OS threads in Rust](https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system)
+- Example: UNIX, Linux
 
 #### User-level Thread
 
@@ -56,23 +38,43 @@ Example:
 
 https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads
 
-**Advantages:**
+**Advantages**
 
-1. Simple to use.
-2. A "context switch" is reasonably fast.
-3. Each stack only gets a little memory to start with so you can have hundreds of thousands of green threads running.
-4. It's easy to incorporate [*preemption*](https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/green-threads#preemptive-multitasking) which puts a lot of control in the hands of the runtime implementors.
+- Simple to use
+- A "context switch" is reasonably fast
+- Each stack only gets a little memory
+  - You can have hundreds of thousands of user-level threads running
+- Easy to incorporate [*preemption*](https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/green-threads#preemptive-multitasking)
 
-**Drawbacks:**
+**Drawbacks**
 
-1. The stacks might need to grow. Solving this is not easy and will have a cost.
-2. You need to save all the CPU state on every switch.
-3. It's not a *zero cost abstraction* (Rust had green threads early on and this was one of the reasons they were removed).
-4. Complicated to implement correctly if you want to support many different platforms.
+- The stacks might need to grow
+  - Solving this is not easy and will have a cost
+- Need to save all the CPU state on every switch
+- Complicated to implement correctly if you want to support many different platforms
+
+Example: [Green Threads](https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads)
+
+#### Kernel-supported Threads
+
+ref: https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads
+https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system
+
+**Advantages**
+
+- Easy to use
+- Switching between tasks is reasonably fast
+- Geting parallelism for free
+
+**Drawbacks**
+
+- OS level threads come with a rather large stack
+- There are a lot of syscalls involved
+- Might not be an option on some systems, such as http server
 
 Example:
 
-- [Green Threads](https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads)
+- [Using OS threads in Rust](https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system)
 
 #### Callback based approaches
 
@@ -80,22 +82,20 @@ Ref: https://cfsamson.github.io/books-futures-explained/0_background_information
 
 A callback based approach is to save a pointer to a set of instructions we want to run later together with whatever state is needed.
 
-**Advantages:**
+**Advantages**
 
 - Easy to implement in most languages
 - No context switching
-- Relatively low memory overhead (in most cases)
+- Relatively low memory overhead
 
-**Drawbacks:**
+**Drawbacks**
 
-- Since each task must save the state it needs for later, the memory usage will grow linearly with the number of callbacks in a chain of computations.
-- Can be hard to reason about. Many people already know this as "callback hell".
-- It's a very different way of writing a program, and will require a substantial rewrite to go from a "normal" program flow to one that uses a "callback based" flow.
-- Sharing state between tasks is a hard problem in Rust using this approach due to its ownership model.
+- Memory usage grows linearly with the number of callbacks
+  - Each task must save the state it needs for later
+- Callback hell: Hard to debug
+- Require a substantial rewrite to go from a "normal" program flow to one that uses a "callback based" flow
 
-Example:
-
-- [Callback based approaches](https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches)
+Example: [Callback based approaches](https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches)
 
 #### Event queue: Epoll, Kqueue and IOCP
 
@@ -105,13 +105,13 @@ https://zhuanlan.zhihu.com/p/39970630 select poll epoll的区别
 There are some well-known libraries which implement a cross platform event queue using Epoll, Kqueue and IOCP for Linux, Mac, and Windows, respectively.
 
 - Epoll
-  - Epoll is the Linux way of implementing an event queue.
-  - Epoll was designed to work very efficiently with a large number of events.
+  - Epoll is the Linux way of implementing an event queue
+  - Epoll was designed to work very efficiently with a large number of events
 - Kqueue
-  - Kqueue is the MacOS way of implementing an event queue, which originated from BSD.
-  - In terms of high level functionality, it's similar to Epoll in concept but different in actual use.
+  - Kqueue is the MacOS way of implementing an event queue, which originated from BSD
+  - In terms of high level functionality, it's similar to Epoll in concept but different in actual use
 - IOCP
-  - IOCP or Input Output Completion Ports is the way Windows handles this type of event queue.
+  - IOCP or Input Output Completion Ports is the way Windows handles this type of event queue
 
 #### Epoll
 
@@ -123,14 +123,18 @@ There are some well-known libraries which implement a cross platform event queue
 
 https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#readiness-based-event-queues
 
-**This happens when we want to read data from a socket using epoll/kqueue:**
+**Workflow to read data from a socket using epoll/kqueue**
 
-1. We create an event queue by calling the syscall `epoll_create` or `kqueue`.
-2. We ask the OS for a file descriptor representing a network socket.
-3. Through another syscall, we register an interest in `Read` events on this socket. It's important that we also inform the OS that we'll be expecting to receive a notification when the event is ready in the event queue we created in (1).
-4. Next, we call `epoll_wait` or `kevent` to wait for an event. This will block (suspend) the thread it's called on.
-5. When the event is ready, our thread is unblocked (resumed), and we return from our "wait" call with data about the event that occurred.
-6. We call `read` on the socket we created in 2.
+1. Create an event queue by calling the syscall `epoll_create` or `kqueue`
+2. Ask the OS for a file descriptor representing a network socket
+3. Register an interest in `Read` events on this socket
+   - In order to receive a notification when the event is ready in the event queue we created
+4. Call `epoll_wait` or `kevent` to wait for an event
+   - Block (suspend) the thread it's called on
+5. When the event is ready, our thread is resumed, and return from our "wait" call with data about the event
+6. Call `read` on the socket we created
+
+**Example**
 
 - [epoll example](http://man7.org/linux/man-pages/man7/epoll.7.html)
 - [Complete example](https://www.suchprogramming.com/epoll-in-3-easy-steps/)
@@ -150,15 +154,9 @@ async function run() {
 }
 ```
 
-- The `run` function as a *pausable* task consisting of several sub-tasks. On each "await" point it yields control to the scheduler
-- Once one of the sub-tasks changes state to either `fulfilled` or `rejected`, the task is scheduled to continue to the next step.
-
-#### Difference betwee JavaScript promises and Rust futures
-
-- JavaScript promises are *eagerly* evaluated.
-  - Once it's created, it starts running a task.
-- Rust's Futures on the other hand are *lazily* evaluated.
-  - They need to be polled once before they do any work.
+- The `run` function as a *pausable* task consisting of several sub-tasks
+  - On each "await" point it yields control to the scheduler
+- When the sub-tasks changes state to either `fulfilled` or `rejected`, the task is scheduled to continue to the next step
 
 ### 21.2 Futures in Rust
 
