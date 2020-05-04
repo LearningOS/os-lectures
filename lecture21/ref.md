@@ -117,7 +117,7 @@ There are some well-known libraries which implement a cross platform event queue
 
 参考： https://zhuanlan.zhihu.com/p/39970630
 
-![epoll](figs/epoll.jpg)
+![epoll](figs/epoll.png)
 
 #### Read data from a socket using epoll
 
