@@ -27,11 +27,10 @@
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
 %% itemize
-Ref:
-    \begin{itemize}
-        \item \href{}{xxxx}
-    \end{itemize}
-
+% Ref:
+%     \begin{itemize}
+%         \item \href{}{xxxx}
+%     \end{itemize}
 \end{frame}
 %----------------------------------------------
 %%  PRESENTATION SLIDES
@@ -53,7 +52,7 @@ Ref:
 % 
 %% itemize
     \begin{itemize}
-        \item The `Waker` type allows for a loose coupling between the reactor-part and the executor-part of a runtime
+        \item The $Waker$ type allows for a loose coupling between the reactor-part and the executor-part of a runtime
         \item By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms
         \item Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves
     \end{itemize}
@@ -197,12 +196,12 @@ Example:
 % 
 % ![scancode-queue](figs/scancode-queue.svg)
 
-        \item A simple implementation of that queue could be a mutex-protected [`VecDeque`\href{https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html)
+        \item A simple implementation of that queue could be a mutex-protected \href{https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html}{`VecDeque`}
     	\begin{itemize}
     	    \item Using mutexes in interrupt handlers is not a good idea since it can easily lead to deadlocks.
     	\end{itemize}
 
-        \item Example: https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
+        \item Example: \href{https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs}{Keyboard future}
     \end{itemize}
 
 \end{frame}
@@ -216,7 +215,7 @@ Example:
 % 
 %% itemize
     \begin{itemize}
-        \item [Finished Example\href{https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code)
+        \item \href{https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code}{Finished Example}
     \end{itemize}
 \end{frame}
 %----------------------------------------------
