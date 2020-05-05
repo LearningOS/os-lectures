@@ -147,28 +147,31 @@ Example:
 % 
 % Ref: https://os.phil-opp.com/async-await/#simple-executor
 % 
-% ```rust
-% // in src/task/simple_executor.rs
-% 
-% use super::Task;
-% use alloc::collections::VecDeque;
-% 
-% pub struct SimpleExecutor {
-%     task_queue: VecDeque<Task>,
-% }
-% 
-% impl SimpleExecutor {
-%     pub fn new() -> SimpleExecutor {
-%         SimpleExecutor {
-%             task_queue: VecDeque::new(),
-%         }
-%     }
-% 
-%     pub fn spawn(&mut self, task: Task) {
-%         self.task_queue.push_back(task)
-%     }
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+// in src/task/simple_executor.rs
+
+use super::Task;
+use alloc::collections::VecDeque;
+
+pub struct SimpleExecutor {
+    task_queue: VecDeque<Task>,
+}
+
+impl SimpleExecutor {
+    pub fn new() -> SimpleExecutor {
+        SimpleExecutor {
+            task_queue: VecDeque::new(),
+        }
+    }
+
+    pub fn spawn(&mut self, task: Task) {
+        self.task_queue.push_back(task)
+    }
+}
+    \end{verbatim}
+\end{block}
 % 
 %% itemize
     \begin{itemize}

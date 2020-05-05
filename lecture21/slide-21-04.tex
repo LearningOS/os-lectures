@@ -51,23 +51,29 @@ Ref:
 % 
 % Ref: https://os.phil-opp.com/async-await/#self-referential-structs
 % 
-% ```rust
-% async fn pin_example() -> i32 {
-%     let array = [1, 2, 3];
-%     let element = &array[2];
-%     async_write_file("foo.txt", element.to_string()).await;
-%     *element
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+    async fn pin_example() -> i32 {
+        let array = [1, 2, 3];
+        let element = &array[2];
+        async_write_file("foo.txt", element.to_string()).await;
+        *element
+    }
+    \end{verbatim}
+\end{block}
 % 
 The struct for the "waiting on write" state
 
-% ```rust
-% struct WaitingOnWriteState {
-%     array: [1, 2, 3],
-%     element: 0x1001c, // address of the last array element
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+    struct WaitingOnWriteState {
+        array: [1, 2, 3],
+        element: 0x1001c, // address of the last array element
+    }
+    \end{verbatim}
+\end{block}
 % 
 \end{frame}
 %----------------------------------------------
@@ -91,7 +97,7 @@ The struct for the "waiting on write" state
 % 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{./figs/self-referential-struct-moved}
+    \includegraphics[width=0.8\linewidth]{figs/self-referential-struct-moved.png}
 %    \caption{xxxx}
     \end{figure}
 % ![self-referential-struct-moved](figs/self-referential-struct-moved.svg)
@@ -138,14 +144,17 @@ The struct for the "waiting on write" state
     	\end{itemize}
     \end{itemize}
 % 
-% ```rust
-% trait Future {
-%     type Item;
-%     type Error;
-% 
-%     fn poll(self: Pin<Self>, cx: &mut task::Context) -> Poll<Self::Item, Self::Error>;
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+trait Future {
+    type Item;
+    type Error;
+
+    fn poll(self: Pin<Self>, cx: &mut task::Context) -> Poll<Self::Item, Self::Error>;
+}
+        \end{verbatim}
+\end{block}
 % 
 \end{frame}
 %----------------------------------------------

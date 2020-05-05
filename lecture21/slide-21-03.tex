@@ -85,7 +85,7 @@ Ref:
 % 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{./figs/async-state-machine-basic}
+    \includegraphics[width=0.8\linewidth]{figs/async-state-machine-basic.png}
 %    \caption{xxxx}
     \end{figure}
 % ![async-state-machine-basic](figs/async-state-machine-basic.svg)
@@ -104,34 +104,40 @@ Ref:
     \begin{itemize}
         \item Create a state machine and combine them into an \href{https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html}{`enum`}
 
-% ```rust
-% enum ExampleStateMachine {
-%     Start(StartState),
-%     WaitingOnFooTxt(WaitingOnFooTxtState),
-%     WaitingOnBarTxt(WaitingOnBarTxtState),
-%     End(EndState),
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+    enum ExampleStateMachine {
+        Start(StartState),
+        WaitingOnFooTxt(WaitingOnFooTxtState),
+        WaitingOnBarTxt(WaitingOnBarTxtState),
+        End(EndState),
+    }
+    \end{verbatim}
+\end{block}
 
         \item Generates an implementation of the state transitions in the `poll` function
     \end{itemize}
 % 
-% ```rust
-% impl Future for ExampleStateMachine {
-%     type Output = String; // return type of `example`
-% 
-%     fn poll(self: Pin<&mut Self>, cx: &mut Context) -> Poll<Self::Output> {
-%         loop {
-%             match self { // TODO: handle pinning
-%                 ExampleStateMachine::Start(state) => {…}
-%                 ExampleStateMachine::WaitingOnFooTxt(state) => {…}
-%                 ExampleStateMachine::WaitingOnBarTxt(state) => {…}
-%                 ExampleStateMachine::End(state) => {…}
-%             }
-%         }
-%     }
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+    impl Future for ExampleStateMachine {
+    type Output = String; // return type of `example`
+
+    fn poll(self: Pin<&mut Self>, cx: &mut Context) -> Poll<Self::Output> {
+        loop {
+            match self { // TODO: handle pinning
+                ExampleStateMachine::Start(state) => {…}
+                ExampleStateMachine::WaitingOnFooTxt(state) => {…}
+                ExampleStateMachine::WaitingOnBarTxt(state) => {…}
+                ExampleStateMachine::End(state) => {…}
+            }
+        }
+    }
+}
+    \end{verbatim}
+\end{block}
 % 
 \end{frame}
 %----------------------------------------------
@@ -142,27 +148,30 @@ Ref:
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#how-generators-work
 % 
-% ```rust
-% #![feature(generators, generator_trait)]
-% use std::ops::{Generator, GeneratorState};
-% 
-% fn main() {
-%     let a: i32 = 4;
-%     let mut gen = move || {
-%         println!("Hello");
-%         yield a * 2;
-%         println!("world!");
-%     };
-% 
-%     if let GeneratorState::Yielded(n) = gen.resume() {
-%         println!("Got value {}", n);
-%     }
-% 
-%     if let GeneratorState::Complete(()) = gen.resume() {
-%         ()
-%     };
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+    #![feature(generators, generator_trait)]
+    use std::ops::{Generator, GeneratorState};
+    
+    fn main() {
+        let a: i32 = 4;
+        let mut gen = move || {
+            println!("Hello");
+            yield a * 2;
+            println!("world!");
+        };
+    
+        if let GeneratorState::Yielded(n) = gen.resume() {
+            println!("Got value {}", n);
+        }
+    
+        if let GeneratorState::Complete(()) = gen.resume() {
+            ()
+        };
+    }
+    \end{verbatim}
+\end{block}
 % 
 \end{frame}
 %----------------------------------------------

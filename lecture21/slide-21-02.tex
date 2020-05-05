@@ -152,10 +152,13 @@ Three phases in asynchronous task:
     	    \item Runtimes create *leaf futures* which represents a resource like a socket
     	    \item Operations on these resources will be non-blocking and return a future which we call a leaf future
     	\end{itemize}
-% ```rust
-% // stream is a {\color{red}leaf-future}
-% let mut stream = tokio::net::TcpStream::connect("127.0.0.1:3000");
-% ```
+\begin{block}{}
+\begin{verbatim}
+//rust code
+// stream is a {\color{red}leaf-future}
+let mut stream = tokio::net::TcpStream::connect("127.0.0.1:3000");
+\end{verbatim}
+\end{block}
 
         \item Non-leaf-future
     	\begin{itemize}
@@ -164,17 +167,20 @@ Three phases in asynchronous task:
     	\end{itemize}
     \end{itemize}
 % 
-% ```rust
-% // Non-leaf-future
-% async fn example(min_len: usize) -> String {
-%     let content = async_read_file("foo.txt").await;
-%     if content.len() < min_len {
-%         content + &async_read_file("bar.txt").await
-%     } else {
-%         content
-%     }
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+// Non-leaf-future
+async fn example(min_len: usize) -> String {
+    let content = async_read_file("foo.txt").await;
+    if content.len() < min_len {
+        content + &async_read_file("bar.txt").await
+    } else {
+        content
+    }
+}
+    \end{verbatim}
+\end{block}
 % 
 \end{frame}
 %----------------------------------------------
@@ -212,26 +218,29 @@ Three phases in asynchronous task:
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
 % 
-% ```rust
-% use futures::future::{self, Future};
-% 
-% fn main() {
-%     let _ = example(100);
-% }
-% 
-% async fn example(min_len: usize) -> String {
-%     let content = async_read_file("foo.txt").await;
-%     if content.len() < min_len {
-%         content + &async_read_file("bar.txt").await
-%     } else {
-%         content
-%     }
-% }
-% 
-% fn async_read_file(name: &str) -> impl Future<Output = String> {
-%     future::ready(String::from(name))
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+//rust code
+use futures::future::{self, Future};
+
+fn main() {
+    let _ = example(100);
+}
+
+async fn example(min_len: usize) -> String {
+    let content = async_read_file("foo.txt").await;
+    if content.len() < min_len {
+        content + &async_read_file("bar.txt").await
+    } else {
+        content
+    }
+}
+
+fn async_read_file(name: &str) -> impl Future<Output = String> {
+    future::ready(String::from(name))
+}
+    \end{verbatim}
+\end{block}
 % 
 \end{frame}
 %----------------------------------------------
@@ -247,34 +256,40 @@ Three phases in asynchronous task:
         \item `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
     \end{itemize}
 % 
-% ```rust
-% // This function:
-% async fn foo(x: &u8) -> u8 { *x }
-% 
-% // Is equivalent to this function:
-% fn foo_expanded<'a>(x: &'a u8) -> impl Future<Output = u8> + 'a {
-%     async move { *x }
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+//rust code
+// This function:
+async fn foo(x: &u8) -> u8 { *x }
+
+// Is equivalent to this function:
+fn foo_expanded<'a>(x: &'a u8) -> impl Future<Output = u8> + 'a {
+    async move { *x }
+}
+    \end{verbatim}
+\end{block}
 % 
 %% itemize
     \begin{itemize}
         \item By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
     \end{itemize}
 % 
-% ```rust
-% fn bad() -> impl Future<Output = u8> {
-%     let x = 5;
-%     borrow_x(&x) // ERROR: `x` does not live long enough
-% }
-% 
-% fn good() -> impl Future<Output = u8> {
-%     async {
-%         let x = 5;
-%         borrow_x(&x).await
-%     }
-% }
-% ```
+\begin{block}{}
+    \begin{verbatim}
+    //rust code
+fn bad() -> impl Future<Output = u8> {
+    let x = 5;
+    borrow_x(&x) // ERROR: `x` does not live long enough
+}
+
+fn good() -> impl Future<Output = u8> {
+    async {
+        let x = 5;
+        borrow_x(&x).await
+    }
+}
+    \end{verbatim}
+\end{block}
 % 
 \end{frame}
 %----------------------------------------------
