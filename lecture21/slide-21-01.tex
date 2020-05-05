@@ -44,11 +44,11 @@ Ref:
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
-\section{21.1 Background} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-\section{21.2 Futures in Rust} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-\section{21.3 Generators and async/await} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-\section{21.4 Self-Referential Structs \& Pin} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-\section{21.5 Waker and Reactor} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Background} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Futures in Rust} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Generators and async/await} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Self-Referential Structs \& Pin} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Waker and Reactor} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
 %\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
@@ -100,7 +100,7 @@ Ref:
      	\begin{itemize}
      	    \item You can have hundreds of thousands of user-level threads running
        \end{itemize}
-         \item Easy to incorporate \href{https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/green-threads#preemptive-multitasking}{preemption}
+         \item Easy to incorporate preemption
      \end{itemize}
  
 {\color{red}Drawbacks}
@@ -227,7 +227,7 @@ Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_i
 % 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/epoll.png}
+    \includegraphics[width=0.55\linewidth]{figs/epoll.png}
 %    \caption{xxxx}
     \end{figure}
 % ![epoll](figs/epoll.png)
@@ -235,13 +235,13 @@ Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_i
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Read data from a socket using epoll}
+    \frametitle{Procedure for read data from a socket using epoll}
 %    \framesubtitle{xxxx}
 % #### Read data from a socket using epoll
 % 
 % https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#readiness-based-event-queues
 % 
-{\color{red}Workflow to read data from a socket using epoll/kqueue}
+% {\color{red}Workflow to read data from a socket using epoll/kqueue}
 % 
     \begin{itemize}
         \item Create an event queue by calling the syscall `epoll\_create` or `kqueue`
@@ -276,6 +276,17 @@ Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_i
 % ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#from-callbacks-to-promises
 % 
 Future is one way to deal with the complexity which comes with a callback based approach.
+\begin{block}{}
+\begin{verbatim}
+//rust code
+async function run() {
+    await timer(200);
+    await timer(100);
+    await timer(50);
+    console.log("I'm the last one");
+}
+\end{verbatim}
+\end{block}
 % 
 % ```rust
 % async function run() {
