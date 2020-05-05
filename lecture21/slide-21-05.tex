@@ -67,7 +67,7 @@ Ref:
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust
 % 
-{\color{red}Example `&[i32]`}
+{\color{red}Example `\&[i32]`}
  
  %% itemize
      \begin{itemize}
@@ -75,7 +75,7 @@ Ref:
          \item The second 8 bytes is the length of the slice.
      \end{itemize}
  
-{\color{red}Example `&dyn SomeTrait`}
+{\color{red}Example `\&dyn SomeTrait`}
  
  %% itemize
      \begin{itemize}
@@ -87,7 +87,7 @@ Ref:
 
 %% itemize
     \begin{itemize}
-        \item `&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
+        \item `\&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
         \item Implement `Waker:` we'll actually set up a `vtable`
     \end{itemize}
 
