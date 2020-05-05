@@ -243,7 +243,7 @@ Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_i
 % 
 % {\color{red}Workflow to read data from a socket using epoll/kqueue}
 % 
-    \begin{itemize}
+    \begin{enumerate}
         \item Create an event queue by calling the syscall `epoll\_create` or `kqueue`
         \item Ask the OS for a file descriptor representing a network socket
         \item Register an interest in `Read` events on this socket
@@ -256,7 +256,7 @@ Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_i
     	\end{itemize}
         \item When the event is ready, our thread is resumed, and return from our "wait" call with data about the event
         \item Call `read` on the socket we created
-    \end{itemize}
+    \end{enumerate}
 % 
 {\color{red}Example}
 % 
