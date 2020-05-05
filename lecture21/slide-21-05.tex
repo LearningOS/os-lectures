@@ -22,22 +22,22 @@
 \end{frame}
 
 %----------------------------------------------
-\begin{frame}
-\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \begin{frame}
+% \frametitle{提纲} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
 %% itemize
 % Ref:
 %     \begin{itemize}
 %         \item \href{}{xxxx}
 %     \end{itemize}
-\end{frame}
+% \end{frame}
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
 \section{第5节：Waker and Reactor} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Waker}
@@ -52,9 +52,9 @@
 % 
 %% itemize
     \begin{itemize}
-        \item The $Waker$ type allows for a loose coupling between the reactor-part and the executor-part of a runtime
-        \item By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms
-        \item Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves
+        \item The $Waker$ type allows for a loose coupling between the reactor-part and the executor-part of a runtime \pause
+        \item By having a wake up mechanism that is {\color{red}not} tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms \pause
+        \item Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a {\color{red}type erased} trait object we construct our selves
     \end{itemize}
 
 \end{frame}
@@ -72,7 +72,7 @@
      \begin{itemize}
          \item The first 8 bytes is the actual pointer to the first element in the array (or part of an array the slice refers to)
          \item The second 8 bytes is the length of the slice.
-     \end{itemize}
+     \end{itemize} \pause
  
 {\color{red}Example `\&dyn SomeTrait`}
  
@@ -80,21 +80,21 @@
      \begin{itemize}
          \item The first 8 bytes points to the `data` for the trait object
          \item The second 8 bytes points to the `vtable` for the trait object
-     \end{itemize}
+     \end{itemize} \pause
  
 {\color{red}Trait object}
 
 %% itemize
     \begin{itemize}
-        \item `\&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
+        \item `\&dyn SomeTrait` is a reference to a trait, or what Rust calls a {\color{red}trait object}.
         \item Implement `Waker:` we'll actually set up a `vtable`
-    \end{itemize}
+    \end{itemize} \pause
 
 Example:
 
 %% itemize
     \begin{itemize}
-        \item \href{https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust}{Fat pointers in Rust}
+        \item \href{https://cfsamson.github.io/books-futures-explained/2_waker_context.html}{Fat pointers in Rust}
     \end{itemize}
 
 \end{frame}
@@ -109,13 +109,13 @@ Example:
 % 
 %% itemize
     \begin{itemize}
-        \item To actually abstract over this interaction with the outside world in an asynchronous way
+        \item To actually abstract over this interaction with the outside world in an asynchronous way \pause
     	\begin{itemize}
     	    \item Receive events from the operating system or peripherals
     	    \item Forward them to waiting tasks
-    	\end{itemize}
+    	\end{itemize} \pause
 
-        \item \href{https://github.com/tokio-rs/mio}{Mio}: Library of reactors in Rust
+        \item \href{https://github.com/tokio-rs/mio}{Mio}: Library of reactors in Rust \pause
     	\begin{itemize}
     	    \item Provide non blocking APIs and event notification for several platforms
     	\end{itemize}
@@ -128,11 +128,15 @@ Example:
 %    \framesubtitle{xxxx}
 % #### Reactor example
 % 
-% The example task is a timer that only spawns a thread and puts it to sleep for the number of seconds we specify. The reactor we create here will create a {\color{red}leaf-future} representing each timer. In return the Reactor receives a waker which it will call once the task is finished.
+    \begin{itemize}
+        \item The example task is a {\color{red}timer} that only {\color{red}spawns a thread} and puts it to sleep for the number of seconds we specify. \pause
+        \item The reactor we create here will create a {\color{red}leaf-future} representing each timer. \pause
+        \item In return the Reactor receives a {\color{red}waker} which it will call once the task is finished. \pause
+    \end{itemize}
 % 
 %% itemize
     \begin{itemize}
-        \item \href{https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor}{Our Reactor}
+        \item \href{https://cfsamson.github.io/books-futures-explained/6_future_example.html}{Our Reactor}
     	\begin{itemize}
     	    \item Be dependent on thread::spawn
     	\end{itemize}
@@ -149,23 +153,16 @@ Example:
 % 
 \begin{block}{}
     \begin{verbatim}
-    //rust code
 // in src/task/simple_executor.rs
-
-use super::Task;
-use alloc::collections::VecDeque;
-
 pub struct SimpleExecutor {
     task_queue: VecDeque<Task>,
 }
-
 impl SimpleExecutor {
     pub fn new() -> SimpleExecutor {
         SimpleExecutor {
             task_queue: VecDeque::new(),
         }
     }
-
     pub fn spawn(&mut self, task: Task) {
         self.task_queue.push_back(task)
     }
@@ -193,7 +190,7 @@ impl SimpleExecutor {
     	\begin{itemize}
     	    \item The simple executor does not utilize the `Waker` notifications
     	    \item Simply loops over all tasks until they are done
-    	\end{itemize}
+    	\end{itemize} \pause
 
         \item Create an asynchronous task based on the keyboard interrupt
 %    \end{itemize}
@@ -202,14 +199,14 @@ impl SimpleExecutor {
     \begin{figure}
     \includegraphics[width=0.35\linewidth]{figs/scancode-queue.png}
 %    \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
 % ![scancode-queue](figs/scancode-queue.svg)
 
 %    \begin{itemize}
         \item A simple implementation of that queue could be a mutex-protected \href{https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html}{`VecDeque`}
     	\begin{itemize}
     	    \item Using mutexes in interrupt handlers is not a good idea since it can easily lead to deadlocks.
-    	\end{itemize}
+    	\end{itemize} \pause
 
         \item Example: \href{https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs}{Keyboard future}
     \end{itemize}
@@ -225,7 +222,7 @@ impl SimpleExecutor {
 % 
 %% itemize
     \begin{itemize}
-        \item \href{https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code}{Finished Example}
+        \item \href{https://cfsamson.github.io/books-futures-explained/8_finished_example.html}{Finished Example}
     \end{itemize}
 \end{frame}
 %----------------------------------------------

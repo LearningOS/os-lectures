@@ -25,20 +25,33 @@
 \begin{frame}
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-
-%% itemize
+% itemize
 Ref:
     \begin{itemize}
-        \item \href{}{xxxx}
+        \item \href{https://cfsamson.github.io/books-futures-explained/}{Futures Explained in 200 Lines of Rust}
+        \item Writing an OS in Rust - \href{https://os.phil-opp.com/async-await/}{Async/Await}
+        \item \href{https://zhuanlan.zhihu.com/p/97574385}{零成本异步I/O}
     \end{itemize}
 
 \end{frame}
 %----------------------------------------------
+% ### ref
+% 
+% - [Futures Explained in 200 Lines of Rust](https://cfsamson.github.io/books-futures-explained/#futures-explained-in-200-lines-of-rust) [repo at github](https://github.com/cfsamson/books-futures-explained)
+% - Writing an OS in Rust - [Async/Await](https://os.phil-opp.com/async-await/)
+% - [零成本异步I/O](https://zhuanlan.zhihu.com/p/97574385)
+% 
+%----------------------------------------------
+%%  PRESENTATION SLIDES
+%----------------------------------------------
+\section{Background} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Futures in Rust} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
 \section{第3节：Generators and async/await} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%----------------------------------------------
-\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\section{Self-Referential Structs \& Pin} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Waker and Reactor} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Concurrency in Rust}
@@ -52,9 +65,9 @@ Ref:
 % Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html
 % 
     \begin{itemize}
-        \item Stackful coroutines, better known as green threads.
-        \item Using combinators.
-        \item Stackless coroutines, better known as generators.
+        \item Stackful coroutines (green threads)
+        \item Using combinators
+        \item Stackless coroutines (generators)
     \end{itemize}
 % 
 \end{frame}
@@ -69,23 +82,23 @@ Ref:
 % 
 %% itemize
     \begin{itemize}
-        \item Async in Rust is implemented using Generators
-        \item Generators in Rust are implemented as state machines
-        \item Compiler transforms the body of the `async` function into a \href{https://en.wikipedia.org/wiki/Finite-state_machine}{state machine}, with each `.await` call representing a different state.
-        \item Each state represents a different pause point of the function
+        \item Async in Rust is implemented using {\color{red}Generators}
+        \item Generators in Rust are implemented as {\color{red}state machines}
+        \item {\color{red}Compiler} transforms the body of the `async` function into a state machine, with each `.await` call representing a different state. \pause
+        \item {\color{red}Each state} represents a different pause point of the function
 % 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/async-state-machine-states.png}
+    \includegraphics[width=0.4\linewidth]{figs/async-state-machine-states.png}
 %    \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
 % ![async-state-machine-states](figs/async-state-machine-states.svg)
 % 
-        \item Arrows represent state switches and diamond shapes represent alternative ways
+        \item Arrows represent {\color{red}state switches} and diamond shapes represent alternative ways
 % 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/async-state-machine-basic.png}
+    \includegraphics[width=0.55\linewidth]{figs/async-state-machine-basic.png}
 %    \caption{xxxx}
     \end{figure}
 % ![async-state-machine-basic](figs/async-state-machine-basic.svg)
@@ -94,7 +107,7 @@ Ref:
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{State Machine Type}
+    \frametitle{State Machine Type: enum ExampleStateMachine}
 %    \framesubtitle{xxxx}
 % #### State Machine Type
 % 
@@ -103,6 +116,7 @@ Ref:
 %% itemize
     \begin{itemize}
         \item Create a state machine and combine them into an \href{https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html}{`enum`}
+    \end{itemize}
 
 \begin{block}{}
     \begin{verbatim}
@@ -116,15 +130,19 @@ Ref:
     \end{verbatim}
 \end{block}
 
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{State Machine Type: impl Future for ExampleStateMachine}
+%% itemize
+    \begin{itemize}
         \item Generates an implementation of the state transitions in the `poll` function
     \end{itemize}
 % 
 \begin{block}{}
     \begin{verbatim}
-    //rust code
     impl Future for ExampleStateMachine {
     type Output = String; // return type of `example`
-
     fn poll(self: Pin<&mut Self>, cx: &mut Context) -> Poll<Self::Output> {
         loop {
             match self { // TODO: handle pinning
@@ -142,7 +160,7 @@ Ref:
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Example of Generator}
+    \frametitle{\href{https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html}{Example of Generator}}
 %    \framesubtitle{xxxx}
 % #### Example of Generator
 % 
@@ -150,10 +168,6 @@ Ref:
 % 
 \begin{block}{}
     \begin{verbatim}
-    //rust code
-    #![feature(generators, generator_trait)]
-    use std::ops::{Generator, GeneratorState};
-    
     fn main() {
         let a: i32 = 4;
         let mut gen = move || {
@@ -161,16 +175,13 @@ Ref:
             yield a * 2;
             println!("world!");
         };
-    
         if let GeneratorState::Yielded(n) = gen.resume() {
             println!("Got value {}", n);
         }
-    
         if let GeneratorState::Complete(()) = gen.resume() {
             ()
         };
-    }
-    \end{verbatim}
+    } \end{verbatim}
 \end{block}
 % 
 \end{frame}

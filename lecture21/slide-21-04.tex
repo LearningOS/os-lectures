@@ -22,23 +22,17 @@
 \end{frame}
 
 %----------------------------------------------
-\begin{frame}
-\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+% \begin{frame}
+% \frametitle{提纲} % Table of contents slide, comment this block out to remove it
+% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
-%% itemize
-Ref:
-    \begin{itemize}
-        \item \href{}{xxxx}
-    \end{itemize}
-
-\end{frame}
+% \end{frame}
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
 \section{第4节：Self-Referential Structs \& Pin} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+% \subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Self-Referential Structs}
@@ -53,26 +47,21 @@ Ref:
 % 
 \begin{block}{}
     \begin{verbatim}
-    //rust code
     async fn pin_example() -> i32 {
         let array = [1, 2, 3];
         let element = &array[2];
         async_write_file("foo.txt", element.to_string()).await;
         *element
-    }
-    \end{verbatim}
-\end{block}
-% 
+    } \end{verbatim}
+\end{block} \pause
 The struct for the "waiting on write" state
-
+% 
 \begin{block}{}
     \begin{verbatim}
-    //rust code
     struct WaitingOnWriteState {
         array: [1, 2, 3],
         element: 0x1001c, // address of the last array element
-    }
-    \end{verbatim}
+    } \end{verbatim}
 \end{block}
 % 
 \end{frame}
@@ -83,21 +72,21 @@ The struct for the "waiting on write" state
 % #### The Problem with Self-Referential Structs
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-structs
-% 
-{\color{red}memory layout of self-referential struct}
+Memory layout of self-referential struct
 % 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/self-referential-struct.png}
+    \includegraphics[width=0.53\linewidth]{figs/self-referential-struct.png}
 %    \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
 % ![self-referential-struct](figs/self-referential-struct.svg)
 % 
-{\color{red}After moving this struct to a different memory address}
+% 
+After moving this struct to a different memory address
 % 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/self-referential-struct-moved.png}
+    \includegraphics[width=0.53\linewidth]{figs/self-referential-struct-moved.png}
 %    \caption{xxxx}
     \end{figure}
 % ![self-referential-struct-moved](figs/self-referential-struct-moved.svg)
@@ -113,9 +102,9 @@ The struct for the "waiting on write" state
 % 
 %% itemize
     \begin{itemize}
-        \item {\color{red}Update the pointer on move:} Require extensive changes to Rust that would result in potentially huge  performance losses.
-        \item {\color{red}Store an offset instead of self-references:}: Require the compiler to {\color{red}detect all self-references} or need a runtime system again to analyze references and correctly create the  state structs.
-        \item {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs
+        \item {\color{red}Update the pointer on move:} Require extensive changes to Rust that would result in potentially huge  performance losses. \pause
+        \item {\color{red}Store an offset instead of self-references:}: Require the compiler to {\color{red}detect all self-references} or need a runtime system again to analyze references and correctly create the  state structs. \pause
+        \item {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs \pause
     	\begin{itemize}
     	    \item It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
     	\end{itemize}
@@ -137,23 +126,21 @@ The struct for the "waiting on write" state
         \item Pin wraps a pointer. A reference to an object is a pointer
     	\begin{itemize}
     	    \item {\color{red}Reference type}. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
-    	\end{itemize}
-        \item Pin gives some guarantees about the *pointee* (the data it points to)
+    	\end{itemize} \pause
+        \item Pin gives some guarantees about the {\color{red}pointee} (the data it points to)
     	\begin{itemize}
     	    \item {\color{red}Never to move before being dropped}. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
     	\end{itemize}
-    \end{itemize}
+    \end{itemize} \pause
 % 
 \begin{block}{}
     \begin{verbatim}
-    //rust code
 trait Future {
     type Item;
     type Error;
 
     fn poll(self: Pin<Self>, cx: &mut task::Context) -> Poll<Self::Item, Self::Error>;
-}
-        \end{verbatim}
+} \end{verbatim}
 \end{block}
 % 
 \end{frame}
@@ -169,8 +156,8 @@ Pinning to the heap is safe so the user doesn't need to implement any unsafe cod
 % 
 %% itemize
     \begin{itemize}
-        \item Once the data is allocated on the heap it will have a stable address
-        \item Examp: \href{https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap}{Pinning to the heap}
+        \item Once the data is allocated on the heap it will have a stable address \pause
+        \item Examp: \href{https://cfsamson.github.io/books-futures-explained/4_pin.html}{Pinning to the heap}
     \end{itemize}
 
 \end{frame}
