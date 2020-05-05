@@ -53,9 +53,12 @@ Ref:
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#the-waker
 % 
-% - The `Waker` type allows for a loose coupling between the reactor-part and the executor-part of a runtime
-% - By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms
-% - Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves
+% %% itemize
+%     \begin{itemize}
+%         \item The `Waker` type allows for a loose coupling between the reactor-part and the executor-part of a runtime
+%         \item By having a wake up mechanism that is *not* tied to the thing that executes the future, runtime-implementors can come up with interesting new wake-up mechanisms
+%         \item Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves
+%     \end{itemize}
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -69,22 +72,34 @@ Ref:
 % 
 %{\color{red}Example `&[i32]`}
 % 
-% - The first 8 bytes is the actual pointer to the first element in the array (or part of an array the slice refers to)
-% - The second 8 bytes is the length of the slice.
+% %% itemize
+%     \begin{itemize}
+%         \item The first 8 bytes is the actual pointer to the first element in the array (or part of an array the slice refers to)
+%         \item The second 8 bytes is the length of the slice.
+%     \end{itemize}
 % 
 %{\color{red}Example `&dyn SomeTrait`}
 % 
-% - The first 8 bytes points to the `data` for the trait object
-% - The second 8 bytes points to the `vtable` for the trait object
+% %% itemize
+%     \begin{itemize}
+%         \item The first 8 bytes points to the `data` for the trait object
+%         \item The second 8 bytes points to the `vtable` for the trait object
+%     \end{itemize}
 % 
 %{\color{red}Trait object}
 % 
-% - `&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
-% - Implement `Waker:` we'll actually set up a `vtable`
+% %% itemize
+%     \begin{itemize}
+%         \item `&dyn SomeTrait` is a reference to a trait, or what Rust calls a *trait object*.
+%         \item Implement `Waker:` we'll actually set up a `vtable`
+%     \end{itemize}
 % 
 % Example:
 % 
-% - [Fat pointers in Rust](https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust)
+% %% itemize
+%     \begin{itemize}
+%         \item \href{https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust}{Fat pointers in Rust}
+%     \end{itemize}
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -97,12 +112,19 @@ Ref:
 % Ref: https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor
 % https://docs.rs/tokio/0.1.22/tokio/reactor/index.html
 % 
-% - To actually abstract over this interaction with the outside world in an asynchronous way
-%   - Receive events from the operating system or peripherals
-%   - Forward them to waiting tasks
+% %% itemize
+%     \begin{itemize}
+%         \item To actually abstract over this interaction with the outside world in an asynchronous way
+%     	\begin{itemize}
+%     	    \item Receive events from the operating system or peripherals
+%     	    \item Forward them to waiting tasks
+%     	\end{itemize}
 % 
-% - [Mio](https://github.com/tokio-rs/mio): Library of reactors in Rust
-%   - Provide non blocking APIs and event notification for several platforms
+%         \item \href{https://github.com/tokio-rs/mio}{Mio}: Library of reactors in Rust
+%     	\begin{itemize}
+%     	    \item Provide non blocking APIs and event notification for several platforms
+%     	\end{itemize}
+%     \end{itemize}
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -114,8 +136,13 @@ Ref:
 % 
 % The example task is a timer that only spawns a thread and puts it to sleep for the number of seconds we specify. The reactor we create here will create a {\color{red}leaf-future} representing each timer. In return the Reactor receives a waker which it will call once the task is finished.
 % 
-% - [Our Reactor](https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor)
-%   - Be dependent on thread::spawn
+% %% itemize
+%     \begin{itemize}
+%         \item \href{https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor}{Our Reactor}
+%     	\begin{itemize}
+%     	    \item Be dependent on thread::spawn
+%     	\end{itemize}
+%     \end{itemize}
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -150,7 +177,10 @@ Ref:
 % }
 % ```
 % 
-% - Only dependent on queue, No dependent on thread
+% %% itemize
+%     \begin{itemize}
+%         \item Only dependent on queue, No dependent on thread
+%     \end{itemize}
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -162,18 +192,25 @@ Ref:
 % 
 % Ref: https://os.phil-opp.com/async-await/#async-keyboard-input
 % 
-% - The executor has proper support for `Waker` notifications
-%   - The simple executor does not utilize the `Waker` notifications
-%   - Simply loops over all tasks until they are done
+% %% itemize
+%     \begin{itemize}
+%         \item The executor has proper support for `Waker` notifications
+%     	\begin{itemize}
+%     	    \item The simple executor does not utilize the `Waker` notifications
+%     	    \item Simply loops over all tasks until they are done
+%     	\end{itemize}
 % 
-% - Create an asynchronous task based on the keyboard interrupt
+%         \item Create an asynchronous task based on the keyboard interrupt
 % 
 % ![scancode-queue](figs/scancode-queue.svg)
 % 
-% - A simple implementation of that queue could be a mutex-protected [`VecDeque`](https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html)
-%   - Using mutexes in interrupt handlers is not a good idea since it can easily lead to deadlocks.
+%         \item A simple implementation of that queue could be a mutex-protected [`VecDeque`\href{https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html)
+%     	\begin{itemize}
+%     	    \item Using mutexes in interrupt handlers is not a good idea since it can easily lead to deadlocks.
+%     	\end{itemize}
 % 
-% - Example: https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
+%         \item Example: https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
+%     \end{itemize}
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -185,6 +222,9 @@ Ref:
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code
 % 
-% - [Finished Example](https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code)
+% %% itemize
+%     \begin{itemize}
+%         \item [Finished Example\href{https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code)
+%     \end{itemize}
 %----------------------------------------------
 \end{document}

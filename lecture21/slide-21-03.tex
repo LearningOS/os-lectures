@@ -68,16 +68,19 @@ Ref:
 % Ref: https://os.phil-opp.com/async-await/#state-machine-transformation
 % https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#stackless-coroutinesgenerators
 % 
-% - Async in Rust is implemented using Generators
-% - Generators in Rust are implemented as state machines
-% - Compiler transforms the body of the `async` function into a [*state machine*](https://en.wikipedia.org/wiki/Finite-state_machine), with each `.await` call representing a different state.
-% - Each state represents a different pause point of the function
+% %% itemize
+%     \begin{itemize}
+%         \item Async in Rust is implemented using Generators
+%         \item Generators in Rust are implemented as state machines
+%         \item Compiler transforms the body of the `async` function into a \href{https://en.wikipedia.org/wiki/Finite-state_machine}{state machine}, with each `.await` call representing a different state.
+%         \item Each state represents a different pause point of the function
 % 
 % ![async-state-machine-states](figs/async-state-machine-states.svg)
 % 
-% - Arrows represent state switches and diamond shapes represent alternative ways
+%         \item Arrows represent state switches and diamond shapes represent alternative ways
 % 
 % ![async-state-machine-basic](figs/async-state-machine-basic.svg)
+%     \end{itemize}
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -89,7 +92,9 @@ Ref:
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-full-state-machine-type
 % 
-% - Create a state machine and combine them into an [`enum`](https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html)
+% %% itemize
+%     \begin{itemize}
+%         \item Create a state machine and combine them into an \href{https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html}{`enum`}
 % 
 % ```rust
 % enum ExampleStateMachine {
@@ -100,7 +105,8 @@ Ref:
 % }
 % ```
 % 
-% - Generates an implementation of the state transitions in the `poll` function
+%         \item Generates an implementation of the state transitions in the `poll` function
+%     \end{itemize}
 % 
 % ```rust
 % impl Future for ExampleStateMachine {

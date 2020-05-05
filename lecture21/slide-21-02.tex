@@ -67,15 +67,23 @@ Ref:
 % 
 % Future的设计目标
 % 
-% - 调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作
-% - I/O完成时，回到调用该异步 I/O 暂停的那个任务线上
-% - {\color{red}一种通过对异步 I/O 的良好抽象形成的基于库的解决方案}
-%   - 它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库
+% %% itemize
+%     \begin{itemize}
+%         \item 调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作
+%         \item I/O完成时，回到调用该异步 I/O 暂停的那个任务线上
+%         \item {\color{red}一种通过对异步 I/O 的良好抽象形成的基于库的解决方案}
+%     	\begin{itemize}
+%     	    \item 它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库
+%     	\end{itemize}
+%     \end{itemize}
 % 
 %{\color{red}零成本抽象}
 % 
-% - 不给不使用该功能的用户增加成本
-% - 使用该功能时，它的速度不会比不使用它的速度慢
+% %% itemize
+%     \begin{itemize}
+%         \item 不给不使用该功能的用户增加成本
+%         \item 使用该功能时，它的速度不会比不使用它的速度慢
+%     \end{itemize}
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -109,11 +117,14 @@ Ref:
 %----------------------------------------------
 % #### 基于轮询的 Future的异步执行过程
 % 
-% - 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 
-% - 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 
-% - I/O 事件发生时，反应器将使用传递的`Waker` 参数唤醒 `Future` ，传回执行器
-% - 循环上述三步，直到最终`future`任务完成（resolved）
-% - 任务完成并得出结果时，执行器释放句柄和整个`Future`，整个调用过程就完成了
+% %% itemize
+%     \begin{itemize}
+%         \item 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 
+%         \item 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 
+%         \item I/O 事件发生时，反应器将使用传递的`Waker` 参数唤醒 `Future` ，传回执行器
+%         \item 循环上述三步，直到最终`future`任务完成（resolved）
+%         \item 任务完成并得出结果时，执行器释放句柄和整个`Future`，整个调用过程就完成了
+%     \end{itemize}
 % 
 % ![future-loop](figs/future-loop.jpg)
 % 
@@ -161,12 +172,17 @@ Ref:
 \end{frame}
 %----------------------------------------------
 % #### Runtimes
-% - Languages like C#, JavaScript, Java, GO and many others comes with a runtime for handling concurrency
-% - Rust uses a library for handling concurrency
+% %% itemize
+%     \begin{itemize}
+%         \item Languages like C#, JavaScript, Java, GO and many others comes with a runtime for handling concurrency
+%         \item Rust uses a library for handling concurrency
 % 
-% - The two most popular runtimes for Futures:
-%   - [async-std](https://github.com/async-rs/async-std)
-%   - [Tokio](https://github.com/tokio-rs/tokio)
+%         \item The two most popular runtimes for Futures:
+%     	\begin{itemize}
+%     	    \item \href{https://github.com/async-rs/async-std}{async-std}
+%     	    \item \href{https://github.com/tokio-rs/tokio}{Tokio}
+%     	\end{itemize}
+%     \end{itemize}
 % 
 % {\color{red}What Rust's standard library takes care of}
 % ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#what-rusts-standard-library-takes-care-of
@@ -216,7 +232,10 @@ Ref:
 % 
 % Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
 % 
-% - `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
+% %% itemize
+%     \begin{itemize}
+%         \item `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
+%     \end{itemize}
 % 
 % ```rust
 % // This function:
@@ -228,7 +247,10 @@ Ref:
 % }
 % ```
 % 
-% - By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
+% %% itemize
+%     \begin{itemize}
+%         \item By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
+%     \end{itemize}
 % 
 % ```rust
 % fn bad() -> impl Future<Output = u8> {
@@ -254,10 +276,15 @@ Ref:
 % 
 % Ref: https://aturon.github.io/blog/2016/08/11/futures/
 % 
-% - Build up a big `enum` that represents the state machine
-%   - There is one allocation needed per “task”, which usually works out to one per connection
-% - When an event arrives, only one dynamic dispatch is required
-% - There are essentially no imposed synchronization costs
+% %% itemize
+%     \begin{itemize}
+%         \item Build up a big `enum` that represents the state machine
+%     	\begin{itemize}
+%     	    \item There is one allocation needed per “task”, which usually works out to one per connection
+%     	\end{itemize}
+%         \item When an event arrives, only one dynamic dispatch is required
+%         \item There are essentially no imposed synchronization costs
+%     \end{itemize}
 % 
 % Here are the results, in number of “Hello world!"s served per second on an 8 core Linux machine.
 % 
