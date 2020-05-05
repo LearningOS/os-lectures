@@ -41,10 +41,8 @@ Ref:
 \subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Self-Referential Structs}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % ### 21.4 Self-Referential Structs & Pin
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pin
@@ -62,8 +60,8 @@ Ref:
 % }
 % ```
 % 
-% The struct for the "waiting on write" state
-% 
+The struct for the "waiting on write" state
+
 % ```rust
 % struct WaitingOnWriteState {
 %     array: [1, 2, 3],
@@ -71,55 +69,64 @@ Ref:
 % }
 % ```
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{The Problem with Self-Referential Structs}
+%    \framesubtitle{xxxx}
 % #### The Problem with Self-Referential Structs
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-structs
 % 
-% **memory layout of self-referential struct**
+{\color{red}memory layout of self-referential struct}
 % 
 % ![self-referential-struct](figs/self-referential-struct.svg)
 % 
-% **After moving this struct to a different memory address**
+{\color{red}After moving this struct to a different memory address}
 % 
 % ![self-referential-struct-moved](figs/self-referential-struct-moved.svg)
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Possible approaches to solve the dangling pointer problem}
+%    \framesubtitle{xxxx}
 % #### Possible approaches to solve the dangling pointer problem
 % 
 % Ref: https://os.phil-opp.com/async-await/#possible-solutions
 % 
-% - **Update the pointer on move:** Require extensive changes to Rust that would result in potentially huge  performance losses.
-% - **Store an offset instead of self-references:**: Require the compiler to **detect all self-references** or need a runtime system again to analyze references and correctly create the  state structs.
-% - **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs
-%   - It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
-% 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
+%% itemize
+    \begin{itemize}
+        \item {\color{red}Update the pointer on move:} Require extensive changes to Rust that would result in potentially huge  performance losses.
+        \item {\color{red}Store an offset instead of self-references:}: Require the compiler to {\color{red}detect all self-references} or need a runtime system again to analyze references and correctly create the  state structs.
+        \item {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs
+    	\begin{itemize}
+    	    \item It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
+    	\end{itemize}
+    \end{itemize}
+
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Defination of Pin}
+%    \framesubtitle{xxxx}
 % #### Defination of Pin
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#definitions
 % https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
 % the pinning API was proposed in RFC 2349
 % 
-% - Pin wraps a pointer. A reference to an object is a pointer
-%   - **Reference type**. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
-% - Pin gives some guarantees about the *pointee* (the data it points to)
-%   - **Never to move before being dropped**. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
+%% itemize
+    \begin{itemize}
+        \item Pin wraps a pointer. A reference to an object is a pointer
+    	\begin{itemize}
+    	    \item {\color{red}Reference type}. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
+    	\end{itemize}
+        \item Pin gives some guarantees about the *pointee* (the data it points to)
+    	\begin{itemize}
+    	    \item {\color{red}Never to move before being dropped}. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
+    	\end{itemize}
+    \end{itemize}
 % 
 % ```rust
 % trait Future {
@@ -130,20 +137,23 @@ Ref:
 % }
 % ```
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Pinning to the heap}
+%    \framesubtitle{xxxx}
 % #### Pinning to the heap
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap
 % 
-% Pinning to the heap is safe so the user doesn't need to implement any unsafe code.
+Pinning to the heap is safe so the user doesn't need to implement any unsafe code.
 % 
-% - Once the data is allocated on the heap it will have a stable address
-% - Examp: [Pinning to the heap](https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap)
-% 
+%% itemize
+    \begin{itemize}
+        \item Once the data is allocated on the heap it will have a stable address
+        \item Examp: \href{https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap}{Pinning to the heap}
+    \end{itemize}
+
+\end{frame}
 %----------------------------------------------
 \end{document}

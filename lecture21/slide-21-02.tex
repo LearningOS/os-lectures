@@ -38,13 +38,6 @@ Ref:
 %----------------------------------------------
 \section{第2节：Futures in Rust} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % ### 21.2 Futures in Rust
 % 
 % 参考： https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#futures-in-rust
@@ -53,10 +46,8 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{零成本异步I/O}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### 零成本异步I/O
 % 
 % 参考：
@@ -65,82 +56,103 @@ Ref:
 % - 中文 https://zhuanlan.zhihu.com/p/97574385
 % - async汇总 https://areweasyncyet.rs/
 % 
-% Future的设计目标
+Future的设计目标
+
+%% itemize
+    \begin{itemize}
+        \item 调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作
+        \item I/O完成时，回到调用该异步 I/O 暂停的那个任务线上
+        \item {\color{red}一种通过对异步 I/O 的良好抽象形成的基于库的解决方案}
+    	\begin{itemize}
+    	    \item 它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库
+    	\end{itemize}
+    \end{itemize}
+
+{\color{red}零成本抽象}
 % 
-% - 调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作
-% - I/O完成时，回到调用该异步 I/O 暂停的那个任务线上
-% - **一种通过对异步 I/O 的良好抽象形成的基于库的解决方案**
-%   - 它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库
+%% itemize
+    \begin{itemize}
+        \item 不给不使用该功能的用户增加成本
+        \item 使用该功能时，它的速度不会比不使用它的速度慢
+    \end{itemize}
 % 
-% **零成本抽象**
-% 
-% - 不给不使用该功能的用户增加成本
-% - 使用该功能时，它的速度不会比不使用它的速度慢
-% 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Concept of Future}
+%    \framesubtitle{xxxx}
 % #### Concept of Future
 % 
 % Ref: https://os.phil-opp.com/async-await/#example
 % 
-% A future is a representation of some operation which will complete in the future.
+A future is a representation of some operation which will complete in the future.
 % 
 % ![async-example](figs/async-example.svg)
 % 
-% Three phases in asynchronous task:
+Three phases in asynchronous task:
 % 
-% 1. **Executor**: A Future is polled which result in the task progressing
-%    - Until a point where it can no longer make progress
-% 2. **Reactor**: Register an event source that a Future is waiting for
-%    - Makes sure that it will wake the Future when that event is ready
-% 3. **Waker**: The event happens and the Future is woken up
-%    - Wake up to the executor which polled the Future
-%    - Schedule the future to be polled again and make further progress
+    \begin{itemize}
+        \item {\color{red}Executor}: A Future is polled which result in the task progressing
+    	\begin{itemize}
+    	    \item Until a point where it can no longer make progress
+    	\end{itemize}
+        \item {\color{red}Reactor}: Register an event source that a Future is waiting for
+    	\begin{itemize}
+    	    \item Makes sure that it will wake the Future when that event is ready
+    	\end{itemize}
+        \item {\color{red}Waker}: The event happens and the Future is woken up
+    	\begin{itemize}
+    	    \item Wake up to the executor which polled the Future
+    	    \item Schedule the future to be polled again and make further progress
+    	\end{itemize}
+    \end{itemize}
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{基于轮询的 Future的异步执行过程}
+%    \framesubtitle{xxxx}
 % #### 基于轮询的 Future的异步执行过程
 % 
-% - 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 
-% - 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 
-% - I/O 事件发生时，反应器将使用传递的`Waker` 参数唤醒 `Future` ，传回执行器
-% - 循环上述三步，直到最终`future`任务完成（resolved）
-% - 任务完成并得出结果时，执行器释放句柄和整个`Future`，整个调用过程就完成了
+%% itemize
+    \begin{itemize}
+        \item 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 
+        \item 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 
+        \item I/O 事件发生时，反应器将使用传递的`Waker` 参数唤醒 `Future` ，传回执行器
+        \item 循环上述三步，直到最终`future`任务完成（resolved）
+        \item 任务完成并得出结果时，执行器释放句柄和整个`Future`，整个调用过程就完成了
+    \end{itemize}
 % 
 % ![future-loop](figs/future-loop.jpg)
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Leaf futures \& Non-leaf-futures}
+%    \framesubtitle{xxxx}
 % #### Leaf futures & Non-leaf-futures
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#leaf-futures
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
 % 
-%  * Leaf future
-%      * Runtimes create *leaf futures* which represents a resource like a socket
-%     * Operations on these resources will be non-blocking and return a future which we call a leaf future
-% 
+    \begin{itemize}
+        \item Leaf future
+    	\begin{itemize}
+    	    \item Runtimes create *leaf futures* which represents a resource like a socket
+    	    \item Operations on these resources will be non-blocking and return a future which we call a leaf future
+    	\end{itemize}
 % ```rust
-% // stream is a **leaf-future**
+% // stream is a {\color{red}leaf-future}
 % let mut stream = tokio::net::TcpStream::connect("127.0.0.1:3000");
 % ```
-% 
-%  * Non-leaf-future
-%     * The bulk of an async program will consist of non-leaf-futures, which are a kind of pause-able computation
-%     * Non-leaf-futures represents a *set of operations*
+
+        \item Non-leaf-future
+    	\begin{itemize}
+    	    \item The bulk of an async program will consist of non-leaf-futures, which are a kind of pause-able computation
+    	    \item Non-leaf-futures represents a *set of operations*
+    	\end{itemize}
+    \end{itemize}
 % 
 % ```rust
 % // Non-leaf-future
@@ -154,33 +166,38 @@ Ref:
 % }
 % ```
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Runtimes}
+%    \framesubtitle{xxxx}
 % #### Runtimes
-% - Languages like C#, JavaScript, Java, GO and many others comes with a runtime for handling concurrency
-% - Rust uses a library for handling concurrency
+%% itemize
+    \begin{itemize}
+        \item Languages like C\#, JavaScript, Java, GO and many others comes with a runtime for handling concurrency
+        \item Rust uses a library for handling concurrency
+
+        \item The two most popular runtimes for Futures:
+    	\begin{itemize}
+    	    \item \href{https://github.com/async-rs/async-std}{async-std}
+    	    \item \href{https://github.com/tokio-rs/tokio}{Tokio}
+    	\end{itemize}
+    \end{itemize}
 % 
-% - The two most popular runtimes for Futures:
-%   - [async-std](https://github.com/async-rs/async-std)
-%   - [Tokio](https://github.com/tokio-rs/tokio)
-% 
-% **What Rust's standard library takes care of**
+% {\color{red}What Rust's standard library takes care of}
 % ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#what-rusts-standard-library-takes-care-of
 % 
-% 1. A **common interface** representing an operation which will be completed in the future through the `Future` trait.
-% 2. An ergonomic way of **creating tasks** which can be suspended and resumed through the `async` and `await` keywords.
-% 3. A defined interface wake up a suspended task through the `Waker` type.
+%     \begin{itemize}
+%         \item A {\color{red}common interface} representing an operation which will be completed in the future through the `Future` trait.
+%         \item An ergonomic way of {\color{red}creating tasks} which can be suspended and resumed through the `async` and `await` keywords.
+%         \item A defined interface wake up a suspended task through the `Waker` type.
+%     \end{itemize}
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Rust future example}
+%    \framesubtitle{xxxx}
 % #### Rust future example
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
@@ -206,17 +223,19 @@ Ref:
 % }
 % ```
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
-% #### async Lifetimes
+\begin{frame}[fragile]
+    \frametitle{Async Lifetimes}
+%    \framesubtitle{xxxx}
+% #### Async Lifetimes
 % 
 % Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
 % 
-% - `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
+%% itemize
+    \begin{itemize}
+        \item `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
+    \end{itemize}
 % 
 % ```rust
 % // This function:
@@ -228,7 +247,10 @@ Ref:
 % }
 % ```
 % 
-% - By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
+%% itemize
+    \begin{itemize}
+        \item By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
+    \end{itemize}
 % 
 % ```rust
 % fn bad() -> impl Future<Output = u8> {
@@ -244,24 +266,29 @@ Ref:
 % }
 % ```
 % 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Zero-cost futures in Rust}
+%    \framesubtitle{xxxx}
 % #### Zero-cost futures in Rust
 % 
 % Ref: https://aturon.github.io/blog/2016/08/11/futures/
 % 
-% - Build up a big `enum` that represents the state machine
-%   - There is one allocation needed per “task”, which usually works out to one per connection
-% - When an event arrives, only one dynamic dispatch is required
-% - There are essentially no imposed synchronization costs
+%% itemize
+    \begin{itemize}
+        \item Build up a big `enum` that represents the state machine
+    	\begin{itemize}
+    	    \item There is one allocation needed per “task”, which usually works out to one per connection
+    	\end{itemize}
+        \item When an event arrives, only one dynamic dispatch is required
+        \item There are essentially no imposed synchronization costs
+    \end{itemize}
 % 
-% Here are the results, in number of “Hello world!"s served per second on an 8 core Linux machine.
+Here are the results, in number of “Hello world!"s served per second on an 8 core Linux machine.
 % 
 % ![bench-pipelined](figs/bench-pipelined.png)
 % 
+\end{frame}
 %----------------------------------------------
 \end{document}
