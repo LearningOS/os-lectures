@@ -63,21 +63,21 @@ Ref:
 % 
 % 参考： https://cfsamson.github.io/book-exploring-async-basics/2_async_history.html#non-preemptive-multitasking
 % 
-%{\color{red}Non-Preemptive multitasking}
-% %% itemize
-%     \begin{itemize}
-%         \item The programmer `yielded` control to the OS
-%         \item Every bug could halt the entire system
-%         \item Example: Windows 95
-%     \end{itemize}
-% 
-%{\color{red}Preemptive multitasking}
-% %% itemize
-%     \begin{itemize}
-%         \item OS can stop the execution of a process, do something else, and switch back
-%         \item OS is responsible for scheduling tasks
-%         \item Example: UNIX, Linux
-%     \end{itemize}
+{\color{red}Non-Preemptive multitasking}
+ %% itemize
+     \begin{itemize}
+         \item The programmer `yielded` control to the OS
+         \item Every bug could halt the entire system
+         \item Example: Windows 95
+     \end{itemize}
+ 
+{\color{red}Preemptive multitasking}
+ %% itemize
+     \begin{itemize}
+         \item OS can stop the execution of a process, do something else, and switch back
+         \item OS is responsible for scheduling tasks
+         \item Example: UNIX, Linux
+     \end{itemize}
 % 
 \end{frame}
 %----------------------------------------------
@@ -90,33 +90,33 @@ Ref:
 % 
 % https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads
 % 
-%{\color{red}Advantages}
-% 
-% %% itemize
-%     \begin{itemize}
-%         \item Simple to use
-%         \item A "context switch" is reasonably fast
-%         \item Each stack only gets a little memory
-%     	\begin{itemize}
-%     	    \item You can have hundreds of thousands of user-level threads running
-%       \end{itemize}
-%         \item Easy to incorporate \href{https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/green-threads#preemptive-multitasking}{preemption}
-%     \end{itemize}
-% 
-% {\color{red}Drawbacks}
-% 
-% %% itemize
-%     \begin{itemize}
-%         \item The stacks might need to grow
-%     	\begin{itemize}
-%     	    \item Solving this is not easy and will have a cost
-%       \end{itemize}
-%         \item Need to save all the CPU state on every switch
-%         \item Complicated to implement correctly if you want to support many different platforms
-%     \end{itemize}
-% 
-% Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads}{Green Threads}
-% 
+{\color{red}Advantages}
+ 
+ %% itemize
+     \begin{itemize}
+         \item Simple to use
+         \item A "context switch" is reasonably fast
+         \item Each stack only gets a little memory
+     	\begin{itemize}
+     	    \item You can have hundreds of thousands of user-level threads running
+       \end{itemize}
+         \item Easy to incorporate \href{https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/green-threads#preemptive-multitasking}{preemption}
+     \end{itemize}
+ 
+{\color{red}Drawbacks}
+ 
+%% itemize
+    \begin{itemize}
+        \item The stacks might need to grow
+    	\begin{itemize}
+    	    \item Solving this is not easy and will have a cost
+      \end{itemize}
+        \item Need to save all the CPU state on every switch
+        \item Complicated to implement correctly if you want to support many different platforms
+    \end{itemize}
+
+Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads}{Green Threads}
+
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -127,31 +127,31 @@ Ref:
 % ref: https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads
 % https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system
 % 
-%{\color{red}Advantages}
-% 
-% %% itemize
-%     \begin{itemize}
-%         \item Easy to use
-%         \item Switching between tasks is reasonably fast
-%         \item Geting parallelism for free
-%     \end{itemize}
-% 
-%{\color{red}Drawbacks}
-% 
-% %% itemize
-%     \begin{itemize}
-%         \item OS level threads come with a rather large stack
-%         \item There are a lot of syscalls involved
-%         \item Might not be an option on some systems, such as http server
-%     \end{itemize}
-% 
-% Example:
-% 
-% %% itemize
-%     \begin{itemize}
-%         \item \href{https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system}{Using OS threads in Rust}
-%     \end{itemize}
-% 
+{\color{red}Advantages}
+ 
+ %% itemize
+     \begin{itemize}
+         \item Easy to use
+         \item Switching between tasks is reasonably fast
+         \item Geting parallelism for free
+     \end{itemize}
+ 
+{\color{red}Drawbacks}
+ 
+ %% itemize
+     \begin{itemize}
+         \item OS level threads come with a rather large stack
+         \item There are a lot of syscalls involved
+         \item Might not be an option on some systems, such as http server
+     \end{itemize}
+ 
+ Example:
+ 
+ %% itemize
+     \begin{itemize}
+         \item \href{https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system}{Using OS threads in Rust}
+     \end{itemize}
+ 
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -161,31 +161,31 @@ Ref:
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches
 % 
-% A callback based approach is to save a pointer to a set of instructions we want to run later together with whatever state is needed.
-% 
-%{\color{red}Advantages}
-% 
-% %% itemize
-%     \begin{itemize}
-%         \item Easy to implement in most languages
-%         \item No context switching
-%         \item Relatively low memory overhead
-%     \end{itemize}
-% 
-%{\color{red}Drawbacks}
-% 
-% %% itemize
-%     \begin{itemize}
-%         \item Memory usage grows linearly with the number of callbacks
-%     	\begin{itemize}
-%     	    \item Each task must save the state it needs for later
-%     	\end{itemize}
-%         \item Callback hell: Hard to debug
-%         \item Require a substantial rewrite to go from a "normal" program flow to one that uses a "callback based" flow
-%     \end{itemize}
-% 
-% Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches}{Callback based approaches}
-% 
+ A callback based approach is to save a pointer to a set of instructions we want to run later together with whatever state is needed.
+ 
+{\color{red}Advantages}
+ 
+ %% itemize
+     \begin{itemize}
+         \item Easy to implement in most languages
+         \item No context switching
+         \item Relatively low memory overhead
+     \end{itemize}
+ 
+{\color{red}Drawbacks}
+ 
+ %% itemize
+     \begin{itemize}
+         \item Memory usage grows linearly with the number of callbacks
+     	\begin{itemize}
+     	    \item Each task must save the state it needs for later
+     	\end{itemize}
+         \item Callback hell: Hard to debug
+         \item Require a substantial rewrite to go from a "normal" program flow to one that uses a "callback based" flow
+     \end{itemize}
+ 
+Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_information.html#callback-based-approaches}{Callback based approaches}
+ 
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -198,24 +198,24 @@ Ref:
 % 
 % There are some well-known libraries which implement a cross platform event queue using Epoll, Kqueue and IOCP for Linux, Mac, and Windows, respectively.
 % 
-% %% itemize
-%     \begin{itemize}
-%         \item Epoll
-%     	\begin{itemize}
-%     	    \item Epoll is the Linux way of implementing an event queue
-%     	    \item Epoll was designed to work very efficiently with a large number of events
-%     	\end{itemize}
-%         \item Kqueue
-%     	\begin{itemize}
-%     	    \item Kqueue is the MacOS way of implementing an event queue, which originated from BSD
-%     	    \item In terms of high level functionality, it's similar to Epoll in concept but different in actual use
-%     	\end{itemize}
-%         \item IOCP
-%     	\begin{itemize}
-%     	    \item IOCP or Input Output Completion Ports is the way Windows handles this type of event queue
-%     	\end{itemize}
-%     \end{itemize}
-% 
+%% itemize
+    \begin{itemize}
+        \item Epoll
+    	\begin{itemize}
+    	    \item Epoll is the Linux way of implementing an event queue
+    	    \item Epoll was designed to work very efficiently with a large number of events
+    	\end{itemize}
+        \item Kqueue
+    	\begin{itemize}
+    	    \item Kqueue is the MacOS way of implementing an event queue, which originated from BSD
+    	    \item In terms of high level functionality, it's similar to Epoll in concept but different in actual use
+    	\end{itemize}
+        \item IOCP
+    	\begin{itemize}
+    	    \item IOCP or Input Output Completion Ports is the way Windows handles this type of event queue
+    	\end{itemize}
+    \end{itemize}
+
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -236,25 +236,31 @@ Ref:
 % 
 % https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#readiness-based-event-queues
 % 
-%{\color{red}Workflow to read data from a socket using epoll/kqueue}
+{\color{red}Workflow to read data from a socket using epoll/kqueue}
 % 
-% 1. Create an event queue by calling the syscall `epoll_create` or `kqueue`
-% 2. Ask the OS for a file descriptor representing a network socket
-% 3. Register an interest in `Read` events on this socket
-%    - In order to receive a notification when the event is ready in the event queue we created
-% 4. Call `epoll_wait` or `kevent` to wait for an event
-%    - Block (suspend) the thread it's called on
-% 5. When the event is ready, our thread is resumed, and return from our "wait" call with data about the event
-% 6. Call `read` on the socket we created
+    \begin{itemize}
+        \item Create an event queue by calling the syscall `epoll_create` or `kqueue`
+        \item Ask the OS for a file descriptor representing a network socket
+        \item Register an interest in `Read` events on this socket
+    	\begin{itemize}
+    	    \item In order to receive a notification when the event is ready in the event queue we created
+    	\end{itemize}
+        \item Call `epoll_wait` or `kevent` to wait for an event
+    	\begin{itemize}
+    	    \item Block (suspend) the thread it's called on
+    	\end{itemize}
+        \item When the event is ready, our thread is resumed, and return from our "wait" call with data about the event
+        \item Call `read` on the socket we created
+    \end{itemize}
 % 
-%{\color{red}Example}
+{\color{red}Example}
 % 
-% %% itemize
-%     \begin{itemize}
-%         \item \href{http://man7.org/linux/man-pages/man7/epoll.7.html}{Epoll example}
-%         \item \href{https://www.suchprogramming.com/epoll-in-3-easy-steps/}{Complete example}
-%     \end{itemize}
-% 
+%% itemize
+    \begin{itemize}
+        \item \href{http://man7.org/linux/man-pages/man7/epoll.7.html}{Epoll example}
+        \item \href{https://www.suchprogramming.com/epoll-in-3-easy-steps/}{Complete example}
+    \end{itemize}
+
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -264,7 +270,7 @@ Ref:
 % 
 % ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#from-callbacks-to-promises
 % 
-% Future is one way to deal with the complexity which comes with a callback based approach.
+Future is one way to deal with the complexity which comes with a callback based approach.
 % 
 % ```rust
 % async function run() {
@@ -275,15 +281,15 @@ Ref:
 % }
 % ```
 % 
-% %% itemize
-%     \begin{itemize}
-%         \item The `run` function as a *pausable* task consisting of several sub-tasks
-%     	\begin{itemize}
-%     	    \item On each "await" point it yields control to the scheduler
-%     	\end{itemize}
-%         \item When the sub-tasks changes state to either `fulfilled` or `rejected`, the task is scheduled to continue to the next step
-%     \end{itemize}
-% 
+%% itemize
+    \begin{itemize}
+        \item The `run` function as a *pausable* task consisting of several sub-tasks
+    	\begin{itemize}
+    	    \item On each "await" point it yields control to the scheduler
+    	\end{itemize}
+        \item When the sub-tasks changes state to either `fulfilled` or `rejected`, the task is scheduled to continue to the next step
+    \end{itemize}
+
 \end{frame}
 %----------------------------------------------
 \end{document}

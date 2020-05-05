@@ -60,8 +60,8 @@ Ref:
 % }
 % ```
 % 
-% The struct for the "waiting on write" state
-% 
+The struct for the "waiting on write" state
+
 % ```rust
 % struct WaitingOnWriteState {
 %     array: [1, 2, 3],
@@ -78,11 +78,11 @@ Ref:
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-structs
 % 
-%{\color{red}memory layout of self-referential struct}
+{\color{red}memory layout of self-referential struct}
 % 
 % ![self-referential-struct](figs/self-referential-struct.svg)
 % 
-%{\color{red}After moving this struct to a different memory address}
+{\color{red}After moving this struct to a different memory address}
 % 
 % ![self-referential-struct-moved](figs/self-referential-struct-moved.svg)
 % 
@@ -95,16 +95,16 @@ Ref:
 % 
 % Ref: https://os.phil-opp.com/async-await/#possible-solutions
 % 
-% %% itemize
-%     \begin{itemize}
-%         \item {\color{red}Update the pointer on move:} Require extensive changes to Rust that would result in potentially huge  performance losses.
-%         \item {\color{red}Store an offset instead of self-references:}: Require the compiler to {\color{red}detect all self-references} or need a runtime system again to analyze references and correctly create the  state structs.
-%         \item {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs
-%     	\begin{itemize}
-%     	    \item It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
-%     	\end{itemize}
-%     \end{itemize}
-% 
+%% itemize
+    \begin{itemize}
+        \item {\color{red}Update the pointer on move:} Require extensive changes to Rust that would result in potentially huge  performance losses.
+        \item {\color{red}Store an offset instead of self-references:}: Require the compiler to {\color{red}detect all self-references} or need a runtime system again to analyze references and correctly create the  state structs.
+        \item {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs
+    	\begin{itemize}
+    	    \item It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
+    	\end{itemize}
+    \end{itemize}
+
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -116,17 +116,17 @@ Ref:
 % https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
 % the pinning API was proposed in RFC 2349
 % 
-% %% itemize
-%     \begin{itemize}
-%         \item Pin wraps a pointer. A reference to an object is a pointer
-%     	\begin{itemize}
-%     	    \item {\color{red}Reference type}. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
-%     	\end{itemize}
-%         \item Pin gives some guarantees about the *pointee* (the data it points to)
-%     	\begin{itemize}
-%     	    \item {\color{red}Never to move before being dropped}. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
-%     	\end{itemize}
-%     \end{itemize}
+%% itemize
+    \begin{itemize}
+        \item Pin wraps a pointer. A reference to an object is a pointer
+    	\begin{itemize}
+    	    \item {\color{red}Reference type}. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
+    	\end{itemize}
+        \item Pin gives some guarantees about the *pointee* (the data it points to)
+    	\begin{itemize}
+    	    \item {\color{red}Never to move before being dropped}. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
+    	\end{itemize}
+    \end{itemize}
 % 
 % ```rust
 % trait Future {
@@ -146,14 +146,14 @@ Ref:
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap
 % 
-% Pinning to the heap is safe so the user doesn't need to implement any unsafe code.
+Pinning to the heap is safe so the user doesn't need to implement any unsafe code.
 % 
-% %% itemize
-%     \begin{itemize}
-%         \item Once the data is allocated on the heap it will have a stable address
-%         \item Examp: \href{https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap}{Pinning to the heap}
-%     \end{itemize}
-% 
+%% itemize
+    \begin{itemize}
+        \item Once the data is allocated on the heap it will have a stable address
+        \item Examp: \href{https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap}{Pinning to the heap}
+    \end{itemize}
+
 \end{frame}
 %----------------------------------------------
 \end{document}
