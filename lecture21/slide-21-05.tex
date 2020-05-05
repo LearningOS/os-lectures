@@ -193,14 +193,17 @@ Example:
     	\end{itemize}
 
         \item Create an asynchronous task based on the keyboard interrupt
+%    \end{itemize}
 % 
 %% figure
     \begin{figure}
-    \includegraphics[width=0.8\linewidth]{figs/scancode-queue.svg}
+    \includegraphics[width=0.8\linewidth]{figs/bench-pipelined.png}
+%    \includegraphics[width=0.8\linewidth]{figs/scancode-queue.svg}
 %    \caption{xxxx}
     \end{figure}
 % ![scancode-queue](figs/scancode-queue.svg)
 
+%    \begin{itemize}
         \item A simple implementation of that queue could be a mutex-protected \href{https://doc.rust-lang.org/stable/alloc/collections/vec_deque/struct.VecDeque.html}{`VecDeque`}
     	\begin{itemize}
     	    \item Using mutexes in interrupt handlers is not a good idea since it can easily lead to deadlocks.
