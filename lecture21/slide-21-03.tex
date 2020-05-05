@@ -74,10 +74,20 @@ Ref:
         \item Compiler transforms the body of the `async` function into a \href{https://en.wikipedia.org/wiki/Finite-state_machine}{state machine}, with each `.await` call representing a different state.
         \item Each state represents a different pause point of the function
 % 
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/async-state-machine-states.svg}
+%    \caption{xxxx}
+    \end{figure}
 % ![async-state-machine-states](figs/async-state-machine-states.svg)
 % 
         \item Arrows represent state switches and diamond shapes represent alternative ways
 % 
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/async-state-machine-basic.svg}
+%    \caption{xxxx}
+    \end{figure}
 % ![async-state-machine-basic](figs/async-state-machine-basic.svg)
     \end{itemize}
 % 

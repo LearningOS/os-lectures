@@ -87,6 +87,11 @@ Future的设计目标
 % 
 A future is a representation of some operation which will complete in the future.
 % 
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/async-example.svg}
+%    \caption{xxxx}
+    \end{figure}
 % ![async-example](figs/async-example.svg)
 % 
 Three phases in asynchronous task:
@@ -123,6 +128,11 @@ Three phases in asynchronous task:
         \item 任务完成并得出结果时，执行器释放句柄和整个`Future`，整个调用过程就完成了
     \end{itemize}
 % 
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/future-loop.jpg}
+%    \caption{xxxx}
+    \end{figure}
 % ![future-loop](figs/future-loop.jpg)
 % 
 \end{frame}
@@ -184,14 +194,14 @@ Three phases in asynchronous task:
     	\end{itemize}
     \end{itemize}
 % 
-% {\color{red}What Rust's standard library takes care of}
+{\color{red}What Rust's standard library takes care of}
 % ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#what-rusts-standard-library-takes-care-of
 % 
-%     \begin{itemize}
-%         \item A {\color{red}common interface} representing an operation which will be completed in the future through the `Future` trait.
-%         \item An ergonomic way of {\color{red}creating tasks} which can be suspended and resumed through the `async` and `await` keywords.
-%         \item A defined interface wake up a suspended task through the `Waker` type.
-%     \end{itemize}
+    \begin{itemize}
+        \item A {\color{red}common interface} representing an operation which will be completed in the future through the `Future` trait.
+        \item An ergonomic way of {\color{red}creating tasks} which can be suspended and resumed through the `async` and `await` keywords.
+        \item A defined interface wake up a suspended task through the `Waker` type.
+    \end{itemize}
 % 
 \end{frame}
 %----------------------------------------------
@@ -287,6 +297,11 @@ Three phases in asynchronous task:
 % 
 Here are the results, in number of “Hello world!"s served per second on an 8 core Linux machine.
 % 
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.8\linewidth]{figs/bench-pipelined.png}
+%    \caption{xxxx}
+    \end{figure}
 % ![bench-pipelined](figs/bench-pipelined.png)
 % 
 \end{frame}
