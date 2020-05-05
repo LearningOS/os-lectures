@@ -38,13 +38,6 @@ Ref:
 %----------------------------------------------
 \section{第2节：Futures in Rust} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{xxxx}
-%    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % ### 21.2 Futures in Rust
 % 
 % 参考： https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#futures-in-rust
@@ -55,8 +48,6 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{零成本异步I/O}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### 零成本异步I/O
 % 
 % 参考：
@@ -85,12 +76,11 @@ Ref:
 %         \item 使用该功能时，它的速度不会比不使用它的速度慢
 %     \end{itemize}
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Concept of Future}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Concept of Future
 % 
 % Ref: https://os.phil-opp.com/async-await/#example
@@ -109,12 +99,11 @@ Ref:
 %    - Wake up to the executor which polled the Future
 %    - Schedule the future to be polled again and make further progress
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{基于轮询的 Future的异步执行过程}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### 基于轮询的 Future的异步执行过程
 % 
 % %% itemize
@@ -128,12 +117,11 @@ Ref:
 % 
 % ![future-loop](figs/future-loop.jpg)
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Leaf futures \& Non-leaf-futures}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Leaf futures & Non-leaf-futures
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#leaf-futures
@@ -165,12 +153,11 @@ Ref:
 % }
 % ```
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Runtimes}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Runtimes
 % %% itemize
 %     \begin{itemize}
@@ -191,12 +178,11 @@ Ref:
 % 2. An ergonomic way of {\color{red}creating tasks} which can be suspended and resumed through the `async` and `await` keywords.
 % 3. A defined interface wake up a suspended task through the `Waker` type.
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Rust future example}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Rust future example
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
@@ -222,12 +208,11 @@ Ref:
 % }
 % ```
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Async Lifetimes}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Async Lifetimes
 % 
 % Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
@@ -266,12 +251,11 @@ Ref:
 % }
 % ```
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Zero-cost futures in Rust}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Zero-cost futures in Rust
 % 
 % Ref: https://aturon.github.io/blog/2016/08/11/futures/
@@ -290,5 +274,6 @@ Ref:
 % 
 % ![bench-pipelined](figs/bench-pipelined.png)
 % 
+\end{frame}
 %----------------------------------------------
 \end{document}

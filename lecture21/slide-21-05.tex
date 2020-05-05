@@ -43,8 +43,6 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{Waker}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % ### 21.5 Waker and Reactor
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#waker-and-context
@@ -60,12 +58,11 @@ Ref:
 %         \item Creating a `Waker` involves creating a `vtable` which allows us to use dynamic dispatch to call methods on a *type erased* trait object we construct our selves
 %     \end{itemize}
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Fat pointers in Rust}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Fat pointers in Rust
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust
@@ -101,12 +98,11 @@ Ref:
 %         \item \href{https://cfsamson.github.io/books-futures-explained/2_waker_context.html#fat-pointers-in-rust}{Fat pointers in Rust}
 %     \end{itemize}
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Reactor}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Reactor
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/6_future_example.html#the-reactor
@@ -126,12 +122,11 @@ Ref:
 %     	\end{itemize}
 %     \end{itemize}
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Reactor example}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Reactor example
 % 
 % The example task is a timer that only spawns a thread and puts it to sleep for the number of seconds we specify. The reactor we create here will create a {\color{red}leaf-future} representing each timer. In return the Reactor receives a waker which it will call once the task is finished.
@@ -144,12 +139,11 @@ Ref:
 %     	\end{itemize}
 %     \end{itemize}
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Async implementation in kernel mode}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Async implementation in kernel mode
 % 
 % Ref: https://os.phil-opp.com/async-await/#simple-executor
@@ -182,12 +176,11 @@ Ref:
 %         \item Only dependent on queue, No dependent on thread
 %     \end{itemize}
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Asynchronous task based on the keyboard interrupt}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Asynchronous task based on the keyboard interrupt
 % 
 % Ref: https://os.phil-opp.com/async-await/#async-keyboard-input
@@ -212,12 +205,11 @@ Ref:
 %         \item Example: https://github.com/phil-opp/blog_os/blob/post-12/src/task/keyboard.rs
 %     \end{itemize}
 % 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Complete Example}
 %    \framesubtitle{xxxx}
-\end{frame}
-%----------------------------------------------
 % #### Complete Example
 % 
 % Ref: https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code
@@ -226,5 +218,6 @@ Ref:
 %     \begin{itemize}
 %         \item [Finished Example\href{https://cfsamson.github.io/books-futures-explained/8_finished_example.html#our-finished-code)
 %     \end{itemize}
+\end{frame}
 %----------------------------------------------
 \end{document}
