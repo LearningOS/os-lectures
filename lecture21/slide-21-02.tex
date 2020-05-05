@@ -53,7 +53,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{零成本异步I/O}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -69,17 +69,17 @@ Ref:
 % 
 % - 调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作
 % - I/O完成时，回到调用该异步 I/O 暂停的那个任务线上
-% - **一种通过对异步 I/O 的良好抽象形成的基于库的解决方案**
+% - {\color{red}一种通过对异步 I/O 的良好抽象形成的基于库的解决方案}
 %   - 它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库
 % 
-% **零成本抽象**
+%{\color{red}零成本抽象}
 % 
 % - 不给不使用该功能的用户增加成本
 % - 使用该功能时，它的速度不会比不使用它的速度慢
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Concept of Future}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -93,17 +93,17 @@ Ref:
 % 
 % Three phases in asynchronous task:
 % 
-% 1. **Executor**: A Future is polled which result in the task progressing
+% 1. {\color{red}Executor}: A Future is polled which result in the task progressing
 %    - Until a point where it can no longer make progress
-% 2. **Reactor**: Register an event source that a Future is waiting for
+% 2. {\color{red}Reactor}: Register an event source that a Future is waiting for
 %    - Makes sure that it will wake the Future when that event is ready
-% 3. **Waker**: The event happens and the Future is woken up
+% 3. {\color{red}Waker}: The event happens and the Future is woken up
 %    - Wake up to the executor which polled the Future
 %    - Schedule the future to be polled again and make further progress
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{基于轮询的 Future的异步执行过程}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -119,7 +119,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Leaf futures \& Non-leaf-futures}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -134,7 +134,7 @@ Ref:
 %     * Operations on these resources will be non-blocking and return a future which we call a leaf future
 % 
 % ```rust
-% // stream is a **leaf-future**
+% // stream is a {\color{red}leaf-future}
 % let mut stream = tokio::net::TcpStream::connect("127.0.0.1:3000");
 % ```
 % 
@@ -156,7 +156,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Runtimes}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -168,16 +168,16 @@ Ref:
 %   - [async-std](https://github.com/async-rs/async-std)
 %   - [Tokio](https://github.com/tokio-rs/tokio)
 % 
-% **What Rust's standard library takes care of**
+% {\color{red}What Rust's standard library takes care of}
 % ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#what-rusts-standard-library-takes-care-of
 % 
-% 1. A **common interface** representing an operation which will be completed in the future through the `Future` trait.
-% 2. An ergonomic way of **creating tasks** which can be suspended and resumed through the `async` and `await` keywords.
+% 1. A {\color{red}common interface} representing an operation which will be completed in the future through the `Future` trait.
+% 2. An ergonomic way of {\color{red}creating tasks} which can be suspended and resumed through the `async` and `await` keywords.
 % 3. A defined interface wake up a suspended task through the `Waker` type.
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Rust future example}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -208,11 +208,11 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Async Lifetimes}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
-% #### async Lifetimes
+% #### Async Lifetimes
 % 
 % Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
 % 
@@ -246,7 +246,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Zero-cost futures in Rust}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------

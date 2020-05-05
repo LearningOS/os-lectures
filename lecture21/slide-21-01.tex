@@ -53,7 +53,7 @@ Ref:
 %\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Multitasking}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -65,19 +65,19 @@ Ref:
 % 
 % 参考： https://cfsamson.github.io/book-exploring-async-basics/2_async_history.html#non-preemptive-multitasking
 % 
-% **Non-Preemptive multitasking**
+%{\color{red}Non-Preemptive multitasking}
 % - The programmer `yielded` control to the OS
 % - Every bug could halt the entire system
 % - Example: Windows 95
 % 
-% **Preemptive multitasking**
+%{\color{red}Preemptive multitasking}
 % - OS can stop the execution of a process, do something else, and switch back
 % - OS is responsible for scheduling tasks
 % - Example: UNIX, Linux
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{User-level Thread}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -87,7 +87,7 @@ Ref:
 % 
 % https://cfsamson.github.io/books-futures-explained/0_background_information.html#green-threads
 % 
-% **Advantages**
+%{\color{red}Advantages}
 % 
 % - Simple to use
 % - A "context switch" is reasonably fast
@@ -95,7 +95,7 @@ Ref:
 %   - You can have hundreds of thousands of user-level threads running
 % - Easy to incorporate [*preemption*](https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/green-threads#preemptive-multitasking)
 % 
-% **Drawbacks**
+% {\color{red}Drawbacks}
 % 
 % - The stacks might need to grow
 %   - Solving this is not easy and will have a cost
@@ -106,7 +106,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Kernel-supported Threads}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -115,13 +115,13 @@ Ref:
 % ref: https://stackoverflow.com/questions/15983872/difference-between-user-level-and-kernel-supported-threads
 % https://cfsamson.github.io/books-futures-explained/0_background_information.html#threads-provided-by-the-operating-system
 % 
-% **Advantages**
+%{\color{red}Advantages}
 % 
 % - Easy to use
 % - Switching between tasks is reasonably fast
 % - Geting parallelism for free
 % 
-% **Drawbacks**
+%{\color{red}Drawbacks}
 % 
 % - OS level threads come with a rather large stack
 % - There are a lot of syscalls involved
@@ -133,7 +133,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Callback based approaches}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -143,13 +143,13 @@ Ref:
 % 
 % A callback based approach is to save a pointer to a set of instructions we want to run later together with whatever state is needed.
 % 
-% **Advantages**
+%{\color{red}Advantages}
 % 
 % - Easy to implement in most languages
 % - No context switching
 % - Relatively low memory overhead
 % 
-% **Drawbacks**
+%{\color{red}Drawbacks}
 % 
 % - Memory usage grows linearly with the number of callbacks
 %   - Each task must save the state it needs for later
@@ -160,7 +160,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Event queue: Epoll, Kqueue and IOCP}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -182,7 +182,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Epoll}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -194,7 +194,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Read data from a socket using epoll}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -202,7 +202,7 @@ Ref:
 % 
 % https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html#readiness-based-event-queues
 % 
-% **Workflow to read data from a socket using epoll/kqueue**
+%{\color{red}Workflow to read data from a socket using epoll/kqueue}
 % 
 % 1. Create an event queue by calling the syscall `epoll_create` or `kqueue`
 % 2. Ask the OS for a file descriptor representing a network socket
@@ -213,14 +213,14 @@ Ref:
 % 5. When the event is ready, our thread is resumed, and return from our "wait" call with data about the event
 % 6. Call `read` on the socket we created
 % 
-% **Example**
+%{\color{red}Example}
 % 
 % - [epoll example](http://man7.org/linux/man-pages/man7/epoll.7.html)
 % - [Complete example](https://www.suchprogramming.com/epoll-in-3-easy-steps/)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{From callbacks to futures (deferred computation)}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------

@@ -41,7 +41,7 @@ Ref:
 \subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Self-Referential Structs}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -73,7 +73,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{The Problem with Self-Referential Structs}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -81,17 +81,17 @@ Ref:
 % 
 % Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-structs
 % 
-% **memory layout of self-referential struct**
+%{\color{red}memory layout of self-referential struct}
 % 
 % ![self-referential-struct](figs/self-referential-struct.svg)
 % 
-% **After moving this struct to a different memory address**
+%{\color{red}After moving this struct to a different memory address}
 % 
 % ![self-referential-struct-moved](figs/self-referential-struct-moved.svg)
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Possible approaches to solve the dangling pointer problem}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -99,14 +99,14 @@ Ref:
 % 
 % Ref: https://os.phil-opp.com/async-await/#possible-solutions
 % 
-% - **Update the pointer on move:** Require extensive changes to Rust that would result in potentially huge  performance losses.
-% - **Store an offset instead of self-references:**: Require the compiler to **detect all self-references** or need a runtime system again to analyze references and correctly create the  state structs.
-% - **Forbid moving the struct:** This approach can be implemented at the type system level without additional  runtime costs
+% - {\color{red}Update the pointer on move:} Require extensive changes to Rust that would result in potentially huge  performance losses.
+% - {\color{red}Store an offset instead of self-references:}: Require the compiler to {\color{red}detect all self-references} or need a runtime system again to analyze references and correctly create the  state structs.
+% - {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs
 %   - It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Defination of Pin}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
@@ -117,9 +117,9 @@ Ref:
 % the pinning API was proposed in RFC 2349
 % 
 % - Pin wraps a pointer. A reference to an object is a pointer
-%   - **Reference type**. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
+%   - {\color{red}Reference type}. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
 % - Pin gives some guarantees about the *pointee* (the data it points to)
-%   - **Never to move before being dropped**. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
+%   - {\color{red}Never to move before being dropped}. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
 % 
 % ```rust
 % trait Future {
@@ -132,7 +132,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{xxxx}
+    \frametitle{Pinning to the heap}
 %    \framesubtitle{xxxx}
 \end{frame}
 %----------------------------------------------
