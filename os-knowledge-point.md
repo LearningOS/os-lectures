@@ -91,7 +91,7 @@
  1. 理解管理进程的过程：创建 fork、执行 exec、等待 wait、停止 exit
  1. 理解进程管理与内存管理的关系
 
-（注：可根据课程时长：讲解协程；讲解2019 HotOS论文“A fork() in the road”）
+（注：可根据课程时长：讲解协程；讲解2019 HotOS论文“A fork() in the road”，理解fork的利弊；讲解meltdown漏洞，从另外的角度理解arch/页表/进程/信息之间的关系）
 
 ### 能力检测方法
 
