@@ -1,5 +1,9 @@
 ## 教学日历（教学大纲）（48学时）
 
+大纲修定历史：
+ * [v1](https://github.com/LearningOS/os-lectures/blob/c3933c913abdedbda15a25ad85e33f166fae38fc/os-course-outline.md)
+ * v2
+
 课程组织与基本目的：
 
 操作系统是计算机系统中负责管理各种软硬件资源的核心系统软件，掌握操作系统的基本原理及其设计实现技术是研究型大学计算机专业本科毕业生的基本要求。
