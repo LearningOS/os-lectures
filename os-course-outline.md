@@ -2,7 +2,7 @@
 
 大纲修定历史：
  * [v1](https://github.com/LearningOS/os-lectures/blob/c3933c913abdedbda15a25ad85e33f166fae38fc/os-course-outline.md)
- * v2
+ * [v2](https://github.com/LearningOS/os-lectures/blob/2f1f0bf92da3d34c747995713076d80c9adf3567/os-course-outline.md)
 
 课程组织与基本目的：
 
