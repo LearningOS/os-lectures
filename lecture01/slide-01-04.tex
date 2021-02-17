@@ -6,7 +6,7 @@
 
 \title[第1讲]{第1讲 ：操作系统概述} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第四节：为什么要学习和如何学习操作系统}
-\author{向勇、陈渝} % Your name
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 清华大学计算机系 \\ % Your institution for the title page
@@ -259,24 +259,24 @@
     
     \textbf{抓住操作系统的关键问题}
     \begin{itemize}
-        \item 操作系统很庞大
+        \item 操作系统提供的抽象
             \begin{itemize}
-                \item Windows XP 有4500万行
+                \item Win/Linux都有千万行代码，但都提供了很好的抽象
             \end{itemize} \pause
-        \item 操作系统管理并发
+        \item 操作系统管理并发事务
             \begin{itemize}
                 \item 并发导致有趣的编程挑战
             \end{itemize} \pause
-        \item 操作系统代码管理原始硬件
+        \item 操作系统代码保证对原始硬件的安全访问
             \begin{itemize}
                \item CPU、内存、磁盘
                 \item 时间依赖行为, 非法行为, 硬件故障
             \end{itemize} \pause
-        \item 操作系统代码必须是高效的, 低耗能，安全可靠 \pause
+        \item 操作系统代码理解和满足应用需求 \pause
 %        \item 操作系统是系统安全的基础
             \begin{itemize}
             	\item 操作系统要及时地给应用提供合理资源
-                \item 操作系统出错，就意味着机器出错
+                \item 操作系统出错，就意味着机器出错，应用无法使用
                 \item 操作系统必须比用户程序拥有更高的稳定性
             \end{itemize}
         
@@ -300,21 +300,24 @@
     
     	\begin{column}{0.7\textwidth}
     		
-     \textbf{学习操作系统需要具有系统思维} 
+     \textbf{理解操作系统需要具有系统思维} 
     \begin{itemize}
-        \item 操作系统并不仅仅是琐碎的调度算法
+        \item 操作系统并不仅仅是一系列琐碎的算法
             \begin{itemize}
                 \item 磁盘调度算法大多已被硬件实现
-                \item 进程调度是个比较小话题
+                \item 进程调度算法/页面置换算法等只是其中的一小部分
             \end{itemize} \pause
-        \item 并发性是操作系统的一小部分内容
+        \item 并发处理很关键，但只是是操作系统的一小部分
             \begin{itemize}
                 \item 内核里不存在管程和哲学家问题
-                \item 内核中锁机制需要考虑应用和硬件
             \end{itemize} \pause
     \end{itemize}
 
     \begin{itemize}
+	\item 建立联系
+    \begin{itemize}
+        \item 不同组成部分的相互关系？如何形成的整体？
+    \end{itemize} \pause                
 	\item 权衡资源
 	\begin{itemize}
 		\item 时间与空间 --性能的可预测性与公平性

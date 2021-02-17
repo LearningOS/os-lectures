@@ -6,7 +6,7 @@
 
 \title[第1讲]{第1讲 ：操作系统概述} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第八节：OS实验概述}
-\author{向勇、陈渝} % Your name
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 清华大学计算机系 \\ % Your institution for the title page
@@ -50,7 +50,7 @@
         \item 并发：信号量实现和同步互斥应用
         \item 存储：文件系统+磁盘驱动
     \end{itemize}
-    \item 完整代码量控制在10000行以内
+    \item 完整代码量控制在4000行左右
     \item 提供实验讲义和源码分析文档
     \end{itemize}
 \end{itemize}
@@ -68,14 +68,14 @@
      OS实验内容
      
 	\begin{enumerate}
-	    \item OS启动/中断/异常
-		\item 物理内存管理
-		\item 虚拟内存管理	
-		\item 内核模式线程管理
-		\item 用户模式进程管理
-		\item 处理器调度
-		\item 多处理与同步互斥
-		\item 文件系统
+	    \item hello-world OS
+		\item kernel-mode OS
+		\item multi-programming OS	
+		\item mem-isolation OS
+		\item multi-process OS
+		\item Inter-Process-Comm OS
+		\item File-System OS
+		\item r/u Core OS
 	\end{enumerate}
 	\end{column}
 	
@@ -93,17 +93,12 @@
 \begin{frame}
 \frametitle{OS实验内容}
 \framesubtitle{lab1}
-\begin{block}{Lab1:  Bootloader/Interrupt/Debug}
-启动操作系统的bootloader，了解操作系统启动前的
-状态和要做的事，了解运行操作系统的硬件支持，
-操作系统如何加载到内存中，理解两类中断--“外设中断”，   
-“异常”等。
+\begin{block}{Lab1:  hello-world OS}
+理解在裸机上的执行环境，让应用与硬件隔离，简化了应用访问硬件的难度和复杂性。
 \end{block}
 
 \begin{itemize}
-    \item 编译运行直接与硬件交互的系统程序
-    \item 启动bootloader的过程
-    \item 实现中断处理机制
+    \item 直接与硬件交互的系统程序的编译运行
     \item 输出字符的方法
     \item 调试系统程序的方法
 \end{itemize}
@@ -115,15 +110,17 @@
 \frametitle{OS实验内容}
 \framesubtitle{lab2}
 
-\begin{block}{Lab2:  物理内存管理}
-理解分页模式，了解操作系统如何管理连续空间的物理内存。
+\begin{block}{Lab2:  kernel-mode OS}
+操作系统利用硬件特权级机制，实现对操作系统自身的保护。
+应用在用户态通过系统调用得到内核态的内核服务。
+操作系统批处理机制支持多个程序的自动加载和运行。
 \end{block}
 
 \begin{itemize}
-    \item 理解内存地址的转换和保护
-    \item 实现页表的建立和使用方法
-    \item 实现物理内存的管理方法
-    \item 了解常用的减少碎片的方法
+    \item 特权级机制
+    \item 应用程序实现
+    \item 批处理机制
+    \item 特权级切换
 \end{itemize}
 
 \end{frame}
@@ -132,15 +129,15 @@
 \frametitle{OS实验内容}
 \framesubtitle{lab3}
 
-\begin{block}{Lab3：虚拟内存管理}
-了解页表机制和换出（swap）机制，以及中断-“故障中断”、
-缺页故障处理等，基于页的内存替换算法。
+\begin{block}{Lab3：multi-programming OS}
+操作系统通过协作机制/抢占机制支持程序主动/被动放弃处理器，提高系统效率。
 \end{block}
 
 \begin{itemize}
-    \item 理解换页的软硬件协同机制
-    \item 实现虚拟内存的Page Fault异常处理
-    \item 实现页替换算法
+    \item 多道程序的放置与加载
+    \item 任务切换
+    \item 协作式调度
+    \item 抢占式调度    
 \end{itemize}
 
 \end{frame}
@@ -149,15 +146,15 @@
 \frametitle{OS实验内容}
 \framesubtitle{lab4}
 
-\begin{block}{Lab4: 内核模式线程管理}
-了解如果利用CPU来高效地完成各种工作的设计与实现基础，
-如何创建相对与用户进程更加简单的内核态线程，
-如何对内核线程进行动态管理等。
+\begin{block}{Lab4: mem-isolation OS}
+操作系统通过动态内存分配机制、页表的虚实内存映射机制，
+加强内存安全，简化应用开发。
 \end{block}
 
 \begin{itemize}
-    \item 建立内核线程的关键信息
-    \item 实现内核线程的管理方法
+    \item 动态内存分配
+    \item 地址空间(Address Space)抽象
+    \item 多级页表
 \end{itemize}
 
 \end{frame}
@@ -167,16 +164,14 @@
 \frametitle{OS实验内容}
 \framesubtitle{lab5}
 
-\begin{block}{Lab5: 用户模式进程管理}
-了解用户态进程创建、执行、切换和结束的动态管理过程，
-了解在用户态通过系统调用得到内核态的内核服务的过程。
+\begin{block}{Lab5: multi-process OS}
+操作系统建立了进程创建、执行、切换和结束的动态管理过程
+
 \end{block}
 
 \begin{itemize}
-    \item 建立用户进程的关键信息
-    \item 实现用户进程管理
-    \item 分析进程和内存管理的关系
-    \item 实现系统调用的处理过程
+    \item 进程(Process)抽象
+    \item 进程管理
 \end{itemize}
 
 \end{frame}
@@ -185,13 +180,13 @@
 \frametitle{OS实验内容}
 \framesubtitle{lab6}
 
-\begin{block}{Lab6：调度}
-理解操作系统的调度过程和调度算法。
+\begin{block}{Lab6：Inter-Process-Comm OS}
+操作系统通过进程间通信(Inter-Process-Comm)机制，让应用之间建立了有效的联系。
 \end{block}
 
 \begin{itemize}
-    \item 熟悉系统调度器框架，以及内置的 Round-Robin 调度算法
-    \item 基于调度器框架实现一个调度器算法
+    \item 进程间通信机制
+    \item 管道(PIPE)机制
 \end{itemize}
 
 \end{frame}
@@ -201,15 +196,13 @@
 \frametitle{OS实验内容}
 \framesubtitle{lab7}
 
-\begin{block}{Lab7：同步互斥}
-了解进程间如何进行信息交换和共享，并了解同步互斥的具体实现
-以及对系统性能的影响，研究死锁产生的原因，以及如何避免死锁。
+\begin{block}{Lab7：File-System OS}
+操作系统通过文件系统完成对程序和数据的持久保存与灵活的访问
 \end{block}
 
 \begin{itemize}
-    \item 熟悉 同步互斥的实现机制
-    \item 理解基本的spinlock、semphpore、condition variable的实现
-    \item 实现基于各种同步机制的同步问题。
+    \item 文件(File)抽象
+    \item 基于inode方式的SFS文件系统的设计与实现
 \end{itemize}
 
 \end{frame}
@@ -219,16 +212,15 @@
 \frametitle{OS实验内容}
 \framesubtitle{lab8}
 
-\begin{block}{Lab8：文件系统}
-了解文件系统的具体实现，与进程管理等的关系，
-了解缓存对操作系统IO访问的性能改进，了解虚拟文件系统（VFS）、
-buffer cache和disk driver之间的关系。
+\begin{block}{Lab8：r/u Core OS}
+为支持更丰富的应用需求，操作系统需要改进与完善。
+通过完成一个完整的OS kernel的设计与实现，形成面向操作系统的系统思维。
 \end{block}
 
 \begin{itemize}
-    \item 掌握基本的文件系统系统调用的实现方法
-    \item 了解一个基于inode方式的SFS文件系统的设计与实现
-    \item 了解文件系统抽象层-VFS的设计与实现
+    \item 操作系统各重要组成部分的联系
+    \item 操作系统各部分的改进与优化
+    \item 对应用的进一步服务与支持
 \end{itemize}
 
 \end{frame}
@@ -244,14 +236,12 @@ buffer cache和disk driver之间的关系。
 \end{block}
 
 \begin{itemize}
-    \item 重新设计zircon操作系统
+    \item 参加OS比赛的推荐项目
+    \item 改进与设计zcore/rcore/acore操作系统
     \item 在一个OS(如Linux)实现一个Hypervisor
-    \item OS直接支持运行被隔离的应用程序
+    \item 基于异步机制的新型OS
     \item 支持动态更新的OS
     \item 驱动程序运行在用户态的OS
-    \item 支持标签化CPU的OS
-    \item 一个可验证正确性的OS
-    \item 运行在抽象计算机上可动态调试的OS
 \end{itemize}
 
 \end{frame}

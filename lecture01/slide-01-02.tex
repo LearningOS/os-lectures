@@ -6,7 +6,7 @@
 
 \title[第1讲]{第1讲 ：操作系统概述} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第二节：教学安排}
-\author{向勇、陈渝} % Your name
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 清华大学计算机系 \\ % Your institution for the title page
@@ -108,8 +108,7 @@
 
             \item 基础实验
     \begin{itemize}
-		\item uCore实验：基于X86用C写教学操作系统
-		\item rCore实验：基于RISC-V用rust写教学操作系统
+		\item r/u Core实验：面向RISC-V CPU用Rust/C写操作系统
     \end{itemize}
             \item 课程设计（大实验）
         \end{itemize}
@@ -118,25 +117,25 @@
 %------------------------------------------------
 \begin{frame}
 \frametitle{基础实验}
-\framesubtitle{uCore实验：基于X86用C写教学操作系统} \pause
+\framesubtitle{Core实验：面向RISC-V CPU用Rust/C写操作系统} \pause
 \begin{columns}
 	
 \begin{column}{0.5\textwidth}
 \begin{itemize}
 		\item 实验零：操作系统实验准备
-		\item 实验一：系统软件启动过程
-		\item 实验二：物理内存管理
-		\item 实验三：虚拟内存管理
-		\item 实验四：内核线程管理
+		\item 实验一：hello-world OS
+		\item 实验二：kernel-mode OS
+		\item 实验三：multi-programming OS
+		\item 实验四：mem-isolation OS
 \end{itemize}
 \end{column}
  
 \begin{column}{0.5\textwidth}
     \begin{itemize}
-		\item 实验五：用户进程管理
-		\item 实验六: 调度器
-		\item 实验七：同步互斥
-		\item 实验八：文件系统
+		\item 实验五：multi-process OS
+		\item 实验六: Inter-Process-Comm OS
+		\item 实验七：File-System OS
+		\item 实验八：r/u Core OS
 	\end{itemize}
 \end{column}
 
@@ -144,33 +143,7 @@
 
 \end{frame}
 
-%------------------------------------------------
-\begin{frame}
-\frametitle{基础实验}
-\framesubtitle{rCore实验：基于RISC-V用rust写教学操作系统} \pause
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{itemize}
-		\item 第一章：独立式可执行程序
-		\item 第二章：最小化内核
-		\item 第三章：中断
-		\item 第四章：内存管理
-		\item 第五章：内存虚拟化
-\end{itemize}
-\end{column}
- 
-\begin{column}{0.5\textwidth}
-    \begin{itemize}
-		\item 第六章：内核线程
-		\item 第七章：线程调度
-		\item 第八章：进程
-		\item 第九章：文件系统
-		\item 第十章：同步互斥
-    \end{itemize}
-\end{column}
 
-\end{columns}
-\end{frame}
 
 %------------------------------------------------
 \begin{frame}
@@ -188,13 +161,14 @@
 		\begin{itemize}	
 		\item 错误分析、行为分析、模拟器
 		\end{itemize}
-	\item 操作系统教学实验设计
+	\item 操作系统新方向探索
 		\begin{itemize}	
-		\item uCore、rCore、zCore
+		\item Rust、内核语言
 		\end{itemize} \pause
-	\item 操作系统新方向探索	
+	\item \href{https://github.com/oscomp/os-competition-info}{第一届全国全国大学生操作系统设计比赛}
 		\begin{itemize}	
-		\item rust、内核语言
+		\item \href{https://github.com/oscomp/proj2-os-kernels-by-history}{挖掘历史的OS kernel生物群}
+        \item \href{https://github.com/oscomp/proj9-zcore}{探索未来的OS Kernel -- zCore}
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -204,23 +178,23 @@
     \frametitle{成绩评定}
     \begin{itemize}
         \item 作业：5分
-        \item 实验：15分
+        \item 实验：20分
         \begin{itemize}
-            \item 独立完成uCore或rCore中的操作系统功能实现，并提交实验报告
+            \item 独立完成操作系统实验，并提交实验报告
         \end{itemize} \pause
-        \item 考试或课程设计：80分
+        \item 考试或课程设计：75分
         \begin{itemize}
-            \item 期中考试：35分
-            \item 期末考试：45分
+            \item 期中考试：25分
+            \item 期末考试：50分
             \item 有余力和兴趣的同学，可用课程设计替代考试
         \end{itemize}
 
     \end{itemize} \pause
 
     总成绩加权方法：上述各项成绩的总和会做一次调整，基本原则是，各分数段保持一定的比例，可能的参考比例为A+/A/A-占25\%、B+/B/B-占45\%、C+/C/C-占20\%和D+/D/F占10\%。 
-    \newline \newline 
+    \newline \newline
     
-    详见：\href{http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/log#A20200210-.2BZM1PXHz7ft.2BL.2FnoLdoRiEH7pi8RbmmgHUcaL9GYO-}{操作系统课程的成绩评定标准说明}
+    详见：\href{http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/log#A20200210-.2BZM1PXHz7ft.2BL.2FnoLdoRiEH7pi8RbmmgHUcaL9GYO-}{去年的操作系统课程的成绩评定标准说明：要调整！！！}
     
 \end{frame}
 
