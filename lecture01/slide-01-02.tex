@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第1讲]{第1讲 ：操作系统概述} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第二节：教学安排}
+\subtitle{第二节：什么是操作系统}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -31,112 +31,68 @@
 %%----------------------------------------------------------------------------------------
 %
 %%------------------------------------------------
-%\section{第二节：教学安排} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%\section{第三节：什么是操作系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %%------------------------------------------------
-\begin{frame}
-	\frametitle{参考教材}
-	
-%	\begin{columns}
-%		
-%		\begin{column}{0.5\textwidth}
-			\textbf{参考教材}
-			\begin{itemize}
-				\item \href{http://www.ostep.org/}{Operating Systems: Three Easy Pieces \\ 操作系统：三大简易元素}
-				\item \href{http://item.jd.com/10553956.html}{Operating System Concepts \\ 操作系统概念}
-				\item \href{http://item.jd.com/10255221.html}{Operating Systems:Internals and Design Principles \\ 操作系统：精髓与设计原理}
-			\end{itemize}
-			\pause
-		
-			\textbf{上课时间地点}
-			\begin{itemize}
-				\item 星期一(1-13周)　上午 第2大节  09:50-11:25  五教5105、五教5305
-				\item 星期四(1-13周)　上午 第1大节  08:00-09:35  五教5105、五教5305
-		    \end{itemize}
-%		\end{column}
-%		
-%		\begin{column}{0.5\textwidth}
-%			
-%			\includegraphics[width=1\linewidth]{ucore-arch}
-%			
-%		\end{column}
-%		
-%	\end{columns}
-	
-\end{frame}
 
-%------------------------------------------------
-\begin{frame}
-	\frametitle{教学内容}
 
-	\begin{columns}
+\begin{frame}[plain]
 
-	\begin{column}{0.5\textwidth}
-	
-    \includegraphics[width=1\linewidth]{ucore-arch}
-    
-    \end{column}
-	
-	\begin{column}{0.5\textwidth}
-	\textbf{操作系统原理与实现}
-    \begin{itemize}
-		\item 操作系统结构
-		\item 中断及系统调用 \pause
-		\item 内存管理
-		\item 进程管理
-		\item 处理机调度
-		\item 同步互斥 \pause
-		\item 文件系统
-		\item I/O子系统
-    \end{itemize}
-    
-    \end{column}
+\frametitle{操作系统定义}
 
-\end{columns}
+
+没有公认的精确定义 \pause
+
+\begin{block}{操作系统定义}
+操作系统是管理硬件资源、控制程序运行、改善人机界面和为应用软件提供支持的一种系统软件。[计算机百科全书]
+\end{block} \pause
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{os-position}
+	\caption{承上启下的操作系统}
+\end{figure}
 
 \end{frame}
 
-%------------------------------------------------
 
-    \begin{frame}
-        \frametitle{作业与实验}
-        \begin{itemize}
-            \item 平时作业
-        \begin{itemize}
-    		\item 课上练习与交流
-	    	\item 课后练习
-        \end{itemize} \pause
-
-            \item 基础实验
-    \begin{itemize}
-		\item r/u Core实验：面向RISC-V CPU用Rust/C写操作系统
-    \end{itemize}
-            \item 课程设计（大实验）
-        \end{itemize}
-\end{frame}
-
-%------------------------------------------------
 \begin{frame}
-\frametitle{基础实验}
-\framesubtitle{Core实验：面向RISC-V CPU用Rust/C写操作系统} \pause
+
+\frametitle{操作系统解释}
+
 \begin{columns}
-	
-\begin{column}{0.5\textwidth}
-\begin{itemize}
-		\item 实验零：操作系统实验准备
-		\item 实验一：hello-world OS
-		\item 实验二：kernel-mode OS
-		\item 实验三：multi-programming OS
-		\item 实验四：mem-isolation OS
-\end{itemize}
+
+\begin{column}{.6\linewidth}
+
+%\begin{figure}
+%	\centering
+	\includegraphics[width=1\linewidth]{os-position}
+%	\caption{承上启下的操作系统}
+
+%\end{figure}
 \end{column}
- 
-\begin{column}{0.5\textwidth}
-    \begin{itemize}
-		\item 实验五：multi-process OS
-		\item 实验六: Inter-Process-Comm OS
-		\item 实验七：File-System OS
-		\item 实验八：r/u Core OS
+
+\begin{column}{.7\linewidth}
+	
+\begin{itemize}
+\item 没有公认的精确定义 \pause
+\item 操作系统是一个控制程序
+	\begin{itemize}
+	\item 一个系统软件
+	\item 控制程序执行过程,防止错误
+	\item 执行用户程序,给程序提供服务
+	\item 方便用户使用计算机系统
 	\end{itemize}
+	\pause
+	\item 操作系统是一个资源管理程序
+	\begin{itemize}
+		\item 应用程序与硬件之间的中间层
+		\item 管理各种软硬件资源
+		\item 提供访问软硬件资源的高效手段
+		\item 解决访问冲突,确保公平使用
+	\end{itemize}
+\end{itemize}
+
 \end{column}
 
 \end{columns}
@@ -144,75 +100,91 @@
 \end{frame}
 
 
+%\begin{frame}
+%\frametitle{操作系统定义}
+%
+%\begin{itemize}
+%	\item 没有公认的精确定义
+%	\item 操作系统是一个资源管理器
+%	\begin{itemize}
+%		\item 应用程序与硬件之间的中间层
+%		\item 管理各种计算机软硬件资源
+%		\item 提供访问计算机软硬件资源的高效手段
+%		\item 解决资源访问冲突,确保资源公平使用
+%	\end{itemize}
+%\end{itemize}
+%
+%\end{frame}
+%
+%
+%\begin{frame}
+%	\frametitle{操作系统的位置}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=0.8\linewidth]{os-position}
+%	\caption{承上启下的操作系统}
+%\end{figure}
+%\end{frame}
 
-%------------------------------------------------
-\begin{frame}
-\frametitle{课程设计}
-	\begin{itemize}
-	\item 各种CPU平台上的操作系统移植
-		\begin{itemize}	
-		\item RISC-V、x86-64、x86-32、MIPS、ARM
-		\end{itemize}
-	\item 操作系统内核功能实现和扩展
-		\begin{itemize}	
-		\item GUI、驱动、内核可加载模块、微内核
-		\end{itemize} \pause
-	\item 操作系统分析工具	
-		\begin{itemize}	
-		\item 错误分析、行为分析、模拟器
-		\end{itemize}
-	\item 操作系统新方向探索
-		\begin{itemize}	
-		\item Rust、内核语言
-		\end{itemize} \pause
-	\item \href{https://github.com/oscomp/os-competition-info}{第一届全国全国大学生操作系统设计比赛}
-		\begin{itemize}	
-		\item \href{https://github.com/oscomp/proj2-os-kernels-by-history}{挖掘历史的OS kernel生物群}
-        \item \href{https://github.com/oscomp/proj9-zcore}{探索未来的OS Kernel -- zCore}
-		\end{itemize}
+\begin{frame}[plain]
+	\frametitle{操作系统软件的分类}
+		\begin{itemize}
+		\item Shell -- 命令行接口
+		\item GUI -- 图形用户接口
+		\item Kernel--操作系统的内部
 	\end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{sort-of-os}
+		\caption{操作系统的软件分类}
+	\end{figure}
 \end{frame}
-%------------------------------------------------
-    
-\begin{frame}[fragile]
-    \frametitle{成绩评定}
+
+\begin{frame}[plain]
+	\frametitle{uCore/rCore教学操作系统内核}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{ucore-arch}
+		\caption{uCore/rCore操作系统内核}
+	\end{figure}
+\end{frame}
+
+
+
+\begin{frame}[plain]
+	\frametitle{操作系统内核的抽象与特征}
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.45\linewidth]{os-abstract}
+	\caption{操作系统抽象}
+\end{figure} %\pause
+	\textbf{操作系统内核的特征}
+	\begin{itemize}
+		\item 并发：计算机系统中同时存在多个运行程序 %\pause
+		\item 共享：程序间“同时”访问 互斥共享各种资源 %\pause
+		\item 虚拟：每个程序"独占"一个完整的计算机 %\pause
+		\item 异步：服务的完成时间不确定，也可能失败
+	\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[plain]
+    \frametitle{操作系统内核的抽象与特征}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.35\linewidth]{run-app}
+        \caption{操作系统抽象}
+    \end{figure} %\pause
+    \textbf{操作系统内核的特征}
     \begin{itemize}
-        \item 作业：5分
-        \item 实验：20分
-        \begin{itemize}
-            \item 独立完成操作系统实验，并提交实验报告
-        \end{itemize} \pause
-        \item 考试或课程设计：75分
-        \begin{itemize}
-            \item 期中考试：25分
-            \item 期末考试：50分
-            \item 有余力和兴趣的同学，可用课程设计替代考试
-        \end{itemize}
-
-    \end{itemize} \pause
-
-    总成绩加权方法：上述各项成绩的总和会做一次调整，基本原则是，各分数段保持一定的比例，可能的参考比例为A+/A/A-占25\%、B+/B/B-占45\%、C+/C/C-占20\%和D+/D/F占10\%。 
-    \newline \newline
-    
-    详见：\href{http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/log#A20200210-.2BZM1PXHz7ft.2BL.2FnoLdoRiEH7pi8RbmmgHUcaL9GYO-}{去年的操作系统课程的成绩评定标准说明：要调整！！！}
+        \item 并发：计算机系统中同时存在多个运行程序 %\pause
+        \item 共享：程序间“同时”访问 互斥共享各种资源 %\pause
+        \item 虚拟：每个程序"独占"一个完整的计算机 %\pause
+        \item 异步：服务的完成时间不确定，也可能失败
+    \end{itemize}
     
 \end{frame}
-
-%------------------------------------------------
-    
-    \begin{frame}
-        \frametitle{调查问卷}
-        \begin{itemize}
-            \item 为什么要学这门课？ \pause
-            \item 你打算如何来学这门课？
-            \item 对自己的课程学习要求是什么？
-            \item 你愿意如实报告是否独立完成实验任务？
-            \item 你希望在操作系统课上学到什么知识和什么能力？ \pause
-            \item 以前的学习情况？
-            \item 对计算机专业的看法是什么？ \pause
-            \item 采集仅限于操作系统课内注册的同学信息
-        \end{itemize}
-    \end{frame}
 %----------------------------------------------------------------------------------------
 
 \end{document}
