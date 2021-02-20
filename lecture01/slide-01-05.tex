@@ -413,6 +413,88 @@
 \end{frame}
 %----------------------------------------------------------------------------------------
 \begin{frame}
+    \frametitle{OS实验内容: 硬件： RISC-V CPU启动}
+    %	\framesubtitle{QEMU}
+    \centering
+    \includegraphics[width=0.2\linewidth]{qemu}	
+    \begin{itemize}
+        
+        \item RISC-V CPU 启动过程
+        \begin{itemize}
+            \item 初始化CPU/Regs	
+            \item 初始化内存
+            \item 初始化基本外设
+            \item 执行ROM中固化的代码
+        \end{itemize}
+        \item 出处： \href{https://github.com/qemu/qemu}{https://github.com/qemu/qemu}
+        
+    \end{itemize}	
+    
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+\begin{frame}[plain]
+    %	\frametitle{RISC-V CPU 启动过程--初始化CPU}
+    %	\framesubtitle{QEMU}
+    %	\centering
+    %	\includegraphics[width=0.1\linewidth]{qemu}	
+    %	\begin{itemize}
+    %		
+    %		\item RISC-V CPU 启动过程--初始化CPU
+    %		
+    %	\end{itemize}		
+    \centering
+    \includegraphics[width=0.65\linewidth]{qemu-initcpu}
+\end{frame}
+
+\begin{frame}
+    \frametitle{OS实验内容: 硬件： RISC-V CPU启动}
+    %	\framesubtitle{QEMU}
+    %	\centering
+    \includegraphics[width=0.1\linewidth]{qemu}	
+    \begin{itemize}
+        
+        \item RISC-V CPU 启动过程--初始化内存
+        
+    \end{itemize}	
+    
+    \centering
+    \includegraphics[width=0.6\linewidth]{qemu-initmem}
+\end{frame}
+
+\begin{frame}[plain]
+    %	\frametitle{ RISC-V CPU 启动过程--初始化外设}
+    %	\framesubtitle{QEMU}
+    %	\centering
+    %	\includegraphics[width=0.1\linewidth]{qemu}	
+    %	\begin{itemize}
+    %		
+    %		\item RISC-V CPU 启动过程--初始化外设
+    %		
+    %	\end{itemize}	
+    \centering
+    \includegraphics[width=0.8\textwidth]{qemu-initboard}
+\end{frame}
+
+
+\begin{frame}[plain]
+    \frametitle{OS实验内容: 硬件： RISC-V CPU启动--ROM初始化代码}
+    %	\framesubtitle{QEMU}
+    %	\centering
+    %	\includegraphics[width=0.1\linewidth]{qemu}	
+    %	\begin{itemize}
+    %		
+    %		\item RISC-V CPU 启动过程--ROM初始化代码
+    %		
+    %	\end{itemize}	
+    
+    \centering
+    \includegraphics[width=0.8\linewidth]{qemu-resetcode}
+\end{frame}
+
+
+%----------------------------------------------------------------------------------------
+\begin{frame}
     \frametitle{OS实验内容}
     \framesubtitle{lab1: hello-world OS  软件}
     
