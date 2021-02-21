@@ -1,5 +1,5 @@
 # os-lectures
-http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring
+http://os.cs.tsinghua.edu.cn/oscourse/OS2021spring
 
 ## 索引
 
