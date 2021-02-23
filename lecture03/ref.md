@@ -1,221 +1,83 @@
 # 已有教学素材收集
 
-## 第3讲 中断、异常和系统调用
-### 第1节 中断、异常和系统调用
+## 第3讲 进程与调度
+### 参考
 
-ref：2018-lec3-chy.pdf
+实验文档-[第二章实现批处理系统](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter2/3batch-system.html#id1)
 
-#### 背景
-2018-lec3-chy.pdf：P24
-为什么需要中断、异常和系统调用
-	在计算机运行中，内核是被信任的第三方
-	只有内核可以执行特权指令
-	方便应用程序
-中断和异常希望解决的问题
-	当外设连接计算机时，会出现什么现象?
-	当应用程序处理意想不到的行为时，会出现什么现象?
-系统调用希望解决的问题
-	用户应用程序是如何得到系统服务?
-	系统调用和功能调用的不同之处是什么?
+[第三章多道程序与分时多任务](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/index.html)
 
-#### 计算机体系结构概述
-2018-lec3-chy.pdf：P3、P4
+### 3.1 进程概念
 
-#### RV板级图
+进程的概念（9.1 进程的概念[wiki](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture09)、[幻灯片]()）
+进程控制块（9.2 进程控制块：[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2018spring/lecture11?action=AttachFile&do=get&target=20180402-11-2-进程控制块.pptx)）
+进程状态（9.3 进程状态：[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture11?action=AttachFile&do=get&target=11-3-进程状态.pptx)）
+三状态进程模型（9.4 三状态进程模型：[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture11?action=AttachFile&do=get&target=11-4-三状态进程模型.pptx)）
 
-需要补充（类似2018-lec3-chy.pdf：P9）
+### 3.2 进程调度
 
-#### 中断、异常和系统调用比较
-2018-lec3-chy.pdf：P25
-源头
-	中断:外设
-	异常:应用程序意想不到的行为
-	系统调用:应用程序请求操作提供服务
-响应方式
-	中断:异步
-	异常:同步
-	系统调用:异步或同步
-处理机制
-	中断:持续，对用户应用程序是透明的
-	异常:杀死或者重新执行意想不到的应用程序指令
-	系统调用:等待和持续
+处理机调度概念（11.1 处理机调度概念[wiki](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture11)、[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture15?action=AttachFile&do=get&target=15-1.pptx)）
 
-#### 基本的中断、异常和系统调用
-ref：
-rv的中断编号
+协作式调度与抢占式调度
+ * 协作式调度：主动释放处理器
+ * 抢占式调度：通过时钟中断来强制打断一个程序的执行
 
-#### 内核的进入与退出
-2018-lec3-chy.pdf：P31
-插图
+先来先服务调度算法（11.3 先来先服务：[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture15?action=AttachFile&do=get&target=15-3.pptx)）
+时间片轮转调度算法（11.4 时间片轮转：[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture15?action=AttachFile&do=get&target=15-4.pptx)）
 
-#### 中断、异常和系统调用比较
+### 3.3 进程切换与管理（switch/fork/exec/wait/exit）
 
-插图2018-lec3-chy.pdf：P32
+进程切换（12.1 进程切换：[wiki](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture10)、[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture12?action=AttachFile&do=get&target=12-1.pptx)）：
 
-源头
-	中断:外设
-	异常:应用程序意想不到的行为
-	系统调用:应用程序请求操作提供服务
-响应方式
-	中断:异步
-	异常:同步
-	系统调用:异步或同步
-处理机制
-	中断:持续，对用户应用程序是透明的
-	异常:杀死或者重新执行意想不到的应用程序指令
-	系统调用:等待和持续
+* 不同类型的上下文与切换：函数调用与返回；系统调用和返回；进程切换；
+* 切换位置的要求：调用方；用户进程的可选位置；用户态的任意位置，内核的指定位置；
 
-#### 中断、异常和系统调用
-2018-lec3-chy.pdf：P33
-系统调用(system call)
-	应用程序主动向操作系统发出的服务请求
-异常(exception)
-	非法指令或者其他原因导致当前指令执行失败 (如:内存出错)后的处理请求
-中断(hardware interrupt)
-	来自硬件设备的处理请求
+进程创建（12.2 进程创建：[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture12?action=AttachFile&do=get&target=12-2.pptx)）
+进程退出（12.4 进程等待与退出：[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture12?action=AttachFile&do=get&target=12-4.pptx)）
 
-#### 中断处理机制
+### 3.4 同步互斥与进程间通信
 
-插图2018-lec3-chy.pdf：P34
+进程同步（13.1 背景[wiki](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture13)、[幻灯片](os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture17?action=AttachFile&do=get&target=17-1%E8%83%8C%E6%99%AF.pptx)）
 
-硬件处理
-在CPU初始化时设置中断使能标志
-	依据内部或外部事件设置中断标志
-	依据中断向量调用相应中断服务例程
+信号量的基本概念（14.1 信号量[wiki](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture14)、[幻灯片](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture14?action=AttachFile&do=view&target=20200402-18-1.pptx)）
 
-#### 中断和异常处理机制
+进程通信（16.1 进程通信概念[wiki](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture16)、[幻灯片](os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture20?action=AttachFile&do=get&target=20-5.pptx)）
+管道（16.2 信号和管道[幻灯片](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture20?action=AttachFile&do=get&target=20-6.pptx)）
 
-插图2018-lec3-chy.pdf：P35
+### 3.5 multi-process OS
 
-软件
-现场保存(CPU+编译器)
-中断服务处理(服务例程)
-清除中断标记(服务例程)
-现场恢复(CPU+编译器)
+代码介绍
 
-#### 中断嵌套
-2018-lec3-chy.pdf：P36
-硬件中断服务例程可被打断
-	不同硬件中断源可能在硬件中断处理时出现
-	硬件中断服务例程中需要临时禁止中断请求
-	中断请求会保持到CPU做出响应
-异常服务例程可被打断
-	异常服务例程执行时可能出现硬件中断
-异常服务例程可嵌套
-	异常服务例程可能出现缺页
+[用户栈与内核栈](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id7)：假定在批处理中只有一个进程，系统调用和异常触发的进入和退出内核时，会在内核栈和用户栈间进行切换；
 
-### 第2节 系统调用
+[Trap 上下文的保存与恢复](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id8)：软件进行的上下文切换；
 
-#### 系统调用
+[Trap 分发与处理](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id9)
 
-2018-lec3-chy.pdf：P39
+[执行应用程序](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#ch2-app-execution)：进入用户态第一次执行应用程序；
 
-操作系统服务的编程接口
-通常由高级语言编写(C、C++和rust等)
-程序访问通常是通过高层次的API接口而不是直接进行系统调用
-三种最常用的应用程序编程接口(API)
-Win32 API 用于 Windows
-POSIX API 用于 POSIX-based systems (包括UNIX，LINUX， Mac OS X的所有版本)
-Java API 用于JAVA虚拟机(JVM)
-ABI和API的区别
+[多道程序加载](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/1multi-loader.html#id5)
 
-#### 使用 OpenSBI 提供的服务
-https://rcore-os.github.io/rCore_tutorial_doc/chapter2/part6.html
+[任务切换的设计与实现](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/2task-switching.html#id5)：[不同类型的上下文与切换](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/2task-switching.html#id4)
 
-https://stackoverflow.com/questions/3784389/difference-between-api-and-abi
+[任务控制块与任务运行状态](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#id3)：简单的进程控制块和进程模型；
 
+协作式和抢占式切换：
 
-API: Application Program Interface
+主动调用`sys_yield` 来交出 CPU 使用权。
 
-This is the set of public types/variables/functions that you expose from your application/library.
+* [多道程序背景与 yield 系统调用](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#yield)：这里的插图比较好；
 
-In C/C++ this is what you expose in the header files that you ship with the application.
-ABI: Application Binary Interface
+[sys_yield 和 sys_exit](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#id3)：切换的实现；
 
-This is how the compiler builds an application.
-It defines things (but is not limited to):
+进程状态图：
 
-    How parameters are passed to functions (registers/stack).
-    Who cleans parameters from the stack (caller/callee).
-    Where the return value is placed for return.
-    How exceptions propagate.
-#### 系统调用的实现
-2018-lec3-chy.pdf：P40
+[第一次进入用户态](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#id5)：多进程下的第一次进入用户态；
 
-#### 函数调用和系统调用的不同处
-2018-lec3-chy.pdf：P41
+[时钟中断与计时器](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/4time-sharing-system.html#id5)
 
-#### 中断、异常和系统调用的开销
-2018-lec3-chy.pdf：P42
+[抢占式调度](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/4time-sharing-system.html#id6)
 
-### 第3节 RISC-V Intro (Intr/syscall )
-
-https://riscv.org/wp-content/uploads/2016/07/Tue0900_RISCV-20160712-Interrupts.pdf
-
-http://crva.ict.ac.cn/documents/RISC-V-Reader-Chinese-v2p1.pdf
-RISC-V手册
-
-#### RISC-V Interrupt Design Goals
-Tue0900_RISCV-20160712-Interrupts.pdf：p3
-
-#### Categorizing Sources of RISC-V Interrupts
-
-Machine Interrupt Pending CSR (mip)
-PlaCorm-Level Interrupt Controller (PLIC)
-SoGware Interrupts
-Timer Interrupts
-Machine Interrupt Enable CSR (mie)
-Interrupts in mstatus
-All interrupts trap to M-mode by default
-Optional Interrupt Handler Delegation
-#### PLIC Conceptual Block Diagram
-Tue0900_RISCV-20160712-Interrupts.pdf：p14
-PLIC Interrupt Gateways
-PLIC Per-Interrupt ID and Priority
-#### PLIC Interrupt Flow
-Tue0900_RISCV-20160712-Interrupts.pdf：p21
-#### PLIC Interrupt Preemption/Nesting
-PLIC Access Control
-SiFive Freedom Platform PLIC Mapping
-
-#### Interrupt/Trap Vectors
-#### User-Level Interrupts “N”
-#### Interrupts in Secure Embedded Systems
-#### 函数调用规范(Calling convention)
-RISC-V-Reader-Chinese-v2p1.pdf：p43
-RISC-V 应用程序二进制接口(ABI)
-	图 3.2 RISC-V 整数和浮点寄存器的汇编助记符
-	标准的 RV32I 函数入口和出口
-	结尾部分释放栈帧并返回调用点: RISC-V-Reader-Chinese-v2p1.pdf：p45
-
-#### 异常和中断的原因
-RISC-V-Reader-Chinese-v2p1.pdf：p102
-图 10.3:RISC-V 异常和中断的原因
-
-### 第4节 中断、异常、系统调用示例 (各种小例子)
-
-#### 系统调用示例
-2018-lec3-chy.pdf：P44
-文件复制过程中的系统调用序列
-
-#### rCore系统调用示例
-类似2018-lec3-chy.pdf：P45
-
-#### 手动触发断点中断
-https://rcore-os.github.io/rCore_tutorial_doc/chapter3/part2.html
-
-#### 访问系统调用
-https://rcore-os.github.io/rCore_tutorial_doc/chapter8/part1.html
-
-https://github.com/rcore-os/rCore_tutorial/blob/ch8-pa1/usr/rust/src/syscall.rs
-访问系统调用的用户态代码
-
-https://github.com/rcore-os/rCore_tutorial/blob/ch8-pa1/usr/rust/src/io.rs
-println的用户态代码
-
-#### 使用 OpenSBI 提供的服务
-https://rcore-os.github.io/rCore_tutorial_doc/chapter2/part6.html
-
-
+[时间片轮转调度实验文档](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/4time-sharing-system.html#id4)
 
 
