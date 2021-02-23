@@ -1,7 +1,7 @@
 # 已有教学素材收集
 
 * [v1](https://github.com/LearningOS/os-lectures/blob/57187673ab9e28379108a50808c53d26ea88f2b2/lecture03/ref.md)
-* v2
+* [v2](https://github.com/LearningOS/os-lectures/blob/8dc5af59fb5f79fef2d9ee26915863648a3da9af/lecture03/ref.md)
 
 ## 第3讲 进程与调度
 ### 参考
