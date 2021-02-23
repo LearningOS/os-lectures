@@ -51,19 +51,13 @@
 
 #### 系统调用：中断上下文保存与恢复
 
-[Trap 上下文的保存与恢复](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#id8)：软件进行的上下文切换；
-
 `TrapContext` [结构体](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/context.rs#L4)
 
 `__alltraps` 的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S#L12)
 
 上下文恢复的 `__restore` 的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S#L40)
 
-#### 任务切换：任务上下文
-
-[任务切换的设计与实现](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/2task-switching.html#id5)：[不同类型的上下文与切换](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/2task-switching.html#id4)
-
-进程控制块：**任务上下文** (Task Context)
+#### 任务切换：任务上下文(Task Context)
 
 ![task_context](/Users/xyong/github/os-lectures/lecture03/figs/task_context.png)
 
@@ -77,7 +71,7 @@
 
 #### 进程切换的实现
 
-[执行应用程序](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter2/4trap-handling.html#ch2-app-execution)：进入用户态第一次执行应用程序；
+如何进入用户态第一次执行应用程序？
 
  `run_next_app` [函数](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch2/os/src/batch.rs#L116)
 
@@ -85,13 +79,11 @@
 
 #### 多道批处理系统中的程序加载
 
-[多道程序加载](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/1multi-loader.html#id5)
-
  `load_apps` [函数](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/loader.rs#L55)
 
 #### 进程管理：任务运行状态
 
-[任务控制块与任务运行状态](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#id3)：简单的进程控制块和进程模型；
+简单的进程控制块数据结构和三状态进程模型
 
 ![fsm-coop](/Users/xyong/github/os-lectures/lecture03/figs/fsm-coop.png)
 
@@ -105,8 +97,6 @@
 
 主动调用`sys_yield` 来交出 CPU 使用权。
 
-* [多道程序背景与 yield 系统调用](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#yield)
-
 ![multiprogramming](/Users/xyong/github/os-lectures/lecture03/figs/multiprogramming.png)
 
 #### sys_yield 和 sys_exit
@@ -115,13 +105,11 @@
 
 ```sys_yield```的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/syscall/process.rs#L13)
 
-[sys_yield 和 sys_exit](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#sys-yield-sys-exit)：切换的实现；
-
 ```sys_exit```的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/syscall/process.rs#L7)
 
 #### 第一次进入用户态
 
-[第一次进入用户态](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/3multiprogramming.html#id5)：多进程下的第一次进入用户态；
+多进程下的第一次进入用户态；
 
  `init_app_cx` 的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/loader.rs#L82)
 
@@ -131,11 +119,7 @@
 
 #### 抢占式调度
 
-[时钟中断与计时器](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/4time-sharing-system.html#id5)
-
-`timer` 子模块
-
-[抢占式调度](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter3/4time-sharing-system.html#id6)
+`timer` [模块](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/timer.rs#L12)
 
 `suspend_current_and_run_next` 的[引用](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/trap/mod.rs#L53)和[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/task/mod.rs#L119)
 
