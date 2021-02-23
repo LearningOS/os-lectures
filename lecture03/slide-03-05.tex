@@ -4,14 +4,14 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第3讲]{第3讲 中断、异常和系统调用} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第四节：系统调用}
-\author{向勇、陈渝} % Your name
+\title[第3讲]{第3讲 进程与调度} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第五节：教学实验-分时多任务系统}
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 清华大学计算机系 \\ % Your institution for the title page
 \medskip
-\textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+\textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
 }
 \date{\today} % Date, can be changed to a custom date
 
@@ -30,207 +30,217 @@
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{第二节：系统调用}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-
-%----------------------------------------------
-\begin{frame}[plain]	
-	\frametitle{系统调用概貌}
-	
-	\begin{itemize}
-		\item 应用程序要输出字符串时，会触发系统调用write()
-	\end{itemize}\pause
-	
-	
-	\centering
-	\includegraphics[width=1.\textwidth]{write-syscall}
-	
-\end{frame}
-
-
+\section{第五节：教学实验-分时多任务系统}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 \begin{frame}
-	\frametitle{系统调用概貌}
-	
-	
-	\begin{columns}
-		
-		\begin{column}{0.4\textwidth}
-			\centering
-			\includegraphics[width=1.0\linewidth]{syscalls}
-			
-			
-		\end{column}
-		
-		\begin{column}{0.5\textwidth}
-			
-			\begin{itemize}
-				\item 操作系统服务的应用编程接口
-				\begin{itemize}
-					\item 通常由高级语言编写(C、go和rust等)
-					\item 程序通常访问高层次的API接口
-				\end{itemize}\pause
-				\item 三种最常用的应用程序编程接口
-				\begin{itemize}
-					\item Win API:用于 Windows 32/64
-					\item POSIX API:用于 POSIX-based OS
-					\item Java API:用于JAVA虚拟机(JVM)
-				\end{itemize}
-			\end{itemize}
-			
-		\end{column}
-	\end{columns}
-	
-\end{frame}
-
-%------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{系统调用的实现概述}
-	%	\framesubtitle{xxxx}
-	\begin{columns}
-		
-		\begin{column}{0.45\textwidth}
-			\centering
-			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
-			
-		\end{column}
-		
-		\begin{column}{0.5\textwidth}
-			
-			\begin{itemize}  
-				\item 用户态:通过运行库来管理 \pause
-				\item 内核态:对应系统调用号
-				\item 内核态:实现系统调用功能
-
-				
-			\end{itemize}
-			
-		\end{column}
-		
-	\end{columns}
-	
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{函数调用和系统调用的不同处}
-	%	\framesubtitle{xxxx}
-	\begin{columns}
-		
-		\begin{column}{0.45\textwidth}
-			\centering
-			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
-			
-		\end{column}
-		
-		\begin{column}{0.5\textwidth}
-		
-		  \begin{itemize}  
-			\item 系统调用 \pause
-			\begin{itemize}  
-				\item RISC-V中，ecall和sret指令用于系统调用 \pause
-				\item 堆栈切换和特权级的转换
-			\end{itemize} \pause
-
-
-			\item 函数调用
-			\begin{itemize}  
-				\item RISC-V中，call和ret指令用于系统调用
-				\item 无堆栈切换和特权级的转换
-			\end{itemize}	
-			
-			\end{itemize}			
-		\end{column}
-		
-	\end{columns}
-	
-\end{frame}
-
-
-%------------------------------------------------
-\begin{frame}
-	\frametitle{系统调用的开销}
-%	\framesubtitle{xxxx}
-
-	\begin{columns}
-	
-	\begin{column}{0.45\textwidth}
-		\centering
-		\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
-		
-	\end{column}
-	
-	\begin{column}{0.5\textwidth}
-		
+	\frametitle{系统调用：中断上下文保存与恢复}
 	\begin{itemize}
-        \item 开销超过函数调用 \pause
-        \item 开销:
-	    \begin{itemize}
+		\item  `TrapContext` \href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/context.rs#L4}{结构体}
+		\item  `__alltraps` 的\href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S#L12}{实现}
+		\item 上下文恢复的 `__restore` 的\href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S#L40}{实现}
 
-	        \item 切换内核堆栈
-	        \item 验证参数
-	        \item 可能切换页表
-        	\item 需要拷贝数据
-
-    	\end{itemize}
+	\item 
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
 	\end{itemize}
-
-	\end{column}
-
-\end{columns}
-
 \end{frame}
-
-
 %------------------------------------------------
-\begin{frame}[plain,t]
-	\frametitle{系统调用机制--具体实现}
-	%	\framesubtitle{xxxx}
-	\begin{columns}
-		
-		\begin{column}{0.4\textwidth}
-			\centering
-			\includegraphics[width=1.0\linewidth]{os-4-intr-syscall-except}
-			\begin{itemize} \small
-				\item Core Local	Interruptor (CLINT)
-				\item Platform-Level Interrupt Controller (PLIC)
-			\end{itemize}
-			
-		\end{column}
-		
-		\begin{column}{0.5\textwidth}
-			
-%			\centering
-			%			\includegraphics[width=.6\linewidth]{fu540-intr-arch}	
-			%			\includegraphics[width=.2\linewidth]{timer}
-			%show rcore tutorial	
-			应用发起请求  \pause
-			\begin{itemize} \small 
-				\item std lib 发出系统调用请求
-				\begin{itemize} \small 
-					\item 发出 设置系统调用号和参数，发出ecall	 
-
-				\end{itemize} \pause				
-				\item 硬件设置
-				\begin{itemize} \small 
-					\item sepc：保存请求后的指令地址	
-					\item pc：设置为 stvec
-					\item \underline{scause：设置为ecall from u-mode}
-					\item sstatus：SIE位置零以禁用中断					
-					\item stval：保存了相关的附加信息
-				\end{itemize}  \pause
-				\item 软件保存被打断现场\pause
-				\item 执行软件实现的中断服务例程
-				\item 软件恢复现场  \pause
-				\item 应用继续执行
-				
-			\end{itemize}
-			
-		\end{column}
-		
-	\end{columns}
 	
-\end{frame}	
-
+% #### 系统调用：中断上下文保存与恢复
+% 
+% `TrapContext` [结构体](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/context.rs#L4)
+% 
+% `__alltraps` 的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S#L12)
+% 
+% 上下文恢复的 `__restore` 的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S#L40)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 任务切换：任务上下文(Task Context)
+% 
+% ![task_context](/Users/xyong/github/os-lectures/lecture03/figs/task_context.png)
+% 
+%  `TaskContext` [数据结构](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/task/context.rs#L2)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 进程切换过程
+% 
+% ![switch](/Users/xyong/github/os-lectures/lecture03/figs/switch.png)
+% 
+% `__switch` 的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/task/switch.S#L10)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 进程切换的实现
+% 
+% 如何进入用户态第一次执行应用程序？
+% 
+%  `run_next_app` [函数](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch2/os/src/batch.rs#L116)
+% 
+%  `app_init_context` [函数](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch2/os/src/trap/context.rs#L12)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 多道批处理系统中的程序加载
+% 
+%  `load_apps` [函数](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/loader.rs#L55)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 进程管理：任务运行状态
+% 
+% 简单的进程控制块数据结构和三状态进程模型
+% 
+% ![fsm-coop](/Users/xyong/github/os-lectures/lecture03/figs/fsm-coop.png)
+% 
+% ```TaskStatus```[数据结构](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/task/task.rs#L13)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 进程管理：任务控制块
+% 
+% **任务控制块** (Task Control Block)：```TaskControlBlock``` [数据结构](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/% task/task.rs#L1)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 协作式调度：主动让出CPU
+% 
+% 主动调用`sys_yield` 来交出 CPU 使用权。
+% 
+% ![multiprogramming](/Users/xyong/github/os-lectures/lecture03/figs/multiprogramming.png)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### sys_yield 和 sys_exit
+% 
+%  `sys_yield` [系统调用](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/user/src/syscall.rs#L27)
+% 
+% ```sys_yield```的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/syscall/process.rs#L13)
+% 
+% ```sys_exit```的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/syscall/process.rs#L7)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 第一次进入用户态
+% 
+% 多进程下的第一次进入用户态；
+% 
+%  `init_app_cx` 的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/loader.rs#L82)
+% 
+%  `task::run_first_task` 的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/task/mod.rs#L48)
+% 
+% ```task::run_next_task```的[实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/task/mod.rs#L82)
+% 
+%------------------------------------------------
+\begin{frame}
+	\frametitle{Bullet Points}
+	\begin{itemize}
+	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
+	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
+	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
+	\item Nam cursus est eget velit posuere pellentesque
+	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+% #### 抢占式调度
+% 
+% `timer` [模块](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/timer.rs#L12)
+% 
+% `suspend_current_and_run_next` 的[引用](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/trap/mod.rs#L53)和[% 实现](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3/os/src/task/mod.rs#L119)
 %----------------------------------------------------------------------------------------
 \end{document}
