@@ -2,6 +2,7 @@
 
 * [v1](https://github.com/LearningOS/os-lectures/blob/57187673ab9e28379108a50808c53d26ea88f2b2/lecture03/ref.md)
 * [v2](https://github.com/LearningOS/os-lectures/blob/8dc5af59fb5f79fef2d9ee26915863648a3da9af/lecture03/ref.md)
+* v3
 
 ## 第3讲 进程与调度
 ### 参考
@@ -47,7 +48,7 @@
 进程通信（16.1 进程通信概念[wiki](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture16)、[幻灯片](os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture20?action=AttachFile&do=get&target=20-5.pptx)）
 管道（16.2 信号和管道[幻灯片](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture20?action=AttachFile&do=get&target=20-6.pptx)）
 
-### 3.5 multi-process OS
+### 3.5 教学实验：分时多任务系统
 
 #### 系统调用：中断上下文保存与恢复
 
