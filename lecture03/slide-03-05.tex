@@ -34,18 +34,11 @@
 %------------------------------------------------
 \begin{frame}
 	\frametitle{系统调用：中断上下文保存与恢复}
-	\begin{itemize}
-		\item  `TrapContext` \href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/context.rs#L4}{结构体}
-		\item  `__alltraps` 的\href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S#L12}{实现}
-		\item 上下文恢复的 `__restore` 的\href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S#L40}{实现}
-
-	\item 
-	Lorem ipsum dolor sit amet, consectetur adipiscing elit
-	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-	\item Nam cursus est eget velit posuere pellentesque
-	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
-	\end{itemize}
+    \begin{itemize}
+  		\item  TrapContext \href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/context.rs\#L4}{结构体}
+		\item  \_\_alltraps 的\href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S\#L12}{实现}
+		\item 上下文恢复的 \_\_restore 的\href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/trap/trap.S\#L40}{实现}
+    \end{itemize}	
 \end{frame}
 %------------------------------------------------
 	
@@ -59,13 +52,10 @@
 % 
 %------------------------------------------------
 \begin{frame}
-	\frametitle{Bullet Points}
+	\frametitle{任务切换：任务上下文(Task Context)}
+	\includegraphics[width=0.7\linewidth]{figs/task_context.png}
 	\begin{itemize}
-	\item Lorem ipsum dolor sit amet, consectetur adipiscing elit
-	\item Aliquam blandit faucibus nisi, sit amet dapibus enim tempus eu
-	\item Nulla commodo, erat quis gravida posuere, elit lacus lobortis est, quis porttitor odio mauris at libero
-	\item Nam cursus est eget velit posuere pellentesque
-	\item Vestibulum faucibus velit a augue condimentum quis convallis nulla gravida
+	\item TaskContext \href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch3-coop/os/src/task/context.rs\#L2}{数据结构}
 	\end{itemize}
 \end{frame}
 %------------------------------------------------
