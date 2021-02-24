@@ -68,6 +68,7 @@
     
 \end{frame}
 
+
 %------------------------------------------------
 
 \begin{frame}[plain]
@@ -83,6 +84,14 @@
     
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+
+\subsection{OS与体系结构的关系}
 %------------------------------------------------
 
 \begin{frame}
@@ -110,10 +119,30 @@
     
     
 \end{frame}
+
+
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+
+\subsection{OS与应用程序的关系} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %------------------------------------------------
 
-\subsection{隔离} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\begin{frame}
+    
+    \frametitle{OS与应用程序的关系}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{syscall-overview}
+    \end{figure}
+    
+\end{frame}
 
+
+%------------------------------------------------
 
 \begin{frame}
 	\frametitle{隔离：\small{程序调用}}
@@ -132,8 +161,63 @@
 	\end{itemize}
 \end{frame}
 
+%------------------------------------------------
 
+\begin{frame}
+    
+    \frametitle{OS与应用程序的关系}
+     \small{\textit{ssize\_t read(int fd, void *buf, size\_t count);}}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\linewidth]{syscall-read}
+    \end{figure}
+    
+\end{frame}
 
+%------------------------------------------------
+
+\begin{frame}
+    
+    \frametitle{OS与应用程序的关系}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=1.0\linewidth]{syscall-proc}
+    \end{figure}
+    
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+    
+    \frametitle{OS与应用程序的关系}
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=1.0\linewidth]{syscall-file}
+    \end{figure}
+    
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+    
+    \frametitle{OS与应用程序的关系}
+    Q: 在内存方面：OS与应用程序的关系？
+            \centering
+    \includegraphics[width=0.8\linewidth]{app-mem-layout}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+\subsection{隔离：概述} 
+%------------------------------------------------
 \begin{frame}
 	\frametitle{隔离：\small{什么是隔离？}}
 %	\begin{itemize}
@@ -181,7 +265,12 @@
 %	\end{itemize}
 \end{frame}
 
-\subsection{虚拟内存}
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+\subsection{隔离：虚拟内存}
 
 \begin{frame}[plain]
 	
@@ -253,7 +342,12 @@
 	
 \end{frame}
 
-\subsection{特权模式/中断}
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+\subsection{隔离：特权模式}
 
 \begin{frame}
 	\frametitle{特权模式}
@@ -276,6 +370,12 @@
 	\end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+\subsection{隔离：中断机制}
 \begin{frame}
 	\frametitle{中断机制}
 	\begin{itemize}
@@ -302,5 +402,15 @@
 \end{frame}
 
 %----------------------------------------------------------------------------------------
+%------------------------------------------------
+
+\begin{frame}
+    \frametitle{小结}
+    \begin{itemize}
+        \item 了解计算机硬件与软件的接口
+        \item 了解操作系统与应用程序的接口
+        \item 了解操作系统如何隔离与限制应用程序
+    \end{itemize}
+\end{frame}
 
 \end{document}

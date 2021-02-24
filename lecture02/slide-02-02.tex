@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第2讲]{第2讲 ：中断、异常与系统调用 } % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第二节：从OS角度看RISC-V}
+\subtitle{第二节：从OS角度再理解RISC-V}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -63,7 +63,12 @@
 \end{frame}
 
 %------------------------------------------------
-\subsection{RISC-V系统模式}
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+\subsection{RISC-V系统模式：概述}
 \begin{frame}
     \frametitle{RISC-V系统模式：概述}
     %	\framesubtitle{隔离}
@@ -85,7 +90,6 @@
 \end{frame}
 
 %------------------------------------------------
-\subsection{RISC-V系统模式}
 \begin{frame}
     \frametitle{RISC-V系统模式：概述}
     %	\framesubtitle{隔离}
@@ -108,7 +112,7 @@
     
 \end{frame}
 %------------------------------------------------
-\subsection{RISC-V系统模式}
+
 \begin{frame}
 	\frametitle{RISC-V系统模式：\small{隔离}}
 %	\framesubtitle{隔离}
@@ -193,6 +197,12 @@
 
 
 %------------------------------------------------
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+\subsection{RISC-V系统编程：M-MODE}
 
 \begin{frame}
     \frametitle{RISC-V系统编程}
@@ -593,7 +603,12 @@
     
 \end{frame}
 %------------------------------------------------
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
 
+\subsection{RISC-V系统编程：S-MODE}
 %------------------------------------------------
 
 \begin{frame}
@@ -785,17 +800,26 @@
 \end{frame}
 
 %------------------------------------------------
-
+%
+%\begin{frame}
+%    \frametitle{RISC-V系统编程：小结}
+%    
+%    \begin{itemize}
+%        \item 所有的标准的RISC-V处理器都会实现M模式，这个模式使用尽可能少的硬件来实现对于异常和中断的支持，实现用户程序和操作系统的隔离，M模式适合需要一定保护的嵌入式操作系统
+%        \item 在M模式之上RISC-V也定义了S模式，打开页式内存管理，支持虚拟内存的内存管理方式
+%        \item 我们需要了解M模式，掌握S模式
+%    \end{itemize}
+%    %    \centering
+%    %    \includegraphics[width=0.6\linewidth]{rv-sstatus}
+%\end{frame}
+%%------------------------------------------------
 \begin{frame}
-    \frametitle{RISC-V系统编程：小结}
-    
+    \frametitle{小结}
     \begin{itemize}
-        \item 所有的标准的RISC-V处理器都会实现M模式，这个模式使用尽可能少的硬件来实现对于异常和中断的支持，实现用户程序和操作系统的隔离，M模式适合需要一定保护的嵌入式操作系统
-        \item 在M模式之上RISC-V也定义了S模式，打开页式内存管理，支持虚拟内存的内存管理方式
-        \item 我们需要了解M模式，掌握S模式
+        \item 了解RISC-V的M-Mode和S-Mode的特征
+        \item 了解系统软件在M-Mode和S-Mode下如何访问控制计算机系统
+        \item 了解如何在M-Mode<-->S-Mode<-->U-Mode之间进行切换
     \end{itemize}
-    %    \centering
-    %    \includegraphics[width=0.6\linewidth]{rv-sstatus}
 \end{frame}
 %------------------------------------------------
 \end{document}

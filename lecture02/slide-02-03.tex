@@ -52,6 +52,16 @@
 %\end{frame}
 %------------------------------------------------
 \begin{frame}
+    \frametitle{内容简介}
+    \begin{itemize}
+        \item 回顾特权级切换
+        \item 用户态应用程序：控制逻辑，地址空间，系统调用
+        \item kernel-mode OS：启动，初始化，创建执行应用，系统调用服务
+    \end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}
 	\frametitle{kernel mode OS: RISC-V CPU特权级切换}
 %	\framesubtitle{QEMU}
 %\begin{figure}
@@ -80,6 +90,17 @@
 \end{frame}
 
 %------------------------------------------------
+
+\begin{frame}
+    
+    \frametitle{kernel mode OS: U-Mode 应用程序}
+    U-Mode 应用程序
+    \centering
+    \includegraphics[width=0.8\linewidth]{app-mem-layout}
+    
+\end{frame}
+
+%------------------------------------------------
 \begin{frame}
 	\frametitle{kernel mode OS: U-Mode 应用程序}
 %	\framesubtitle{QEMU}
@@ -97,10 +118,12 @@
 %		\item 出处： \href{https://github.com/qemu/qemu}{https://github.com/qemu/qemu}
 %		
 %	\end{itemize}	
+
+应用程序的执行环境的建立是编译器，库和OS的共同努力
 	\begin{figure}
         \centering
-        \includegraphics[width=0.9\linewidth]{umode-app}
-        \caption{U-Mode 应用程序}
+        \includegraphics[width=0.8\linewidth]{umode-app}
+        \caption{U-Mode 应用程序的执行环境}
     \end{figure}
 \end{frame}
 %------------------------------------------------
@@ -223,6 +246,29 @@
     %    \end{figure}
 \end{frame}
 
+
+%------------------------------------------------
+\begin{frame}
+    \frametitle{kernel mode OS: 内核实现：系统调用处理框架}
+    %	\framesubtitle{QEMU}
+    %	\centering
+    %	\includegraphics[width=0.2\linewidth]{qemu}	
+    进入trap\-handler前的硬件状态
+    \begin{itemize}
+        
+    \item 发生异常的指令PC被存入sepc, 且PC被设置为stvec
+    \item scause根据异常设置类型，stval被设置为出错的地址或者异常相关信息字
+    \item 把sstatus CSR中的SIE置零，屏蔽中断，且SIE之前的值被保存在SPIE中
+    \item 发生例外前的特权模式被保存在sstatus的SPP域，然后设置当前特权模式为S模式
+        
+    \end{itemize}	
+    %    \begin{figure}
+%    \centering
+%    \includegraphics[width=0.9\linewidth]{rv-trap-begin}
+    %        \caption{内核初始化}
+    %    \end{figure}
+\end{frame}
+
 %------------------------------------------------
 \begin{frame}
     \frametitle{kernel mode OS: 内核实现：系统调用处理框架}
@@ -316,6 +362,16 @@
     %    \end{figure}
 \end{frame}
 %------------------------------------------------
+%------------------------------------------------
+\begin{frame}
+    \frametitle{小结}
+    \begin{itemize}
+        \item 了解kernel-mode OS如何创建应用程序
+        \item 了解kernel-mode OS如何让应用程序执行
+        \item 了解应用程序如何得到kernel-mode OS的服务
+        \item 读懂汇编代码的含义和功能
+    \end{itemize}
+\end{frame}
 %------------------------------------------------
 %
 %
