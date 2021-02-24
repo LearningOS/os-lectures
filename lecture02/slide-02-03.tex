@@ -21,10 +21,12 @@
 \titlepage % Print the title page as the first slide
 \end{frame}
 
-%\begin{frame}
-%\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-%\end{frame}
+%------------------------------------------------
+
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
 
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
@@ -51,14 +53,16 @@
 
 %\end{frame}
 %------------------------------------------------
-\begin{frame}
-    \frametitle{内容简介}
-    \begin{itemize}
-        \item 回顾特权级切换
-        \item 用户态应用程序：控制逻辑，地址空间，系统调用
-        \item kernel-mode OS：启动，初始化，创建执行应用，系统调用服务
-    \end{itemize}
-\end{frame}
+\subsection{用户态应用程序：控制逻辑，地址空间，系统调用}
+
+% \begin{frame}
+%     \frametitle{内容简介}
+%     \begin{itemize}
+%         \item 回顾特权级切换
+%         \item 用户态应用程序：控制逻辑，地址空间，系统调用
+%         \item kernel-mode OS：启动，初始化，创建执行应用，系统调用服务
+%     \end{itemize}
+% \end{frame}
 
 %------------------------------------------------
 \begin{frame}
@@ -88,9 +92,7 @@
     	\caption{RISC-V CPU特权级切换}
     \end{figure}	
 \end{frame}
-
 %------------------------------------------------
-
 \begin{frame}
     
     \frametitle{kernel mode OS: U-Mode 应用程序}
@@ -186,6 +188,14 @@
     \end{figure}
 \end{frame}
 %------------------------------------------------
+
+\begin{frame}
+    \frametitle{提纲} 
+    \tableofcontents 
+\end{frame}
+
+%------------------------------------------------
+\subsection{kernel-mode OS：启动，初始化，创建执行应用，系统调用服务}
 %------------------------------------------------
 \begin{frame}
     \frametitle{kernel mode OS: 内核实现：启动}
