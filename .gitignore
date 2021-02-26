@@ -267,6 +267,9 @@ TSWLatexianTemp*
 # TeXnicCenter
 *.tps
 
+# VScode
+*.code-project
+
 # auto folder when using emacs and auctex
 ./auto/*
 *.el
