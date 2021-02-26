@@ -1,7 +1,7 @@
 ### 第四讲 存储管理
 
  * [v1](https://github.com/LearningOS/os-lectures/blob/61f05814711b7dd6a8bfd0b7b4c3cf48025775ba/lecture04/ref.md)
- * v2
+ * [v2](https://github.com/LearningOS/os-lectures/blob/4578d7e2d1a2c4671e4503a611a11f07e41dbbcd/lecture04/ref.md)
 
 #### 1. 计算机体系结构和内存层次概述
 
