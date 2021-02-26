@@ -2,6 +2,7 @@
 
  * [v1](https://github.com/LearningOS/os-lectures/blob/61f05814711b7dd6a8bfd0b7b4c3cf48025775ba/lecture04/ref.md)
  * [v2](https://github.com/LearningOS/os-lectures/blob/4578d7e2d1a2c4671e4503a611a11f07e41dbbcd/lecture04/ref.md)
+ * V3
 
 #### 1. 计算机体系结构和内存层次概述
 
@@ -34,8 +35,8 @@
 
 SV39 多级页表机制：
 
-5.6 RISC-V页映射机制：[PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture05?action=AttachFile&do=view&target=slide-05-06.pdf)中SV39的页表
-5.7 使能RISC-V页表：[PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture05?action=AttachFile&do=view&target=slide-05-07.pdf)
+5.6 RISC-V页映射机制：[PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture05?action=AttachFile&do=get&target=slide-05-06.pdf)中SV39的页表
+5.7 使能RISC-V页表：[PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture05?action=AttachFile&do=get&target=slide-05-07.pdf)（这里的描述可能错的）
 
 [实现 SV39 多级页表机制（上）](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/3sv39-implementation-1.html#sv39)：在RV64架构下的虚拟地址与物理地址的访问属性（可读，可写，可执行等），组成结构（页号，帧好，偏移量等），访问的空间范围等；
 
