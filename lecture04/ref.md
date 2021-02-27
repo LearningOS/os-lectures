@@ -42,13 +42,25 @@
 
 ##### 逻辑地址和物理地址
 
-[地址格式与组成](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/3sv39-implementation-1.html#id3)
+[地址格式与组成](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/3sv39-implementation-1.html#id3)：
 
-[地址类型定义](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/address.rs#L5)
+* 在 64 位架构上虚拟地址长度应该是 64 位
+* SV39 分页模式规定 64 位虚拟地址的 [63:39]这 25 位必须和第 38 位相同
+* MMU 取出后 39 位，再尝试将其转化为 56 位的物理地址
 
-[地址和页号的相互转换](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/address.rs#L88)
+![sv39-va-pa](/Users/xyong/github/os-lectures/lecture04/figs/sv39-va-pa.png)
+
+[地址类型定义](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/address.rs#L5)：`struct PhysAddr`、`struct VirtAddr`、`struct PhysPageNum`、`struct VirtPageNum`
+
+![address-5](/Users/xyong/github/os-lectures/lecture04/figs/address-5.png)
+
+[地址和页号的相互转换](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/address.rs#L88)：
+
+![address-88](/Users/xyong/github/os-lectures/lecture04/figs/address-88.png)
 
 ##### 页表项
+
+![sv39-pte](/Users/xyong/github/os-lectures/lecture04/figs/sv39-pte.png)
 
 [页表项的数据结构抽象与类型定义](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/3sv39-implementation-1.html#id5)
 
@@ -56,21 +68,7 @@
 
  `PageTableEntry` 的工具[函数](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs#L45)
 
-##### 地址转换过程
-
-[多级页表原理](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/3sv39-implementation-1.html#id6)
-
-SV39 中的 R/W/X 组合的含义
-
-SV39 地址转换的全过程
-
-##### 物理页管理
-
-[实现 SV39 多级页表机制（下）](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html#sv39)：物理内存管理、多级页表、地址转换；
-
-[物理页帧管理](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html#id2)
-
-[FrameAllocator](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/frame_allocator.rs#L35)
+![page_table-45](/Users/xyong/github/os-lectures/lecture04/figs/page_table-45.png)
 
 ##### 页表
 
@@ -78,27 +76,75 @@ SV39 地址转换的全过程
 
 `PageTable`[数据结构](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs#L56)
 
+![page_table-56](/Users/xyong/github/os-lectures/lecture04/figs/page_table-56.png)
+
 [PageTable](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs#L114)
 
-[PageTableEntry](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs#L21)
+
+
+##### 地址转换过程
+
+[多级页表原理](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/3sv39-implementation-1.html#id6)
+
+SV39 地址转换的全过程
+
+![sv39-full](/Users/xyong/github/os-lectures/lecture04/figs/sv39-full.png)
+
+SV39 中的 R/W/X 组合的含义
+
+![pte-rwx](/Users/xyong/github/os-lectures/lecture04/figs/pte-rwx.png)
+
+
 
 ##### 地址映射建立和撤消
 
-[建立和拆除虚实地址映射关系](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html#id8)
+[建立和拆除虚实地址映射关系](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html#id8)：
 
-[map](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs#L114)
+* 在多级页表中找到一个虚拟地址对应的页表项
+* 修改页表项的内容以建立虚实地址映射关系
+* 页表中间的页表项可能未创建：手动分配物理页存放该页表项
 
-[unmap](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs#L120)
+[map](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs#L114)、[unmap](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs#L120)：
+
+![page_table-114](/Users/xyong/github/os-lectures/lecture04/figs/page_table-114.png)
+
+
+
+##### 物理页管理
+
+[实现 SV39 多级页表机制（下）](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html#sv39)：物理内存管理、多级页表、地址转换；
+
+[物理页帧管理](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html#id2)：
+
+* 声明一个 `FrameAllocator` Trait 描述物理页帧管理器的功能
+* 实现一种简单的栈式物理页帧管理策略 `StackFrameAllocator` 
+
+[FrameAllocator](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/frame_allocator.rs#L35)
+
+![frame_allocator-L35](/Users/xyong/github/os-lectures/lecture04/figs/frame_allocator-L35.png)
+
+栈式物理页帧管理策略
+
+* 分配 `alloc` 时，检查栈 `recycled` 内有没有之前回收的物理页号；
+  * 如果有的话直接弹出栈顶并返回；
+  * 否则，从之前从未分配过的物理页号区间的左端点 `current`分配。
+* 回收 `dealloc` 时，检查回收页面的合法性，然后将其压入 `recycled` 栈中。
+
+
 
 ##### 地址空间
 
-[逻辑段抽象](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html#id4)
+[逻辑段](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html#id4)：指地址区间中的一段属性相同的连续虚拟地址区间，以相同方式映射到物理页帧。
 
 [MapArea](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/memory_set.rs#L193)
 
-[地址空间抽象](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html#id5)
+![memory_set-L193](/Users/xyong/github/os-lectures/lecture04/figs/memory_set-L193.png)
+
+[地址空间](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html#id5)：包含一个多级页表 `page_table` 和一个逻辑段 `MapArea` 的向量 `areas` 。
 
 [struct MemorySet](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/memory_set.rs#L38)
+
+![memory_set-L38](/Users/xyong/github/os-lectures/lecture04/figs/memory_set-L38.png)
 
 注：[Resource Acquisition is Initialisation (RAII) Explained](https://www.tomdalling.com/blog/software-design/resource-acquisition-is-initialisation-raii-explained/)
 
@@ -106,8 +152,18 @@ SV39 地址转换的全过程
 
 [内核地址空间](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html#id6)
 
-[内核地址空间布局-高地址](https://rcore-os.github.io/rCore-Tutorial-Book-v3/_images/kernel-as-high.png)
-[内核地址空间布局-低地址](https://rcore-os.github.io/rCore-Tutorial-Book-v3/_images/kernel-as-low.png)
+[内核地址空间高256GiB布局](https://rcore-os.github.io/rCore-Tutorial-Book-v3/_images/kernel-as-high.png)
+
+![kernel-as-high](/Users/xyong/github/os-lectures/lecture04/figs/kernel-as-high.png)
+
+[内核地址空间低256GiB布局](https://rcore-os.github.io/rCore-Tutorial-Book-v3/_images/kernel-as-low.png)：四个逻辑段 `.text/.rodata/.data/.bss` 被恒等映射到物理内存；
+
+![kernel-as-low](/Users/xyong/github/os-lectures/lecture04/figs/kernel-as-low.png)
+
+
+
+
+
 [new_kernel](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/memory_set.rs#L78)
 
 保护页面 (Guard Page)
@@ -118,43 +174,49 @@ SV39 地址转换的全过程
 
 [应用地址空间的布局](https://rcore-os.github.io/rCore-Tutorial-Book-v3/_images/app-as-full.png)
 
+![app-as-full](/Users/xyong/github/os-lectures/lecture04/figs/app-as-full.png)
+
 [from_elf](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/memory_set.rs#L126)
 
 ##### 内核地址空间初始化
 
 [建立并开启基于分页模式的虚拟地址空间](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/6multitasking-based-on-as.html#id1)
 
-CPU 将跳转到内核入口点并在 S 特权级上执行，此时并没有开启分页模式；
+* CPU 将跳转到内核入口点并在 S 特权级上执行，此时并没有开启分页模式；
 
 [内核地址空间初始化](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/mod.rs#L15)
+
+![mod-L15](/Users/xyong/github/os-lectures/lecture04/figs/mod-L15.png)
 
 ##### 使能分页机制
 
 [SV39 分页模式启用]()：S特权级的MMU使能；
 
-切换 satp 的指令及其下一条指令这两条相邻的指令的 虚拟地址是相邻的
-
-pc 只是简单的自增当前指令的字长
-
-经过的地址转换流程却是不同的
-
-切换之后是一个恒等映射
-
-切换之前是视为物理地址直接取指，也可以将其看成一个恒等映射
+* 切换 satp CSR 必须是平滑，即切换 satp 的指令及其下一条指令的虚拟地址是相邻的；
+* 内核内存布局的代码段在切换之后采用恒等映射，切换前的物理地址直接访问可视为恒等映射。
 
 ##### 用户态与内核态间的地址空间切换
 
-从用户态到内核态的地址空间切换：[跳板的实现](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/6multitasking-based-on-as.html#id6)
+[跳板的实现](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/6multitasking-based-on-as.html#id6)
 
-使能了分页机制后，必须用户态与内核态切换中同时完成地址空间的切换。即：通过修改 satp 在应用地址空间和内核地址空间间切换。应用和内核地址空间在切换地址空间指令附近是平滑的。
+需求：
 
-将 Trap 上下文保存在 应用地址空间的一个虚拟页面中，以避免切换到内核地址空间才能保存。
+1. 使能了分页机制后，必须用户态与内核态切换中同时完成地址空间的切换。
+2. 通过修改 satp 在应用地址空间和内核地址空间间切换。
+3. 应用和内核地址空间在切换地址空间指令附近是平滑的。
 
-当应用 Trap 进入内核的时候，硬件会设置一些 CSR 并在 S 特权级下跳转到 `__alltraps` 保存 Trap 上下文。此时 sp 寄存器仍指向用户栈，但 `sscratch`则被设置为指向应用地址空间中存放 Trap 上下文的位置，实际在次高页面。
+实现：
 
-进入内核态后，先保存通用寄存器和一些 CSR；再切换到了内核地址空间；
+* 内核与用户进程各有自己的地址空间，共享同一个Trampoline（ `__alltraps` 的代码）和TrapContext（ `__alltraps` 的数据）；Trampoline可在用户地址空间和内核态时访问。
+* 当应用 Trap 进入内核时，硬件会设置一些 CSR 并在 S 特权级下跳转到 `__alltraps` 保存 Trap 上下文。
 
- 跳板页面：`__alltraps` 恰好位于这个物理页帧的开头，其物理地址被外部符号 `strampoline` 标记。在开启分页模式之后，内核和应用代码都只能看到地址空间
+map_trampoline建立跳板区域的虚实映射关系：
+
+1. 用户态是不能访问的；
+2. 中断时，中断进入时硬件保存现场并不直接访问这个区域的内存，而是放在寄存器中；
+3. 这个区域只在内核态且是用户地址空间时访问；
+4. 这两个页表的设置是一样的，可以保证它只在内核态可以访问；
+5. 中断服务例程的地址在链接时得到；
 
 
 
