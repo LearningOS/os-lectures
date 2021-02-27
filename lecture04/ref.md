@@ -225,8 +225,13 @@ map_trampoline建立跳板区域的虚实映射关系：
 ##### 文件接口
 
 [文件](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter6/1file-descriptor.html#id3)：所有输入输出都被视为文件操作(Everything is a file)
-统一的 `File`抽象[接口](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch6/os/src/fs/mod.rs#L5) 
+统一的 `File`抽象[接口](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch6/os/src/fs/mod.rs#L5)
+
+![mod-L5](/Users/xyong/github/os-lectures/lecture04/figs/mod-L5.png)
+
 用户缓冲区的抽象 `UserBuffer`：[struct UserBuffer](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch6/os/src/mm/page_table.rs#L199)
+
+![page_table-L199](/Users/xyong/github/os-lectures/lecture04/figs/page_table-L199.png)
 
 ##### 标准输入和输出文件实现
 
@@ -234,14 +239,23 @@ map_trampoline建立跳板区域的虚实映射关系：
 
 标准输入：[stdin](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch6/os/src/fs/stdio.rs#L10)
 
+![stdio-L10](/Users/xyong/github/os-lectures/lecture04/figs/stdio-L10.png)
+
 标准输出：[stdout](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch6/os/src/fs/stdio.rs#L33)
+
+![stdio-L33](/Users/xyong/github/os-lectures/lecture04/figs/stdio-L33.png)
 
 ##### 文件描述符
 
 [文件描述符与文件描述符表](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter6/1file-descriptor.html#id5) ：进程控制块中的文件描述符表、进程的标准输入输出
+
+![task-L20](/Users/xyong/github/os-lectures/lecture04/figs/task-L20.png)
 
 [进程控制块中的文件描述符表](https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch6/os/src/task/task.rs#L20)：在进程创建时，缺省打开标准输入和输出；
 
 ##### 文件相关的系统调用
 
 [文件读写系统调用](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter6/1file-descriptor.html#id6)：基于文件抽象接口和文件描述符表，可以让文件读写系统调用 `sys_read/write` 变得更加通用；
+
+![fs-L5](/Users/xyong/github/os-lectures/lecture04/figs/fs-L5.png)
+
