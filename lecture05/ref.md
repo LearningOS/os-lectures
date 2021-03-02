@@ -1,6 +1,6 @@
 ## 20210302-第五讲内容准备
 
-* [v1](https://gitee.com/xyongcn/os-lectures/blob/c1e2bdb3a44ad3c836d60042779c55398e62994b/lecture05/ref.md)
+* [v1](https://github.com/LearningOS/os-lectures/blob/4bf5c8970e1836c578d92581fe0e444886c26132/lecture05/ref.md)
 * v2
 
 ### 参考信息
