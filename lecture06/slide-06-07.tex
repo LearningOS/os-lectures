@@ -117,15 +117,15 @@
 \begin{frame}[fragile,plain]   
 	\frametitle{rCore中RISC-V的缺页处理函数handle\_page\_fault}
     \begin{itemize}
-        \item \href{https://github.com/rcore-os/rCore/blob/master/kernel/src/arch/riscv/interrupt.rs#L56}{kernel/src/arch/riscv/interrupt.rs}
+        \item \href{https://github.com/rcore-os/rCore/blob/cd81f4cc73ea3302ed0356398525b0b56c4fca92/kernel/src/arch/riscv/interrupt.rs#L56}{kernel/src/arch/riscv/interrupt.rs}
 \begin{verbatim}
 fn rust_trap(tf: &mut TrapFrame)
 \end{verbatim} \pause
-        \item \href{https://github.com/rcore-os/rCore/blob/master/kernel/src/arch/riscv/interrupt.rs#L125}{kernel/src/arch/riscv/interrupt.rs}
+        \item \href{https://github.com/rcore-os/rCore/blob/cd81f4cc73ea3302ed0356398525b0b56c4fca92/kernel/src/arch/riscv/interrupt.rs#L125}{kernel/src/arch/riscv/interrupt.rs}
 \begin{verbatim}
 fn page_fault(tf: &mut TrapFrame)
 \end{verbatim} \pause
-        \item \href{https://github.com/rcore-os/rCore/blob/master/kernel/src/memory.rs\#L132}{kernel/src/memory.rs}
+        \item \href{https://github.com/rcore-os/rCore/blob/cd81f4cc73ea3302ed0356398525b0b56c4fca92/kernel/src/memory.rs\#L132}{kernel/src/memory.rs}
 \begin{verbatim}
 pub fn handle_page_fault(addr: usize) -> bool
 \end{verbatim} \pause
