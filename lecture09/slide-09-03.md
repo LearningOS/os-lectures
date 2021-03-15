@@ -1,12 +1,15 @@
 ### 9.3 协程(coroutine)
 
+* [v1](https://github.com/LearningOS/os-lectures/blob/f7d4a00f5a0d55b5240d33175b29d8f1ccce72aa/lecture09/slide-09-03.md)
+* V2
+
 #### 协程引入
 
 问题描述：系统的并发执行效率仍然不高，特别是在一些需要与外界进行交互的场景中的短时等待。
 
 [concept of futures](https://os.phil-opp.com/async-await/#example)
 
-![async-example](/Users/xyong/Desktop/OS2021spring/figs/async-example.svg)
+![async-example](figs/async-example.svg)
 
 [协程原理解析(1)](https://zhuanlan.zhihu.com/p/52061644)：
 
@@ -70,7 +73,7 @@ async fn example(min_len: usize) -> String {
 }
 ```
 
-![async-state-machine-basic](/Users/xyong/Desktop/OS2021spring/figs/async-state-machine-basic.svg)
+![async-state-machine-basic](figs/async-state-machine-basic.svg)
 
 #### 协程原理
 
@@ -101,11 +104,11 @@ resume，将控制权交给一个子协程
 
 内存布局(有一个很好的插图)
 
-![coroutine-memlayout](/Users/xyong/Desktop/OS2021spring/figs/coroutine-memlayout.jpg)
+![coroutine-memlayout](figs/coroutine-memlayout.jpg)
 
 协程切换时栈空间复制：（(有一个很好的插图)）
 
-![coroutine-stack](/Users/xyong/Desktop/OS2021spring/figs/coroutine-stack.jpg)
+![coroutine-stack](figs/coroutine-stack.jpg)
 
 由于协程运行时需要栈空间，我们可以选择给每个协程单独申请一块空间(例如：1M大小)，而每个协程运行时候所需空间大小不一，如果空间过小协程运行时候会由于空间不足而栈溢出，如果空间太大则整体空间浪费严重。 所以这里采用所有协程公用一块大空间，当协程切出时，把自己运行时候的栈内容一并拷贝，当控制权再次切回来时候，把自己的栈内容还原到公共栈空间。
 
@@ -131,7 +134,7 @@ suspend fun suspendFunctionWithDelay3(a: Int, b: Int): Int {
 }
 ```
 
-![Kotlin-state-machine](/Users/xyong/Desktop/OS2021spring/figs/Kotlin-state-machine.png)
+![Kotlin-state-machine](figs/Kotlin-state-machine.png)
 
 
 
