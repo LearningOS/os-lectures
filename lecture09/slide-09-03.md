@@ -63,7 +63,7 @@
 
 ##### 协程的状态机[描述](https://os.phil-opp.com/async-await/#the-async-await-pattern)
 
-![Rust-fsm](/Users/xyong/Desktop/OS2021spring/lecture09-03/figs/Rust-fsm.png)
+![Rust-fsm](figs/Rust-fsm.png)
 
 ![async-state-machine-basic](figs/async-state-machine-basic.svg)
 
