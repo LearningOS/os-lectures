@@ -1,0 +1,55 @@
+\input{../preamble}
+%\def\imagepath{./resources/graphics}
+%\usepackage[imagepath=\imagepath]{ditaa}
+%\graphicspath{ {\imagepath/} }
+
+
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen}
+%%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\title[第9讲]{第九讲 ：进程、线程和协程} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第3节：协程(coroutine)}
+\author{向勇、陈渝、李国良} % Your name
+\institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
+{
+	清华大学计算机系 \\ % Your institution for the title page
+	\medskip
+	\textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
+}
+\date{\today} % Date, can be changed to a custom date
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage % Print the title page as the first slide
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+%----------------------------------------------
+%%	PRESENTATION SLIDES
+%----------------------------------------------
+%------------------------------------------------
+\section{第3节：协程(coroutine)}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%------------------------------------------------
+\subsection{协程引入} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{侧信道攻击的影响}
+	    \begin{itemize}
+	        \item 虽然表达式报错，但再次访问变量的速度会变快；
+	        \item 后续访问b和c时，依据访问时间长短，可猜到a的值； \pause
+	        \item 这个问题导致了2018年元旦前后熔断漏洞(CVE-2017-5754: meltdown)； \pause
+	        \item 需要操作系统来补救这个CPU设计问题：KAISER \pause
+	        \item 类似问题不止这一个......
+	    \end{itemize}
+\end{frame}
+%------------------------------------------------
+\end{document}
