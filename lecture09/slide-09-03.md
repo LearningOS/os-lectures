@@ -50,15 +50,15 @@
 
 Python的协程示例
 
-![python-example](/Users/xyong/Desktop/OS2021spring/lecture09-03/figs/python-example.png)
+![python-example](figs/python-example.png)
 
 C++的协程示例
 
-![cpp-example](/Users/xyong/Desktop/OS2021spring/lecture09-03/figs/cpp-example.png)
+![cpp-example](figs/cpp-example.png)
 
 Rust协程示例
 
-![Rust-example](/Users/xyong/Desktop/OS2021spring/lecture09-03/figs/Rust-example.png)
+![Rust-example](figs/Rust-example.png)
 
 #### 协程的工作原理
 
@@ -129,7 +129,7 @@ async fn example(min_len: usize) -> String {
 | 切换效率           | 低                               | 中                                     | 高           |
 | 安全性             | 高                               | 中                                     | 低           |
 
-![proc-thread-coroutine](/Users/xyong/Desktop/OS2021spring/lecture09-03/figs/proc-thread-coroutine.png)
+![proc-thread-coroutine](figs/proc-thread-coroutine.png)
 
 
 
