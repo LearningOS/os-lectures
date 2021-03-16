@@ -6,11 +6,9 @@
 
 #### 协程引入
 
-##### 问题描述
+##### 问题[描述](https://os.phil-opp.com/async-await/#example)
 
 多线程系统的并发执行效率仍然不高，特别是在一些并发线程数目较多且需要频繁与外界进行交互中的短时等待场景。
-
-[concept of futures](https://os.phil-opp.com/async-await/#example)
 
 ![async-example](figs/async-example.svg)
 
@@ -63,20 +61,9 @@
 * yield，将控制权返还给协程A的创建协程
 * resume，将控制权交给一个子协程
 
-##### 协程的状态机描述
+##### 协程的状态机[描述](https://os.phil-opp.com/async-await/#the-async-await-pattern)
 
-[ The Async/Await Pattern](https://os.phil-opp.com/async-await/#the-async-await-pattern)
-
-```rust
-async fn example(min_len: usize) -> String {
-    let content = async_read_file("foo.txt").await;
-    if content.len() < min_len {
-        content + &async_read_file("bar.txt").await
-    } else {
-        content
-    }
-}
-```
+![Rust-fsm](/Users/xyong/Desktop/OS2021spring/lecture09-03/figs/Rust-fsm.png)
 
 ![async-state-machine-basic](figs/async-state-machine-basic.svg)
 
@@ -92,42 +79,24 @@ async fn example(min_len: usize) -> String {
 
 协程运行需要栈空间，所有协程公用一块大的栈空间。当协程切出时，把自己的栈内容拷贝，当控制权再次切回时，把自己的栈内容还原到公共栈空间。
 
-每个协程单独申请一块栈空间，就是用户线程。
-
-与协程相比，用户线程的单独栈空间过小会栈溢出；太大则浪费严重。 
+* 每个协程单独申请一块栈空间，就是用户线程。
+* 与协程相比，用户线程的单独栈空间过小会栈溢出；太大则浪费严重。 
 
 #### 进程、线程和协程
 
-##### 协程与函数
-
-[协程-维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%8D%8F%E7%A8%8B)：（[本地副本](file:///Users/xyong/Desktop/OS2021spring/coroutine.html)）：
+##### [协程与函数](https://zh.wikipedia.org/wiki/%E5%8D%8F%E7%A8%8B)
 
 * 函数可以调用其他函数，调用函数等待被调用函数结束后继续执行；协程可以调用其他协程，但调用协程在等待被调用协程结束前可以执行其他协程。
+* 函数的入口点是唯一的，函数被调用时是从入口点开始执行；协程可有多个入口点，协程被调用时是第一个入口点开始执行，每个暂停返回出口点都是再次被调用执行时的入口点。
+* 函数在结束时一次性返回全部结果；协程在暂停返回时可返回部分结果。
 
-- 函数的入口点是唯一的，函数被调用时是从入口点开始执行；协程可有多个入口点，协程被调用时是第一个入口点开始执行，每个暂停返回出口点都是再次被调用执行时的入口点。
-- 函数在结束时一次性返回全部结果；协程在暂停返回时可返回部分结果。
-
-##### 协程与线程
-
-[协程的原理以及与线程的区别](https://www.cnblogs.com/theRhyme/p/14061698.html)
+##### [协程与线程](https://www.cnblogs.com/theRhyme/p/14061698.html)
 
 1. 协程的开销远远小于线程的开销：不需要独立的栈空间；切换时需要保存和恢复的数据少；
 2. 在多核处理器的环境下, 多个线程是可并行的；协程是并发的，任何时刻同一线程内只有一个协程在执行，其他协程处于暂停状态。
 3. 线程切换可以是抢先式或非抢先式；而同线程内的协程切换只有非抢先式。
 
-##### 进程、线程和协程比较
-
-[协程的原理以及与线程的区别](https://www.cnblogs.com/theRhyme/p/14061698.html)
-
-|                    | 进程                             | 线程                                   | 协程         |
-| ------------------ | -------------------------------- | -------------------------------------- | ------------ |
-| 上下文切换         | 内核                             | 内核或用户                             | 用户         |
-| 切换时机           | 内核控制，用户不感知             | 内核控制，用户不感知；或用户主动让权； | 用户主动让权 |
-| 上下文内容         | 寄存器、堆栈、地址空间、占用资源 | 寄存器、堆栈                           | 寄存器       |
-| 上下文信息保存位置 | 内核栈                           | 内核栈                                 | 堆空间       |
-| 切换过程           | 用户态-内核态-用户态             | 用户态-内核态-用户态  或用户态         | 用户态       |
-| 切换效率           | 低                               | 中                                     | 高           |
-| 安全性             | 高                               | 中                                     | 低           |
+##### 进程、线程和协程[比较](https://www.cnblogs.com/theRhyme/p/14061698.html)
 
 ![proc-thread-coroutine](figs/proc-thread-coroutine.png)
 
