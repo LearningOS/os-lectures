@@ -6,13 +6,15 @@
 
 #### 协程引入
 
-问题描述：系统的并发执行效率仍然不高，特别是在一些需要与外界进行交互的场景中的短时等待。
+##### 问题描述
+
+多线程系统的并发执行效率仍然不高，特别是在一些并发线程数目较多且需要频繁与外界进行交互中的短时等待场景。
 
 [concept of futures](https://os.phil-opp.com/async-await/#example)
 
 ![async-example](figs/async-example.svg)
 
-引入协程的目的
+##### 引入协程的目的
 
 1. 提高线程内代码执行的并发性能和稳定性
 2. 代码以顺序性书写：代码逻辑易于理解，减弱异步调用复杂性，提高可维护性，方便错误排查。
@@ -20,25 +22,15 @@
 
 #### 协程的概念
 
-[协程-维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%8D%8F%E7%A8%8B)
-
-[Coroutine - From Wikipedia, the free encyclopedia](https://en.wikipedia.org/wiki/Coroutine)
-
-**Coroutines** are [computer program](https://en.wikipedia.org/wiki/Computer_program) components that generalize [subroutines](https://en.wikipedia.org/wiki/Subroutine) for [non-preemptive multitasking](https://en.wikipedia.org/wiki/Non-preemptive_multitasking), by allowing execution to be suspended and resumed. Coroutines are well-suited for implementing familiar program components such as [cooperative tasks](https://en.wikipedia.org/wiki/Cooperative_multitasking), [exceptions](https://en.wikipedia.org/wiki/Exception_handling), [event loops](https://en.wikipedia.org/wiki/Event_loop), [iterators](https://en.wikipedia.org/wiki/Iterator), [infinite lists](https://en.wikipedia.org/wiki/Lazy_evaluation) and [pipes](https://en.wikipedia.org/wiki/Pipeline_(software)).
-
-
-
-[同步函数与异步函数](https://www.cnblogs.com/balingybj/p/4780442.html)
-
-同步函数(ordinary function)：当一个函数是同步执行时，那么当该函数被调用时不会立即返回，直到该函数所要做的事情全都做完了才返回。
-
-异步函数(asynchronous function)：如果一个异步函数被调用时，该函数会立即返回；当该函数规定的操作任务完成时，通过回调、事件或消息机制将结果通知调用者。
+##### 协程
 
 协程(Coroutine)是基于状态机机制实现的允许在执行过程中主动暂停和恢复的异步函数实现机制。
 
 * [ Design of a Separable Transition-Diagram Compiler](http://melconway.com/Home/pdf/compiler.pdf)：1963年关于协程的论文；
+* 同步函数(ordinary function)：当一个函数是同步执行时，那么当该函数被调用时不会立即返回，直到该函数所要做的事情全都做完了才返回。
+* [异步函数](https://www.cnblogs.com/balingybj/p/4780442.html)(asynchronous function)：如果一个异步函数被调用时，该函数会立即返回；当该函数规定的操作任务完成时，通过回调、事件或消息机制将结果通知调用者。
 
-协程的模型描述：
+##### 协程的模型描述
 
 1. 状态机：每个状态是一个连续的代码片段执行，状态间是协程的切换；
 2. 演员模型：并发和合作的演员模型。每个演员有自己的任务，自愿地由调度器协调各演员的执行顺序；
@@ -46,26 +38,32 @@
 
 #### 协程的例子
 
-[Async/await](https://en.wikipedia.org/wiki/Async/await)：这里对各种支持异步的语言中都给出协程的例子程序；
+##### Python的协程示例
 
-Python的协程示例
+[Async/await](https://en.wikipedia.org/wiki/Async/await)：对多种支持异步的语言中给出协程的示例程序；
+
+
 
 ![python-example](figs/python-example.png)
 
-C++的协程示例
+##### C++的协程示例
 
 ![cpp-example](figs/cpp-example.png)
 
-Rust协程示例
+##### Rust协程示例
 
 ![Rust-example](figs/Rust-example.png)
 
 #### 协程的工作原理
 
+##### 协程的工作原理
+
 当协程在执行中出现阻塞时，由协程调度器主动保存当前栈上数据，让出权给其他可以执行的协程；阻塞完后再通过协程调度器恢复栈上数据，并恢复原协程的执行。
 
 * yield，将控制权返还给协程A的创建协程
 * resume，将控制权交给一个子协程
+
+##### 协程的状态机描述
 
 [ The Async/Await Pattern](https://os.phil-opp.com/async-await/#the-async-await-pattern)
 
@@ -84,11 +82,11 @@ async fn example(min_len: usize) -> String {
 
 
 
-支持协程的线程堆栈结构
+##### 支持协程的线程堆栈结构
 
 ![coroutine-memlayout](figs/coroutine-memlayout.jpg)
 
-#### 协程切换
+##### 协程切换
 
 ![coroutine-stack](figs/coroutine-stack.jpg)
 
@@ -98,7 +96,9 @@ async fn example(min_len: usize) -> String {
 
 与协程相比，用户线程的单独栈空间过小会栈溢出；太大则浪费严重。 
 
-#### 协程与函数的关系
+#### 进程、线程和协程
+
+##### 协程与函数
 
 [协程-维基百科，自由的百科全书](https://zh.wikipedia.org/wiki/%E5%8D%8F%E7%A8%8B)：（[本地副本](file:///Users/xyong/Desktop/OS2021spring/coroutine.html)）：
 
@@ -107,7 +107,7 @@ async fn example(min_len: usize) -> String {
 - 函数的入口点是唯一的，函数被调用时是从入口点开始执行；协程可有多个入口点，协程被调用时是第一个入口点开始执行，每个暂停返回出口点都是再次被调用执行时的入口点。
 - 函数在结束时一次性返回全部结果；协程在暂停返回时可返回部分结果。
 
-#### 协程与线程的关系
+##### 协程与线程
 
 [协程的原理以及与线程的区别](https://www.cnblogs.com/theRhyme/p/14061698.html)
 
@@ -115,7 +115,7 @@ async fn example(min_len: usize) -> String {
 2. 在多核处理器的环境下, 多个线程是可并行的；协程是并发的，任何时刻同一线程内只有一个协程在执行，其他协程处于暂停状态。
 3. 线程切换可以是抢先式或非抢先式；而同线程内的协程切换只有非抢先式。
 
-#### 进程、线程和协程比较
+##### 进程、线程和协程比较
 
 [协程的原理以及与线程的区别](https://www.cnblogs.com/theRhyme/p/14061698.html)
 
