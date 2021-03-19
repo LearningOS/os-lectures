@@ -2,7 +2,8 @@
 
  * [v1](https://github.com/LearningOS/os-lectures/blob/819ca469608126937276764cf6be6c8bdb35e96c/lecture10/ref.md)
  * [v2](https://github.com/LearningOS/os-lectures/blob/be99e6e30b6210810d0dc310fedc9f743bf4ecab/lecture10/ref.md)
- * v3
+ * [v3](https://github.com/LearningOS/os-lectures/blob/faf60c62ccdd5260797c0ca9ad222dd218c4e13e/lecture10/ref.md)
+ * v4
 
 ### 10.1 进程的实现
 
