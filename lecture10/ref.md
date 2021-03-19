@@ -1,6 +1,7 @@
 ## 第十讲 进程、线程和协程的实现
 
- * v1
+ * [v1](https://github.com/LearningOS/os-lectures/blob/819ca469608126937276764cf6be6c8bdb35e96c/lecture10/ref.md)
+ * v2
 
 ### 参考文献
 
