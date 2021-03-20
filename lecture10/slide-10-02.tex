@@ -10,8 +10,8 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第9讲]{第九讲 ：进程、线程和协程} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第3节：协程(coroutine)}
+\title[第10讲]{第十讲 ：进程、线程和协程的实现} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第2节：用户线程的实现}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -32,6 +32,13 @@
 \begin{frame}
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+参考文献：
+    \begin{itemize}
+        \item \href{https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/}{Green Threads Explained in 200 Lines of Rust...}
+        \item \href{https://github.com/cfsamson/example-greenthreads}{完整源代码}
+        \item 知乎译本：\href{https://zhuanlan.zhihu.com/p/101168659}{两百行Rust代码解析绿色线程原理（五）}
+    \end{itemize}
+% 
 \end{frame}
 %----------------------------------------------
 %%	PRESENTATION SLIDES
@@ -39,40 +46,37 @@
 %------------------------------------------------
 \section{第2节：用户线程的实现}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 % 
-% 参考文献：
-    \begin{itemize}
-        \item \href{https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/}{Green Threads Explained in 200 Lines of Rust...}
-        \item \href{https://github.com/cfsamson/example-greenthreads}{完整源代码}
-        \item 知乎上的中文版本：\href{https://zhuanlan.zhihu.com/p/101061389}{两百行Rust代码解析绿色线程原理（四）一个绿色线程的实现}
-    \end{itemize}
-% 
-\end{frame}
 %------------------------------------------------
 \subsection{线程与CPU架构}
 % 
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{CPU体系结构}
+    \frametitle{X86-32 CPU通用寄存器}
 % 
 % 用户线程调度是非抢占式的；
 % 
 % CPU体系结构：通用寄存器
 % 
-% 出处：\href{https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html\#combined}{Combined Volume Set of Intel® 64 and IA-32 Architectures Software Developer’s Manuals}、\href{https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf}{325462-sdm-vol-1-2abcd-3abcd.pdf} P76 Figure 3-4. General System and Application Programming Registers
+出处：\href{https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html\#combined}{Intel® 64 and IA-32 Architectures Software Developer’s Manuals}、\href{https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf}{325462-sdm-vol-1-2abcd-3abcd.pdf} P76
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.5\linewidth]{figs/x86-32-registers.png}
-		\caption{x86-32-registers}
+		\includegraphics[width=0.25\linewidth]{figs/x86-32-registers.png}
+%		\caption{x86-32-registers}
 	\end{figure}
 
 
 % 
-% 出处：\href{https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf}{325462-sdm-vol-1-2abcd-3abcd.pdf} P77 Table 3-2. Addressable General Purpose Registers
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{X86-32 CPU通用寄存器}
+% 
+出处：\href{https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf}{325462-sdm-vol-1-2abcd-3abcd.pdf} P77
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.5\linewidth]{figs/8-16-32-64-registers.png}
+		\includegraphics[width=1.0\linewidth]{figs/8-16-32-64-registers.png}
 		\caption{8-16-32-64-registers}
 	\end{figure}
 
@@ -85,8 +89,8 @@
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.5\linewidth]{figs/green-thread-switch.png}
-		\caption{green-thread-switch}
+		\includegraphics[width=0.34\linewidth]{figs/green-thread-switch.png}
+%		\caption{green-thread-switch}
 	\end{figure}
 
 
@@ -128,8 +132,8 @@
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.5\linewidth]{figs/stack-structure.png}
-		\caption{stack-structure}
+		\includegraphics[width=0.55\linewidth]{figs/stack-structure.png}
+%		\caption{stack-structure}
 	\end{figure}
 
 
@@ -143,12 +147,12 @@
 \begin{frame}[fragile]
     \frametitle{线程控制块\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L19}{数据结构}`Thread`}
 % 
-% \href{https://docs.microsoft.com/zh-cn/cpp/c-language/naked-functions?view=msvc-160}{裸函数}naked_functions：为了与编译器协调处理函数调用和中断处理中栈的使用，而定义的一个约定。它仅影响函数的 prolog 和 epilog 序列的编译器代码生成的性质。
+\href{https://docs.microsoft.com/zh-cn/cpp/c-language/naked-functions}{裸函数}naked\_functions：为与编译器协调处理函数调用和中断处理中栈的使用而定义，仅影响函数的 prolog 和 epilog 序列的编译器代码生成的性质。
 % 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{figs/thread.png}
-		\caption{thread}
+%		\caption{thread}
 	\end{figure}
 
 
@@ -158,10 +162,12 @@
 \begin{frame}[fragile]
     \frametitle{线程\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L49}{运行时}支持`Runtime`}
 % 
-% new
-% run
-% t_return
-% t_yield
+    \begin{itemize}
+        \item new
+        \item run
+        \item t\_return
+        \item t\_yield
+    \end{itemize}
 % 
 \end{frame}
 %------------------------------------------------
@@ -172,8 +178,8 @@
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.5\linewidth]{figs/spawn.png}
-		\caption{spawn}
+		\includegraphics[width=0.8\linewidth]{figs/spawn.png}
+%		\caption{spawn}
 	\end{figure}
 
 
@@ -181,12 +187,12 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L119}{线程API}：yield_thread}
+    \frametitle{\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L119}{线程API}：yield\_thread}
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.5\linewidth]{figs/yield_thread.png}
-		\caption{yield_thread}
+		\includegraphics[width=0.7\linewidth]{figs/yield_thread.png}
+%		\caption{yield_thread}
 	\end{figure}
 
 
@@ -198,13 +204,13 @@
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.5\linewidth]{figs/t_yield.png}
-		\caption{t_yield}
+		\includegraphics[width=0.35\linewidth]{figs/t_yield.png}
+%		\caption{t_yield}
 	\end{figure}
 
 
 % 
-% 用户线程的操作系统依赖：示例适用于 OSX、Linux 和 Windows
+用户线程的操作系统依赖：示例适用于 OSX、Linux 和 Windows
 \end{frame}
 %------------------------------------------------
 \end{document}
