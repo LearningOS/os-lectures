@@ -12,7 +12,7 @@
 * 子进程和调用 `fork` 父的进程在返回用户态时的状态几乎完全相同：为子进程创建一个和父进程几乎完全相同的应用地址空间。
 * 父子进程的系统调用返回值`a0` 寄存器内容不同
 
-![ fork](/Users/xyong/Desktop/OS2021spring/lecture10/figs/ fork.png)
+![ fork](figs/ fork.png)
 
 ```rust
 /// 功能：当前进程 fork 出来一个子进程。
@@ -28,7 +28,7 @@ pub fn sys_fork() -> isize;
 * 父进程通过 `waitpid` 系统调来获取子进程的返回状态并回收所占据的全部资源，从而彻底销毁子进程
   * 回收子进程的资源并收集它的一些信息
 
-![waitpid](/Users/xyong/Desktop/OS2021spring/lecture10/figs/waitpid.png)
+![waitpid](figs/waitpid.png)
 
 ```rust
 /// 功能：当前进程等待一个子进程变为僵尸进程，回收其全部资源并收集其返回值。
@@ -45,7 +45,7 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 * 执行不同的可执行文件：加载一个新的 ELF 可执行文件替换原有的应用地址空间并开始执行。
 * `path` 作为 `&str` 类型是一个胖指针
 
-![exec](/Users/xyong/Desktop/OS2021spring/lecture10/figs/exec.png)
+![exec](figs/exec.png)
 
 ```rust
 /// 功能：将当前进程的地址空间清空并加载一个特定的可执行文件，返回用户态后开始它的执行。
@@ -57,7 +57,7 @@ pub fn sys_exec(path: &str) -> isize;
 
 调用方法
 
-![exec-call](/Users/xyong/Desktop/OS2021spring/lecture10/figs/exec-call.png)
+![exec-call](figs/exec-call.png)
 
 ```rust
 // user/src/exec.rs
@@ -80,7 +80,7 @@ pub fn sys_exec(path: &str) -> isize {
 
 #### 进程标识符
 
-![pid](/Users/xyong/Desktop/OS2021spring/lecture10/figs/pid.png)
+![pid](figs/pid.png)
 
 ```rust
 // os/src/task/pid.rs
@@ -95,7 +95,7 @@ struct PidAllocator {
 
 #### 内核栈
 
-![kernelstack](/Users/xyong/Desktop/OS2021spring/lecture10/figs/kernelstack.png)
+![kernelstack](figs/kernelstack.png)
 
 ```rust
 // os/src/task/pid.rs
@@ -106,7 +106,7 @@ pub struct KernelStack {
 
 #### 进程控制块
 
-![PCB](/Users/xyong/Desktop/OS2021spring/lecture10/figs/PCB.png)
+![PCB](figs/PCB.png)
 
 ```rust
 // os/src/task/task.rs
@@ -132,7 +132,7 @@ pub struct TaskControlBlockInner {
 
 #### 任务管理器
 
-![task](/Users/xyong/Desktop/OS2021spring/lecture10/figs/task.png)
+![task](figs/task.png)
 
 ```rust
 // os/src/task/manager.rs
@@ -143,7 +143,7 @@ pub struct TaskManager {
 
 #### 处理器监视器
 
-![processor](/Users/xyong/Desktop/OS2021spring/lecture10/figs/processor.png)
+![processor](figs/processor.png)
 
 ```rust
 // os/src/task/processor.rs
@@ -160,7 +160,7 @@ struct ProcessorInner {
 
 ### 任务切换
 
-![scheduler](/Users/xyong/Desktop/OS2021spring/lecture10/figs/scheduler.png)
+![scheduler](figs/scheduler.png)
 
 ```rust
 // os/src/task/processor.rs
