@@ -1,19 +1,26 @@
 \input{../preamble}
+%\def\imagepath{./resources/graphics}
+%\usepackage[imagepath=\imagepath]{ditaa}
+%\graphicspath{ {\imagepath/} }
 
-%----------------------------------------------------------------------------------------
-% TITLE PAGE
+
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen}
+%%----------------------------------------------------------------------------------------
+%	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
 \title[第10讲]{第十讲 ：进程、线程和协程的实现} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第3节：Rust语言协程的实现}
+\subtitle{第2节：用户线程的实现}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-  清华大学计算机系 \\ % Your institution for the title page
-  \medskip
-  \textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
+	清华大学计算机系 \\ % Your institution for the title page
+	\medskip
+	\textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
 }
 \date{\today} % Date, can be changed to a custom date
+
 
 \begin{document}
 
@@ -25,572 +32,185 @@
 \begin{frame}
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-
-%% itemize
-\tiny
-Ref:
-\begin{itemize}
-	\item \href{https://cfsamson.github.io/books-futures-explained/}{Futures Explained in 200 Lines of Rust, by Carl Fredrik Samson}
-	\item \href{https://os.phil-opp.com/async-await/}{Writing an OS in Rust - Async/Await, by Philipp Oppermann}
-	\item \href{https://aturon.github.io/tech/2016/08/11/futures/}{Zero-cost futures in Rust, by Aaron Turon}
-	\item \href{https://www.infoq.com/presentations/rust-2019/}{Rust’s Journey to Async/Await, by Steve Klabnik}
-	\item \href{https://rust-lang.github.io/async-book/index.html}{Asynchronous Programming in Rust}
-\end{itemize}
-
-
-\end{frame}
-%----------------------------------------------
-%%  PRESENTATION SLIDES
-%----------------------------------------------
-\section{第3节：Rust语言协程的实现} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%----------------------------------------------
-\subsection{Futures in Rust}
-% ### 21.2 Futures in Rust
-% 
-% 参考： https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#futures-in-rust
-% 参考： https://github.com/cfsamson/books-futures-explained
-% 参考： Evernote： 20200402-异步消息调研
-% 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{零成本异步I/O}
-%    \framesubtitle{xxxx}
-% #### 零成本异步I/O
-% 
-% 参考：
-% 
-% - video https://www.youtube.com/watch?v=skos4B5x7qE
-% - 中文 https://zhuanlan.zhihu.com/p/97574385
-% - async汇总 https://areweasyncyet.rs/
-% 
-Future的设计目标
-
-%% itemize
+参考文献：
     \begin{itemize}
-        \item 调用 I/O 时，系统调用会立即返回，然后你可以继续进行其他工作
-        \item I/O完成时，回到调用该异步 I/O 暂停的那个任务线上
-        \item {\color{red}一种通过对异步 I/O 的良好抽象形成的基于库的解决方案}
-    	\begin{itemize}
-    	    \item 它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库
-    	\end{itemize}
-    \end{itemize}
-
-{\color{red}零成本抽象}
-% 
-%% itemize
-    \begin{itemize}
-        \item 不给不使用该功能的用户增加成本
-        \item 使用该功能时，它的速度不会比不使用它的速度慢
+        \item \href{https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/}{Green Threads Explained in 200 Lines of Rust...}
+        \item \href{https://github.com/cfsamson/example-greenthreads}{完整源代码}
+        \item 知乎译本：\href{https://zhuanlan.zhihu.com/p/101168659}{两百行Rust代码解析绿色线程原理（五）}
     \end{itemize}
 % 
 \end{frame}
 %----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{Concept of Future}
-%    \framesubtitle{xxxx}
-
-% #### Concept of Future
-% 
-% Ref: https://os.phil-opp.com/async-await/#example
-% 
-A future is a representation of some operation which will complete in the future.
-% 
-%% figure
-    \begin{figure}
-    \includegraphics[width=0.45\linewidth]{figs/async-example.png}
-%    \caption{xxxx}
-    \end{figure}
-
-% ![async-example](figs/async-example.svg)
-% 
-
-\end{frame}
-
-
+%%	PRESENTATION SLIDES
 %----------------------------------------------
+%------------------------------------------------
+\section{第2节：用户线程的实现}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+% 
+%------------------------------------------------
+\subsection{线程与CPU架构}
+% 
+%------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Concept of Future}
-    %    \framesubtitle{xxxx}
-    
-    % #### Concept of Future
-    % 
-    % Ref: https://os.phil-opp.com/async-await/#example
-    % 
-    A future is a representation of some operation which will complete in the future.
-    % 
-    %% figure
-    \begin{block}{}
-		\begin{verbatim}
-    use futures::executor::block_on;
-    async fn foo() -> u8 { 5 }  
-    async fn hello_world() {
-        let x: u8 = foo().await;
-        println!("{} hello, world!",x);
-    }
-    fn main() {
-        let future = hello_world(); // Nothing is printed
-        block_on(future); // print something
-    }
-\end{verbatim}
-\end{block}
-    
-    % ![async-example](figs/async-example.svg)
-    % 
-    
-\end{frame}
+    \frametitle{X86-32 CPU通用寄存器}
+% 
+% 用户线程调度是非抢占式的；
+% 
+% CPU体系结构：通用寄存器
+% 
+出处：\href{https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html\#combined}{Intel® 64 and IA-32 Architectures Software Developer’s Manuals}、\href{https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf}{325462-sdm-vol-1-2abcd-3abcd.pdf} P76
+% 
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.25\linewidth]{figs/x86-32-registers.png}
+%		\caption{x86-32-registers}
+	\end{figure}
 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{Rust future example}
-    %    \framesubtitle{xxxx}
-    % #### Rust future example
-    % 
-    % Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
-    % 
-    \small
-    \begin{block}{}
-        \begin{verbatim}
-        //rust code
-        fn main() {
-          let _ = example(100);
-        }        
-        async fn example(min_len: usize) -> String {
-          let content = async_read_file("foo.txt").await;
-          if content.len() < min_len {
-             content + &async_read_file("bar.txt").await
-          } else {
-            content
-          }
-        }        
-        fn async_read_file(name: &str) -> impl Future<Output = String> {
-          future::ready(String::from(name))
-        }
-        \end{verbatim}
-    \end{block}
-    % 
-\end{frame}
 
-%----------------------------------------------
+% 
+\end{frame}
+%------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Async Lifetimes}
-    %    \framesubtitle{xxxx}
-    % #### Async Lifetimes
-    % 
-    % Ref: https://rust-lang.github.io/async-book/03_async_await/01_chapter.html#async-lifetimes
-    % 
-    %% itemize
+    \frametitle{X86-32 CPU通用寄存器}
+% 
+出处：\href{https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf}{325462-sdm-vol-1-2abcd-3abcd.pdf} P77
+% 
+	\begin{figure}
+		\centering
+		\includegraphics[width=1.0\linewidth]{figs/8-16-32-64-registers.png}
+		\caption{8-16-32-64-registers}
+	\end{figure}
+
+
+% 
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{X86汇编语言}
+% 
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.34\linewidth]{figs/green-thread-switch.png}
+%		\caption{green-thread-switch}
+	\end{figure}
+
+
+% 
+\end{frame}
+%------------------------------------------------
+\subsection{线程上下文和线程栈}
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{线程上下文\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L28}{数据结构}`ThreadContext`}
+% 
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{figs/green-thread-ThreadContext.png}
+		\caption{green-thread-ThreadContext}
+	\end{figure}
+
+
+% 
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{栈空间大小}
     \begin{itemize}
-        \item `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
+        \item 现代操作系统中启动进程时，标准栈大小通常为8MB；
+        \item 可能出现“栈溢出”；
+        \item 当我们自己控制栈时，我们可以选择我们想要的大小；
+        \item 可增长栈：当栈空间用完时，会分配一个更大的栈并将栈内容移到更大的栈上，并恢复程序继续执行，不会导致栈溢出；（Go 语言）
     \end{itemize}
-    % 
-    \begin{block}{}
-        \begin{verbatim}
-    //rust code
-    // This function:
-    async fn foo(x: &u8) -> u8 { *x }
-    
-    // Is equivalent to this function:
-    fn foo_expanded<'a>(x: &'a u8) -> impl Future<Output = u8> + 'a {
-      async move { *x }
-    }
-        \end{verbatim}
-    \end{block}
-    % 
- 
-    % 
-\end{frame}
-
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{Async Lifetimes}
-    %    \framesubtitle{xxxx}
-    % #### Async Lifetimes
-%https://rust-lang.github.io/async-book/03_async_await/01_chapter.html
-    \begin{itemize}
-        \item By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
-    \end{itemize}
-    % 
-    \begin{block}{}
-        \begin{verbatim}
-        //rust code
-        fn bad() -> impl Future<Output = u8> {
-          let x = 5;
-          borrow_x(&x) // ERROR: `x` does not live long enough
-        }
-        
-        fn good() -> impl Future<Output = u8> {
-          async {
-            let x = 5;
-            borrow_x(&x).await
-          }
-        }
-        \end{verbatim}
-    \end{block}
-    
-\end{frame}
-
-%--------------------------
-\begin{frame}[fragile]
-    \frametitle{Concept of Future}
-    %    \framesubtitle{xxxx}
-    
-    % #### Concept of Future
-    % 
-    % Ref: https://os.phil-opp.com/async-await/#example
-    \centering
-    Async Architecture of rust
-    % 
-    %% figure
-    \begin{figure}
-        \includegraphics[width=0.9\linewidth]{figs/rust-async-arch.png}
-        %    \caption{xxxx}
-    \end{figure}
-    
-    % ![async-example](figs/async-example.svg)
-    % 
-    
-\end{frame}
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{Concept of Future}
-    %    \framesubtitle{xxxx}
-    \begin{columns}
-        \begin{column}{.4\textwidth}
-            % #### Concept of Future
-            % 
-            % Ref: https://os.phil-opp.com/async-await/#example
-            \centering
-             Async Architecture of rust
-            % 
-            %% figure
-            \begin{figure}
-                \includegraphics[width=1.\linewidth]{figs/rust-async-simple-arch.png}
-                \includegraphics[width=.8\linewidth]{figs/rust-async-arch.png}
-                %    \caption{xxxx}
-            \end{figure}
-        \end{column}
-        
-        \begin{column}{.6\textwidth}
-            % ![async-example](figs/async-example.svg)
-            % 
-%            Three phases in asynchronous task:
-            % 
-            \begin{itemize}
-                \item {\color{red}Executor}: A Future is polled which result in the task progressing
-                \begin{itemize}
-                    \item Until a point where it can no longer make progress
-                \end{itemize}
-            \pause
-                \item {\color{red}Reactor}: Register an event source that a Future is waiting for
-                \begin{itemize}
-                    \item Makes sure that it will wake the Future when that event is ready
-                \end{itemize}
-            \pause
-                \item {\color{red}Waker}: The event happens and the Future is woken up
-                \begin{itemize}
-                    \item Wake up to the executor which polled the Future
-                    \item Schedule the future to be polled again and make further progress
-                \end{itemize}
-            \end{itemize}
-            
-        \end{column}
-    \end{columns}
-    % 
-\end{frame}
-%----------------------------------------------
-%\begin{frame}[fragile]
-%    \frametitle{基于轮询的 Future的异步执行过程}
-%%    \framesubtitle{xxxx}
-%% #### 基于轮询的 Future的异步执行过程
-%% 
-%%% itemize
-%    \begin{itemize}
-%        \item 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 
-%        \item 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 
-%        \item I/O 事件发生时，反应器将使用传递的`Waker` 参数唤醒 `Future` ，传回执行器
-%        \item 循环上述三步，直到最终`future`任务完成（resolved）
-%        \item 任务完成并得出结果时，执行器释放句柄和整个`Future`，整个调用过程就完成了
-%    \end{itemize}
-%% 
-%%% figure
-%    \begin{figure}
-%    \includegraphics[width=0.5\linewidth]{figs/future-loop.jpg}
-%%    \caption{xxxx}
-%    \end{figure}
-%% ![future-loop](figs/future-loop.jpg)
-%% 
-%\end{frame}
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{Leaf futures \& Non-leaf-futures}
-%    \framesubtitle{xxxx}
-% #### Leaf futures & Non-leaf-futures
 % 
-% Ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#leaf-futures
 % 
-% Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
-% 
-    \begin{itemize}
-        \item Leaf future
-    	\begin{itemize}
-    	    \item Runtimes create *leaf futures* which represents a resource like a socket
-    	    \item Operations on these resources will be non-blocking and return a future which we call a leaf future
-    	\end{itemize}
-\begin{block}{}
-\begin{verbatim}
-// stream is a leaf-future
-let mut stream = tokio::net::TcpStream::connect("127.0.0.1:3000");
-\end{verbatim}
-\end{block}
-
-\end{itemize}
 % 
 \end{frame}
-
-
+%------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Leaf futures \& Non-leaf-futures}
-    %    \framesubtitle{xxxx}
-    % #### Leaf futures & Non-leaf-futures
-    % 
-    % Ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#leaf-futures
-    % 
-    % Ref: https://os.phil-opp.com/async-await/#the-async-await-pattern
-    % 
-    \begin{itemize}
+    \frametitle{栈布局}
+% 
+% 出处：\href{https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf}{325462-sdm-vol-1-2abcd-3abcd.pdf} P152 Figure 6-1. Stack Structure
+% 
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.55\linewidth]{figs/stack-structure.png}
+%		\caption{stack-structure}
+	\end{figure}
 
-        \item Non-leaf-future
-        \begin{itemize}
-            \item The bulk of an async program will consist of non-leaf-futures, which are a kind of pause-able computation
-            \item Non-leaf-futures represents a set of operations (leaf or no-leaf)
-        \end{itemize}
-    \end{itemize}
-    % 
-    \begin{block}{}
-        \begin{verbatim}
-      // Non-leaf-future
-      async fn example(min_len: usize) -> String {
-        let content = async_read_file("foo.txt").await;
-        if content.len() < min_len {
-          content + &async_read_file("bar.txt").await
-        } else {
-          content
-        }
-      }
-        \end{verbatim}
-    \end{block}
-    % 
+
+% 
+% 
+% 
 \end{frame}
-%----------------------------------------------
+%------------------------------------------------
+\subsection{线程控制块和运行时支持}
+%------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Runtimes}
-%    \framesubtitle{xxxx}
-% #### Runtimes
-%% itemize
-    \begin{itemize}
-        \item Languages like C\#, JavaScript, Java, GO and many others comes with a standard runtime for handling async
-        \item Rust uses a special library for handling async
+    \frametitle{线程控制块\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L19}{数据结构}`Thread`}
+% 
+\href{https://docs.microsoft.com/zh-cn/cpp/c-language/naked-functions}{裸函数}naked\_functions：为与编译器协调处理函数调用和中断处理中栈的使用而定义，仅影响函数的 prolog 和 epilog 序列的编译器代码生成的性质。
+% 
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{figs/thread.png}
+%		\caption{thread}
+	\end{figure}
 
-        \item The two most popular library for Futures:
-    	\begin{itemize}
-    	    \item \href{https://github.com/async-rs/async-std}{async-std}
-    	    \item \href{https://github.com/tokio-rs/tokio}{Tokio}
-    	\end{itemize}
+
+% 
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{线程\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L49}{运行时}支持`Runtime`}
+% 
+    \begin{itemize}
+        \item new
+        \item run
+        \item t\_return
+        \item t\_yield
     \end{itemize}
 % 
 \end{frame}
-
-
-%----------------------------------------------
+%------------------------------------------------
+\subsection{用户线程API和线程切换}
+%------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Runtimes}
-    %    \framesubtitle{xxxx}
-    % #### Runtimes
-    %% itemize
-    % 
-    {\color{red}What Rust's standard library takes care of}
-    % ref: https://cfsamson.github.io/books-futures-explained/1_futures_in_rust.html#what-rusts-standard-library-takes-care-of
-    % 
-    \begin{itemize}
-        \item A {\color{red}common interface} representing an operation which will be completed in the future through the `Future` trait.
-        \item An ergonomic way of {\color{red}creating tasks} which can be suspended and resumed through the `async` and `await` keywords.
-        \item A defined interface wake up a suspended task through the `Waker` type.
-    \end{itemize}
-    % 
-\end{frame}
+    \frametitle{\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L119}{线程API}：`spawn`}
+% 
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.8\linewidth]{figs/spawn.png}
+%		\caption{spawn}
+	\end{figure}
 
 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{Zero-cost futures in Rust}
-%    \framesubtitle{xxxx}
-% #### Zero-cost futures in Rust
-% 
-% Ref: https://aturon.github.io/blog/2016/08/11/futures/
-% 
-%% itemize
-%    \begin{itemize}
-%        \item Build up a big `enum` that represents the state machine
-%    	\begin{itemize}
-%    	    \item There is one allocation needed per “task”, which usually works out to one per connection
-%    	\end{itemize}
-%        \item When an e	vent arrives, only one dynamic dispatch is required
-%        \item There are essentially no imposed synchronization costs
-%    \end{itemize}
-%% 
-Here are the results, in number of “Hello world!"s served per second on an 8 core Linux machine.
-% 
-%% figure
-    \begin{figure}
-        
-%    \includegraphics[width=0.5\textwidth]{fsm-tcp}    
-     
-    \includegraphics[width=0.6\linewidth]{figs/bench-pipelined.png}
-%    \caption{xxxx}
-    \end{figure}
-% ![bench-pipelined](figs/bench-pipelined.png)
 % 
 \end{frame}
-\subsection{Generators and async/await} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%----------------------------------------------
+%------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Concurrency in Rust}
-%    \framesubtitle{xxxx}
-% ### 21.3 Generators and async/await
+    \frametitle{\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L119}{线程API}：yield\_thread}
 % 
-% Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#generators-and-asyncawait
-% 
-% #### Concurrency in Rust
-% 
-% Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html
-% 
-    \begin{itemize}
-        \item Green threads (Stackful) 
-        \item Using combinators
-        \item Coroutines (Stackless)
-    \end{itemize}
-% 
-\end{frame}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.7\linewidth]{figs/yield_thread.png}
+%		\caption{yield_thread}
+	\end{figure}
 
-%----------------------------------------------
-\begin{frame}
-\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
-\end{frame}
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{State Machine Transformation in Future}
-%    \framesubtitle{xxxx}
-% #### State Machine Transformation in Future
-% 
-% Ref: https://os.phil-opp.com/async-await/#state-machine-transformation
-% https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#stackless-coroutinesgenerators
-% 
-%% itemize
-    \begin{itemize}
-        \item Async in Rust is implemented using {\color{red}Generators}
-        \item Generators in Rust are implemented as {\color{red}state machines}
-        \item {\color{red}Compiler} transforms the body of the `async` function into a state machine, with each `.await` call representing a different state. \pause
-        \item {\color{red}Each state} represents a different pause point of the function
-% 
-%% figure
-    \begin{figure}
-    \includegraphics[width=0.4\linewidth]{figs/async-state-machine-states.png}
-%    \caption{xxxx}
-    \end{figure} \pause
-% ![async-state-machine-states](figs/async-state-machine-states.svg)
-% 
-        \item Arrows represent {\color{red}state switches} and diamond shapes represent alternative ways
-% 
-%% figure
-    \begin{figure}
-    \includegraphics[width=0.55\linewidth]{figs/async-state-machine-basic.png}
-%    \caption{xxxx}
-    \end{figure}
-% ![async-state-machine-basic](figs/async-state-machine-basic.svg)
-    \end{itemize}
 % 
 \end{frame}
-%----------------------------------------------
+%------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{State Machine Type: enum ExampleStateMachine}
-%    \framesubtitle{xxxx}
-% #### State Machine Type
+    \frametitle{\href{https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs\#L158}{线程切换}`switch`}
 % 
-% Ref: https://os.phil-opp.com/async-await/#the-full-state-machine-type
-% 
-%% itemize
-    \begin{itemize}
-        \item Create a state machine and combine them into an \href{https://doc.rust-lang.org/book/ch06-01-defining-an-enum.html}{`enum`}
-    \end{itemize}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.35\linewidth]{figs/t_yield.png}
+%		\caption{t_yield}
+	\end{figure}
 
-\begin{block}{}
-    \begin{verbatim}
-    //rust code
-    enum ExampleStateMachine {
-        Start(StartState),
-        WaitingOnFooTxt(WaitingOnFooTxtState),
-        WaitingOnBarTxt(WaitingOnBarTxtState),
-        End(EndState),
-    }
-    \end{verbatim}
-\end{block}
 
+% 
+用户线程的操作系统依赖：示例适用于 OSX、Linux 和 Windows
 \end{frame}
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{State Machine Type: impl Future for ExampleStateMachine}
-%% itemize
-    \begin{itemize}
-        \item Generates an implementation of the state transitions in the `poll` function
-    \end{itemize}
-% 
-\begin{block}{}
-    \begin{verbatim}
-    impl Future for ExampleStateMachine {
-    type Output = String; // return type of `example`
-    fn poll(self: Pin<&mut Self>, cx: &mut Context) -> Poll<Self::Output> {
-        loop {
-            match self { // TODO: handle pinning
-                ExampleStateMachine::Start(state) => {…}
-                ExampleStateMachine::WaitingOnFooTxt(state) => {…}
-                ExampleStateMachine::WaitingOnBarTxt(state) => {…}
-                ExampleStateMachine::End(state) => {…}
-            }
-        }
-    }
-}
-    \end{verbatim}
-\end{block}
-% 
-\end{frame}
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{\href{https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html}{Example of Generator}}
-%    \framesubtitle{xxxx}
-% #### Example of Generator
-% 
-% Ref: https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html#how-generators-work
-% 
-\begin{block}{}
-    \begin{verbatim}
-    fn main() {
-        let a: i32 = 4;
-        let mut gen = move || {
-            println!("Hello");
-            yield a * 2;
-            println!("world!");
-        };
-        if let GeneratorState::Yielded(n) = gen.resume() {
-            println!("Got value {}", n);
-        }
-        if let GeneratorState::Complete(()) = gen.resume() {
-            ()
-        };
-    } \end{verbatim}
-\end{block}
-% 
-\end{frame}
-%----------------------------------------------
+%------------------------------------------------
 \end{document}
