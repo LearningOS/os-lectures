@@ -12,14 +12,7 @@
 * 子进程和调用 `fork` 父的进程在返回用户态时的状态几乎完全相同：为子进程创建一个和父进程几乎完全相同的应用地址空间。
 * 父子进程的系统调用返回值`a0` 寄存器内容不同
 
-![ fork](figs/ fork.png)
-
-```rust
-/// 功能：当前进程 fork 出来一个子进程。
-/// 返回值：对于子进程返回 0，对于当前进程则返回子进程的 PID 。
-/// syscall ID：220
-pub fn sys_fork() -> isize;
-```
+![fork](figs/fork.png)
 
 #### `waitpid`
 
@@ -30,16 +23,6 @@ pub fn sys_fork() -> isize;
 
 ![waitpid](figs/waitpid.png)
 
-```rust
-/// 功能：当前进程等待一个子进程变为僵尸进程，回收其全部资源并收集其返回值。
-/// 参数：pid 表示要等待的子进程的进程 ID，如果为 -1 的话表示等待任意一个子进程；
-/// exit_code 表示保存子进程返回值的地址，如果这个地址为 0 的话表示不必保存。
-/// 返回值：如果要等待的子进程不存在则返回 -1；否则如果要等待的子进程均未结束则返回 -2；
-/// 否则返回结束的子进程的进程 ID。
-/// syscall ID：260
-pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
-```
-
 #### `exec`
 
 * 执行不同的可执行文件：加载一个新的 ELF 可执行文件替换原有的应用地址空间并开始执行。
@@ -47,26 +30,9 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 
 ![exec](figs/exec.png)
 
-```rust
-/// 功能：将当前进程的地址空间清空并加载一个特定的可执行文件，返回用户态后开始它的执行。
-/// 参数：path 给出了要加载的可执行文件的名字；
-/// 返回值：如果出错的话（如找不到名字相符的可执行文件）则返回 -1，否则不应该返回。
-/// syscall ID：221
-pub fn sys_exec(path: &str) -> isize;
-```
-
 调用方法
 
 ![exec-call](figs/exec-call.png)
-
-```rust
-// user/src/exec.rs
-pub fn sys_exec(path: &str) -> isize {
-    syscall(SYSCALL_EXEC, [path.as_ptr() as usize, 0, 0])
-}
-```
-
-
 
 #### `exit`
 
@@ -82,95 +48,23 @@ pub fn sys_exec(path: &str) -> isize {
 
 ![pid](figs/pid.png)
 
-```rust
-// os/src/task/pid.rs
-pub struct PidHandle(pub usize);
-
-// os/src/task/pid.rs
-struct PidAllocator {
-    current: usize,
-    recycled: Vec<usize>,
-}
-```
-
 #### 内核栈
 
 ![kernelstack](figs/kernelstack.png)
-
-```rust
-// os/src/task/pid.rs
-pub struct KernelStack {
-    pid: usize,
-}
-```
 
 #### 进程控制块
 
 ![PCB](figs/PCB.png)
 
-```rust
-// os/src/task/task.rs
-pub struct TaskControlBlock {
-    // immutable
-    pub pid: PidHandle,
-    pub kernel_stack: KernelStack,
-    // mutable
-    inner: Mutex<TaskControlBlockInner>,
-}
-
-pub struct TaskControlBlockInner {
-    pub trap_cx_ppn: PhysPageNum,
-    pub base_size: usize,
-    pub task_cx_ptr: usize,
-    pub task_status: TaskStatus,
-    pub memory_set: MemorySet,
-    pub parent: Option<Weak<TaskControlBlock>>,
-    pub children: Vec<Arc<TaskControlBlock>>,
-    pub exit_code: i32,
-}
-```
-
 #### 任务管理器
 
 ![task](figs/task.png)
-
-```rust
-// os/src/task/manager.rs
-pub struct TaskManager {
-    ready_queue: VecDeque<Arc<TaskControlBlock>>,
-}
-```
 
 #### 处理器监视器
 
 ![processor](figs/processor.png)
 
-```rust
-// os/src/task/processor.rs
-pub struct Processor {
-    inner: RefCell<ProcessorInner>,
-}
-
-unsafe impl Sync for Processor {}
-struct ProcessorInner {
-    current: Option<Arc<TaskControlBlock>>,
-    idle_task_cx_ptr: usize,
-}
-```
 
 ### 任务切换
 
 ![scheduler](figs/scheduler.png)
-
-```rust
-// os/src/task/processor.rs
-pub fn schedule(switched_task_cx_ptr2: *const usize) {
-    let idle_task_cx_ptr2 = PROCESSOR.get_idle_task_cx_ptr2();
-    unsafe {
-        __switch(
-            switched_task_cx_ptr2,
-            idle_task_cx_ptr2,
-        );
-    }
-}
-```
