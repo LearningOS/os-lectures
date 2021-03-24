@@ -1,83 +1,155 @@
-### 10.2 用户线程的实现
+## rCore进程管理
 
-参考文献：
+* v1
 
-1. [Green Threads Explained in 200 Lines of Rust...](https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/)
-2. [完整源代码](https://github.com/cfsamson/example-greenthreads)
-3. 知乎上的中文版本：[两百行Rust代码解析绿色线程原理（四）一个绿色线程的实现](https://zhuanlan.zhihu.com/p/101061389)
+### [rCore中的进程管理系统调用](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/1process.html#id4)
 
-#### 1. 线程与CPU架构
+#### `fork`
 
-##### CPU体系结构
+* 内核会创建一个子进程
+* 子进程和调用 `fork` 父的进程在返回用户态时的状态几乎完全相同：为子进程创建一个和父进程几乎完全相同的应用地址空间。
+* 父子进程的系统调用返回值`a0` 寄存器内容不同
 
-用户线程调度是非抢占式的；
+```rust
+/// 功能：当前进程 fork 出来一个子进程。
+/// 返回值：对于子进程返回 0，对于当前进程则返回子进程的 PID 。
+/// syscall ID：220
+pub fn sys_fork() -> isize;
+```
 
-CPU体系结构：通用寄存器
+#### `waitpid`
 
-出处：[Combined Volume Set of Intel® 64 and IA-32 Architectures Software Developer’s Manuals](https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html#combined)、[325462-sdm-vol-1-2abcd-3abcd.pdf](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf) P76 Figure 3-4. General System and Application Programming Registers
+* 进程通过 `exit` 系统调用退出后，无法立即全部地回收所占用资源
+  * 内核栈
+* 父进程通过 `waitpid` 系统调来获取子进程的返回状态并回收所占据的全部资源，从而彻底销毁子进程
+  * 回收子进程的资源并收集它的一些信息
 
-![x86-32-registers](figs/x86-32-registers.png)
+```rust
+/// 功能：当前进程等待一个子进程变为僵尸进程，回收其全部资源并收集其返回值。
+/// 参数：pid 表示要等待的子进程的进程 ID，如果为 -1 的话表示等待任意一个子进程；
+/// exit_code 表示保存子进程返回值的地址，如果这个地址为 0 的话表示不必保存。
+/// 返回值：如果要等待的子进程不存在则返回 -1；否则如果要等待的子进程均未结束则返回 -2；
+/// 否则返回结束的子进程的进程 ID。
+/// syscall ID：260
+pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
+```
 
-出处：[325462-sdm-vol-1-2abcd-3abcd.pdf](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf) P77 Table 3-2. Addressable General Purpose Registers
+#### `exec`
 
-![8-16-32-64-registers](figs/8-16-32-64-registers.png)
+* 执行不同的可执行文件：加载一个新的 ELF 可执行文件替换原有的应用地址空间并开始执行。
+* `path` 作为 `&str` 类型是一个胖指针
 
-##### X86汇编语言
+```rust
+/// 功能：将当前进程的地址空间清空并加载一个特定的可执行文件，返回用户态后开始它的执行。
+/// 参数：path 给出了要加载的可执行文件的名字；
+/// 返回值：如果出错的话（如找不到名字相符的可执行文件）则返回 -1，否则不应该返回。
+/// syscall ID：221
+pub fn sys_exec(path: &str) -> isize;
+```
 
-![green-thread-switch](figs/green-thread-switch.png)
+调用方法
 
-#### 2. 线程上下文和线程栈
-
-##### 线程上下文[数据结构](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L28)`ThreadContext`
-
-![green-thread-ThreadContext](figs/green-thread-ThreadContext.png)
-
-##### 栈空间大小
-
-1. 现代操作系统中启动进程时，标准栈大小通常为8MB；
-2. 可能出现“栈溢出”；
-3. 当我们自己控制栈时，我们可以选择我们想要的大小；
-4. 可增长栈：当栈空间用完时，会分配一个更大的栈并将栈内容移到更大的栈上，并恢复程序继续执行，不会导致栈溢出；（Go 语言）
-
-
-
-##### 栈布局
-
-出处：[325462-sdm-vol-1-2abcd-3abcd.pdf](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf) P152 Figure 6-1. Stack Structure
-
-![stack-structure](figs/stack-structure.png)
-
-
-
-#### 3. 线程控制块和运行时支持
-
-##### 线程控制块[数据结构](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L19)`Thread`
-
-[裸函数](https://docs.microsoft.com/zh-cn/cpp/c-language/naked-functions?view=msvc-160)naked_functions：为了与编译器协调处理函数调用和中断处理中栈的使用，而定义的一个约定。它仅影响函数的 prolog 和 epilog 序列的编译器代码生成的性质。
-
-![thread](figs/thread.png)
-
-##### 线程[运行时](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L49)支持`Runtime`
-
-new
-run
-t_return
-t_yield
-
-#### 4. 用户线程API和线程切换
-
-##### [线程API](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L119)：`spawn`
-
-![spawn](figs/spawn.png)
-
-##### [线程API](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L119)：yield_thread
-
-![yield_thread](figs/yield_thread.png)
-
-##### [线程切换](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L158)`switch`
-
-![t_yield](figs/t_yield.png)
-
-用户线程的操作系统依赖：示例适用于 OSX、Linux 和 Windows
+```rust
+// user/src/exec.rs
+pub fn sys_exec(path: &str) -> isize {
+    syscall(SYSCALL_EXEC, [path.as_ptr() as usize, 0, 0])
+}
+```
 
 
+
+#### `exit`
+
+* 进程退出：当应用调用 `sys_exit` 系统调用主动退出或者出错由内核终止之后，会在内核中调用 `exit_current_and_run_next` 函数退出当前任务并切换到下一个。
+
+用户初始程序-initproc
+
+外壳程序-user_shell
+
+### 进程管理的核心数据结构
+
+#### 进程标识符
+
+```rust
+// os/src/task/pid.rs
+pub struct PidHandle(pub usize);
+
+// os/src/task/pid.rs
+struct PidAllocator {
+    current: usize,
+    recycled: Vec<usize>,
+}
+```
+
+#### 内核栈
+
+```rust
+// os/src/task/pid.rs
+
+pub struct KernelStack {
+    pid: usize,
+}
+```
+
+#### 进程控制块
+
+```rust
+// os/src/task/task.rs
+pub struct TaskControlBlock {
+    // immutable
+    pub pid: PidHandle,
+    pub kernel_stack: KernelStack,
+    // mutable
+    inner: Mutex<TaskControlBlockInner>,
+}
+
+pub struct TaskControlBlockInner {
+    pub trap_cx_ppn: PhysPageNum,
+    pub base_size: usize,
+    pub task_cx_ptr: usize,
+    pub task_status: TaskStatus,
+    pub memory_set: MemorySet,
+    pub parent: Option<Weak<TaskControlBlock>>,
+    pub children: Vec<Arc<TaskControlBlock>>,
+    pub exit_code: i32,
+}
+```
+
+#### 任务管理器
+
+```rust
+// os/src/task/manager.rs
+pub struct TaskManager {
+    ready_queue: VecDeque<Arc<TaskControlBlock>>,
+}
+```
+
+#### 处理器监视器
+
+```rust
+// os/src/task/processor.rs
+pub struct Processor {
+    inner: RefCell<ProcessorInner>,
+}
+
+unsafe impl Sync for Processor {}
+struct ProcessorInner {
+    current: Option<Arc<TaskControlBlock>>,
+    idle_task_cx_ptr: usize,
+}
+```
+
+### 任务切换
+
+```rust
+// os/src/task/processor.rs
+pub fn schedule(switched_task_cx_ptr2: *const usize) {
+    let idle_task_cx_ptr2 = PROCESSOR.get_idle_task_cx_ptr2();
+    unsafe {
+        __switch(
+            switched_task_cx_ptr2,
+            idle_task_cx_ptr2,
+        );
+    }
+}
+```
