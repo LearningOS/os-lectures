@@ -1,7 +1,8 @@
 ## rCore进程管理
 
 * [v1](https://github.com/LearningOS/os-lectures/blob/d3a86df7dd85020cc35dacebd4f438619d25355b/lecture10/slide-10-02.md)
-* v2
+* [v2](https://github.com/LearningOS/os-lectures/blob/e096bea06a5b054aa9b87ffde6373c0a4cb3cda7/lecture10/slide-10-02.md)
+* v3
 
 ### [rCore中的进程管理系统调用](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/1process.html#id4)
 
