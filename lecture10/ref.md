@@ -1,321 +1,153 @@
-# 第十讲 进程和线程控制
-https://tablesgenerator.com/
+## 第十讲 进程、线程和协程的实现
 
-[v1](https://github.com/LearningOS/os-lectures/blob/3f429b1e5c7fba1ae1dde052794698dc85024ec4/lecture10/ref.md)
+ * [v1](https://github.com/LearningOS/os-lectures/blob/819ca469608126937276764cf6be6c8bdb35e96c/lecture10/ref.md)
+ * [v2](https://github.com/LearningOS/os-lectures/blob/be99e6e30b6210810d0dc310fedc9f743bf4ecab/lecture10/ref.md)
+ * [v3](https://github.com/LearningOS/os-lectures/blob/faf60c62ccdd5260797c0ca9ad222dd218c4e13e/lecture10/ref.md)
+ * v4
 
-[v2](https://github.com/LearningOS/os-lectures/blob/89a0b1654c051eee1070a8253c38f06234aa90ac/lecture10/ref.md)
+### 10.1 进程的实现
 
-[v3](https://github.com/LearningOS/os-lectures/blob/92dc37fecb82c3844fd7ec2aad2beead492c7683/lecture10/ref.md)
+#### 1. 进程切换
 
-## 10.1 进程切换 
-## 10.2 进程创建 
-## 10.3 进程加载 
-## 10.4 进程等待与退出 
-## 10.5 rCore的进程和线程控制
+[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture12?action=AttachFile&do=get&target=12-1.pptx)
+#### 2. 进程创建
 
-#### 进程和线程数据结构
+[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture12?action=AttachFile&do=get&target=12-2.pptx)
 
-##### 1-rCore的进程控制块结构struct Process
-
-https://github.com/rcore-os/rCore/blob/master/kernel/src/process/structs.rs#L61
-/Users/xyong/github/rCore/kernel/src/process/structs.rs
-Line 61
-pub struct Process
-
-![process](figs/process.png)
-
-/Users/xyong/github/rCore/kernel/src/process/structs.rs
-Line 42:
-pub struct Pid(usize);
-
-##### 2-rCore的内存地址空间结构MemorySet
-
-/Users/xyong/github/rCore/crate/memory/src/memory_set/mod.rs
-Line 119:
-pub struct MemorySet/
-
-![MemorySet](figs/MemorySet.png)
-
-```rust
-pub struct MemorySet<T: PageTableExt> {
-    areas: Vec<MemoryArea>,
-    page_table: T,
-}
-```
-
-
-
-/Users/xyong/github/rCore/crate/memory/src/memory_set/mod.rs
-Line 17:
-pub struct MemoryArea
-
-![MemoryArea](figs/MemoryArea.png)
-
-```rust
-pub struct MemoryArea {
-    start_addr: VirtAddr,
-    end_addr: VirtAddr,
-    attr: MemoryAttr,
-    handler: Box<dyn MemoryHandler>,
-    name: &'static str,
-}
-```
-
-/Users/xyong/github/rCore/kernel/src/memory.rs
-Line 29:
-
-![type-MemorySet](figs/type-MemorySet.png)
-
-```rust
-pub type MemorySet = rcore_memory::memory_set::MemorySet<PageTableImpl>;
-```
-/Users/xyong/github/rCore/kernel/src/arch/riscv/paging.rs
-Line 20:
-pub struct PageTableImpl
-
-![PageTableImpl](figs/PageTableImpl.png)
-
-```rust
-pub struct PageTableImpl {
-    page_table: TopLevelPageTable<'static>,
-    root_frame: Frame,
-    entry: Option<PageEntry>,
-}
-```
-/Users/xyong/github/riscv/src/paging/multi_level.rs
-Line 8:
-pub struct Rv32PageTable
-
-![Rv32PageTable](figs/Rv32PageTable.png)
-
-```rust
-pub struct Rv32PageTable<'a> {
-    root_table: &'a mut PageTable,
-    linear_offset: usize, // VA = PA + linear_offset
-}
-```
-Line 16:
-
-![TopLevelPageTable](figs/TopLevelPageTable.png)
-
-```rust
-type TopLevelPageTable<'a> = riscv::paging::Rv32PageTable<'a>;
-```
-/Users/xyong/github/rCore/crate/memory/src/paging/mod.rs
-Line 111:
-unsafe fn activate(&self)
-
-![fn-activate](figs/fn-activate.png)
-
-```rust
-    /// Activate this page table
-    unsafe fn activate(&self) {
-        let old_token = Self::active_token();
-        let new_token = self.token();
-        debug!("switch table {:x?} -> {:x?}", old_token, new_token);
-        if old_token != new_token {
-            Self::set_token(new_token);
-            Self::flush_tlb();
-        }
-    }
-```
-/Users/xyong/github/rCore/kernel/src/arch/riscv/paging.rs
-Line 258:
-unsafe fn set_token(token: usize)
-
-![fn-set_token](figs/fn-set_token.png)
-
-```rust
-    unsafe fn set_token(token: usize) {
-        asm!("csrw satp, $0" :: "r"(token) :: "volatile");
-    }
-```
-
-##### 3-线程
-/Users/xyong/github/rCore/kernel/src/process/structs.rs
-Line 28
-pub struct Thread
-
-https://github.com/rcore-os/rcore-thread/blob/master/src/thread_pool.rs#L8
-struct Thread
-/Users/xyong/github/rcore-thread/src/thread_pool.rs
-
-![struct-Thread](figs/struct-Thread.png)
-
-```rust
-struct Thread {
-    /// Current status of the thread.
-    status: Status,
-    /// Next status after the thread stop running.
-    status_after_stop: Status,
-    /// A waiter thread of this. It will be woken up on my exit.
-    waiter: Option<Tid>,
-    /// If detached, all resources will be released on exit.
-    detached: bool,
-    /// The context of the thread.
-    context: Option<Box<dyn Context>>,
-}
-```
-
-https://github.com/rcore-os/rcore-thread/blob/master/src/thread_pool.rs#L25
-pub enum Status
-
-https://doc.rust-lang.org/src/std/thread/mod.rs.html#1052
-Line 1054:
-fn new() -> ThreadId
-
-/Users/xyong/github/rCore/kernel/src/process/mod.rs
-Line 106:
-pub fn thread_manager() -> &'static ThreadPool
-
-#### 线程状态转换
-
-##### 4-线程状态数据结构
-
-/Users/xyong/github/rcore-thread/src/thread_pool.rs
-
-![enum-Status](figs/enum-Status.png)
-
-```rust
-pub enum Status {
-    Ready,
-    Running(usize),
-    Sleeping,
-    /// aka ZOMBIE. Its context was dropped.
-    Exited(ExitCode),
-}
-```
-##### 4-线程状态转换
+#### 3. 进程加载
 
-/Users/xyong/github/rcore-thread/src/thread_pool.rs
+[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture12?action=AttachFile&do=get&target=12-3.pptx)
+#### 4. 进程等待与退出
 
-![fn-set-status](figs/fn-set-status.png)
+[PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture12?action=AttachFile&do=get&target=12-4.pptx)
 
-```rust
-fn set_status(&self, tid: Tid, status: Status)
-```
+#### 5. rCore进程和线程控制
 
-![set-status](figs/set-status.png)
+[PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture10?action=AttachFile&do=view&target=slide-10-05.pdf)
 
-#### 线程上下文切换
+### 10.2 线程的实现
 
-##### 5-上下文切换数据结构
+[Green Threads Explained in 200 Lines of Rust...](https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/)
 
-/Users/xyong/github/rCore/docs/2_OSLab/g2/context.md
-上下文切换的文档
+[完整源代码](https://github.com/cfsamson/example-greenthreads)
 
-相关数据结构
+#### 1. 与CPU架构相关信息
 
+[两百行Rust代码解析绿色线程原理（一）绪论及基本概念](https://zhuanlan.zhihu.com/p/100058478)
 
-1. `TrapFrame`:
+用户线程调度是非抢占式的；
 
-    ![struct-TrapFrame](figs/struct-TrapFrame.png)
+CPU体系结构：寄存器
 
-    ```rust
-    pub struct TrapFrame {
-        /// General registers
-        pub x: [usize; 32],
-        /// Supervisor Status
-        pub sstatus: Sstatus,
-        /// Supervisor Exception Program Counter
-        pub sepc: usize,
-        /// Supervisor Trap Value
-        pub stval: usize,
-        /// Supervisor Cause
-        pub scause: Scause,
-    }
-    ```
+[Combined Volume Set of Intel® 64 and IA-32 Architectures Software Developer’s Manuals](https://software.intel.com/content/www/us/en/develop/articles/intel-sdm.html#combined)
 
-    在陷入异常时向栈中压入的内容，由 [trap.S](../../../kernel/src/arch/aarch64/interrupt/trap.S#L92) 的 `__alltraps` 构建。
+System-Level Registers and Data Structures in IA-32e Mode
 
-2. `ContextData`:
+出处：[325462-sdm-vol-1-2abcd-3abcd.pdf](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf) P2859
 
-3. ![struct-ContextData](figs/struct-ContextData.png)
+![IA-32e-registers](figs/IA-32e-registers.png)
 
-    ```rust
-    struct ContextData {
-        /// Return address
-        ra: usize,
-        /// Page table token
-        satp: usize,
-        /// Callee-saved registers
-        s: [usize; 12],
-    }
-    ```
+出处：[325462-sdm-vol-1-2abcd-3abcd.pdf](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf) P76 Figure 3-4. General System and Application Programming Registers
 
-    执行上下文切换时向栈中压入的内容，由 `__switch()` 函数构建。
+![x86-32-registers](figs/x86-32-registers.png)
 
-4. `InitStack`:
+出处：[325462-sdm-vol-1-2abcd-3abcd.pdf](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf) P77 Table 3-2. Addressable General Purpose Registers
 
-    
+![8-16-32-64-registers](figs/8-16-32-64-registers.png)
 
-    ![struct-InitStack](figs/struct-InitStack.png)
+汇编语言
 
-    ```rust
-    pub struct InitStack {
-        context: ContextData,
-        tf: TrapFrame,
-    }
-    ```
+![green-thread-switch](figs/green-thread-switch.png)
 
-    对于新创建的线程，不仅要向栈中压入 `ContextData` 结构，还需手动构造 `TrapFrame` 结构。为了方便管理就定义了 `InitStack` 包含这两个结构体。
+#### 2. 线程上下文和线程栈
 
-5. `Context`:
+[两百行Rust代码解析绿色线程原理（二）一个能跑通的例子](https://zhuanlan.zhihu.com/p/100846626)
 
-    ![struct-Context](figs/struct-Context.png)
+线程上下文[数据结构](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L28)`ThreadContext`
 
-    ```rust
-    pub struct Context {
-        /// The stack pointer of the suspended thread.
-        /// A `ContextData` is stored here.
-        sp: usize,
-    }
-    ```
+![green-thread-ThreadContext](figs/green-thread-ThreadContext.png)
 
-    每个进程控制块 `Process` ([kernel/src/process/context.rs](../../../kernel/src/process/structs.rs#L13)) 都会维护一个平台相关的 `Context` 对象。
+[两百行Rust代码解析绿色线程原理（三）栈](https://zhuanlan.zhihu.com/p/100964432)
 
-##### 6-切换函数
+栈空间大小
 
-/Users/xyong/github/rCore/kernel/src/process/structs.rs
-Line 89：
+1. 现代操作系统中启动进程时，标准栈大小通常为8MB；
+2. 可能出现“栈溢出”；
+3. 当我们自己控制栈时，我们可以选择我们想要的大小；
+4. 可增长栈：当栈空间用完时，会分配一个更大的栈并将栈内容移到更大的栈上，并恢复程序继续执行，不会导致栈溢出；（Go 语言）
 
-![switch-to](figs/switch-to.png)
 
-/Users/xyong/github/rCore/kernel/src/arch/riscv/context.rs
-Line 141:
 
-![riscv-32-switch](figs/riscv-32-switch.png)
+栈布局
 
-##### 7-线程切换过程
+出处：[325462-sdm-vol-1-2abcd-3abcd.pdf](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/325462-sdm-vol-1-2abcd-3abcd.pdf) P152 Figure 6-1. Stack Structure
 
-/Users/xyong/github/rcore-thread/src/processor.rs
+![stack-structure](figs/stack-structure.png)
 
-![fn-tick](figs/fn-tick.png)
 
-/Users/xyong/github/rcore-thread/src/scheduler/mod.rs
 
-![scheduler](figs/scheduler.png)
+#### 3. 线程控制块和运行时支持
 
-#### 进程和线程控制接口
+[两百行Rust代码解析绿色线程原理（四）一个绿色线程的实现](https://zhuanlan.zhihu.com/p/101061389)
 
-##### 8-进程控制系统调用
+[裸函数](https://docs.microsoft.com/zh-cn/cpp/c-language/naked-functions?view=msvc-160)naked_functions：为了与编译器协调处理函数调用和中断处理中栈的使用，而定义的一个约定。它仅影响函数的 prolog 和 epilog 序列的编译器代码生成的性质。
 
-/Users/xyong/github/rCore/kernel/src/syscall/proc.rs
-与进程管理相关的系统调用
+线程控制块[数据结构](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L19)`Thread`
 
-/Users/xyong/github/rCore/kernel/src/syscall/proc.rs
-fn sys_
+![thread](figs/thread.png)
 
-![proc-syscall](figs/proc-syscall.png)
+线程[运行时](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L49)支持`Runtime`
+new
+run
+t_return
+t_yield
 
-##### 9-线程模块接口
-/Users/xyong/github/rcore-thread/src/std_thread.rs
+#### 4. 用户线程API和线程切换
 
-![rcore-thread](figs/rcore-thread.png)
+[线程API](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L119)
+spawn
 
-https://doc.rust-lang.org/std/thread/#functions
+![spawn](figs/spawn.png)
 
-![thread-function](figs/thread-function.png)
+yield_thread
 
-##### 
+![yield_thread](figs/yield_thread.png)
 
+[线程切换](https://github.com/cfsamson/example-greenthreads/blob/master/src/main.rs#L158)`switch`
+
+![t_yield](figs/t_yield.png)
+
+#### 5. 用户线程的操作系统依赖
+
+[两百行Rust代码解析绿色线程原理（五）附录：支持 Windows](https://zhuanlan.zhihu.com/p/101168659)
+
+示例适用于 OSX、Linux 和 Windows
+
+Windows栈
+
+
+
+
+### 10.3 协程的实现
+
+协程的实现([200行代码讲透RUST FUTURES](https://stevenbai.top/rust/futures_explained_in_200_lines_of_rust/))
+
+#### 1. Rust语言中的Future
+
+21.1 Background [PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture21?action=AttachFile&do=view&target=slide-21-01.pdf)
+21.2 Futures in Rust [PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture21?action=AttachFile&do=view&target=slide-21-02.pdf)
+
+#### 2. Generator机制和async/await语言机制
+
+21.3 Generators and async/await [PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture21?action=AttachFile&do=view&target=slide-21-03.pdf)
+
+#### 3. Self-Referential Structs & Pin机制
+
+21.4 Self-Referential Structs & Pin [PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture21?action=AttachFile&do=view&target=slide-21-04.pdf)
+
+#### 4. Waker 和 Reactor 机制21.5 Waker and Reactor [PDF讲义](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture21?action=AttachFile&do=view&target=slide-21-05.pdf)
+
+### 课后思考题
+
+1. 在RISC-V上用C或Rust语言实现用户线程支持库；
+2. 在Window、Linux和Mac OS上利用可用的语言和已有的操作系统支持，写一个测例程序，比较各系统下创建进程、线程和协程的最大值和上下文切换开销。
