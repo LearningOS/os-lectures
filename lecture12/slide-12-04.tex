@@ -4,7 +4,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第1讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第12讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第四节：CFS 调度}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -39,7 +39,7 @@
 %http://repo-ck.com/bench/cpu_schedulers_compared.pdf
 %红黑树虽然本质上是一棵二叉查找树，但它在二叉查找树的基础上增加了着色和相关的性质使得红黑树相对平衡，从而保证了红黑树的查找、插入、删除的时间复杂度最坏为O(log n)。
 \begin{frame}
-	\frametitle{CFS调度}
+	\frametitle{CFS调度：Completely Fair Scheduling}
 	\begin{columns}
 	\begin{column}{.4\textwidth}
 	\Large \centering
@@ -49,10 +49,10 @@
 	\end{column}
 	
 	\begin{column}{.6\textwidth}
-%		\large
+CFS的思路
 \begin{itemize}
 	\item 以前的Linux调度算法根据进程的优先级进行调度，即通过一系列运行指标确定进程的优先级，然后根据进程的优先级确定调度哪个进程
-	\item CFS则转换了一种思路，它不计算优先级，而是通过计算进程消耗的CPU时间（标准化以后的虚拟CPU时间）来确定谁来调度。从而到达所谓的公平性。
+	\item CFS不计算优先级，而是通过计算进程消耗的CPU时间（标准化以后的虚拟CPU时间）来确定谁来调度。从而到达所谓的公平性。
 
 	\end{itemize}
 
@@ -192,18 +192,18 @@
 
 %----------------------------------------------
 \begin{frame}
-	\frametitle{CFS调度}
+	\frametitle{CFS调度：权重如何决定？}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\Large \centering
 			
 			\includegraphics[width=.8\textwidth]{rbtree}
 
-		\end{column}
+		\end{column} \pause
 		
 		\begin{column}{.6\textwidth}
 
-			具体实现 ：权重如何决定？
+			具体实现 ：
 			\begin{itemize}
 				\item 权重由nice值确定，权重跟进程nice值之间有一一对应的关系
 				\item 通过全局数组prio\_to\_weight来转换，nice值越大，权重越低。
@@ -219,18 +219,18 @@
 
 %----------------------------------------------
 \begin{frame}
-	\frametitle{CFS调度}
+	\frametitle{CFS调度：新创建进程的vruntime是多少？}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\Large \centering
 			
 			\includegraphics[width=.8\textwidth]{rbtree}
 			
-		\end{column}
+		\end{column} \pause
 		
 		\begin{column}{.6\textwidth}
 			
-			具体实现 ：新创建进程的vruntime是多少？
+			具体实现 ：
 			\begin{itemize}
 				\item 假如新进程的vruntime初值为0的话，比老进程的值小很多，那么它在相当长的时间内都会保持抢占CPU的优势，老进程就要饿死了，这显然是不公平的。
 				\item 每个CPU的运行队列cfs\_rq都维护一个min\_vruntime字段，记录该运行队列中所有进程的vruntime最小值，新进程的初始vruntime值就以它所在运行队列的min\_vruntime为基础来设置，与老进程保持在合理的差距范围内。
@@ -242,18 +242,18 @@
 
 %----------------------------------------------
 \begin{frame}
-	\frametitle{CFS调度}
+	\frametitle{CFS调度：休眠进程的vruntime一直保持不变吗？}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\Large \centering
 			
 			\includegraphics[width=.8\textwidth]{rbtree}
 			
-		\end{column}
+		\end{column} \pause
 		
 		\begin{column}{.6\textwidth}
 			
-			具体实现 ：休眠进程的vruntime一直保持不变吗？
+			具体实现 ：
 			\begin{itemize}
 				\item 如果休眠进程的 vruntime 保持不变，而其他运行进程的 vruntime 一直在推进，那么等到休眠进程终于唤醒的时候，它的vruntime比别人小很多，会使它获得长时间抢占CPU的优势，其他进程就要饿死了。
 
@@ -266,18 +266,18 @@
 
 %----------------------------------------------
 \begin{frame}
-	\frametitle{CFS调度}
+	\frametitle{CFS调度：休眠进程在唤醒时会立刻抢占CPU吗？}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\Large \centering
 			
 			\includegraphics[width=.8\textwidth]{rbtree}
 			
-		\end{column}
+		\end{column} \pause
 		
 		\begin{column}{.6\textwidth}
 			
-			具体实现 ：休眠进程在唤醒时会立刻抢占CPU吗？
+			具体实现 ：
 			\begin{itemize}
 				\item 休眠进程在醒来的时候有能力抢占CPU是大概率事件，这也是CFS调度算法的本意，即保证交互式进程的响应速度，因为交互式进程等待用户输入会频繁休眠。
 				
@@ -292,18 +292,18 @@
 
 %----------------------------------------------
 \begin{frame}
-	\frametitle{CFS调度}
+	\frametitle{CFS调度:进程在CPU间迁移时vruntime会不会变？}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\Large \centering
 			
 			\includegraphics[width=.8\textwidth]{rbtree}
 			\includegraphics[width=1.\textwidth]{smp-min-vruntime}
-		\end{column}
+		\end{column} \pause
 		
 		\begin{column}{.6\textwidth}
 			
-			具体实现 ：进程从一个CPU迁移到另一个CPU上的时候vruntime会不会变？
+			具体实现 ：
 			\begin{itemize}
 				\item 在多CPU的系统上，不同的CPU的负载不一样，有的CPU更忙一些，而每个CPU都有自己的运行队列，每个队列中的进程的vruntime也走得有快有慢，比如我们对比每个运行队列的min\_vruntime值，都会有不同
 				\pause
@@ -319,7 +319,7 @@
 
 %----------------------------------------------
 \begin{frame}
-	\frametitle{CFS调度}
+	\frametitle{CFS调度：vruntime溢出问题}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\Large \centering
@@ -330,7 +330,6 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			具体实现 ：vruntime溢出问题
 			\begin{itemize}
 				\item 红黑树中实际的作为key的不是vruntime而是vruntime - min\_vruntime。min\_vruntime是当前红黑树中最小的key
 				\item vruntime 的类型 usigned long
@@ -345,7 +344,7 @@
 
 %----------------------------------------------
 \begin{frame}
-	\frametitle{CFS调度}
+	\frametitle{CFS调度：vruntime溢出问题}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\Large \centering
@@ -356,7 +355,7 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			具体实现 ：vruntime溢出问题
+			具体实现 ：
 			
 \begin{block}{一个例子}
 unsigned char a = 251, b = 254;  \\

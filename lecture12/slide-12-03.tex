@@ -4,7 +4,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第1讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第12讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第三节：O(1) 调度}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -61,14 +61,14 @@
 
 
 \begin{frame}
-	\frametitle{SMP 和 Linux 内核}
+	\frametitle{Linux 2.4 内核：SMP实现在核心级}
 	
 	\begin{itemize}
 		
-		\item 在2.4内核后，SMP实现在核心级, 使用多处理器可以加快内核的处理速度。一开始的调度器是复杂度为O(n)的调度算法
+		\item  使用多处理器可以加快内核的处理速度，调度器是复杂度为O(n)
 		
 		\begin{itemize}
-			\item 2.4 scheduler 维护两个 queue：runqueue 和 expired queue
+			\item 内核调度器维护两个 queue：runqueue 和 expired queue
 			\item 两个 queue 都永远保持有序
 			\item 一个 process 用完时间片，就会被插入 expired queue
 			\item 当 runqueue 为空时，只需要把 runqueue 和 expired queue 交换一下即可
@@ -82,16 +82,16 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{SMP 和 Linux 内核}
-
-	\begin{itemize}
+	\frametitle{Linux 2.4 内核：SMP实现在核心级}
 	
-	\item 在2.4内核后，SMP实现在核心级, 使用多处理器可以加快内核的处理速度。一开始的调度器是复杂度为O(n)的调度算法
+	\begin{itemize}
+		
+		\item  使用多处理器可以加快内核的处理速度，调度器是复杂度为O(n)
 	
 		\begin{itemize}
 		\item 全局共享的就绪队列
 		\item 寻找下一个可执行的 process，这个操作一般都是 O(1)
-		\item 每次进程用完时间片，执行插入操作是，实际上会遍历所有任务，复杂度为O(n)
+		\item 每次进程用完时间片，找合适的位置执行插入操作，会遍历所有任务，复杂度为O(n)
 
 		\end{itemize}
 	\end{itemize}
@@ -104,11 +104,11 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{SMP 和 Linux 内核}
+	\frametitle{Linux 2.4 内核：SMP实现在核心级}
 	
 	\begin{itemize}
 		
-		\item 在2.4内核后，SMP实现在核心级, 使用多处理器可以加快内核的处理速度。一开始的调度器是复杂度为O(n)的调度算法
+		\item  使用多处理器可以加快内核的处理速度，调度器是复杂度为O(n)
 		
 		\begin{itemize}
 			\item 现代操作系统都能运行成千上万个进程
@@ -128,8 +128,7 @@
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
-			\Large \centering
-			O(1) 调度器
+
             \begin{figure}
     			\includegraphics[width=1.\textwidth]{O1}
             \end{figure}
@@ -152,8 +151,6 @@
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
-			\Large \centering
-			O(1) 调度器
             \begin{figure}
     			\includegraphics[width=1.\textwidth]{O1}
             \end{figure}
@@ -182,9 +179,7 @@
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
-			\Large \centering
-			O(1) 调度器
-			\includegraphics[width=1.\textwidth]{O1}
+	\includegraphics[width=1.\textwidth]{O1}
 			
 		\end{column}
 		
@@ -209,8 +204,6 @@
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
-			\Large \centering
-			O(1) 调度器
 			\includegraphics[width=1.\textwidth]{O1}
 			
 		\end{column}
@@ -237,16 +230,12 @@
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
 		\begin{column}{.6\textwidth}
-			\Large \centering
-			O(1) 调度器
-			\includegraphics[width=1.\textwidth]{O1-2}
-			谈谈调度 - Linux O(1)
+	\includegraphics[width=1.\textwidth]{O1-2}
 		\end{column}
 		
 		\begin{column}{.4\textwidth}
 			%			\large
-			O(1) 调度器\\
-			
+
 			\begin{itemize}
 				\item 进程有140种优先级，可用长度为 140 的 array 去记录优先级。access是O(1)
 
@@ -262,16 +251,12 @@
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
-			\Large \centering
-			O(1) 调度器
 			\includegraphics[width=1.\textwidth]{O1-2}
 			
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			%			\large
-			O(1) 调度器\\
-			
+
 			\begin{itemize}
 				\item 进程有140种优先级，可用长度为 140 的 array 去记录优先级。access是O(1)
 				
@@ -292,16 +277,12 @@
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
-			\Large \centering
-			O(1) 调度器
 			\includegraphics[width=1.\textwidth]{O1-2}
 			
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			%			\large
-			O(1) 调度器\\
-			
+
 			\begin{itemize}
 				\item 在active bitarray(APA)中寻找 left-most bit 的位置 x。
 			\item 在APA中找到对应队列 APA[x]。
@@ -321,8 +302,6 @@
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
-			\Large \centering
-			O(1) 调度器
 			\includegraphics[width=1.\textwidth]{O1-2}
 			
 		\end{column}
@@ -338,7 +317,7 @@
 				\item 在每个时钟中断后进行计算
 				\item current\_load = rq­>nr\_running * SCHED\_LOAD\_SCALE;
 				
-				\item Pulling 进程而不是 pushing进程
+				\item 由负载轻的CPU pulling 进程而不是 pushing进程
 				
 			\end{itemize}
 		\end{column}
