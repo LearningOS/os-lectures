@@ -97,7 +97,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{虚拟截止时间（Virtual Deadline）}
+%    \frametitle{虚拟截止时间（Virtual Deadline）}
 %    \subframetitle{yyyy}
 %% block
     \begin{block}{时间片大小}
@@ -105,14 +105,14 @@
     \end{block} \pause
 
 %% block
-%    \begin{block}{虚拟截止时间（Virtual Deadline）}
+    \begin{block}{虚拟截止时间（Virtual Deadline）}
     \begin{itemize}
         \item 它是一个关于就绪队列中线程等待CPU最长时间的排序，并不是真实的截止时间； \pause
         \item 线程时间片用完时，重新计算虚拟截止时间；
         \item 事件等待结束时，虚拟截止时间保持不变，以抢先相同优先级的就绪线程； \pause
         \item 为了让线程在上次运行的CPU上运行，不同CPU对线程的虚拟截止时间加一个权重；
     \end{itemize}
-%    \end{block}
+    \end{block}
 
 \end{frame}
 
@@ -179,7 +179,7 @@ prioratio increases by 10% for every nice level
     \framesubtitle{测试硬件环境}
 %% figure
     \begin{figure}
-%    \includegraphics[width=0.6\linewidth]{test-machines}
+    \includegraphics[width=0.6\linewidth]{test-machines}
 %    \caption{xxxx}
     \end{figure}
 
