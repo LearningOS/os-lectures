@@ -1,108 +1,260 @@
-### 第十七讲 文件系统扩展
+## 第十七讲 文件系统扩展
 
 * [v1](https://github.com/LearningOS/os-lectures/blob/ded5de1d168c7ed7bbf6845129a1455ccdaac432/lecture17/ref.md)：2020年的第十七讲大纲
 * [v2](https://github.com/LearningOS/os-lectures/blob/ab62be1d45ca15ee6aeab1ec049e99b1ec6ae1ae/lecture17/ref.md)：2021年第十七讲大纲第一稿
-* [v3]:test
+* [v3]
 
-#### 参考文献
-
-2020年[第十七讲 文件系统概念](https://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/lecture17)：去年的内容全新地讲；
-
-2021年[第四讲 存储管理](https://os.cs.tsinghua.edu.cn/oscourse/OS2021spring/lecture04)：这里的第4.5节讲了文件系统的基本概念和文件的组织结构；
-
-#### 17.1 目录与文件别名
+### 17.1 目录与文件别名
 
 回顾：文件、文件组织、rCore的文件系统
 
   [PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture21?action=AttachFile&do=get&target=21-1.pptx)   
 
-#### 17.2 空闲空间管理
+### 17.2 空闲空间管理
 
   [空闲空间管理](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture21?action=AttachFile&do=get&target=21-5.pptx)
 
-#### 17.3 VFS
+### 17.3 文件缓存
 
-VFS（共享，缓存）：文件缓存和打开文件： [PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture21?action=AttachFile&do=get&target=21-3.pptx)   
+文件缓存和打开文件： [PPT讲义](http://os.cs.tsinghua.edu.cn/oscourse/OS2015/lecture21?action=AttachFile&do=get&target=21-3.pptx)   
+
+### 17.4 VFS
+
+VFS（共享，缓存）：
 
 [The virtual file system (VFS)](www.cs.uni.edu/~diesburg/courses/dd/notes/VFS.pptx)：这里是一个55页的幻灯片，主要介绍VFS的接口；
 
 [Virtual File System](https://www.cs.unc.edu/~porter/courses/cse506/s16/slides/vfs.pdf)：这也是一个关于VFS的课程幻灯片；
 
+#### Overview
 
+##### What is VFS?
 
-#### 17.4 procfs
+![vfs-example](figs/vfs-example.png)
 
-##### procfs文档
+##### Common File System Interface
 
-[procfs](https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html)：这里是对procfs的技术描述；
+![vfs-interface](figs/vfs-interface.png)
 
-/proc is very special in that it is also a virtual filesystem.
+Enables system calls such as open(), read(), and write() to work regardless of file system or storage media
 
-it can be regarded as a control and information centre for the  kernel.a lot of system utilities are simply calls to files  in this directory.
+##### Basic File Model of File System
 
-all of them have a file size of 0, with the exception of kcore, mtrr  and self.
+![vfs-Basic-File-Model](figs/vfs-Basic-File-Model.png)
 
-it as a window into the kernel. it just acts as a pointer to where the actual  process information resides.
+* Defines basic file model conceptual interfaces and data structures
+* Low level file system drivers actually implement file-system-specific behavior
 
+##### Four Primary Object Types in VFS
 
+* Superblock: Represents a specific mounted file system
+* Inode: Represents a specific file
+* Dentry: Represents a directory entry, single component of a path name
+* File: Represents an open file as associated with a process
 
-一些常见的proc目录和文件：
+#### Four Primary Object Types in VFS
 
-/proc/PID/fd
+##### VFS Operations
 
-Directory,  which contains all file descriptors.
+Each object contains operations object with methods
+ * super_operations -- invoked on a specific  file system
+ * inode_operations -- invoked on a specific inodes (which point to a file)
+ * dentry_operations -- invoked on a specific directory entry
+ * file_operations -- invoked on a file 
 
-/proc/PID/maps
+##### Superblock Object
 
-Memory  maps to executables and library files.
+ * Implemented by each file system
+ * Used to store information describing that specific file system
+ * Often physically written at the beginning of the partition and replicated throughout the file system
+ * Found in <[linux/fs.h](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1414)>
+ * Code for creating, managing, and destroying superblock object is in fs/super.c
+    * struct [super_block](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1414)
+    * [super_operations](https://elixir.bootlin.com/linux/v4.18.16/source/include/linux/fs.h#L1824)
+ * Created and initialized via alloc_super()
 
-/proc/PID/status
+###### [super_operations](https://elixir.bootlin.com/linux/v4.18.16/source/include/linux/fs.h#L1824)
 
-Process  status in human readable form.
+Inode:
 
-/proc/mtrr
+struct inode * alloc_inode(struct super_block *sb)
+void destroy_inode(struct inode *inode)
+void dirty_inode(struct inode *inode)
+void write_inode(struct inode *inode, int wait)
+void drop_inode(struct inode *inode)
+void delete_inode(struct inode *inode)
+void clear_inode(struct inode *inode)
 
- Information regarding  mtrrs. the Memory Type Range Registers (MTRRs) may be used to control processor  access to memory ranges. This is most useful when you have a video (VGA)  card on a PCI or AGP bus. Enabling write-combining allows bus write  transfers to be combined into a larger transfer before bursting over the  PCI/AGP bus. This can increase performance of image write operations 2.5  times or more.
+Superblock:
 
-##### wikipedia-procfs
+void put_super(struct super_block *sb)
+void write_super(struct super_block *sb)
+int sync_fs(struct super_block *sb, int wait)
+int remount_fs(struct super_block *sb, int *flags, char *data)
+void umount_begin(struct super_block *sb)
 
-[wikipedia-procfs](https://en.wikipedia.org/wiki/Procfs)
+##### Inode Object
 
-The proc filesystem (procfs) is a special filesystem in Unix-like operating systems that presents information about processes and other system information in a hierarchical file-like structure, providing a more convenient and standardized method for dynamically accessing process data held in the kernel than traditional tracing methods or direct access to kernel memory.
+* Represents all the information needed to manipulate a file or directory
+* Constructed in memory, regardless of how file system stores metadata information
+* [Inode Object Struct](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L610)
+* [inode_operations](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1862)
 
-Typically, it is mapped to a mount point named /proc at boot time.
+###### [Inode Object Struct](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L610)
+```
+unsigned long i_ino; 		/* inode number */
+atomic_t i_count; 		/* reference counter */
+unsigned int i_nlink; 		/* number of hard links */
+uid_t i_uid; 			/* user id of owner */
+gid_t i_gid; 			/* group id of owner */
+loff_t i_size; 			/* file size in bytes */
 
-The proc file system acts as an interface to internal data structures in the kernel. It can be used to obtain information about the system and to change certain kernel parameters at runtime (sysctl).
+struct timespec i_atime; 	/* last access time */
+struct timespec i_mtime; 	/* last modify time */
+struct timespec i_ctime; 	/* last change time */
+umode_t i_mode; 			/* access permissions */
 
-The proc filesystem provides a method of communication between kernel space and user space.
+spinlock_t i_lock; 		/* spinlock */
+struct semaphore i_sem; 		/* inode semaphore */
+struct file_operations *i_fop; 	/* default inode ops */
+struct super_block *i_sb; 	/* associated superblock */
+```
 
-/proc/PID/cmdline, the command that originally started the process.
-/proc/PID/cwd, a symlink to the current working directory of the process.
-/proc/PID/environ contains the names and values of the environment variables that affect the process.
-/proc/PID/exe, a symlink to the original executable file, if it still exists (a process may continue running after its original executable has been deleted or replaced).
-/proc/PID/fd, a directory containing a symbolic link for each open file descriptor.
-/proc/PID/fdinfo, a directory containing entries which describe the position and flags for each open file descriptor.
-/proc/PID/maps, a text file containing information about mapped files and blocks (like heap and stack).
-/proc/PID/mem, a binary image representing the process's virtual memory, can only be accessed by a ptrace'ing process.
-/proc/PID/root, a symlink to the root path as seen by the process. For most processes this will be a link to / unless the process is running in a chroot jail.
-/proc/PID/status contains basic information about a process including its run state and memory usage.
-/proc/PID/task, a directory containing hard links to any tasks that have been started by this (i.e.: the parent) process.
+###### [inode_operations](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1862)
 
-##### A brief history of /proc
+int create(struct inode *dir, struct dentry *dentry, int mode)
+struct dentry * lookup(struct inode *dir, struct dentry *dentry)
+int link(struct dentry *old_dentry, struct inode *dir, struct dentry *dentry)
+int unlink(struct inode *dir, struct dentry *dentry)
+int symlink(struct inode *dir, struct dentry *dentry, const char *symname)
 
-[](http://dtrace.org/blogs/eschrock/2004/06/25/a-brief-history-of-proc/)
-Tom Killian wrote the first implementation of /proc, explained in his paper published in 1984. It was designed to replace the venerable ptrace system call, which until then was used for primitive process tracing.
+Directory functions e.g. mkdir() and rmdir()
+int mkdir(struct inode *dir, struct dentry *dentry, int mode)
+int rmdir(struct inode *dir, struct dentry *dentry)
+int mknod(struct inode *dir, struct dentry *dentry, int mode, dev_t rdev)
+void truncate(struct inode *inode)
+int permission(struct inode *inode, int mask)
 
-##### procfs intro from IBM （非常好的参考）
+Regular file attribute functions
+int setattr(struct dentry *dentry, struct iattr *attr)
+int getattr(struct vfsmount *mnt, struct dentry *dentry, struct kstat *stat)
 
-[Archived | Access the Linux kernel using the /proc filesystem](https://developer.ibm.com/technologies/linux/articles/l-proc/)
+##### Dentry Object
 
-介绍了procfs的机理；
+ * VFS teats directories as a type of file
+ * Dentry (directory entry) is a specific component in a path
+Represented by struct dentry and defined in <linux/dcache.h>
+ * struct [dentry](https://elixir.bootlin.com/linux/v5.7-rc4/source/include/linux/dcache.h#L89)
+ * struct [dentry_operations](https://elixir.bootlin.com/linux/v5.7-rc4/source/include/linux/dcache.h#L135)
 
-procfs类似的文件系统还有sysfs和debugfs.
+##### Dentry State
 
-与内核的交互：
-Interactive tour of /proc: `ls /proc`
+Valid dentry object can be in one of 3 states:
+ * Used
+ * Unused
+ * Negative
+
+###### Used dentry state
+
+* Corresponds to a valid inode
+  * d_inode points to an associated inode
+* One or more users of the object	
+  * d_count is positive
+* Dentry is in use by VFS and cannot be discarded
+
+###### Unused dentry state
+
+* Corresponds to a valid inode
+  * d_inode points to an associated inode
+* Zero users of the object	
+  * d_count is zero
+* Since dentry points to valid object, it is cached
+  * Quicker for pathname lookups
+  * Can be discarded if necessary to reclaim more memory
+
+###### Negative dentry state
+
+* Not associated to a valid inode
+  * d_inode points to NULL
+* Two reasons
+  * Program tries to open file that does not exist
+  * Inode of file was deleted
+* May be cached
+
+##### Dentry Cache
+
+ * Dentry objects stored in a dcache
+ * Cache consists of three parts
+ * Lists of used dentries linked off associated inode object
+ * Doubly linked “least recently used” list of unused and negative dentry objects
+ * Hash table and hash function used to quickly resolve given path to associated dentry object
+
+##### File Object
+
+ * Used to represent a file opened by a process
+ * In-memory representation of an open file
+ * Represented by struct file and defined in <linux/fs.h>
+   * struct [file](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L915)
+   * struct [file_operations](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1820)
+
+##### Implementing Your Own File System
+
+ * At minimum, define your own operation methods and helper procedures
+    * super_operations 
+    * inode_operations 
+    * dentry_operations 
+    * file_operations
+ * For simple example file systems, take a look at ramfs and ext2
+
+##### Implementing Your Own File System
+
+* Sometimes it helps to trace a file operation
+  * Start by tracing vfs_read() and vfs_write()
+* VFS generic methods can give you a template on how to write your own file-system-specific methods
+  * While updating your own file-system-specific structures
+
+### 17.5 procfs
+
+##### What is [procfs](https://en.wikipedia.org/wiki/Procfs)?
+
+* [Tom Killian](http://dtrace.org/blogs/eschrock/2004/06/25/a-brief-history-of-proc/) wrote the first implementation of /proc, explained in his paper published in 1984.
+  * It was designed to replace the venerable ptrace system call
+* It presents information about processes and other system information
+  * Provide a more convenient and standardized method for dynamically accessing process data held in the kernel
+  * The proc file system acts as an interface to internal data structures in the kernel.
+  * The proc filesystem provides a method of communication between kernel space and user space.
+* The proc filesystem (procfs) is a special filesystem
+  * It is mapped to a mount point named /proc at boot time.
+  * All of them have a file size of 0, with the exception of kcore, mtrr  and self.
+  * it as a window into the kernel. it just acts as a pointer to where the actual  process information resides.
+
+##### The purpose and contents of procfs
+
+* /proc/PID/fd
+  * Directory,  which contains all file descriptors.
+* /proc/PID/maps
+  * Memory  maps to executables and library files.
+* /proc/PID/status
+  * Process  status in human readable form.
+* /proc/mtrr
+  * The Memory Type Range Registers (MTRRs) may be used to control processor  access to memory ranges.
+  * This is most useful when you have a video (VGA)  card on a PCI or AGP bus.
+  * This can increase performance of image write operations 2.5  times or more.
+
+##### [Access the Linux kernel using the /proc filesystem](https://developer.ibm.com/technologies/linux/articles/l-proc/)
+
+* kernel modules
+  * dynamically add or remove code from the Linux kernel.
+  * Inserting, checking, and removing an LKM
+  * Reviewing the kernel output from the LKM
+* Integrating into the /proc filesystem
+  * To create a virtual file in the /proc filesystem, use the `create_proc_entry` function.
+  * To remove a file from /proc, use the `remove_proc_entry` function.
+  * Write to a /proc entry (from the user to the kernel) by using a `write_proc` function.
+  * Read data from a /proc entry (from the kernel to the user) by using the `read_proc`function.
+
+##### Interactive tour of /proc: `ls /proc`
+
 Reading from and writing to /proc (configuring the kernel): 
 
 ```
@@ -110,24 +262,113 @@ cat /proc/sys/net/ipv4/ip_forward
 0
 echo "1" > /proc/sys/net/ipv4/ip_forward
 cat /proc/sys/net/ipv4/ip_forward
-
 1
 ```
 
-可通过可加载内核模块在procfs中加信息交互文件；它通过回调函数完成信息交互。
-
-[Linux Kernel Procfs Guide](https://kernelnewbies.org/Documents/Kernel-Docbooks?action=AttachFile&do=get&target=procfs-guide_2.6.29.pdf)：这里介绍了procfs的编程和接口；
-
-[Linux 文件系统：procfs, sysfs, debugfs 用法简介](https://www.cnblogs.com/qiuheng/p/5761877.html)
+##### [Linux 文件系统：procfs, sysfs, debugfs](https://www.cnblogs.com/qiuheng/p/5761877.html)
 
  * procfs 历史最早，最初就是用来跟内核交互的唯一方式，用来获取处理器、内存、设备驱动、进程等各种信息。
  * sysfs 跟 kobject 框架紧密联系，而 kobject 是为设备驱动模型而存在的，所以 sysfs 是为设备驱动服务的。
  * debugfs 从名字来看就是为debug而生，所以更加灵活。
 
-[DebugFS, SecurityFS, PipeFS, and SockFS](http://dcjtech.info/topic/debugfs-securityfs-pipefs-and-sockfs/)：这里简单介绍了几种VFS的特点和适用场景；
+### 17.6 Using the Linux Tracing Infrastructure
 
-#### 17.5 内核动态分析
+Ref: [Using the Linux Tracing Infrastructure](https://events.static.linuxfound.org/sites/events/files/slides/praesentation_0.pdf)
 
-[Using the Linux Tracing Infrastructure](https://events.static.linuxfound.org/sites/events/files/slides/praesentation_0.pdf)：这里描述了内核跟踪的一些基础设施；
+#### Overview
 
+##### Kerneltracing: Overview
 
+* DebugFS / TraceFS interface
+* Event Tracing
+* Custom trace events
+* Different tracers: function, function_graph, wakeup, wakeup_rt, ...
+* Graphical frontend(s) available
+
+##### Kerneltracing: Overview
+
+![trace-overview](figs/trace-overview.png)
+
+##### Event tracing
+
+ * Pre-defined Events in the kernel
+ * Event groups
+ * Each event comes with several options
+ * Filtering based on event options
+
+##### Step by Step for Event tracing
+
+* Enable events
+* Record a trace
+* Analyze a trace
+* Trace event format and filters
+  * Each trace event has a specific format and parameters.
+  * Put a filter on those parameters for recording a trace.
+
+##### Tracing on multicore
+
+ * One ringbuffer per cpu
+ * Trace contains ALL events
+ * The per_cpu directory contains a trace for each cpu
+ * tracing_cpumask can limit tracing to specific cores
+
+#### Tracers
+
+##### Tracers
+
+Available_tracers contains the tracers which are enabled in the kernel configuration.
+ * function: Can turn all functions into trace events function_graph: Similiar to function, but contains a call graph
+ * wakeup / wakeup_rt: Measure the wakeup time for tasks / rt tasks
+ * irqsoff: useful for latency hunting. Identifies long sections with IRQs turned off
+ *  ...
+
+##### trace_printk()
+
+* trace_printk() can be used to write messages to the tracing ring buffer
+* Usage is similar to printk()
+
+##### Tracing related kernel parameters
+
+* Set and start specified tracer as early as possible.
+* Dump the tracing ring buffer if an Oops occurs. Using orig_cpu it will only dump the buffer of the CPU which triggered the Oops.
+* Only trace specific functions.
+* Don't trace specific functions.
+* Just enable trace events (comma separated list)
+
+##### Dynamic kernel tracepoints: KPROBES
+
+* Similar to Tracepoints
+* Can be added / removed dynamically
+* KPROBES for custom modules
+  * tracepoint for the function hello_init
+
+##### Dynamic Userspace Tracepoints: uprobes
+
+* Similar to kprobes
+* For userspace applications
+* A uprobe event is set on a specific offset in a userland process
+* Powerful method to correlate your kernel and userland events!
+
+#### Graphical Front-end for Tracing Infrastructure
+
+##### trace-cmd
+
+* trace-cmd is a commandline utility for controlling and analysing kernel traces.
+* trace-cmd record generates a file called trace.dat. This can be overridden by the -o option
+* trace-cmd report uses the -i option for specifying an input file
+* Recording traces via network
+
+##### Kernelshark: A graphical front-end
+
+![trace-kernelshark](figs/trace-kernelshark.png)
+
+##### Tracecompass
+
+ * Uses the Common Trace Format (CTF)
+ * perf can convert traces to CTF
+ * perf uses libbabeltrace for the convertion
+ * A recent version of libbabeltrace is needed
+
+##### Tracecompass
+
+![trace-tracecompass](figs/trace-tracecompass.png)
