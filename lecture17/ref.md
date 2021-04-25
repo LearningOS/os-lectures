@@ -2,7 +2,8 @@
 
 * [v1](https://github.com/LearningOS/os-lectures/blob/ded5de1d168c7ed7bbf6845129a1455ccdaac432/lecture17/ref.md)：2020年的第十七讲大纲
 * [v2](https://github.com/LearningOS/os-lectures/blob/ab62be1d45ca15ee6aeab1ec049e99b1ec6ae1ae/lecture17/ref.md)：2021年第十七讲大纲第一稿
-* [v3]
+* [v3](https://github.com/LearningOS/os-lectures/blob/aa2d7a17df4e07bb0aa2bb20f23d8c016b2329e6/lecture17/ref.md)：加了插图的大纲
+* [v4]
 
 ### 17.1 目录与文件别名
 
