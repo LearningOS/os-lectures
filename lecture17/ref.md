@@ -74,71 +74,12 @@ Each object contains operations object with methods
     * [super_operations](https://elixir.bootlin.com/linux/v4.18.16/source/include/linux/fs.h#L1824)
  * Created and initialized via alloc_super()
 
-###### [super_operations](https://elixir.bootlin.com/linux/v4.18.16/source/include/linux/fs.h#L1824)
-
-Inode:
-
-struct inode * alloc_inode(struct super_block *sb)
-void destroy_inode(struct inode *inode)
-void dirty_inode(struct inode *inode)
-void write_inode(struct inode *inode, int wait)
-void drop_inode(struct inode *inode)
-void delete_inode(struct inode *inode)
-void clear_inode(struct inode *inode)
-
-Superblock:
-
-void put_super(struct super_block *sb)
-void write_super(struct super_block *sb)
-int sync_fs(struct super_block *sb, int wait)
-int remount_fs(struct super_block *sb, int *flags, char *data)
-void umount_begin(struct super_block *sb)
-
 ##### Inode Object
 
 * Represents all the information needed to manipulate a file or directory
 * Constructed in memory, regardless of how file system stores metadata information
 * [Inode Object Struct](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L610)
 * [inode_operations](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1862)
-
-###### [Inode Object Struct](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L610)
-```
-unsigned long i_ino; 		/* inode number */
-atomic_t i_count; 		/* reference counter */
-unsigned int i_nlink; 		/* number of hard links */
-uid_t i_uid; 			/* user id of owner */
-gid_t i_gid; 			/* group id of owner */
-loff_t i_size; 			/* file size in bytes */
-
-struct timespec i_atime; 	/* last access time */
-struct timespec i_mtime; 	/* last modify time */
-struct timespec i_ctime; 	/* last change time */
-umode_t i_mode; 			/* access permissions */
-
-spinlock_t i_lock; 		/* spinlock */
-struct semaphore i_sem; 		/* inode semaphore */
-struct file_operations *i_fop; 	/* default inode ops */
-struct super_block *i_sb; 	/* associated superblock */
-```
-
-###### [inode_operations](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1862)
-
-int create(struct inode *dir, struct dentry *dentry, int mode)
-struct dentry * lookup(struct inode *dir, struct dentry *dentry)
-int link(struct dentry *old_dentry, struct inode *dir, struct dentry *dentry)
-int unlink(struct inode *dir, struct dentry *dentry)
-int symlink(struct inode *dir, struct dentry *dentry, const char *symname)
-
-Directory functions e.g. mkdir() and rmdir()
-int mkdir(struct inode *dir, struct dentry *dentry, int mode)
-int rmdir(struct inode *dir, struct dentry *dentry)
-int mknod(struct inode *dir, struct dentry *dentry, int mode, dev_t rdev)
-void truncate(struct inode *inode)
-int permission(struct inode *inode, int mask)
-
-Regular file attribute functions
-int setattr(struct dentry *dentry, struct iattr *attr)
-int getattr(struct vfsmount *mnt, struct dentry *dentry, struct kstat *stat)
 
 ##### Dentry Object
 
@@ -155,33 +96,6 @@ Valid dentry object can be in one of 3 states:
  * Unused
  * Negative
 
-###### Used dentry state
-
-* Corresponds to a valid inode
-  * d_inode points to an associated inode
-* One or more users of the object	
-  * d_count is positive
-* Dentry is in use by VFS and cannot be discarded
-
-###### Unused dentry state
-
-* Corresponds to a valid inode
-  * d_inode points to an associated inode
-* Zero users of the object	
-  * d_count is zero
-* Since dentry points to valid object, it is cached
-  * Quicker for pathname lookups
-  * Can be discarded if necessary to reclaim more memory
-
-###### Negative dentry state
-
-* Not associated to a valid inode
-  * d_inode points to NULL
-* Two reasons
-  * Program tries to open file that does not exist
-  * Inode of file was deleted
-* May be cached
-
 ##### Dentry Cache
 
  * Dentry objects stored in a dcache
@@ -197,6 +111,8 @@ Valid dentry object can be in one of 3 states:
  * Represented by struct file and defined in <linux/fs.h>
    * struct [file](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L915)
    * struct [file_operations](https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h#L1820)
+
+#### Implementing Your Own File System
 
 ##### Implementing Your Own File System
 
@@ -266,15 +182,13 @@ cat /proc/sys/net/ipv4/ip_forward
 1
 ```
 
-##### [Linux 文件系统：procfs, sysfs, debugfs](https://www.cnblogs.com/qiuheng/p/5761877.html)
+##### [procfs, sysfs, debugfs in Linux](https://www.cnblogs.com/qiuheng/p/5761877.html)
 
  * procfs 历史最早，最初就是用来跟内核交互的唯一方式，用来获取处理器、内存、设备驱动、进程等各种信息。
  * sysfs 跟 kobject 框架紧密联系，而 kobject 是为设备驱动模型而存在的，所以 sysfs 是为设备驱动服务的。
  * debugfs 从名字来看就是为debug而生，所以更加灵活。
 
 ### 17.6 Using the Linux Tracing Infrastructure
-
-Ref: [Using the Linux Tracing Infrastructure](https://events.static.linuxfound.org/sites/events/files/slides/praesentation_0.pdf)
 
 #### Overview
 
