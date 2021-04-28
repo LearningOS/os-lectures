@@ -31,6 +31,7 @@ Ref:
     \begin{itemize}
         \item Richard McDougall, Jim Mauro, Solaris Internals:Solaris 10 and OpenSolaris Kernel Architecture, 2nd Edition, Prentice Hall, July 10, 2006, ISBN 0-13-148209-2
         \item \href{http://pages.cs.wisc.edu/~remzi/OSTEP/Citations/zfs_last.pdf}{ZFS: The Last Word in File Systems}
+        \item \href{https://papers.freebsd.org/2020/linux.conf.au/paeps\_The_ZFS\_filesystem.files/paeps\_The\_ZFS\_filesystem.pdf}{The ZFS filesystem}
     \end{itemize}
 
 \end{frame}
@@ -254,12 +255,41 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{ZFL (ZFS POSIX Layer)}
+    \frametitle{ZPL (ZFS POSIX Layer)}
 %    \framesubtitle{xxxx}
+
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.5\textwidth} % Left column and width
+
     \begin{figure}
     \includegraphics[width=0.75\linewidth]{figs/ZFS-zpl.png}
   % \caption{xxxx}
     \end{figure}  
+
+\column{.5\textwidth} % Right column and width
+
+    \begin{itemize}
+        \item ZPL (ZFS POSIX Layer)
+      \begin{itemize}
+          \item Provides POSIX APIs
+      \end{itemize}
+
+        \item ZVOL (ZFS Emulated Volume)
+      \begin{itemize}
+          \item Presents raw device interface
+          \item Backed up the storage pool
+      \end{itemize}
+
+        \item /dev/zfs
+      \begin{itemize}
+          \item libzfs communicates with the kernel module through this device
+      \end{itemize}
+
+    \end{itemize}
+
+\end{columns}
+
 \end{frame}
 %----------------------------------------------
 % ##### ZFL (ZFS POSIX Layer)
@@ -275,10 +305,47 @@ Ref:
 \begin{frame}[fragile]
     \frametitle{DMU (Data Management Unit)}
 %    \framesubtitle{xxxx}
+
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.45\textwidth} % Left column and width
+
     \begin{figure}
-    \includegraphics[width=0.75\linewidth]{figs/ZFS-dmu.png}
+    \includegraphics[width=0.85\linewidth]{figs/ZFS-dmu.png}
   % \caption{xxxx}
     \end{figure}
+
+\column{.6\textwidth} % Right column and width
+
+    \begin{itemize}
+        \item ZIL (ZFS Intent Log)
+
+        \item ZAP (ZFS Attribute Processor)
+      \begin{itemize}
+          \item Manages {name, value} pairs
+          \item e.g., directories
+      \end{itemize}
+
+        \item DMU (Data Management Unit)
+      \begin{itemize}
+          \item Foundation of ZFS
+          \item Provides a transactional object model
+      \end{itemize}
+
+        \item DSL (Dataset and Snapshot Layer)
+      \begin{itemize}
+          \item Manages file system instances and their snapshots and clones
+      \end{itemize}
+
+        \item Traversal
+      \begin{itemize}
+          \item Walks all metadata and data 
+          \item Usually for scrubbing
+      \end{itemize}
+    \end{itemize}
+
+\end{columns}
+
 \end{frame}
 %----------------------------------------------
 % ##### DMU (Data Management Unit)
@@ -290,6 +357,49 @@ Ref:
 % 	\end{figure}
 % ![ZFS-dmu](figs/ZFS-dmu.png)
 % 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Pooled Storage Layer}
+%    \framesubtitle{xxxx}
+
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.45\textwidth} % Left column and width
+
+    \begin{figure}
+    \includegraphics[width=0.9\linewidth]{figs/ZFS-storage-pool.png}
+  % \caption{xxxx}
+    \end{figure}
+
+\column{.6\textwidth} % Right column and width
+
+      \begin{itemize}
+          \item ARC (Adaptive Replacement Cache)
+        \begin{itemize}
+            \item ZFS’s private page cache
+        \end{itemize}
+  
+          \item ZIO (ZFS I/O Pipeline)
+        \begin{itemize}
+            \item I/O Path between page cache and disks
+            \item Where checksumming occurs
+        \end{itemize}
+  
+          \item VDEV (Virtual Devices)
+  
+          \item Configuration
+        \begin{itemize}
+            \item Manages vdevs
+        \end{itemize}
+  
+          \item LDI (Layered Driver Interface) 
+        \begin{itemize}
+            \item Performs physical disk I/O
+        \end{itemize}
+      \end{itemize}
+
+    \end{columns}
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{ARC (Adaptive Replacement Cache)}
