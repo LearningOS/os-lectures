@@ -34,6 +34,12 @@
 %----------------------------------------------
 %\subsection{EXT4 } % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+%------------------------------------------------
+\subsection{历史}
 \begin{frame}[plain]
     \frametitle{历史}
 %    \framesubtitle{xxxx}
@@ -41,7 +47,7 @@
 
 	\frametitle{ }
 	\begin{columns}
-		\begin{column}{.5\textwidth}
+		\begin{column}{.45\textwidth}
 	    \includegraphics[width=0.6\textwidth]{minix}
 	    \includegraphics[width=0.8\textwidth]{ext-fs-layout}
 	    \includegraphics[width=0.6\textwidth]{ext2-3-4}
@@ -50,9 +56,8 @@
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
-		把
 		  	\begin{block}{Linux文件系统历史}
-		  	尽管EXT[1-4]文件系统家族是为Linux编写的，但它的根源是Minix操作系统和Minix文件系统，它们早于Linux大约五年，于1987年首次发布。如果我们回顾一下EXT文件系统家族历史和技术从其Minix根源的演变，了解EXT4文件系统要容易得多。
+		  	EXT[1-4]文件系统家族是为Linux编写的。但它来源于1987年首次发布的Minix操作系统和Minix文件系统。从Minix开始回顾EXT文件系统家族历史和技术，更容易了解EXT4文件系统。
 		  \end{block}
 
 		\end{column}
@@ -66,7 +71,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{历史}
+	\frametitle{历史：MINIX FS}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	
@@ -77,11 +82,11 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			\includegraphics[width=0.8\textwidth]{ext-fs-layout}
 	
 			\begin{itemize}
-				\item Linus Torvalds刚开始编写Linux内核时，他需要一个文件系统，但是不想编写一个文件系统。
+				\item Linus Torvalds开始编写Linux内核时就需要一个文件系统。
 				\item 拿来主义：直接采用Andrew S. Tanenbaum编写Minix文件系统
 			\end{itemize}
 		
-		\end{column}
+		\end{column} \pause
 		
 		\begin{column}{.6\textwidth}			
 			\includegraphics[width=1.\textwidth]{minix-layout}
@@ -102,7 +107,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{历史}
+	\frametitle{历史：MINIX FS}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	
@@ -127,7 +132,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 %				\item 超级块：每个分区中的第一个块是一个超级块，其中包含元数据，该元数据定义了其他文件系统结构，并将它们定位在分配给该分区的物理磁盘上。
 				\item 索引节点区位图：表明哪些索引节点已使用和哪些索引节点空闲。
 				\item 索引节点区：它在磁盘上有自己的空间。每个inode包含有关一个文件的信息，包括数据块的位置，即属于该文件的区域。
-				\item 数据区位图：来跟踪使用和免费的数据区。
+				\item 数据区位图：来跟踪使用和空闲的数据区。
 				\item 数据区：保存实际存储数据。
 			\end{itemize}
 			
@@ -139,18 +144,20 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{历史}
+	\frametitle{历史：EXT FS}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	
 	\frametitle{ }
 	\begin{columns}[t]
-		\begin{column}{.3\textwidth}
+		\begin{column}{.35\textwidth}
 
 			\includegraphics[width=0.5\textwidth]{ext2-3-4}
 %			\includegraphics[width=0.4\textwidth]{ext4-logo}
 			\begin{itemize}
-				\item 最初的EXT文件系统（扩展）由RémyCard编写，并于1992年随Linux发行，以克服Minix文件系统的某些大小限制。
+				\item 最初的EXT文件系统（扩展）由RémyCard编写
+				\item 1992年随Linux发行
+				\item 克服Minix文件系统的某些大小限制
 				
 			\end{itemize}
 			
@@ -159,7 +166,8 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 		\begin{column}{.7\textwidth}			
 			EXT FS
 			\begin{itemize}
-				\item 主要的结构更改是基于Unix文件系统（UFS）（也称为Berkeley快速文件系统（FFS））的文件系统的元数据。很少有关于EXT文件系统的公开信息可以验证，显然是因为它存在重大问题，并很快被EXT2文件系统所取代。
+				\item 主要的结构更改是基于Unix文件系统（UFS）（也称为Berkeley快速文件系统（FFS））的文件系统的元数据。
+				\item 因为存在重大问题，很快被EXT2文件系统所取代，也很少有关于EXT文件系统的公开信息
 			\end{itemize}
 			
 		\end{column}
@@ -170,7 +178,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{历史}
+	\frametitle{历史：EXT2}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	
@@ -181,7 +189,9 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			\includegraphics[width=0.5\textwidth]{ext2-3-4}
 			%			\includegraphics[width=0.4\textwidth]{ext4-logo}
 			\begin{itemize}
-				\item EXT2文件系统具有与EXT文件系统基本相同的元数据结构，稳定可靠性有很大提升，被广泛使用于Linux的早期版本。
+				\item EXT2文件系统具有与EXT基本相同的元数据结构
+				\item 稳定可靠性有很大提升
+				\item 被广泛使用于Linux的早期版本。
 				
 			\end{itemize}
 			
@@ -191,9 +201,9 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			EXT2 FS
 			\includegraphics[width=1.\textwidth]{ext2-layout}
 			\begin{itemize}
-				\item 在一个目录下的文件存储在同一个block group中
-				\item 位于不同目录下的文件分布在不同的block group中
-				\item 在突然掉电或机器死机后，文件系统恢复正常要花费很长时间
+				\item 同一目录的文件存储在同一个block group中
+				\item 不同目录的文件分布在不同的block group中
+				\item 掉电或死机后，文件系统恢复正常要花费很长时间
 			\end{itemize}
 			
 		\end{column}
@@ -205,7 +215,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{历史}
+	\frametitle{历史：EXT3}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	
@@ -216,7 +226,9 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			\includegraphics[width=0.5\textwidth]{ext2-3-4}
 			%			\includegraphics[width=0.4\textwidth]{ext4-logo}
 			\begin{itemize}
-				\item EXT3的唯一目标是克服花费大量时间恢复异常文件系统的时间。EXT3文件系统增加了journal机制，它预先记录了将对文件系统执行的更改。其余磁盘结构与EXT2中的相同。
+				\item 目标:减少异常文件系统的恢复时间
+				\item EXT3文件系统增加了journal机制，预先记录将对文件系统执行的更改。
+				\item 其余磁盘结构与EXT2中的相同。
 				
 			\end{itemize}
 			
@@ -234,7 +246,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{历史}
+	\frametitle{历史：EXT4}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	
@@ -245,7 +257,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			\includegraphics[width=0.5\textwidth]{ext4-logo}
 			%			\includegraphics[width=0.4\textwidth]{ext4-logo}
 			\begin{itemize}
-				\item EXT4文件系统主要进一步改善了性能，可靠性和大容量支持
+				\item EXT4文件系统进一步改善了性能，可靠性和大容量支持
 				
 			\end{itemize}
 			
@@ -254,9 +266,9 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 		\begin{column}{.7\textwidth}			
 			EXT4 FS
 			\begin{itemize}
-				\item 为了提高可靠性，添加了元数据和日志校验和。
-				\item 了满足各种关键任务要求，文件系统时间戳得到了改进，增加了纳秒精度时间间隔。
-				\item 为提高容量和访问大容量文件的性能，把数据分配从固定块更改为扩展区
+				\item 可靠性：添加了元数据和日志校验和
+				\item 文件系统时间戳：为满足关键任务要求，改进了文件系统时间戳，增加了纳秒精度时间间隔
+				\item 性能：为提高容量和大容量文件访问性能，把数据分配从固定块更改为扩展区
 			\end{itemize}
 			
 		\end{column}
@@ -267,11 +279,11 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{历史}
+	\frametitle{历史：EXT4}
 	%    \framesubtitle{xxxx}
 	%% figure
 	\begin{figure}
-		\includegraphics[width=1.0\linewidth]{linux-allfs}
+		\includegraphics[width=0.93\linewidth]{linux-allfs}
 		% \caption{xxxx}
 	\end{figure}
 
@@ -280,6 +292,12 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 
 %----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+%------------------------------------------------
+\subsection{支持大容量存储}
 \begin{frame}[fragile]
 	\frametitle{细节 -- 支持大容量存储}
 	%    \framesubtitle{xxxx}
@@ -303,7 +321,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			\includegraphics[width=.8\textwidth]{avatar}
 			\begin{itemize}
 				\item 一部蓝光 8K 3D电影，512GB～1TB
-				\item 1EB 文件系统大小，16TB 文件大小，子目录个数无限制
+				\item 1EB($2^{60}$) 文件系统大小，16TB 文件大小，子目录个数无限制
 			\end{itemize}
 			
 		\end{column}
@@ -318,7 +336,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	\centering
-    \includegraphics[width=.7\textwidth]{ext2-3-indirect-block}
+    \includegraphics[width=.68\textwidth]{ext2-3-indirect-block}
 	
 \end{frame}
 
@@ -380,6 +398,12 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 
 %----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+%------------------------------------------------
+\subsection{支持异常恢复}
 \begin{frame}[fragile]
 	\frametitle{细节 -- 支持恢复异常}
 	%    \framesubtitle{xxxx}
@@ -525,7 +549,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			\begin{itemize}
 				\item 从数据库管理系统的世界中窃取一个想法
 				\item 最早（1987）在Cedar文件系统中出现
-				\item 出现在EXT3/4，JFS，XFS，NTFS等
+				\item 在EXT3/4，JFS，XFS，NTFS等应用
 			\end{itemize}
 			\pause
 			基本思路
@@ -576,46 +600,6 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 	\end{columns}
 	
 \end{frame}
-
-%----------------------------------------------
-\begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
-	%    \framesubtitle{xxxx}
-	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
-	%		\centering
-	%	\Large
-	\begin{columns}
-		\begin{column}{.5\textwidth}
-			EXT4: 恢复异常文件系统 for crash-consistency problem
-			
-			\centering
-			\includegraphics[width=1.\textwidth]{ext3-journal}
-			\includegraphics[width=1.\textwidth]{crash-ex-ver2}
-			
-			\includegraphics[width=1.\textwidth]{ext3-journal-struct}	
-		\end{column}
-		%		\pause
-		\begin{column}{.5\textwidth}			
-		   方法2 ： Data Journaling
-			\begin{itemize}
-				\item TxB:transaction 开始
-				\item TxE:transaction 结束
-				\item logical logging:中间3块数据
-			\end{itemize}
-			\pause
-			上述transaction写到磁盘上后,更新磁盘，覆盖相关结构(checkpoint)
-			\begin{itemize}	
-				\item I[V2]
-				\item B[v2]
-				\item Db
-			\end{itemize}
-			
-		\end{column}
-	\end{columns}
-	
-\end{frame}
-
-
 %----------------------------------------------
 \begin{frame}[fragile]
 	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
