@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第18讲]{第十八讲 ：文件系统实例} % The short title appears at thse bottom of every slide, the full title is only on the title page
-\subtitle{第1节：FAT文件系统}
+\subtitle{第1节：系统可靠性概述}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -26,25 +26,179 @@
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
+\begin{figure}
+\includegraphics[width=0.2\linewidth]{figs/ha.jpg}
+\includegraphics[width=0.37\linewidth]{figs/ft.jpg}
+\includegraphics[width=0.34\linewidth]{figs/dr.jpg}
+\end{figure}
 \end{frame}
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
-\section{第1节：FAT文件系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第1节：系统可靠性概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{FAT Volume} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{高可用（High Availability，HA）} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{File Allocation Table (FAT) Volume}
+    \frametitle{高可用（High Availability，HA）}
 %    \framesubtitle{xxxx}
 %% itemize
 \begin{itemize}
-    \item A simple file system originally {\color{red}designed for small disks and simple folder structures}.  \pause
-    \item The FAT file system is named for its method of organization, the {\color{red}file allocation table}, which resides at the beginning of the volume.
-    \item To protect the volume, two copies of the table are kept, in case one becomes damaged. \pause
-    \item {\color{red}The file allocation tables and the root folder must be stored in a fixed location} so that the files needed to start the system can be correctly located.
+    \item 高可用目的：当系统发生故障时，实现快速恢复 \pause
+    \item 高可用指标
+\begin{itemize}
+    \item 4个9: 99.99\%时间可服务，即不可服务时间365*24*60*0.01\%=52.56分钟
+    \item 5个9: 99.999\%时间可服务，即不可服务时间365*24*60*0.001\%=5.256分钟
+    \item 6个9: 99.9999\%时间可服务，不可服务时间365*24*60*0.0001\%=0.5256分钟
+\end{itemize} \pause
+    \item 高可用实现手段: 
+ \begin{itemize}
+    \item 硬件冗余：多台机器备份、故障自检测；纠错码
+    \item 软件冗余：多套软件备份：主备，两地三中心，跨城市多活
+    \item 自监控、自诊断技术
+    \item 恢复设计方案
+\end{itemize} 
 \end{itemize}
 \end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{可用性 Availability  vs 可靠性 Reliability}
+%    \framesubtitle{xxxx}
+%% itemize
+\begin{itemize}
+    \item 可靠性：在规格允许条件下，系统执行能力。例如网络故障，系统不出现故障。
+   \begin{itemize}
+    \item 可靠性是指系统可以无故障地持续运行，是一个持续的状态
+    \item 如果一个系统从来不崩溃，但是每年要停机两星期，那么它是高度可靠的，但是可用性只有96\%。
+   \end{itemize}
+   \item 可用性：软件系统在投入使用时，实现其指定系统功能的概率
+\begin{itemize}
+    \item 在任何给定的时刻都能工作
+    \item 如果系统在每小时崩溃1ms，那么它的可用性就超过99.9999\%，但它高度不可靠
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{高可靠性指标}
+%    \framesubtitle{xxxx}
+%% itemize
+\begin{itemize}
+    \item 平均无故障时间（Mean Time To failures,MTTF） 
+\begin{itemize}
+    \item 指系统无故障运行的平均时间
+    \item 计算方法是：总的正常运行时间/故障次数
+    \item 该值越大，表示系统的可靠性越高
+\end{itemize} \pause
+    \item 平均修复时间(Mean Time To Repair，MTTR) 
+ \begin{itemize}
+    \item 系统从发生故障到维修结束之间的时间段的平均值
+    \item 计算方法是：总的故障时间/故障次数
+    \item 该值越小，表示易恢复性越好
+\end{itemize}  \pause
+ \item 平均失效间隔(Mean Time Between Failure，MTBF) 
+ \begin{itemize}
+    \item 系统周期性运行至故障和故障处理的全程时间段的平均值
+    \item 计算方法是：系统运行至故障处理全程时间/故障次数来表示
+    \item 该值越大，可靠性越高，正确工作能力越强
+\end{itemize}  
+\end{itemize}
+\end{frame}
+
+
+
+
+
+\subsection{容错（Fault Tolerant，FT）} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{容错（Fault Tolerant，FT）}
+%    \framesubtitle{xxxx}
+%% itemize
+\begin{itemize}
+    \item 容错目的：当系统发生故障时，仍可以继续运行，做到零宕机时间。但运行水平可能有所下降（例如只读、最小服务模式） \pause
+    \item 容错方法: 
+ \begin{itemize}
+    \item 故障检测，故障诊断，故障恢复
+    \item 冗余设计
+    \item 检查点技术checkpoint（从上次检查点恢复）
+\end{itemize}  
+\end{itemize}
+\end{frame}
+
+
+
+\subsection{容灾（Disaster Recovery，DR）} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{容灾（Disaster Recovery，DR）}
+%    \framesubtitle{xxxx}
+%% itemize
+\begin{itemize}
+    \item 容灾目的：当系统发生重大灾难时，按照恢复计划挽救数据、恢复业务，力争业务不被中断 \pause
+    \item 容灾指标: 
+ \begin{itemize}
+    \item RPO(Recovery Point Objective）：恢复数据的时间点和最新数据的时间点之间的差值；RPO=0意味数据无丢失
+    \item RTO (Recovery Time Objective）：从服务停止到服务恢复所需时间；RTO=0意味无宕机时间
+    \item 完美系统希望RPO=0，RTO=0
+\end{itemize}  \pause
+   \item 容灾方法：
+ \begin{itemize}
+    \item 备份恢复：定期备份数据，根据数据恢复
+    \item 冗余设计：多副本，全球多副本
+\end{itemize} 
+\end{itemize}
+\end{frame}
+
+
+\subsection{高可靠系统设计思路} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{高可靠系统设计思路}
+\begin{itemize}
+    \item 冗余设计（软件、硬件、带宽冗余）
+    \item 快速恢复设计（无状态设计）
+    \item 容错、灾备
+    \item 隔离（进程、状态、租户）
+    \item 过载保护（限流、熔断、有损服务）
+    \item 错误重试策略，避免流量风暴
+    \item 去关键路径、去中心化、避免单点故障
+    \item 负载均衡（load balance）
+    \item 看门狗设计
+    \item 安全编码
+\end{itemize} 
+\end{frame}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\iffalse
 %----------------------------------------------
 % ###   18.1  File Allocation Table (FAT)
 % 
@@ -270,6 +424,8 @@
 
     Figure shows all of the folder entries for the file {\color{red}Thequi～1.fox}, which has a long name of {\color{red}The quick brown.fox}. The long name is in Unicode, so each character in the name uses two bytes in the folder entry. The {\color{red}attribute field} for the long name entries has the value {\color{red}0x0F}. The attribute field for the short name is {\color{red}0x20}.
 \end{frame}
+
+\fi
 %----------------------------------------------
 % ##### Folder Entries for the long filename
 % 
@@ -282,4 +438,3 @@
 %   \end{figure}
 % ![FAT-filename](figs/FAT-filename.png)
 %----------------------------------------------
-\end{document}
