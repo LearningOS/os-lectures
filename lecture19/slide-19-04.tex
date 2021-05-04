@@ -5,8 +5,8 @@
 %----------------------------------------------------------------------------------------
 
 \title[第19讲]{第十九讲 ：I/O子系统} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第5节：Linux I/O子系统}
-\author{向勇、陈渝} % Your name
+\subtitle{第4节：RISC-V Interrupts}
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
   清华大学计算机系 \\ % Your institution for the title page
@@ -29,26 +29,33 @@
 %% itemize
 Ref:
     \begin{itemize}
-        \item \href{http://osq.cs.berkeley.edu/public/JFoster-Drivers.ppt}{Linux Device Drivers Overview}
-        \item \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf}{Understanding the Linux Kernel}
+        \item \href{https://riscv.org/wp-content/uploads/2016/07/Tue0900_RISCV-20160712-InterruptsV2.pdf}{RISCV-Interrupt  by Krste Asanović}
     \end{itemize}
 
 \end{frame}
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
-\section{第5节：Linux I/O子系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第4节：RISC-V Interrupts} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{Linux I/O Architecture} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%\subsection{Linux I/O Architecture} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Linux I/O Architecture}
+    \frametitle{RISC‐V Interrupt Design Goals}
 %    \framesubtitle{xxxx}
+    \begin{itemize}
+    \item Simplicity
+    \item Support	 all	 kinds	 of	 platforms	 from	 microcontrollers	  
+    to	 virtualized	 servers
+    \item Enable	 tradeoffs	 between	 performance	 and	  
+    implementation	 cost	  
+    \item Flexibility	 to	 support	 specialized	 needs	      
+\end{itemize}
 %% figure
-    \begin{figure}
-    \includegraphics[width=0.57\linewidth]{figs/io-architecture.png}
-  %  \caption{xxxx}
-    \end{figure}
+%    \begin{figure}
+%    \includegraphics[width=0.3\linewidth]{figs/io-architecture.png}
+%  %  \caption{xxxx}
+%    \end{figure}
 \end{frame}
 %----------------------------------------------
 % #### Linux I/O Architecture
@@ -59,13 +66,26 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Block Driver}
+    \frametitle{Categorizing	 Sources	 of	 RISC‐V	 Interrupts	 }
 %    \framesubtitle{xxxx}
+Local	 Interrupts	  
+    \begin{itemize}
+    \item  Directly	connected	 to	 one	 hart	
+    \item  No	 arbitration	 between	 harts	 to	 service	
+    \item Determine	 source	 directly	 through	 xcause	 CSR	  
+    \item  Only	 two	 standard	 local	 interrupts	 (software,	 timer)	      
+\end{itemize}
+Global	 (External)	 Interrupts	  
+    \begin{itemize}
+    \item  Routed	 via	 Platform‐Level	 Interrupt	 Controller	 (PLIC)	
+    \item  PLIC	 arbitrates	 between	 multiple	 harts	 claiming	 interrupt	
+    \item Read	 of	 memory‐mapped	 register	 returns	 source    
+\end{itemize}
 %% figure
-    \begin{figure}
-    \includegraphics[width=0.47\linewidth]{figs/block-driver.png}
-  %  \caption{xxxx}
-    \end{figure}
+%    \begin{figure}
+%    \includegraphics[width=0.47\linewidth]{figs/block-driver.png}
+%  %  \caption{xxxx}
+%    \end{figure}
 \end{frame}
 %----------------------------------------------
 % ##### Block Driver
@@ -74,11 +94,15 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Network Driver}
+    \frametitle{machine interrupt pending CSR - mip}
 %    \framesubtitle{xxxx}
+    \begin{itemize}
+    \item  mip reflects pending status of interrupts for hart
+    \item  separate interrupts for each supported privilege level(M/H/S/U)	  
+\end{itemize}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.42\linewidth]{figs/network-driver.png}
+    \includegraphics[width=1.\linewidth]{rv-mip.png}
   %  \caption{xxxx}
     \end{figure}
 \end{frame}
@@ -91,207 +115,145 @@ Ref:
 \subsection{Device Driver} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Device Driver interface}
+    \frametitle{PlaCorm-­‐Level	 Interrupt	 Controller	 (PLIC)	 }
 %    \framesubtitle{xxxx}
 %% figure
     \begin{figure}
-    \includegraphics[width=0.9\linewidth]{figs/driver-interface.png}
+    \includegraphics[width=0.7\linewidth]{figs/rv-plic.png}
   %  \caption{xxxx}
     \end{figure}
 \end{frame}
-%----------------------------------------------
-% #### Device Driver
-% 
-% ##### Device Driver interface
-% 
-% ![driver-interface](figs/driver-interface.png)
-% 
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Interface between a Device Driver and Linux Kernel}
-%    \framesubtitle{xxxx}
-%% figure
+    \frametitle{PlaCorm-­‐Level	 Interrupt	 Controller	 (PLIC)	 }
+    %    \framesubtitle{xxxx}
+    %% figure
     \begin{figure}
-    \includegraphics[width=0.65\linewidth]{figs/kernel-interface.png}
-  %  \caption{xxxx}
+        \includegraphics[width=0.6\linewidth]{figs/rv-plic-detail.png}
+        %  \caption{xxxx}
+    \end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{machine interrupt enable CSR - mie}
+    %    \framesubtitle{xxxx}
+    \begin{itemize}
+        \item  mie mirrors layout of mip
+        \item  provides per-interrupt enables	  
+    \end{itemize}
+    %% figure
+    \begin{figure}
+        \includegraphics[width=0.9\linewidth]{rv-mie.png}
+        %  \caption{xxxx}
     \end{figure}
 \end{frame}
 %----------------------------------------------
-% ##### Interface between a Device Driver and Linux Kernel
-% 
-% ![kernel-interface](figs/kernel-interface.png)
-% 
+\begin{frame}[fragile]
+    \frametitle{interrupts in mstatus}
+    %    \framesubtitle{xxxx}
+    \begin{itemize}
+        \item  only take a pending interrupt for privilege mode x if xIE=1 and running in mode x or greater
+        \item  interrupts always disabled for privileges less than current level  
+    \end{itemize}
+    %% figure
+    \begin{figure}
+        \includegraphics[width=1.\linewidth]{rv-mstatus.png}
+        %  \caption{xxxx}
+    \end{figure}
+\end{frame}
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Device Driver Implementation}
-%    \framesubtitle{xxxx}
-Assuming that your device name is xxxx
+    \frametitle{interrupts related CSR}
+    %    \framesubtitle{xxxx}
+    中断相关的控制状态寄存器（CSR）
     \begin{itemize}
-        \item xxxx\_init() initialize the device when OS is booted
-        \item init\_module()
-        \item cleanup\_module() \pause
-        \item xxxx\_open() open a device 
-        \item xxxx\_read() read from kernel memory 
-        \item xxxx\_write() write 
-        \item xxxx\_release() clean-up (close)
+        \item mtvec(Machine Trap Vector)：发生异常时处理器需要跳转到的地址
+        \item mepc(Machine Exception PC)：指向发生中断时的指令
+        \item mie(Machine Interrupt Enable)：处理器目前能处理和必须忽略的中断
+        \item mip(Machine Interrupt Pending)：正准备处理的中断
+        \item mscratch(Machine Scratch)：暂时存放一个字大小的数据
+        \item mcause(Machine Cause)：发生中断的种类
+        \item mstatus(Machine Status)：机器的状态
+        \item mscratch(Machine Scratch)：暂时存放一个字大小的数据
+        \item S模式有异常处理CSR：sepc, stvec, scause, sscratch和sstatus，与M模式的寄存器相对应
     \end{itemize}
+    指令 mret / sret ： 从机器态/内核态返回前一被打断的态，同时将 pc 的值设置为 mepc/sepc
+%    %% figure
+%    \begin{figure}
+%        \includegraphics[width=1.\linewidth]{rv-mstatus.png}
+%        %  \caption{xxxx}
+%    \end{figure}
 \end{frame}
-%----------------------------------------------
-% ##### Device Driver Implementation
-% 
-% Assuming that your device name is xxxx
-%  * xxxx_init() initialize the device when OS is booted
-%  * xxxx_open() open a device 
-%  * xxxx_read() read from kernel memory 
-%  * xxxx_write() write 
-%  * xxxx_release() clean-up (close)
-%  * init_module()
-%  * cleanup_module()
-% 
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Kernel Support Functions}
-%    \framesubtitle{xxxx}
+    \frametitle{M模式中断处理（硬件部分）}
+    %    \framesubtitle{xxxx}
     \begin{itemize}
-        \item I/O ports reservations
-        \begin{itemize}
-            \item request\_region()
-        \end{itemize}
-        \item Interrupt Handler Registration
-        \begin{itemize}
-            \item request\_irq()
-        \end{itemize} \pause
-        \item Memory Allocations   
-        \begin{itemize}
-            \item kmalloc(), vmalloc(), get\_free\_page()
-        \end{itemize} \pause
-        \item Data Transfer between User/Kernel
-        \begin{itemize}
-            \item memcpy\_fromfs()
-        \end{itemize}
+        \item 查看是否允许中断，例：如果 mstatus.MIE = 1，mie[7] = 1，且 mip[7] = 1，则可以处理机器的时钟中断
+        \item 被中断的指令的PC被保存在mepc中，pc被置为mtvec。（对于中断它指向中断处理后应该恢复执行的位置）
+        \item 根据中断来源设置mcause
+        \item 把状态寄存器mstatus中的MIE位置零以禁用中断，并把先前的MIE值保留到MPIE中
+        \item 发生中断前的权限模式保留在mstatus的MPP域中，再把权限模式更改为M
     \end{itemize}
+    %    %% figure
+    %    \begin{figure}
+    %        \includegraphics[width=1.\linewidth]{rv-mstatus.png}
+    %        %  \caption{xxxx}
+    %    \end{figure}
 \end{frame}
-%----------------------------------------------
-% ##### Kernel Support Functions
-% 
-%  * I/O ports reservations
-%     * request_region()
-%  * Memory Allocations   
-%     * kmalloc(), vmalloc(), get_free_page()
-%  * Interrupt Handler Registration
-%     * request_irq()
-%  * Data Transfer between User/Kernel
-%     * memcpy_fromfs()
-% 
-%----------------------------------------------
-\subsection{Device Driver Programming} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{API requirements}
-%    \framesubtitle{xxxx}
+    \frametitle{有S模式的异常处理}
+    %    \framesubtitle{xxxx}
     \begin{itemize}
-        \item Driver functions return positive ints on success, negative ints on failure
-        \item Kernel won’t call non-blocking I/O functions if previous request still pending
-        \item Every kernel function that calls kmalloc() should be reentrant \pause
-        \item Common Mistakes
-        \begin{itemize}
-            \item Locking, Interrupt time, resource allocation
-        \end{itemize}
+        \item 默认情况下，所有产生的中断都使得控制权移交到M模式的异常处理程序
+        \item M模式的中断处理例程可以将中断重新导向S模式，但是这些额外的操作会减慢中断的处理速度
+        \item RISC-V提供一种中断委托机制，通过该机制可以选择性地将中断交给 S 模式处理，而完全绕过 M 模式
     \end{itemize}
+    %    %% figure
+    %    \begin{figure}
+    %        \includegraphics[width=1.\linewidth]{rv-mstatus.png}
+    %        %  \caption{xxxx}
+    %    \end{figure}
 \end{frame}
-%----------------------------------------------
-% #### Device Driver Programming
-% 
-% ##### API requirements
-% 
-% ref: JFoster-Drivers.ppt - Page 4
-% 
-%  * Driver functions return positive ints on success, negative ints on failure
-%  * Kernel won’t call non-blocking I/O functions if previous request still pending
-%  * Every kernel function that calls kmalloc (GFP_KERNEL) should be reentrant
-%  * Common Mistakes
-%     * Locking, Interrupt time, resource allocation
-% 
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Locking}
-%    \framesubtitle{xxxx}
+    \frametitle{中断委托寄存器}
+    %    \framesubtitle{xxxx}
     \begin{itemize}
-        \item Four kinds of locks in kernel
-        \begin{itemize}
-            \item Spin locks and read-write locks
-            \item Interrupt enable/disable
-            \begin{itemize}
-                \item Sometimes combined, e.g., spin\_lock\_irq
-            \end{itemize}
-            \item Whole kernel lock
-        \end{itemize} \pause
-        \item Locks are used all over the place
-        \begin{itemize}
-            \item Are they used correctly?  consistently?
-        \end{itemize}
+        \item mideleg (Machine Interrupt Delegation）CSR控制将哪些中断委托给S模式处理
+        \item 例如mideleg[5]对应于S模式的时钟中断，如果把它置位，S模式的时钟中断将会移交S模式的中断处理例程，而不是M模式的中断处理例程
+        \item 委托给S模式的任何中断都可以被S模式的软件设置为屏蔽。sie(Supervisor Interrupt Enable)和sip（Supervisor Interrupt Pending）CSR是S模式的控制状态寄存器，是mie和mip的子集。这两个寄存器和M模式下有相同的布局。sie和sip中只有与由mideleg委托的中断对应的位才能读写，没有委派的中断对应位总是0
     \end{itemize}
+    %    %% figure
+    %    \begin{figure}
+    %        \includegraphics[width=1.\linewidth]{rv-mstatus.png}
+    %        %  \caption{xxxx}
+    %    \end{figure}
 \end{frame}
-%----------------------------------------------
-% ##### Locking
-%  * Four kinds of locks in kernel
-%     * Spin locks and read-write locks
-%     * Interrupt enable/disable
-%        * Sometimes combined, e.g., spin_lock_irq
-%     * Whole kernel lock
-%  * Locks are used all over the place
-%     * Are they used correctly?  consistently?
-% 
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Interrupt Time}
-%    \framesubtitle{xxxx}
-When in\_interrupt is true, code cannot \pause
+    \frametitle{S模式中断处理（硬件部分）}
+    %    \framesubtitle{xxxx}
     \begin{itemize}
-        \item Access current
-        \item Call the scheduler (may sleep)
-        \item Call kmalloc() (may sleep)
-        \item Copy to/from user-space (may sleep)
-        \item more?
+        \item 查看是否允许中断，例：如果 sstatus.MIE = 1，sie[7] = 1，且 sip[7] = 1，则可以处理机器的时钟中断
+        \item 被中断的指令的PC被保存在sepc中，pc被置为stvec。（对于中断它指向中断处理后应该恢复执行的位置）
+        \item 根据中断来源设置scause
+        \item 把状态寄存器mstatus中的MIE位置零以禁用中断，并把先前的MIE值保留到MPIE中
+        \item 发生中断前的权限模式保留在sstatus的SPP域中，再把权限模式更改为S
     \end{itemize}
+    %    %% figure
+    %    \begin{figure}
+    %        \includegraphics[width=1.\linewidth]{rv-mstatus.png}
+    %        %  \caption{xxxx}
+    %    \end{figure}
 \end{frame}
-%----------------------------------------------
-% ##### Interrupt Time
-% 
-% When in_interrupt is true, code cannot
-%  * Access current
-%  * Call the scheduler (may sleep)
-%  * Call kmalloc(GFP_KERNEL) (may sleep)
-%  * Copy to/from user-space (may sleep)
-%  * more?
-% 
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{Resource Allocation}
-%    \framesubtitle{xxxx}
-    \begin{itemize}
-        \item Drivers get and release system resources
-        \begin{itemize}
-            \item Memory
-            \item IRQs
-            \item module numbers (maybe)
-            \item space for their code (mod usage count)
-        \end{itemize} \pause
-        \item Are the resources handled correctly?
-        \begin{itemize}
-            \item Leaks lead to instability -- reboot to reclaim
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-%----------------------------------------------
-% ##### Resource Allocation
-% 
-%  * Drivers get and release system resources
-%     * Memory
-%     * IRQs
-%     * module numbers (maybe)
-%     * space for their code (mod usage count)
-%  * Are the resources handled correctly?
-%     * Leaks lead to instability -- reboot to reclaim
 %----------------------------------------------
 \end{document}

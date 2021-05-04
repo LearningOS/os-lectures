@@ -6,7 +6,7 @@
 
 \title[第19讲]{第十九讲 ：I/O子系统} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第1节：设备接口}
-\author{向勇、陈渝} % Your name
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
   清华大学计算机系 \\ % Your institution for the title page
@@ -39,16 +39,57 @@
 %----------------------------------------------
 \section{第1节：设备接口} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{三种常见设备接口类型} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{常见设备接口类型} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{三种常见设备接口类型}
+    \frametitle{I/O子系统}
+    %    \framesubtitle{xxxx}
+    要解决什么问题？
+    \begin{itemize}
+        \item 为何设备的差异性那么大？
+        \item 为何要管理设备？
+        \item 如何统一对设备的访问接口？
+        \item 为何要对设备建立抽象？
+        \item 如何感知设备的状态并管理设备？
+        \item 如何提高CPU与设备的访问性能？
+        \item 如果保证I/O操作的可靠性？
+    \end{itemize}
+    %    \begin{figure}
+    %        \includegraphics[width=0.3\linewidth]{figs/u740-arch.png}
+    %        %  \caption{xxxx}
+    %    \end{figure}
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{常见设备接口类型}
+    %    \framesubtitle{xxxx}
+    设备的发展
+    \begin{itemize}
+        \item 简单设备：CPU可通过I/O接口直接控制I/O设备
+        \item 多设备：CPU与I/O设备之间增加了一层I/O控制器和总线BUS
+        \item 支持中断的设备：提高CPU利用率
+        \item 高吞吐量设备：支持DMA
+        \item 各种其他设备：GPU、声卡、智能网卡、RDMA
+        \item 连接方式：直连、（设备/中断）控制器、总线、分布式
+    \end{itemize}
+    %    \begin{figure}
+    %        \includegraphics[width=0.3\linewidth]{figs/u740-arch.png}
+    %        %  \caption{xxxx}
+    %    \end{figure}
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{常见设备接口类型}
 %    \framesubtitle{xxxx}
     \begin{itemize}
     \item 字符设备
     \item 块设备
     \item 网络设备
     \end{itemize}
+    \begin{figure}
+    \includegraphics[width=0.4\linewidth]{figs/embed-dev.png}
+    \caption{RISC-V嵌入式开发板}
+\end{figure}
 \end{frame}
 %----------------------------------------------
 % #### Linux I/O Architecture
@@ -57,17 +98,60 @@
 % 
 % ![io-architecture](figs/io-architecture.png)
 % 
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{三种常见设备接口类型}
-%    \framesubtitle{xxxx}
+    \frametitle{常见设备接口类型}
+    %    \framesubtitle{xxxx}
     字符设备
     \begin{itemize}
-    \item 如: 键盘/鼠标, 串口等
+        \item 如: GPIO, 键盘/鼠标, 串口等
     \end{itemize}
     \begin{figure}
-    \includegraphics[width=0.47\linewidth]{figs/char-dev.png}
-  %  \caption{xxxx}
+        \includegraphics[width=0.8\linewidth]{figs/char-led.png}
+          \caption{GPIO LED light}
+    \end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{常见设备接口类型}
+    %    \framesubtitle{xxxx}
+    字符设备
+    \begin{itemize}
+        % General Purpose Input/Output --GPIO
+        \item 如: GPIO, \emph{键盘}/鼠标, 串口等
+    \end{itemize}
+    \begin{figure}
+        \includegraphics[width=0.47\linewidth]{figs/char-dev.png}
+        \caption{键盘}
+    \end{figure}
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{常见设备接口类型}
+    %    \framesubtitle{xxxx}
+    字符设备
+    \begin{itemize}
+        \item 如: GPIO, \emph{键盘}/鼠标, 串口等
+    \end{itemize}
+    \begin{figure}
+        \includegraphics[width=0.6\linewidth]{figs/char-keyboard.png}
+        \caption{键盘电路}
+    \end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{常见设备接口类型}
+    %    \framesubtitle{xxxx}
+    字符设备
+    \begin{itemize}
+        \item 如: GPIO, \emph{键盘}/鼠标, 串口等
+    \end{itemize}
+    \begin{figure}
+        \includegraphics[width=0.6\linewidth]{figs/char-uart.png}
+        \caption{UART串口通信}
     \end{figure}
 \end{frame}
 %----------------------------------------------
@@ -77,7 +161,7 @@
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{三种常见设备接口类型}
+    \frametitle{常见设备接口类型}
     %    \framesubtitle{xxxx}
     块设备
     \begin{itemize}
@@ -93,7 +177,7 @@
 % 
 % ![network-driver](figs/network-driver.png)
 \begin{frame}[fragile]
-    \frametitle{三种常见设备接口类型}
+    \frametitle{常见设备接口类型}
     %    \framesubtitle{xxxx}
     网络设备
     \begin{itemize}
@@ -131,6 +215,7 @@
     \begin{itemize}
         \item 均匀的数据块访问
         \item I/O命令：原始I/O或文件系统接口、内存映射文件访问
+        \item 通常使用文件访问接口和语义
     \end{itemize}
     \begin{figure}
         \includegraphics[width=0.3\linewidth]{figs/blk-dev.png}
@@ -147,28 +232,14 @@
     \begin{itemize}
         \item 格式化报文交换
         \item I/O命令：send/receive 网络报文， 通过网络接口支持多种网络协议
+        \item 通常使用socket访问接口和语义
     \end{itemize}
     \begin{figure}
         \includegraphics[width=0.3\linewidth]{figs/net-dev.png}
         %  \caption{xxxx}
     \end{figure}
 \end{frame}
-%----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{设备访问特征}
-    %    \framesubtitle{xxxx}
-    设备的发展
-    \begin{itemize}
-        \item 简单设备：CPU可通过I/O接口直接控制I/O设备
-        \item 多设备：CPU与I/O设备之间增加了一层I/O控制器和总线BUS
-        \item 支持中断的设备：提高CPU利用率
-        \item 高吞吐量设备：支持DMA
-    \end{itemize}
-%    \begin{figure}
-%        \includegraphics[width=0.3\linewidth]{figs/u740-arch.png}
-%        %  \caption{xxxx}
-%    \end{figure}
-\end{frame}
+
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{设备访问特征}
