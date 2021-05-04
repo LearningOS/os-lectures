@@ -4,7 +4,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第1讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第12讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第二节：多处理器调度概述}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -45,10 +45,13 @@
 	\end{column}
 	
 	\begin{column}{.5\textwidth}
-		\large
-		最基本的方式是简单地复用单处理器调度的基本架构，将所有需要调度的进程放入 一个单独的队列中，我们称之为单队列多处理器调度(Single Queue Multiprocessor Scheduling，SQMS)。
+		\large 单队列多处理器调度
+    \begin{itemize}
+        \item Single Queue Multiprocessor Scheduling，SQMS
+        \item 简单地复用单处理器调度的基本架构
+        \item 所有需要调度的进程放入 一个单独的队列中
+    \end{itemize}
 
-		
 	\end{column}
 \end{columns}
 \end{frame}
@@ -111,12 +114,14 @@
 		
 		\begin{column}{.5\textwidth}
 			\large
-			多队列多处理器调度(Multi-Queue Multiprocessor Scheduling，MQMS) \\
+			多队列多处理器调度 \\
 			\normalsize
 			\begin{itemize}
-			\item 在MQMS中，基本调度框架包含多个调度队列，每个队列可以使用不同的调度规则，比如轮转或其他任何可能的算法。
+			\item Multi-Queue Multiprocessor Scheduling，MQMS
+			\item 基本调度框架包含多个调度队列，每个队列可以使用不同的调度规则，比如轮转等算法。
 			
-			\item 当一个进程进入系统后，系统会依照 一些启发性规则(如随机或选择较空的队列)将其放入某个调度队列。这样一来，每个CPU调度之间相互独立，就避免了单队列的方式中由于数据共享及同步带来的问题。
+			\item 进程进入系统时，依照 一些启发性规则(如随机或选择较空的队列)将其放入某个调度队列。
+			\item 每个CPU调度之间相互独立，避免了单队列方式的数据共享及同步问题。
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -139,8 +144,8 @@
 			\normalsize
 			\begin{itemize}
 			\item 根据不同队列的调度策略，每个CPU从两个进程中选择，决定谁将运行。例如，轮转调度
-			\item 具有可扩展性。队列的数量会随着CPU的增加而增加，因此锁和缓存争用的开销不是大问题。
-			\item 具有良好的缓存亲和度。所有进程都保持在固定的CPU上，因而可以很好地利用缓存数据。
+			\item 具有可扩展性：队列的数量会随着CPU的增加而增加，因此锁和缓存争用的开销不是大问题。
+			\item 具有良好的缓存亲和度：所有进程都保持在固定的CPU上，因而可以很好地利用缓存数据。
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -159,13 +164,12 @@
 		
 		\begin{column}{.5\textwidth}
 			\large
-			多队列多处理器调度(MQMS) \\
-			负载不均(load imbalance) \\ 
+			MQMS的负载不均\\ 
 			\normalsize
-			假定和上面设定一样(4个进程，2个CPU)，但假设一个进程(如C)这时执行完毕。如果对系统中每个队列都执行轮转调度策略：
 			
 			\begin{itemize}
-				\item A获得了B和D两倍的CPU时间
+				\item 假定4个进程，2个CPU；队列都执行轮转调度策略；进程C执行完毕
+			\item  A获得了B和D两倍的CPU时间
 
 			\end{itemize}
 		\end{column}
@@ -187,16 +191,14 @@
 		
 		\begin{column}{.5\textwidth}
 			\large
-			多队列多处理器调度(MQMS) \\
-			负载不均(load imbalance) \\ 
+			MQMS的负载不均 \\
 			\normalsize
-			假定和上面设定一样(4个进程，2个CPU)，但假设A和C都执行完毕，系统中只有B和D。如果对系统中每个队列都执行轮转调度策略：
-			
+			假定4个进程，2个CPU；每个队列都执行轮转调度策略；A和C都执行完毕，系统中只有B和D
 			\begin{itemize}
 				\item CPU1很忙
 				\item CPU0空闲
 				
-			\end{itemize}
+			\end{itemize} \pause
 		\Large
 		怎样才能克服潜伏的负载不均问题？
 		\end{column}
@@ -221,7 +223,7 @@
 			多队列多处理器调度程序应该如何处理负载不均问题，从而更好地实现预期的调度目标?
 			\end{block} 
 			\normalsize
-			最明显的答案是让进程移动，这种技术我们称为迁移(migration)。通过进程的跨CPU迁移，可以真正实现负载均衡。
+			进程迁移(migration)：通过进程的跨CPU迁移，可以真正实现负载均衡。 \pause
 			
 			\begin{itemize}
 				\item 情况：有一个CPU空闲，另一个CPU有一些进程。
@@ -249,16 +251,16 @@
 		\begin{column}{.5\textwidth}
 %			\large
 			\begin{block}{关键问题：如何应对负载不均}
-				多队列多处理器调度程序应该如何处理负载不均问题，从而更好地实现预期的调度目标?
+			多队列多处理器调度程序应该如何处理负载不均问题，从而更好地实现预期的调度目标?
 			\end{block} 
-%			\normalsize
-			最明显的答案是让进程移动，这种技术我们称为迁移(migration)。通过进程的跨CPU迁移，可以真正实现负载均衡。
+			\normalsize
+			进程迁移(migration)：通过进程的跨CPU迁移，可以真正实现负载均衡。 
 			
 			\begin{itemize}
 				\item 情况：A独自留在CPU 0上，B和D在CPU 1上交替运行
 				\item 迁移：不断地迁移和切换一个或多个进程
 
-			\end{itemize}
+			\end{itemize} \pause
 		\large
 		系统如何决定发起这样的迁移?
 			\Large
@@ -271,10 +273,11 @@
 
 %%------------------------------------------------
 \begin{frame}
+	\frametitle{多队列调度：工作窃取(work stealing)}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\Large \centering
-			多队列调度
+			
 			\includegraphics[width=1.\textwidth]{mqms-problem-5}
 			\includegraphics[width=1.\textwidth]{mqms-problem-6}	
 			
@@ -288,13 +291,11 @@
 
 		
 		\end{column}
-		
+			\pause		
 		\begin{column}{.5\textwidth}
 %			\large
-			\begin{block}{关键问题：系统如何决定发起这样的迁移?}
-				一个基本的方法是采用一种技术，名为工作窃取(work stealing)
-			\end{block} 
-			\pause
+			工作窃取的队列检查间隔
+
 			\normalsize
 		
 			\begin{itemize}

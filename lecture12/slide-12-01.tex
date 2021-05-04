@@ -4,7 +4,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第1讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第12讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第一节：对称多处理与多核架构}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -35,30 +35,18 @@
 %\section{第一节：课程概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %%------------------------------------------------
 
-\begin{frame}
-	\begin{columns}
-	\begin{column}{.5\textwidth}
-	\Large
-	单核处理器	
-    \includegraphics[width=1.\textwidth]{single-core}
+\begin{frame}[fragile]
+    \frametitle{单核处理器}	
+    \centering
+    \includegraphics[width=.7\textwidth]{single-core}
 		
-	\end{column}
-	
-	\begin{column}{.5\textwidth}
-			\Large
-		多核处理器
-		\includegraphics[width=1.\textwidth]{multi-core}
-		
-	\end{column}
-\end{columns}
 \end{frame}
 
 %----------------------------------------------
 \begin{frame}	
-	\frametitle{}
+	\frametitle{超线程\small{(hyper-thread, Simultaneous multithreading)}}
 	\centering
-	Large 
-	SMT(Simultaneous multithreading 或 hyper-thread，超线程)
+	
 	\includegraphics[width=.5\textwidth]{hyperthread}
 \end{frame}
 %------------------------------------------------
