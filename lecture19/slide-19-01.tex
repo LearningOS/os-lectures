@@ -47,9 +47,9 @@
     要解决什么问题？
     \begin{itemize}
         \item 为何设备的差异性那么大？
-        \item 为何要管理设备？
+        \item 为何要管理设备？ \pause
         \item 如何统一对设备的访问接口？
-        \item 为何要对设备建立抽象？
+        \item 为何要对设备建立抽象？ \pause
         \item 如何感知设备的状态并管理设备？
         \item 如何提高CPU与设备的访问性能？
         \item 如果保证I/O操作的可靠性？
@@ -108,7 +108,7 @@
         \item 如: GPIO, 键盘/鼠标, 串口等
     \end{itemize}
     \begin{figure}
-        \includegraphics[width=0.8\linewidth]{figs/char-led.png}
+        \includegraphics[width=0.75\linewidth]{figs/char-led.png}
           \caption{GPIO LED light}
     \end{figure}
 \end{frame}
@@ -189,6 +189,19 @@
     \end{figure}
 \end{frame}
 %----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+%% itemize
+%Ref:
+%    \begin{itemize}
+%        \item \href{http://osq.cs.berkeley.edu/public/JFoster-Drivers.ppt}{Linux Device Drivers Overview}
+%        \item \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf}{Understanding the Linux Kernel}
+%    \end{itemize}
+
+\end{frame}
+%----------------------------------------------
 \subsection{设备访问特征} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -242,9 +255,9 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{设备访问特征}
+    \frametitle{设备访问特征：RISC-V PC的外设}
     %    \framesubtitle{xxxx}
-    设备的发展
+%    设备的发展
 %    \begin{itemize}
 %        \item 简单设备：CPU可通过I/O接口直接控制I/O设备
 %        \item 多设备：CPU与I/O设备之间增加了一层I/O控制器和总线BUS
@@ -252,11 +265,23 @@
 %        \item 高吞吐量设备：支持DMA
 %    \end{itemize}
     \begin{figure}
-        \includegraphics[width=1.\linewidth]{figs/u740-arch.png}
+        \includegraphics[width=0.65\linewidth]{figs/u740-arch.png}
         %  \caption{xxxx}
     \end{figure}
 \end{frame}
 %----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+%% itemize
+%Ref:
+%    \begin{itemize}
+%        \item \href{http://osq.cs.berkeley.edu/public/JFoster-Drivers.ppt}{Linux Device Drivers Overview}
+%        \item \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf}{Understanding the Linux Kernel}
+%    \end{itemize}
+
+\end{frame}
 %----------------------------------------------
 \subsection{设备传输方式} %
 %----------------------------------------------
