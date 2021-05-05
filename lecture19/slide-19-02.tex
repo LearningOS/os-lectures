@@ -95,9 +95,9 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{I/O接口的交互协议}
+    \frametitle{I/O接口的交互协议：基于轮询的抽象设备接口}
     %    \framesubtitle{xxxx}
-    一个简化的抽象设备接口需要包括三部分：
+    % 一个简化的抽象设备接口需要包括三部分：
     \begin{itemize}
         \item 状态
         \item 命令
@@ -111,9 +111,9 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{I/O接口的交互协议}
+    \frametitle{I/O接口的交互协议：基于中断的抽象设备接口}
     %    \framesubtitle{xxxx}
-    带中断机制的抽象设备接口需要包括四部分：
+    % 带中断机制的抽象设备接口需要包括四部分：
     \begin{itemize}
         \item 状态 / 命令 / 数据
         \item 中断
@@ -163,7 +163,7 @@
     \begin{itemize}
         \item Rusty Russell在2008年提出通用I/O设备抽象 – virtio规范
         \item 虚拟机提供virtio设备的实现，virtio设备有着统一的virtio接口
-        \item IS只要能够实现这些通用的接口，就可以管理和控制各种virtio设备
+        \item OS只要能够实现这些通用的接口，就可以管理和控制各种virtio设备
     \end{itemize}
     \begin{figure}
         \includegraphics[width=0.6\linewidth]{figs/virtio.png}
