@@ -63,11 +63,24 @@
 \end{frame}
 %----------------------------------------------
 %----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+%% itemize
+%Ref:
+%    \begin{itemize}
+%        \item \href{http://osq.cs.berkeley.edu/public/JFoster-Drivers.ppt}{Linux Device Drivers Overview}
+%        \item \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf}{Understanding the Linux Kernel}
+%    \end{itemize}
+
+\end{frame}
+%----------------------------------------------
 \subsection{I/O设备抽象} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{设备抽象--I/O接口的交互协议}
+    \frametitle{I/O接口的交互协议}
     %    \framesubtitle{xxxx}
     外设的两部分重要组成部分
     \begin{itemize}
@@ -82,7 +95,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{设备抽象--I/O接口的交互协议}
+    \frametitle{I/O接口的交互协议}
     %    \framesubtitle{xxxx}
     一个简化的抽象设备接口需要包括三部分：
     \begin{itemize}
@@ -98,7 +111,7 @@
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{设备抽象--I/O接口的交互协议}
+    \frametitle{I/O接口的交互协议}
     %    \framesubtitle{xxxx}
     带中断机制的抽象设备接口需要包括四部分：
     \begin{itemize}
@@ -156,6 +169,19 @@
         \includegraphics[width=0.6\linewidth]{figs/virtio.png}
         %  \caption{xxxx}
     \end{figure}
+\end{frame}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+%% itemize
+%Ref:
+%    \begin{itemize}
+%        \item \href{http://osq.cs.berkeley.edu/public/JFoster-Drivers.ppt}{Linux Device Drivers Overview}
+%        \item \href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf}{Understanding the Linux Kernel}
+%    \end{itemize}
+
 \end{frame}
 %----------------------------------------------
 \subsection{I/O执行模型} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
