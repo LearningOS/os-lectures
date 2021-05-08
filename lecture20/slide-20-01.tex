@@ -205,5 +205,79 @@
     %        \caption{消息加确认：丢失回答}
     %    \end{figure}
 \end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{通信抽象 -- 存根生成器}
+    %    \framesubtitle{xxxx}
+    存根生成器(Stub Generator)：    存根生成器接受接口(interface)代码，并生成客户端存根（client stub）和服务端代理(server proxy)
+    
+    客户端存根（client stub）
+    \begin{itemize}
+        \item 创建消息缓冲区;将所需信息打包到消息缓冲区中;
+        \item 将消息发送到目标RPC服务器;等待回复;
+        \item 解包返回代码和其他参数;返回调用函数。
+
+    \end{itemize}
+    
+        \begin{figure}
+            \includegraphics[width=0.6\linewidth]{figs/rpc-interface.png}
+%            \caption{消息加确认：丢失回答}
+        \end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{通信抽象 -- 存根生成器}
+    %    \framesubtitle{xxxx}
+    存根生成器(Stub Generator)：    存根生成器接受接口(interface)代码，并生成客户端存根（client stub）和服务端代理(server proxy)
+    
+    服务端代理(server proxy)
+    \begin{itemize}
+        \item 解包消息;
+        \item 调用实际函数;
+        \item 打包结果；发送回复。
+        
+    \end{itemize}
+    
+    \begin{figure}
+        \includegraphics[width=0.6\linewidth]{figs/rpc-interface.png}
+        %            \caption{消息加确认：丢失回答}
+    \end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{通信抽象 -- 运行时库}
+    %    \framesubtitle{xxxx}
+    运行时库处理RPC系统中的大部分繁重工作
+  
+    \begin{itemize}
+        \item 如何找到远程服务？
+        \item 如何构建RPC的传输级协议？        
+    \end{itemize}
+    
+    \begin{figure}
+        \includegraphics[width=0.6\linewidth]{figs/rpc-interface.png}
+        %            \caption{消息加确认：丢失回答}
+    \end{figure}
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{通信抽象 -- 需思考的问题}
+    %    \framesubtitle{xxxx}
+    值得进一步思考的问题
+    \begin{itemize}
+        \item 调用中的复杂参数，即一个包如何发送复杂的数据结构？
+        \item 并发性的服务器组织方式？
+        \item 当远程调用需要很长时间才能完成时，会发生什么？
+        \item 是否向客户端暴露通信的异步性质，从而实现一些性能优化？
+    \end{itemize}
+    
+    \begin{figure}
+        \includegraphics[width=0.6\linewidth]{figs/rpc-interface.png}
+        %            \caption{消息加确认：丢失回答}
+    \end{figure}
+\end{frame}
 %----------------------------------------------
 \end{document}
