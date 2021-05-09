@@ -4,7 +4,7 @@
 % TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第19讲]{第二十讲 ：分布式系统} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第20讲]{第二十讲 ：分布式系统} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第2节：分布式文件系统}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -115,8 +115,8 @@
     挑战：如何定义无状态文件协议，让它既无状态，又支持POSIX文件系统API？
     \begin{itemize}
         \item 关键是文件句柄（file handle）。文件句柄用于唯一地描述文件或目录。因此，许多协议请求包括一个文件句柄。        
-        \item 2. 服务器启动并再次运行后，客户端会发出第二次读取，但服务器不知道fd指的是哪个文件？
-        \item 1. 一个打开文件然后崩溃的客户端：open()在服务器上用掉了一个文件描述符，服务器如何关闭给定的文件呢？
+        \item 服务器启动并再次运行后，客户端会发出第二次读取，但服务器不知道fd指的是哪个文件？
+        \item 一个打开文件然后崩溃的客户端：open()在服务器上用掉了一个文件描述符，服务器如何关闭给定的文件呢？
     \end{itemize}
     \begin{figure}
         \includegraphics[width=0.8\linewidth]{figs/stateful-code.png}
@@ -192,7 +192,7 @@ NFSv2协议 part1
     %    \end{itemize}
     读取文件：客户端和文件服务器的操作 part2
     \begin{figure}
-        \includegraphics[width=0.8\linewidth]{figs/nfsv2-read-2.png}
+        \includegraphics[width=0.7\linewidth]{figs/nfsv2-read-2.png}
         %  \caption{xxxx}
     \end{figure}
     
