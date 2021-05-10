@@ -61,7 +61,7 @@
     \frametitle{Sun的NFS}
     %    \framesubtitle{xxxx}
     最早且相当成功的分布式系统之一是由Sun Microsystems开发的，被称为Sun网络文件系统（或NFS）
-    
+    \pause
     在定义NFS时,Sun开发了一种开放协议（open protocol），它只是指定了客户端和服务器用于通信的确切消息格式，而不是构建专有的封闭系统。
 %    \begin{itemize}
 %        \item 现代网络的核心原则是，通信基本是不可靠的。
@@ -80,7 +80,7 @@
 %    \framesubtitle{xxxx}
 关键技术
     \begin{itemize}
-        \item 目标：简单快速的服务器崩溃恢复
+        \item 目标：简单快速的服务器崩溃恢复\pause
         \item 快速崩溃恢复的关键：无状态
         \item 简而言之，服务器不会追踪客户正在做什么
     \end{itemize}
@@ -112,7 +112,7 @@
 \begin{frame}[fragile]
     \frametitle{NFSv2协议}
     %    \framesubtitle{xxxx}
-    挑战：如何定义无状态文件协议，让它既无状态，又支持POSIX文件系统API？
+    挑战：如何定义无状态文件协议，让它既无状态，又支持POSIX文件系统API？\pause
     \begin{itemize}
         \item 关键是文件句柄（file handle）。文件句柄用于唯一地描述文件或目录。因此，许多协议请求包括一个文件句柄。        
         \item 服务器启动并再次运行后，客户端会发出第二次读取，但服务器不知道fd指的是哪个文件？
@@ -205,7 +205,7 @@ NFSv2协议 part1
     幂等性
 
         \begin{itemize}
-            \item 如果操作执行多次的效果与执行一次的效果相同，该操作就是幂等的(idempotent)  
+            \item 如果操作执行多次的效果与执行一次的效果相同，该操作就是幂等的(idempotent)  \pause
             \item 如果将值在内存位置存储 3 次，与存储一次一样。因此“将值存储到内存中”是一种幂等操作。
             \item 如果将计数器递增 3 次，它的数量就会与递增一次不同。
             \item LOOKUP和READ请求是简单幂等的，因为它们只从文件服务器读取信息而不更新它。
@@ -282,7 +282,7 @@ NFSv2协议 part1
     潜在问题：缓存一致性问题
     
     \begin{itemize}
-        \item “更新可见性（update visibility）”问题：来自一个客户端的更新，什么时候被其他客户端看见？
+        \item “更新可见性（update visibility）”问题：来自一个客户端的更新，什么时候被其他客户端看见？\pause
         \item “陈旧的缓存（stale cache）“问题：C2最终将它的写入发送给文件服务器，因此服务器具有最新版本（F[v2]）。但是，C1的缓存中仍然是F[v1]。如果运行在C1上的程序读了文件F，它将获得过时的版本（F [v1]），而不是最新的版本（F [v2]）
     \end{itemize}
     
@@ -318,7 +318,7 @@ NFSv2协议 part1
     %    \framesubtitle{xxxx}
     潜在问题：缓存一致性问题
     
-    “陈旧的缓存（stale cache）“问题：C2最终将它的写入发送给文件服务器，因此服务器具有最新版本（F[v2]）。但是，C1的缓存中仍然是F[v1]。如果运行在C1上的程序读了文件F，它将获得过时的版本（F [v1]），而不是最新的版本（F [v2]）
+    “陈旧的缓存（stale cache）“问题：C2最终将它的写入发送给文件服务器，因此服务器具有最新版本（F[v2]）。但是，C1的缓存中仍然是F[v1]。如果运行在C1上的程序读了文件F，它将获得过时的版本（F [v1]），而不是最新的版本（F [v2]）\pause
     \begin{itemize}
         \item NFSv2客户端会先检查文件是否已更改，然后再使用其缓存内容。具体来说，在打开文件时，客户端文件系统会发出GETATTR请求，以获取文件的属性。
         \item 属性包含有关服务器上次修改文件的信息。如果文件修改的时间晚于文件提取到客户端缓存的时间，则客户端会让文件无效（invalidate），因此将它从客户端缓存中删除，并确保后续的读取将转向服务器，取得该文件的最新版本。
@@ -336,7 +336,7 @@ NFSv2协议 part1
 \begin{frame}[fragile]
     \frametitle{NFSv2协议}
     %    \framesubtitle{xxxx}
-    潜在问题：服务器端写缓冲问题
+    潜在问题：服务器端写缓冲问题\pause
     
     客户端发出以下写入序列
 %    \begin{itemize}
@@ -368,7 +368,7 @@ NFSv2协议 part1
     \begin{figure}
         \includegraphics[width=0.9\linewidth]{figs/nfsv2-srv2.png}
         %  \caption{xxxx}
-    \end{figure}
+    \end{figure} \pause
     
     解决方法：NFS服务器在通知客户端成功之前，将每次写入提交到持久存储。这样做可让客户端在写入期间检测到服务器故障，从而重试，直到它最终成功。
 \end{frame}
