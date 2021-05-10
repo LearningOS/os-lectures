@@ -97,7 +97,7 @@
 \begin{frame}[fragile]
     \frametitle{可靠的通信层}
     %    \framesubtitle{xxxx}
-    问题：发送方如何知道接收方实际收到了消息？ 
+    问题：发送方如何知道接收方实际收到了消息？ \pause
     \begin{itemize}
         \item 确认（acknowledgment），或简称为ack
         \item     发送方向接收方发送消息，接收方然后发回短消息确认收到
@@ -112,7 +112,7 @@
 \begin{frame}[fragile]
     \frametitle{可靠的通信层}
     %    \framesubtitle{xxxx}
-    问题：如果没有收到确认，发送方应该怎么办？
+    问题：如果没有收到确认，发送方应该怎么办？\pause
     \begin{itemize}
         \item 额外的机制，称为超时（timeout） + 重试（retry）
         \item  当发送方发送消息后，如在一定时间内未收到确认，则断定该消息已丢失
@@ -130,7 +130,7 @@
 \begin{frame}[fragile]
     \frametitle{可靠的通信层}
     %    \framesubtitle{xxxx}
-    问题：如果没有收到确认，发送方应该怎么办？
+    问题：如果没有收到确认，发送方应该怎么办？\pause
     \begin{itemize}
         \item 额外的机制，称为超时（timeout） + 重试（retry）
         \item  当发送方发送消息后，如在一定时间内未收到确认，则断定该消息已丢失
@@ -148,7 +148,7 @@
 \begin{frame}[fragile]
     \frametitle{可靠的通信层}
     %    \framesubtitle{xxxx}
-    问题：如何保证接收方每个消息只接收一次（exactly once）？
+    问题：如何保证接收方每个消息只接收一次（exactly once）？\pause
     \begin{itemize}
         \item 发送方可以为每条消息生成唯一的ID，接收方可以追踪它所见过的每个ID
         \item  顺序计数器（sequence counter）
@@ -186,7 +186,7 @@
     %    \framesubtitle{xxxx}
     问题：有了基本的消息传递层，在构建分布式系统时，应该使用什么抽象通信？
     \begin{itemize}
-        \item 操作系统抽象：分布式共享内存（Distributed Shared Memory，DSM）
+        \item 操作系统抽象：分布式共享内存（Distributed Shared Memory，DSM）\pause
                     \begin{itemize}
             \item 使不同机器上的进程能够共享一个大的虚拟地址空间
             \item 通过操作系统的虚拟内存系统来实现
@@ -208,7 +208,7 @@
     %    \framesubtitle{xxxx}
     问题：有了基本的消息传递层，在构建分布式系统时，应该使用什么抽象通信？
     \begin{itemize}
-        \item 编程语言（PL）抽象：远程过程调用（Remote Procedure Call），或简称RPC
+        \item 编程语言（PL）抽象：远程过程调用（Remote Procedure Call），或简称RPC \pause
         \begin{itemize}
             \item 目标：使在远程机器上执行代码的过程像调用本地函数一样简单直接。
             \item RPC系统通常有两部分：存根生成器（stub generator，有时称为协议编译器，protocol compiler）和运行时库（run-time library）。
