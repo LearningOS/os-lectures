@@ -38,14 +38,14 @@
     \begin{itemize}
         \item 主讲教师：
         \begin{itemize}
-            \item 陈渝
-            \item 向勇、李国良
+            \item 向勇
         \end{itemize}
         %\pause
         
         \item 助教: 
         \begin{itemize}
             \item 张译仁、钮泽平
+            \item 张鹤潇、贺鲲鹏、彭浩洋
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -87,33 +87,28 @@
 \begin{frame}
     \frametitle{课程信息}
     \begin{itemize}
-        \item \href{http://os.cs.tsinghua.edu.cn/oscourse/OS2021spring}{课程\textbf{WIKI}}
+        \item 课程网站
         \begin{itemize}
+            \item \href{https://next.xuetangx.com/}{学堂在线}：操作系统(RISC-V)
             \item 所有课程信息的入口，也是最新课程信息的官方发布网站
         \end{itemize}
         %\pause
-        \item 课程视频
+        \item 实验提交
         \begin{itemize}
-            \item \href{https://next.xuetangx.com/}{学堂在线}：操作系统(RISC-V)
+            \item \href{https://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforePageListJs?wlkcid=2020-2021-2142100238}{网络学堂}
         \end{itemize}
         %\pause
-        \item 作业
+        \item 在线实验环境
         \begin{itemize}
-            \item \href{https://learn.tsinghua.edu.cn/f/wlxt/kcgg/wlkc_ggb/teacher/beforePageListJs?wlkcid=2020-2021-2142100238}{网络学堂 -- 向老师、李老师}		
-            \item \href{https://learn.tsinghua.edu.cn/f/wlxt/index/course/teacher/course?wlkcid=2020-2021-2142100239}{网络学堂 -- 陈老师}
-        \end{itemize}
-        %\pause
-        \item 云实验环境
-        \begin{itemize}
-            \item \href{https://developer.aliyun.com/adc/series/labs-tsinghua-os/}{阿里云uCore os实验环境}
-            \item \href{https://www.lanqiao.cn/courses/1481}{实验楼rCore os实验环境}
-            \item \href{https://www.lanqiao.cn/courses/221}{实验楼uCore os验环境}
-            \item rcore tutorial云实验环境：ssh -l rcore 166.111.131.12
+            \item \href{https://codechina.csdn.net/courses/detail/16/l}{RISC-V rCore}：CSDN上的操作系统实验环境； 
+            \item \href{https://developer.aliyun.com/adc/series/labs-tsinghua-os}{x86 uCore}：阿里云上的操作系统实验环境； 
+            \item \href{https://www.lanqiao.cn/courses/1481}{RISC-V rCore}：蓝桥云课上的操作系统实验环境； 
+            \item \href{https://www.lanqiao.cn/courses/221}{x86 uCore}：蓝桥云课上的操作系统实验环境；
         \end{itemize}
         \item 讨论区
         \begin{itemize}
-            \item \href{https://piazza.com/tsinghua.edu.cn/spring2015/30240243x/home}{Piazza交流论坛}
-            \item 微信：OS2021
+            \item \href{https://shimo.im/docs/Q9DrJjRtVjjgrCHY}{课程讨论和交流记录}
+            \item 微信群：OS2021autumn
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -126,16 +121,15 @@
 %		\begin{column}{0.5\textwidth}
 			\textbf{参考教材}
 			\begin{itemize}
-				\item \href{http://www.ostep.org/}{Operating Systems: Three Easy Pieces \\ 操作系统：三大简易元素}
-				\item \href{http://item.jd.com/10553956.html}{Operating System Concepts \\ 操作系统概念}
-				\item \href{http://item.jd.com/10255221.html}{Operating Systems:Internals and Design Principles \\ 操作系统：精髓与设计原理}
+                \item \href{https://pages.cs.wisc.edu/~remzi/OSTEP/}{Operating Systems: Three Easy Pieces}（英文版）
+                \item \href{https://github.com/remzi-arpacidusseau/ostep-translations/tree/master/chinese#ostep-chinese-version}{操作系统：三大简易元素}(中文版)
 			\end{itemize}
 			\pause
 		
 			\textbf{上课时间地点}
 			\begin{itemize}
-				\item 星期一(1-13周)　上午 第2大节  09:50-11:25  五教5105、六教6A214
-				\item 星期四(1-13周)　上午 第1大节  08:00-09:35  五教5105、六教6A214
+				\item 星期一(1-13周)　下午 第4大节  03:20-04:55  六教6A315
+				\item 星期五(1-13周)　上午 第1大节  08:00-09:35  六教6A315
 		    \end{itemize}
 %		\end{column}
 %		
@@ -181,7 +175,49 @@
 \end{frame}
 
 %------------------------------------------------
+\begin{frame}
+	\frametitle{教学内容}
 
+	\begin{columns}
+    \begin{column}{0.6\textwidth}
+        \begin{itemize}
+            \item 操作系统概述
+            \item 中断、异常与系统调用
+            \item 进程与调度
+            \item 存储管理
+            \item 物理内存管理
+            \item 虚拟存储概念
+            \item 虚拟存储：局部页面置换算法
+            \item 虚拟存储：全局页替换算法
+            \item 进程、线程和协程
+            \item 进程和线程控制
+            \item 处理机调度
+            \item 多处理器调度
+        \end{itemize}
+    \end{column}
+	
+	\begin{column}{0.4\textwidth}
+    \begin{itemize}
+        \item 同步互斥
+        \item 信号量与管程
+        \item 死锁和并发错误检测
+        \item 进程通信
+        \item 文件系统
+        \item 文件系统实例
+        \item I/O子系统
+        \item 分布式系统
+        \item 异步操作系统
+        \item 操作系统虚拟化
+        \item 操作系统的发展趋势
+    \end{itemize}
+    
+    \end{column}
+
+\end{columns}
+
+\end{frame}
+
+%------------------------------------------------
     \begin{frame}
         \frametitle{作业与实验}
         \begin{itemize}
@@ -248,12 +284,14 @@
 		\end{itemize}
 	\item 操作系统新方向探索
 		\begin{itemize}	
-		\item Rust、内核语言
+		\item Rust、内核语言、异步操作系统
 		\end{itemize} \pause
-	\item \href{https://github.com/oscomp/os-competition-info}{第一届全国全国大学生操作系统设计比赛}
+	\item 参与操作系统相关比赛
+
 		\begin{itemize}	
-		\item \href{https://github.com/oscomp/proj2-os-kernels-by-history}{挖掘历史的OS kernel生物群}
-        \item \href{https://github.com/oscomp/proj9-zcore}{探索未来的OS Kernel -- zCore}
+		\item \href{https://github.com/oscomp/os-competition-info}{全国全国大学生操作系统设计比赛}
+		\item \href{https://www.opengcc.org/article/63/270.html}{中国软件开源创新大赛}
+        \item \href{https://summer.iscas.ac.cn/#/org/projectlist}{开源软件供应链点亮计划}
 		\end{itemize}
 	\end{itemize}
 \end{frame}
@@ -277,10 +315,7 @@
     \end{itemize} %\pause
 
     总成绩加权方法：上述各项成绩的总和会做一次调整，基本原则是，各分数段保持一定的比例，可能的参考比例为A+/A/A-占25\%、B+/B/B-占45\%、C+/C/C-占20\%和D+/D/F占10\%。 
-    \newline \newline
-    
-    详见：\href{http://os.cs.tsinghua.edu.cn/oscourse/OS2020spring/log#A20200210-.2BZM1PXHz7ft.2BL.2FnoLdoRiEH7pi8RbmmgHUcaL9GYO-}{去年的操作系统课程的成绩评定标准说明：会调整！！！}
-    
+
 \end{frame}
 
 %------------------------------------------------
@@ -298,7 +333,12 @@
             \item 采集仅限于操作系统课内注册的同学信息
         \end{itemize}
         
-    详见：\href{http://oscourse2019.mikecrm.com/2Z5XRdC}{2021年春季学期操作系统课选课问卷} ( 访问密码：VYjsx47 )
+    \newline
+    \newline
+    
+    注：作为认真思考后选课的依据，要求所有选课同学在课后一天内完成问卷填写。
+    
+    详见：\href{http://oscourse2019.mikecrm.com/te8s1h2}{2021年春季学期操作系统课选课问卷} ( 访问密码：Ngm25L )
     
     \end{frame}
 %----------------------------------------------------------------------------------------
