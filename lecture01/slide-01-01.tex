@@ -34,6 +34,17 @@
 %\section{第二节：教学安排} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %%------------------------------------------------
 \begin{frame}
+    \frametitle{提纲}
+    \begin{itemize}
+        \item 第一节 课程概述&教学安排
+        \item 第二节 什么是操作系统
+        \item 第三节 操作系统历史演变
+        \item 第四节 操作系统结构
+        \item 第五节 OS实验概述
+    \end{itemize}
+\end{frame}
+%%------------------------------------------------
+\begin{frame}
     \frametitle{课程信息}
     \begin{itemize}
         \item 主讲教师：
@@ -45,10 +56,11 @@
         \item 助教: 
         \begin{itemize}
             \item 张译仁、钮泽平
-            \item 张鹤潇、贺鲲鹏、彭浩洋
+            \item 彭浩洋、贺鲲鹏、张鹤潇
         \end{itemize}
     \end{itemize}
 \end{frame}
+%%------------------------------------------------
 
 \begin{frame}
     
@@ -237,27 +249,31 @@
 
 %------------------------------------------------
 \begin{frame}
-\frametitle{基础实验}
-\framesubtitle{Core实验：面向RISC-V CPU用Rust/C写操作系统} %\pause
+\frametitle{基础实验：面向RISC-V CPU用Rust/C写操作系统}
 \begin{columns}
 	
-\begin{column}{0.5\textwidth}
+\begin{column}{0.4\textwidth}
 \begin{itemize}
-		\item 实验零：操作系统实验准备
-		\item 实验一：hello-world OS
-		\item 实验二：kernel-mode OS
-		\item 实验三：multi-programming OS
-		\item 实验四：mem-isolation OS
+        \item 实验一：中断与任务切换
+        \begin{itemize}
+                \item ch0：操作系统实验准备
+                \item ch1：程序与执行环境
+                \item ch2：批处理系统
+                \item ch3：多道与分时
+        \end{itemize}
+
+        \item 实验二（ch4）：地址空间
 \end{itemize}
+
 \end{column}
  
-\begin{column}{0.5\textwidth}
+\begin{column}{0.6\textwidth}
     \begin{itemize}
-		\item 实验五：multi-process OS
-		\item 实验六: Inter-Process-Comm OS
-		\item 实验七：File-System OS
-		\item 实验八：r/u Core OS
-	\end{itemize}
+                \item 实验三（ch5）：进程及进程管理
+                \item 实验四（ch6）：进程间通信
+                \item 实验五（ch7）：文件系统与I/O重定向
+                \item 实验六（ch8）：内核测试和优化（选项）
+        \end{itemize}
 \end{column}
 
 \end{columns}
@@ -321,7 +337,7 @@
 %------------------------------------------------
     
     \begin{frame}
-        \frametitle{调查问卷}
+        \frametitle{作业：调查问卷}
         \begin{itemize}
             \item 为什么要学这门课？ %\pause
             \item 你打算如何来学这门课？

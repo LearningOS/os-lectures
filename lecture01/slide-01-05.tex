@@ -40,9 +40,7 @@
 \frametitle{OS实验概述}
 
 \begin{itemize}
-\item 设计思路
-    \begin{itemize}
-    \item 设计ucore/rcore，覆盖操作系统的关键点，内容如下：
+    \item 设计ucore/rcore，覆盖操作系统的关键点
     \begin{itemize}
         \item 外设：I/O管理/中断管理
         \item 内存：虚存管理/页表/缺页处理/页替换算法
@@ -51,7 +49,14 @@
         \item 存储：文件系统+磁盘驱动
     \end{itemize}
     \item 完整代码量控制在4000行左右 (希望)
-    \item 提供实验讲义和源码分析文档
+    \item 提供实验任务书和基准代码框架
+    \begin{itemize}
+        \item \href{https://learningos.github.io/rCore-Tutorial-Book-2021Autumn/}{rCore实验任务书}
+        \item \href{https://github.com/LearningOS/rCore-Tutorial-2021Autumn}{rCore实验代码框架}
+        \item \href{https://github.com/LearningOS/rCore-Tutorial-Book-2021Autumn}{rCore实验文档仓库}
+        \item \href{https://learningos.github.io/uCore-Tutorial-Book/}{uCore实验任务书}
+        \item \href{https://github.com/LearningOS/uCore-Tutorial-v2}{uCore实验代码框架}
+        \item \href{https://github.com/LearningOS/uCore-Tutorial-Book}{uCore实验文档仓库}
     \end{itemize}
 \end{itemize}
 
@@ -63,27 +68,27 @@
 	\frametitle{OS实验内容}
 
 	\begin{columns}[t]
-    \begin{column}{.5\textwidth}
+    \begin{column}{.4\textwidth}
      \\
-     OS实验内容
+%     OS实验内容
      
 	\begin{enumerate}
-	    \item hello-world OS
-		\item kernel-mode OS
-		\item multi-programming OS	
-		\item mem-isolation OS
-		\item multi-process OS
-		\item Inter-Process-Comm OS
-		\item File-System OS
-		\item r/u Core OS
+	    \item 应用程序与基本执行环境
+		\item 批处理系统
+		\item 多道程序与分时多任务	
+		\item 地址空间
+		\item 进程及进程管理
+		\item 进程间通信
+		\item 文件系统与I/O重定向
+		\item 拓展实验
 	\end{enumerate}
 	\end{column}
 	
-	\begin{column}{.5\textwidth}
+	\begin{column}{.6\textwidth}
 	\begin{figure}
 		\centering
 		\includegraphics[width=1.0\linewidth]{oslab-overview}
-		\caption{OS实验框架}
+		%\caption{OS实验框架}
 	\end{figure}
 	\end{column}
 	\end{columns}
@@ -92,8 +97,8 @@
 
 \begin{frame}
 \frametitle{OS实验内容}
-\framesubtitle{lab1}
-\begin{block}{Lab1:  hello-world OS}
+%\framesubtitle{lab1}
+\begin{block}{第一章：应用程序与基本执行环境}
 在裸机上的执行环境，让应用与硬件隔离，简化了应用访问硬件的难度和复杂性。
 \end{block}
 
@@ -108,9 +113,9 @@
 
 \begin{frame}
 \frametitle{OS实验内容}
-\framesubtitle{lab2}
+%\framesubtitle{lab2}
 
-\begin{block}{Lab2:  kernel-mode OS}
+\begin{block}{第二章：批处理系统}
 操作系统利用硬件特权级机制，实现对操作系统自身的保护。
 应用在用户态通过系统调用得到内核态的内核服务。
 操作系统批处理机制支持多个程序的自动加载和运行。
@@ -127,9 +132,9 @@
 
 \begin{frame}
 \frametitle{OS实验内容}
-\framesubtitle{lab3}
+%\framesubtitle{lab3}
 
-\begin{block}{Lab3：multi-programming OS}
+\begin{block}{第三章：多道程序与分时多任务}
 操作系统通过协作机制/抢占机制支持程序主动/被动放弃处理器，提高系统效率。
 \end{block}
 
@@ -144,9 +149,9 @@
 
 \begin{frame}
 \frametitle{OS实验内容}
-\framesubtitle{lab4}
+%\framesubtitle{lab4}
 
-\begin{block}{Lab4: mem-isolation OS}
+\begin{block}{第四章：地址空间}
 操作系统通过动态内存分配机制、页表的虚实内存映射机制，
 加强内存安全，简化应用开发。
 \end{block}
@@ -162,9 +167,9 @@
 
 \begin{frame}
 \frametitle{OS实验内容}
-\framesubtitle{lab5}
+%\framesubtitle{lab5}
 
-\begin{block}{Lab5: multi-process OS}
+\begin{block}{第五章：进程及进程管理}
 操作系统建立了进程创建、执行、切换和结束的动态管理过程
 
 \end{block}
@@ -178,9 +183,9 @@
 
 \begin{frame}
 \frametitle{OS实验内容}
-\framesubtitle{lab6}
+%\framesubtitle{lab6}
 
-\begin{block}{Lab6：Inter-Process-Comm OS}
+\begin{block}{第六章：进程间通信}
 操作系统通过进程间通信(Inter-Process-Comm)机制，让应用之间建立了有效的联系。
 \end{block}
 
@@ -194,9 +199,9 @@
 
 \begin{frame}
 \frametitle{OS实验内容}
-\framesubtitle{lab7}
+%\framesubtitle{lab7}
 
-\begin{block}{Lab7：File-System OS}
+\begin{block}{第七章：文件系统与I/O重定向}
 操作系统通过文件系统完成对程序和数据的持久保存与灵活的访问
 \end{block}
 
@@ -210,11 +215,11 @@
 
 \begin{frame}
 \frametitle{OS实验内容}
-\framesubtitle{lab8}
+%\framesubtitle{lab8}
 
-\begin{block}{Lab8：r/u Core OS}
+\begin{block}{第八章：拓展实验}
 为支持更丰富的应用需求，操作系统需要改进与完善。
-通过完成一个完整的OS kernel的设计与实现，形成面向操作系统的系统思维。
+通过较严格的测试用例，完成一个完整的OS kernel的设计与实现，形成面向操作系统的系统思维。
 \end{block}
 
 \begin{itemize}
@@ -227,19 +232,20 @@
 
 
 \begin{frame}[plain]
-\frametitle{OS实验内容}
-\framesubtitle{labX}
+\frametitle{OS实验内容：课程设计（大实验）}
+%\framesubtitle{labX}
 
-\begin{block}{LabX：大实验}
-前提：已经完成基本实验 \\
-尝试完成一些有一定挑战性且有趣的OS实验。
+\begin{block}{前提条件}
+用四周时间已经完成基本实验 \\
+尝试完成一些有一定挑战性且有趣的OS实验
 \end{block}
 
+课程设计选题
 \begin{itemize}
-    \item 参加OS比赛的推荐项目
+    \item 参加OS相关比赛或开源社区的推荐项目
     \item 改进与设计rcore/zcore/acore操作系统
     \item 在一个OS(如Linux)实现一个Hypervisor
-    \item 基于异步机制的新型OS
+    \item 异步OS
     \item 支持动态更新的OS
     \item 驱动程序运行在用户态的OS
 \end{itemize}
@@ -340,7 +346,7 @@
 		软硬件协同 &
 		基于标签化RISC-V架构的进程共享资源管理系统\tabularnewline \hline
 		内核功能扩展 &
-		uCore的对称多处理实现\tabularnewline \hline
+		\href{https://github.com/TianhuaTao/uCore-SMP}{uCore的对称多处理实现}\tabularnewline \hline
 		虚拟机 &
 		在qemu模拟器上实现轻量级Hypervisor\tabularnewline \hline
 		Rust &
