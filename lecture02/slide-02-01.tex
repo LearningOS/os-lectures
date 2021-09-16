@@ -20,6 +20,16 @@
 \begin{frame}
 \titlepage % Print the title page as the first slide
 \end{frame}
+%%------------------------------------------------
+\begin{frame}
+    \frametitle{第二讲 内容提纲}
+    \begin{itemize}
+        \item 第一节 从 OS 角度看计算机系统
+        \item 第二节 从 OS 角度再理解 RISC-V
+        \item 第三节 kernel mode 操作系统
+    \end{itemize}
+\end{frame}
+%%------------------------------------------------
 
 \begin{frame}
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
@@ -29,7 +39,6 @@
 %----------------------------------------------------------------------------------------
 %	PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
-
 %------------------------------------------------
 \section{第一节：从OS角度看计算机系统 } % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 
@@ -279,7 +288,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.65\linewidth]{vm}
-		\caption{虚拟内存}
+		%\caption{虚拟内存}
 	\end{figure}
 	% CS152-berkeley L08-AddressTranslation
 	% 体系结构需要易于编程/编译/链接，易于软件管理	
@@ -288,12 +297,12 @@
 
 \begin{frame}[plain]
 	
-	\frametitle{虚拟内存}
+	\frametitle{虚拟内存：页表}
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.5\linewidth]{vm-pagetable}
-		\caption{页表}
+		%\caption{页表}
 	\end{figure}
 	% CS152-berkeley
 	% 体系结构需要易于编程/编译/链接，易于软件管理	
@@ -302,12 +311,12 @@
 
 \begin{frame}
 	
-	\frametitle{虚拟内存}
+	\frametitle{虚拟内存：快表（TLB）}
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=1\linewidth]{tlb}
-		\caption{TLB}
+		%\caption{TLB}
 	\end{figure}
 	% CS152-berkeley L08-AddressTranslation
 	% 体系结构需要易于编程/编译/链接，易于软件管理	
@@ -316,12 +325,12 @@
 
 \begin{frame}[plain]
 	
-	\frametitle{虚拟内存}
+	\frametitle{虚拟内存：多级页表}
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.75\linewidth]{mmu}
-		\caption{MMU处理TLB Missing}
+		%\caption{MMU处理TLB Missing}
 	\end{figure}
 	% CS152-berkeley L08-AddressTranslation
 	% 体系结构需要易于编程/编译/链接，易于软件管理	
@@ -330,12 +339,12 @@
 
 \begin{frame}[plain]
 	
-	\frametitle{虚拟内存}
+	\frametitle{虚拟内存：带MMU/TLB的计算机系统}
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.8\linewidth]{arch-with-tlb-mmu}
-		\caption{带MMU/TLB的计算机系统}
+		%\caption{带MMU/TLB的计算机系统}
 	\end{figure}
 	% CS152-berkeley L08-AddressTranslation
 	% 体系结构需要易于编程/编译/链接，易于软件管理	
