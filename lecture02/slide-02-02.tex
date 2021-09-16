@@ -193,12 +193,6 @@
 
 \end{frame}
 %------------------------------------------------
-
-\begin{frame}
-    \frametitle{提纲} 
-    \tableofcontents 
-\end{frame}
-
 \begin{frame}
     \frametitle{RISC-V系统编程}
     \begin{itemize}
@@ -662,7 +656,7 @@
         \begin{itemize}
             \item 例如medeleg[15]会把store page fault委托给S模式
             \item M模式下发生的异常总是在M模式下处理
-            \item S模式下发生的异常总是在M模式，或者在S模式下处理
+            \item S模式下发生的异常总是在M或S模式下处理
             \item 上述两种模式发生的异常不会由U模式处理(除非有U模式中断处理机制)
         \end{itemize}
         
@@ -736,7 +730,7 @@
     \frametitle{RISC-V系统编程：S模式的异常处理}
      硬件执行内容
      
-     hart接受了异常，并需要委派给S模式，那么硬件会原子性的经历下面的状态转换
+     hart接受了异常，并需要委派给S模式，那么硬件会作为一个原子操作完成下面的状态转换
     \begin{itemize}
         \item 发生异常的指令PC被存入sepc, 且PC被设置为stvec
         \item scause根据异常设置类型，stval被设置为出错的地址或者异常相关信息字
