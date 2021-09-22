@@ -4,8 +4,8 @@
 %   TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第4讲]{第四讲 存储管理} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第6节 实验四：RISC-V SV39页式存储}
+\title[第4讲]{第四讲:存储管理} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第6节:ch4 - RISC-V SV39页式存储}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -31,7 +31,7 @@
 %   PRESENTATION SLIDES
 %----------------------------------------------------------------------------------------
 %------------------------------------------------
-\section{第6节 实验四：RISC-V SV39页式存储}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第6节:ch4 - RISC-V SV39页式存储}% Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 \subsection{页表数据结构}
 % 
@@ -108,7 +108,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}
-    \frametitle{页表}
+    \frametitle{\href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/page_table.rs\#L56}{页表}}
 % %%%%%% 页表
 % 
 % \href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html\#id5}{多级页表实现}
@@ -168,7 +168,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}
-    \frametitle{地址映射建立和撤消}
+    \frametitle{\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html\#id8}{地址映射建立和撤消}}
 % %%%%%% 地址映射建立和撤消
 % 
 % \href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html\#id8}{建立和拆除虚实地址映射关系}：
@@ -193,7 +193,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}
-    \frametitle{物理页管理}
+    \frametitle{\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html\#id2}{物理页管理}}
 % %%%%%% 物理页管理
 % 
 % \href{https://rcore-os.github.io/% rCore-Tutorial-Book-v3/chapter4/4sv39-implementation-2.html\#sv39}{实现 SV39 多级页表机制（下）}：物理内存管理、多级页表、地址转换；
@@ -245,17 +245,6 @@
     \frametitle{地址空间与段}
 % %%%%%% 地址空间与段
 % 
-\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html\#id4}{逻辑段}：指地址区间中的一段属性相同的连续虚拟地址区间，以相同方式映射到物理页帧。
-% 
-% \href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/memory_set.rs\#L193}{MapArea}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.6\linewidth]{figs/memory_set-L193.png}
-%       \caption{xxxx}
-    \end{figure}
-% 
-% [memory_set-L193](/Users/xyong/github/os-lectures/lecture04/figs/memory_set-L193.png)
-% 
 \href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html\#id5}{地址空间}：包含一个多级页表page\_table 和一个逻辑段MapArea的向量areas
 % 
 % \href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/memory_set.rs\#L38}{struct MemorySet}
@@ -269,10 +258,21 @@
 % 
 % 注：\href{https://www.tomdalling.com/blog/software-design/% resource-acquisition-is-initialisation-raii-explained/}{Resource Acquisition is Initialisation (RAII) Explained}
 % 
+% 
+\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html\#id4}{逻辑段}：指地址区间中的一段属性相同的连续虚拟地址区间，以相同方式映射到物理页帧。
+% 
+% \href{https://github.com/rcore-os/rCore-Tutorial-v3/blob/ch4/os/src/mm/memory_set.rs\#L193}{MapArea}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.6\linewidth]{figs/memory_set-L193.png}
+%       \caption{xxxx}
+    \end{figure}
+% 
+% [memory_set-L193](/Users/xyong/github/os-lectures/lecture04/figs/memory_set-L193.png)
 \end{frame}
 %------------------------------------------------
 \begin{frame}
-    \frametitle{\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/_images/kernel-as-high.png}{内核地址空间高256GiB布局}}
+    \frametitle{\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html\#id6}{内核地址空间}高256GiB布局}
 % %%%%%% 内核地址空间
 % 
 % \href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html\#id6}{内核地址空间}
@@ -289,7 +289,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}
-    \frametitle{\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/_images/kernel-as-low.png}{内核地址空间低256GiB布局}}
+    \frametitle{\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter4/5kernel-app-spaces.html\#id6}{内核地址空间}低256GiB布局}
 四个逻辑段 .text/.rodata/.data/.bss 被恒等映射到物理内存；
     \begin{figure}
         \centering
