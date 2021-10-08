@@ -250,13 +250,13 @@ boot_pgdir[PDX(VPT)] = PADDR(boot_pgdir) | PTE_P | PTE_W;
 % ![PTE-RWX-fields](figs/PTE-RWX-fields.png)
 %------------------------------------------------
 \begin{frame}
-    \frametitle{rCore中riscv-Sv32自映射}
+    \frametitle{rCore中riscv-Sv32自映射：L1PTE}
 
 %% columns
     \begin{columns}
     \begin{column}{0.6\textwidth}
         \begin{figure}
-        \includegraphics[width=0.9\linewidth]{figs/riscv32-self-mapping.png}
+        \includegraphics[width=0.85\linewidth]{lecture07/figs/RV-L1-self-mapping.png}
     %    \caption{xxxx}
         \end{figure}
     \end{column} \pause
@@ -264,7 +264,7 @@ boot_pgdir[PDX(VPT)] = PADDR(boot_pgdir) | PTE_P | PTE_W;
         \begin{itemize}
             \item RISCV页表项中的flags，明确表示它指向的是数据页（VRW），还是下层页表（V）。
             \item 在访问一级页表虚地址期间，将它所对应的二级页表项flags置为VRW。
-            \item 访问二级页表本身，还需要再加一个自映射的二级页表项，其flags为VRW。
+%            \item 访问二级页表本身，还需要再加一个自映射的二级页表项，其flags为VRW。
         \end{itemize}
     \end{column}
     \end{columns}
@@ -280,5 +280,27 @@ boot_pgdir[PDX(VPT)] = PADDR(boot_pgdir) | PTE_P | PTE_W;
 % RISCV页表项中的flags，明确表示它指向的是数据页（VRW），还是下层页表（V）。
 % 在访问一级页表虚地址期间，将它所对应的二级页表项flags置为VRW。
 % 访问二级页表本身，还需要再加一个自映射的二级页表项，其flags为VRW。
+%------------------------------------------------
+\begin{frame}
+    \frametitle{rCore中riscv-Sv32自映射：L2PTE}
+
+%% columns
+    \begin{columns}
+    \begin{column}{0.6\textwidth}
+        \begin{figure}
+        \includegraphics[width=0.85\linewidth]{lecture07/figs/RV-L2-self-mapping.png}
+    %    \caption{xxxx}
+        \end{figure}
+    \end{column} \pause
+    \begin{column}{0.4\textwidth}
+        \begin{itemize}
+            \item RISCV页表项中的flags，明确表示它指向的是数据页（VRW），还是下层页表（V）。
+%            \item 在访问一级页表虚地址期间，将它所对应的二级页表项flags置为VRW。
+            \item 访问二级页表本身，还需要再加一个自映射的二级页表项，其flags为VRW。
+        \end{itemize}
+    \end{column}
+    \end{columns}
+
+\end{frame}
 %------------------------------------------------
 \end{document}
