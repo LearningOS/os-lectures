@@ -11,7 +11,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第8讲]{第8讲 ：全局页替换算法} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第四节：面向缓存的页替换算法-FBR}
+\subtitle{第五节：FBR：访问频率置换算法}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -38,7 +38,7 @@
 %%----------------------------------------------------------------------------------------
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+    \frametitle{内存抖动问题（thrashing）}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 	
@@ -48,13 +48,13 @@
 
 		\begin{column}{.5\textwidth}
 			
-			\begin{itemize}\Large
-				\item 内存抖动问题（thrashing）
+			%\begin{itemize}\Large
+			%	\item 内存抖动问题（thrashing）
 				\begin{itemize}\large
 					\item 大量的IO访问
 					\item 内存空间不够用
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 			
 		\end{column}
 		
@@ -66,7 +66,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{全局页面置换算法}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -76,15 +76,15 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}\Large
-				\item 内存抖动问题（thrashing）
+			%\begin{itemize}\Large
+			%	\item 内存抖动问题（thrashing）
 				\begin{itemize}\large
-					\item 全局页面置换算法
+					%\item 全局页面置换算法
 					\item 工作集算法：换出不在工作集中的页面
 					\item 缺页率算法：使每个进程的缺页率保持在一个合理范围内
 					\item LRU算法：选择最长时间没有被引用的页面进行置换
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 			
 		\end{column}
 		
@@ -94,40 +94,40 @@
 
 
 %----------------------------------------------
-\begin{frame}[plain]
-	\frametitle{ }
-	\begin{columns}
-		\begin{column}{.4\textwidth}
-			\centering
-			\includegraphics[width=.6\textwidth]{mem-trash}
-			\includegraphics[width=1.2\textwidth]{buf-cache}
-			
-%			缓存就是数据交换的缓冲区（称作Cache）。
-%			大部分的缓存使用，是为了提高程序数据的处理速度或者说提高程序的响应速度。 
-		\end{column}
-		
-		\begin{column}{.6\textwidth}
-			
-			\begin{itemize}\Large
-				\item LRU算法
-				\begin{itemize}\large
-
-					\item 选择在内存驻留时间最长的页面进行置换
-					\item 最优置换算法的一种近似
-					\item 还有缺点与不足吗？
-				\end{itemize}
-			\end{itemize}
-			
-		\end{column}
-		
-		
-	\end{columns}
-\end{frame}
-
-
+% \begin{frame}[plain]
+% 	\frametitle{ }
+% 	\begin{columns}
+% 		\begin{column}{.4\textwidth}
+% 			\centering
+% 			\includegraphics[width=.6\textwidth]{mem-trash}
+% 			\includegraphics[width=1.2\textwidth]{buf-cache}
+% 			
+% %			缓存就是数据交换的缓冲区（称作Cache）。
+% %			大部分的缓存使用，是为了提高程序数据的处理速度或者说提高程序的响应速度。 
+% 		\end{column}
+% 		
+% 		\begin{column}{.6\textwidth}
+% 			
+% 			\begin{itemize}\Large
+% 				\item LRU算法
+% 				\begin{itemize}\large
+% 
+% 					\item 选择在内存驻留时间最长的页面进行置换
+% 					\item 最优置换算法的一种近似
+% 					\item 还有缺点与不足吗？
+% 				\end{itemize}
+% 			\end{itemize}
+% 			
+% 		\end{column}
+% 		
+% 		
+% 	\end{columns}
+% \end{frame}
+% 
+% 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LRU算法的命中率}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -137,8 +137,8 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}\Large
-				\item LRU算法的命中率
+			%\begin{itemize}\Large
+			%	\item LRU算法的命中率
 				\begin{itemize}\large
 					
 					\item 当存在“热点”数据时，LRU的效率很好
@@ -146,7 +146,7 @@
 					\item 缓存污染情况比较严重
 					
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 			\small
 			缓存污染：是指OS将不常用的数据从内存移到缓存，造成常用数据的挤出，降低了缓存效率的现象。
 		\end{column}
@@ -158,7 +158,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LRU算法的命中率}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\centering
@@ -187,7 +187,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LRU算法的命中率}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\centering
@@ -225,7 +225,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LRU算法的命中率}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\centering
@@ -259,7 +259,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LFU算法的命中率}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\centering
@@ -291,7 +291,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{访问频率置换算法(Frequency-based Replacement)}
 	\begin{columns}
 		\begin{column}{.1\textwidth}
 			\centering
@@ -323,7 +323,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{访问频率置换算法(Frequency-based Replacement)}
 	\begin{columns}
 		\begin{column}{.0\textwidth}
 			\centering
@@ -334,7 +334,7 @@
 		\begin{column}{1.0\textwidth}
 			
 			\begin{itemize}
-				\item LRU+LFU = FBR 访问频率置换算法(Frequency-based Replacement)
+				\item LRU+LFU = FBR
 
 			\end{itemize}
 			
@@ -350,7 +350,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{访问频率置换算法(Frequency-based Replacement)}
 	\begin{columns}
 		\begin{column}{.0\textwidth}
 			\centering
@@ -360,10 +360,10 @@
 		
 		\begin{column}{1.0\textwidth}
 			
-			\begin{itemize}
-				\item LRU+LFU = FBR 访问频率置换算法(Frequency-based Replacement)
-				
-			\end{itemize}
+%			\begin{itemize}
+%				\item LRU+LFU = FBR 访问频率置换算法(Frequency-based Replacement)
+%				
+%			\end{itemize}
 			
 			\includegraphics[width=.8\textwidth]{fbr2}
 		\end{column}
@@ -386,10 +386,10 @@
 		
 		\begin{column}{1.0\textwidth}
 			
-			\begin{itemize}
-				\item LRU+LFU = FBR 访问频率置换算法(Frequency-based Replacement)
-				
-			\end{itemize}
+%			\begin{itemize}
+%				\item LRU+LFU = FBR 访问频率置换算法(Frequency-based Replacement)
+%				
+%			\end{itemize}
 			
 			\includegraphics[width=.8\textwidth]{fbr3}
 		\end{column}
@@ -402,7 +402,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{访问频率置换算法(Frequency-based Replacement)}
 	\begin{columns}
 		\begin{column}{.0\textwidth}
 			\centering

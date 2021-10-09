@@ -11,7 +11,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第8讲]{第8讲 ：全局页替换算法} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第四节：面向缓存的页替换算法 -- LRU-K 2Q}
+\subtitle{第六节：面向缓存的页替换算法 -- LRU-K \& 2Q}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -39,7 +39,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LRU-K}
 	\begin{columns}
 		\begin{column}{.1\textwidth}
 			\centering
@@ -74,7 +74,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LRU-K}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -84,8 +84,8 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}
-				\item LRU-K
+			% \begin{itemize}
+				% \item LRU-K
 				\begin{itemize}
 					
 					\item LRU-K是基于LRU算法的扩展，其中K代表最近访问的次数，从某种意义上，LRU可以看作是LRU-1算法，引入K的意义是为了解决缓存污染问题。
@@ -93,7 +93,7 @@
 					
 					
 				\end{itemize}
-			\end{itemize}
+			% \end{itemize}
 			
 			
 		\end{column}
@@ -105,7 +105,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LRU-K}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -115,15 +115,15 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}
-				\item LRU-K
+			%\begin{itemize}
+			%	\item LRU-K
 				\begin{itemize}
 					
 					\item LRU-K与LRU区别：LRU-K多了一个数据访问历史记录队列（需要注意的是，访问历史记录队列并不是缓存队列，所以是不保存数据本身的，只是保存对数据的访问记录），访问历史记录队列中维护着数据被访问的次数以及时间戳。
 					\item 只有当这个数据被访问的次数大于等于K值时，才会从历史记录队列中删除，然后把数据加入到缓存队列中去。
 					
 				\end{itemize}
-			\end{itemize}
+			% \end{itemize}
 			
 			
 		\end{column}
@@ -134,7 +134,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LRU-K}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -144,8 +144,8 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}
-				\item LRU-K
+			%\begin{itemize}
+			%	\item LRU-K
 				\begin{itemize}
 					
 					\item 数据第一次被访问时，加入到历史访问记录队列中，访问次数为1，初始化访问时间戳；
@@ -156,7 +156,7 @@
 					
 					
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 
 			
 		\end{column}
@@ -168,7 +168,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{评价LRU-K}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -178,8 +178,8 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}
-				\item 评价 LRU-K 
+			%\begin{itemize}
+			%	\item 评价 LRU-K 
 				\begin{itemize}
 					
 					\item LRU-K降低了“缓存污染”带来的问题，命中率比LRU要高。
@@ -188,7 +188,7 @@
 					\item LRU-K数据缓存队列一般是一个优先级队列。排序操作需要额外的O(logN)的时间复杂度，N为数据缓存队列的大小。
 					
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 			\centering
 			\large 从能否进一步改进？
 		\end{column}
@@ -202,7 +202,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{2Q}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -212,14 +212,14 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}
-				\item 2Q
+			%\begin{itemize}
+			%	\item 2Q
 				\begin{itemize}
 					
 					\item 2Q算法类似于LRU-2，不同点在于2Q将LRU-2算法中的访问历史队列（注意这不是缓存数据的）改为一个FIFO缓存队列，即：2Q算法有两个缓存队列，一个是FIFO队列（First in First out，先进先出），一个是LRU队列。
 					\item 当数据第一次访问时，2Q算法将数据缓存在FIFO队列里面，当数据第二次被访问时，则将数据从FIFO队列移到LRU队列里面，两个队列各自按照自己的方法淘汰数据。
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 %			\centering
 %			\large 从能否进一步改进？
 		\end{column}
@@ -231,7 +231,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{2Q}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -241,8 +241,8 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}
-				\item 2Q
+			%\begin{itemize}
+			%	\item 2Q
 				\begin{itemize}
 					
 					\item 新访问的数据先插入到FIFO队列中；
@@ -251,7 +251,7 @@
 					\item 如果数据在LRU队列再次被访问，则将数据移到LRU队列头部；
 					\item LRU队列淘汰末尾的数据。
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 
 		\end{column}
 		
@@ -263,7 +263,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{评价2Q}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -273,8 +273,8 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}
-				\item 评价2Q
+			%\begin{itemize}
+			%	\item 评价2Q
 				\begin{itemize}
 					\item 计算开销小于LRU-2
 					\item 命中率与LRU-2类似，命中率要高于LRU
@@ -282,7 +282,7 @@
 					\item 仍然需要配置参数
 
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 						\centering
 						\large 从能否进一步改进？
 												

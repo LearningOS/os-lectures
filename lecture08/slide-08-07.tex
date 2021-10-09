@@ -11,7 +11,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第8讲]{第8讲 ：全局页替换算法} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第四节：面向缓存的页替换算法 -- LIRS}
+\subtitle{第七节：面向缓存的页替换算法 -- LIRS}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -75,7 +75,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS例子}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -84,7 +84,7 @@
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			LIRS 例子
+		%	LIRS 例子
 			
 		\includegraphics[width=1.\textwidth]{lirs-example}
 			
@@ -97,7 +97,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS例子}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -107,7 +107,7 @@
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			LIRS 例子：D在时刻10被访问，替换哪个块？
+			D在时刻10被访问，替换哪个块？
 			
 			\includegraphics[width=1.\textwidth]{lirs-ex2}
 			\pause
@@ -124,7 +124,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS例子}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -134,7 +134,7 @@
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			LIRS 例子：LIR Set如何更新？
+			LIR Set如何更新？
 			
 			\includegraphics[width=1.\textwidth]{lirs-ex3}
 			
@@ -148,7 +148,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS例子}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -158,7 +158,7 @@
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			LIRS 例子：LIR Set如何更新？
+			LIR Set如何更新？
 			
 			\includegraphics[width=1.\textwidth]{lirs-ex4}
 			
@@ -172,7 +172,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS例子}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\centering
@@ -182,7 +182,7 @@
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			LIRS 例子：C在时刻10被访问，替换哪个块？如何更新LIR/HIR Set？
+			C在时刻10被访问，替换哪个块？如何更新LIR/HIR Set？
 			
 			\includegraphics[width=1.\textwidth]{lirs-ex5}
 			
@@ -198,7 +198,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS 替换策略}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\centering
@@ -211,7 +211,7 @@
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
-			LIRS 替换策略
+			%LIRS 替换策略
 			%			\begin{itemize}
 			
 			\begin{itemize}
@@ -237,17 +237,17 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS替换算法}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\centering
 			%			\includegraphics[width=.6\textwidth]{mem-trash}
-			\includegraphics[width=.8\textwidth]{lirs-stack}
+			\includegraphics[width=.7\textwidth]{lirs-stack}
 			
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
-			LIRS 替换算法
+			% LIRS 替换算法
 			%			\begin{itemize}
 			
 			\begin{itemize}
@@ -271,7 +271,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS替换算法(LIR hit)}
 	\begin{columns}
 		\begin{column}{.1\textwidth}
 			\centering
@@ -281,7 +281,7 @@
 		\end{column}
 		
 		\begin{column}{.9\textwidth}
-			LIRS 替换算法 (LIR hit)
+			%LIRS 替换算法 (LIR hit)
 			%			\begin{itemize}
 			
 			\begin{itemize}
@@ -295,18 +295,18 @@
 				
 			\end{itemize}
 			\centering
-             \includegraphics[width=.8\textwidth]{lirs-stack-hit}
+             \includegraphics[width=.65\textwidth]{lirs-stack-hit}
 			
 		\end{column}
 		
 		
 	\end{columns}
-从\end{frame}
+\end{frame}
 
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS替换算法(HIR hit)}
 	\begin{columns}
 		\begin{column}{.1\textwidth}
 			\centering
@@ -316,7 +316,7 @@
 		\end{column}
 		
 		\begin{column}{.9\textwidth}
-			LIRS 替换算法 (HIR hit)
+			%LIRS 替换算法 (HIR hit)
 			%			\begin{itemize}
 			
 			\begin{itemize}
@@ -333,7 +333,7 @@
 				
 			\end{itemize}
 			\centering
-			 \includegraphics[width=.8\textwidth]{lirs-stack-hir-hit}
+			 \includegraphics[width=.6\textwidth]{lirs-stack-hir-hit}
 			
 		\end{column}
 		
@@ -346,7 +346,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS替换算法(Missing)}
 	\begin{columns}
 		\begin{column}{.1\textwidth}
 			\centering
@@ -356,7 +356,7 @@
 		\end{column}
 		
 		\begin{column}{.9\textwidth}
-			LIRS 替换算法 (Missing)
+			% LIRS 替换算法 (Missing)
 			%			\begin{itemize}
 			
 			\begin{itemize}
@@ -373,7 +373,7 @@
 			\end{itemize}
 			\end{itemize}
 			\centering
-			\includegraphics[width=.8\textwidth]{lirs-stack-miss-1}
+			\includegraphics[width=.6\textwidth]{lirs-stack-miss-1}
 			
 		\end{column}
 		
@@ -384,7 +384,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{LIRS替换算法(Missing)}
 	\begin{columns}
 		\begin{column}{.1\textwidth}
 			\centering
@@ -394,7 +394,7 @@
 		\end{column}
 		
 		\begin{column}{.9\textwidth}
-			LIRS 替换算法 (Missing)
+			% LIRS 替换算法 (Missing)
 			%			\begin{itemize}
 			
 			\begin{itemize}
@@ -411,7 +411,7 @@
 				\end{itemize}
 			\end{itemize}
 			\centering
-			\includegraphics[width=.8\textwidth]{lirs-stack-missing-2}
+			\includegraphics[width=.7\textwidth]{lirs-stack-missing-2}
 			
 		\end{column}
 		
@@ -422,7 +422,7 @@
 
 %----------------------------------------------
 \begin{frame}[plain]
-	\frametitle{ }
+	\frametitle{评价LIRS}
 	\begin{columns}
 		\begin{column}{.3\textwidth}
 			\centering
@@ -433,8 +433,8 @@
 		
 		\begin{column}{.6\textwidth}
 			
-			\begin{itemize}
-				\item 评价LIRS
+			%\begin{itemize}
+			%	\item 评价LIRS
 				\begin{itemize}
 					\item LIRS能够快速适应上述4种访问模式。
 					\item 特别对于循环访问，LIRS能够固定开始的LIR块驻cache中，保证了cache命中率。
@@ -443,7 +443,7 @@
 					\item  从性能角度来看，LIRS>2Q>LRU-K>LRU
 					
 				\end{itemize}
-			\end{itemize}
+			%\end{itemize}
 			\centering
 			\large 从能否进一步改进？(Your Work)
 			
