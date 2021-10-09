@@ -262,8 +262,8 @@ boot_pgdir[PDX(VPT)] = PADDR(boot_pgdir) | PTE_P | PTE_W;
     \end{column} \pause
     \begin{column}{0.4\textwidth}
         \begin{itemize}
-            \item RISCV页表项中的flags，明确表示它指向的是数据页（VRW），还是下层页表（V）。
-            \item 在访问一级页表虚地址期间，将它所对应的二级页表项flags置为VRW。
+            \item RISCV页表项中的flags，明确表示它指向的是数据页（RWX），还是下层页表（RWX=000）。
+            \item 在访问一级页表虚地址期间，将它所对应的二级页表项flags置为RWX。
 %            \item 访问二级页表本身，还需要再加一个自映射的二级页表项，其flags为VRW。
         \end{itemize}
     \end{column}
@@ -294,9 +294,9 @@ boot_pgdir[PDX(VPT)] = PADDR(boot_pgdir) | PTE_P | PTE_W;
     \end{column} \pause
     \begin{column}{0.4\textwidth}
         \begin{itemize}
-            \item RISCV页表项中的flags，明确表示它指向的是数据页（VRW），还是下层页表（V）。
+            \item RISCV页表项中的flags，明确表示它指向的是数据页（RWX），还是下层页表（RWX=000）。
 %            \item 在访问一级页表虚地址期间，将它所对应的二级页表项flags置为VRW。
-            \item 访问二级页表本身，还需要再加一个自映射的二级页表项，其flags为VRW。
+            \item 访问二级页表本身，还需要再加一个自映射的二级页表项，其flags为RWX。
         \end{itemize}
     \end{column}
     \end{columns}
