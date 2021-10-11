@@ -62,6 +62,25 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
+    \frametitle{\href{https://www.cs.montana.edu/paxton/classes/2020/lectures/concurrency/slides.pptx}{Parallelism \& Concurrency}}
+
+    \begin{itemize}
+        \item Parallelism: we are executing two instructions at the same time.
+        \item Concurrency is all about dealing with many things at once, often doing so by executing tasks “out of order”. \pause
+        \begin{itemize}
+            \item Functions are able to interleave \& overlap each other during execution.
+            \item Concurrency does not mean we are executing two instructions at the same time.
+        \end{itemize}
+    \end{itemize} \pause
+
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{figs/parallel-concurrnt.png}
+  \end{figure}
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
     \frametitle{引入协程的目的}
 
 提高线程内代码执行的并发性能和可靠性：减少线程的资源占用和切换开销，提高代码维护性； \pause
