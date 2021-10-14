@@ -40,14 +40,15 @@
 %------------------------------------------------
 % ## rCore进程管理
 % 
-\subsection{rCore中的进程管理系统调用}
+\subsection{rCore进程管理系统调用}
 % 
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{rCore中的进程管理系统调用`fork`}
+    \frametitle{rCore进程管理系统调用\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/1process.html\#fork}{`fork`}}
+    内核会创建一个子进程
     \begin{itemize}
-        \item 内核会创建一个子进程
-        \item 子进程和调用 `fork` 父的进程在返回用户态时的状态几乎完全相同：为子进程创建一个和父进程几乎完全相同的应用地址空间。
+        \item 子进程和调用 `fork` 父的进程在返回用户态时的状态几乎完全相同
+        \item 为子进程创建一个和父进程几乎完全相同的应用地址空间。
         \item 父子进程的系统调用返回值`a0` 寄存器内容不同
     \end{itemize}
 % 
@@ -63,7 +64,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{rCore中的进程管理系统调用`waitpid`}
+    \frametitle{rCore进程管理系统调用\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/1process.html\#waitpid}{`waitpid`}}
     \begin{itemize}
         \item 进程通过 `exit` 系统调用退出后，无法立即全部地回收所占用资源
     \begin{itemize}
@@ -77,7 +78,7 @@
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{figs/waitpid.png}
+		\includegraphics[width=0.9\linewidth]{figs/waitpid.png}
 %		\caption{waitpid}
 	\end{figure}
 
@@ -87,26 +88,28 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{rCore中的进程管理系统调用`exec`}
+    \frametitle{rCore进程管理系统调用\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/1process.html\#exec}{`exec`}}
+    执行不同的可执行文件：加载一个新的 ELF 可执行文件替换原有的应用地址空间并开始执行。
     \begin{itemize}
-        \item 执行不同的可执行文件：加载一个新的 ELF 可执行文件替换原有的应用地址空间并开始执行。
         \item `path` 作为 `\&str` 类型是一个胖指针
     \end{itemize}
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{figs/exec.png}
+		\includegraphics[width=0.75\linewidth]{figs/exec.png}
 %		\caption{exec}
 	\end{figure}
 
 
 
 % 
-调用方法
+    \begin{itemize}
+        \item 调用方法
+    \end{itemize}
 % 
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.7\linewidth]{figs/exec-call.png}
+		\includegraphics[width=0.65\linewidth]{figs/exec-call.png}
 %		\caption{exec-call}
 	\end{figure}
 
@@ -116,7 +119,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{rCore中的进程管理系统调用`exit`}
+    \frametitle{rCore进程管理系统调用`exit`}
     \begin{itemize}
         \item 进程退出：当应用调用 `sys\_exit` 系统调用主动退出或者出错由内核终止之后，会在内核中调用 `exit\_current\_and\_run\_next`函数退出当前任务并切换到下一个。
     \end{itemize}
@@ -125,12 +128,12 @@
 % 
 % 外壳程序-user_shell
 % 
-\subsection{进程管理的核心数据结构}
+\subsection{进程管理数据结构}
 % 
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{进程标识符}
+    \frametitle{进程管理数据结构：\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/2core-data-structures.html\#id6}{进程标识符}}
 % 
 	\begin{figure}
 		\centering
@@ -143,7 +146,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{内核栈}
+    \frametitle{进程管理数据结构：内核栈}
 % 
 	\begin{figure}
 		\centering
@@ -157,7 +160,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{进程控制块}
+    \frametitle{进程管理数据结构：\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/2core-data-structures.html\#id7}{进程控制块}}
 % 
 	\begin{figure}
 		\centering
@@ -171,7 +174,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{任务管理器}
+    \frametitle{进程管理数据结构：\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/2core-data-structures.html\#id8}{任务管理器}}
 % 
 	\begin{figure}
 		\centering
@@ -185,7 +188,7 @@
 \end{frame}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{处理器监视器}
+    \frametitle{进程管理数据结构：\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/2core-data-structures.html\#id8}{处理器管理结构}}
 % 
 	\begin{figure}
 		\centering
@@ -202,7 +205,7 @@
 \subsection{任务切换}
 %------------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{任务切换} 
+    \frametitle{\href{https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter5/2core-data-structures.html\#idle}{任务切换}：\href{https://rcore-os.github.io/rCore_tutorial_doc/chapter6/part2.html}{switch}} 
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.7\linewidth]{figs/scheduler.png}
