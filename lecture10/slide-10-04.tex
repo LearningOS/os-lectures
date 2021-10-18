@@ -53,7 +53,7 @@ Ref:
 % 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{零成本异步I/O}
+    \frametitle{Future的设计目标：零成本异步I/O}
 %    \framesubtitle{xxxx}
 % #### 零成本异步I/O
 % 
@@ -73,7 +73,7 @@ Future的设计目标
     	\begin{itemize}
     	    \item 它不是语言的一部分，也不是每个程序附带的运行时的一部分，只是可选的并按需使用的库
     	\end{itemize}
-    \end{itemize}
+    \end{itemize} \pause
 
 {\color{red}零成本抽象}
 % 
@@ -231,14 +231,14 @@ A future is a representation of some operation which will complete in the future
 
 %--------------------------
 \begin{frame}[fragile]
-    \frametitle{Concept of Future}
+    \frametitle{Async Architecture of rust}
     %    \framesubtitle{xxxx}
     
     % #### Concept of Future
     % 
     % Ref: https://os.phil-opp.com/async-await/#example
     \centering
-    Async Architecture of rust
+    % Async Architecture of rust
     % 
     %% figure
     \begin{figure}
@@ -252,7 +252,7 @@ A future is a representation of some operation which will complete in the future
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Concept of Future}
+    \frametitle{Async Architecture of rust}
     %    \framesubtitle{xxxx}
     \begin{columns}
         \begin{column}{.4\textwidth}
@@ -260,7 +260,7 @@ A future is a representation of some operation which will complete in the future
             % 
             % Ref: https://os.phil-opp.com/async-await/#example
             \centering
-             Async Architecture of rust
+            % Async Architecture of rust
             % 
             %% figure
             \begin{figure}
@@ -297,29 +297,6 @@ A future is a representation of some operation which will complete in the future
     \end{columns}
     % 
 \end{frame}
-%----------------------------------------------
-%\begin{frame}[fragile]
-%    \frametitle{基于轮询的 Future的异步执行过程}
-%%    \framesubtitle{xxxx}
-%% #### 基于轮询的 Future的异步执行过程
-%% 
-%%% itemize
-%    \begin{itemize}
-%        \item 执行器会轮询 `Future`，直到最终 `Future` 需要执行某种 I/O 
-%        \item 该 `Future` 将被移交给处理 I/O 的反应器，即 `Future` 会等待该特定 I/O 
-%        \item I/O 事件发生时，反应器将使用传递的`Waker` 参数唤醒 `Future` ，传回执行器
-%        \item 循环上述三步，直到最终`future`任务完成（resolved）
-%        \item 任务完成并得出结果时，执行器释放句柄和整个`Future`，整个调用过程就完成了
-%    \end{itemize}
-%% 
-%%% figure
-%    \begin{figure}
-%    \includegraphics[width=0.5\linewidth]{figs/future-loop.jpg}
-%%    \caption{xxxx}
-%    \end{figure}
-%% ![future-loop](figs/future-loop.jpg)
-%% 
-%\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Leaf futures \& Non-leaf-futures}
@@ -567,7 +544,7 @@ Here are the results, in number of “Hello world!"s served per second on an 8 c
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{\href{https://cfsamson.github.io/books-futures-explained/3_generators_async_await.html}{Example of Generator}}
+    \frametitle{\href{https://cfsamson.github.io/books-futures-explained/4_generators_async_await.html\#how-generators-work}{Example of Generator}}
 %    \framesubtitle{xxxx}
 % #### Example of Generator
 % 
@@ -591,6 +568,112 @@ Here are the results, in number of “Hello world!"s served per second on an 8 c
     } \end{verbatim}
 \end{block}
 % 
+\end{frame}
+%----------------------------------------------
+\subsection{Executor, Reactor and Waker}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Relationship between Executor, Reactor and Waker}
+%    \framesubtitle{xxxx}
+% #### 基于轮询的 Future的异步执行过程
+% 
+%% itemize
+            \begin{itemize}
+                \item {\color{red}Executor}: A Future is polled which result in the task progressing
+                \item {\color{red}Reactor}: Register an event source that a Future is waiting for
+                \item {\color{red}Waker}: The event happens and the Future is woken up
+            \end{itemize}
+% 
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.5\linewidth]{figs/future-loop.jpg}
+%    \caption{xxxx}
+    \end{figure}
+% ![future-loop](figs/future-loop.jpg)
+% 
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{\href{https://juejin.cn/post/6924224793982353415}{Executor}}
+%    \framesubtitle{xxxx}
+    \begin{columns}
+        \begin{column}{.5\textwidth}
+    \begin{figure}
+    \includegraphics[width=0.9\linewidth]{figs/executor.png}
+%    \caption{xxxx}
+    \end{figure}
+        \end{column}
+        
+        \begin{column}{.5\textwidth}
+%% itemize
+\small
+\begin{block}{} 
+    \begin{verbatim}
+pub enum Poll<T> {
+    Ready(T),
+    Pending,
+}
+pub trait Future {
+    type Output;
+    fn poll(&mut self, cx: &Waker) -> Poll<Self::Output>;
+}
+    \end{verbatim}
+\end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{State and Transition for Future: \href{https://cfsamson.github.io/books-futures-explained/7_finished_example.html}{ref}}
+%    \framesubtitle{xxxx}
+\begin{block}{}
+    \begin{verbatim}
+enum TaskState {
+    Ready,
+    NotReady(Waker),
+    Finished,
+}
+fn wake(&mut self, id: usize) {
+    let state = self.tasks.get_mut(&id).unwrap();
+    match mem::replace(state, TaskState::Ready) {
+        TaskState::NotReady(waker) => waker.wake(),
+        TaskState::Finished => panic!("Called 'wake' twice on task: {}", id),
+        _ => unreachable!()
+    }
+}  \end{verbatim}
+\end{block}
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Concurrency performance of modern programming languages}
+%    \framesubtitle{xxxx}
+% 
+    \begin{columns}
+        \begin{column}{.4\textwidth}
+            \begin{itemize}
+                \item \href{https://deepu.tech/concurrency-in-modern-languages/}{Introduction}
+                \item \href{https://deepu.tech/concurrency-in-modern-languages-rust/}{Rust}
+                \item \href{https://deepu.tech/concurrency-in-modern-languages-go/}{Golang}
+                \item \href{https://deepu.tech/concurrency-in-modern-languages-js/}{JavaScript on NodeJS}
+                \item \href{https://deepu.tech/concurrency-in-modern-languages-ts/}{TypeScript on Deno}
+                \item \href{https://deepu.tech/concurrency-in-modern-languages-java/}{Java}
+            \end{itemize}
+        \end{column}
+        
+        \begin{column}{.6\textwidth}
+        \begin{figure}
+        \includegraphics[width=0.9\linewidth]{figs/rust-performance.png}
+    %    \caption{xxxx}
+        \end{figure}
+        \end{column}
+    \end{columns}
+
 \end{frame}
 %----------------------------------------------
 \end{document}
