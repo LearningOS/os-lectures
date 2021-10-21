@@ -30,11 +30,14 @@
 %%----------------------------------------------------------------------------------------
 %%	PRESENTATION SLIDES\begin{itemize}
 %%----------------------------------------------------------------------------------------
-%
-%%------------------------------------------------
-%\section{第一节：课程概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%%------------------------------------------------
+\subsection{Linux内核}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
+\end{frame}
+%----------------------------------------------
 % 谈谈调度 - Linux O(1)  https://cloud.tencent.com/developer/article/1077507
 % Linux O(1) CPU Scheduler http://people.cs.ksu.edu/~gud/docs/ppt/scheduler.pdf
 \begin{frame}
@@ -124,6 +127,14 @@
 	
 \end{frame}
 %%------------------------------------------------
+\subsection{满足O(1)的数据结构}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+\end{frame}
+%----------------------------------------------
 \begin{frame}
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
@@ -148,7 +159,7 @@
 
 %%------------------------------------------------
 \begin{frame}
-	\frametitle{ O(1) 调度器}
+	\frametitle{O(1)数据结构：随机访问}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
             \begin{figure}
@@ -176,7 +187,7 @@
 
 %%------------------------------------------------
 \begin{frame}
-	\frametitle{ O(1) 调度器}
+	\frametitle{O(1)数据结构：搜索}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 	\includegraphics[width=1.\textwidth]{O1}
@@ -201,7 +212,7 @@
 
 %%------------------------------------------------
 \begin{frame}
-	\frametitle{ O(1) 调度器}
+	\frametitle{O(1)数据结构：插入和删除}
 	\begin{columns}
 		\begin{column}{.4\textwidth}
 			\includegraphics[width=1.\textwidth]{O1}
@@ -222,10 +233,15 @@
 		\end{column}
 	\end{columns}
 \end{frame}
-
-
-
 %%------------------------------------------------
+\subsection{O(1)调度器}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+\end{frame}
+%----------------------------------------------
 \begin{frame}
 	\frametitle{ O(1) 调度器}
 	\begin{columns}
@@ -263,7 +279,7 @@
 					\begin{itemize}
 					\item bitarray，它为每种优先级分配一个 bit，如果这个优先级队列下面有 process，那么就对相应的 bit 染色，置为 1，否则置为 0。
 					
-					\item 问题就简化成寻找一个 bitarray 里面最高位是 1 的 bit（left-most bit），这基本上是一条 CPU 指令的事。
+					\item 问题可简化成寻找一个 bitarray 里面最高位是 1 的 bit（left-most bit），这可用一条 CPU 指令实现。
 %					BSR BSF  指令 Intel 80386 https://docs.oracle.com/cd/E19120-01/open.solaris/817-5477/eoizi/index.html
 					\end{itemize}
 				
@@ -299,23 +315,23 @@
 
 %%------------------------------------------------
 \begin{frame}
-	\frametitle{ O(1) 调度器}
+	\frametitle{O(1)调度器的多核支持}
 	\begin{columns}
-		\begin{column}{.4\textwidth}
+		\begin{column}{.3\textwidth}
 			\includegraphics[width=1.\textwidth]{O1-2}
 			
 		\end{column}
 		
-		\begin{column}{.6\textwidth}
+		\begin{column}{.7\textwidth}
 			%			\large
-			O(1) 调度器：多核/SMP支持\\
+			% O(1) 调度器：多核/SMP支持\\
 			
 			\begin{itemize}
 				\item 在一定时间间隔后，进行load balance分析
 				\item  rq­> cpu\_load : represents load on the CPU
 				
 				\item 在每个时钟中断后进行计算
-				\item current\_load = rq­>nr\_running * SCHED\_LOAD\_SCALE;
+				\item \small current\_load = rq­>nr\_running * SCHED\_LOAD\_SCALE;
 				
 				\item 由负载轻的CPU pulling 进程而不是 pushing进程
 				

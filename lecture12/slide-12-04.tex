@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第12讲]{第十二讲：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第四节：CFS 调度}
+\subtitle{第四节：CFS调度}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -30,11 +30,14 @@
 %%----------------------------------------------------------------------------------------
 %%	PRESENTATION SLIDES\begin{itemize}
 %%----------------------------------------------------------------------------------------
-%
-%%------------------------------------------------
-%\section{第一节：课程概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%%------------------------------------------------
+\subsection{CFS调度的工作原理}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
+\end{frame}
+%----------------------------------------------
 % 从几个问题开始理解CFS调度器 http://linuxperf.com/?p=42
 %http://repo-ck.com/bench/cpu_schedulers_compared.pdf
 %红黑树虽然本质上是一棵二叉查找树，但它在二叉查找树的基础上增加了着色和相关的性质使得红黑树相对平衡，从而保证了红黑树的查找、插入、删除的时间复杂度最坏为O(log n)。
@@ -140,6 +143,13 @@ CFS的思路
 
 
 
+%----------------------------------------------
+\subsection{CFS调度的实现}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
 %----------------------------------------------
 \begin{frame}
 	\frametitle{CFS调度}
