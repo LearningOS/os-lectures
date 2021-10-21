@@ -4,7 +4,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第12讲]{第12讲 ：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第12讲]{第十二讲：多处理器调度} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第二节：多处理器调度概述}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -22,30 +22,29 @@
 \titlepage % Print the title page as the first slide
 \end{frame}
 
-%\begin{frame}
-%\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-%\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-%\end{frame}
-%
 %%----------------------------------------------------------------------------------------
 %%	PRESENTATION SLIDES
 %%----------------------------------------------------------------------------------------
-%
-%%------------------------------------------------
-%\section{第一节：课程概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-%%------------------------------------------------
-
+\subsection{单队列多处理器调度(SQMS)}
+%----------------------------------------------
 \begin{frame}
-	\begin{columns}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}
+    \frametitle{单队列多处理器调度(SQMS)}	
+\begin{columns}
 	\begin{column}{.5\textwidth}
 	\Large \centering
-	单队列调度
+	% 单队列调度
     \includegraphics[width=1.\textwidth]{single-queue}
 	\includegraphics[width=1.\textwidth]{sqms}	
 	\end{column}
 	
 	\begin{column}{.5\textwidth}
-		\large 单队列多处理器调度
+		% \large 单队列多处理器调度
     \begin{itemize}
         \item Single Queue Multiprocessor Scheduling，SQMS
         \item 简单地复用单处理器调度的基本架构
@@ -57,17 +56,18 @@
 \end{frame}
 %%------------------------------------------------
 \begin{frame}
+    \frametitle{单队列多处理器调度(SQMS)}	
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\Large \centering
-			单队列调度
+			% 单队列调度
 			\includegraphics[width=1.\textwidth]{single-queue}
 			\includegraphics[width=1.\textwidth]{sqms}	
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
 			\large
-			单队列多处理器调度(SQMS)
+			单队列多处理器调度的缺点
 			
 
 			\begin{itemize}\large
@@ -82,17 +82,18 @@
 
 %%------------------------------------------------
 \begin{frame}
+    \frametitle{单队列多处理器调度(SQMS)}	
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\Large \centering
-			单队列调度
+			% 单队列调度
 			\includegraphics[width=1.\textwidth]{single-queue}
 			\includegraphics[width=1.\textwidth]{sqms}	
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
 			\large
-			单队列多处理器调度(SQMS) \\
+			% 单队列多处理器调度(SQMS) \\
 			\normalsize
 			尽可能让进程在同一个CPU上运行。保持一些进程的亲和度的同时，可能需要牺牲其他进程的亲和度来实现负载均衡。
 			\includegraphics[width=1.\textwidth]{sqms-cache-affinity}
@@ -103,25 +104,34 @@
 \end{frame}
 
 %%------------------------------------------------
+\subsection{多队列多处理器调(MQMS)}
+%----------------------------------------------
 \begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}
+    \frametitle{多队列多处理器调(MQMS)}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\Large \centering
-			多队列调度
+			% 多队列调度
 			\includegraphics[width=1.\textwidth]{multi-queue}
 			\includegraphics[width=1.\textwidth]{mqms}	
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
-			\large
-			多队列多处理器调度 \\
+			% \large
+			% 多队列多处理器调度 \\
 			\normalsize
 			\begin{itemize}
 			\item Multi-Queue Multiprocessor Scheduling，MQMS
 			\item 基本调度框架包含多个调度队列，每个队列可以使用不同的调度规则，比如轮转等算法。
 			
 			\item 进程进入系统时，依照 一些启发性规则(如随机或选择较空的队列)将其放入某个调度队列。
-			\item 每个CPU调度之间相互独立，避免了单队列方式的数据共享及同步问题。
+			\item 每个CPU调度相互独立，避免单队列方式的数据共享及同步问题。
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -130,17 +140,18 @@
 
 %%------------------------------------------------
 \begin{frame}
+    \frametitle{多队列多处理器调度(MQMS)的优点}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\Large \centering
-			多队列调度
+			% 多队列调度
 			\includegraphics[width=1.\textwidth]{multi-queue}
 			\includegraphics[width=1.\textwidth]{mqms}	
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
 			\large
-			多队列多处理器调度(MQMS) 
+			% 多队列多处理器调度(MQMS) 
 			\normalsize
 			\begin{itemize}
 			\item 根据不同队列的调度策略，每个CPU从两个进程中选择，决定谁将运行。例如，轮转调度
@@ -154,17 +165,18 @@
 
 %%------------------------------------------------
 \begin{frame}
+    \frametitle{多队列多处理器调度的负载不均}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\Large \centering
-			多队列调度
+			%多队列调度
 			\includegraphics[width=1.\textwidth]{mqms-problem-1}
 			\includegraphics[width=1.\textwidth]{mqms-problem-2}	
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
 			\large
-			MQMS的负载不均\\ 
+			%MQMS的负载不均\\ 
 			\normalsize
 			
 			\begin{itemize}
@@ -181,17 +193,18 @@
 
 %%------------------------------------------------
 \begin{frame}
+    \frametitle{多队列多处理器调度的负载不均}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
-			\Large \centering
-			多队列调度
+			%\Large \centering
+			%多队列调度
 			\includegraphics[width=1.\textwidth]{mqms-problem-3}
 			\includegraphics[width=1.\textwidth]{mqms-problem-4}	
 		\end{column}
 		
 		\begin{column}{.5\textwidth}
 			\large
-			MQMS的负载不均 \\
+			%MQMS的负载不均 \\
 			\normalsize
 			假定4个进程，2个CPU；每个队列都执行轮转调度策略；A和C都执行完毕，系统中只有B和D
 			\begin{itemize}
@@ -208,11 +221,20 @@
 
 
 %%------------------------------------------------
+\subsection{多队列调度：工作窃取}
+%----------------------------------------------
 \begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}
+	\frametitle{如何应对负载不均}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\Large \centering
-			多队列调度
+			%多队列调度
 			\includegraphics[width=1.\textwidth]{mqms-problem-3}
 			\includegraphics[width=1.\textwidth]{mqms-problem-4}	
 		\end{column}
@@ -240,10 +262,11 @@
 
 %%------------------------------------------------
 \begin{frame}
+	\frametitle{如何应对负载不均}
 	\begin{columns}
 		\begin{column}{.5\textwidth}
 			\Large \centering
-			多队列调度
+			% 多队列调度
 			\includegraphics[width=1.\textwidth]{mqms-problem-5}
 			\includegraphics[width=1.\textwidth]{mqms-problem-6}	
 		\end{column}
