@@ -460,11 +460,25 @@ Condition variables represent the ability to block a thread such that it consume
 
 A mutual exclusion primitive useful for protecting shared data. \pause
 
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.4\textwidth} % Left column and width
+
 %% figure
     \begin{figure}
-    \includegraphics[width=0.7\linewidth]{figs/struct-mutex.png}
+    \includegraphics[width=0.9\linewidth]{figs/mutex-struct.png}
 %    \caption{xxxx}
     \end{figure}
+
+\column{.6\textwidth} % Right column and width
+
+%% figure
+    \begin{figure}
+    \includegraphics[width=0.9\linewidth]{figs/mutex-implement.png}
+%    \caption{xxxx}
+    \end{figure}
+
+\end{columns}
 
 \end{frame}
 %----------------------------------------------
