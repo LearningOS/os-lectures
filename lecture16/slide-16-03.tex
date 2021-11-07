@@ -41,11 +41,53 @@ Ref:
 \subsection{Signal Model} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
+    \frametitle{信号（Signal）概念}
+
+    \begin{itemize}
+        \item 信号
+        \begin{itemize}
+            \item 进程间的软件中断通知和处理机制
+            \item 如：SIGKILL, SIGSTOP, SIGCONT等
+        \end{itemize} \pause
+
+        \item 信号的接收处理
+        \begin{itemize}
+            \item 捕获(catch)：执行进程指定的信号处理函数被调用
+            \item 忽略(Ignore)：执行操作系统指定的缺省处理
+            \begin{itemize}
+                \item 例如：进程终止、进程挂起等
+            \end{itemize}
+            \item 屏蔽（Mask）：禁止进程接收和处理信号
+            \begin{itemize}
+                \item 可能是暂时的(当处理同样类型的信号)
+            \end{itemize}
+        \end{itemize} \pause
+
+        \item 不足
+        \begin{itemize}
+            \item 传送的信息量小，只有一个信号类型
+        \end{itemize}
+    \end{itemize}
+
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{信号的工作原理}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\linewidth]{figs/signal-method.png}
+        % \caption{signal-method}
+    \end{figure}
+
+\end{frame}
+%------------------------------------------------
+\begin{frame}[fragile]
     \frametitle{Signal Model}
 %    \framesubtitle{xxxx}
     \begin{itemize}
-        \item Application registers handlers with signal() or sigaction() \pause
-        \item Send signals with kill() and friends
+        \item Application registers handlers with \href{https://man7.org/linux/man-pages/man2/signal.2.html}{signal()} or \href{https://www.man7.org/linux/man-pages/man2/sigaction.2.html}{sigaction()} \pause
+        \item Send signals with \href{https://man7.org/linux/man-pages/man2/kill.2.html}{kill()} and friends
         \begin{itemize}
             \item Or raised by hardware exception handlers in kernel
         \end{itemize} \pause
@@ -67,6 +109,36 @@ Ref:
 %      * Irregular control flow, similar to an interrupt
 % 
 %----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{信号使用\href{https://stackoverflow.com/questions/4217037/catch-ctrl-c-in-c}{示例}}
+\tiny
+\begin{semiverbatim}
+\ #include <stdio.h>
+\ #include <signal.h>
+\ #include <stdlib.h>
+\ void sigproc()
+\ \{       
+\     signal(SIGINT, sigproc);   /* NOTE some versions of UNIX will reset 
+\                 * signal to default after each call. So for 
+\                 * portability reset signal each time */
+\     printf("you have pressed ctrl-c - disabled \\n");
+\ \}
+\ void quitproc()
+\ \{        
+\     printf("ctrl-\\\\ pressed to quit\\n");   /* this is “ctrl” \& “\\” */
+\     exit(0); /* normal exit status */
+\ \}
+\ int main()
+\ \{ 
+\     signal(SIGINT, sigproc);    /* DEFAULT ACTION: term */
+\     signal(SIGQUIT, quitproc);  /* DEFAULT ACTION: term */
+\     printf("ctrl-c disabled use ctrl-\\\\ to quit\\n");
+\     for(;;);
+\ \}
+\end{semiverbatim}
+
+\end{frame}
+%------------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Language Exceptions}
 %    \framesubtitle{xxxx}
@@ -108,11 +180,11 @@ Ref:
     \begin{itemize}
         \item Signal handlers can execute on a different stack than program execution.
         \begin{itemize}
-            \item Set with sigaltstack() system call
+            \item Set with \href{https://linux.die.net/man/3/sigaltstack}{sigaltstack()} system call
         \end{itemize} \pause
         \item Like an interrupt handler, kernel pushes register state on interrupt stack
         \begin{itemize}
-            \item Return to kernel with sigreturn() system call
+            \item Return to kernel with \href{https://man7.org/linux/man-pages/man2/sigreturn.2.html}{sigreturn()} system call
             \item App can change its own on-stack register state!
         \end{itemize}
     \end{itemize}
