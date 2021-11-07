@@ -139,23 +139,6 @@ Ref:
 
 \end{frame}
 %------------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{Language Exceptions}
-%    \framesubtitle{xxxx}
-    \begin{itemize}
-        \item Signals are the underlying mechanism for Exceptions and catch blocks \pause
-        \item JVM or other runtime system sets signal handlers \pause
-        \item Signal handler causes execution to jump to the catch block
-    \end{itemize}
-\end{frame}
-%----------------------------------------------
-% #### Language Exceptions
-% Ref: 20200410-09-ipc.pdf-Page:8
-% 
-%  * Signals are the underlying mechanism for Exceptions and catch blocks
-%  * JVM or other runtime system sets signal handlers
-%  * Signal handler causes execution to jump to the catch block
-%----------------------------------------------
 \subsection{Signal Handler Control Flow} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -375,4 +358,90 @@ Ref:
 %     * Similar to disabling hardware interrupts
 %  * Blocking system calls inside of a signal handler are only safe with careful use of sigaction()% 
 %----------------------------------------------
+\subsection{Language Exceptions} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{\href{https://www.cs.york.ac.uk/rts/books/RTSbookThirdEdition/chap6.pdf}{C Exceptions}}
+
+    \begin{itemize}
+        \item C does not define any exception handling facilities
+        \item This  clearly  limits  its  in  the  structured  programming  of  reliable systems
+        \item Some form of exception handling mechanism by using the C macro facility
+        \item Termination  model: Save  the status of a program's registers etc. on entry to an exception domain and then restore them if an exception occurs.
+        \item The POSIX facilities of setjmp and longjmpcan be used for this purpose
+    \end{itemize}
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{Language Exceptions}
+%    \framesubtitle{xxxx}
+    \begin{itemize}
+        \item Signals are the underlying mechanism for Exceptions and catch blocks \pause
+        \item JVM or other runtime system sets signal handlers \pause
+        \item Signal handler causes execution to jump to the catch block
+    \end{itemize}
+\end{frame}
+%----------------------------------------------
+% #### Language Exceptions
+% Ref: 20200410-09-ipc.pdf-Page:8
+% 
+%  * Signals are the underlying mechanism for Exceptions and catch blocks
+%  * JVM or other runtime system sets signal handlers
+%  * Signal handler causes execution to jump to the catch block
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{\href{https://www.cs.york.ac.uk/rts/books/RTSbookThirdEdition/chap6.pdf}{C Exceptions}}
+
+    \begin{itemize}
+        \item C does not define any exception handling facilities
+        \item This  clearly  limits  its  in  the  structured  programming  of  reliable systems
+        \item Some form of exception handling mechanism by using the C macro facility
+        \item Termination  model: Save  the status of a program's registers etc. on entry to an exception domain and then restore them if an exception occurs.
+        \item The POSIX facilities of setjmp and longjmpcan be used for this purpose
+    \end{itemize}
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{\href{https://i0.wp.com/techvidvan.com/tutorials/wp-content/uploads/sites/2/2020/04/java-exception-hierarchy.jpg}{Java Exception Hierarchy}}
+    \begin{figure}
+    \includegraphics[width=0.5\linewidth]{figs/java-exception-hierarchy.png}
+%   \caption{xxxx}
+    \end{figure}
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{\href{https://zhuanlan.zhihu.com/p/128953024}{Golang之信号处理（Signal）}}
+
+    \begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+    \column{.45\textwidth} % Left column and width
+        \begin{itemize}
+            \item 注册SIGTERM信号的处理函数并在处理函数中做一些进程退出的准备，实现优雅退出。
+            \item 信号的订阅是通过 channel实现的，每个os.Signal channel 都会收听自己相应的事件集。
+        \end{itemize}
+
+    \column{.5\textwidth} % Right column and width
+        \begin{figure}
+        \includegraphics[width=1.0\linewidth]{figs/GO-signal.png}
+    %   \caption{xxxx}
+        \end{figure}
+
+    \end{columns}
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{\href{https://www.tutorialspoint.com/rust/rust_error_handling.htm}{Error Handling in Rust}}
+
+    \begin{figure}
+    \includegraphics[width=1.0\linewidth]{figs/rust-error-handling.png}
+%   \caption{xxxx}
+    \end{figure}
+
+\end{frame}
+%----------------------------------------------
+
 \end{document}
