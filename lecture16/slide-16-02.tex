@@ -5,7 +5,7 @@
 %----------------------------------------------------------------------------------------
 
 \title[第16讲]{第十六讲 ：进程通信} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第3节：Linux信号机制}
+\subtitle{第2节：信号（Signal）}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -36,7 +36,7 @@ Ref:
 %----------------------------------------------
 %%	PRESENTATION SLIDES
 %----------------------------------------------
-\section{第3节：Linux信号机制} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第2节：信号} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
 \subsection{Signal Model} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
@@ -140,6 +140,11 @@ Ref:
 \end{frame}
 %------------------------------------------------
 \subsection{Signal Handler Control Flow} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Signal Handler Control Flow}
@@ -278,13 +283,6 @@ The first available thread gets the signal. \pause
 \begin{frame}
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-
-\pause
-
-Ref: 
-\href{http://ermak.cs.nstu.ru/understanding.linux.kernel.pdf }{Understanding the Linux Kernel}
-
-\href{https://compas.cs.stonybrook.edu/~nhonarmand/courses/fa14/cse506.2/slides/ipc.pdf}{Signals and Inter-Process Communication}
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -360,17 +358,9 @@ Ref:
 %----------------------------------------------
 \subsection{Language Exceptions} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
-\begin{frame}[fragile]
-    \frametitle{\href{https://www.cs.york.ac.uk/rts/books/RTSbookThirdEdition/chap6.pdf}{C Exceptions}}
-
-    \begin{itemize}
-        \item C does not define any exception handling facilities
-        \item This  clearly  limits  its  in  the  structured  programming  of  reliable systems
-        \item Some form of exception handling mechanism by using the C macro facility
-        \item Termination  model: Save  the status of a program's registers etc. on entry to an exception domain and then restore them if an exception occurs.
-        \item The POSIX facilities of setjmp and longjmpcan be used for this purpose
-    \end{itemize}
-
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -395,9 +385,13 @@ Ref:
 
     \begin{itemize}
         \item C does not define any exception handling facilities
-        \item This  clearly  limits  its  in  the  structured  programming  of  reliable systems
+        \begin{itemize}
+            \item This  clearly  limits  its  in  the  structured  programming  of  reliable systems
+        \end{itemize}
         \item Some form of exception handling mechanism by using the C macro facility
-        \item Termination  model: Save  the status of a program's registers etc. on entry to an exception domain and then restore them if an exception occurs.
+        \begin{itemize}
+            \item Termination  model: Save  the status of a program's registers etc. on entry to an exception domain and then restore them if an exception occurs.
+        \end{itemize}
         \item The POSIX facilities of setjmp and longjmpcan be used for this purpose
     \end{itemize}
 
