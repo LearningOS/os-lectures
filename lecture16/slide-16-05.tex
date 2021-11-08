@@ -68,7 +68,7 @@
 			\item socket相对使用广泛
 			\item 某些机制已经很少使用
 			\end{itemize}			
-			\includegraphics[width=.8\textwidth]{normal-ipc}
+			\includegraphics[width=.75\textwidth]{normal-ipc}
 			
 		\end{column}
 		\pause
@@ -143,8 +143,12 @@
 %----------------------------------------------
 \begin{frame}[plain]
 	\frametitle{D-Bus运行机制}
-	\centering
-				\includegraphics[width=.75\textwidth]{dbus-diagram}
+    \begin{figure}
+    \centering
+    \includegraphics[width=.63\textwidth]{dbus-diagram}
+    %\caption{D-Bus的组成：总线、服务、对象、接口、方法和信号}
+    \end{figure}
+    \centering D-Bus的组成：总线、服务、对象、接口、方法和信号
 
 \end{frame}
 %----------------------------------------------
@@ -160,13 +164,17 @@
 		\end{column}
 		\begin{column}{.6\textwidth}
 			%			\large
-			D-Bus的总线 bus
-			\begin{itemize}
-				\item 相当于D-BUS的通信链路，应用之间通过总线进行通信。应用在总线上寻找service
-				\item 系统总线 System Bus：用于kernel,系统应用/服务
-				\item 任务总线 Session Bus：用于gnome/kde等应用通信
-				
-			\end{itemize}
+			D-Bus的总线（bus）：D-BUS的通信链路，应用之间通过总线进行通信，应用在总线上寻找服务
+            \begin{itemize}
+                \item 系统总线（System Bus）
+                \begin{itemize}
+                    \item 用于kernel、系统应用/服务
+                \end{itemize}
+                \item 任务总线 （Session Bus）
+                \begin{itemize}
+                    \item 用于gnome/kde等应用通信
+                \end{itemize}
+            \end{itemize}
 		\end{column}
 	\end{columns}
 \end{frame}
@@ -184,9 +192,9 @@
 		\end{column}
 		\begin{column}{.6\textwidth}
 			%			\large
-			D-Bus的服务 service
+			D-Bus的服务（service）
 			\begin{itemize}
-				\item 服务是提供IPC API的程序，每个服务都有一个reverse domain name结构的标识名称
+				\item 提供IPC API的程序：每个服务都有一个reverse domain name结构的标识名称
 				\item org.freedesktop.NetworkManager对应系统总线上的NetworkManager
 				\item org.freedesktop.login1对应系统总线上的systemd-logind
 				
@@ -210,9 +218,9 @@
 			%			\large
 			D-Bus的对象(object)
 			\begin{itemize}
-				\item 相当于通信的地址，每个service的object都通过object path来标识
+				\item 通信地址：每个service的object都通过object path来标识
 				\item object path类似文件系统的路径
-				\item 如/org/freedesktop/login1是服务org.freedesktop.login1的manager对象的路径
+				\item 如服务org.freedesktop.login1的manager对象路径为/org/freedesktop/login1
 				
 			\end{itemize}
 		\end{column}
@@ -232,10 +240,10 @@
 		\end{column}
 		\begin{column}{.6\textwidth}
 			%			\large
-			D-Bus的接口
+			D-Bus的接口（interface）
 			\begin{itemize}
-				\item D-Bus接口定义了D-Bus对象支持的方法 method 和信号 signal
-				\item 每个object包含一个或者多个interfaces				
+				\item 定义D-Bus对象支持的方法（method）和信号（signal）
+				\item 每个D-Bus对象包含一个或者多个接口				
 			\end{itemize}
 		\end{column}
 	\end{columns}
@@ -281,12 +289,12 @@
 		\end{column}
 		\begin{column}{.6\textwidth}
 			%			\large
-			D-Bus的方法(method)的执行流程
+			D-Bus方法的执行流程
 			\begin{itemize}				
 				\item 应用调用代理上的方法，代理将构造一个方法调用消息给远端的进程
 				\item 方法调用消息发送到bus daemon中
 				\item bus daemon查找目标的bus name，如果找到，就把这个方法发送到该进程中
-				\item 在dbus高层接口中，会先检测并转换成对应的对象的方法，然后再将应答结果转换成应答消息发给daemon
+				\item D-Bus高层接口会先检测并转换成对应的对象的方法，然后再将应答结果转换成应答消息发给daemon
 				\item bus daemon接受到应答消息，将把应答消息直接发给发出调用消息的进程		
 			\end{itemize}		
 		\end{column}
