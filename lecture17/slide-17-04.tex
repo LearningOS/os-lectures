@@ -80,8 +80,8 @@ Enables system calls such as open(), read(), and write() to work regardless of f
 % 
   \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{figs/vfs-Basic-File-Model.png}
-		\caption{vfs-Basic-File-Model}
+    \includegraphics[width=0.8\linewidth]{figs/vfs-Basic-File-Model.png}
+		%\caption{vfs-Basic-File-Model}
 	\end{figure}
 
 
@@ -141,7 +141,7 @@ Each object contains operations object with methods
         \item Found in <\href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L1414}{linux/fs.h}>
         \item Code for creating, managing, and destroying superblock object is in fs/super.c
 	    \begin{itemize}
-	        \item struct \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L1414}{super\_block}
+	        \item struct \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L1465}{super\_block}
 	    \end{itemize}
 	    \begin{itemize}
 	        \item \href{https://elixir.bootlin.com/linux/v4.18.16/source/include/linux/fs.h\#L1824}{super\_operations}
@@ -158,8 +158,8 @@ Each object contains operations object with methods
     \begin{itemize}
         \item Represents all the information needed to manipulate a file or directory
         \item Constructed in memory, regardless of how file system stores metadata information
-        \item \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L610}{Inode Object Struct}
-        \item \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L1862}{inode\_operations}
+        \item \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L623}{Inode Object Struct}
+        \item \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L2113}{inode\_operations}
     \end{itemize}
 % 
 \end{frame}
@@ -214,8 +214,8 @@ Valid dentry object can be in one of 3 states:
         \item In-memory representation of an open file
         \item Represented by struct file and defined in <linux/fs.h>
 	    \begin{itemize}
-	        \item struct \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L915}{file}
-          \item struct \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L1820}{file\_operations}
+	        \item struct \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L965}{file}
+          \item struct \href{https://elixir.bootlin.com/linux/latest/source/include/linux/fs.h\#L2071}{file\_operations}
       \end{itemize}
     \end{itemize}
 % 

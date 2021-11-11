@@ -38,11 +38,11 @@
 	    \begin{itemize}
 	        \item It was designed to replace the venerable ptrace system call
       \end{itemize} \pause
-        \item It presents information about processes and other system information
+        \item It presents information about processes and other \textcolor{blue}{system information}
 	    \begin{itemize}
-	        \item Provide a more convenient and standardized method for dynamically accessing process data held in the kernel
-          \item The proc file system acts as an interface to internal data structures in the kernel.
-          \item The proc filesystem provides a method of communication between kernel space and user space.
+	        \item Provide a more convenient and standardized method for \textcolor{blue}{dynamically accessing} process data held in the kernel
+          \item The proc file system acts as an interface to \textcolor{blue}{internal data structures} in the kernel.
+          \item The proc filesystem provides a \textcolor{blue}{method of communication} between kernel space and user space.
       \end{itemize} \pause
         \item The proc filesystem (procfs) is a special filesystem
 	    \begin{itemize}
@@ -61,19 +61,19 @@
     \begin{itemize}
         \item /proc/PID/fd
 	    \begin{itemize}
-	        \item Directory,  which contains all file descriptors.
+	        \item Directory,  which contains all \textcolor{blue}{file descriptors}.
       \end{itemize}
         \item /proc/PID/maps
 	    \begin{itemize}
-	        \item Memory  maps to executables and library files.
+	        \item \textcolor{blue}{Memory  maps} to executables and library files.
       \end{itemize}
         \item /proc/PID/status
 	    \begin{itemize}
-	        \item Process  status in human readable form.
+	        \item \textcolor{blue}{Process  status} in human readable form.
       \end{itemize}
         \item /proc/mtrr
 	    \begin{itemize}
-	        \item The Memory Type Range Registers (MTRRs) may be used to control processor  access to memory ranges.
+	        \item The \href{https://wiki.osdev.org/MTRR}{Memory Type Range Registers} (MTRRs) may be used to control processor  access to memory ranges.
           \item This is most useful when you have a video (VGA)  card on a PCI or AGP bus.
           \item This can increase performance of image write operations 2.5  times or more.
       \end{itemize}
