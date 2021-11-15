@@ -470,18 +470,18 @@ Ref:
 %    \framesubtitle{xxxx}
 %% itemize
     \begin{itemize}
-        \item Everything is copy-on-write
+        \item Everything is {\color{blue}copy-on-write}
         \begin{itemize}
             \item Never overwrite live data
             \item On-disk state always valid – no “windows of vulnerability”
             \item No need for fsck(1M)
         \end{itemize} \pause
-        \item Everything is transactional
+        \item Everything is {\color{blue}transactional}
         \begin{itemize}
             \item Related changes succeed or fail as a whole
             \item No need for journaling
         \end{itemize} \pause
-        \item Everything is checksummed
+        \item Everything is {\color{blue}checksummed}
         \begin{itemize}
             \item No silent data corruption
         \end{itemize}
@@ -541,7 +541,7 @@ Ref:
         \begin{itemize}
             \item Actually cheaper to take a snapshot than not!
         \end{itemize}
-        \item The tricky part:  how do you know when a block is free?
+        \item The tricky part:  {\color{blue}how do you know when a block is free?}
     \end{itemize}
 \end{frame}
 %----------------------------------------------

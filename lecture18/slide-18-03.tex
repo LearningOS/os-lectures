@@ -130,10 +130,16 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 			\begin{itemize}
 %				\item 引导扇区：在其上安装了硬盘的第一个扇区。引导块包括一个很小的引导记录和一个分区表。
 %				\item 超级块：每个分区中的第一个块是一个超级块，其中包含元数据，该元数据定义了其他文件系统结构，并将它们定位在分配给该分区的物理磁盘上。
-				\item 索引节点区位图：表明哪些索引节点已使用和哪些索引节点空闲。
-				\item 索引节点区：它在磁盘上有自己的空间。每个inode包含有关一个文件的信息，包括数据块的位置，即属于该文件的区域。
-				\item 数据区位图：来跟踪使用和空闲的数据区。
-				\item 数据区：保存实际存储数据。
+				\item 索引节点位图：存储所有索引节点的状态
+    			\begin{itemize}
+    				\item 已使用和空闲
+    			\end{itemize}
+				\item 索引节点区：存储所有索引节点信息
+    			\begin{itemize}
+    				\item 每个inode包含有关一个文件的信息，包括数据块的位置，即属于该文件的区域
+    			\end{itemize}
+				\item 数据位图：跟踪所有硬盘数据块的状态，使用和空闲
+				\item 数据区：保存实际存储数据块
 			\end{itemize}
 			
 		\end{column}
@@ -266,9 +272,9 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 		\begin{column}{.7\textwidth}			
 			EXT4 FS
 			\begin{itemize}
-				\item 可靠性：添加了元数据和日志校验和
-				\item 文件系统时间戳：为满足关键任务要求，改进了文件系统时间戳，增加了纳秒精度时间间隔
-				\item 性能：为提高容量和大容量文件访问性能，把数据分配从固定块更改为扩展区
+				\item 可靠性：添加了元数据和日志{\color{blue}校验和}
+				\item 文件系统{\color{blue}时间戳}：为满足关键任务要求，改进了文件系统时间戳，增加了纳秒精度时间间隔
+				\item 性能：为提高容量和大容量文件访问性能，把数据分配从固定块更改为{\color{blue}扩展区}
 			\end{itemize}
 			
 		\end{column}
@@ -299,15 +305,15 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 %------------------------------------------------
 \subsection{支持大容量存储}
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持大容量存储}
+	\frametitle{EXT4支持大容量存储}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	
-	\frametitle{ }
+	%\frametitle{ }
 	\begin{columns}[t]
 		\begin{column}{.3\textwidth}
 			
-			\includegraphics[width=0.5\textwidth]{ext4-logo}
+			\includegraphics[width=0.8\textwidth]{ext4-logo}
 			%			\includegraphics[width=0.4\textwidth]{ext4-logo}
 			\begin{itemize}
 				\item EXT4的重要特征：支持大容量存储和快速恢复异常状态
@@ -317,12 +323,12 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 		\end{column}
 		
 		\begin{column}{.7\textwidth}			
-			EXT4 FS： 支持大容量存储
-			\includegraphics[width=.8\textwidth]{avatar}
+			%EXT4 FS： 支持大容量存储
 			\begin{itemize}
 				\item 一部蓝光 8K 3D电影，512GB～1TB
 				\item 1EB($2^{60}$) 文件系统大小，16TB 文件大小，子目录个数无限制
 			\end{itemize}
+			\includegraphics[width=.8\textwidth]{avatar}
 			
 		\end{column}
 	\end{columns}
@@ -332,7 +338,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持大容量存储}
+	\frametitle{直接索引和间接索引}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	\centering
@@ -342,12 +348,12 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持大容量存储}
+	\frametitle{连续数据块}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 %		\centering
 		\Large
-	extent: 一段连续的储存块
+	extent: 一段连续的数据块
 \centering
 	\includegraphics[width=.6\textwidth]{ext4-extent-format}
 	\includegraphics[width=.6\textwidth]{ext4-extent-struct}
@@ -356,7 +362,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持大容量存储}
+	\frametitle{连续数据块索引}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -383,7 +389,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持大容量存储}
+	\frametitle{连续数据块间接索引}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -405,7 +411,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 %------------------------------------------------
 \subsection{支持异常恢复}
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常}
+	\frametitle{支持恢复异常}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -420,7 +426,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常}
+	\frametitle{支持恢复异常}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -457,7 +463,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Crash 场景}
+	\frametitle{支持恢复异常 -- Crash 场景}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -493,7 +499,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- FSCK}
+	\frametitle{支持恢复异常 -- FSCK}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -528,7 +534,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Journaling}
+	\frametitle{支持恢复异常 -- Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -547,14 +553,14 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 		\begin{column}{.6\textwidth}			
 			解决方法2 ： 日志 Journaling （Write-Ahead Logging)
 			\begin{itemize}
-				\item 从数据库管理系统的世界中窃取一个想法
+				\item 借见数据库管理系统的做法
 				\item 最早（1987）在Cedar文件系统中出现
 				\item 在EXT3/4，JFS，XFS，NTFS等应用
 			\end{itemize}
 			\pause
 			基本思路
 			\begin{itemize}	
-				\item 更新磁盘时，在覆盖相关结构之前，先写下一点日志（在磁盘上某个设定好的其他位置），以描述要执行的操作。
+				\item 更新磁盘时，在覆盖相关结构之前，先写下一点日志（在磁盘上某个设定好的其他位置），以{\color{blue}描述要执行的操作}。
 			\end{itemize}
 
 		\end{column}
@@ -565,7 +571,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
+	\frametitle{支持恢复异常 -- Data Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -602,7 +608,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
+	\frametitle{支持恢复异常 -- Data Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -642,7 +648,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Data Journaling}
+	\frametitle{支持恢复异常 -- Data Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -685,7 +691,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Metadata Journaling}
+	\frametitle{支持恢复异常 -- Metadata Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -730,7 +736,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Metadata Journaling}
+	\frametitle{支持恢复异常 -- Metadata Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering
@@ -776,7 +782,7 @@ OSTEP txtbook: Crash Consistency: FSCK and Journaling; Ext4 slides from Mingming
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{细节 -- 支持恢复异常 -- Metadata Journaling}
+	\frametitle{支持恢复异常 -- Metadata Journaling}
 	%    \framesubtitle{xxxx}
 	% from https://opensource.com/article/17/5/introduction-ext4-filesystem
 	%		\centering

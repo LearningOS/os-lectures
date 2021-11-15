@@ -49,7 +49,7 @@
 %----------------------------------------------
 \section{第5节：数据库文件系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{Motivation \& Design} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{Design Motivation} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 
 \begin{frame}[fragile]
@@ -83,7 +83,7 @@
 \begin{frame}[fragile]
 	\frametitle{Design Motivation: Storage Hierarchy - Latency}
 	\begin{figure}
-		\includegraphics[width=0.85\linewidth]{figs/dbfile-latency1.png}
+		\includegraphics[width=0.85\linewidth]{figs/dbfile-latency1.pdf}
 	\end{figure}
 \end{frame}
 
@@ -95,8 +95,9 @@
 \end{frame}
 
 
-%----------------------------------------------
-% \subsection{Page Design}
+
+%\subsection{DB File: Representations}
+
 
 \begin{frame}[fragile]
 	\frametitle{DB File: Representations}
@@ -105,16 +106,27 @@
 	\end{figure}
 \end{frame}
 
+
+\subsection{Page}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+%% itemize
+\end{frame}
+%----------------------------------------------
+
 \begin{frame}[fragile]
-	\frametitle{Page Design}
+	\frametitle{Page}
 	\begin{itemize}
-		\item A page is a fixed-size block of data.
+		\item A page is a {\color{blue}fixed-size} block of data.
 		\begin{itemize}
 			\item Contain tuples, meta-data, indexes, log records...
 			\item Most systems do not mix page types (log/data/index).
-			\item Some systems require a page to be self-contained.
+			\item Some systems require a page to be {\color{blue}self-contained}.
 		\end{itemize}
-		\item Each page is given a unique identifier.
+		\item Each page is given a {\color{blue}unique identifier}.
 		\begin{itemize}
 			\item uses an indirection layer to map pages to physical locations
 		\end{itemize}
@@ -159,21 +171,15 @@
 	\end{textblock*}
 \end{frame}
 
-%----------------------------------------------
-\begin{frame}
-\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-
-%% itemize
-\end{frame}
-%----------------------------------------------
-
 \subsection{Page Organization}
 
 \subsubsection{Page Layout}
 
 \begin{frame}[fragile]
 	\frametitle{Page Layout}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.45\textwidth} % Left column and width
 	\begin{itemize}
 		\item Page Layout – disk
 		\begin{itemize}
@@ -185,16 +191,20 @@
 		\end{itemize}
 		\item Record Layout
 	\end{itemize}
-	\begin{textblock*}{.9\paperwidth}(.25\paperwidth, .1\paperheight) % {block width} (coords)
+	%\begin{textblock*}{.9\paperwidth}(.25\paperwidth, .1\paperheight) % {block width} (coords)
 		\begin{figure}
-			\includegraphics[width=.4\linewidth]{figs/dbfile-heapfile1.png}
+			\includegraphics[width=.9\linewidth]{figs/dbfile-heapfile1.png}
 		\end{figure}
-	\end{textblock*}
-	\begin{textblock*}{.9\paperwidth}(.25\paperwidth, .35\paperheight) % {block width} (coords)
+	%\end{textblock*}
+\column{.5\textwidth} % Right column and width
+%	\begin{textblock*}{.9\paperwidth}(.25\paperwidth, .35\paperheight) % {block width} (coords)
 		\begin{figure}
-			\includegraphics[width=.4\linewidth]{figs/dbfile-records.png}
+			\includegraphics[width=1.1\linewidth]{figs/dbfile-records.png}
 		\end{figure}
-	\end{textblock*}
+%	\end{textblock*}
+
+\end{columns}
+
 \end{frame}
 
 
@@ -281,6 +291,10 @@
 	\end{figure}
 \end{frame}
 
+
+\subsection{Page Persistence}
+
+%\subsubsection{Two Questions}
 %----------------------------------------------
 \begin{frame}
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
@@ -289,10 +303,6 @@
 %% itemize
 \end{frame}
 %----------------------------------------------
-
-\subsection{Page Persistence}
-
-\subsubsection{Page Replacement}
 
 \begin{frame}[fragile]
 	\frametitle{Q1: Dirty Pages}
@@ -374,6 +384,16 @@
 \end{frame}
 
 \begin{frame}[fragile]
+	\frametitle{Write-Ahead Log}
+	\begin{itemize}
+		\item Random write → Sequential write
+	\end{itemize}
+	\begin{figure}
+		\includegraphics[width=.68\linewidth]{figs/dbfile-wal2.pdf}
+	\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
 	\frametitle{Log}
 	\begin{textblock*}{.75\paperwidth}(.35\paperwidth, .1\paperheight) % {block width} (coords)
 		\begin{figure}
@@ -405,8 +425,7 @@
 	\end{itemize}
 \end{frame}
 
-%----------------------------------------------
-% \subsection{High Availability}
+\subsection{High Availability}
 
 \begin{frame}[fragile]
 	\frametitle{High Availability}
