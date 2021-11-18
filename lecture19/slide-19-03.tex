@@ -4,8 +4,8 @@
 % TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第18讲]{第十八讲 ：文件系统实例} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第5节：数据库文件系统}
+\title[第19讲]{第十九讲 ：文件系统实例(2)} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第3节：数据库文件系统}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
@@ -47,9 +47,9 @@
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
-\section{第5节：数据库文件系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第3节：数据库文件系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-\subsection{Design Motivation} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{Background} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 
 \begin{frame}[fragile]
@@ -107,7 +107,8 @@
 \end{frame}
 
 
-\subsection{Page}
+\subsection{Page and Page Organization}
+\subsubsection{Page}
 %----------------------------------------------
 \begin{frame}
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
@@ -171,7 +172,7 @@
 	\end{textblock*}
 \end{frame}
 
-\subsection{Page Organization}
+%\subsection{Page Organization}
 
 \subsubsection{Page Layout}
 
@@ -425,7 +426,7 @@
 	\end{itemize}
 \end{frame}
 
-\subsection{High Availability}
+\subsubsection{High Availability}
 
 \begin{frame}[fragile]
 	\frametitle{High Availability}
@@ -463,5 +464,22 @@
 %  * Each block compressed independently
 %  * All-zero blocks converted into file holes
 %  * LZJB and GZIP available today; more on the way
+%----------------------------------------------
+\begin{frame}[fragile]
+	\frametitle{\href{https://docs.oracle.com/database/121/ADLOB/adlob_fs.htm\#ADLOB46182}{Oracle Database File System}}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.45\textwidth} % Left column and width
+	\begin{itemize}
+		\item A file system interface placed on top of files and directories that are stored in database tables
+		\item Files in the database can now be transparently accessed using any operating system (OS) program that acts on files
+	\end{itemize}
+
+\column{.5\textwidth} % Right column and width
+		\begin{figure}
+			\includegraphics[width=.75\linewidth]{figs/dbfs.png}
+		\end{figure}
+\end{columns}
+\end{frame}
 %----------------------------------------------
 \end{document}
