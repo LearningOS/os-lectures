@@ -4,7 +4,7 @@
 % TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第19讲]{第十九讲 ：I/O子系统} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第20讲]{第二十讲 ：I/O子系统} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第3节：磁盘子系统}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -39,7 +39,7 @@ Ref:
 %----------------------------------------------
 \section{第3节：磁盘子系统} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-%\subsection{Linux I/O Architecture} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{磁盘概述} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{磁盘概述}
@@ -112,7 +112,15 @@ Ref:
         \item 同时会有多个在同一磁盘上的I/O请求
         \item 随机处理磁盘访问请求的性能表现很差
 
+    \end{itemize} \pause
+    常用的磁盘调度算法
+    \begin{itemize}
+        \item 先进先出算法(FIFO)、最短服务时间优先(SSTF)
+        \item 扫描算法(SCAN)、循环扫描算法(C-SCAN)、C-LOOK算法
+        \item N步扫描算法(N-step-SCAN)、双队列扫描算法(FSCAN)
+
     \end{itemize}
+
 \end{frame}
 %----------------------------------------------
 
