@@ -4,162 +4,165 @@
 % TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第21讲]{第二十一讲 ：异步编程(Asynchronous Programming)} % The short title appears at the bottom of every slide, the full title is only on the title page
-\subtitle{第4节：Self-Referential Structs \& Pin}
+\title[第21讲]{第二十一讲 ：分布式系统} % The short title appears at the bottom of every slide, the full title is only on the title page
+\subtitle{第4节：LegoOS}
 \author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-  清华大学计算机系 \\ % Your institution for the title page
-  \medskip
-  \textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
+    清华大学计算机系 \\ % Your institution for the title page
+    \medskip
+    \textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
 }
 \date{\today} % Date, can be changed to a custom date
 
 \begin{document}
-
+    
 \begin{frame}
-\titlepage % Print the title page as the first slide
-\end{frame}
+    \titlepage % Print the title page as the first slide
+%\end{frame}
 
 %----------------------------------------------
 % \begin{frame}
-% \frametitle{提纲} % Table of contents slide, comment this block out to remove it
-% \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-
-% \end{frame}
+%    \frametitle{提纲} % Table of contents slide, comment this block out to remove it
+%    \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+    
+    %% itemize
+    Ref:
+        \begin{itemize}
+            \item \href{https://www.usenix.org/system/files/osdi18-shan.pdf}{Paper: LegoOS} % : A Disseminated, Distributed OS for Hardware Resource Disaggregation
+            \item \href{https://www.usenix.org/sites/default/files/conference/protected-files/osdi18_slides_shan.pdf}{Slides: LegoOS} % : A Disseminated, Distributed OS for Hardware Resource Disaggregation
+        \end{itemize}
+    
+\end{frame}
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
-\section{第4节：Self-Referential Structs \& Pin} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第4节：LegoOS} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %----------------------------------------------
-% \subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+% \subsection{LegoOS} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Self-Referential Structs}
-%    \framesubtitle{xxxx}
-% ### 21.4 Self-Referential Structs & Pin
-% 
-% Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pin
-% 
-% #### Self-Referential Structs
-% 
-% Ref: https://os.phil-opp.com/async-await/#self-referential-structs
-% 
-\begin{block}{}
-    \begin{verbatim}
-    async fn pin_example() -> i32 {
-        let array = [1, 2, 3];
-        let element = &array[2];
-        async_write_file("foo.txt", element.to_string()).await;
-        *element
-    } \end{verbatim}
-\end{block} \pause
-The struct for the "waiting on write" state
-% 
-\begin{block}{}
-    \begin{verbatim}
-    struct WaitingOnWriteState {
-        array: [1, 2, 3],
-        element: 0x1001c, // address of the last array element
-    } \end{verbatim}
-\end{block}
-% 
+    \frametitle{分布式I/O}
+    分布式I/O计算逐渐浮现在大型数据中心和移动终端领域。
+  
+   
+    
+    %    \framesubtitle{xxxx}
+    %% figure
+        \begin{figure}
+        \includegraphics[width=0.9\linewidth]{figs/disio-current.png}
+      %  \caption{xxxx}
+        \end{figure}
 \end{frame}
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{The Problem with Self-Referential Structs}
-%    \framesubtitle{xxxx}
-% #### The Problem with Self-Referential Structs
-% 
-% Ref: https://os.phil-opp.com/async-await/#the-problem-with-self-referential-structs
-Memory layout of self-referential struct
-% 
-%% figure
+    \frametitle{分布式I/O}
+    出现了新型的splitkernel架构
+    
+    
+    
+    %    \framesubtitle{xxxx}
+    %% figure
     \begin{figure}
-    \includegraphics[width=0.53\linewidth]{figs/self-referential-struct.png}
-%    \caption{xxxx}
-    \end{figure} \pause
-% ![self-referential-struct](figs/self-referential-struct.svg)
-% 
-% 
-After moving this struct to a different memory address
-% 
-%% figure
-    \begin{figure}
-    \includegraphics[width=0.53\linewidth]{figs/self-referential-struct-moved.png}
-%    \caption{xxxx}
+        \includegraphics[width=0.9\linewidth]{figs/disio-splitkernel.png}
+        %  \caption{xxxx}
     \end{figure}
-% ![self-referential-struct-moved](figs/self-referential-struct-moved.svg)
-% 
 \end{frame}
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Possible approaches to solve the dangling pointer problem}
-%    \framesubtitle{xxxx}
-% #### Possible approaches to solve the dangling pointer problem
-% 
-% Ref: https://os.phil-opp.com/async-await/#possible-solutions
-% 
-%% itemize
+    \frametitle{分布式I/O}
+    %    \framesubtitle{xxxx}
+    LegoOS：把CPU，Memory，Storage 分布在不同机器上，通过高速网络RDMA形成一个虚拟的大机器
+    
+    OS抽象：
     \begin{itemize}
-        \item {\color{red}Update the pointer on move:} Require extensive changes to Rust that would result in potentially huge  performance losses. \pause
-        \item {\color{red}Store an offset instead of self-references:}: Require the compiler to {\color{red}detect all self-references} or need a runtime system again to analyze references and correctly create the  state structs. \pause
-        \item {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs \pause
-    	\begin{itemize}
-    	    \item It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
-    	\end{itemize}
+        \item virtual Nodes (vNodes)  --> hardware devices
+        \item Similar semantics to virtual machines
+        \item Unique vID, vIP, storage mount point
+        \item  Can run on multiple processor, memory, and storage components    
     \end{itemize}
+    
+    %    \begin{figure}
+    %        \includegraphics[width=0.9\linewidth]{figs/nfsv2-srv2.png}
+    %        %  \caption{xxxx}
+    %    \end{figure}
+    %    
+    %    解决方法：NFS服务器在通知客户端成功之前，将每次写入提交到持久存储。这样做可让客户端在写入期间检测到服务器故障，从而重试，直到它最终成功。
+\end{frame}
 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{分布式I/O}
+   Separate Processor and Memory
+    %    \framesubtitle{xxxx}
+    %% figure
+    \begin{figure}
+        \includegraphics[width=0.9\linewidth]{figs/disio-cpu-mem.png}
+        %  \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Defination of Pin}
-%    \framesubtitle{xxxx}
-% #### Defination of Pin
-% 
-% Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#definitions
-% https://github.com/rust-lang/rfcs/blob/master/text/2349-pin.md
-% the pinning API was proposed in RFC 2349
-% 
-%% itemize
-    \begin{itemize}
-        \item Pin wraps a pointer. A reference to an object is a pointer
-    	\begin{itemize}
-    	    \item {\color{red}Reference type}. In order to break apart a large future into its smaller components, and put  an entire resulting future into some immovable location, we need a reference type for methods like `poll`
-    	\end{itemize} \pause
-        \item Pin gives some guarantees about the {\color{red}pointee} (the data it points to)
-    	\begin{itemize}
-    	    \item {\color{red}Never to move before being dropped}. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
-    	\end{itemize}
-    \end{itemize} \pause
-% 
-\begin{block}{}
-    \begin{verbatim}
-trait Future {
-    type Item;
-    type Error;
-
-    fn poll(self: Pin<Self>, cx: &mut task::Context) -> Poll<Self::Item, Self::Error>;
-} \end{verbatim}
-\end{block}
-% 
+    \frametitle{分布式I/O}
+    Separate Processor and Memory
+    %    \framesubtitle{xxxx}
+    %% figure
+    \begin{figure}
+        \includegraphics[width=0.9\linewidth]{figs/disio-cpu-mem-2.png}
+        %  \caption{xxxx}
+    \end{figure}
 \end{frame}
+
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Pinning to the heap}
-%    \framesubtitle{xxxx}
-% #### Pinning to the heap
-% 
-% Ref: https://cfsamson.github.io/books-futures-explained/4_pin.html#pinning-to-the-heap
-% 
-Pinning to the heap is safe so the user doesn't need to implement any unsafe code.
-% 
-%% itemize
-    \begin{itemize}
-        \item Once the data is allocated on the heap it will have a stable address \pause
-        \item Examp: \href{https://cfsamson.github.io/books-futures-explained/4_pin.html}{Pinning to the heap}
-    \end{itemize}
+    \frametitle{分布式I/O}
+    Add Extended Cache at Processor
+    %    \framesubtitle{xxxx}
+    %% figure
+    \begin{figure}
+        \includegraphics[width=0.8\linewidth]{figs/disio-cpu-mem-3.png}
+        %  \caption{xxxx}
+    \end{figure}
+\end{frame}
 
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{分布式I/O}
+    Distributed Resource Management
+    
+    %    \framesubtitle{xxxx}
+    %% figure
+    \begin{figure}
+        \includegraphics[width=0.9\linewidth]{figs/disio-resource.png}
+        %  \caption{xxxx}
+    \end{figure}
+\end{frame}
+
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{分布式I/O}
+    Distributed Memory Management
+    %    \framesubtitle{xxxx}
+    %% figure
+    \begin{figure}
+        \includegraphics[width=0.9\linewidth]{figs/disio-dmm.png}
+        %  \caption{xxxx}
+    \end{figure}
+\end{frame}
+
+
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{分布式I/O}
+    Implementation
+    %    \framesubtitle{xxxx}
+    %% figure
+    \begin{figure}
+        \includegraphics[width=0.9\linewidth]{figs/disio-impl.png}
+        %  \caption{xxxx}
+    \end{figure}
 \end{frame}
 %----------------------------------------------
 \end{document}
