@@ -23,9 +23,17 @@
 
 %----------------------------------------------
 \begin{frame}
-\frametitle{提纲} % Table of contents slide, comment this block out to remove it
-\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
-% itemize
+\frametitle{第二十二讲提纲} % Table of contents slide, comment this block out to remove it
+
+\large
+\begin{itemize}
+    \item Background
+    \item Futures in Rust
+    \item Generators and async/await
+    \item Self-Referential Structs \& Pin
+    \item Waker and Reactor
+\end{itemize}
+
 \tiny
 Ref:
     \begin{itemize}
@@ -47,19 +55,18 @@ Ref:
 %----------------------------------------------
 %%  PRESENTATION SLIDES
 %----------------------------------------------
-\section{Background} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-\section{Futures in Rust} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-\section{Generators and async/await} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-\section{Self-Referential Structs \& Pin} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
-\section{Waker and Reactor} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\begin{frame}
+    \frametitle{提纲} % Table of contents slide, comment this block out to remove it
+    \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
+\end{frame}
 %----------------------------------------------
-%\subsection{xxxx} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
-
-
-
+\section{Background} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+%----------------------------------------------
+\subsection{Parallel, Concurrent and Asynchronous}
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{recap: Multitasking}
+	\frametitle{Recap: Multitasking}
 	%    \framesubtitle{xxxx}
 	% ### 21.1 Background
 	% ref: https://cfsamson.github.io/books-futures-explained/0_background_information.html#some-background-information
@@ -72,7 +79,7 @@ Ref:
 	{\color{red}Non-Preemptive multitasking}
 	%% itemize
 	\begin{itemize}
-		\item The programmer `yielded` control to the OS
+		\item The programmer "yielded" control to the OS
 		\item Every bug could halt the entire system
 		\item Example: Windows 95
 	\end{itemize}
@@ -89,7 +96,7 @@ Ref:
 
 %----------------------------------------------
 \begin{frame}[fragile]
-	\frametitle{recap: User-level Thread}
+	\frametitle{Recap: User-level Thread}
 	%    \framesubtitle{xxxx}
 	% #### User-level Thread
 	% 
@@ -129,7 +136,7 @@ Ref:
 
 
 \begin{frame}[fragile]
-	\frametitle{recap: Kernel-supported Threads}
+	\frametitle{Recap: Kernel-supported Threads}
 	%    \framesubtitle{xxxx}
 	% #### Kernel-supported Threads
 	% 
@@ -164,7 +171,7 @@ Ref:
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]	
-	\frametitle{recap: What is async?}
+	\frametitle{Recap: What is async?}
 	
 	\begin{itemize}
 		\item Parallel: do multiple things at once
@@ -190,7 +197,7 @@ Ref:
 \begin{frame}[fragile]	
 	\frametitle{Why we need async?}
 %	http://www.kegel.com/c10k.html
-	C10K Problem in 1999 ... C100K，C1M，C10M，C100M …
+	\href{http://www.kegel.com/c10k.html}{C10K Problem} in 1999 ... C100K，C1M，C10M，C100M …
 	\begin{itemize}
 		\item 网络服务在处理数以万计的客户端连接时，往往出现效率低下甚至完全瘫痪，这被称为 C10K问题
 		\item C10K问题的提出者 Dan Kegel：软件工程师
@@ -279,7 +286,14 @@ Ref:
 \end{frame}
 
 
+%----------------------------------------------
+\subsection{Programming Languages supporting async mechanism}
+%----------------------------------------------
+\begin{frame}
+    \frametitle{提纲} % Table of contents slide, comment this block out to remove it
+    \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
+\end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]	
     \frametitle{Who provide async mechanism?}
@@ -309,7 +323,7 @@ Ref:
                 
             \end{itemize}
 %             F# has The Early History of F# (HOPL IV – second submitted draft)
-             F\# added to the core design in 2007: computation expressions and their application to asynchronous programming
+             \href{https://docs.microsoft.com/en-us/dotnet/fsharp/what-is-fsharp}{F\#} added to the core design in 2007: computation expressions and their application to asynchronous programming
 %             functional programming (FP)  begin 2002, async 2007
 %             C# 5.0 (async/await) 
         \end{column}
@@ -427,6 +441,14 @@ fn main() {
             
         \end{column}
     \end{columns}
+\end{frame}
+%----------------------------------------------
+\subsection{Async Programming}
+%----------------------------------------------
+\begin{frame}
+    \frametitle{提纲} % Table of contents slide, comment this block out to remove it
+    \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -573,7 +595,7 @@ Example: \href{https://cfsamson.github.io/books-futures-explained/0_background_i
 
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Event queue: Epoll, Kqueue and IOCP}
+    \frametitle{\href{https://cfsamson.github.io/book-exploring-async-basics/6_epoll_kqueue_iocp.html\#epoll}{Event queue: Epoll, Kqueue and IOCP}}
 %    \framesubtitle{xxxx}
 % #### Event queue: Epoll, Kqueue and IOCP
 % 

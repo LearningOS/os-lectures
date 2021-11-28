@@ -6,15 +6,14 @@
 
 \title[第22讲]{第二十二讲 ：异步编程(Asynchronous Programming)} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第2节：Futures in Rust}
-\author{向勇、陈渝} % Your name
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
   清华大学计算机系 \\ % Your institution for the title page
   \medskip
-  \textit{xyong,yuchen@tsinghua.edu.cn} % Your email address
+  \textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
 }
 \date{\today} % Date, can be changed to a custom date
-
 \begin{document}
 
 \begin{frame}
@@ -179,7 +178,7 @@ A future is a representation of some operation which will complete in the future
     % 
     %% itemize
     \begin{itemize}
-        \item `async fn`s which take references or other non-`'static` arguments return a `Future` which is bounded by the lifetime of the arguments.
+        \item \(async\ fn\) s which take references or other non-\('static\) arguments return a \(Future\) which is bounded by the lifetime of the arguments.
     \end{itemize}
     % 
     \begin{block}{}
@@ -206,7 +205,7 @@ A future is a representation of some operation which will complete in the future
     % #### Async Lifetimes
 %https://rust-lang.github.io/async-book/03_async_await/01_chapter.html
     \begin{itemize}
-        \item By moving the argument into the `async` block, we extend its lifetime to match that of the `Future` returned
+        \item By moving the argument into the \(async\) block, we extend its lifetime to match that of the \(Future\) returned
     \end{itemize}
     % 
     \begin{block}{}
@@ -230,14 +229,14 @@ A future is a representation of some operation which will complete in the future
 
 %--------------------------
 \begin{frame}[fragile]
-    \frametitle{Concept of Future}
+    \frametitle{Async Architecture of rust}
     %    \framesubtitle{xxxx}
     
     % #### Concept of Future
     % 
     % Ref: https://os.phil-opp.com/async-await/#example
     \centering
-    Async Architecture of rust
+    % Async Architecture of rust
     % 
     %% figure
     \begin{figure}
@@ -251,15 +250,15 @@ A future is a representation of some operation which will complete in the future
 \end{frame}
 %----------------------------------------------
 \begin{frame}[fragile]
-    \frametitle{Concept of Future}
+    \frametitle{Async Architecture of rust}
     %    \framesubtitle{xxxx}
     \begin{columns}
         \begin{column}{.4\textwidth}
             % #### Concept of Future
             % 
             % Ref: https://os.phil-opp.com/async-await/#example
-            \centering
-             Async Architecture of rust
+            %\centering
+            % Async Architecture of rust
             % 
             %% figure
             \begin{figure}
@@ -332,7 +331,7 @@ A future is a representation of some operation which will complete in the future
     \begin{itemize}
         \item Leaf future
     	\begin{itemize}
-    	    \item Runtimes create *leaf futures* which represents a resource like a socket
+    	    \item Runtimes create \(leaf\ futures\) which represents a resource like a socket
     	    \item Operations on these resources will be non-blocking and return a future which we call a leaf future
     	\end{itemize}
 \begin{block}{}
