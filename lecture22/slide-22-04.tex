@@ -104,7 +104,7 @@ After moving this struct to a different memory address
     \begin{itemize}
         \item {\color{red}Update the pointer on move:} Require extensive changes to Rust that would result in potentially huge  performance losses. \pause
         \item {\color{red}Store an offset instead of self-references:}: Require the compiler to {\color{red}detect all self-references} or need a runtime system again to analyze references and correctly create the  state structs. \pause
-        \item {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs \pause
+        \item {\color{red}Forbid moving the struct:} This approach can be implemented at the type system level without additional  runtime costs
     	\begin{itemize}
     	    \item It puts the burden of dealing with  move operations on possibly self-referential structs on the programmer
     	\end{itemize}
@@ -131,7 +131,7 @@ After moving this struct to a different memory address
     	\begin{itemize}
     	    \item {\color{red}Never to move before being dropped}. To store references into itself, we decree that by the time you initially `poll`, and promise to never move an immobile future again
     	\end{itemize}
-    \end{itemize} \pause
+    \end{itemize}
 % 
 \begin{block}{}
     \begin{verbatim}

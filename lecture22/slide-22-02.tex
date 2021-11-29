@@ -42,6 +42,7 @@ Ref:
 %%  PRESENTATION SLIDES
 %----------------------------------------------
 \section{第2节：Futures in Rust} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\subsection{Concept of Future}
 %----------------------------------------------
 % ### 21.2 Futures in Rust
 % 
@@ -228,6 +229,8 @@ A future is a representation of some operation which will complete in the future
 \end{frame}
 
 %--------------------------
+\subsection{Async Architecture of rust}
+%----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Async Architecture of rust}
     %    \framesubtitle{xxxx}
@@ -379,6 +382,8 @@ let mut stream = tokio::net::TcpStream::connect("127.0.0.1:3000");
     \end{block}
     % 
 \end{frame}
+%----------------------------------------------
+\subsection{Async Runtimes}
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{Runtimes}
