@@ -4,17 +4,16 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第3讲]{第3讲 ：Virtual Machine Monitor} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第23讲]{第二十三讲 ：Virtual Machine Monitor (Hypervisor)} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第二节：How VMM works}
-\author{陈渝} % Your name
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-	清华大学计算机系 \\ % Your institution for the title page
-	\medskip
-	\textit{yuchen@tsinghua.edu.cn} % Your email address
+  清华大学计算机系 \\ % Your institution for the title page
+  \medskip
+  \textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
 }
 \date{\today} % Date, can be changed to a custom date
-
 
 \begin{document}
 
@@ -31,12 +30,81 @@
 %%	PRESENTATION SLIDES
 %%----------------------------------------------------------------------------------------
 %
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
 %%------------------------------------------------
-%\section{第一节：课程概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第二节：How VMM works} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %%------------------------------------------------
-
+\subsection{VMM Concept}
 %-------------------------------------------------
-\begin{frame}[plain]
+% ### VMM Concept
+% 
+% * Host
+% * Guest
+% * vCPU
+% * VM Entry/VM Exit
+% 
+% ![VMM-concept](/Users/xyong/Desktop/xyong-iMac/figs/VMM-concept.png)
+% 
+\begin{frame}
+    \frametitle{VMM Concept}
+    \begin{columns}
+        \begin{column}{.3\textwidth}
+            \begin{itemize}
+                \item Host
+                \item Guest
+                \item vCPU
+                \item VM Entry/VM Exit
+            \end{itemize} 
+        \end{column}
+        \begin{column}{.7\textwidth}
+            \includegraphics[width=1.\textwidth]{figs/VMM-concept.png}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+%-------------------------------------------------
+% ### Typer-1 & Type-0 VMM
+% 
+% ![type-1-2-VMM](/Users/xyong/Desktop/xyong-iMac/figs/type-1-2-VMM.png)
+% 
+\begin{frame}
+    \frametitle{Typer-1 \& Type-0 VMM}
+            \centering
+            \includegraphics[width=0.85\textwidth]{figs/type-1-2-VMM.png}
+
+\end{frame}
+%-------------------------------------------------
+% ### Type-1.5 VMM
+% 
+% ![type-1.5-VMM](/Users/xyong/Desktop/xyong-iMac/figs/type-1.5-VMM.png)
+\begin{frame}
+    \frametitle{Type-1.5 VMM}
+
+            \centering
+            \includegraphics[width=0.9\textwidth]{figs/type-1.5-VMM.png}
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}
+    \frametitle{RISC-V Hypervisor Extension}
+
+            \centering
+            \includegraphics[width=1.0\textwidth]{figs/RV-Virtualization.png}
+
+\end{frame}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+%-------------------------------------------------
+\subsection{CPU Virtualization in VMM}
+%-------------------------------------------------
+\begin{frame}
 	\frametitle{How VMM works }
 	
 	
@@ -59,7 +127,7 @@
 			\begin{itemize}
 				\item What is computer hardware? (CPU, MEM, IO)
 				\item What is an OS? 
-				\item What‘s an application? (relies on the system call interface)
+				\item What is an application? (relies on the system call interface)
 				
 			\end{itemize} 
 				
@@ -73,8 +141,8 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works }
+\begin{frame}
+	\frametitle{Executing a System Call}
 	
 	
 	
@@ -93,7 +161,7 @@
 			\centering
 			\includegraphics[width=1.\textwidth]{exec-syscall}	
 			
-			Executing a System Call
+			% Executing a System Call
 			
 %			\begin{itemize}
 %				\item What is computer hardware? (CPU, MEM, IO)
@@ -111,8 +179,8 @@
 \end{frame}
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- CPU}
+\begin{frame}
+	\frametitle{Run kernel as a user-level program}
 	
 	
 	
@@ -120,7 +188,7 @@
 		
 		\begin{column}{.3\textwidth}
 			
-			\includegraphics[width=1.\textwidth]{vmm-overview}
+			\includegraphics[width=1.0\textwidth]{vmm-overview}
 			
 		\end{column}
 		
@@ -129,7 +197,7 @@
 			What if we run the Linux/Windows kernel as a user-level program?	
 			
 			\centering
-			\includegraphics[width=.7\textwidth]{vmm-do-work}	
+			\includegraphics[width=.65\textwidth]{vmm-do-work}	
 			
 			\begin{itemize}
 				\item What happens when Linux issues a sensitive instruction?
@@ -148,8 +216,8 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works  -- CPU}
+\begin{frame}
+	\frametitle{System Call with Virtualization}
 	
 	
 	
@@ -180,34 +248,28 @@
 \end{frame}
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works  -- CPU}
-	
-	
-	
+\begin{frame}
+	\frametitle{Privileged Instruction and Sensitive Instruction}
+
 	\begin{columns}
 		
-		\begin{column}{.25\textwidth}
+		\begin{column}{.35\textwidth}
 			
-			\includegraphics[width=1.\textwidth]{vmm-overview}
+			\includegraphics[width=.9\textwidth]{vmm-do-work}	
 			
 		\end{column}
 		
-		\begin{column}{.75\textwidth}
+		\begin{column}{.65\textwidth}
 			
 			What if we run the Linux/Windows kernel as a user-level program?	
-			
-			\centering
-			\includegraphics[width=.6\textwidth]{vmm-do-work}	
-			\begin{flushleft}
-			Answer: rely on CPU to trap sensitive instructions and hand off to VMM
-			\end{flushleft}
+		\begin{itemize}
+			\item Rely on CPU to trap sensitive instructions and hand off to VMM
 			\begin{itemize}
 				\item VMM emulates the effect of sensitive instruction on the virtual hardware that it provides to its guest OSs 
 				\item VMM provides a virtual HW/SW interface to guest OSs by trapping and emulating sensitive instructions 
 				
 			\end{itemize} 
-			
+		\end{itemize} 
 		\end{column}
 		
 		
@@ -219,25 +281,20 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works  -- CPU}
-	
-	
+\begin{frame}
+	\frametitle{Privileged Instruction and Sensitive Instruction}
 	
 	\begin{columns}
 		
-		\begin{column}{.25\textwidth}
+		\begin{column}{.35\textwidth}
 			
-			\includegraphics[width=1.\textwidth]{vmm-overview}
+			\includegraphics[width=.9\textwidth]{vmm-do-work}	
 			
 		\end{column}
 		
-		\begin{column}{.75\textwidth}
-			
+		\begin{column}{.65\textwidth}
 			What if we run the Linux/Windows kernel as a user-level program?	
 			
-			\centering
-			\includegraphics[width=.6\textwidth]{vmm-do-work}	
 			\begin{flushleft}
 				Goldberg (1974):  two classes of instructions 
 			\end{flushleft}
@@ -255,27 +312,21 @@
 	
 \end{frame}
 
-
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works  -- CPU}
-	
-	
+\begin{frame}
+	\frametitle{CPU Virtualization in VMM}
 	
 	\begin{columns}
 		
-		\begin{column}{.25\textwidth}
+		\begin{column}{.35\textwidth}
 			
-			\includegraphics[width=1.\textwidth]{vmm-overview}
+			\includegraphics[width=.9\textwidth]{vmm-do-work}	
 			
 		\end{column}
 		
-		\begin{column}{.75\textwidth}
-			
+		\begin{column}{.65\textwidth}
 			What if we run the Linux/Windows kernel as a user-level program?	
 			
-			\centering
-			\includegraphics[width=.6\textwidth]{vmm-do-work}	
 			\begin{flushleft}
 				\textbf{A VMM can be constructed efficiently and safely if the set of sensitive instructions is a subset of the set of privileged instructions.}
 			\end{flushleft}
@@ -284,20 +335,43 @@
 %				\item sensitive instructions:   those that modify hardware configuration or resources, and those whose behavior depends on HW configuration 
 %				
 %			\end{itemize} 
-			
 		\end{column}
-		
-		
 	\end{columns}
-	
-	
 \end{frame}
-
-
-
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- memory}
+\begin{frame}
+    \frametitle{Intel VT-x指令扩展}
+    \begin{columns}
+        
+        \begin{column}{.6\textwidth}
+            
+            \includegraphics[width=1.\textwidth]{figs/Intel-VT-x.png}
+            
+        \end{column}
+        
+        \begin{column}{.4\textwidth}
+            \begin{itemize}
+                \item Virtual-Machine eXtensions (VMX)
+                \item 开启VMX后的特殊模式
+                \begin{itemize}
+                    \item VMX root operation
+                    \item VMX non-root operation
+                \end{itemize} 
+                \item VM Entry/VM Exit
+            \end{itemize} 
+        \end{column}
+    \end{columns}
+\end{frame}
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
+%-------------------------------------------------
+\subsection{VMM Memory Virtualization}
+%-------------------------------------------------
+\begin{frame}
+	\frametitle{Address Translation in VMM}
 	
 	
 	
@@ -315,11 +389,7 @@
 			
 			\centering
 			\includegraphics[width=1.\textwidth]{vmm-address-space}	
-%			\begin{flushleft}
-				VMM Memory Virtualization
-%			\end{flushleft}
 
-			
 		\end{column}
 		
 		
@@ -330,8 +400,8 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- memory}
+\begin{frame}
+	\frametitle{TLB Miss without Virtualization}
 	
 	
 	
@@ -366,8 +436,8 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- memory}
+\begin{frame}
+	\frametitle{TLB Miss Flow with Virtualization}
 	
 	
 	
@@ -387,7 +457,7 @@
 			\includegraphics[width=.65\textwidth]{vmm-tlbmiss}	
 			%			\begin{flushleft}
 			
-			TLB Miss Flow with Virtualization
+			%TLB Miss Flow with Virtualization
 			
 			%			\end{flushleft}
 			
@@ -401,8 +471,8 @@
 \end{frame}
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- memory}
+\begin{frame}
+	\frametitle{hardware-managed TLB}
 	
 	
 	
@@ -440,8 +510,8 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- memory}
+\begin{frame}
+	\frametitle{Shadow Page Table}
 	
 	
 	
@@ -476,10 +546,16 @@
 	
 \end{frame}
 
-
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- IO}
+\subsection{I/O Virtualization in VMM}
+%-------------------------------------------------
+\begin{frame}
+	\frametitle{Device Interface}
 	
 	
 	
@@ -515,8 +591,8 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- IO}
+\begin{frame}
+	\frametitle{Device Interface in VMM}
 	
 	
 	
@@ -533,14 +609,17 @@
 			\begin{itemize}
 				\item I/O Virtualization requires the hypervisor to present guest a complete device interface
 				\begin{itemize}
-					\item Presenting an existing interface: Software Emulation
-					\item Presenting an existing interface: Direct assignment
+					\item Presenting an existing interface
+    				\begin{itemize}
+    					\item  {\color{blue}Software Emulation}
+    					\item  {\color{blue}Direct assignment}
+    				\end{itemize} 
 					
-				\end{itemize} 
 				\item Presenting a brand new interface
 				\begin{itemize}
-					\item Paravirtualization
+					\item {\color{blue}Paravirtualization}
 					
+				\end{itemize} 
 				\end{itemize} 
 			\end{itemize} 	
 			
@@ -554,8 +633,8 @@
 \end{frame}
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- IO}
+\begin{frame}
+	\frametitle{I/O Software Emulation in VMM}
 	
 	
 	
@@ -563,12 +642,12 @@
 		
 		\begin{column}{.4\textwidth}
 			\centering
-			\includegraphics[width=.8\textwidth]{vmm-do-work}
-			\includegraphics[width=.7\textwidth]{vmm-io-soft-emulation}
+			%\includegraphics[width=.8\textwidth]{vmm-do-work}
+			\includegraphics[width=.9\textwidth]{vmm-io-soft-emulation}
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			Software Emulation
+			%Software Emulation
 			\begin{itemize}
 				\item Guest runs native device driver, e.g. NE2000
 				\begin{itemize}
@@ -591,8 +670,8 @@
 \end{frame}
 
 %-------------------------------------------------
-\begin{frame}[plain]
-	\frametitle{How VMM works -- IO}
+\begin{frame}
+	\frametitle{Paravirtualization}
 	
 	
 	
@@ -600,12 +679,12 @@
 		
 		\begin{column}{.4\textwidth}
 			\centering
-			\includegraphics[width=.8\textwidth]{vmm-do-work}
-			\includegraphics[width=.7\textwidth]{vmm-io-paravirt}
+			%\includegraphics[width=.8\textwidth]{vmm-do-work}
+			\includegraphics[width=.9\textwidth]{vmm-io-paravirt}
 		\end{column}
 		
 		\begin{column}{.6\textwidth}
-			Paravirtualization
+			%Paravirtualization
 			\begin{itemize}
 				\item A new front-end driver (FE driver) is run in guest
 				\begin{itemize}

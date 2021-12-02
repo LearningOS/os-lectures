@@ -4,17 +4,16 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[第3讲]{第3讲 ：Virtual Machine Monitor} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title[第23讲]{第二十三讲 ：Virtual Machine Monitor (Hypervisor)} % The short title appears at the bottom of every slide, the full title is only on the title page
 \subtitle{第一节：Overview }
-\author{陈渝} % Your name
+\author{向勇、陈渝、李国良} % Your name
 \institute[清华大学] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
-	清华大学计算机系 \\ % Your institution for the title page
-	\medskip
-	\textit{yuchen@tsinghua.edu.cn} % Your email address
+  清华大学计算机系 \\ % Your institution for the title page
+  \medskip
+  \textit{xyong,yuchen,liguoliang@tsinghua.edu.cn} % Your email address
 }
 \date{\today} % Date, can be changed to a custom date
-
 
 \begin{document}
 
@@ -31,11 +30,17 @@
 %%	PRESENTATION SLIDES
 %%----------------------------------------------------------------------------------------
 %
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
 %%------------------------------------------------
-%\section{第一节：课程概述} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{第一节：Overview} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %%------------------------------------------------
+\subsection{Virtualization and Virtual Machine Monitor (VMM)}
 %-------------------------------------------------
-\begin{frame}[plain]
+\begin{frame}%[plain]
 	\frametitle{Introduction}
 	
 	
@@ -68,7 +73,7 @@
 \end{frame}
 
 %-------------------------------------------------
-\begin{frame}[plain]
+\begin{frame}%[plain]
 	\frametitle{Introduction -- taxonomy}
 
 
@@ -106,7 +111,7 @@
 \end{frame}
 
 %-------------------------------------------------
-\begin{frame}[plain]
+\begin{frame}%[plain]
 	\frametitle{Introduction -- different layer of virtualization}
 	
 	
@@ -144,7 +149,7 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
+\begin{frame}%[plain]
 	\frametitle{Introduction -- VMM}
 	
 	
@@ -160,7 +165,7 @@
 		\begin{column}{.5\textwidth}
 			
 			\begin{block}{Virtual Machine Monitor, VMM}
-	VMM transforms the single machine interface into the illusion of many. Each of these interfaces (virtual machines) is an efficient replica of the original computer system, complete with all of the processor instructions [Robert P. Goldberg, 1974]
+	VMM transforms the single machine interface into the illusion of many. Each of these interfaces (virtual machines) is an {\color{blue}efficient replica of the original computer system}, complete with all of the processor instructions [Robert P. Goldberg, 1974]
 			\end{block}
 			
 %			\begin{block}{Virtual Machine Monitor, VMM}
@@ -175,7 +180,7 @@
 \end{frame}
 
 %-------------------------------------------------
-\begin{frame}[plain]
+\begin{frame}%[plain]
 	\frametitle{Introduction -- VMM}
 	
 	
@@ -195,7 +200,7 @@
 %			\end{block}
 			
 			\begin{block}{Virtual Machine Monitor, VMM}
-				A virtual machine is implemented by adding software to an execution platform to give it the appearance of a different platform, or for that matter, to give the appearance of multiple platforms. [J.E. Smith, “An Overview of Virtual Machine Architectures”]
+				A virtual machine is implemented by adding software to an execution platform to give it the appearance of a {\color{blue}different platform}, or for that matter, to give the appearance of {\color{blue}multiple platforms}. [\href{https://personal.utdallas.edu/~muratk/courses/cloud11f_files/smith-vm-overview.pdf}{J.E. Smith}]
 			\end{block}
 		\end{column}
 		
@@ -207,7 +212,7 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
+\begin{frame}%[plain]
 	\frametitle{Introduction -- Why VMM?}
 	
 	
@@ -239,7 +244,7 @@
 
 
 %-------------------------------------------------
-\begin{frame}[plain]
+\begin{frame}%[plain]
 	\frametitle{Introduction -- Why VMM?}
 	
 	
@@ -270,9 +275,15 @@
 	
 \end{frame}
 
-
+%----------------------------------------------
+\begin{frame}
+\frametitle{提纲} % Table of contents slide, comment this block out to remove it
+\tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
+\end{frame}
 %-------------------------------------------------
-\begin{frame}[plain]
+\subsection{Essential characteristics of VMM}
+%-------------------------------------------------
+\begin{frame}%[plain]
 	\frametitle{Introduction -- Essential characteristics of VMM}
 	
 	
