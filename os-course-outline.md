@@ -6,7 +6,7 @@
  * [v2](https://github.com/LearningOS/os-lectures/blob/9ffa747971086b88f8045b04ae012c82ad837414/os-course-outline.md)：2020年10月21日提交给系里的版本；
  * [v3](https://github.com/LearningOS/os-lectures/blob/e00265613daeafffa9fa4d1a53def7b5ed92016a/os-course-outline.md): 21 Oct 2020
  * [v4](https://github.com/LearningOS/os-lectures/blob/1d07e4bfc55af586079499db65f926b52c0afeb1/os-course-outline.md): cooperate with 2021-spring labs
- * v5: 2021年秋季学期结束时更新教学内容部分
+ * [v5](https://github.com/LearningOS/os-lectures/blob/5e63dcded571f7c7a769d179a93ade8a414270d7/os-course-outline.md): 2021年秋季学期结束时更新教学内容部分
 
 ## 课程组织与基本目的
 
