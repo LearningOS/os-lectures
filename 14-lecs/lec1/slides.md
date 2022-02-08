@@ -66,9 +66,8 @@ layout: two-cols
 
 ## 教学内容：OS 基本架构
 
-<!--
-![pic](./figs/ucorearch.png)
--->
+
+![pic](https://gitee.com/chyyuu/os-lectures/raw/2022spring/14-lecs/lec1/figs/ucorearch.png "test")
 
 ::right::
 
