@@ -17,7 +17,6 @@ layout: cover
   </div>
 </div>
 
-
 ---
 
 # 课程信息
