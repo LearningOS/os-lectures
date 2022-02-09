@@ -32,12 +32,16 @@ marp: true
 ### 数据结构
  - :) 理解基本数据结构即可
 
+---
+
+# 预备知识
 ### 计算机组成原理
  - :( 刘总/康总的 RISC-V 原理
  - :) Patterson 的 RISC-V 原理
 
 ### 编译原理
- - :) 没学过影响不大， :( 但还是要了解高级语言 <–>RISC-V 汇编语言
+ - :) 没学过影响不大 
+ - :( 但还是要了解高级语言 <–>RISC-V 汇编语言
 
 
 ---
@@ -52,14 +56,9 @@ marp: true
 
 
 ---
-layout: two-cols
----
 
 
-## 教学内容：OS 基本架构
-
-
-![pic](https://gitee.com/chyyuu/os-lectures/raw/2022spring/14-lecs/lec1/figs/ucorearch.png "ucore-arch")
+![bg left 100%](https://gitee.com/chyyuu/os-lectures/raw/2022spring/14-lecs/lec1/figs/ucorearch.png)
 
 
 ## OS 原理与设计思想
@@ -78,14 +77,11 @@ layout: two-cols
   - 大实验
 
 ---
-layout: two-cols
----
 
 ## 实验一
 ## 实验二
 ## 实验三
 
-::right::
 
 ## 实验四
 ## 实验五
