@@ -67,6 +67,19 @@ marp: true
 
 ---
 ## 分析UNIX/Linux应用
+
+分析一些非常简单的小程序
+
+#### 进程相关
+
+fork.c  exec.c  forkexec.c ...
+#### 文件系统相关
+list.c  open.c echo.c  copy.c  ... 
+#### 进程间通信相关
+ pipe1.c  pipe2.c  redirect.c ...
+
+---
+## 分析UNIX/Linux应用
  例如：copy.c，将输入复制到输出
 从输入中读取字节，将其写入输出中
 
