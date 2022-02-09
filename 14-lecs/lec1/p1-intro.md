@@ -1,15 +1,22 @@
 ---
 marp: true
---- 
+---
 
 <!-- theme: gaia -->
+<!-- _class: lead -->
 
-## 第一讲 操作系统概述
+## 第一讲 操作系统概述-1
 ### 第一节 课程概述 & 教学安排
 
-  向勇 陈渝 李国良 
+<br>
+<br>
 
+向勇 陈渝 李国良 
 
+<br>
+<br>
+
+2022年春季
 
 ---
 
@@ -60,7 +67,7 @@ marp: true
 ---
 
 
-![bg left 100%](https://gitee.com/chyyuu/os-lectures/raw/2022spring/14-lecs/lec1/figs/ucorearch.png)
+![bg left 100%](figs/ucorearch.png)
 
 
 ### OS 原理与设计思想
