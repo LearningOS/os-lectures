@@ -36,7 +36,7 @@ footer: ''
 - 操作系统 = 装载器+程序库
 - 问题：昂贵组件的低利用率
 
-![bg left 100%](./figs/history-single-user-system.png)
+![bg right 100%](./figs/history-single-user-system.png)
 
 ---
 
@@ -49,7 +49,7 @@ footer: ''
 - 操作系统 = 装载器+程序控制器+输出处理器
 - 问题：相比以前利用率提高
 
-![bg left 100%](./figs/history-batch-processing.png)
+![bg right 100%](./figs/history-batch-processing.png)
 
 ---
 
@@ -62,7 +62,7 @@ footer: ''
 - 操作系统 = 装载器+程序控制器+输出处理器
 - 问题：相比以前利用率提高
 
-![bg left 100%](./figs/history-batch-process-graph.png)
+![bg right 100%](./figs/history-batch-process-graph.png)
 
 ---
 
@@ -75,7 +75,7 @@ footer: ''
 - 操作系统 = 装载器 + 程序调度 + 内存管理 + 输出管理
 - 演变：相比以前利用率提高
 
-![bg left 100%](./figs/history-multiprogramming.png)
+![bg right 100%](./figs/history-multiprogramming.png)
 
 ---
 
@@ -87,7 +87,7 @@ footer: ''
 - 操作系统 = 装载器 + 程序调度 + 内存管理 + 中断处理 +...  
 - 演变：相比以前利用率提高、与外界交互延时缩短
 
-![bg left 100%](./figs/history-timesharing.png)
+![bg right 100%](./figs/history-timesharing.png)
 
 ---
 ## Multics OS
@@ -120,7 +120,7 @@ footer: ''
 - 操作系统 = 装载器 + 程序调度 + 内存管理 + 中断处理 +...
 - 演变：走向大众，老的服务和功能不存在，越来越多的安全问题
 
-![bg left:35% 100%](./figs/history-pc.png)
+![bg right:35% 100%](./figs/history-pc.png)
 
 ---
 ## MacOS家族
@@ -147,7 +147,7 @@ footer: ''
 - 操作系统 = 分布式（装载器 + 程序/OS 调度 + 内存管理）
 - 演变：走向大众，走向网络，新的挑战 (不可靠/不确定)
 
-![bg left:40% 100%](./figs/history-ds.png)
+![bg right:40% 100%](./figs/history-ds.png)
 
 ---
 ## Android操作系统
@@ -165,7 +165,7 @@ AIoT 系统 (2000- )
 - 演变：走向设备，走向网络，新的挑战 (不可靠/大数据)
 
 
-![bg left:40% 100%](./figs/history-aiot.png)
+![bg right:40% 100%](./figs/history-aiot.png)
 
 ---
 ## Fuchsia操作系统

@@ -72,7 +72,7 @@ footer: ''
 ---
 
 
-![bg left 100%](figs/ucorearch.png)
+![bg right 100%](figs/ucorearch.png)
 
 
 ### OS 原理与设计思想

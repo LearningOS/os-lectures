@@ -31,7 +31,7 @@ footer: ''
 
   操作系统是管理硬件资源、控制程序运行、改善人机界面和为应用软件提供支持的一种系统软件。[计算机百科全书]
  
-![bg left 100%](./figs/os-position.png)
+![bg right 100%](./figs/os-position.png)
 
 承上启下的操作系统
 
@@ -47,7 +47,7 @@ footer: ''
 
 
  
-![bg left 100%](./figs/os-position.png)
+![bg right 100%](./figs/os-position.png)
 
 ---
 
@@ -60,7 +60,7 @@ footer: ''
 - 访问软硬件资源的服务
 - 解决访问冲突, 确保公平使用
 
-![bg left 100%](./figs/os-position.png)
+![bg right 100%](./figs/os-position.png)
 
 ---
 
@@ -70,7 +70,7 @@ footer: ''
 - GUI – 图形用户接口
 - Kernel–操作系统的内部
 
-![bg left 100%](./figs/sort-of-os.png)
+![bg right 100%](./figs/sort-of-os.png)
 
 ---
 ## uCore/rCore 教学操作系统内核
