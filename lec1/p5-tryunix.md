@@ -4,7 +4,7 @@ theme: default
 paginate: true
 _paginate: false
 header: ''
-footer: '第一讲 操作系统概述'
+footer: ''
 ---
 
 <!-- theme: gaia -->

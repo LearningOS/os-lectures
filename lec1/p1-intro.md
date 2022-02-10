@@ -1,5 +1,10 @@
 ---
 marp: true
+theme: default
+paginate: true
+_paginate: false
+header: ''
+footer: ''
 ---
 
 <!-- theme: gaia -->
