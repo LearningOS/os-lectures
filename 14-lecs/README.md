@@ -32,3 +32,4 @@ $ npm i -g @slidev/cli @slidev/theme-default
 
 read https://cn.sli.dev/guide/ and try.
 
+----------------------------------------------------------------

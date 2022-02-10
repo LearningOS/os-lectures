@@ -166,4 +166,4 @@ AIoT 系统 (2000- )
 ---
 ## Fuchsia操作系统
 
-![bg 80%](./figs/fuchsia-os-intro.png)
+![bg 70%](./figs/fuchsia-os-intro.png)

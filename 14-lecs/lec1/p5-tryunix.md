@@ -1,10 +1,13 @@
 ---
 marp: true
-​
+theme: default
+paginate: true
+_paginate: false
+header: ''
+footer: '第一讲 操作系统概述'
 ---
 
 <!-- theme: gaia -->
-<!-- page_number: true -->
 <!-- _class: lead -->
 
 ## 第一讲 操作系统概述-1
@@ -283,7 +286,7 @@ shell对此做了什么？
 
 注意：open()总是选择最低的未使用的FD；选择1是由于close(1)。
 fork、FD和exec很好地互动，以实现I/O重定向
-独立的fork-hen-exec给子进程一个机会在exec之前改变FD。
+独立的fork-then-exec给子进程一个机会在exec之前改变FD。
 FDs提供了指示作用
 命令只需使用FDs 0和1，不需要知道它们的位置
 exec保留了sh设置的FDs
