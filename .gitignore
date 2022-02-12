@@ -290,3 +290,9 @@ TSWLatexianTemp*
 
 lecture18/05/.DS_Store
 .DS_Store
+
+# for marp
+node_modules
+dist
+*.pptx
+*.ppt

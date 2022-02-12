@@ -1,6 +1,10 @@
 ---
 marp: true
-​
+theme: default
+paginate: true
+_paginate: false
+header: ''
+footer: ''
 ---
 
 <!-- theme: gaia -->
@@ -28,7 +32,7 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 - 主要用汇编编写
 - 没有安全保护
 
-![bg left 100%](./figs/msdos.png)
+![bg right 100%](./figs/msdos.png)
 
 
 ---
@@ -39,7 +43,7 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 - 最高层 (layer N) 是用户界面
 - 每一层仅使用更低一层的功能和服务
 
-![bg left 100%](./figs/multi-level-os-arch.png)
+![bg right 100%](./figs/multi-level-os-arch.png)
 
 
 ---
@@ -49,7 +53,7 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 - 好处: 灵活/安全...
 - 缺点: 性能
 
-![bg left:45% 100%](./figs/microkernel-arch.png)
+![bg right:45% 100%](./figs/microkernel-arch.png)
 
 ---
 ## 外核结构
@@ -57,7 +61,7 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 - 程序能链接到操作系统库 (libOS) 实现了操作系统抽象
 - 保护与控制分离
 
-![bg left:45% 100%](./figs/exokernel-arch.png)
+![bg right:45% 100%](./figs/exokernel-arch.png)
 
 
 ---
@@ -65,7 +69,7 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 虚拟机管理器将单独的机器接口转换成很多的虚拟机, 每个虚拟机都是一个原
 始计算机系统的有效副本, 并能完成所有的处理器指令
 
-![bg left:45% 100%](./figs/vmm-arch.png)
+![bg right:45% 100%](./figs/vmm-arch.png)
 
 ---
 ## 虚拟机结构

@@ -4,7 +4,7 @@ theme: default
 paginate: true
 _paginate: false
 header: ''
-footer: '第一讲 操作系统概述'
+footer: ''
 ---
 
 <!-- theme: gaia -->
@@ -69,7 +69,7 @@ footer: '第一讲 操作系统概述'
  *  这些看起来像函数调用，但它们并不是
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 分析一些非常简单的小程序
 
@@ -82,7 +82,7 @@ list.c  open.c echo.c  copy.c  ...
  pipe1.c  pipe2.c  redirect.c ...
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
  例如：copy.c，将输入复制到输出
 从输入中读取字节，将其写入输出中
 
@@ -95,14 +95,14 @@ list.c  open.c echo.c  copy.c  ...
   传递给内核，告诉它要读/写哪个 "打开的文件"。
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 必须先前已经打开过的一个FD（描述符）连接到一个文件/设备/socket
 一个进程可以打开许多文件，有许多描述符
 UNIX惯例：FD： 0是 "标准输入"，1是 "标准输出"
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 
 第二个参数read()是一个指针，指向要读入的一些内存。
@@ -111,7 +111,7 @@ UNIX惯例：FD： 0是 "标准输入"，1是 "标准输出"
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 返回值：实际读取的字节数，或者-1表示错误
 注意：copy.c并不关心数据的格式。
@@ -121,7 +121,7 @@ UNIX的I/O是8位字节
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 例如：open.c，创建一个文件
 
@@ -137,7 +137,7 @@ FD是一个小整数，FD索引到一个由内核维护的每进程表中
 进一步细节可以参考UNIX手册，例如 "man 2 open"。 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 当程序调用open()这样的系统调用时会发生什么？
 
@@ -149,7 +149,7 @@ FD是一个小整数，FD索引到一个由内核维护的每进程表中
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 当程序调用open()这样的系统调用时会发生什么？
 
@@ -163,7 +163,7 @@ FD是一个小整数，FD索引到一个由内核维护的每进程表中
 - 我们将在后面的课程中看到更多的细节
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 在向UNIX的命令行界面（shell）输入信息。
 shell打印出"$"的提示。
@@ -175,7 +175,7 @@ shell让你运行UNIX的命令行工具
     $ grep x < out
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 但通过shell来支持分时共享多任务执行是UNIX设计之初的重点。
 我们可以通过shell行使许多系统调用。
@@ -188,7 +188,7 @@ shell为你输入的每个命令创建一个新的进程，例如，对于
 fork()系统调用创建一个新的进程
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 
     $ fork
@@ -206,7 +206,7 @@ pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 我们怎样才能在这个进程中运行一个新程序呢？  
 
@@ -219,7 +219,7 @@ shell是如何运行一个程序的，例如
 所以有一个叫echo的文件，包含对 `exec` 系统调用的操作命令
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 exec()用一个可执行文件取代当前进程
 - 丢弃指令和数据存储器
@@ -227,7 +227,7 @@ exec()用一个可执行文件取代当前进程
 - 保留了文件描述符
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 exec(filename, argument-array)
 argument-array保存命令行参数；exec传递给main()
@@ -237,7 +237,7 @@ argument-array保存命令行参数；exec传递给main()
 echo.c显示了一个程序如何看待它的命令行参数
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 例如：forkexec.c，fork()一个新进程，exec()一个程序。
 
@@ -250,7 +250,7 @@ forkexec.c包含了一个常见的UNIX习惯用语。
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 shell对你输入的每个命令都进行fork/exec/wait操作。
 在wait()之后，shell会打印出下一个提示信息
@@ -258,7 +258,7 @@ shell对你输入的每个命令都进行fork/exec/wait操作。
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 exit(status) --> wait(&status)
 
@@ -269,7 +269,7 @@ status约定：0 = 成功，1 = 命令遇到了一个错误
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 例子：redirect.c，重定向一个命令的输出
 shell对此做了什么？
@@ -282,7 +282,7 @@ shell对此做了什么？
     $ cat output.txt
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 注意：open()总是选择最低的未使用的FD；选择1是由于close(1)。
 fork、FD和exec很好地互动，以实现I/O重定向
@@ -295,7 +295,7 @@ exec保留了sh设置的FDs
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 一些值得思考的问题：
 - 为什么是这些I/O和进程的抽象？为什么不是其他的东西？
@@ -307,7 +307,7 @@ exec保留了sh设置的FDs
 UNIX的设计很好用，但我们会看到其他的设计
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 例子：pipe1.c，通过一个管道进行通信
 shell是如何实现的
@@ -322,14 +322,14 @@ pipe()系统调用创建了两个FD
   
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 内核为每个管道维护一个缓冲区
 - write()添加到缓冲区中
 - read()等待，直到有数据出现
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 例子：pipe2.c，在进程间通信。
 管道与fork()结合得很好，可以实现ls | grep x。
@@ -344,7 +344,7 @@ shell创建一个管道。
 
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 
 * 例子：list.c，列出一个目录中的文件
@@ -354,7 +354,7 @@ ls是如何获得一个目录中的文件列表的？
 更多细节见ls.c
 
 ---
-## 分析UNIX/Linux应用
+## 分析UNIX/Linux类应用
 
 小结
 
