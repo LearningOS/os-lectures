@@ -136,3 +136,7 @@ rust-objdump -S target/riscv64gc-unknown-none-elf/debug/os
  - 没有一个传统意义上的入口点（即程序首条被执行的指令所在的位置）
  - 因此 Rust 编译器会生成一个空程序
  - 但这是一个**面向操作系统开发**的程序
+
+---
+## 操作系统执行环境 --App/OS内存布局
+![w:900](figs/memlayout.png)
