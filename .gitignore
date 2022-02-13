@@ -296,3 +296,4 @@ node_modules
 dist
 *.pptx
 *.ppt
+*.Identifier

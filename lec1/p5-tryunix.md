@@ -10,7 +10,7 @@ footer: ''
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-## 第一讲 操作系统概述-1
+## 第一讲 操作系统概述
 
 ### 第五节 试试UNIX/Linux
 
