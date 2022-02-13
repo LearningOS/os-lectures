@@ -125,12 +125,12 @@ footer: ''
 ---
 ## MacOS家族
 
-![bg 70%](./figs/macos-family.png)
+![bg 55%](./figs/macos-family.png)
 
 ---
 ## MacOS家族
 
-![bg 70%](./figs/macos-family-history.png)
+![bg 55%](./figs/macos-family-history.png)
 
 ---
 ## Windows家族
