@@ -28,7 +28,8 @@ footer: ''
 ## UNIX/Linux在哪里？
 
 - Linux 
-   - Ubuntu Fedora SuSE OpenEuler 麒麟  统信  
+   - Ubuntu、Fedora、SuSE、openEuler 
+   - 麒麟  统信  
 - Windows with WSL (Windows Subsystem of Linux)
 - MacOS with UNIX shell 
 ---
