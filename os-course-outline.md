@@ -22,7 +22,7 @@
 - 逻辑性和实验相关性有折衷
 - 内容有点分散
 - 多核是否要加强和贯穿？
-- ppt: 风格不一致 Latex, ppt, 统一：中文，用markdown [Why Slidev | Slidev](https://sli.dev/guide/why.html)
+- ppt: 风格不一致 Latex, ppt, 统一：中文，用markdown [marp](https://marp.app/)
 - 增加基于Linux的用户态编程和程序展示
 - 搭环境的过程，助教提供（文档或视频）
 - 原则：与实验一致，不存在1.5次的情况， 比如 进程 + 调度 2次课， 1或2次课对应着1章，可以通过深入讲解来确保上课时间用满。
