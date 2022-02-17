@@ -28,6 +28,7 @@ footer: ''
 - 移出标准库依赖
 - 支持函数调用
 - 基于SBI服务完成输出与关机
+SBI（service-based interface）
 
 ![bg right 100%](figs/os-as-lib.png)
 
@@ -120,6 +121,9 @@ SECTIONS
         *(.bss .bss.*)
         *(.sbss .sbss.*)
 ```
+
+BSS：Block Started by Symbol
+
 ![bg right 100%](figs/memlayout.png)
 
 ---
