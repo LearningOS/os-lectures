@@ -52,6 +52,8 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 - 用户模块间的通信使用消息传递
 - 好处: 灵活/安全...
 - 缺点: 性能
+- LPC: 本地过程调用(Local Procedure Call)
+- HAL: 硬件抽象层（Hardware Abstraction Layer）
 
 ![bg right:45% 100%](./figs/microkernel-arch.png)
 
@@ -60,6 +62,7 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 - 让内核分配物理资源给多个应用程序, 并让每个程序决定如何处理这些资源
 - 程序能链接到操作系统库 (libOS) 实现了操作系统抽象
 - 保护与控制分离
+- DSM：Distributed Shared Memory
 
 ![bg right:45% 100%](./figs/exokernel-arch.png)
 
