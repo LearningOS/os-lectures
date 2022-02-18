@@ -100,7 +100,7 @@ footer: ''
 ![](./figs/multics-intro.png)
 
 ---
-## UNIX家族
+## UNIX
 
 ![bg 70%](./figs/unix-family.png)
 
