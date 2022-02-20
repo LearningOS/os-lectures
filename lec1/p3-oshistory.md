@@ -100,7 +100,7 @@ footer: ''
 ![](./figs/multics-intro.png)
 
 ---
-## UNIX家族
+## UNIX
 
 ![bg 70%](./figs/unix-family.png)
 
@@ -170,4 +170,4 @@ AIoT 系统 (2000- )
 ---
 ## Fuchsia操作系统
 
-![bg 70%](./figs/fuchsia-os-intro.png)
+![bg 75%](./figs/fuchsia-os-intro.png)
