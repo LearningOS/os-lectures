@@ -21,7 +21,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Build Source
-      run: mkdir dist && cp os-lecs.md dist && cp -r lec[1-9]* dist
+      run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs
 
     - name: Build & Deploy to GitHub Pages
       env: 
@@ -30,7 +30,7 @@ jobs:
         # For a multi-page site, try `MARP_ARGS: "-I slides/ --output dist/"`
         # Check examples for more: https://github.com/ralexander-phi/test-marp-action/blob/dev/README.md#example-sites
         # But to keep things simple, let's just convert a single README.md into index.html
-        MARP_ARGS: " --html --input-dir dist/ --output dist/"
+        MARP_ARGS: " --html --input-dir docs/ --output docs/"
 
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPOSITORY: ${{ github.repository }}
