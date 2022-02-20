@@ -72,7 +72,7 @@ footer: ''
 ---
 ## 分析UNIX/Linux类应用
 
-分析一些非常简单的小程序
+[分析一些非常简单的小程序](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/)
 
 #### 进程相关
 
