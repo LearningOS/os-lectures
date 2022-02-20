@@ -66,7 +66,7 @@ footer: ''
 #### [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 
 ### 上课时间地点
-- 星期一 (1-16周) 上午第二大节 09:50-12:15 五教 5305 六教 6A214
+- 星期一 (1-16周) 上午第二大节 09:50-12:15 五教 5205/5305
 
 
 ---
