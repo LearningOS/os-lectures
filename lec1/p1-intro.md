@@ -75,6 +75,24 @@ footer: ''
 ### 参考教材
 #### [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 
+#### 课程在线Slides
+- http://learningos.github.io/os-lectures/
+- http://learning-os.gitee.io/os-lectures/
+#### 课程实践参考书
+- https://learningos.github.io/rCore-Tutorial-Book-v3/
+- https://learning-os.gitee.io/rcore-tutorial-book-v3
+
+---
+
+### 实验指导
+#### uCore Tutorial Guide 
+- https://learningos.github.io/uCore-Tutorial-Guide/
+- http://learning-os.gitee.io/ucore-tutorial-guide/
+
+#### rCore Tutorial Guide
+- https://learningos.github.io/rCore-Tutorial-Guide/
+- http://learning-os.gitee.io/rcore-tutorial-guide
+
 
 ---
 
