@@ -62,7 +62,7 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 - 让内核分配物理资源给多个应用程序, 并让每个程序决定如何处理这些资源
 - 程序能链接到操作系统库 (libOS) 实现了操作系统抽象
 - 保护与控制分离
-- DSM：Distributed Shared Memory
+- DSM：Distributed Shared Memor
 
 ![bg right:45% 100%](./figs/exokernel-arch.png)
 
@@ -77,7 +77,7 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 ## 虚拟机结构
 
 
-![bg 60%](./figs/vmm-arch-view.png)
+![bg 70%](./figs/vmm-arch-view2.png)
 
 ---
 ## 应用程序运行与 OS 抽象 + 架构的关系

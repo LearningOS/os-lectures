@@ -33,7 +33,7 @@ footer: ''
 - Windows with WSL (Windows Subsystem of Linux)
 - MacOS with UNIX shell 
 ---
-## 为什么是UNIX？
+## 为什么是Linux？
 - 开放源码，有很好的文档，设计简洁，使用广泛
 - 如果你了解Linux的内部情况，学习ucore/rcore会有帮助。
 
@@ -92,7 +92,7 @@ list.c  open.c echo.c  copy.c  ...
   copy.c是用C语言编写的
     
   read()和write()是系统调用
-  第一个read()/write()参数是一个 "文件描述符"(fd)
+  read()/write()第一个参数是"文件描述符"(fd)
   传递给内核，告诉它要读/写哪个 "打开的文件"。
 
 ---
@@ -103,9 +103,9 @@ list.c  open.c echo.c  copy.c  ...
 UNIX惯例：FD： 0是 "标准输入"，1是 "标准输出"
 
 
-第二个参数read()是一个指针，指向要读入的一些内存。
+read()第二个参数是一个指针，指向要读入的一些内存。
 
-第三个参数是要读取的最大字节数
+read()第三个参数是要读取的最大字节数
 
 注：read()可以少读，但不能多读
 
@@ -197,14 +197,17 @@ fork()系统调用创建一个新的进程
 内核创建一个调用进程的副本
 - 指令、数据、寄存器、文件描述符、当前目录
 - "父 "和 "子 "进程
-  
+
+---
+
+
+## 分析UNIX/Linux类应用
+
 唯一的区别：fork()在父进程中返回一个pid，在子进程中返回0。
 pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 
 因此，fork.c的 "fork()返回 "在*两个*进程中都会执行
 "if(pid == 0) "实现对父子进程的区分
-
-
 
 ---
 ## 分析UNIX/Linux类应用
