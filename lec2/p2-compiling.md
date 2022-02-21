@@ -139,4 +139,9 @@ rust-objdump -S target/riscv64gc-unknown-none-elf/debug/os
 
 ---
 ## 操作系统执行环境 --App/OS内存布局
-![w:900](figs/memlayout.png)
+- .text: 数据段
+- 已初始化数据段.rodata：只读的全局数据（常数或者是常量字符串）、.data：可修改的全局数据。
+- 未初始化数据段 .bss
+- 堆 （heap）向高地址增长
+- 栈 （stack）向低地址增长
+![bg right 100%](figs/memlayout.png)
