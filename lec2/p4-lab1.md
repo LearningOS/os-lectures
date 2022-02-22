@@ -28,7 +28,7 @@ footer: ''
 - 移出标准库依赖
 - 支持函数调用
 - 基于SBI服务完成输出与关机
-SBI（service-based interface）
+supervisor-binary interface）
 
 ![bg right 100%](figs/os-as-lib.png)
 
@@ -123,6 +123,8 @@ SECTIONS
 ```
 
 BSS：Block Started by Symbol
+SBSS：small bss，近数据
+
 
 ![bg right 100%](figs/memlayout.png)
 
@@ -174,7 +176,7 @@ riscv64-unknown-elf-gdb \
 ## 实践一：LibOS -- 支持函数调用
 ![w:1000](figs/fun-call-in-rv.png)
 
-在进行函数调用的时候，我们通过 jalr 指令保存返回地址并实现跳转；而在函数即将返回的时候，则通过 ret 伪指令回到跳转之前的下一条指令继续执行。这样，RISC-V 的这两条指令就实现了函数调用流程的核心机制。
+在进行函数调用的时候，通过 jalr 指令保存返回地址并实现跳转；而在函数即将返回的时候，则通过 ret 伪指令回到跳转之前的下一条指令继续执行。这样，RISC-V 这两条指令就实现了函数调用流程的核心机制。
 
 ---
 ## 实践一：LibOS -- 支持函数调用
