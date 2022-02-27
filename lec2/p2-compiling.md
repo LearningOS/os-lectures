@@ -31,12 +31,12 @@ footer: ''
 ---
 ## 应用程序执行环境
 ### Assembler工作
-- 汇编码 --> 机器码
+- 汇编码 ------> 机器码
 ![bg right 100%](figs/app-software-stack.png)
 ---
 ## 应用程序执行环境
 ### linker（链接器）工作
-- 多个机器码目标文件 --> 一个机器码执行文件
+- 多个机器码目标文件 -----> 单个机器码执行文件
 ![bg right 100%](figs/app-software-stack.png)
 
 ---
@@ -49,7 +49,7 @@ footer: ''
 ---
 ## 操作系统执行环境
 ### 编译器/汇编器/链接器工作
-- 源码->汇编码->机器码->执行程序
+- 源码 ---> 汇编码 ---> 机器码 --->执行程序
 ### Bootloader加载OS执行
 
 ![bg right 100%](figs/os-software-stack.png)
@@ -81,12 +81,16 @@ ELF：Executable and Linkable Format
 ---
 ## 操作系统执行环境
 - 标准库：依赖操作系统
+  - Rust: std 标准库
+  - C：glibc, musl libc 
 - 核心库：与操作系统无关
+  - Rust: core 库
+  - C: Linux/BSD kernel libc
 ![bg right 100%](figs/os-software-stack.png)
 
 ---
 ## 操作系统执行环境
-与操作系统无关的OS类型的程序
+与操作系统无关的OS类型的程序（Bare Metal program, 裸机程序）
 ```
 // os/src/main.rs
 #![no_std]
@@ -111,7 +115,12 @@ fn panic(_info: &PanicInfo) -> ! {
 file target/riscv64gc-unknown-none-elf/debug/os
 target/riscv64gc-unknown-none-elf/debug/os: ELF 64-bit LSB executable, UCB RISC-V, ......
 ```
+[ELF文件格式](https://wiki.osdev.org/ELF) Executable and Linkable Format
 
+---
+## 操作系统执行环境 -[ELF文件格式](https://wiki.osdev.org/ELF) 
+
+![](figs/elf.png)
 
 ---
 ## 操作系统执行环境
@@ -148,7 +157,7 @@ rust-objdump -S target/riscv64gc-unknown-none-elf/debug/os
  - 但这是一个**面向操作系统开发**的程序
 
 ---
-## 操作系统执行环境 --App/OS内存布局
+## 操作系统执行环境 App/OS内存布局
 - .text: 数据段
 - 已初始化数据段.rodata：只读的全局数据（常数或者是常量字符串）、.data：可修改的全局数据。
 - 未初始化数据段 .bss

@@ -33,7 +33,7 @@ footer: ''
 
 我们使用软件 qemu-system-riscv64 来模拟一台 64 位 RISC-V 架构的计算机，它包含:
 - 一个 CPU（可调整为多核）
-- 一条物理内存
+- 一块物理内存
 - 若干 I/O 外设
 
 ---
@@ -45,7 +45,7 @@ qemu-system-riscv64 \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
 ``` 
-- machine virt 表示将模拟的 64 位 RISC-V 计算机设置为名为 virt 的通用虚拟平台
+- machine virt 表示将模拟的 64 位 RISC-V 计算机设置为名为 virt 的虚拟计算机
 - 物理内存的默认大小为 128MiB 
 
 ---
@@ -69,7 +69,7 @@ qemu-system-riscv64 \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
 ``` 
-- bios 可以设置 Qemu 模拟器开机时用来初始化的引导加载程序（bootloader）
+- bios 可以设置 QEMU 模拟器开机时用来初始化的引导加载程序（bootloader）
 - 这里我们使用预编译好的 rustsbi-qemu.bin
 
 ---
@@ -81,8 +81,8 @@ qemu-system-riscv64 \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
 ``` 
-- device loader 可以在 Qemu 模拟器开机之前将一个宿主机上的文件载入到 Qemu 的物理内存的指定位置中
-- file 和 addr 分别可以设置待载入文件的路径以及将文件载入到的 Qemu 物理内存上的物理地址
+- device的loader 参数可以在 QEMU 模拟器开机之前将一个宿主机上的文件载入到 QEMU 的物理内存的指定位置中
+- file 和 addr 参数分别可以设置待载入文件的路径以及将文件载入到的 QEMU 物理内存上的物理地址
 
 ---
 ## 理解硬件 -- QEMU启动流程
@@ -106,8 +106,8 @@ qemu-system-riscv64 \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
 ``` 
-Qemu 模拟的启动流程则可以分为三个阶段：
-1. 由写死在 Qemu 内的一小段汇编程序初始化并跳转执行bootloader；
+QEMU 模拟的启动流程则可以分为三个阶段：
+1. 由固化在 [QEMU模拟的计算机内存](https://github.com/LearningOS/qemu/blob/386b2a5767f7642521cd07930c681ec8a6057e60/hw/riscv/virt.c#L59)中的[一小段汇编程序](https://github.com/LearningOS/qemu/blob/386b2a5767f7642521cd07930c681ec8a6057e60/hw/riscv/virt.c#L536)初始化并跳转执行bootloader；
 2. 由 bootloader 负责，初始化并加载OS，跳转OS执行；
 3. 由内核执行初始化工作。
 
