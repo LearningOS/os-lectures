@@ -154,4 +154,4 @@ rust-objdump -S target/riscv64gc-unknown-none-elf/debug/os
 - 未初始化数据段 .bss
 - 堆 （heap）向高地址增长
 - 栈 （stack）向低地址增长
-![bg right 100%](figs/memlayout.png)
+![bg right 120%](figs/memlayout.png)
