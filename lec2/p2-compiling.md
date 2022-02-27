@@ -66,7 +66,17 @@ riscv32gc-unknown-linux-gnu
 riscv64gc-unknown-linux-gnu
 riscv64imac-unknown-none-elf
 ```
+ELF：Executable and Linkable Format
+
 ![bg right 100%](figs/os-software-stack.png)
+
+
+---
+## 操作系统执行环境
+### 编译器工作
+- 链接视图
+- 执行视图
+![bg 55%](figs/link.png)
 
 ---
 ## 操作系统执行环境
