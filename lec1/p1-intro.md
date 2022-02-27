@@ -85,14 +85,11 @@ footer: ''
 ---
 
 ### 实验指导
-#### uCore Tutorial Guide 
-- https://learningos.github.io/uCore-Tutorial-Guide/
-- http://learning-os.gitee.io/ucore-tutorial-guide/
+#### uCore Tutorial Guide 2022 Spring
+- [Docs 文档部分](https://github.com/LearningOS/uCore-Tutorial-Guide-2022S/) ，[Codes 代码部分](https://github.com/LearningOS/uCore-Tutorial-Code-2022S)，[Tests 测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2022S)
 
-#### rCore Tutorial Guide
-- https://learningos.github.io/rCore-Tutorial-Guide/
-- http://learning-os.gitee.io/rcore-tutorial-guide
-
+#### rCore Tutorial Guide 2022 Spring
+- [Docs 文档部分](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/)   ，[Codes 代码部分](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)，[Tests 测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
 
 ---
 
