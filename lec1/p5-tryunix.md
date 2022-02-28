@@ -68,6 +68,53 @@ footer: ''
             pid = fork()
 
  *  这些看起来像函数调用，但它们并不是
+ *  核心的系统调用数量并不多（20个左右）
+
+---
+## Linux内核提供的应用程序/内核接口？
+
+| 系统调用名 | 含义 |
+| ------------------------ | ---- |
+| ``int fork()``           |  创建一个进程，返回子进程的PID。    |
+| ``int exit(int status)`` | 终止当前进程；报告状态给执行wait()系统调用的父进程。没有返回。     |
+| ``int wait(int *status)``    |  等待子进程退出；退出状态为 ``*status`` ；返回子进程的PID。    |
+| ``int kill (int pid)``           |   终止进程号为PID的进程。返回0表示成功，或-1表示错误。    |
+| ``int getpid()``             |   返回当前进程的PID。   |
+
+---
+## Linux内核提供的应用程序/内核接口？
+
+| 系统调用名 | 含义 |
+| ------------------------ | ---- |
+| ``int sleep(int n)``                         | 暂停n个时钟周期。     |
+| ``int exec(char *file，char *argv[])``   |  用参数加载文件并执行；仅当出错时返回。    |
+|   ``char *sbrk(int n)``   |  将进程内存增加n个字节。返回新内存的开始地址。    |
+|   ``int open(char *file，int flags)``   |  打开文件；标志flag表示文件操作的读/写属性；返回一个fd(文件描述符)。    |
+|   ``int write(int fd，char *buf，int n)``   |  从buf向文件描述符fd写入n个字节；返回n。    |
+
+---
+## Linux内核提供的应用程序/内核接口？
+
+| 系统调用名 | 含义 |
+| ------------------------ | ---- |
+|  ``int read(int fd，char *buf，int n)``   |    将n个字节读入buf；返回读取的数字；如果文件结束，则为0。   |
+|  ``int close(int fd)``   |  释放打开的描述符为fd的文件。    |
+|  ``int dup(int fd)``  |  返回一个新的文件描述符，引用与文件描述符相同的文件。    |
+|  ``int pipe(int p[])``   |  创建一个管道，将读/写文件描述符放在p[0]和p[1]中。    |
+|  ``int chdir(char *dir)``     | 更改当前目录。|
+
+---
+## Linux内核提供的应用程序/内核接口？
+
+| 系统调用名 | 含义 |
+| ------------------------ | ---- |
+|  ``int mkdir(char *dir) ``     |  创建一个新目录。    |
+| ``int mknod(char *file, int, int)``  |  创建一个设备文件。    |
+|  ``int fstat(int fd, struct stat *st)``    | 将文件fd的元信息放入 ``*st``     |
+|   ``int stat(char *file, struct stat *st)``   | 将文件 ``*file`` 的元信息放入 ``*st``     |
+| ``int link(char *file1，char *file2)``    |   为文件file1创建另一个名称(file2)。    |
+| ``int unlink(char *file)``    |   删除文件。    |
+
 
 ---
 ## 分析UNIX/Linux类应用
