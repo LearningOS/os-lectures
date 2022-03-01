@@ -23,3 +23,10 @@ footer: ''
 - [第二节 Compiler与OS](./lec2/p2-compiling.html)
 - [第三节 硬件启动与软件启动](./lec2/p3-boot.html)
 - [第四节 实践一：LibOS](./lec2/p4-lab1.html)
+
+---
+
+## 第三讲 基于特权级的隔离与批处理操作系统
+- [第一节 从 OS 角度看计算机系统](./lec3/p1-osviewarch.html)
+- [第二节 从 OS 角度看RISC-V](./lec3/p2-osviewrv.html)
+- [第三节 实践：批处理操作系统](./lec3/p3-batchos.html)
