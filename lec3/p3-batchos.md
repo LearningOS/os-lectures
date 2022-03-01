@@ -220,7 +220,7 @@ RISC-V异常向量
 ---
 ## 实践：批处理OS
 ### 应用程序设计 -- 项目结构
-- `hello_world` ：在屏幕上打印一行 `Hello world from user mode program!`
+- `hello_world` ：在屏幕上打印一行 "Hello world from user mode program!"
 - `store_fault` ：访问一个非法的物理地址，测试批处理系统是否会被该错误影响
 - `power` ：不断在计算操作和打印字符串操作之间进行特权级切换
 
