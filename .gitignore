@@ -298,4 +298,4 @@ dist
 *.ppt
 *.Identifier
 *.pdf
-# docs    //for github CI
+html-docs
