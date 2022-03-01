@@ -10,8 +10,19 @@ footer: ''
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-## 第三讲 特权级
+## 第三讲 基于特权级的隔离与批处理操作系统
 ### 第三节 实践：批处理操作系统
+
+---
+## 实践：批处理OS
+- 目标
+- 历史
+- 步骤
+  - 构造&加载 OS&APP
+  - 基于RV特权级机制保护OS
+  - 系统调用支持
+  - 特权级切换 
+
 
 ---
 ## 实践：批处理OS
@@ -26,6 +37,16 @@ footer: ''
 
 ---
 ## 实践：批处理OS
+### 历史
+* GM-NAA I/O System
+  * 汽车生产线 
+* MULTICS OS
+  * GE 645 具有 8 级硬件支持的保护环
+
+![bg right 80%](figs/deng-fish.png)
+
+---
+## 实践：批处理OS
 ### 步骤
 * 构造包含OS和多个APP的单一执行镜像
 * 通过批处理支持多个APP的自动加载和运行
@@ -35,15 +56,7 @@ footer: ''
 
 ![bg right 100%](figs/batch-os.png)
 
----
-## 实践：批处理OS
-### 历史
-* GM-NAA I/O System
-  * 汽车生产线 
-* MULTICS OS
-  * GE 645 具有 8 级硬件支持的保护环
 
-![bg right 80%](figs/deng-fish.png)
 
 
 ---
