@@ -72,7 +72,7 @@ footer: ''
 ```
 git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 cd rCore-Tutorial-v3
-git checkout 
+git checkout ch2
 
 cd os
 make run
