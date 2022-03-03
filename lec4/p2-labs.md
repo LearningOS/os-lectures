@@ -218,8 +218,47 @@ CCCCCCCCCC [3/3]
 ## 实践：multiprog OS -- 程序设计
 ### 应用程序设计 -- 系统调用  
 
-``` 
+``` Rust
 const SYSCALL_YIELD: usize = 124;
 pub fn sys_yield() -> isize {
     syscall(SYSCALL_YIELD, [0, 0, 0])
 }
+pub fn yield_() -> isize {
+    sys_yield()
+}
+```
+
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计
+    - **内核与应用形成单一镜像**  与之前一样
+    - 多道程序加载
+    - 执行应用程序
+    - 任务切换
+
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS -- 多道程序加载
+* 应用的加载方式有不同
+* 所有的应用在内核初始化的时候就一并被加载到内存中
+* 为了避免覆盖，它们自然需要被加载到不同的物理地址
+
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS -- 多道程序加载
+
+```Rust
+fn get_base_i(app_id: usize) -> usize {
+    APP_BASE_ADDRESS + app_id * APP_SIZE_LIMIT
+}
+
+let base_i = get_base_i(i);
+// load app from data section to memory
+let src = (app_start[i]..app_start[i + 1]);
+let dst = (base_i.. base_i+src.len());
+dst.copy_from_slice(src);
+
+```
