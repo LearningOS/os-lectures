@@ -272,6 +272,8 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示（mie）
 S 模式中断寄存器。它们是宽为 XLEN 位的读/写寄存器，用于保存待处理的中断（sip）和中断使能位（sie）CSR。
 
 **sie & sip 寄存器**
+- sie （supervisor interrupt-enabled register）
+- sip（supervisor interrupt pending）
 ![w:1000](figs/rv-sie-sip.png)
 
 
