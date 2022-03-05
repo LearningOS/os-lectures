@@ -105,6 +105,18 @@ RISC-V 系统模式：内核态特权级
 - mscratch(Machine Scratch)它暂时存放一个字大小的数据。
 - mstatus(Machine Status)保存全局中断使能，以及其他的状态
 
+
+---
+## RISC-V 系统模式：控制状态寄存器
+
+- sstatus(supervisor status)保存发生异常时需要跳转到的地址。
+- stvec(supervisor trap vector)保存s模式的trap向量基址。stvec总是4字节对齐
+- satp(supervisor Address Translation and Protection) S 模式控制状态寄存器控制了分页系统。
+- sscratch (supervisor Scratch Register) 保存指向hart-local supervisor上下文的指针. 在trap处理程序的开头，sscratch与用户寄存器交换，以提供初始工作寄存器。
+- sepc(supervisor Exception PC)它指向发生异常的指令。
+
+
+
 ---
 ## RISC-V 系统编程 ：简述
 - 系统编程需要了解处理器的特权级架构，熟悉各个特权级能够访问的寄存器资源，内存资源，外设资源
@@ -130,7 +142,7 @@ RISC-V 系统模式：内核态特权级
 - 指令码非常少：
   - ``mret`` 机器模式返回 
   - ``sret`` 监管者模式返回
-  - ``wfi`` 等待中断 
+  - ``wfi`` 等待中断 (wait for interupt)
   - ``sfense.vma`` 虚拟地址屏障指令
 - 很多其他的系统功能通过控制状态寄存器来实现
 
