@@ -286,10 +286,11 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示（mie）
 ---
 ## RISC-V 系统编程：异常/中断 CSR 寄存器
 * S 模式有异常/中断 CSR：sepc, stvec, scause, sscratch, stval 和 sstatus，与 M 模式的寄存器相对应
-* sret 返回指令和 mret 指令也类似，但是它作用于 S 模式的异常处理 CSR
+* sret 返回指令和 mret 指令也类似，但是它作用于 S 模式的异常处理
+  * SIE 和 SPIE 中分别保存了当前的和异常发生之前的中断使能，类似于 mstatus 中的 MIE 和 MPIE
 
 **sstatus 寄存器**
-![w:900](figs/rv-sstatus.png)
+![w:800](figs/rv-sstatus.png)
 
 ---
 ## RISC-V 系统编程：异常/中断 CSR 寄存器
