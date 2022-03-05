@@ -76,7 +76,7 @@ RISC-V 系统模式：内核态特权级
 寄存器分类
 - 通用寄存器 x0-x31
   - 一般指令访问
-- 控制状态寄存器(CSR)
+- 控制状态寄存器(CSR：Control and Status Registers)
   - 通过控制状态寄存器指令访问 
 
 运行在用户态的应用程序不能访问CSR寄存器
@@ -105,6 +105,17 @@ RISC-V 系统模式：内核态特权级
 - mscratch(Machine Scratch)它暂时存放一个字大小的数据。
 - mstatus(Machine Status)保存全局中断使能，以及其他的状态
 
+
+---
+## RISC-V 系统模式：控制状态寄存器
+
+
+- SIE控制S模式下全局中断，MIE控制M模式下全局中断。
+- SPIE、MPIE记录发生中断之前MIE和SIE的值。
+- SPP表示变化之前的特权级别是S模式还是U模式，MPP表示变化之前是S模式还是U模式还是M模式，
+
+
+![w:1000](figs/mstatus.png)
 
 ---
 ## RISC-V 系统模式：控制状态寄存器
