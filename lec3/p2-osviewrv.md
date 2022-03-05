@@ -227,6 +227,25 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示（mie）
   * 如 mideleg[5] 对应于 S 模式的时钟中断，如果把它置位，S 模式的时钟中断将会移交 S 模式的异常/中断处理程序，而不是 M 模式的异常/中断处理程序
   * 委托给 S 模式的任何中断都可以被 S 模式的软件屏蔽。sie(Supervisor Interrupt Enable) 和 sip（Supervisor Interrupt Pending）CSR 是 S 模式的控制状态寄存器
 
+---
+
+## RISC-V 系统编程：异常/中断委托寄存器
+* mideleg (Machine Interrupt Delegation）CSR 控制将哪些中断/异常委托给 S 模式处理
+* mideleg 中的每个为对应一个中断/异常
+  * mideleg[1]用于控制是否将核间中断交给s模式处理
+  * mideleg[5]用于控制是否将定时中断交给s模式处理
+  * mideleg[9]用于控制是否将外部中断交给s模式处理
+
+
+---
+
+## RISC-V 系统编程：异常/中断委托寄存器
+* medeleg (Machine Exception Delegation）CSR 控制将哪些中断/异常委托给 S 模式处理
+* medeleg 中的每个为对应一个中断/异常
+  * medeleg[1]用于控制是否将指令获取错误异常交给s模式处理
+  * medeleg[12]用于控制是否将指令页异常交给s模式处理
+  * medeleg[9]用于控制是否将数据页异常交给s模式处理
+
 <!-- ，是 mie 和 mip 的子集。这两个寄存器和 M 模式下有相同的布局。sie 和 sip 中只有与由 mideleg 委托的中断对应的位才能读写，没有委派的中断对应位总是 0 -->
 
 ---
