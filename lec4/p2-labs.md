@@ -218,8 +218,117 @@ CCCCCCCCCC [3/3]
 ## 实践：multiprog OS -- 程序设计
 ### 应用程序设计 -- 系统调用  
 
-``` 
+``` Rust
 const SYSCALL_YIELD: usize = 124;
 pub fn sys_yield() -> isize {
     syscall(SYSCALL_YIELD, [0, 0, 0])
 }
+pub fn yield_() -> isize {
+    sys_yield()
+}
+```
+
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计
+    - **内核与应用形成单一镜像**  与之前一样
+    - **多道程序加载**
+    - 执行应用程序
+    - 任务切换
+
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS -- 多道程序加载
+* 应用的加载方式有不同
+* 所有的应用在内核初始化的时候就一并被加载到内存中
+* 为了避免覆盖，它们自然需要被加载到不同的物理地址
+
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS -- 多道程序加载
+
+```Rust
+fn get_base_i(app_id: usize) -> usize {
+    APP_BASE_ADDRESS + app_id * APP_SIZE_LIMIT
+}
+
+let base_i = get_base_i(i);
+// load app from data section to memory
+let src = (app_start[i]..app_start[i + 1]);
+let dst = (base_i.. base_i+src.len());
+dst.copy_from_slice(src);
+```
+
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计
+    - **内核与应用形成单一镜像**  与之前一样
+    - 多道程序加载
+    - **执行应用程序**
+    - 任务切换
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS --执行程序
+
+- 执行时机
+  - 当多道程序的初始化放置工作完成
+  - 某个应用程序运行结束或出错的时
+
+- 执行方式
+  - 调用 run_next_app 函数**切换**到第一个/下一个应用程序
+  
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS --执行程序
+
+- 切换上下文
+  - 内核态到用户态
+  - 用户态到内核态
+  - 应用程序上下文
+
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS --执行程序
+
+- 切换应用程序上下文
+  - 跳转到编号i的应用程序编号i的入口点 entry(i)
+  - 将使用的栈切换到用户栈stack(i) 
+
+
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计
+    - **内核与应用形成单一镜像**  与之前一样
+    - 多道程序加载
+    - 执行应用程序
+    - **任务切换**
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS -- 任务切换 -- 任务上下文
+
+- 回顾：不同类型上下文
+  - 函数（Procedure）调用上下文 
+  - 系统调用（Trap）上下文 
+  - 任务（Task）上下文 
+
+
+---
+## 实践：multiprog OS -- 程序设计
+###  实现multiprog OS -- 任务切换 -- 任务上下文
+任务（Task）上下文 vs 系统调用（Trap）上下文
+- 与 Trap 切换不同，它不涉及特权级切换；
+
+- 与 Trap 切换不同，它的一部分是由编译器帮忙完成的；
+
+- 与 Trap 切换相同，它对应用是透明的
+
+**任务切换是来自两个不同应用在内核中的 Trap 控制流之间的切换**
