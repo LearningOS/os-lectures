@@ -516,12 +516,10 @@ unsafe fn load_app(&self, app_id: usize) {
     ...
     let app_src = core::slice::from_raw_parts(
         self.app_start[app_id] as *const u8,
-        self.app_start[app_id + 1] - self.app_start[app_id]
-    );
+        self.app_start[app_id + 1] - self.app_start[app_id] );
     let app_dst = core::slice::from_raw_parts_mut(
         APP_BASE_ADDRESS as *mut u8,
-        app_src.len()
-    );
+        app_src.len() );
     app_dst.copy_from_slice(app_src);
 }
 ```
