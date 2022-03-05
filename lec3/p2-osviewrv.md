@@ -93,6 +93,17 @@ RISC-V 系统模式：内核态特权级
   - 防止应用破坏窃取数据
     - 地址空间相关寄存器：sstatus/satp/stvec CSR 
 
+---
+## RISC-V 系统模式：控制状态寄存器
+
+- mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址。
+- mepc(Machine Exception PC)它指向发生异常的指令。
+- mcause(Machine Exception Cause)它指示发生异常的种类。
+- mie(Machine Interrupt Enable)它指出处理器目前能处理的中断。
+- mip(Machine Interrupt Pending)它列出目前正准备处理的中断。
+- mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身，对于其他异常，值为 0。
+- mscratch(Machine Scratch)它暂时存放一个字大小的数据。
+- mstatus(Machine Status)保存全局中断使能，以及其他的状态
 
 ---
 ## RISC-V 系统编程 ：简述
