@@ -11,18 +11,36 @@ footer: ''
 <!-- _class: lead -->
 
 ## 第二讲 实践与实验介绍
-### 第四节 实践一：LibOS
+### 第四节 实践：LibOS
+
 
 ---
-## 实践一：LibOS
-### 目标
+## 实践：LibOS
+- **进化目标**
+- 总体思路
+- 历史背景
+- 实践步骤
+- 软件设计
+
+---
+## 实践：LibOS
+### 进化目标
 - 让应用与硬件隔离
 - 简化应用访问硬件的难度和复杂性
 
 ![bg right 100%](figs/os-as-lib.png)
 
+
 ---
-## 实践一：LibOS
+## 实践：LibOS
+- 进化目标
+- **总体思路**
+- 历史背景
+- 实践步骤
+- 软件设计
+
+---
+## LibOS
 ### 总体思路
 - 编译：通过设置编译器支持编译裸机程序
 - 构造：建立裸机程序的栈和SBI服务请求接口
@@ -30,19 +48,60 @@ footer: ''
 
 ![bg right 100%](figs/os-as-lib.png)
 
+
+
 ---
-## 实践一：LibOS
-### 步骤
+## 实践：LibOS
+- 进化目标
+- 总体思路
+- **历史背景**
+- 实践步骤
+- 软件设计
+
+
+---
+## LibOS
+### 历史
+1949-1951 年，英国 J. Lyons and Co. 公司（连锁餐厅和食品制造集团公司）开创性地引入并使用剑桥大学的 EDSAC 计算机，联合设计实现了 LEO I ‘Lyons Electronic Office’ 软硬件系统
+
+
+![bg right 70%](figs/LEO_III_computer_circuit_board.jpg)
+
+
+
+---
+## LibOS
+### 历史
+- 参与 EDSAC 项目的 David Wheeler 发明了子程序的概念 – Wheeler Jump 
+- 在有了便捷有效的子程序概念和子程序调用机制后，软件开发人员在EDSAC和后续的LEO计算机上开发了大量的系统子程序库，形成了最早的操作系统原型。
+
+![bg right 70%](figs/LEO_III_computer_circuit_board.jpg)
+
+
+---
+## 实践：LibOS
+- 进化目标
+- 总体思路
+- 历史背景
+- **实践步骤**
+- 软件设计
+
+
+---
+## LibOS
+### 实践步骤
 - 建好开发与实验环境
 - 移出标准库依赖
-- 支持函数调用
+- **支持函数调用**
 - 基于SBI服务完成输出与关机
 supervisor-binary interface）
+
+**深入理解运行程序的内存空间和栈**
 
 ![bg right 100%](figs/os-as-lib.png)
 
 ---
-## 实践一：LibOS
+## LibOS
 ### 具体步骤
 ```
 git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
@@ -54,7 +113,7 @@ make run
 ```
 
 ---
-## 实践一：LibOS
+## LibOS
 ### 执行结果
 ```
 [RustSBI output]
@@ -70,8 +129,29 @@ Panicked at src/main.rs:46 Shutdown machine!
 除了显示 Hello, world! 之外还有一些额外的信息，最后关机。
 
 
+
 ---
-## 实践一：LibOS
+## 实践：LibOS
+- 进化目标
+- 总体思路
+- 历史背景
+- 实践步骤
+- **软件设计**
+
+
+
+---
+## 实践：LibOS
+- **软件设计**
+  - **代码结构**
+  - App/OS内存布局
+  - 定制内存布局
+  - 生成内核二进制镜像
+  - 基于 GDB 验证启动流程
+  - 支持函数调用
+  - 支持SBI调用
+---
+## LibOS -- 代码结构
 ```
 ./os/src
 Rust        4 Files   119 Lines
@@ -85,7 +165,7 @@ Assembly    1 Files    11 Lines
 
 
 ---
-## 实践一：LibOS
+## LibOS -- 代码结构
 ```
 ├── os(我们的内核实现放在 os 目录下)
 │   ├── Cargo.toml(内核实现的一些配置文件)
@@ -99,13 +179,123 @@ Assembly    1 Files    11 Lines
 │       └── sbi.rs(调用底层 SBI 实现提供的 SBI 接口)
 ```
 
+
+<!-- https://blog.51cto.com/onebig/2551726
+(深入理解计算机系统) bss段，data段、text段、堆(heap)和栈(stack) -->
+
+
 ---
-## 实践一：LibOS -- App/OS内存布局
+## 实践：LibOS
+- **软件设计**
+  - 代码结构
+  - **App/OS内存布局**
+  - 定制内存布局
+  - 生成内核二进制镜像
+  - 基于 GDB 验证启动流程
+  - 支持函数调用
+  - 支持SBI调用
+---
+## LibOS -- App/OS内存布局
 ![w:900](figs/memlayout.png)
 
 ---
-## 实践一：LibOS -- 定制内存布局
+## LibOS -- App/OS内存布局
+
+bss段：
+- bss段（bss segment）通常是指用来存放程序中未初始化的全局变量的一块内存区域
+- bss是英文Block Started by Symbol的简称
+- bss段属于静态内存分配
+![bg right 100%](figs/memlayout.png)
+
+
+---
+## LibOS -- App/OS内存布局
+
+data段：
+- 数据段（data segment）通常是指用来存放程序中已初始化的全局变量的一块内存区域
+- 数据段属于静态内存分配
+![bg right 100%](figs/memlayout.png)
+
+
+
+---
+## LibOS -- App/OS内存布局
+
+text段：
+- 代码段（code segment/text segment）是指存放执行代码的内存区域
+- 这部分区域的大小确定，通常属于只读
+- 在代码段中，也有可能包含一些只读的常数变量
+![bg right 100%](figs/memlayout.png)
+
+
+
+---
+## LibOS -- App/OS内存布局
+
+堆（heap）：
+- 堆是用于动态分配的内存段，可动态扩张或缩减
+- 程序调用malloc等函数新分配的内存被动态添加到堆上
+- 调用free等函数释放的内存从堆中被剔除
+![bg right 100%](figs/memlayout.png)
+
+
+---
+## LibOS -- App/OS内存布局
+
+栈(stack)：
+- 栈又称堆栈，是用户存放程序临时创建的局部变量
+- 函数被调用时，其参数和函数的返回值也会放到栈中
+- 由于栈的先进先出(FIFO)特点，所以栈特别方便用来保存/恢复当前执行状态
+
+
+
+![bg right 100%](figs/memlayout.png)
+
+
+---
+## LibOS -- App/OS内存布局
+
+栈(stack)：
+从这个意义上讲，我们可以把堆栈看成一个寄存、交换临时数据的内存区
+
+OS编程与应用编程的一个显著区别是，OS编程需要理解栈上的物理内存结构和机器级内容。
+
+![bg right 100%](figs/memlayout.png)
+
+
+
+---
+## LibOS -- App/OS内存布局
+
+Q： C语言与Rust语言中的 static 变量位于执行程序的哪个区域？
+
+![bg right 100%](figs/memlayout.png)
+
+
+---
+## LibOS -- App/OS内存布局
+
+Q： C语言与Rust语言中的 static 变量位于执行程序的哪个区域？
+A： static变量算是一种全局变量，位于data段。 
+
+![bg right 100%](figs/memlayout.png)
+
+
+
+---
+## 实践：LibOS
+- **软件设计**
+  - 代码结构
+  - App/OS内存布局
+  - **定制内存布局**
+  - 生成内核二进制镜像
+  - 基于 GDB 验证启动流程
+  - 支持函数调用
+  - 支持SBI调用
+---
+## LibOS -- 定制内存布局
 ```
+# os/src/linker-qemu.ld
 OUTPUT_ARCH(riscv)
 ENTRY(_start)
 BASE_ADDRESS = 0x80200000;
@@ -122,7 +312,7 @@ SECTIONS
 ![bg right 100%](figs/memlayout.png)
 
 ---
-## 实践一：LibOS -- 定制内存布局
+## LibOS -- 定制内存布局
 ```
     .bss : {
         *(.bss.stack)
@@ -137,21 +327,44 @@ SBSS：small bss，近数据
 
 ![bg right 100%](figs/memlayout.png)
 
+
+
 ---
-## 实践一：LibOS -- 生成内核二进制镜像
+## 实践：LibOS
+- **软件设计**
+  - 代码结构
+  - App/OS内存布局
+  - 定制内存布局
+  - **生成内核二进制镜像**
+  - 基于 GDB 验证启动流程
+  - 支持函数调用
+  - 支持SBI调用
+---
+## LibOS -- 生成内核二进制镜像
 
 ![w:900](figs/load-into-qemu.png)
 
 ---
-## 实践一：LibOS -- 生成内核二进制镜像
+## LibOS -- 生成内核二进制镜像
 ```
 rust-objcopy --strip-all \
 target/riscv64gc-unknown-none-elf/release/os \
 -O binary target/riscv64gc-unknown-none-elf/release/os.bin
 ```
 
+
 ---
-## 实践一：LibOS -- 基于 GDB 验证启动流程
+## 实践：LibOS
+- **软件设计**
+  - 代码结构
+  - App/OS内存布局
+  - 定制内存布局
+  - 生成内核二进制镜像
+  - **基于 GDB 验证启动流程**
+  - 支持函数调用
+  - 支持SBI调用
+---
+## LibOS -- 基于 GDB 验证启动流程
 ```
 qemu-system-riscv64 \
     -machine virt \
@@ -170,25 +383,37 @@ riscv64-unknown-elf-gdb \
 0x0000000000001000 in ?? ()
 ```
 
+
 ---
-## 实践一：LibOS -- 支持函数调用
+## 实践：LibOS
+- **软件设计**
+  - 代码结构
+  - App/OS内存布局
+  - 定制内存布局
+  - 生成内核二进制镜像
+  - 基于 GDB 验证启动流程
+  - **支持函数调用**
+  - 支持SBI调用
+  
+---
+## LibOS -- 支持函数调用
 ![w:800](figs/function-call.png)
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 ![w:1000](figs/fun-call-in-rv.png)
 
 伪指令 ret 翻译为 jalr x0, 0(x1)，含义为跳转到寄存器 ra 保存的物理地址，由于 x0 是一个恒为 0 的寄存器，在 rd 中保存这一步被省略。
 
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 ![w:1000](figs/fun-call-in-rv.png)
 
 在进行函数调用的时候，通过 jalr 指令保存返回地址并实现跳转；而在函数即将返回的时候，则通过 ret 伪指令回到跳转之前的下一条指令继续执行。这样，RISC-V 这两条指令就实现了函数调用流程的核心机制。
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 函数调用规范
 
 函数调用规范 (Calling Convention) 约定在某个指令集架构上，某种编程语言的函数调用如何实现。它包括了以下内容：
@@ -198,24 +423,24 @@ riscv64-unknown-elf-gdb \
 - 其他的在函数调用流程中对于寄存器的使用方法。
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 RISC-V函数调用规范
 ![w:1200](figs/rv-call-regs.png)
 
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 RISC-V函数调用规范
 ![w:800](figs/call-stack.png)
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 RISC-V函数调用规范
 ![w:900](figs/stack-frame.png)
 
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 
 它的开头和结尾分别在 sp(x2) 和 fp(s0) 所指向的地址。按照地址从高到低分别有以下内容，它们都是通过 sp 加上一个偏移量来访问的：
 - ra 寄存器保存其返回之后的跳转地址，是一个调用者保存寄存器；
@@ -224,7 +449,7 @@ RISC-V函数调用规范
 - 函数所使用到的局部变量。
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 
 分配并使用启动栈
 ```
@@ -244,10 +469,11 @@ boot_stack_top:
 ```
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 
 分配并使用启动栈
 ```
+# os/src/linker-qemu.ld
 .bss : {
     *(.bss.stack)
     sbss = .;
@@ -261,40 +487,53 @@ ebss = .;
 
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 
-将控制权转交给 Rust 代码，该入口点在 main.rs 中实现
-```
-// os/src/main.rs
-#[no_mangle]
+将控制权转交给 Rust 代码，该入口点在 main.rs 中的``rust_main``函数
+```rust
+// os/src/main.rs  
 pub fn rust_main() -> ! {
     loop {}
 }
 ```
+- ``fn`` 关键字：函数； ``pub`` 关键字：对外可见，公共的
+- ``loop`` 关键字：循环  
+
 
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持函数调用
 
 清空bss段
-```
+```Rust
 pub fn rust_main() -> ! {
-    clear_bss();
+    clear_bss(); //调用清空bss的函数clear_bss()
 }
-
 fn clear_bss() {
     extern "C" {
-        fn sbss();
-        fn ebss();
+        fn sbss(); //bss段的起始地址
+        fn ebss(); //bss段的结束地址
     }
+    //对[sbss..ebss]这段内存空间清零
     (sbss as usize..ebss as usize).for_each(|a| {
         unsafe { (a as *mut u8).write_volatile(0) }
     });
 }
 ```
 
+
 ---
-## 实践一：LibOS -- 支持函数调用
+## 实践：LibOS
+- **软件设计**
+  - 代码结构
+  - App/OS内存布局
+  - 定制内存布局
+  - 生成内核二进制镜像
+  - 基于 GDB 验证启动流程
+  - 支持函数调用
+  - **支持SBI调用**
+---
+## LibOS -- 支持SBI调用
 在屏幕上打印 Hello world! 
 
 ### RustSBI
@@ -302,11 +541,10 @@ fn clear_bss() {
 - 需要遵循SBI调用约定
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持SBI调用
 RustSBI服务
-```
+```rust
 // os/src/sbi.rs
-#![allow(unused)]
 const SBI_SET_TIMER: usize = 0;
 const SBI_CONSOLE_PUTCHAR: usize = 1;
 const SBI_CONSOLE_GETCHAR: usize = 2;
@@ -317,32 +555,31 @@ const SBI_REMOTE_SFENCE_VMA: usize = 6;
 const SBI_REMOTE_SFENCE_VMA_ASID: usize = 7;
 const SBI_SHUTDOWN: usize = 8;
 ```
-
+- ``usize`` 机器字大小的无符号整型
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持SBI调用
 
-``` rust
+```rust
 // os/src/sbi.rs
-use core::arch::asm;
-#[inline(always)]
+#[inline(always)] //总是把函数展开
 fn sbi_call(which: usize, arg0: usize, arg1: usize, arg2: usize) -> usize {
-    let mut ret;
+    let mut ret; //可修改的变量ret
     unsafe {
-        asm!(
-            "ecall",
-            inlateout("x10") arg0 => ret,
-            in("x11") arg1,
-            in("x12") arg2,
-            in("x17") which,
+        asm!(//内嵌汇编
+            "ecall", //切换到更高特权级的机器指令
+            inlateout("x10") arg0 => ret, //SBI参数0&返回值
+            in("x11") arg1,  //SBI参数1
+            in("x12") arg2,  //SBI参数2
+            in("x17") which, //SBI编号
         );
     }
-    ret
+    ret //返回ret值
 }
 ```
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持SBI调用
 在屏幕上输出一个字符
-```
+```rust
 // os/src/sbi.rs
 pub fn console_putchar(c: usize) {
     sbi_call(SBI_CONSOLE_PUTCHAR, c, 0, 0);
@@ -352,40 +589,40 @@ pub fn console_putchar(c: usize) {
 - 编写基于 console_putchar 的 println! 宏
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持SBI调用
 关机
-```
+```rust
 // os/src/sbi.rs
 pub fn shutdown() -> ! {
     sbi_call(SBI_SHUTDOWN, 0, 0, 0);
     panic!("It should shutdown!");
 }
 ```
-
+- ``panic!``和``println!``是一个宏（类似C的宏），``!``是宏的标志
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持SBI调用
 优雅地处理错误panic
-```
+```rust
 #[panic_handler]
-fn panic(info: &PanicInfo) -> ! {
-    if let Some(location) = info.location() {
+fn panic(info: &PanicInfo) -> ! { //PnaicInfo是结构类型
+    if let Some(location) = info.location() { //出错位置存在否？
         println!(
             "Panicked at {}:{} {}",
-            location.file(),
-            location.line(),
-            info.message().unwrap()
+            location.file(), //出错的文件名
+            location.line(), //出错的文件中的行数
+            info.message().unwrap() //出错信息
         );
     } else {
         println!("Panicked: {}", info.message().unwrap());
     }
-    shutdown()
+    shutdown() //关机
 }
 ```
 
 ---
-## 实践一：LibOS -- 支持函数调用
+## LibOS -- 支持SBI调用
 优雅地处理错误panic
-```
+```rust
 pub fn rust_main() -> ! {
     clear_bss();
     println!("Hello, world!");
