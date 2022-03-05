@@ -168,7 +168,12 @@ RISC-V 系统模式：内核态特权级
 ## RISC-V 系统编程：M-Mode：RISC-V 中断机制
 ![w:650](figs/fu540-top-block.png)
 
-
+---
+## RISC-V 系统编程：M-Mode：RISC-V 中断机制
+- 异常指令的 PC 被保存在 mepc 中， PC 被设置为 mtvec。（对于同步异常， mepc指向导致异常的指令；对于中断，它指向中断处理后应该恢复执行的位置。）
+- 根据异常来源设置 mcause，并将 mtval 设置为出错的地址或者其它适用于特定异常的信息字。
+- 把控制状态寄存器 mstatus 中的 MIE 位置零以禁用中断，并把先前的 MIE 值保留到 MPIE 中。
+- 发生异常之前的权限模式保留在 mstatus 的 MPP 域中，再把权限模式更改为M。
 
 ---
 ## RISC-V 系统编程：RISC-V 的异常与中断
