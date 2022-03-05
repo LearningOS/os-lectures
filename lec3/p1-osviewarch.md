@@ -100,7 +100,7 @@ footer: ''
 ---
 ## OS与应用程序的关系 -- memory layout 
  OS/APP的边界之二：**memory layout**
-![w:900](figs/app-mem-layout.png) 
+![w:850](figs/app-mem-layout.png) 
 
 ---
 ## OS与应用程序的关系 -- memory layout
@@ -142,6 +142,11 @@ OS/APP的边界之二：**memory layout**
 ---
 ## 隔离机制 -- 主要的隔离方法 -- 虚拟内存
 
+- 虚拟内存
+  - 读写内存的安全性问题
+  - 进程间的安全问题
+  - 内存空间利用率的问题
+  - 内存读写的效率问题
 - 地址空间 address spaces
   - 一个程序仅寻址其自己的内存
   - 每个程序若无许可，则无法访问不属于自己的内存
