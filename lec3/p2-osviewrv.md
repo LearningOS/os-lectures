@@ -272,6 +272,29 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
   * 从文件中读入数据
 * 通过系统调用从操作系统中获得服务
 
+
+---
+## RISC-V 系统编程 -- U-Mode编程：第一个例子
+[在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src) 大致执行流
+
+![w:1000](figs/print-app.png)
+
+
+---
+## RISC-V 系统编程 -- U-Mode编程：第一个例子
+[在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src) 启动执行流
+
+![w:1000](figs/boot-print-app.png)
+
+
+
+---
+## RISC-V 系统编程 -- U-Mode编程：第二个例子
+[在用户态执行特权指令的小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src) 启动与执行流程
+
+![w:1000](figs/boot-priv-code-app.png)
+
+
 <!-- Zifencei扩展 https://www.cnblogs.com/mikewolf2002/p/11191254.html -->
 ---
 ## RISC-V 系统编程 -- 特权操作
