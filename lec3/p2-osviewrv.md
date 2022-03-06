@@ -118,7 +118,7 @@ RISC-V 系统模式：内核态特权级
 - mcause(Machine Exception Cause)它指示发生异常的种类。
   - SIE控制S模式下全局中断，MIE控制M模式下全局中断。
   - SPIE、MPIE记录发生中断之前MIE和SIE的值。
-  - SPP表示变化之前的特权级别是S模式还是U模式，MPP表示变化之前是S模式还是U模式还是M模式，
+  - SPP表示变化之前的特权级别是S模式还是U模式，MPP表示变化之前是S模式还是U模式还是M模式（PP：Previous Privilege）
 
 
 ![w:1000](figs/mstatus.png)
