@@ -63,9 +63,8 @@ RISC-V 系统模式：内核态特权级
 ## RISC-V 系统模式：概述
 ![w:900](figs/rv-privil-arch.png)
 - 不同软件层有清晰的特权级硬件隔离支持
-- AEE：Application Execution Environment
-- ABI：Application Bianry Interface
-- MODE – U：User | S: Supervisor | H: Hypervisor | M: Machine
+- MODE
+  - U：User | S: Supervisor | H: Hypervisor | M: Machine
 
 ---
 ## RISC-V 系统模式：概述
@@ -90,7 +89,7 @@ RISC-V 系统模式：内核态特权级
 运行在内核态的操作系统能访问CSR寄存器
 
 ---
-## RISC-V 系统模式：控制状态寄存器
+## RISC-V 系统模式：控制状态寄存器CSR
 强制隔离以避免对整个系统的可用性/可靠性/安全影响
 - 设置 CSR(控制状态寄存器) 实现隔离
   - 防止应用访问系统安全相关寄存器
@@ -101,7 +100,7 @@ RISC-V 系统模式：内核态特权级
     - 地址空间相关寄存器：sstatus/satp/stvec CSR 
 
 ---
-## RISC-V 系统模式：控制状态寄存器
+## RISC-V 系统模式：控制状态寄存器CSR
 
 - mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址。
 - mepc(Machine Exception PC)它指向发生异常的指令。
@@ -114,7 +113,7 @@ RISC-V 系统模式：内核态特权级
 
 
 ---
-## RISC-V 系统模式：控制状态寄存器
+## RISC-V 系统模式：控制状态寄存器CSR
 
 - mcause(Machine Exception Cause)它指示发生异常的种类。
   - SIE控制S模式下全局中断，MIE控制M模式下全局中断。
@@ -125,7 +124,7 @@ RISC-V 系统模式：内核态特权级
 ![w:1000](figs/mstatus.png)
 
 ---
-## RISC-V 系统模式：控制状态寄存器
+## RISC-V 系统模式：控制状态寄存器CSR
 
 - sstatus(supervisor status)保存发生异常时需要跳转到的地址。
 - stvec(supervisor trap vector)保存s模式的trap向量基址。stvec总是4字节对齐
