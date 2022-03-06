@@ -28,8 +28,22 @@ footer: ''
 - 让应用与硬件隔离
 - 简化应用访问硬件的难度和复杂性
 
+ 
 ![bg right 100%](figs/os-as-lib.png)
 
+
+---
+## 实践：LibOS
+
+### 同学的进化目标
+- 会编写/编译/运行裸机程序
+- 懂基于裸机程序的函数调用
+- 能看懂汇编代码伪代码
+- 能看懂内嵌汇编代码
+- 初步理解SBI调用
+**会写OS了！**
+ABI是啥？SBI是啥？ Supervisor Binary Interface？ 
+![bg right 100%](figs/os-as-lib.png)
 
 ---
 ## 实践：LibOS
@@ -94,9 +108,8 @@ footer: ''
 - 移出标准库依赖
 - **支持函数调用**
 - 基于SBI服务完成输出与关机
-supervisor-binary interface）
 
-**深入理解运行程序的内存空间和栈**
+**理解运行程序的内存空间和栈**
 
 ![bg right 100%](figs/os-as-lib.png)
 
@@ -394,26 +407,65 @@ riscv64-unknown-elf-gdb \
   - 基于 GDB 验证启动流程
   - **支持函数调用**
   - 支持SBI调用
+
+
+---
+## 实践：LibOS
+- **支持函数调用**
+  - **概述**
+  - **call/return伪指令**
+  - 函数调用规范
+  - LibOS初始化
+---
+## LibOS -- 支持函数调用 -- 概述
+[那些年，我们一起写的编译器 -- 实现函数调用编译支持](https://decaf-lang.github.io/minidecaf-tutorial/docs/step9/example.html)
+*[快速入门RISC-V汇编的文档](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md)*
+
+![w:600](figs/function-call.png)
+
+
+---
+## LibOS -- 支持函数调用 -- call/return伪指令
+伪指令            | 基本指令    | 含义   | 
+:----------------|:-----------|:----------|
+ret      | jalr x0, x1, 0       | 函数返回
+call offset   | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]     | 函数调用
+
+auipc(add upper immediate to pc)被用来构建 PC 相对的地址，使用的是 U 型立即数。 auipc 以低 12 位补 0，高 20 位是 U 型立即数的方式形成 32 位偏移量，然后和 PC 相加，最后把结果保存在寄存器 x1。
+
+---
+## LibOS -- 支持函数调用 -- call/return伪指令 
+![w:1000](figs/fun-call-in-rv.png)
+
+伪指令 ret 翻译为 jalr x0, 0(x1)，含义为跳转到寄存器 ra(即x1)保存的地址。
+*[快速入门RISC-V汇编的文档](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md)*
+
+
+---
+## LibOS -- 支持函数调用 -- call/return伪指令
+伪指令            | 基本指令    | 含义   | 
+:----------------|:-----------|:----------|
+ret      | jalr x0, x1, 0       | 函数返回
+call offset   | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]     | 函数调用
+
+函数调用核心机制
+- 在函数调用时，通过 call 伪指令保存返回地址并实现跳转；
+- 在函数返回时，通过 ret 伪指令回到跳转之前的下一条指令继续执行
+
+
+---
+## 实践：LibOS
+- **支持函数调用**
+  - 概述
+  - call/return伪指令
+  - **函数调用规范**
+    - 参数 返回值
+    - 栈帧
+    - 函数结构
+  - LibOS初始化
   
 ---
-## LibOS -- 支持函数调用
-![w:800](figs/function-call.png)
-
----
-## LibOS -- 支持函数调用
-![w:1000](figs/fun-call-in-rv.png)
-
-伪指令 ret 翻译为 jalr x0, 0(x1)，含义为跳转到寄存器 ra 保存的物理地址，由于 x0 是一个恒为 0 的寄存器，在 rd 中保存这一步被省略。
-
-
----
-## LibOS -- 支持函数调用
-![w:1000](figs/fun-call-in-rv.png)
-
-在进行函数调用的时候，通过 jalr 指令保存返回地址并实现跳转；而在函数即将返回的时候，则通过 ret 伪指令回到跳转之前的下一条指令继续执行。这样，RISC-V 这两条指令就实现了函数调用流程的核心机制。
-
----
-## LibOS -- 支持函数调用
+## LibOS -- 支持函数调用 -- 函数调用规范
 函数调用规范
 
 函数调用规范 (Calling Convention) 约定在某个指令集架构上，某种编程语言的函数调用如何实现。它包括了以下内容：
@@ -423,35 +475,122 @@ riscv64-unknown-elf-gdb \
 - 其他的在函数调用流程中对于寄存器的使用方法。
 
 ---
-## LibOS -- 支持函数调用
+## 支持函数调用 -- 函数调用规范 -- 参数 返回值 
 RISC-V函数调用规范
+**调用参数 返回值**
 ![w:1200](figs/rv-call-regs.png)
+- RISC-V32:如果返回值64bit，则用a0~a1来放置
+- RISC-V64:如果返回值64bit，则用a0来放置
 
 
 ---
-## LibOS -- 支持函数调用
+## 支持函数调用 -- 函数调用规范 -- 栈帧
 RISC-V函数调用规范
 ![w:800](figs/call-stack.png)
 
 ---
-## LibOS -- 支持函数调用
+## 支持函数调用 -- 函数调用规范 -- 栈帧
 RISC-V函数调用规范
-![w:900](figs/stack-frame.png)
+**栈帧（Stack Frames）**
+```
+return address *
+previous fp
+saved registers
+local variables
+…
+return address fp register
+previous fp (pointed to *)
+saved registers
+local variables
+… sp register
+```
+![bg right:40% 180%](figs/stack-frame.png)
+
 
 
 ---
-## LibOS -- 支持函数调用
+## 支持函数调用 -- 函数调用规范 -- 栈帧
+RISC-V函数调用规范
+- 堆栈帧可能有不同的大小和内容,但总体结构是类似的
+- 每个堆栈帧始于这个函数的返回值和前一个函数的fp值
+- sp 寄存器总是指向当前堆栈框架的底部
+- fp 寄存器总是指向当前堆栈框架的顶部 
 
-它的开头和结尾分别在 sp(x2) 和 fp(s0) 所指向的地址。按照地址从高到低分别有以下内容，它们都是通过 sp 加上一个偏移量来访问的：
-- ra 寄存器保存其返回之后的跳转地址，是一个调用者保存寄存器；
-- 父亲栈帧的结束地址 fp ，是一个被调用者保存寄存器；
-- 其他被调用者保存寄存器 s1 ~ s11 ；
-- 函数所使用到的局部变量。
+![bg right:35% 180%](figs/stack-frame.png)
+
+
 
 ---
-## LibOS -- 支持函数调用
+## 支持函数调用 -- 函数调用规范 -- 栈帧
+RISC-V函数调用规范
+- 当 ret 指令执行,下面的伪代码实现调整堆栈指针和PC:
+```
+pc = return address
+sp = fp + ENTRY_SIZE
+fp = previous fp
+```
+![bg right:35% 180%](figs/stack-frame.png)
 
-分配并使用启动栈
+---
+## 支持函数调用 -- 函数调用规范 -- 函数结构
+
+RISC-V函数调用规范
+函数结构组成：``prologue``,``body part`` 和``epilogue``
+```
+.global sum_then_double
+sum_then_double:
+	addi sp, sp, -16		# prologue
+	sd ra, 0(sp)			
+	
+	call sum_to                     # body part 
+	li t0, 2
+	mul a0, a0, t0
+	
+	ld ra, 0(sp)			# epilogue
+	addi sp, sp, 16
+	ret
+```
+
+
+---
+## 支持函数调用 -- 函数调用规范 -- 函数结构
+
+RISC-V函数调用规范
+函数结构组成：``prologue``,``body part`` 和``epilogue``
+```
+.global sum_then_double
+sum_then_double:		
+	
+	call sum_to                     # body part 
+	li t0, 2
+	mul a0, a0, t0
+	
+	ret
+```
+Q:上述代码的执行与前一页的代码执行相比有何不同？
+
+<!-- https://blog.csdn.net/zoomdy/article/details/79354502 RISC-V Assembly Programmer's Manual 
+https://shakti.org.in/docs/risc-v-asm-manual.pdf 
+https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md
+-->
+
+
+
+---
+## 实践：LibOS
+- **支持函数调用**
+  - 概述
+  - call/return伪指令
+  - 函数调用规范
+  - **LibOS初始化**
+    - 分配并使用栈
+    - ASM --> Rust/C
+    - 清空bss段
+
+---
+## 支持函数调用 -- LibOS初始化 -- 分配并使用栈
+
+分配并使用启动栈  *[快速入门RISC-V汇编的文档](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md)*
 ```
 # os/src/entry.asm
     .section .text.entry
@@ -469,7 +608,7 @@ boot_stack_top:
 ```
 
 ---
-## LibOS -- 支持函数调用
+## 支持函数调用 -- LibOS初始化 -- 分配并使用栈
 
 分配并使用启动栈
 ```
@@ -487,7 +626,7 @@ ebss = .;
 
 
 ---
-## LibOS -- 支持函数调用
+## 支持函数调用 -- LibOS初始化 -- ASM --> Rust/C
 
 将控制权转交给 Rust 代码，该入口点在 main.rs 中的``rust_main``函数
 ```rust
@@ -502,9 +641,9 @@ pub fn rust_main() -> ! {
 
 
 ---
-## LibOS -- 支持函数调用
+## 支持函数调用 -- LibOS初始化 -- 清空bss段
 
-清空bss段
+清空bss段(未初始化数据段)
 ```Rust
 pub fn rust_main() -> ! {
     clear_bss(); //调用清空bss的函数clear_bss()
@@ -535,14 +674,16 @@ fn clear_bss() {
 ---
 ## LibOS -- 支持SBI调用
 在屏幕上打印 Hello world! 
-
+### SBI服务接口
+- Supervisor Binary Interface
+- 更底层的软件给操作系统提供的服务
 ### RustSBI
-- 提供基本的底层服务
-- 需要遵循SBI调用约定
-
+- 实现基本的SBI服务
+- 遵循SBI调用约定
+![bg right:40% 150%](figs/rv-privil-arch.png)
 ---
-## LibOS -- 支持SBI调用
-RustSBI服务
+## LibOS -- 支持SBI调用 -- SBI服务编号
+SBI服务编号
 ```rust
 // os/src/sbi.rs
 const SBI_SET_TIMER: usize = 0;
@@ -557,7 +698,7 @@ const SBI_SHUTDOWN: usize = 8;
 ```
 - ``usize`` 机器字大小的无符号整型
 ---
-## LibOS -- 支持SBI调用
+## LibOS -- 支持SBI调用 -- 汇编级SBI调用
 
 ```rust
 // os/src/sbi.rs
@@ -577,7 +718,7 @@ fn sbi_call(which: usize, arg0: usize, arg1: usize, arg2: usize) -> usize {
 }
 ```
 ---
-## LibOS -- 支持SBI调用
+## LibOS -- 支持SBI调用 -- 高层函数封装
 在屏幕上输出一个字符
 ```rust
 // os/src/sbi.rs
@@ -589,7 +730,7 @@ pub fn console_putchar(c: usize) {
 - 编写基于 console_putchar 的 println! 宏
 
 ---
-## LibOS -- 支持SBI调用
+## LibOS -- 支持SBI调用 -- 高层函数封装
 关机
 ```rust
 // os/src/sbi.rs
@@ -600,7 +741,7 @@ pub fn shutdown() -> ! {
 ```
 - ``panic!``和``println!``是一个宏（类似C的宏），``!``是宏的标志
 ---
-## LibOS -- 支持SBI调用
+## LibOS -- 支持SBI调用 -- 高层函数封装
 优雅地处理错误panic
 ```rust
 #[panic_handler]
@@ -620,7 +761,7 @@ fn panic(info: &PanicInfo) -> ! { //PnaicInfo是结构类型
 ```
 
 ---
-## LibOS -- 支持SBI调用
+## LibOS -- 支持SBI调用 -- LibOS完整功能
 优雅地处理错误panic
 ```rust
 pub fn rust_main() -> ! {
