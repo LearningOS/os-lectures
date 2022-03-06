@@ -224,6 +224,20 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示
 
 ![bg right 90%](figs/riscv_pagetable.svg)
 
+
+
+---
+## RISC-V 系统编程：S 模式的虚拟内存系统
+
+- 虚拟地址将内存划分为固定大小的页来进行地址转换和内容保护。
+- satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器控制了分页。satp 有三个域：
+
+  - MODE 域可以开启分页并选择页表级数
+  - ASID（Address Space Identifier，地址空间标识符）域是可选的，它可以用来降低上下文切换的开销
+  - PPN 字段保存了根页表的物理地址
+![w:800](figs/satp.png)
+
+
 ---
 ## RISC-V 系统编程：S 模式的虚拟内存系统
 - S、U模式中的虚拟地址会以从根部遍历页表的方式转换为物理地址：
@@ -266,7 +280,7 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示
 ---
 
 ## RISC-V 系统编程：异常/中断委托寄存器
-* mideleg (Machine Interrupt Delegation）CSR 控制将哪些中断/异常委托给 S 模式处理
+* mideleg (Machine Interrupt Delegation）控制将哪些中断委托给 S 模式处理
 * mideleg 中的每个为对应一个中断/异常
   * mideleg[1]用于控制是否将核间中断交给s模式处理
   * mideleg[5]用于控制是否将定时中断交给s模式处理
@@ -276,7 +290,7 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示
 ---
 
 ## RISC-V 系统编程：异常/中断委托寄存器
-* medeleg (Machine Exception Delegation）CSR 控制将哪些中断/异常委托给 S 模式处理
+* medeleg (Machine Exception Delegation）控制将哪些异常委托给 S 模式处理
 * medeleg 中的每个为对应一个中断/异常
   * medeleg[1]用于控制是否将指令获取错误异常交给s模式处理
   * medeleg[12]用于控制是否将指令页异常交给s模式处理
@@ -316,7 +330,8 @@ S 模式中断寄存器。它们是宽为 XLEN 位的读/写寄存器，用于�
 
 ---
 ## RISC-V 系统编程：异常/中断 CSR 寄存器
-异常/中断向量（trap-vector）基地址寄存器（mtvec 和 stvec）CSR用于保存异常/中断向量的配置，包括向量基址（BASE）和向量模式（MODE）。BASE 域中的值按 4 字节对齐。MODE = 0 表示所有异常/中断都把 PC 设置为 BASE。MODE = 1 会在异步中断时将 PC 设置为 (base+(4 * cause))。
+- 异常/中断向量trap-vector基地址寄存器mtvec和stvec用于保存异常/中断向量的配置，包括向量基址（BASE）和向量模式（MODE）。
+- BASE 域中的值按4字节对齐。MODE=0表示所有异常/中断都把PC设置为BASE。MODE=1在异步中断时将PC设置为 (base+(4 * cause))。
 
 mtvec & stvec 寄存器
 ![w:1000](figs/rv-tvec.png)
@@ -371,17 +386,6 @@ hart 接受了异常/中断，并需要委派给 S 模式，那么硬件会原�
 * ``csrc(i) csr, rs1``（CSR Clear）：将 CSR 寄存器中指定的位清零，csrc 使用通用寄存器作为 mask，csrci 则使用立即数。
 * ``csrs(i) csr, rs1``（CSR Set）：将 CSR 寄存器中指定的位置 1，csrc 使用通用寄存器作为 mask，csrci 则使用立即数。
 
-
----
-## RISC-V 系统编程：S 模式的虚拟内存系统
-
-- 虚拟地址将内存划分为固定大小的页来进行地址转换和内容保护。
-- satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器控制了分页。satp 有三个域：
-
-  - MODE 域可以开启分页并选择页表级数
-  - ASID（Address Space Identifier，地址空间标识符）域是可选的，它可以用来降低上下文切换的开销
-  - PPN 字段保存了根页表的物理地址
-![w:800](figs/satp.png)
 
 
 ---
