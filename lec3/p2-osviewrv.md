@@ -39,10 +39,17 @@ footer: ''
 ---
 ## RISC-V 系统模式：概述
 ![w:900](figs/rv-privil-arch.png)
+- ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface
+- AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment
+- HAL：Hardware Abstraction Layer
+- Hypervisor，虚拟机监视器（virtual machine monitor，VMM）
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
 - RISC-V 系统模式即 RISC-V 的**特权级模式**
 - 现代处理器一般具有多个特权级的模式
 - 不同特权级能执行的指令和能访问的资源**不同**
-
 
 ---
 ## RISC-V 系统模式：概述
