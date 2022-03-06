@@ -154,7 +154,7 @@ RISC-V相关术语
 ![w:900](figs/rv-privil-arch.png)
 - 不同软件层有清晰的特权级硬件隔离支持
 - 左侧的单个应用程序被编码在ABI上运行
-- ABI包含所支持的用户级ISA和与AEE交互的ABI调用
+- ABI包含用户级ISA(Instruction Set Architecture)和AEE交互ABI调用
 - ABI对应用程序隐藏了AEE的细节，使得AEE具有更大的灵活性
 
 ---
@@ -425,16 +425,7 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 
 
 
----
-## RISC-V 系统编程：S 模式的虚拟内存系统
 
-- 虚拟地址将内存划分为固定大小的页来进行地址转换和内容保护。
-- satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器控制了分页。satp 有三个域：
-
-  - MODE 域可以开启分页并选择页表级数
-  - ASID（Address Space Identifier，地址空间标识符）域是可选的，它可以用来降低上下文切换的开销
-  - PPN 字段保存了根页表的物理地址
-![w:800](figs/satp.png)
 
 
 ---
@@ -654,6 +645,18 @@ hart 接受了异常/中断，并需要委派给 S-Mode，那么硬件会原子�
   - 异常/中断的硬件处理
   - 异常/中断的软件处理
   - **虚存机制**
+
+---
+## RISC-V 系统编程：S 模式的虚拟内存系统
+
+- 虚拟地址将内存划分为固定大小的页来进行地址转换和内容保护。
+- satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器控制了分页。satp 有三个域：
+
+  - MODE 域可以开启分页并选择页表级数
+  - ASID（Address Space Identifier，地址空间标识符）域是可选的，它可以用来降低上下文切换的开销
+  - PPN 字段保存了根页表的物理地址
+![w:800](figs/satp.png)
+
 ---
 ## S-Mode编程 -- 虚存机制
 
