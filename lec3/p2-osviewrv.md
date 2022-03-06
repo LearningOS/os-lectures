@@ -69,12 +69,70 @@ RISC-V相关术语
 ---
 ## RISC-V 系统模式：概述
 ![w:900](figs/rv-privil-arch.png)
-- RISC-V 系统模式即 RISC-V 的**Supervisor 特权级模式**
-- 现代处理器一般具有多个特权级的模式
-- 不同特权级能执行的指令和能访问的资源**不同**
-- MODE – U：User | S: Supervisor | H: Hypervisor | M: Machine
+- 现代处理器一般具有多个特权级的模式（Mode）
+- MODE -- **U**：User | **S**: Supervisor | **H**: Hypervisor | **M**: Machine
+
+**为何有这4种Mode? 它们的区别和联系是啥？**
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- RISC-V 系统模式 即 与系统编程相关的RISC-V模式 
+- 这里的系统编程 即 本课程中与OS相关的软件编程
 
 
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- 用户态(User Mode)执行应用程序， 内核态(Kernel Mode)执行OS
+- 在内核态的操作系统具有**足够强大**的硬件控制能力
+
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- 随着应用的需求变化，需要有根据需求灵活和可组合的硬件构造
+- 所以就出现了上述4种Mode，且Mode间可以组合的灵活硬件设计
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- U-Mode （即User Mode）
+  - 非特权级模式（Unprivileged Mode）：基本计算 
+  - 是应用程序运行的用户态（User Mode）CPU执行模式
+  - 不能执行特权指令，不能直接影响其他应用程序执行
+
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- S-Mode（即Supervisor Mode,也称 Kernel Mode）
+  - 特权级模式（Privileged Mode）：限制APP的执行与内存访问 
+  - 是操作系统运行的内核态（Kernel Mode）CPU执行模式
+  - 能执行S-Mode特权指令，能直接影响其他应用程序执行
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- H-Mode（即Hypervisor Mode,也称 Virtual Machine Mode）
+  - 特权级模式（Privileged Mode）：限制OS访问的内存空间 
+  - 是VMM(Virtual Machine Monitor)运行的Hypervisor Mode CPU执行模式，能执行H-Mode特权指令，能直接影响OS执行
+
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- M-Mode（即Machine Mode,也称 Physical Machine Mode）
+  - 特权级模式（Privileged Mode）：控制物理内存，直接关机 
+  - 是Bootloader/BIOS运行的Machine Mode CPU执行模式
+  - 能执行M-Mode特权指令，能直接影响上述其他软件的执行
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- M Mode：蓝牙耳机
+- U+M Mode:电视遥控器
+- U+S+M Mode：Android手机
+- U+S+H+M Mode：数据中心服务器
 ---
 ## RISC-V 系统模式：概述
 ![w:900](figs/rv-privil-arch.png)
@@ -98,13 +156,6 @@ RISC-V相关术语
 - RISC-V操作系统通过一个SBI和SEE进行通信
 - 这个SBI包含所支持的OS的ISA，还包含与SEE交互的SBI调用
 
----
-## RISC-V 系统模式：概述
-![w:900](figs/rv-privil-arch.png)
-RISC-V 系统模式：OS所在的内核态特权级（S-Mode）
-- 用户态(U-Mode)执行应用程序， 内核态(S-Mode)执行操作系统
-- 在内核态(S-Mode)的操作系统具有**足够强大**的硬件控制能力
-- 机器态（M-Mode）是最高级特权级
 
 ---
 ## RISC-V 系统模式：概述
@@ -251,9 +302,9 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 ---
 ## 第二节 从 OS 角度看RISC-V
 - **M-Mode编程**
-  - **RV中断机制**
-  - RV异常机制
-  - RV异常与中断的硬件响应
+  - **中断机制**
+  - 异常机制
+  - 异常与中断的硬件响应
   - 异常/中断处理的控制权移交
 ---
 ## M-Mode编程
@@ -265,7 +316,42 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 * RISC-V 要求实现精确异常：保证异常之前的所有指令都完整执行，后续指令都没有开始执行
 
 ---
-## M-Mode编程 -- RV中断机制
+## M-Mode编程 -- 中断机制 -- CSR寄存器
+
+- mtvec(MachineTrapVector)保存发生异常/中断时要跳转到的地址
+- mepc(Machine Exception PC)指向发生异常/中断时的指令
+- mcause(Machine Exception Cause)指示发生异常/中断的种类
+- mie(Machine Interrupt Enable)指出处理器目前能处理的中断
+- mip(Machine Interrupt Pending)列出目前正准备处理的中断
+- mtval(Machine Trap Value)保存陷入(trap)附加信息
+- mscratch(Machine Scratch)它暂时存放一个字大小的数据
+- mstatus(Machine Status)保存全局中断以及其他的状态
+
+<!-- mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身；对于其他异常，值为0。 -->
+---
+## M-Mode编程 -- 中断机制 -- CSR寄存器
+
+- mstatus(Machine Status)保存全局中断以及其他的状态
+  - SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断。
+  - SPIE、MPIE记录发生中断之前MIE和SIE的值。
+  - SPP表示变化之前的特权级别是S-Mode还是U-Mode
+  - MPP表示变化之前是S-Mode还是U-Mode还是M-Mode
+  PP：Previous Privilege
+
+
+![w:1000](figs/mstatus.png)
+
+
+---
+## M-Mode编程 -- 中断机制 --  CSR寄存器
+
+mcause CSR：当发生异常时，mcause CSR中被写入一个指示导致异常的事件的代码，如果事件由中断引起，则置上``Interrupt``位，``Exception Code``字段包含指示最后一个异常的编码。
+
+mcause CSR寄存器
+![w:1000](figs/rv-cause.png)
+
+---
+## M-Mode编程 -- 中断机制 -- Timer
 - 中断是异步发生，是来自处理器外部的 I/O 设备的信号的结果。
 - Timer 可以稳定定时地产生中断
   - 防止应用程序死占着 CPU 不放, 让 OS Kernel 能得到执行权...
@@ -273,33 +359,34 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
   - 也可由高特权模式下的软件授权低特权模式软件处理中断
 
 ---
-## M-Mode编程 -- RV中断机制
+## M-Mode编程 -- 中断机制 -- FU540
 ![w:650](figs/fu540-top-block.png)
 
 
 
 ---
-## M-Mode编程 -- RV中断机制
+## M-Mode编程 -- 中断机制 -- 中断分类
 RISC-V 的中断: 通过 mcause 寄存器的不同位来表示（mie）
 - 软件中断：通过向内存映射寄存器写入数据来触发，一个 hart 中断另外一个hart（处理器间中断）
 - 时钟中断：hart 的时间计数器寄存器 mtime 大于时间比较寄存器 mtimecmp
 - 外部中断：由中断控制器触发，大部分情况下的外设都会连到这个中断控制器
 
 ---
-## M-Mode编程 -- RV中断机制
+## M-Mode编程 -- 中断机制
+RISC-V 的中断: 通过 mcause 寄存器的不同位来表示
 ![w:1200](figs/rv-interrupt.png)
 
 
 ---
 ## 第二节 从 OS 角度看RISC-V
 - **M-Mode编程**
-  - RV中断机制
-  - **RV异常机制**
-  - RV异常与中断的硬件响应
+  - 中断机制
+  - **异常机制**
+  - 异常与中断的硬件响应
   - 异常/中断处理的控制权移交
   
 ---
-## M-Mode编程 -- RV 异常机制
+## M-Mode编程 -- RISC-V 异常机制
 RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 ![w:900](figs/rv-exception.png)
 
@@ -307,21 +394,23 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 ---
 ## 第二节 从 OS 角度看RISC-V
 - **M-Mode编程**
-  - RV中断机制
-  - RV异常机制
-  - **RV异常与中断的硬件响应**
+  - 中断机制
+  - 异常机制
+  - **异常与中断的硬件响应**
   - 异常/中断处理的控制权移交
 ---
-## M-Mode编程 -- RV异常与中断的硬件响应
+## M-Mode编程 -- 异常与中断的硬件响应
 - 异常/中断的指令的 PC 被保存在 mepc 中， PC 被设置为 mtvec。
    - 对于异常，mepc指向导致异常的指令
    - 对于中断，mepc指向中断处理后应该恢复执行的位置
 - 根据异常/中断来源设置 mcause，并将 mtval 设置为出错的地址或者其它适用于特定异常的信息字。
 
 ---
-## M-Mode编程 -- RV异常与中断的硬件响应
+## M-Mode编程 -- 异常与中断的硬件响应
 
-- 把控制状态寄存器 mstatus 中的 MIE 位置零以禁用中断，并把先前的 MIE 值保留到 MPIE 中。（SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断；SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值）
+- 把控制状态寄存器 mstatus[MIE位]置零以禁用中断，并把先前的 MIE 值保留到 MPIE 中。
+  - SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断；
+  - SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值）
 - 发生异常之前的权限模式保留在 mstatus 的 MPP 域中，再把权限模式更改为M
   - MPP表示变化之前的特权级别是S、M or U-Mode
 - 跳转到mtvec CSR设置的地址继续执行
@@ -331,9 +420,9 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 ---
 ## 第二节 从 OS 角度看RISC-V
 - **M-Mode编程**
-  - RV中断机制
-  - RV异常机制
-  - RV异常与中断的硬件响应
+  - 中断机制
+  - 异常机制
+  - 异常与中断的硬件响应
   - **异常/中断处理的控制权移交**
   
 ---
@@ -414,12 +503,21 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
   - 异常/中断的软件处理
   - 虚存机制
 
+---
+## S-Mode编程 -- 中断/异常机制 -- CSR寄存器
+
+- stvec(SupervisorTrapVector)保存发生异常/中断时要跳转到的地址
+- sepc(Supervisor Exception PC)指向发生异常/中断时的指令
+- scause(Supervisor Exception Cause)指示发生异常/中断的种类
+- sie(Supervisor Interrupt Enable)指出处理器目前能处理的中断
+- sip(Supervisor Interrupt Pending)列出目前正准备处理的中断
+- stval(Supervisor Trap Value)保存陷入(trap)附加信息
+- sscratch(Supervisor Scratch)它暂时存放一个字大小的数据
+- sstatus(Supervisor Status)保存全局中断以及其他的状态
 
 ---
-## S-Mode编程 -- 中断/异常机制
-* S-Mode CSR：sepc, stvec, scause, sscratch, stval 和 sstatus
-* ``sret`` 指令用于 S-Mode的异常/中断处理返回
-* sstatus的SIE 和 SPIE 位分别保存了当前的和异常/中断发生之前的使能状态
+## S-Mode编程 -- 中断/异常机制 -- CSR寄存器
+* sstatus的SIE 和 SPIE 位分别保存了当前的和异常/中断发生之前的中断使能状态
 
 **sstatus 寄存器**
 ![w:800](figs/rv-sstatus.png)
@@ -439,7 +537,7 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 
 scause CSR：当发生异常时，CSR中被写入一个指示导致异常的事件的代码，如果事件由中断引起，则置上``Interrupt``位，``Exception Code``字段包含指示最后一个异常的编码。
 
-mcause & scause 寄存器
+scause 寄存器
 ![w:1000](figs/rv-cause.png)
 
 
