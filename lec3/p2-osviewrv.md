@@ -103,13 +103,13 @@ RISC-V 系统模式：内核态特权级
 ## RISC-V 系统模式：控制状态寄存器CSR
 
 - mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址。
-- mepc(Machine Exception PC)它指向发生异常的指令。
-- mcause(Machine Exception Cause)它指示发生异常的种类。
-- mie(Machine Interrupt Enable)它指出处理器目前能处理的中断。
-- mip(Machine Interrupt Pending)它列出目前正准备处理的中断。
-- mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身，对于其他异常，值为 0。
+- mepc(Machine Exception PC)指向发生异常的指令。
+- mcause(Machine Exception Cause)指示发生异常的种类。
+- mie(Machine Interrupt Enable)指出处理器目前能处理的中断。
+- mip(Machine Interrupt Pending)列出目前正准备处理的中断。
+- mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身；对于其他异常，值为0。
 - mscratch(Machine Scratch)它暂时存放一个字大小的数据。
-- mstatus(Machine Status)保存全局中断使能，以及其他的状态
+- mstatus(Machine Status)保存全局中断以及其他的状态
 
 
 ---
@@ -187,9 +187,13 @@ RISC-V 系统模式：内核态特权级
 
 ---
 ## RISC-V 系统编程：M-Mode：RISC-V 中断机制
-- 异常指令的 PC 被保存在 mepc 中， PC 被设置为 mtvec。（对于同步异常， mepc指向导致异常的指令；对于中断，它指向中断处理后应该恢复执行的位置。）
+- 异常指令的PC被保存在mepc中，PC设置为 mtvec。
+  - 对于同步异常， mepc指向导致异常的指令；
+  - 对于中断，指向中断处理后应该恢复执行的位置。
 - 根据异常来源设置 mcause，并将 mtval 设置为出错的地址或者其它适用于特定异常的信息字。
-- 把控制状态寄存器 mstatus 中的 MIE 位置零以禁用中断，并把先前的 MIE 值保留到 MPIE 中。（SIE控制S模式下全局中断，MIE控制M模式下全局中断；SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值）
+- 把mstatus[MIE位]置零以禁用中断，并把先前MIE值保留到MPIE中
+    - SIE控制S模式下全局中断，MIE控制M模式下全局中断；
+    - SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值
 - 发生异常之前的权限模式保留在 mstatus 的 MPP 域中，再把权限模式更改为M。（MPP表示变化之前的特权级别是S、M or U模式）
 
 ---
@@ -206,6 +210,7 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示（mie）
 
 ---
 ## RISC-V 系统编程：RISC-V 的异常与中断
+RISC-V 的中断: 通过 mcause 寄存器的不同位来表示
 ![w:1200](figs/rv-interrupt.png)
 
 
