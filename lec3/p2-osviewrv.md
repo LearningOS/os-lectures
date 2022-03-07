@@ -69,25 +69,35 @@ RISC-V相关术语
 ---
 ## RISC-V 系统模式：概述
 ![w:900](figs/rv-privil-arch.png)
-- 现代处理器一般具有多个特权级的模式（Mode）
-- MODE -- **U**：User | **S**: Supervisor | **H**: Hypervisor | **M**: Machine
-
-**为何有这4种Mode? 它们的区别和联系是啥？**
-
----
-## RISC-V 系统模式：概述
-![w:900](figs/rv-privil-arch.png)
-- RISC-V 系统模式 即 与系统编程相关的RISC-V模式 
-- 这里的系统编程 即 本课程中与OS相关的软件编程
-
-
----
-## RISC-V 系统模式：概述
-![w:900](figs/rv-privil-arch.png)
 - ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface
 - AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment
 - HAL：Hardware Abstraction Layer
 - Hypervisor，虚拟机监视器（virtual machine monitor，VMM）
+
+
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- 不同软件层有清晰的特权级硬件隔离支持
+- 左侧的单个应用程序被编码在ABI上运行
+- ABI包含用户级ISA(Instruction Set Architecture)和AEE交互ABI调用
+- ABI对应用程序隐藏了AEE的细节，使得AEE具有更大的灵活性
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- 中间加了一个传统的操作系统，可支持多个应用程序的多道运行
+- 每个应用程序通过ABI和OS进行通信
+- RISC-V操作系统通过一个SBI和SEE进行通信
+- 这个SBI包含所支持的OS的ISA，还包含与SEE交互的SBI调用
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- 右侧是虚拟机场景，可支持多个操作系统
+
+
 
 ---
 ## RISC-V 系统模式：概述
@@ -100,8 +110,34 @@ RISC-V相关术语
 ---
 ## RISC-V 系统模式：概述
 ![w:900](figs/rv-privil-arch.png)
+- 特权级是为不同的软件栈部件提供的一种保护机制
+- 硬件线程（hart，即CPU core）是运行在某个特权级上（CSR配置）
+- 当处理器执行当前特权模式不允许的操作时将产生一个异常，这些异常通常会产生自陷（trap）导致下层执行环境接管控制权
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- RISC-V 系统模式 即 与系统编程相关的RISC-V模式 
+- 这里的系统编程 即 本课程中与OS相关的软件编程
+
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
+- 现代处理器一般具有多个特权级的模式（Mode）
+- MODE -- **U**：User | **S**: Supervisor | **H**: Hypervisor | **M**: Machine
+
+**为何有这4种Mode? 它们的区别和联系是啥？**
+
+
+
+
+---
+## RISC-V 系统模式：概述
+![w:900](figs/rv-privil-arch.png)
 - 随着应用的需求变化，需要有根据需求灵活和可组合的硬件构造
 - 所以就出现了上述4种Mode，且Mode间可以组合的灵活硬件设计
+
 ---
 ## RISC-V 系统模式：概述
 ![w:900](figs/rv-privil-arch.png)
@@ -138,32 +174,10 @@ RISC-V相关术语
 ---
 ## RISC-V 系统模式：概述
 ![w:900](figs/rv-privil-arch.png)
-- M Mode：蓝牙耳机
-- U+M Mode:电视遥控器
-- U+S+M Mode：Android手机
+- M Mode：小型设备（蓝牙耳机等）
+- U+M Mode:嵌入式设备（电视遥控器、刷卡机等）
+- U+S+M Mode：手机
 - U+S+H+M Mode：数据中心服务器
----
-## RISC-V 系统模式：概述
-![w:900](figs/rv-privil-arch.png)
-- 特权级是为不同的软件栈部件提供的一种保护机制
-- 任何时候，一个 RISC-V 硬件线程（hart，即CPU core）是运行在某个特权级上的，这个特权级由 CSR配置
-- 当处理器执行当前特权模式不允许的操作时将产生一个异常，这些异常通常会产生自陷（trap）导致下层执行环境接管控制权
-
----
-## RISC-V 系统模式：概述
-![w:900](figs/rv-privil-arch.png)
-- 不同软件层有清晰的特权级硬件隔离支持
-- 左侧的单个应用程序被编码在ABI上运行
-- ABI包含用户级ISA(Instruction Set Architecture)和AEE交互ABI调用
-- ABI对应用程序隐藏了AEE的细节，使得AEE具有更大的灵活性
-
----
-## RISC-V 系统模式：概述
-![w:900](figs/rv-privil-arch.png)
-- 中间加了一个传统的操作系统，可支持多个应用程序的多道运行
-- 每个应用程序通过ABI和OS进行通信
-- RISC-V操作系统通过一个SBI和SEE进行通信
-- 这个SBI包含所支持的OS的ISA，还包含与SEE交互的SBI调用
 
 
 ---
@@ -395,7 +409,27 @@ mcause CSR寄存器
     - SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值
 - 发生异常之前的权限模式保留在 mstatus 的 MPP 域中，再把权限模式更改为M。（MPP表示变化之前的特权级别是S、M or U模式）
 
+---
+## M-Mode编程 -- 中断机制 
+```
+    let scause = scause::read();
+    let stval = stval::read();
 
+    match scause.cause() {
+        Trap::Exception(Exception::UserEnvCall) => {
+            cx.sepc += 4;
+            cx.x[10] = do_syscall(cx.x[17], [cx.x[10], cx.x[11], cx.x[12]]) as usize;
+        }
+        _ => {
+            panic!(
+                "Unsupported trap {:?}, stval = {:#x}!",
+                scause.cause(),
+                stval
+            );
+        }
+    }
+
+```
 ---
 ## M-Mode编程 -- 中断机制 -- 中断分类
 RISC-V 的中断: 通过 mcause 寄存器的不同位来表示（mie）
@@ -406,7 +440,8 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示（mie）
 ---
 ## RISC-V 系统编程：RISC-V 的异常与中断
 RISC-V 的中断: 通过 mcause 寄存器的不同位来表示
-![w:1200](figs/rv-interrupt.png)
+第一列1代表中断，第2列代表中断ID，第3列中断含义
+![w:1000](figs/rv-interrupt.png)
 
 
 ---
@@ -420,6 +455,7 @@ RISC-V 的中断: 通过 mcause 寄存器的不同位来表示
 ---
 ## M-Mode编程 -- RISC-V 异常机制
 RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
+第一列0代表异常，第2列代表异常ID，第3列异常含义
 ![w:900](figs/rv-exception.png)
 
 
@@ -465,8 +501,8 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 ---
 ## M-Mode编程 -- 异常/中断处理的控制权移交
 * 默认情况下，所有的异常/中断都使得控制权移交到 M-Mode的异常/中断处理程序
-* M-Mode的异常/中断处理程序可以将异常/中断重新导向 S-Mode，但是这些额外的操作会减慢异常/中断的处理速度
-* RISC-V 提供一种异常/中断委托机制，通过该机制可以选择性地将异常/中断交给 S-Mode处理，而完全绕过 M-Mode
+* M-Mode的异常/中断处理程序可以将异常/中断重新导向 S-Mode，但是这些**额外的操作会减慢异常/中断的处理速度**
+* RISC-V 提供一种**异常/中断委托机制**，通过该机制可以选择性地将异常/中断交给 S-Mode处理，而完全绕过 M-Mode
 
 ---
 ## M-Mode编程 -- 异常/中断处理的控制权移交
@@ -547,7 +583,7 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 - sie(Supervisor Interrupt Enable)指出处理器目前能处理的中断
 - sip(Supervisor Interrupt Pending)列出目前正准备处理的中断
 - stval(Supervisor Trap Value)保存陷入(trap)附加信息
-- sscratch(Supervisor Scratch)它暂时存放一个字大小的数据
+- sscratch(Supervisor Scratch)不同mode交换数据中转站
 - sstatus(Supervisor Status)保存全局中断以及其他的状态
 
 ---
@@ -571,9 +607,7 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 ## RISC-V 系统编程：异常/中断 CSR 寄存器
 - 异常/中断向量trap-vector基地址寄存器mtvec和stvec用于保存异常/中断向量的配置，包括向量基址（BASE）和向量模式（MODE）。
 - BASE 域中的值按4字节对齐。MODE=0表示所有异常/中断都把PC设置为BASE。MODE=1在异步中断时将PC设置为 (base+(4 * cause))。
-
 scause CSR：当发生异常时，CSR中被写入一个指示导致异常的事件的代码，如果事件由中断引起，则置上``Interrupt``位，``Exception Code``字段包含指示最后一个异常的编码。
-
 scause 寄存器
 ![w:1000](figs/rv-cause.png)
 
@@ -599,7 +633,6 @@ mtvec & stvec 寄存器
   - **异常/中断的硬件处理**
   - **异常/中断的软件处理**
   - 虚存机制
-  - 
 ---
 ## S-Mode编程 -- 异常/中断的硬件处理
 
@@ -617,7 +650,7 @@ hart 接受了异常/中断，并需要委派给 S-Mode，那么硬件会原子�
 
 **硬件执行内容**  
 
-* 发生例外前的特权模式被保存在 sstatus 的 SPP 域，然后设置当前特权模式为S-Mode
+* 发生例外前的特权模式被保存在 sstatus 的 SPP（previous privilege） 域，然后设置当前特权模式为S-Mode
 * 跳转到stvec CSR设置的地址继续执行
 
 
