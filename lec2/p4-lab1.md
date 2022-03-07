@@ -25,9 +25,11 @@ footer: ''
 ---
 ## 实践：LibOS
 ### 进化目标
-- 让应用与硬件隔离
-- 简化应用访问硬件的难度和复杂性
+- 建立应用程序的执行环境
+  - 让应用与硬件隔离
+  - 简化应用访问硬件的难度和复杂性
 
+**执行环境(Execution Environment)**：负责给在其上执行的软件提供相应的功能与资源的多层次软硬件系统 
  
 ![bg right 100%](figs/os-as-lib.png)
 
@@ -41,9 +43,41 @@ footer: ''
 - 能看懂汇编代码伪代码
 - 能看懂内嵌汇编代码
 - 初步理解SBI调用
-**会写OS了！**
-ABI是啥？SBI是啥？ Supervisor Binary Interface？ 
 ![bg right 100%](figs/os-as-lib.png)
+---
+## 实践：LibOS
+
+### 同学的进化目标
+- **会写三叶虫操作系统了！**
+  - ABI是啥？
+  - SBI是啥？ 
+  - Supervisor Binary Interface？ 
+![bg right 100%](figs/trilobita.png)
+三叶虫：Trilobita
+
+---
+## 实践：LibOS
+
+### 同学的进化目标
+- **在机器级层面理解函数**
+  - 寄存器（registers）
+  - 函数调用/返回(call/return)
+  - 函数进入/离开(enter/exit)
+  - 函数序言/收尾(prologue/epilogue)
+
+![bg right 100%](figs/trilobita.png)
+
+
+
+---
+## 实践：LibOS
+
+### 同学的进化目标
+- **OS不总是软件的最底层**
+  - 天外有天
+  - Why？
+
+![bg right 100%](figs/trilobita.png)
 
 ---
 ## 实践：LibOS
