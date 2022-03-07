@@ -41,9 +41,41 @@ footer: ''
 - 能看懂汇编代码伪代码
 - 能看懂内嵌汇编代码
 - 初步理解SBI调用
-**会写OS了！**
-ABI是啥？SBI是啥？ Supervisor Binary Interface？ 
 ![bg right 100%](figs/os-as-lib.png)
+---
+## 实践：LibOS
+
+### 同学的进化目标
+- **会写三叶虫操作系统了！**
+  - ABI是啥？
+  - SBI是啥？ 
+  - Supervisor Binary Interface？ 
+![bg right 100%](figs/trilobita.png)
+三叶虫：Trilobita
+
+---
+## 实践：LibOS
+
+### 同学的进化目标
+- **在机器级层面理解函数**
+  - 寄存器（registers）
+  - 函数调用/返回(call/return)
+  - 函数进入/离开(enter/exit)
+  - 函数的prologue/epilogue
+
+![bg right 100%](figs/trilobita.png)
+
+
+
+---
+## 实践：LibOS
+
+### 同学的进化目标
+- **OS不总是软件的最底层**
+  - 天外有天
+  - Why？
+
+![bg right 100%](figs/trilobita.png)
 
 ---
 ## 实践：LibOS
