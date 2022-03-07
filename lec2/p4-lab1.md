@@ -810,3 +810,11 @@ pub fn rust_main() -> ! {
 Hello, world!
 Panicked at src/main.rs:26 Shutdown machine!
 ```
+
+
+---
+## 小结
+- 构造各种OS的实践中需要掌握的知识点（原理&实现）
+- 理解Compiler/OS/Machine的相互关联关系
+- 知道从机器启动到应用程序打印出字符串的过程
+- 能写Trilobita OS
