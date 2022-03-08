@@ -46,6 +46,8 @@ footer: ''
 - 会写多道程序操作系统
 - 会写分时多任务操作系统
 
+<!-- 锯齿螈  始初龙  腔骨龙 -->
+
 ![bg right 80%](figs/ch3-oses.png)
 
 ---
@@ -375,7 +377,7 @@ dst.copy_from_slice(src);
 - 多道程序加载
 - **执行程序**
 
-这就完成了锯齿螈操作系统
+这就完成了支持把应用都放到内存中的锯齿螈OS
 ![bg right 100%](figs/jcy-multiprog-os-detail.png)
 
 ---
@@ -388,6 +390,85 @@ dst.copy_from_slice(src);
        - **任务切换**
 
 ![bg right 100%](figs/multiprog-os-detail.png)
+
+---
+## 实践：multiprog OS -- 程序设计
+
+- **任务(Task)** ：一个具有一定独立功能的程序在一个数据集合上的一次动态执行过程，是**进程(Process)** 的前身
+![bg right 100%](figs/task-multiprog-os-detail.png)
+
+
+---
+## 实践：multiprog OS -- 程序设计
+
+- 应用执行过程中的一个时间片段上的执行片段或空闲片段称为 “ 计算任务片 ” 或“ 空闲任务片 ”,统称**任务片**（task slice）
+![bg right 100%](figs/task-multiprog-os-detail.png)
+
+
+
+---
+**任务运行状态**
+  - 在一个时间片内的应用执行情况
+    - running
+    - ready
+
+```rust
+pub enum TaskStatus {
+    UnInit,
+    Ready,
+    Running,
+    Exited,
+}
+```
+![bg right:65% 100%](figs/more-task-multiprog-os-detail.png)
+
+---
+
+**任务切换** 
+  - 从一个应用的任务切换到另外一个应用的任务
+    - 暂停一个任务
+    - 继续另一任务
+![bg right:65% 100%](figs/more-task-multiprog-os-detail.png)
+
+
+---
+## 实践：multiprog OS -- 程序设计
+###  任务上下文
+- 应用运行在某一时刻的状态（上下文）
+  - 应用要暂停时，状态（上下文）可以被保存
+  - 应用要继续时，状态（上下文）可以被恢复 
+```
+1// os/src/task/context.rs
+2 pub struct TaskContext {
+3    ra: usize,
+4    sp: usize,
+5    s: [usize; 12],
+6}
+```
+
+
+---
+**任务上下文**
+- 应用运行在某一时刻的状态（上下文）
+
+```rust
+1// os/src/task/context.rs
+2 pub struct TaskContext {
+3    ra: usize,
+4    sp: usize,
+5    s: [usize; 12],
+6}
+```
+``` rust
+// os/src/trap/context.rs
+pub struct TrapContext {
+    pub x: [usize; 32],
+    pub sstatus: Sstatus,
+    pub sepc: usize,
+}
+```
+
+![bg right:65% 100%](figs/more-task-multiprog-os-detail.png)
 
 ---
 ## 实践：multiprog OS -- 程序设计
@@ -405,44 +486,79 @@ dst.copy_from_slice(src);
 ###  实现multiprog OS -- 任务切换 -- 任务上下文
 任务（Task）上下文 vs 系统调用（Trap）上下文
 - 与 Trap 切换不同，它不涉及特权级切换；
-
 - 与 Trap 切换不同，它的一部分是由编译器帮忙完成的；
-
 - 与 Trap 切换相同，它对应用是透明的
 
 **任务切换是来自两个不同应用在内核中的 Trap 控制流之间的切换**
 
 
+---
+**回顾：控制流**
+- 编译原理：程序的控制流 (Flow of Control or Control Flow) 是指以一个程序的指令、语句或基本块为单位的执行序列。
+- 计算机组成原理：处理器的控制流是指处理器中程序计数器的控制转移序列。
+---
+**回顾：控制流**
+CSAPP：
+- 从应用程序员的角度来看控制流
+  - 控制流是应用程序员编写的应用程序的执行序列，这些序列是程序员预设好的。
+  - 统称其为 普通控制流 (CCF，Common Control Flow)  
 
 ---
-## 实践：multiprog OS -- 程序设计
-###  任务上下文
-- 应用运行在某一时刻的状态
-  - 应用要暂停时，状态可以被保存
-  - 应用要继续时，状态可以被恢复 
-```
-1// os/src/task/context.rs
-2 pub struct TaskContext {
-3    ra: usize,
-4    sp: usize,
-5    s: [usize; 12],
-6}
-```
+**回顾：控制流**
+CSAPP：
+
+- 从操作系统程序员的角度来看控制流 
+  - 应用程序在执行过程中，如果发出系统调用请求，或出现外设中断、CPU 异常等情况，会出现前一条指令还在应用程序的代码段中，后一条指令就跑到操作系统的代码段中去了。
+  - 这就是一种控制流的“突变”，即控制流脱离了其所在的执行环境，并产生 执行环境的切换。 我们把这种“突变”的控制流称为 异常控制流 (ECF, Exceptional Control Flow) 。
+
 
 ---
-## 实践：multiprog OS -- 程序设计
-###  任务运行状态
-- running
-- ready
+**回顾：控制流上下文（执行环境的状态）**
 
+   计算机组成原理：站在硬件的角度来看普通控制流或异常控制流的具体执行过程，我们会发现从控制流起始的某条指令执行开始，指令可访问的所有物理资源的内容，包括自带的所有通用寄存器、特权级相关特殊寄存器、以及指令访问的内存等，会随着指令的执行而逐渐发生变化。
+
+- 把控制流在执行完某指令时的物理资源内容，即确保下一时刻能继续正确执行控制流指令的物理/虚拟资源内容称为***控制流的上下文 (Context)*** ，也可称为控制流所在执行环境的状态。
+
+对于当前实践的OS，没有虚拟资源，而物理资源内容就是***通用寄存器/CSR寄存器***
+
+---
+**回顾：控制流上下文（执行环境的状态）**
+- 如果一个控制流属于某个函数，那么这个控制流的上下文简称为***函数调用上下文***。
+- 一个控制流是属于操作系统中处理中断/异常/陷入的那段代码，那么这个控制流的上下文简称为***中断/异常/陷入上下文***。
+- 一个控制流是属于操作系统中任务（进程）执行相关的那段代码，那么这个控制流的上下文简称为***任务（进程）上下文***。
+
+
+---
+**OS面临的挑战**
+在分属不同任务的两个Trap控制流之间进行hacker级操作，即进行Trap上下文切换，从而实现任务切换。
+
+- Trap上下文在哪？
+- 任务上下文在哪？
+- 如何切换任务？
+- 任务切换应该发生在哪？
+- 任务切换后还能切换回吗？
+
+![bg right 100%](figs/task-context.png)
+
+---
 ###  Trap 控制流之间的切换
 - 一个特殊的函数`` __switch ``
+- 调用 __switch 之后直到它返回前的这段时间，原 Trap 控制流 A 会先被暂停并被切换出去， CPU 转而运行另一个应用在内核中的 Trap 控制流 B 。
 ![bg right 100%](figs/task-context.png)
 
 
 ---
-## 实践：multiprog OS -- Trap 控制流切换
-![w:800](figs/switch.png)
+###  Trap 控制流之间的切换
+- 一个特殊的函数`` __switch ``
+- 然后在某个合适的时机，原 Trap 控制流 A 才会从某一条 Trap 控制流 C （很有可能不是它之前切换到的 B ）切换回来继续执行并最终返回。
+
+从实现的角度讲， __switch 函数和一个普通的函数之间的核心差别仅仅是它会***换栈*** 。
+![bg right 100%](figs/task-context.png)
+
+
+---
+Trap 控制流之间的切换 -- 函数`` __switch ``
+![w:900](figs/switch.png)
 
 
 ---
@@ -542,48 +658,131 @@ dst.copy_from_slice(src);
 
 
 ---
-## 实践：multiprog OS -- 程序设计
-- 内核程序设计 -- 任务调度
-
-任务控制块
-
+- 任务控制块
+操作系统管理控制进程运行所用的信息集合
+```Rust
+pub struct TaskControlBlock {
+    pub task_status: TaskStatus,
+    pub task_cx: TaskContext,
+}
+```
+- 任务管理模块
+```Rust
+struct TaskManagerInner {
+    tasks: [TaskControlBlock; MAX_APP_NUM],
+    current_task: usize,
+}
+```
+![bg right:50% 100%](figs/more-task-multiprog-os-detail.png)
 
 
 ---
 ## 实践：multiprog OS -- 程序设计
-- 内核程序设计 -- 任务调度
-
-任务运行状态
+- 内核程序设计 -- 协作式任务调度
+- ``sys_yield``和``sys_exit``系统调用
+```rust
+pub fn sys_yield() -> isize {
+    suspend_current_and_run_next();
+    0
+}
+pub fn sys_exit(exit_code: i32) -> ! {
+    println!("[kernel] Application exited with code {}", exit_code);
+    exit_current_and_run_next();
+    panic!("Unreachable in sys_exit!");
+}
+```
 
 ---
 ## 实践：multiprog OS -- 程序设计
-- 内核程序设计 -- 任务调度 -- ``sys_yield``系统调用
+- 内核程序设计 -- 协作式任务调度
+- ``sys_yield``和``sys_exit``系统调用
+```rust
+// os/src/task/mod.rs
+
+pub fn suspend_current_and_run_next() {
+    mark_current_suspended();
+    run_next_task();
+}
+
+pub fn exit_current_and_run_next() {
+    mark_current_exited();
+    run_next_task();
+}
+```
 
 
 ---
 ## 实践：multiprog OS -- 程序设计
-- 内核程序设计 -- 任务调度 -- 第一次进入用户态
+- 内核程序设计 -- 协作式任务调度
+- ``sys_yield``和``sys_exit``系统调用
+```Rust
+ fn run_next_task(&self) {
+    ......
+    unsafe {
+        __switch(
+            current_task_cx_ptr, //当前任务上下文
+            next_task_cx_ptr,    //下个任务上下文
+        );
+    }
+```
 
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计 -- 第一次进入用户态
+**Q:如何实现？**
+
+如果能搞定，我们就实现了支持多道程序协作调度的始初龙操作系统
+
+---
+## 实践：time-sharing OS -- 程序设计
+内核程序设计 -- 基本思路
+- 设置时钟中断
+- 在收到时钟中断后统计任务的使用时间片
+- 在时间片用完后，切换任务
+
+---
+## 实践：time-sharing OS -- 程序设计
+- 内核程序设计 -- 时钟中断与计时器
+- 设置时钟中断
+```rust
+// os/src/sbi.rs
+pub fn set_timer(timer: usize) {
+     sbi_call(SBI_SET_TIMER, timer, 0, 0);
+ }
+// os/src/timer.rs
+pub fn set_next_trigger() {
+    set_timer(get_time() + CLOCK_FREQ / TICKS_PER_SEC);
+}
+pub fn rust_main() -> ! {
+    trap::enable_timer_interrupt();
+    timer::set_next_trigger();
+}    
+```
 
 
 ---
 ## 实践：time-sharing OS -- 程序设计
-- 内核程序设计 
+- 内核程序设计 -- 抢占式调度
 
-基本思路
+```rust
+// os/src/trap/mod.rs trap_handler函数
+......
+match scause.cause() {
+    Trap::Interrupt(Interrupt::SupervisorTimer) => {
+        set_next_trigger();
+        suspend_current_and_run_next();
+    }
+}
+```
 
+这样我们就实现了分时多任务的腔骨龙操作系统
 
 ---
-## 实践：time-sharing OS -- 程序设计
-- 内核程序设计 
-  
-时钟中断与计时器
+## 小结
+- 多道程序&分时共享多任务
+- 协作式调度&抢占式调度
+- 任务与任务切换
+- 中断机制
+- 能写锯齿螈/始初龙/腔骨龙OS
 
-
-
-
----
-## 实践：time-sharing OS -- 程序设计
-- 内核程序设计 
-
-抢占式调度
+![bg right:50% 100%](figs/more-task-multiprog-os-detail.png)
