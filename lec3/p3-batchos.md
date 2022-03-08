@@ -44,6 +44,7 @@ footer: ''
 ![bg right 100%](figs/batch-os.png)
 
 ---
+## 实践：批处理OS
 ### 同学的进化目标
 - 理解运行其他软件的软件
 - 理解特权级和特权级切换
@@ -612,7 +613,7 @@ unsafe fn load_app(&self, app_id: usize) {
 
 ---
 ## 实践：批处理OS -- 程序设计
-### 实现batch OS -- 特权级切换 -- ecall后的硬件控制逻辑
+### 实现batch OS -- 特权级切换 -- ecall后的硬件逻辑
 
 1. sstatus 的 SPP 字段会被修改为 CPU 当前的特权级（U/S）；
 2. sepc 会被修改为 Trap 处理完成后默认会执行的下一条指令的地址；
@@ -716,10 +717,25 @@ pub fn init() {
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 特权级切换 -- 切换Trap上下文
 1. 应用程序通过 ecall 进入到内核状态时，操作系统保存被打断的应用程序的 Trap 上下文；
+
+![bg right:40% 100%](figs/kernel-stack.png)
+
+
+---
+## 实践：批处理OS -- 程序设计
+### 实现batch OS -- 特权级切换 -- 切换Trap上下文
+
 2. 操作系统根据Trap相关的CSR寄存器内容，完成系统调用服务的分发与处理；
-3. 操作系统完成系统调用服务后，需要恢复被打断的应用程序的Trap 上下文，并通 sret 让应用程序继续执行。
+
+![bg right:40% 100%](figs/kernel-stack.png)
 
 
+---
+## 实践：批处理OS -- 程序设计
+### 实现batch OS -- 特权级切换 -- 切换Trap上下文
+
+3. 操作系统完成系统调用服务后，需要恢复被打断的应用程序的Trap 上下文，并通 ``sret``指令让应用程序继续执行。
+![bg right:40% 100%](figs/kernel-stack.png)
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 特权级切换 -- 保存Trap上下文
@@ -832,8 +848,9 @@ pub struct TrapContext {
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 特权级切换 -- 恢复Trap上下文
 1. 大部分是保存寄存器的反向操作；
-2. 最后异步是 sret //从内核态返回到用户态
+2. 最后一步是 ``sret``指令 //从内核态返回到用户态
 
+注：后面讲解“执行程序”时会比较详细的讲解"恢复Trap上下文"
 
 
 ---
@@ -889,6 +906,37 @@ pub fn sys_exit(xstate: i32) -> ! {
     - 特权级切换
     - **执行应用程序**
 ![bg right 100%](figs/batch-os-detail.png)
+
+---
+## 实践：批处理OS -- 程序设计
+### 实现batch OS -- 执行应用程序
+执行的时机
+- 当批处理操作系统初始化完成
+- 某个应用程序运行结束或出错
+
+
+---
+## 实践：批处理OS -- 程序设计
+### 实现batch OS -- 执行应用程序
+让应用程序执行
+从内核态切换到用户态
+- 准备好应用的上下文``Trap上下文``
+- 恢复应用的相关寄存器
+- 特别是应用的用户栈指针和执行地址
+- **返回用户态让应用执行** 
+
+![bg right:40% 100%](figs/kernel-stack.png)
+
+---
+## 实践：批处理OS -- 程序设计
+### 实现batch OS -- 执行应用程序
+**返回用户态让应用执行**
+- 从内核态切换到用户态
+  -  ``sret``指令的**硬件逻辑**：
+     - 恢复响应中断/异常
+     - CPU Mode从S-Mode 回到U-Mode
+     - ``pc`` <-- ``spec`` CSR
+     - 继续运行
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 执行应用程序
@@ -938,6 +986,45 @@ ub fn run_next_app() -> ! {
     panic!("Unreachable in batch::run_current_app!");
 }
 ```
+
+---
+## 实践：批处理OS -- 程序设计
+### 实现batch OS -- 执行应用程序 -- 运行下一程序
+```
+__restore:
+    # case1: start running app by __restore
+    # case2: back to U after handling trap
+    mv sp, a0
+    # now sp->kernel stack(after allocated), sscratch->user stack
+    # restore sstatus/sepc
+    ld t0, 32*8(sp)
+    ld t1, 33*8(sp)
+    ld t2, 2*8(sp)
+    csrw sstatus, t0
+    csrw sepc, t1
+    csrw sscratch, t2
+```
+
+
+---
+## 实践：批处理OS -- 程序设计
+### 实现batch OS -- 执行应用程序 -- 运行下一程序
+```
+# restore general-purpuse registers except sp/tp
+    ld x1, 1*8(sp)
+    ld x3, 3*8(sp)
+    .set n, 5
+    .rept 27
+        LOAD_GP %n
+        .set n, n+1
+    .endr
+    # release TrapContext on kernel stack
+    addi sp, sp, 34*8
+    # now sp->kernel stack, sscratch->user stack
+    csrrw sp, sscratch, sp
+    sret
+```
+
 ---
 ## 实践：批处理OS -- 程序设计
 提问
