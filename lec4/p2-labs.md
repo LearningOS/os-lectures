@@ -355,7 +355,6 @@ dst.copy_from_slice(src);
 - 切换下一个程序
   - 内核态到用户态
   - 用户态到内核态
-  - 应用程序上下文
 
 
 ---
@@ -366,7 +365,18 @@ dst.copy_from_slice(src);
   - 跳转到编号i的应用程序编号i的入口点 entry(i)
   - 将使用的栈切换到用户栈stack(i) 
 
+![bg right:40% 100%](figs/kernel-stack.png)
 
+
+---
+## 实践：multiprog OS -- 程序设计
+### 内核程序设计
+- 内核与应用形成单一镜像 
+- 多道程序加载
+- **执行程序**
+
+这就完成了锯齿螈操作系统
+![bg right 100%](figs/jcy-multiprog-os-detail.png)
 
 ---
 ## 实践：multiprog OS -- 程序设计
@@ -374,17 +384,21 @@ dst.copy_from_slice(src);
     - 内核与应用形成单一镜像
     - 多道程序加载
     - 执行应用程序
-    - **任务切换**
+    - 协作/抢占调度
+       - **任务切换**
+
+![bg right 100%](figs/multiprog-os-detail.png)
 
 ---
 ## 实践：multiprog OS -- 程序设计
 ###  实现multiprog OS -- 任务切换 -- 任务上下文
 
 - 回顾：不同类型上下文
-  - 函数（Procedure）调用上下文 
-  - 系统调用（Trap）上下文 
+  - 函数调用上下文 
+  - Trap上下文 
   - 任务（Task）上下文 
 
+![bg right 100%](figs/contexts-on-stacks.png)
 
 ---
 ## 实践：multiprog OS -- 程序设计
@@ -397,3 +411,178 @@ dst.copy_from_slice(src);
 - 与 Trap 切换相同，它对应用是透明的
 
 **任务切换是来自两个不同应用在内核中的 Trap 控制流之间的切换**
+
+
+
+---
+## 实践：multiprog OS -- 程序设计
+###  任务上下文
+
+```
+1// os/src/task/context.rs
+2
+3pub struct TaskContext {
+4    ra: usize,
+5    sp: usize,
+6    s: [usize; 12],
+7}
+```
+
+---
+## 实践：multiprog OS -- 程序设计
+###  任务运行状态
+- running
+- ready
+
+###  Trap 控制流之间的切换
+- 一个特殊的函数`` __switch ``
+![bg right 100%](figs/task-context.png)
+
+
+---
+## 实践：multiprog OS -- Trap 控制流切换
+![w:800](figs/switch.png)
+
+
+---
+## 实践：multiprog OS -- Trap 控制流切换
+阶段 [1]：在 Trap 控制流 A 调用 __switch 之前，A 的内核栈上只有 Trap 上下文和 Trap 处理函数的调用栈信息，而 B 是之前被切换出去的；
+![bg right 100%](figs/switch.png)
+
+
+---
+## 实践：multiprog OS -- Trap 控制流切换
+阶段 [2]：A 在 A 任务上下文空间在里面保存 CPU 当前的寄存器快照；
+![bg right 100%](figs/switch.png)
+
+---
+## 实践：multiprog OS -- Trap 控制流切换
+阶段 [3]：这一步极为关键，读取 next_task_cx_ptr 指向的 B 任务上下文，根据 B 任务上下文保存的内容来恢复 ra 寄存器、s0~s11 寄存器以及 sp 寄存器。只有这一步做完后， __switch 才能做到一个函数跨两条控制流执行，即 通过换栈也就实现了控制流的切换 。
+![bg right 100%](figs/switch.png)
+
+
+---
+## 实践：multiprog OS -- Trap 控制流切换
+阶段 [4]：上一步寄存器恢复后，可以看到通过恢复 sp 寄存器换到了任务 B 的内核栈上，进而实现了控制流的切换。这就是为什么 __switch 能做到一个函数跨两条控制流执行。此后，当 CPU 执行 ret 汇编伪指令完成 __switch 函数返回后，任务 B 可以从调用 __switch 的位置继续向下执行。
+![bg right 100%](figs/switch.png)
+
+
+
+---
+## 实践：multiprog OS -- ``__switch`` 的实现
+```
+ 1// os/src/task/switch.rs
+ 2
+ 3global_asm!(include_str!("switch.S"));
+ 4
+ 5use super::TaskContext;
+ 6
+ 7extern "C" {
+ 8    pub fn __switch(
+ 9        current_task_cx_ptr: *mut TaskContext,
+10        next_task_cx_ptr: *const TaskContext
+11    );
+12}
+```
+
+
+---
+## 实践：multiprog OS -- ``__switch`` 的实现
+
+```
+12 __switch:
+13    # 阶段 [1]
+14    # __switch(
+15    #     current_task_cx_ptr: *mut TaskContext,
+16    #     next_task_cx_ptr: *const TaskContext
+17    # )
+18    # 阶段 [2]
+19    # save kernel stack of current task
+20    sd sp, 8(a0)
+21    # save ra & s0~s11 of current execution
+22    sd ra, 0(a0)
+23    .set n, 0
+24    .rept 12
+25        SAVE_SN %n
+26        .set n, n + 1
+27    .endr
+
+```
+
+
+---
+## 实践：multiprog OS -- ``__switch`` 的实现
+```
+28    # 阶段 [3]
+29    # restore ra & s0~s11 of next execution
+30    ld ra, 0(a1)
+31    .set n, 0
+32    .rept 12
+33        LOAD_SN %n
+34        .set n, n + 1
+35    .endr
+36    # restore kernel stack of next task
+37    ld sp, 8(a1)
+38    # 阶段 [4]
+39    ret
+```
+
+
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计
+    - 内核与应用形成单一镜像
+    - 多道程序加载
+    - 执行应用程序
+    - 协作/抢占调度
+       - **任务调度**
+![bg right 100%](figs/multiprog-os-detail.png)
+
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计 -- 任务调度
+
+任务控制块
+
+
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计 -- 任务调度
+
+任务运行状态
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计 -- 任务调度 -- ``sys_yield``系统调用
+
+
+---
+## 实践：multiprog OS -- 程序设计
+- 内核程序设计 -- 任务调度 -- 第一次进入用户态
+
+
+
+---
+## 实践：time-sharing OS -- 程序设计
+- 内核程序设计 
+
+基本思路
+
+
+---
+## 实践：time-sharing OS -- 程序设计
+- 内核程序设计 
+  
+时钟中断与计时器
+
+
+
+
+---
+## 实践：time-sharing OS -- 程序设计
+- 内核程序设计 
+
+抢占式调度
