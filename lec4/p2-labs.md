@@ -68,7 +68,7 @@ footer: ''
 - 构造：(OLD)系统调用服务请求接口，任务的管理与初始化
 - 构造：任务控制块，任务的上下文/状态管理
 - 运行：(OLD)特权级切换，任务与OS相互切换
-- 运行：任务通过系统调用实现主动切换
+- 运行：任务通过系统调用/中断实现主动/被动切换
 
 
 ---
@@ -417,15 +417,16 @@ dst.copy_from_slice(src);
 ---
 ## 实践：multiprog OS -- 程序设计
 ###  任务上下文
-
+- 应用运行在某一时刻的状态
+  - 应用要暂停时，状态可以被保存
+  - 应用要继续时，状态可以被恢复 
 ```
 1// os/src/task/context.rs
-2
-3pub struct TaskContext {
-4    ra: usize,
-5    sp: usize,
-6    s: [usize; 12],
-7}
+2 pub struct TaskContext {
+3    ra: usize,
+4    sp: usize,
+5    s: [usize; 12],
+6}
 ```
 
 ---

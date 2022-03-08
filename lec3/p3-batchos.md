@@ -66,6 +66,7 @@ footer: ''
 - 程序设计
 
 ![bg right 100%](figs/batch-os-detail.png)
+
 ---
 ## 实践：批处理OS
 ### 总体思路
@@ -925,7 +926,7 @@ pub fn sys_exit(xstate: i32) -> ! {
 - 特别是应用的用户栈指针和执行地址
 - **返回用户态让应用执行** 
 
-![bg right:40% 100%](figs/kernel-stack.png)
+![bg right:35% 100%](figs/kernel-stack.png)
 
 ---
 ## 实践：批处理OS -- 程序设计
