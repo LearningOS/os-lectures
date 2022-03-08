@@ -30,3 +30,9 @@ footer: ''
 - [第一节 从 OS 角度看计算机系统](./lec3/p1-osviewarch.html)
 - [第二节 从 OS 角度看RISC-V](./lec3/p2-osviewrv.html)
 - [第三节 实践：批处理操作系统](./lec3/p3-batchos.html)
+
+---
+
+## 第四讲 多道程序与分时多任务
+- [第一节 相关背景与基本概念](./lec4/p1-multiprog.html)
+- [第二节 实践：多道程序与分时多任务操作系统](./lec4/p2-labs.html)
