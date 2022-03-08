@@ -53,7 +53,7 @@ footer: ''
   - SBI是啥？ 
   - Supervisor Binary Interface？ 
 ![bg right 100%](figs/trilobita.png)
-三叶虫：Trilobita
+三叶虫：Trilobita 寒武纪最有代表性的远古动物
 
 ---
 ## 实践：LibOS
