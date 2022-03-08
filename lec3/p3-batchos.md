@@ -22,6 +22,9 @@ footer: ''
 - 软件架构
 - 相关硬件
 - 程序设计
+
+![bg right 100%](figs/batch-os-detail.png)
+
   <!-- - 构造&加载 OS&APP
   - 基于RV特权级机制保护OS
   - 系统调用支持
@@ -32,13 +35,24 @@ footer: ''
 ## 实践：批处理OS
 ### 进化目标
 - 让APP与OS隔离
-
+- 自动加载并运行多个程序
+  - **批处理（batch）**
 ### LibOS目标
 - 让应用与硬件隔离
 - 简化应用访问硬件的难度和复杂性
   
 ![bg right 100%](figs/batch-os.png)
 
+---
+### 同学的进化目标
+- 理解运行其他软件的软件
+- 理解特权级和特权级切换
+- 理解系统调用
+- 会写``邓式鱼``批处理操作系统
+
+
+邓式鱼：Dunkleosteus 在泥盆纪有坚固盾甲的海洋霸主  
+![bg right 100%](figs/dunkleosteus.png)
 
 ---
 ## 实践：批处理OS
@@ -49,12 +63,16 @@ footer: ''
 - 软件架构
 - 相关硬件
 - 程序设计
+
+![bg right 100%](figs/batch-os-detail.png)
 ---
 ## 实践：批处理OS
 ### 总体思路
 - 编译：应用程序和内核独立编译，合并为一个镜像
 - 构造：系统调用服务请求接口，应用的管理与初始化
-- 运行：特权级切换，应用与OS相互切换
+- 运行：OS一个一个地执行应用
+- 运行：应用发出系统调用请求，OS完成系统调用
+- 运行：应用与OS基于硬件特权级机制进行特权级切换
 
 
 
@@ -68,15 +86,18 @@ footer: ''
 - 相关硬件
 - 程序设计
 
+![bg right 100%](figs/batch-os-detail.png)
+
 ---
 ## 实践：批处理OS
 ### 历史
-* GM-NAA I/O System
-  * 汽车生产线 
-* MULTICS OS
+* GM-NAA I/O System(1956)
+  * 启发：汽车生产线 
+* MULTICS OS(1969,MIT/GE/AT&T)
   * GE 645 具有 8 级硬件支持的保护环
-
-![bg right 80%](figs/deng-fish.png)
+ GM-NAA: General Motors and North American Aviation;
+ GE： General Electric
+![bg right:35% 80%](figs/deng-fish.png)
 
 
 
@@ -89,6 +110,7 @@ footer: ''
 - 软件架构
 - 相关硬件
 - 程序设计
+![bg right 100%](figs/batch-os-detail.png)
 ---
 ## 实践：批处理OS
 ### 步骤
@@ -141,10 +163,12 @@ Hello, world!
 - **软件架构**
 - 相关硬件
 - 程序设计
+![bg right 100%](figs/batch-os-detail.png)
+
 ---
 ## 实践：批处理OS -- 软件架构
 ### 代码结构
-构建应用
+构建应用：把多个应用合在一起与OS形成一个二进制镜像
 ```
 ├── os
 │   ├── build.rs(新增：生成 link_app.S 将应用作为一个数据段链接到内核)
@@ -187,17 +211,16 @@ Hello, world!
 ---
 ## 实践：批处理OS -- 软件架构
 ### 代码结构
-添加应用
+添加应用：批处理OS会按照文件名开头的数字顺序依次加载并运行它们
 ```
 └── user(新增：应用测例保存在 user 目录下)
    └── src
       ├── bin(基于用户库 user_lib 开发的应用，每个应用放在一个源文件中)
-      │   ├── 00hello_world.rs
-      │   ├── 01store_fault.rs
-      │   ├── 02power.rs
-      │   ├── 03priv_inst.rs
-      │   └── 04priv_csr.rs
-
+      │   ├── 00hello_world.rs # 显示字符串的应用
+      │   ├── 01store_fault.rs # 非法写操作的应用
+      │   ├── 02power.rs       # 计算/IO频繁交替的应用 
+      │   ├── 03priv_inst.rs   # 执行特权指令的应用
+      │   └── 04priv_csr.rs    # 执行CSR操作指令的应用
 ```            
 ---
 ## 实践：批处理OS -- 软件架构
@@ -206,10 +229,10 @@ Hello, world!
 ```
 └── user(新增：应用测例保存在 user 目录下)
    └── src
-      ├── console.rs
-      ├── lang_items.rs
-      ├── lib.rs(用户库 user_lib)
-      ├── linker.ld(应用的链接脚本)
+      ├── console.rs              # 支持println!的相关函数与宏
+      ├── lang_items.rs           # 实现panic_handler函数
+      ├── lib.rs(用户库 user_lib)  # 应用调用函数的底层支撑库 
+      ├── linker.ld               # 应用的链接脚本
       └── syscall.rs(包含 syscall 方法生成实际用于系统调用的汇编指令，
                      各个具体的 syscall 都是通过 syscall 来实现的)
 ```
@@ -223,7 +246,10 @@ Hello, world!
 - 实践步骤
 - 软件架构
 - **相关硬件**
-- 程序设计            
+- 程序设计    
+
+![bg right 100%](figs/batch-os-detail.png)
+
 ---
 ## 实践：批处理OS -- 相关硬件
 RISC-V 陷入(trap)类指令
@@ -291,24 +317,34 @@ RISC-V异常向量
 - 相关硬件
 - **程序设计**
 
+![bg right 100%](figs/batch-os-detail.png)
+
 ---
 ## 实践：批处理OS -- 程序设计
 - 应用程序设计
     - **项目结构**
     - 内存布局
     - 系统调用  
----
-## 实践：批处理OS -- 程序设计
-### 应用程序设计 -- 项目结构
-- `hello_world` ：在屏幕上打印一行 "Hello world from user mode program!"
-- `store_fault` ：访问一个非法的物理地址，测试批处理系统是否会被该错误影响
-- `power` ：不断在计算操作和打印字符串操作之间进行特权级切换
 
-批处理系统会按照文件名开头的数字编号从小到大的顺序加载并运行它们。
+核心是如何写底层支撑库
 
 ---
 ## 实践：批处理OS -- 程序设计
 ### 应用程序设计 -- 项目结构
+- 应用与底层支撑库分离
+
+```
+└── user(应用程序和底层支撑库)
+   └── src
+      ├── bin(该目录放置基于用户库 user_lib 开发的应用)   
+      ├── lib.rs(用户库 user_lib)  # 库函数的底层支撑库 
+      ├── ......                  # 支撑库相关文件
+      └── linker.ld               # 应用的链接脚本
+```
+
+---
+## 实践：批处理OS -- 程序设计
+### 应用程序设计 -- 项目结构 -- 设计应用
 引入外部库
 ``` rust
   #[macro_use]
@@ -317,7 +353,7 @@ RISC-V异常向量
 
 ---
 ## 实践：批处理OS -- 程序设计
-### 应用程序设计 -- 项目结构
+### 应用程序设计 -- 项目结构 -- 设计支撑库
 
 在 lib.rs 中我们定义了用户库的入口点 _start ：
 ``` rust
@@ -337,13 +373,13 @@ pub extern "C" fn _start() -> ! {
     - 项目结构
     - **内存布局**
     - 系统调用  
-
+![bg right 100%](figs/memlayout.png)
 ---
 ## 实践：批处理OS -- 程序设计
-### 应用程序设计 -- 内存布局
+### 应用程序设计 -- 内存布局 -- 设计支撑库
 `user/src/linker.ld`
 
-- 将程序的起始物理地址调整为 0x80400000 ，三个应用程序都会被加载到这个物理地址上运行；
+- 将程序的起始物理地址调整为 0x80400000 ，应用程序都会被加载到这个物理地址上运行；
 - 将 _start 所在的 .text.entry 放在整个程序的开头，也就是说批处理系统只要在加载之后跳转到 0x80400000 就已经进入了 用户库的入口点，并会在初始化之后跳转到应用程序主逻辑；
 - 提供了最终生成可执行文件的 .bss 段的起始和终止地址，方便 clear_bss 函数使用。
 
@@ -356,18 +392,18 @@ pub extern "C" fn _start() -> ! {
     - 项目结构
     - 内存布局
     - **系统调用** 
-
+![bg right 100%](figs/EnvironmentCallFlow.png)
 ---
 ## 实践：批处理OS -- 程序设计
-### 应用程序设计 -- 系统调用
+### 应用程序设计 -- 系统调用 -- 设计支撑库
 
 - 在子模块 syscall 中，应用程序通过 ecall 调用批处理系统提供的接口
 - ``ecall`` 指令会触发 名为 Environment call from U-mode 的异常
 - Trap 进入 S 模式执行批处理系统针对这个异常特别提供的服务代码
-- a0~a6 保存系统调用的参数， a0~a1 保存返回值, a7 用来传递 syscall ID
+- a0~a6 保存系统调用的参数， a0 保存返回值, a7 用来传递 syscall ID
 ---
 ## 实践：批处理OS -- 程序设计
-### 应用程序设计 -- 系统调用
+### 应用程序设计 -- 系统调用 -- 设计支撑库
 ``` rust --
 /// 功能：将内存中缓冲区中的数据写入文件。
 /// 参数：`fd` 表示待写入文件的文件描述符；
@@ -387,37 +423,35 @@ fn sys_exit(xstate: usize) -> !;
 
 ---
 ## 实践：批处理OS -- 程序设计
-### 应用程序设计 -- 系统调用
+### 应用程序设计 -- 系统调用 -- 设计支撑库
 
 ``` rust
-use core::arch::asm;
 fn syscall(id: usize, args: [usize; 3]) -> isize {
     let mut ret: isize;
     unsafe {
         asm!(
             "ecall",
-            inlateout("x10") args[0] => ret,
-            in("x11") args[1],
-            in("x12") args[2],
-            in("x17") id
+            inlateout("x10") args[0] => ret, //第一个参数&返回值
+            in("x11") args[1],               //第二个参数
+            in("x12") args[2],               //第三个参数
+            in("x17") id                     //syscall编号
         );
     }
-    ret
+    ret //返回值
 }
 ```
 
 
 ---
 ## 实践：批处理OS -- 程序设计
-### 应用程序设计 -- 系统调用
-```
-const SYSCALL_WRITE: usize = 64;
+### 应用程序设计 -- 系统调用 -- 设计支撑库
+```rust
+const SYSCALL_WRITE: usize = 64; 
 const SYSCALL_EXIT: usize = 93;
-
+//对系统调用的封装
 pub fn sys_write(fd: usize, buffer: &[u8]) -> isize {
     syscall(SYSCALL_WRITE, [fd, buffer.as_ptr() as usize, buffer.len()])
 }
-
 pub fn sys_exit(xstate: i32) -> isize {
     syscall(SYSCALL_EXIT, [xstate as usize, 0, 0])
 }
@@ -425,7 +459,7 @@ pub fn sys_exit(xstate: i32) -> isize {
 
 ---
 ## 实践：批处理OS -- 程序设计
-### 应用程序设计 -- 访问系统调用
+### 应用程序设计 -- 访问系统调用 -- 设计支撑库
 ``` rust
 pub fn write(fd: usize, buf: &[u8]) -> isize { sys_write(fd, buf) }
 
@@ -446,6 +480,10 @@ impl Write for Stdout {
     - **内核与应用形成单一镜像**
     - 找到并加载应用程序二进制码
     - 特权级切换
+    - 执行应用程序
+
+![bg right 100%](figs/batch-os-detail.png)
+
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 将应用程序链接到内核
@@ -473,6 +511,10 @@ app_0_end:
     - 内核与应用形成单一镜像
     - **找到并加载应用程序二进制码**
     - 特权级切换
+    - 执行应用程序
+
+![bg right 100%](figs/batch-os-detail.png)
+
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 找到并加载应用程序二进制码
@@ -551,11 +593,12 @@ unsafe fn load_app(&self, app_id: usize) {
     - 内核与应用形成单一镜像
     - 找到并加载应用程序二进制码
     - **特权级切换**
-       - 相关CSR
-       - ecall后的硬件控制逻辑
+       - **相关CSR**
+       - **ecall后的硬件控制逻辑**
        - 用户栈与内核栈
        - Trap上下文
        - Trap Handlers
+![bg right:35% 100%](figs/batch-os-detail.png)
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 特权级切换 -- 相关CSR
@@ -576,6 +619,20 @@ unsafe fn load_app(&self, app_id: usize) {
 3. scause/stval 分别会被修改成这次 Trap 的原因以及相关的附加信息；
 4. CPU 将当前特权级设为 S，跳到 stvec 所设置的 Trap 处理入口地址。
 
+
+
+---
+## 实践：批处理OS -- 程序设计
+- 内核程序设计
+    - 内核与应用形成单一镜像
+    - 找到并加载应用程序二进制码
+    - **特权级切换**
+       - 相关CSR
+       - ecall后的硬件控制逻辑
+       - **用户栈与内核栈**
+       - Trap上下文
+       - Trap Handlers
+![bg right:35% 100%](figs/batch-os-detail.png)
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 特权级切换 -- 用户栈与内核栈
@@ -614,6 +671,19 @@ RegSP = USER_STACK.get_sp();
 RegSP = KERNEL_STACK.get_sp();
 ```
 
+
+---
+## 实践：批处理OS -- 程序设计
+- 内核程序设计
+    - 内核与应用形成单一镜像
+    - 找到并加载应用程序二进制码
+    - **特权级切换**
+       - 相关CSR
+       - ecall后的硬件控制逻辑
+       - 用户栈与内核栈
+       - **Trap上下文**
+       - Trap Handlers
+![bg right:35% 100%](figs/batch-os-detail.png)
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 特权级切换 -- Trap上下文
@@ -765,6 +835,19 @@ pub struct TrapContext {
 2. 最后异步是 sret //从内核态返回到用户态
 
 
+
+---
+## 实践：批处理OS -- 程序设计
+- 内核程序设计
+    - 内核与应用形成单一镜像
+    - 找到并加载应用程序二进制码
+    - **特权级切换**
+       - 相关CSR
+       - ecall后的硬件控制逻辑
+       - 用户栈与内核栈
+       - **Trap上下文**
+       - Trap Handlers
+![bg right:35% 100%](figs/batch-os-detail.png)
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- trap_handler处理syscall
@@ -798,6 +881,14 @@ pub fn sys_exit(xstate: i32) -> ! {
 ```
 
 
+---
+## 实践：批处理OS -- 程序设计
+- 内核程序设计
+    - 内核与应用形成单一镜像
+    - 找到并加载应用程序二进制码
+    - 特权级切换
+    - **执行应用程序**
+![bg right 100%](figs/batch-os-detail.png)
 ---
 ## 实践：批处理OS -- 程序设计
 ### 实现batch OS -- 执行应用程序
@@ -852,3 +943,15 @@ ub fn run_next_app() -> ! {
 提问
 
  sscratch 是何时被设置为内核栈顶的？
+
+---
+## 小结
+- OS与硬件的关系
+- OS与应用程序的关系
+- 隔离（isolation）机制
+- 批处理创建并执行程序
+- 特权级切换
+- 系统调用
+- 能写Dunkleosteus OS
+
+![bg right 100%](figs/batch-os-detail.png)
