@@ -11,11 +11,11 @@ footer: ''
 <!-- _class: lead -->
 
 ## 第四讲 多道程序与分时多任务
-### 第二节 实践：多道程序操作系统
+### 第二节 实践：多道程序与分时多任务操作系统
 
 
 ---
-## 实践：multiprog OS
+## 实践：multiprog & time-sharing OS
 - **进化目标**
 - 总体思路
 - 历史背景
@@ -23,8 +23,11 @@ footer: ''
 - 软件架构
 - 相关硬件
 - 程序设计
+
+![bg right 100%](figs/multiprog-os-detail.png)
+
 ---
-## 实践：multiprog OS
+## 实践：multiprog & time-sharing OS
 ### 进化目标
 - 进一步提高系统中多个应用的总体性能和效率
 ### BatchOS目标
@@ -32,6 +35,18 @@ footer: ''
 ### LibOS目标
 - 让应用与硬件隔离，简化应用访问硬件的难度和复杂性
 
+
+---
+## 实践：multiprog & time-sharing OS
+### 同学的进化目标
+- 理解协作式调度
+- 理解抢占式调度
+- 理解任务抽象
+- 理解任务切换
+- 会写多道程序操作系统
+- 会写分时多任务操作系统
+
+![bg right 80%](figs/ch3-oses.png)
 
 ---
 ## 实践：multiprog OS
@@ -42,6 +57,9 @@ footer: ''
 - 软件架构
 - 相关硬件
 - 程序设计
+
+![bg right 100%](figs/multiprog-os-detail.png)
+
 ---
 ## 实践：multiprog OS
 ### 总体思路
@@ -64,6 +82,9 @@ footer: ''
 - 程序设计
 
 
+![bg right 100%](figs/multiprog-os-detail.png)
+
+
 ---
 ## 实践：multiprog OS
 ### 历史
@@ -80,15 +101,6 @@ footer: ''
 
 ![bg right 100%](figs/multiprog-os.png)
 
----
-## 实践：multiprog OS
-### 步骤（基于BatchOS）
-- 修改APP的链接脚本(定制起始地址)
-- 加载&执行应用
-- 切换任务
-
-![bg right 100%](figs/multiprog-os.png)
-
 
 ---
 ## 实践：multiprog OS
@@ -100,6 +112,18 @@ footer: ''
 - 相关硬件
 - 程序设计
 
+![bg right 100%](figs/multiprog-os-detail.png)
+
+
+---
+## 实践：multiprog OS
+### 步骤（基于BatchOS）
+- 修改APP的链接脚本(定制起始地址)
+- 加载&执行应用
+- 切换任务
+
+![bg right 100%](figs/multiprog-os.png)
+
 ---
 ## 实践：multiprog OS
 ### 具体步骤
@@ -107,6 +131,13 @@ footer: ''
 git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 cd rCore-Tutorial-v3
 git checkout ch3-coop
+```
+包含三个应用程序，大家谦让着交替执行
+```
+user/src/bin/
+├── 00write_a.rs # 5次显示 AAAAAAAAAA 字符串
+├── 01write_b.rs # 2次显示 BBBBBBBBBB 字符串
+└── 02write_c.rs # 3次显示 CCCCCCCCCC 字符串
 ```
 
 ---
@@ -138,6 +169,9 @@ CCCCCCCCCC [3/3]
 - **软件架构**
 - 相关硬件
 - 程序设计
+
+![bg right 100%](figs/multiprog-os-detail.png)
+
 ---
 ## 实践：multiprog OS -- 软件架构
 ### 代码结构
@@ -153,7 +187,7 @@ CCCCCCCCCC [3/3]
 ---
 ## 实践：multiprog OS -- 软件架构
 ### 代码结构
-改进OS：加载和执行程序
+改进OS：``Loader``模块加载和执行程序
 ```
 ├── os
 │   └── src
@@ -167,7 +201,7 @@ CCCCCCCCCC [3/3]
 ---
 ## 实践：multiprog OS -- 软件架构
 ### 代码结构
-改进OS：管理任务，切换任务
+改进OS：``TaskManager``模块管理/切换程序的执行
 ```
 ├── os
 │   └── src
@@ -190,13 +224,21 @@ CCCCCCCCCC [3/3]
 - **程序设计**  需要建立**任务抽象**
 
 
+![bg right 100%](figs/multiprog-os-detail.png)
+
+
 ---
 ## 实践：multiprog OS -- 程序设计
-- 应用程序设计
-    - **项目结构**  没有更新 应用名称有数字编号
-    - **内存布局**
-    - 系统调用  
-
+### 应用程序设计
+- **项目结构**  没有更新 应用名称有数字编号
+- **内存布局**
+- 系统调用  
+```
+user/src/bin/
+├── 00write_a.rs # 5次显示 AAAAAAAAAA 字符串
+├── 01write_b.rs # 2次显示 BBBBBBBBBB 字符串
+└── 02write_c.rs # 3次显示 CCCCCCCCCC 字符串
+```
 ---
 ## 实践：multiprog OS -- 程序设计
 ### 应用程序设计 -- 内存布局
@@ -209,10 +251,31 @@ CCCCCCCCCC [3/3]
 ## 实践：multiprog OS -- 程序设计
 ### 应用程序设计 -- 系统调用  
 
+```rust
+//00write_a.rs
+fn main() -> i32 {
+    for i in 0..HEIGHT {
+        for _ in 0..WIDTH {
+            print!("A");
+        }
+        println!(" [{}/{}]", i + 1, HEIGHT);
+        yield_(); //放弃处理器 
+    }
+    println!("Test write_a OK!");
+    0
+}
+```
+
+---
+## 实践：multiprog OS -- 程序设计
+### 应用程序设计 -- 系统调用  
+
 * 应用之间是相互不知道的
 * 应用需要主动让出处理器
 * 需要通过新的系统调用实现  
   * **``const SYSCALL_YIELD: usize = 124;``**
+
+
 
 ---
 ## 实践：multiprog OS -- 程序设计
@@ -231,12 +294,12 @@ pub fn yield_() -> isize {
 
 ---
 ## 实践：multiprog OS -- 程序设计
-- 内核程序设计
-    - **内核与应用形成单一镜像**  与之前一样
-    - **多道程序加载**
-    - 执行应用程序
-    - 任务切换
-
+### 内核程序设计
+- **内核与应用形成单一镜像**
+- **多道程序加载**
+- 执行程序
+- 任务切换
+![bg right 100%](figs/multiprog-os-detail.png)
 
 ---
 ## 实践：multiprog OS -- 程序设计
@@ -265,11 +328,13 @@ dst.copy_from_slice(src);
 
 ---
 ## 实践：multiprog OS -- 程序设计
-- 内核程序设计
-    - **内核与应用形成单一镜像**  与之前一样
-    - 多道程序加载
-    - **执行应用程序**
-    - 任务切换
+### 内核程序设计
+- 内核与应用形成单一镜像 
+- 多道程序加载
+- **执行程序**
+- 任务切换
+
+![bg right 100%](figs/multiprog-os-detail.png)
 
 ---
 ## 实践：multiprog OS -- 程序设计
@@ -287,7 +352,7 @@ dst.copy_from_slice(src);
 ## 实践：multiprog OS -- 程序设计
 ###  实现multiprog OS --执行程序
 
-- 切换上下文
+- 切换下一个程序
   - 内核态到用户态
   - 用户态到内核态
   - 应用程序上下文
@@ -297,7 +362,7 @@ dst.copy_from_slice(src);
 ## 实践：multiprog OS -- 程序设计
 ###  实现multiprog OS --执行程序
 
-- 切换应用程序上下文
+- 切换下一个程序
   - 跳转到编号i的应用程序编号i的入口点 entry(i)
   - 将使用的栈切换到用户栈stack(i) 
 
@@ -306,7 +371,7 @@ dst.copy_from_slice(src);
 ---
 ## 实践：multiprog OS -- 程序设计
 - 内核程序设计
-    - **内核与应用形成单一镜像**  与之前一样
+    - 内核与应用形成单一镜像
     - 多道程序加载
     - 执行应用程序
     - **任务切换**
