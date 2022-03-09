@@ -735,11 +735,21 @@ pub fn exit_current_and_run_next() {
 
 ---
 ## 实践：time-sharing OS -- 程序设计
+- 内核程序设计
+    - 内核与应用形成单一镜像
+    - 多道程序加载
+    - 执行应用程序
+    - 协作/**抢占调度**
+       - **任务调度**
+![bg right 100%](figs/time-task-multiprog-os-detail.png)
+
+---
+## 实践：time-sharing OS -- 程序设计
 内核程序设计 -- 基本思路
 - 设置时钟中断
 - 在收到时钟中断后统计任务的使用时间片
 - 在时间片用完后，切换任务
-
+![bg right 100%](figs/time-task-multiprog-os-detail.png)
 ---
 ## 实践：time-sharing OS -- 程序设计
 - 内核程序设计 -- 时钟中断与计时器
@@ -783,6 +793,11 @@ match scause.cause() {
 - 协作式调度&抢占式调度
 - 任务与任务切换
 - 中断机制
-- 能写锯齿螈/始初龙/腔骨龙OS
 
-![bg right:50% 100%](figs/more-task-multiprog-os-detail.png)
+---
+- 小结 ：能写锯齿螈/始初龙/腔骨龙OS
+
+  
+![bg  100%](figs/multiprog-os-detail.png)
+![bg 100%](figs/more-task-multiprog-os-detail.png)
+![bg  100%](figs/time-task-multiprog-os-detail.png)
