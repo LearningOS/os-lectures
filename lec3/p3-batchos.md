@@ -923,7 +923,7 @@ pub fn sys_exit(xstate: i32) -> ! {
 从内核态切换到用户态
 - 准备好应用的上下文``Trap上下文``
 - 恢复应用的相关寄存器
-- 特别是应用的用户栈指针和执行地址
+- 特别是应用用户栈指针和执行地址
 - **返回用户态让应用执行** 
 
 ![bg right:35% 100%](figs/kernel-stack.png)
@@ -1040,6 +1040,6 @@ __restore:
 - 批处理创建并执行程序
 - 特权级切换
 - 系统调用
-- 能写Dunkleosteus OS
+- 能写邓氏鱼OS
 
 ![bg right 100%](figs/batch-os-detail.png)
