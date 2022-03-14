@@ -93,10 +93,10 @@ footer: ''
 ---
 ## 实践：批处理OS
 ### 历史
-* GM-NAA I/O System(1956)
-  * 启发：汽车生产线 
-* MULTICS OS(1969,MIT/GE/AT&T)
-  * GE 645 具有 8 级硬件支持的保护环
+- GM-NAA I/O System(1956)
+  - 启发：汽车生产线 
+- MULTICS OS(1969,MIT/GE/AT&T)
+  - GE 645 具有 8 级硬件支持的保护环
  GM-NAA: General Motors and North American Aviation;
  GE： General Electric
 ![bg right:35% 80%](figs/deng-fish.png)
@@ -116,11 +116,11 @@ footer: ''
 ---
 ## 实践：批处理OS
 ### 步骤
-* 构造包含OS和多个APP的单一执行镜像
-* 通过批处理支持多个APP的自动加载和运行
-* 利用硬件特权级机制实现对操作系统自身的保护
-* 支持跨特权级的syscall  
-* 实现特权级的穿越
+- 构造包含OS和多个APP的单一执行镜像
+- 通过批处理支持多个APP的自动加载和运行
+- 利用硬件特权级机制实现对操作系统自身的保护
+- 支持跨特权级的syscall  
+- 实现特权级的穿越
 
 ![bg right 100%](figs/batch-os.png)
 
