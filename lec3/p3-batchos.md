@@ -308,6 +308,7 @@ RISC-V异常向量
 | 0         | 15             | Store/AMO page fault           |
 
 
+- AMO: atomic memory operation 
 
 ---
 ## 实践：批处理OS
