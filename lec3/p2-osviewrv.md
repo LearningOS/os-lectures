@@ -16,10 +16,10 @@ footer: ''
 ---
 ## 本节主要目标
 
-* 了解 RISC-V 特权级和硬件隔离方式
-* 了解 RISC-V 的 M-Mode 和 S-Mode 的基本特征
-* 了解OS在 M-Mode 和 S-Mode 下如何访问控制计算机系统
-* 了解不同软件如何在 M-Mode<–>S-Mode<–>U-Mode 之间进行切换
+- 了解 RISC-V 特权级和硬件隔离方式
+- 了解 RISC-V 的 M-Mode 和 S-Mode 的基本特征
+- 了解OS在 M-Mode 和 S-Mode 下如何访问控制计算机系统
+- 了解不同软件如何在 M-Mode<–>S-Mode<–>U-Mode 之间进行切换
 ---
 ## 第二节 从 OS 角度看RISC-V
 - **主流CPU比较**
@@ -57,13 +57,13 @@ footer: ''
 ---
 ## RISC-V 系统模式：概述
 RISC-V相关术语
-* 应用执行环境（Application Execution Environment, AEE)
-* 应用程序二进制接口（Application Binary Interface,ABI)
-* 管理员二进制接口（Supervisor Binary Interface, SBI)
-* 管理员执行环境（Supervisor Execution Environment, SEE)
-* Hypervisor：虚拟机管理程序
-* Hypervisor二进制接口（Hypervisor Binary interface，HBI）
-* Hypervisor执行环境（Hypervisor Execution Environment, HEE)
+- 应用执行环境（Application Execution Environment, AEE)
+- 应用程序二进制接口（Application Binary Interface,ABI)
+- 管理员二进制接口（Supervisor Binary Interface, SBI)
+- 管理员执行环境（Supervisor Execution Environment, SEE)
+- Hypervisor：虚拟机管理程序
+- Hypervisor二进制接口（Hypervisor Binary interface，HBI）
+- Hypervisor执行环境（Hypervisor Execution Environment, HEE)
 
 
 ---
@@ -277,13 +277,13 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 ---
 ## RISC-V 系统编程 -- U-Mode编程：系统调用
-* U-Mode 下的应用程序不能够直接使用计算机的物理资源
-* 环境调用异常：在执行 ``ecall`` 的时候发生，相当于系统调用
-* 操作系统可以直接访问物理资源
-* 如果应用程序需要使用硬件资源怎么办？
-  * 在屏幕上打印”hello world”
-  * 从文件中读入数据
-* 通过系统调用从操作系统中获得服务
+- U-Mode 下的应用程序不能够直接使用计算机的物理资源
+- 环境调用异常：在执行 ``ecall`` 的时候发生，相当于系统调用
+- 操作系统可以直接访问物理资源
+- 如果应用程序需要使用硬件资源怎么办？
+  - 在屏幕上打印”hello world”
+  - 从文件中读入数据
+- 通过系统调用从操作系统中获得服务
 
 
 ---
@@ -344,12 +344,12 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
   - 异常/中断处理的控制权移交
 ---
 ## M-Mode编程
-* M-Mode是 RISC-V 中 hart（hardware thread）的最高权限模式
-* M-Mode下，hart 对计算机系统的底层功能有完全的使用权
-* M-Mode最重要的特性是拦截和处理异常与中断
-  * 同步的异常：执行期间产生，访问无效的寄存器地址，或执行无效操作码的指令
-  * 异步的中断：指令流异步的外部事件，中断，如时钟中断
-* RISC-V 要求实现精确异常：保证异常之前的所有指令都完整执行，后续指令都没有开始执行
+- M-Mode是 RISC-V 中 hart（hardware thread）的最高权限模式
+- M-Mode下，hart 对计算机系统的底层功能有完全的使用权
+- M-Mode最重要的特性是拦截和处理异常与中断
+  - 同步的异常：执行期间产生，访问无效的寄存器地址，或执行无效操作码的指令
+  - 异步的中断：指令流异步的外部事件，中断，如时钟中断
+- RISC-V 要求实现精确异常：保证异常之前的所有指令都完整执行，后续指令都没有开始执行
 
 ---
 ## M-Mode编程 -- 中断机制 -- CSR寄存器
@@ -500,35 +500,35 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
   
 ---
 ## M-Mode编程 -- 异常/中断处理的控制权移交
-* 默认情况下，所有的异常/中断都使得控制权移交到 M-Mode的异常/中断处理程序
-* M-Mode的异常/中断处理程序可以将异常/中断重新导向 S-Mode，但是这些**额外的操作会减慢异常/中断的处理速度**
-* RISC-V 提供一种**异常/中断委托机制**，通过该机制可以选择性地将异常/中断交给 S-Mode处理，而完全绕过 M-Mode
+- 默认情况下，所有的异常/中断都使得控制权移交到 M-Mode的异常/中断处理程序
+- M-Mode的异常/中断处理程序可以将异常/中断重新导向 S-Mode，但是这些**额外的操作会减慢异常/中断的处理速度**
+- RISC-V 提供一种**异常/中断委托机制**，通过该机制可以选择性地将异常/中断交给 S-Mode处理，而完全绕过 M-Mode
 
 ---
 ## M-Mode编程 -- 异常/中断处理的控制权移交
-* mideleg/medeleg (Machine Interrupt/Exception Delegation）CSR 控制将哪些中断/异常委托给 S-Mode处理
-* mideleg/medeleg 中的每个为对应一个中断/异常
-  * 如 mideleg[5] 对应于 S-Mode的时钟中断，如果把它置位，S-Mode的时钟中断将会移交 S-Mode的异常/中断处理程序，而不是 M-Mode的异常/中断处理程序
-  * 委托给 S-Mode的任何中断都可以被 S-Mode的软件屏蔽。sie(Supervisor Interrupt Enable) 和 sip（Supervisor Interrupt Pending）CSR 是 S-Mode的控制状态寄存器
+- mideleg/medeleg (Machine Interrupt/Exception Delegation）CSR 控制将哪些中断/异常委托给 S-Mode处理
+- mideleg/medeleg 中的每个为对应一个中断/异常
+  - 如 mideleg[5] 对应于 S-Mode的时钟中断，如果把它置位，S-Mode的时钟中断将会移交 S-Mode的异常/中断处理程序，而不是 M-Mode的异常/中断处理程序
+  - 委托给 S-Mode的任何中断都可以被 S-Mode的软件屏蔽。sie(Supervisor Interrupt Enable) 和 sip（Supervisor Interrupt Pending）CSR 是 S-Mode的控制状态寄存器
 
 ---
 
 ## RISC-V 系统编程：异常/中断委托寄存器
-* mideleg (Machine Interrupt Delegation）控制将哪些中断委托给 S 模式处理
-* mideleg 中的每个为对应一个中断/异常
-  * mideleg[1]用于控制是否将核间中断交给s模式处理
-  * mideleg[5]用于控制是否将定时中断交给s模式处理
-  * mideleg[9]用于控制是否将外部中断交给s模式处理
+- mideleg (Machine Interrupt Delegation）控制将哪些中断委托给 S 模式处理
+- mideleg 中的每个为对应一个中断/异常
+  - mideleg[1]用于控制是否将核间中断交给s模式处理
+  - mideleg[5]用于控制是否将定时中断交给s模式处理
+  - mideleg[9]用于控制是否将外部中断交给s模式处理
 
 
 ---
 
 ## RISC-V 系统编程：异常/中断委托寄存器
-* medeleg (Machine Exception Delegation）控制将哪些异常委托给 S 模式处理
-* medeleg 中的每个为对应一个中断/异常
-  * medeleg[1]用于控制是否将指令获取错误异常交给s模式处理
-  * medeleg[12]用于控制是否将指令页异常交给s模式处理
-  * medeleg[9]用于控制是否将数据页异常交给s模式处理
+- medeleg (Machine Exception Delegation）控制将哪些异常委托给 S 模式处理
+- medeleg 中的每个为对应一个中断/异常
+  - medeleg[1]用于控制是否将指令获取错误异常交给s模式处理
+  - medeleg[12]用于控制是否将指令页异常交给s模式处理
+  - medeleg[9]用于控制是否将数据页异常交给s模式处理
 
 <!-- ，是 mie 和 mip 的子集。这两个寄存器和 M-Mode下有相同的布局。sie 和 sip 中只有与由 mideleg 委托的中断对应的位才能读写，没有委派的中断对应位总是 0 -->
 
@@ -536,11 +536,11 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 ## M-Mode编程 -- 异常/中断处理的控制权移交
 
 
-* 发生异常/中断时,处理器控制权不会移交给权限更低的模式
-  * 例如 medeleg[15] 会把 store page fault 委托给 S-Mode
-  * M-Mode下发生的异常总是在 M-Mode下处理
-  * S-Mode下发生的异常总是在 M-Mode，或者在 S-Mode下处理
-  * 上述两种模式发生的异常不会由 U-Mode处理 
+- 发生异常/中断时,处理器控制权不会移交给权限更低的模式
+  - 例如 medeleg[15] 会把 store page fault 委托给 S-Mode
+  - M-Mode下发生的异常总是在 M-Mode下处理
+  - S-Mode下发生的异常总是在 M-Mode，或者在 S-Mode下处理
+  - 上述两种模式发生的异常不会由 U-Mode处理 
 
 **Why？**
 
@@ -588,7 +588,7 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 
 ---
 ## S-Mode编程 -- 中断/异常机制 -- CSR寄存器
-* sstatus的SIE 和 SPIE 位分别保存了当前的和异常/中断发生之前的中断使能状态
+- sstatus的SIE 和 SPIE 位分别保存了当前的和异常/中断发生之前的中断使能状态
 
 **sstatus 寄存器**
 ![w:800](figs/rv-sstatus.png)
@@ -640,9 +640,9 @@ mtvec & stvec 寄存器
 
 hart 接受了异常/中断，并需要委派给 S-Mode，那么硬件会原子性的经历下面的状态转换
 
-* 发生异常/中断的指令 PC 被存入 sepc, 且 PC 被设置为 stvec
-* scause 设置异常/中断类型，stval被设置为出错的地址/异常相关信息
-* 把 sstatus中的 SIE 位置零，屏蔽中断， SIE 位之前的值被保存在 SPIE 位中
+- 发生异常/中断的指令 PC 被存入 sepc, 且 PC 被设置为 stvec
+- scause 设置异常/中断类型，stval被设置为出错的地址/异常相关信息
+- 把 sstatus中的 SIE 位置零，屏蔽中断， SIE 位之前的值被保存在 SPIE 位中
 
 
 ---
@@ -650,8 +650,8 @@ hart 接受了异常/中断，并需要委派给 S-Mode，那么硬件会原子�
 
 **硬件执行内容**  
 
-* 发生例外前的特权模式被保存在 sstatus 的 SPP（previous privilege） 域，然后设置当前特权模式为S-Mode
-* 跳转到stvec CSR设置的地址继续执行
+- 发生例外前的特权模式被保存在 sstatus 的 SPP（previous privilege） 域，然后设置当前特权模式为S-Mode
+- 跳转到stvec CSR设置的地址继续执行
 
 
 ---
@@ -717,9 +717,9 @@ hart 接受了异常/中断，并需要委派给 S-Mode，那么硬件会原子�
 
 <!-- ---
 ## RISC-V 系统编程：S-Mode下的隔离
-* S-Mode比 U-Mode权限更高，但是比 M-Mode权限低
-* S-Mode下运行的软件不能使用 M-Mode的 CSR 和指令，并受到 PMP 的限制
-* 支持基于页面的虚拟内存 -->
+- S-Mode比 U-Mode权限更高，但是比 M-Mode权限低
+- S-Mode下运行的软件不能使用 M-Mode的 CSR 和指令，并受到 PMP 的限制
+- 支持基于页面的虚拟内存 -->
 
 
 
@@ -727,8 +727,8 @@ hart 接受了异常/中断，并需要委派给 S-Mode，那么硬件会原子�
 ---
 ## 小结
 
-* 了解 RISC-V 特权级和硬件隔离方式
-* 了解 RISC-V 的 M-Mode 和 S-Mode 的基本特征
-* 了解OS在 M-Mode 和 S-Mode 下如何访问控制计算机系统
-* 了解不同软件如何在 M-Mode<–>S-Mode<–>U-Mode 之间进行切换
+- 了解 RISC-V 特权级和硬件隔离方式
+- 了解 RISC-V 的 M-Mode 和 S-Mode 的基本特征
+- 了解OS在 M-Mode 和 S-Mode 下如何访问控制计算机系统
+- 了解不同软件如何在 M-Mode<–>S-Mode<–>U-Mode 之间进行切换
 
