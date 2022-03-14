@@ -605,9 +605,7 @@ RISC-V 的异常: 通过 mcause 寄存器的不同位来表示
 
 ---
 ## RISC-V 系统编程：异常/中断 CSR 寄存器
-- 异常/中断向量trap-vector基地址寄存器mtvec和stvec用于保存异常/中断向量的配置，包括向量基址（BASE）和向量模式（MODE）。
-- BASE 域中的值按4字节对齐。MODE=0表示所有异常/中断都把PC设置为BASE。MODE=1在异步中断时将PC设置为 (base+(4 * cause))。
-scause CSR：当发生异常时，CSR中被写入一个指示导致异常的事件的代码，如果事件由中断引起，则置上``Interrupt``位，``Exception Code``字段包含指示最后一个异常的编码。
+- scause寄存器：当发生异常时，CSR中被写入一个指示导致异常/中断的事件编号，记录在``Exception Code``字段中；如果事件由中断引起，则置``Interrupt``位。
 scause 寄存器
 ![w:1000](figs/rv-cause.png)
 
@@ -615,7 +613,7 @@ scause 寄存器
 ---
 ## S-Mode编程 -- 中断/异常机制
 异常/中断向量（trap-vector）基地址寄存器stvec CSR用于配置trap_handler地址
- - 包括向量基址（BASE）和向量模式（MODE）：BASE 域中的值按 4 字节对齐，MODE = 0 表示一个trap_handler处理所有的异常/中断向量；MODE = 1 表示每个异常/中断向量有一个对应的trap_handler
+ - 包括向量基址（BASE）和向量模式（MODE）：BASE 域中的值按 4 字节对齐，MODE = 0 表示一个trap_handler处理所有的异常/中断；MODE = 1 表示每个异常/中断有一个对应的trap_handler
 
 mtvec & stvec 寄存器
 ![w:1000](figs/rv-tvec.png)
