@@ -316,9 +316,11 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
   - ``mret`` 机器模式返回 
   - ``sret`` 监管者模式返回
   - ``wfi`` 等待中断 (wait for interupt)
-  - ``sfense.vma`` 虚拟地址屏障(barrier)指令
-  - ``fense.i`` i-cache屏障(barrier)指令
+  - ``sfence.vma`` 虚拟地址屏障(barrier)指令
+  
 - 很多其他的系统管理功能通过读写控制状态寄存器来实现
+
+注:``fence.i``是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范
 
 <!-- 在执行 fence.i 指令之前，对于同一个硬件线程(hart)， RISC-V 不保证用存储指令写到内存指令区的数据可以被取指令取到。使用fence.i指令后，对同一hart，可以确保指令读取是最近写到内存指令区域的数据。但是，fence.i将不保证别的riscv hart的指令读取也能够满足读写一致性。如果要使写指令内存空间对所有的hart都满足一致性要求，需要执行fence指令。 -->
 

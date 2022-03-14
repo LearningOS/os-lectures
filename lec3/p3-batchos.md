@@ -575,6 +575,8 @@ unsafe fn load_app(&self, app_id: usize) {
 
 - fence.i ：用来清理 i-cache
 
+注:``fence.i``是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范
+
 **WHY？**
 
 ---
