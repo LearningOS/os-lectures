@@ -5,6 +5,7 @@ paginate: true
 _paginate: false
 header: ''
 footer: ''
+backgroundColor: white
 ---
 
 <!-- theme: gaia -->
@@ -12,7 +13,7 @@ footer: ''
 
 ## 第七讲 进程管理与单处理器调度
 
-### 第二节 实时调度
+### 第三节 实时调度
 
 ---
 ### 实时操作系统

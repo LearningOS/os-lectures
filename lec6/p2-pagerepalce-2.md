@@ -5,6 +5,7 @@ paginate: true
 _paginate: false
 header: ''
 footer: ''
+backgroundColor: white
 ---
 
 <!-- theme: gaia -->

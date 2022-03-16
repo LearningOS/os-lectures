@@ -5,12 +5,13 @@ paginate: true
 _paginate: false
 header: ''
 footer: ''
+backgroundColor: white
 ---
 
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-## 第三讲 基于特权级的隔离与批处理操作系统
+## 第三讲 基于特权级的隔离与批处理
 ### 第一节 从 OS 角度看计算机系统
 <br>
 <br>

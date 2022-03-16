@@ -5,6 +5,7 @@ paginate: true
 _paginate: false
 header: ''
 footer: ''
+backgroundColor: white
 ---
 
 <!-- theme: gaia -->
@@ -26,7 +27,7 @@ footer: ''
 
 ---
 
-## 第三讲 基于特权级的隔离与批处理操作系统
+## 第三讲 基于特权级的隔离与批处理
 - [第一节 从 OS 角度看计算机系统](./lec3/p1-osviewarch.html)
 - [第二节 从 OS 角度看RISC-V](./lec3/p2-osviewrv.html)
 - [第三节 实践：批处理操作系统](./lec3/p3-batchos.html)
