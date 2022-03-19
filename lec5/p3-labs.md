@@ -685,7 +685,7 @@ pub struct MemorySet {
     - 创建页表
     - 创建逻辑段向量 
 
-![bg right:40% 100%](figs/app-as-full.png)
+![bg right:50% 100%](figs/app-as-full.png)
 
 
 ---
@@ -694,7 +694,7 @@ pub struct MemorySet {
   - 在地址空间插入/删除一个逻辑段
     - 需要更新页表中的相应页表项
     - 更新逻辑段对应的物理页帧内容 
-![bg right:40% 100%](figs/app-as-full.png)
+![bg right:50% 100%](figs/app-as-full.png)
 
 
 
@@ -723,7 +723,7 @@ pub struct MemorySet {
 1. 创建内核地址空间
 2. 内存管理子系统的初始化
 
-![bg right:40% 100%](figs/trampoline.png)
+![bg right:60% 100%](figs/trampoline.png)
 
 ---
 ### 实现ASOS -- 1. 启动分页模式
@@ -732,6 +732,8 @@ pub struct MemorySet {
 ```rust
 pub static ref KERNEL_SPACE: MemorySet = MemorySet::new_kernel()
 ```
+
+
 ---
 ### 实现ASOS -- 1. 启动分页模式
 2. 内存管理子系统的初始化
@@ -851,7 +853,7 @@ RISC-V只提供一个 sscratch 寄存器可用来进行临时周转
 
 **恢复Trap上下文**
 - 上述过程的逆过程
-- 
+
 ---
 ### 实现ASOS -- 2. 实现跳板机制 -- 切换Traps上下文
 **保存Trap上下文**
