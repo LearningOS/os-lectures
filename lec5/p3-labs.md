@@ -236,7 +236,7 @@ power_3 [130000/300000]
              ├──heap_allocator.rs(内核动态内存分配器)
              ├──memory_set.rs(引入地址空间 MemorySet 及逻辑段 MemoryArea 等)
              ├──mod.rs(定义了 mm 模块初始化方法 init)
-             └── page_table.rs(多级页表抽象 PageTable 以及其他内容)
+             └──page_table.rs(多级页表抽象 PageTable 以及其他内容)
 ```
 
 ---
@@ -250,7 +250,7 @@ power_3 [130000/300000]
          ├── task
              ├──context.rs(修改：构造一个跳转到不同位置的初始任务上下文)
              ├──mod.rs(修改)
-             └── task.rs(修改)
+             └──task.rs(修改)
          └── trap
              ├── context.rs(修改：在 Trap 上下文中加入了更多内容)
              ├── mod.rs(修改：基于地址空间修改了 Trap 机制)
@@ -330,7 +330,7 @@ RISC-V SV39页机制
     - 地址空间
     - 实现ASOS
 
-![bg right:40% 100%](figs/addr-space-os-detail.png)
+![bg right:65% 100%](figs/addr-space-os-detail.png)
 
 
 
