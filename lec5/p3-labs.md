@@ -12,7 +12,7 @@ backgroundColor: white
 <!-- _class: lead -->
 
 ## 第五讲 地址空间-物理内存管理
-### 第三节 实践：地址空间抽象的OS
+### 第三节 实践：建立地址空间的OS
 <br>
 <br>
 

@@ -37,3 +37,11 @@ backgroundColor: white
 ## 第四讲 多道程序与分时多任务
 - [第一节 相关背景与基本概念](./lec4/p1-multiprog.html)
 - [第二节 实践：多道程序与分时多任务操作系统](./lec4/p2-labs.html)
+
+
+---
+
+## 第五讲 地址空间-物理内存管理
+- [第一节 地址空间](./lec5/p1-memintro.html)
+- [第二节 内存分配](./lec5/p2-memalloc.html)
+- [第三节 实践：建立地址空间的OS](./lec5/p3-labs.html)
