@@ -428,7 +428,7 @@ RISC-V SV39页机制
     - 地址空间
     - 实现ASOS
 
-![bg right:40% 100%](figs/addr-space-os-detail.png)
+![bg right:60% 100%](figs/addr-space-os-detail.png)
 
 
 
@@ -444,14 +444,14 @@ RISC-V SV39页机制
   - 函数调用
   - 系统调用
 
-![bg right:50% 100%](figs/app-as-full.png)
+![bg right:60% 100%](figs/app-as-full.png)
 
 ---
 ### 应用程序设计 -- 内存布局
 * 由于每个应用被加载到的位置都相同，所以它们共用一个链接脚本 linker.ld    
   * **``BASE_ADDRESS``** =  0x10000
 
-![bg right:50% 100%](figs/app-as-full.png)
+![bg right:60% 100%](figs/app-as-full.png)
 
 
 ---
@@ -465,7 +465,7 @@ RISC-V SV39页机制
     - 地址空间
     - 实现ASOS
 
-![bg right:40% 100%](figs/addr-space-os-detail.png)
+![bg right:60% 100%](figs/addr-space-os-detail.png)
 
 ---
 ### 内核程序设计
@@ -474,33 +474,30 @@ RISC-V SV39页机制
 - 地址空间
 - 实现ASOS
 
-![bg right:50% 100%](figs/addr-space-os-detail.png)
+![bg right:60% 100%](figs/addr-space-os-detail.png)
 
 ---
 ### 内核程序设计
 
 - **内核理解地址空间**
-
   - 建立&感知虚拟/物理地址
   - 在内核/应用虚拟地址空间之间穿越
+- 应用的页表仅代表了内核管理下的现实情况下的应用地址空间
+- 应用的页表体现的仅仅是CPU"能看"到的应用地址空间
 
-应用的页表仅仅代表了内核管理下的现实情况下的应用地址空间
-
-应用的页表体现的仅仅是CPU"能看"到的应用地址空间
-
-![bg right:50% 100%](figs/trampoline.png)
+![bg right:60% 100%](figs/trampoline.png)
 
 
 
 ---
 ### 内核程序设计
 **内核理解地址空间**
-从应用角度"看到"的地址空间是逻辑段
-应用的逻辑段代表了理想情况下的应用地址空间
+- 从应用角度"看到"的地址空间是逻辑段
+- 应用的逻辑段代表了理想情况下的应用地址空间
 **理想: 丰满  v.s.  现实: 骨感**    
 - 逻辑段：内核/应用会用到的一段连续地址的虚拟内存
 - 内核/应用运行的虚拟地址空间由多个逻辑段组成
-![bg right:40% 100%](figs/seg-addr-space.png)
+![bg right:45% 100%](figs/seg-addr-space.png)
 
 
 ---
@@ -510,7 +507,7 @@ RISC-V SV39页机制
 - 地址空间
 - 实现ASOS
 
-![bg right:50% 100%](figs/addr-space-os-detail.png)
+![bg right:60% 100%](figs/addr-space-os-detail.png)
 
 
 ---
