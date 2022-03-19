@@ -125,7 +125,7 @@ backgroundColor: white
 
 ---
 ### 第一节 地址空间 -- 地址检查
-![w:800](figs/addr-check.png)
+![w:850](figs/addr-check-exp.png)
 
 
 ---
