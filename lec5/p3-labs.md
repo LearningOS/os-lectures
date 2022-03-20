@@ -278,7 +278,7 @@ RISC-V SV39页机制
 
 - 控制硬件分页机制
 
-
+satp:页表基址寄存器
 ![bg right:55% 100%](figs/sv39-full.png)
 
 ---
@@ -288,6 +288,9 @@ RISC-V SV39页机制
 - 然后S-Mode的OS在初始化页表后会再次写satp
   - 使能页表:``MODE``=8
   - 设定页表起始物理地址页号 ``PPN``
+
+satp:页表基址寄存器
+
 ![bg right:55% 100%](figs/sv39-full.png)
 
 ---
@@ -367,7 +370,7 @@ RISC-V SV39页机制
 **理解跳板**
 跳板页
 - 应用与内核的跳板Trampoline页的虚拟地址是相同的，且映射到同一物理页
-- 放置的时``trap.S``中的执行代码
+- 放置的是``trap.S``中的执行代码
 <!-- - 但用户态无法访问此内存区域
 - 产生异常/中断时，会跳到跳板页的``_all_traps``入口
 - 并在切换页表后，平滑地继续执行 -->
@@ -378,10 +381,10 @@ RISC-V SV39页机制
 ---
 **理解跳板**
 基于跳板页的**平滑过渡**
-- **特权级过渡**：产生异常/中断时，处理器会跳到跳板页的``_all_traps``入口
+- **特权级过渡**：产生异常/中断时，CPU会跳到跳板页的``_all_traps``入口
 - **地址空间过渡**：并在切换页表后，可平滑地继续执行内核代码
 
-![bg right:65% 100%](figs/trampoline.png)
+![bg right:55% 100%](figs/trampoline.png)
 
 
 ---
@@ -390,15 +393,15 @@ RISC-V SV39页机制
 - 跳板页的``_restore``汇编函数会从陷入上下文中恢复相关寄存器
 
 
-![bg right:65% 100%](figs/trampoline.png)
+![bg right:55% 100%](figs/trampoline.png)
 
 
 ---
 
-**回顾没有使能页机制的OS**
+**回顾之前没有页机制的OS**
 陷入上下文保存在内核栈顶
 ``sscratch``保存应用的内核栈
-- 只通过``sscratch``寄存器进行中转**用户/内核的栈指针**
+- 只通过``sscratch``寄存器中转**用户/内核的栈指针**
 - 当一个应用 Trap 到内核时，sscratch 已指向该应用的内核栈栈顶，我们用一条指令即可从用户栈切换到内核栈，然后直接将 Trap 上下文压入内核栈栈顶。
 
 ![bg right:50% 100%](figs/trampoline.png)
@@ -406,14 +409,48 @@ RISC-V SV39页机制
 
 ---
 **对比使能页机制的OS**
-如何只通过``sscratch``寄存器进行中转**栈指针**和**页表基址**？
-``sscratch``：应用的陷入上下文地址
+如何只通过``sscratch``寄存器中转**栈指针**和**页表基址**？
+- 能用之前的方法吗？
+- 方案1：通过``sscratch``寄存器中转**用户/内核的栈指针**
+- 方案2：通过``sscratch``寄存器中转**用户栈指针/页表基址**
+
+![bg right:30% 100%](figs/kernel-stack.png)
+
+
+---
+**对比使能页机制的OS**
+如何只通过``sscratch``寄存器中转**栈指针**和**页表基址**？
+- 通过``sscratch``寄存器中转**用户/内核的栈指针**
+   - 当前sp指针指向的是内核地址空间
+   - 而此时页表还是用的用户态页表
+- 导致在内核态产生异常，**系统崩溃** 
+
+![bg right:30% 100%](figs/kernel-stack.png)
+
+
+
+
+---
+**对比使能页机制的OS**
+如何只通过``sscratch``寄存器中转**栈指针**和**页表基址**？
+- 通过``sscratch``寄存器中转**用户栈指针/页表基址**
+- 当前用的是内核态页表，访问内核地址空间
+- 接下来需要取得应用的内核栈指针来把用户态当前的通用寄存器保存到陷入上下文中
+- 获取内核栈指针需要修改（**破坏**）通用寄存器才能完成，无法**正确保存**
+
+
+![bg right:25% 100%](figs/kernel-stack.png)
+
+---
+**对比使能页机制的OS**
+如何只通过``sscratch``寄存器中转**栈指针**和**页表基址**？
+**方案3**：``sscratch``：应用的陷入上下文地址
 - 通过``sscratch``进行应用的用户态栈指针<->陷入上下文地址切换;
 - 保存用户态寄存器到陷入上下文;
 - 读出陷入上下文中的页表基址/应用的内核栈指针/**trap_handler**地址；
 - 切换页表，跳转**trap_handler**
 
-![bg right:39% 100%](figs/trampoline.png)
+![bg right:35% 100%](figs/trampoline.png)
 
 
 
@@ -485,19 +522,7 @@ RISC-V SV39页机制
 - 应用的页表仅代表了内核管理下的现实情况下的应用地址空间
 - 应用的页表体现的仅仅是CPU"能看"到的应用地址空间
 
-![bg right:60% 100%](figs/trampoline.png)
-
-
-
----
-### 内核程序设计
-**内核理解地址空间**
-- 从应用角度"看到"的地址空间是逻辑段
-- 应用的逻辑段代表了理想情况下的应用地址空间
-**理想: 丰满  v.s.  现实: 骨感**    
-- 逻辑段：内核/应用会用到的一段连续地址的虚拟内存
-- 内核/应用运行的虚拟地址空间由多个逻辑段组成
-![bg right:45% 100%](figs/seg-addr-space.png)
+![bg right:35% 100%](figs/trampoline.png)
 
 
 ---
@@ -517,7 +542,7 @@ RISC-V SV39页机制
   - 建立内核/应用页表
   - 使能页机制
 
-![bg right:50% 100%](figs/page-overview.png)
+![bg right:45% 100%](figs/page-overview.png)
 
 
 
@@ -559,7 +584,7 @@ RISC-V SV39页机制
   - 分配/回收物理页帧的接口
     - 提供``alloc``和``dealloc``函数接口 
 
-![bg right:50% 100%](figs/addr-space-os-detail.png)
+![bg right:45% 100%](figs/addr-space-os-detail.png)
 
 ---
 ### 内核程序设计 -- 页表机制
@@ -568,14 +593,14 @@ RISC-V SV39页机制
   - **建立内核/应用页表**
   - 使能页机制
 
-![bg right:50% 100%](figs/page-overview.png)
+![bg right:45% 100%](figs/page-overview.png)
 
 ---
 ### 内核程序设计 -- 页表机制
 - **建立内核/应用页表**
 SV39 多级页表是以页大小的节点为单位进行管理。每个节点恰好存储在一个物理页帧中，它的位置可以用一个物理页号来表示
 satp:(Supervisor Address Translation and Protection)CSR
-![bg right:55% 100%](figs/sv39-full.png)
+![bg right:45% 100%](figs/sv39-full.png)
 
 
 ---
@@ -610,13 +635,15 @@ satp: 包含页表起始处PPN的CSR
   - 管理物理内存
   - 建立内核/应用页表
   - **使能页机制**
-    - 设置``satp`` 
+    - 设置``satp= root_ppn`` 
+
+核心数据结构的包含关系
 ```
-TCB-->MemorySet-->
-PageTable-->root_ppn
+TCB-->MemorySet-->PageTable-->root_ppn
+任务控制块  --------------->任务的页表基址
 ```
 
-![bg right:65% 100%](figs/kernel-as-low.png)
+![bg right:50% 100%](figs/kernel-as-low.png)
 ![bg right 100%](figs/kernel-as-high.png)
 
 
@@ -654,7 +681,7 @@ PageTable-->root_ppn
 
 pub struct MapArea {
     vpn_range: VPNRange, //一段虚拟页号的连续区间
-    data_frames: BTreeMap<VirtPageNum, FrameTracker>,
+    data_frames: BTreeMap<VirtPageNum, FrameTracker>,//VPN<-->PPN映射关系
     map_type: MapType,  //映射类型
     map_perm: MapPermission, //可读/可写/可执行属性
 }
@@ -677,6 +704,14 @@ pub struct MemorySet {
 - 一个多级页表： 基于数据结构``PageTable``的变量``page_table`` 
 - 一个逻辑段集合： 基于数据结构``MapArea`` 的向量 ``areas``
 
+---
+### 内核程序设计 -- 地址空间
+- 操作系统何时会管理**地址空间** ``MemorySet``=``PageTable``+``MapAreas``
+   - 创建任务：创建任务的 ``MemorySet``
+   - 清除任务：回收任务的 ``MemorySet``所占内存
+   - 调整应用的内存空间大小： 修改任务的``MemorySet``
+   - 用户态切换到内核态：切换任务的``MemorySet``为内核的``MemorySet``
+   - 内核态切换到用户态：切换内核的``MemorySet``为任务的``MemorySet``
 
 ---
 ### 内核程序设计 -- 地址空间
@@ -712,11 +747,11 @@ pub struct MemorySet {
 ---
 ### 内核程序设计 -- 实现ASOS -- 0. 扩展工作概述
 对分时共享多任务操作系统的扩展
-- 创建内核页表，使能分页机制，建立内核的虚拟地址空间；
-- 扩展Trap上下文，在保存与恢复Trap上下文的过程中切换页表（即切换虚拟地址空间）；
-- 建立用于内核地址空间与应用地址空间相互切换所需的跳板空间；
-- 扩展任务控制块包括虚拟内存相关信息，并在加载执行创建基于某应用的任务时，建立应用的虚拟地址空间；
-- 改进Trap处理过程和sys_write等系统调用的实现以支持分离的应用地址空间和内核地址空间。
+1. 创建内核页表，使能分页机制，建立内核的虚拟地址空间；
+2. 扩展Trap上下文，在保存与恢复Trap上下文的过程中切换页表（即切换虚拟地址空间）；
+3. 建立用于内核地址空间与应用地址空间相互切换所需的跳板空间；
+4. 扩展任务控制块包括虚拟内存相关信息，并在加载执行创建基于某应用的任务时，建立应用的虚拟地址空间；
+5. 改进Trap处理过程和sys_write等系统调用的实现以支持分离的应用地址空间和内核地址空间。
 
 ---
 ### 实现ASOS -- 1. 启动分页模式

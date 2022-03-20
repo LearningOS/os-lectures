@@ -334,6 +334,37 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 
 
 ---
+### 内核程序设计 --  应用的链接与加载支持
+在编译操作系统的过程中，会生成如下的 link_app.S 文件
+```
+ 3 _num_app:
+ 4     .quad 15            #应用程序个数
+ 7 ......
+ 9 _app_names:             #app0的名字
+10     .string "exit"          
+12 ......
+17 app_0_start:            #app0的开始位置
+18     .incbin "../user/target/riscv64gc-unknown-none-elf/release/exit"
+19 app_0_end:              #app0的结束位置
+```
+
+
+---
+### 内核程序设计 --  应用的链接与加载支持
+- 基于应用名的应用加载
+在加载器 loader.rs 中，我们会分析 link_app.S 中的内容，并用一个全局可见的 只读 向量 ``APP_NAMES`` 来按照顺序将所有应用的名字保存在内存中，为通过 exec 系统调用创建新进程做好了前期准备。
+
+
+---
+### 内核程序设计 -- 核心数据结构
+进程抽象的对应实现是进程控制块 -- ``TaskControlBlock``
+
+
+
+
+
+
+---
 ## 小结
 - 进程概念与进程实现的关系
 - 进程管理机制
