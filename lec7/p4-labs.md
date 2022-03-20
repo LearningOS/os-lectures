@@ -78,6 +78,19 @@ Process OS(POS)
 
 ![bg right:65% 100%](figs/process-os-detail.png)
 
+
+---
+## 实践：POS
+- 进化目标
+- **总体思路**
+- 历史背景
+- 实践步骤
+- 软件架构
+- 相关硬件
+- 程序设计
+
+![bg right:65% 100%](figs/process-os-key-structures.png)
+
 ---
 ### 总体思路
 - 编译：应用程序和内核独立编译，合并为一个镜像
@@ -162,14 +175,12 @@ Rust user shell
 
 ---
 **软件架构**
-- 简化应用
-- 建立Paging
-- 内核页表
-- 应用页表
-- 信息传递
-- 跳板机制
-- 扩展TCB
-- 扩展异常
+
+- 管理进程
+    - 创建
+    - 回收
+    - fork
+    - exec
   
 ![bg right:65% 100%](figs/process-os-detail.png)
 
@@ -213,7 +224,7 @@ Rust user shell
 - 历史背景
 - 实践步骤
 - 软件架构
-- **相关硬件** 没有变化
+- **相关硬件 无变化**
 - 程序设计
 
 ![bg right:65% 100%](figs/process-os-detail.png)
@@ -356,13 +367,157 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 
 
 ---
+### 内核程序设计 -- 核心数据结构 -- 关系图
+
+![w:650](figs/process-os-key-structures.png)
+
+---
+### 内核程序设计 -- 核心数据结构
+进程抽象的对应实现是进程控制块 --TCB  ``TaskControlBlock``
+```rust
+pub struct TaskControlBlock {
+    // immutable
+    pub pid: PidHandle,                      // 进程id
+    pub kernel_stack: KernelStack,           // 进程内核栈
+    // mutable
+    inner: UPSafeCell<TaskControlBlockInner>,//进程内部管理信息
+}
+```
+
+
+
+---
 ### 内核程序设计 -- 核心数据结构
 进程抽象的对应实现是进程控制块 -- ``TaskControlBlock``
+```rust
+pub struct TaskControlBlockInner {
+    pub trap_cx_ppn: PhysPageNum,               // 陷入上下文页的物理页号
+    pub base_size: usize,                       // 进程的用户栈顶
+    pub task_cx: TaskContext,                   // 进程上下文
+    pub task_status: TaskStatus,                // 进程执行状态  
+    pub memory_set: MemorySet,                  // 进程地址空间
+    pub parent: Option<Weak<TaskControlBlock>>, // 父进程控制块
+    pub children: Vec<Arc<TaskControlBlock>>,   // 子进程任务控制块组
+    pub exit_code: i32,                         // 退出码
+}
+```
+
+---
+### 内核程序设计 -- 核心数据结构
+管理进程的进程管理器 ``TaskManager``
+```rust
+pub struct TaskManager {
+    ready_queue: VecDeque<Arc<TaskControlBlock>>,  // 就绪态任务控制块的链表
+}
+```
+- 任务管理器自身仅负责管理所有就绪的进程
+
+---
+### 内核程序设计 -- 核心数据结构
+处理器管理结构 ``Processor`` 描述CPU 执行状态
+```rust
+pub struct Processor {
+    current: Option<Arc<TaskControlBlock>>, // 在当前处理器上正在执行的任务
+    idle_task_cx: TaskContext,              // 表示在当前处理器上正在执行的任务
+}
+```
+- 负责从任务管理器 `TaskManager` 中分出去的维护 CPU 状态的职责
+- 维护在一个处理器上正在执行的任务，可以查看它的信息或是对它进行替换
+- `Processor` 有一个 idle 控制流，功能是尝试从任务管理器中选出一个任务来在当前 CPU 核上执行，有自己的CPU启动内核栈上
 
 
 
+---
+### 内核程序设计 -- 设计实现  -- 概述
+1. 创建初始进程：创建第一个用户态进程 `initproc`
+2. 进程生成机制：介绍进程相关的系统调用 `sys_fork`/`sys_exec` 
+3. 进程调度机制：进程主动/被动切换
+4. 进程资源回收机制：调用` sys_exit` 退出或进程终止后保存其退出码
+5. 进程资源回收机制：父进程通过 `sys_waitpid` 收集该进程的信息并回收其资源
+6. 字符输入机制：通过`sys_read` 系统调用获得字符输入
 
 
+---
+### 内核程序设计 -- 设计实现 
+创建初始进程
+```rust
+lazy_static! {
+    pub static ref INITPROC: Arc<TaskControlBlock> = Arc::new(
+        TaskControlBlock::new(get_app_data_by_name("initproc").unwrap()));
+}
+pub fn add_initproc() {
+    add_task(INITPROC.clone());
+}
+```
+- `TaskControlBlock::new` 会解析`initproc`的ELF执行文件格式，并建立应用的地址空间、内核栈等，形成一个就绪的进程控制块
+- `add_task`会把进程控制块加入就绪队列中
+
+
+
+---
+### 内核程序设计 -- 设计实现 
+进程生成机制-- `fork` ： 复制父进程内容并构造新的进程控制块
+```rust
+   pub fn fork(self: &Arc<TaskControlBlock>) -> Arc<TaskControlBlock> {...}
+```
+-   建立新页表，复制父进程地址空间的内容
+-  创建新的陷入上下文
+-  创建新的应用内核栈
+-  创建任务上下文
+-  建立父子关系
+-  设置`0`为`fork`返回码
+
+
+
+---
+### 内核程序设计 -- 设计实现 
+进程生成机制-- `exec` ：用新应用的 ELF 可执行文件中的代码和数据替换原有的应用地址空间中的内容
+```rust
+   pub fn exec(&self, elf_data: &[u8]) {...}
+```
+- 回收已有应用地址空间，基于ELF 文件的全新的地址空间直接替换已有应用地址空间
+- 修改进程控制块的 Trap 上下文，将解析得到的应用入口点、用户栈位置以及一些内核的信息进行初始化
+
+
+---
+### 内核程序设计 -- 设计实现 
+进程调度机制：暂停当前任务并切换到下一个任务
+- 时机
+   - `sys_yield`系统调用时
+   - 进程的时间片用完时
+- 操作
+   - 执行`suspend_current_and_run_next` 函数
+      - 取出当前正在执行的任务，修改其状态，放入就绪队列队尾
+      - 接着调用 schedule 函数来触发调度并切换任务
+
+---
+### 内核程序设计 -- 设计实现 
+进程资源回收机制 -- `exit_current_and_run_next` -- 进程退出 
+- 当前进程控制块从``PROCESSOR``中取出，修改其为僵尸进程
+- 退出码 `exit_code `写入进程控制块中
+- 把自己挂到`initproc`的子进程集合中
+- 释放应用地址空间
+- 接着调用 schedule 函数来触发调度并切换任务
+
+
+---
+### 内核程序设计 -- 设计实现 
+进程资源回收机制 -- `sys_waitpid` -- 等待子进程退出
+
+- 如果不存在进程 ID 为 pid（pid==-1 或 > 0）的子进程，则返回 -1
+- 如果存在进程 ID 为 pid 的僵尸子进程，则正常回收子进程，返回子进程pid，更新退出码参数为 exit_code 
+- 子进程还没退出，返回 -2，用户库看到是 -2 后，就进一步调用 sys_yield 系统调用，让父进程进入等待状态
+- 返回前，释放子进程的进程控制块
+---
+### 内核程序设计 -- 设计实现 
+字符输入机制
+```rust
+pub fn sys_read(fd: usize, buf: *const u8, len: usize) -> isize {
+   c=sbi::console_getchar(); ...}
+  
+```
+- 目前仅支持每次只能读入一个字符
+- 调用 sbi 子模块提供的从键盘获取输入的接口 `console_getchar` 
 
 ---
 ## 小结
@@ -370,4 +525,4 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 - 进程管理机制
 - 基本调度机制
 - 能写伤齿龙OS
-![bg right:50% 100%](figs/process-os-detail.png)
+![bg right 50%](figs/troodon.png)
