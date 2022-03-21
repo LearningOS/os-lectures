@@ -41,7 +41,7 @@ Address Space OS(ASOS)
 - BatchOS目标
   - 让APP与OS隔离，加强系统安全，提高执行效率
 - LibOS目标
-  - 让APP与HW隔离，简化应用访问硬件的难度和复杂性
+  - 让APP与硬件隔离，简化应用访问硬件的难度和复杂性
 ---
 ## 实践：地址空间抽象的OS
 ### 进化目标
@@ -270,6 +270,41 @@ power_3 [130000/300000]
 
 ![bg right:65% 100%](figs/addr-space-os-detail.png)
 
+
+---
+## RISC-V 系统编程：S 模式的虚拟内存系统
+
+- 虚拟地址将内存划分为固定大小的页来进行地址转换和内容保护。
+- satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器控制了分页。satp 有三个域：
+
+  - MODE 域可以开启分页并选择页表级数
+  - ASID（Address Space Identifier，地址空间标识符）域是可选的，它可以用来降低上下文切换的开销
+  - PPN 字段保存了根页表的物理地址
+![w:800](figs/satp.png)
+
+---
+## S-Mode编程 -- 虚存机制
+
+- 通过stap CSR建立页表基址
+- 建立OS和APP的页表
+- 处理内存访问异常
+
+
+![bg right 90%](figs/riscv_pagetable.svg)
+
+---
+##  S-Mode编程 -- 虚存机制
+- S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地址：
+
+  - satp.PPN 给出了一级页表的基址， VA [31:22] 给出了一级页号，CPU会读取位于地址(satp. PPN × 4096 + VA[31: 22] × 4)页表项。
+  - PTE 包含二级页表的基址，VA[21:12]给出了二级页号，CPU读取位于地址(PTE. PPN × 4096 + VA[21: 12] × 4)叶节点页表项。
+  - 叶节点页表项的PPN字段和页内偏移（原始虚址的最低 12 个有效位）组成了最终结果：物理地址(LeafPTE.PPN×4096+VA[11: 0])
+
+
+---
+##  S-Mode编程 -- 虚存机制
+- S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地址：
+![w:500](figs/satp2.png)
 
 ---
 RISC-V SV39页机制
