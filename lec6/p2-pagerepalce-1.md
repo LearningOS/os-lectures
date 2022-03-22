@@ -672,8 +672,8 @@ c, a, d, b, e, b, a, b, c, d 用字符表示
 
 ---
 ### Belady现象 -- FIFO算法有Belady现象   
-![w:900](figs/belady-3fifo-7.png)
-
+![w:600](figs/belady-3fifo-6.png)
+![w:600](figs/belady-4fifo-5.png)
 <!--![bg left:50% 100%](figs/belady-3fifo-7.png) 
 ![bg right:50% 100%](figs/belady-4fifo-5.png)-->
 <!--![w:900](figs/belady-4fifo-5.png) -->
