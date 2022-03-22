@@ -669,6 +669,15 @@ c, a, d, b, e, b, a, b, c, d 用字符表示
 ![w:900](figs/belady-4fifo-5.png)
 
 
+
+---
+### Belady现象 -- FIFO算法有Belady现象   
+![w:900](figs/belady-3fifo-7.png)
+
+<!--![bg left:50% 100%](figs/belady-3fifo-7.png) 
+![bg right:50% 100%](figs/belady-4fifo-5.png)-->
+<!--![w:900](figs/belady-4fifo-5.png) -->
+
 ---
 ### Belady现象 -- LRU算法无Belady现象   
 ![w:900](figs/belady-lru.png)
