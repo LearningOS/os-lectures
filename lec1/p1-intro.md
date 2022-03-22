@@ -72,16 +72,15 @@ backgroundColor: white
 
 ---
 
-
-### 参考教材
-#### [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
-
-#### 课程在线Slides
-- http://learningos.github.io/os-lectures/
-- http://learning-os.gitee.io/os-lectures/
-#### 课程实践参考书
-- https://learningos.github.io/rCore-Tutorial-Book-v3/
-- https://learning-os.gitee.io/rcore-tutorial-book-v3
+#### 课程参考
+- [课程在线Slides](http://learningos.github.io/os-lectures/)
+- [参考书: Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+- [参考书: 深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
+- [RISC-V Reader中文版](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
+#### 课程实践
+-  [课程实践参考书:rCore Tutorial Book v3](https://learningos.github.io/rCore-Tutorial-Book-v3/)
+-  [课程实践代码:rCore Tutorial v3](https://github.com/rcore-os/rCore-Tutorial-v3)
+-  [课程实践代码的API文档:rCore Tutorial v3](https://learningos.github.io/rCore-Tutorial-v3/)
 
 ---
 
@@ -89,11 +88,13 @@ backgroundColor: white
 
 放置在[GitHub/LearningOS](https://github.com/LearningOS)和[Gitee/learning-os 备份](https://gitee.com/learning-os)上
 #### uCore Tutorial Guide 2022 Spring
-- [Docs 文档部分](https://github.com/LearningOS/uCore-Tutorial-Guide-2022S/) ，[Codes 代码部分](https://github.com/LearningOS/uCore-Tutorial-Code-2022S)，[Tests 测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2022S)
+- [实验文档](https://github.com/LearningOS/uCore-Tutorial-Guide-2022S/) ，[实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2022S)，[测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2022S)
 
 #### rCore Tutorial Guide 2022 Spring
-- [Docs 文档部分](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/)   ，[Codes 代码部分](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)，[Tests 测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
+- [实验文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/)  , [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/) , [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)，[测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
 
+#### 视频介绍
+- [uCore框架](https://cloud.tsinghua.edu.cn/f/358c6c509f0046ddbc4d/) ,  [rCore框架](https://cloud.tsinghua.edu.cn/f/7ab685e3346f4053aedf/) 
 ---
 
 
