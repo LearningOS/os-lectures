@@ -12,16 +12,18 @@ backgroundColor: white
 <!-- _class: lead -->
 
 ## 第二讲 实践与实验介绍
-### 第四节 实践：LibOS
+### 第四节 实践：裸机程序 -- LibOS
 
 
 ---
-## 实践：LibOS
+## 实践：裸机程序 -- LibOS
 - **进化目标**
 - 总体思路
 - 历史背景
 - 实践步骤
 - 软件设计
+
+裸机程序（Bare Metal Program ）：与操作系统无关的OS类型的程序
 
 ---
 ## 实践：LibOS

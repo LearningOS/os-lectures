@@ -12,7 +12,7 @@ backgroundColor: white
 <!-- _class: lead -->
 
 ## 第七讲 进程管理与单处理器调度
-### 第四节 实践：建立进程的OS
+### 第四节 实践：建立进程的操作系统
 <br>
 <br>
 
