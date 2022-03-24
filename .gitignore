@@ -299,3 +299,5 @@ dist
 *.Identifier
 *.pdf
 html-docs
+.svn*
+.svn/*

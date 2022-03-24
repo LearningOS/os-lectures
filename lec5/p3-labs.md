@@ -272,7 +272,7 @@ power_3 [130000/300000]
 
 
 ---
-## RISC-V 系统编程：S 模式的虚拟内存系统
+## RISC-V 基于SATP的虚拟内存系统
 
 - 虚拟地址将内存划分为固定大小的页来进行地址转换和内容保护。
 - satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器控制了分页。satp 有三个域：
@@ -282,6 +282,7 @@ power_3 [130000/300000]
   - PPN 字段保存了根页表的物理地址
 ![w:800](figs/satp.png)
 
+<!--
 ---
 ## S-Mode编程 -- 虚存机制
 
@@ -291,6 +292,7 @@ power_3 [130000/300000]
 
 
 ![bg right 90%](figs/riscv_pagetable.svg)
+
 
 ---
 ##  S-Mode编程 -- 虚存机制
@@ -305,6 +307,7 @@ power_3 [130000/300000]
 ##  S-Mode编程 -- 虚存机制
 - S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地址：
 ![w:500](figs/satp2.png)
+-->
 
 ---
 RISC-V SV39页机制
