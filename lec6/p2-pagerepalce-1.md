@@ -52,7 +52,7 @@ backgroundColor: white
   - 要求响应速度的代码和数据
   - 页表中的锁定标志位(lock bit)
 
-![bg right:40% 100%](figs/page-fault-handler.png)
+![bg right:45% 100%](figs/page-fault-handler.png)
 
 --- 
 ### 基本概念 -- 评价方法
@@ -88,7 +88,7 @@ c, a, d, b, e, b, a, b, c, d 用字符表示
 - **局部页面置换算法**
 - 全局页面置换算法
 
-![bg right:40% 100%](figs/page-fault-handler.png)
+![bg right:60% 100%](figs/page-fault-handler.png)
 
 ---
 ### 第二节 页面置换算法 -- 局部页面置换算法
