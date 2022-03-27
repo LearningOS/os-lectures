@@ -265,7 +265,6 @@ backgroundColor: white
 - 虚拟页式存储中的外存选择
   - 代码段：可执行二进制文件
   - 动态加载的共享库程序段：动态调用的库文件
-  - 动态加载的共享库程序段：动态调用的库文件
   - 其它段：交换空间
 
 ![bg right:45% 100%](figs/page-fault-handler.png)
