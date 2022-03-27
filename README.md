@@ -17,9 +17,9 @@
 ### 课程大纲
 - [课程&实验大纲](os-course-outline.md)
 ### 课程幻灯片
-* Github: [https://github.com/LearningOS/os-lectures/](https://github.com/LearningOS/os-lectures/)
-* Gitee: [https://gitee.com/learning-os/os-lectures/](https://gitee.com/learning-os/os-lectures/)
-* github pages 在线查看: [https://learningos.github.io/os-lectures/](https://learningos.github.io/os-lectures/)
+* [Github仓库](https://github.com/LearningOS/os-lectures/)
+* [Gitee备份仓库](https://gitee.com/learning-os/os-lectures/)
+* [课程幻灯片在线阅读](https://learningos.github.io/os-lectures/)
 * pdf 版会在课前发布到网络学堂
 ### 课程参考书
 
@@ -28,13 +28,13 @@
 * RISC-V CPU：[RISC-V Reader中文版](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
 * OS实践：[rCore Tutorial Book v3](https://rcore-os.github.io/rCore-Tutorial-Book-v3)
     * 配套代码和API文档
-        * Github: [https://github.com/rcore-os/rCore-Tutorial-v3](https://github.com/rcore-os/rCore-Tutorial-v3)
-        * Gitee: [https://gitee.com/learning-os/rCore-Tutorial-v3](https://gitee.com/learning-os/rCore-Tutorial-v3)
-        * API 文档: [https://learningos.github.io/rCore-Tutorial-v3](https://learningos.github.io/rCore-Tutorial-v3/)
+        * [Github仓库](https://github.com/rcore-os/rCore-Tutorial-v3)
+        * [Gitee备份仓库](https://gitee.com/learning-os/rCore-Tutorial-v3)
+        * [各章OS的API 在线文档](https://learningos.github.io/rCore-Tutorial-v3/)
 ### 课程答疑
 
-* QA仓库: [https://git.tsinghua.edu.cn/os-lab/q-and-a/](https://git.tsinghua.edu.cn/os-lab/q-and-a/)
-* 助教的实验讲解视频: [https://cloud.tsinghua.edu.cn/d/ce9eced17e89471c8c30/](https://cloud.tsinghua.edu.cn/d/ce9eced17e89471c8c30/)
+* [QA仓库](https://git.tsinghua.edu.cn/os-lab/q-and-a/)
+* [助教的实验讲解视频](https://cloud.tsinghua.edu.cn/d/ce9eced17e89471c8c30/)
 ### 课后习题
 
 [rCore Tutorial Book v3](https://rcore-os.github.io/rCore-Tutorial-Book-v3)中各章后面的“练习”小节中的“课后练习”和“练习参考答案”小节
@@ -49,30 +49,32 @@
 
 包含每次实验必做的编程和问答作业，以及相对rCore Tutorial Book-v3较为精简的指导
 
-* Github: [https://github.com/LearningOS/rCore-Tutorial-Guide-2022S](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S)
-* Pages 在线阅读: [https://learningos.github.io/rCore-Tutorial-Guide-2022S/](https://learningos.github.io/rCore-Tutorial-Guide-2022S/)
+* [rCore-Tutorial-Guide文档源码](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S)
+*  [rCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/rCore-Tutorial-Guide-2022S/)
+* [lab1(ch3) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2022S/ch3/os/index.html)
+* [lab2(ch4) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2022S/ch4/os/index.html)
 #### 代码框架
 
-* Github: [https://github.com/LearningOS/rCore-Tutorial-Code-2022S](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)
-* git.tsinghua: [https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2022s](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2022s)
+* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2022s)
 #### 用户态测例
 
-* Github: [https://github.com/LearningOS/rCore-Tutorial-Test-2022S](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
-* git.tsinghua: [https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2022s](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2022s)
+* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2022s)
 ### uCore实验
 
 #### 实验指导书
 
-* Github: [https://github.com/LearningOS/uCore-Tutorial-Guide-2022S](https://github.com/LearningOS/uCore-Tutorial-Guide-2022S)
-* Pages 在线阅读: [https://learningos.github.io/uCore-Tutorial-Guide-2022S/](https://learningos.github.io/uCore-Tutorial-Guide-2022S/)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Guide-2022S)
+* [uCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/uCore-Tutorial-Guide-2022S/)
 #### 代码框架
 
-* Github: [https://github.com/LearningOS/uCore-Tutorial-Code-2022S](https://github.com/LearningOS/uCore-Tutorial-Code-2022S)
-* git.tsinghua: [https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2022s](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2022s)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Code-2022S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2022s)
 #### 用户态测例
 
-* Github: [https://github.com/LearningOS/uCore-Tutorial-Test-2022S](https://github.com/LearningOS/uCore-Tutorial-Test-2022S)
-* git.tsinghua: [https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2022s](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2022s)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Test-2022S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2022s)
 ## 其它内容
 
  1. [幻灯片模板](style-marp.md)
