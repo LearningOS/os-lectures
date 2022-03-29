@@ -31,13 +31,16 @@ backgroundColor: white
 ---
 ### 第一节 进程管理
 - 基本概念
-   - 需求背景
-   - 定义
+   - 需求背景与定义
 - 进程管理
   - 进程切换
   - 进程创建/复制 
   - 程序加载并执行
   - 进程等待与退出
+
+**进程**是计算机科学中最深刻、最成功的概念之一(from CSAPP)
+![bg right:40% 100%](figs/cli-gui.png) 
+
 ---
 ### 进程的基本概念 -- 需求背景
 - 需求背景
@@ -56,10 +59,13 @@ backgroundColor: white
 ### 进程的基本概念 -- 需求背景
 - 操作系统需要有一个与用户交互的接口/界面
   - OS Shell 
-     - 命令行界面
-        - 许用户直接输入命令，以供操作系统执行 
-     - 图形界面
-        - 允许用户通过图形用户界面（GUI）与操作系统交互 
+     - 命令行界面（CLI）
+        - 用户通过键盘直接输入命令 
+     - 图形界面（GUI）
+        - 用户通过鼠标/窗口等输入命令
+
+![bg right:50% 100%](figs/cli-gui.png) 
+
 
 ---
 ### 进程的基本概念 -- 需求背景
@@ -67,34 +73,76 @@ backgroundColor: white
    - 用户能对应用的执行进行动态地管理和控制 
    - 在应用的执行过程中，用户通过界面主动给操作系统发出请求，来创建并执行新的应用程序，暂停或停止应用程序的执行等。
 
+![bg right:50% 100%](figs/cli-gui.png) 
+
 ---
 ### 进程的基本概念 -- 定义
 
-为什么引入**进程（Process）**的概念？
-- 从理论角度看，是对程序运行过程的抽象描述；
-- 从实现角度看，是一种数据结构，目的在于清晰地刻画操作系统系统的动态内在规律，有效管理和调度多个程序的执行和对资源的使用。
+为什么引入 **进程(Process)** 的概念？
+- 目的
+  - 清晰地刻画操作系统系统中程序运行的动态内在规律
+  - 有效管理和调度多个程序的执行和对资源的使用
 
+![bg right:40% 100%](figs/cli-gui.png) 
+
+---
+### 进程的基本概念 -- 定义
+
+- 从应用角度看
+  - 进程提供给应用程序的关键抽象
+    - 一个独立的逻辑控制流，它提供一个假象，好像我们的程序独占地使用处理器
+    - 一个私有的地址空间，它提供一个假象，好像我们的程序独占地使用内存系统
+  
+![bg right:40% 100%](figs/cli-gui.png) 
+
+---
+### 进程的基本概念 -- 定义
+
+- 从理论角度看
+  - 进程是对程序运行过程的抽象描述
+- 从实现角度看
+  - 进程是操作系统建立程序运行中的过程管理相关的数据结构，以及对数据结构的动态操作过程
+
+![bg right:40% 100%](figs/cli-gui.png) 
+
+
+---
+### 进程的基本概念 -- 定义
+
+- 从资源角度看
+  - 进程是程序执行中占用资源的集合 
 - **资源**
   - 共享资源 v.s. 独占资源
   - 处理器、时间
   - 内存、地址空间
   - 文件、I/O、...
-  - 
+  
+![bg right:40% 100%](figs/cli-gui.png) 
+
 ---
 ### 进程的基本概念 -- 定义
 什么是进程？
-- 简单定义：一个程序的执行过程
-- 详细定义：一个具有一定独立功能的程序在某数据集合上的一次执行和资源使用的动态过程。
+- 简单定义1：一个程序的执行过程
+- 简单定义2：一个执行中程序的实例
+- 详细定义：一个具有一定独立功能的程序在某数据集合上的一次执行和资源使用的动态过程
    - 执行程序逻辑并读写数据
    - 创建并执行新进程
    - 使用共享资源：文件等
+
+![bg right:40% 100%](figs/cli-gui.png) 
 
 ---
 ### 进程的基本概念 -- 定义
 任务和进程的关系与区别
 这需要从二者对资源的占用和执行的过程这两个方面来进行分析
 
-相同点：站在一般用户和应用程序的角度看，任务和进程都表示运行的程序。站在操作系统的角度看，任务和进程都表示为一个程序的执行过程。二者都能够被操作系统打断并通过切换来分时占用 CPU 资源；都需要 地址空间 来放置代码和数据；都有从开始到结束运行这样的生命周期。
+相同点：
+- 站在一般用户的角度看，任务和进程都表示运行的程序
+- 站在操作系统的角度看，任务和进程都表示为一个程序的执行过程
+- 站在资源使用的角度看
+    - 二者都能够被操作系统打断并通过切换来分时占用 CPU 资源
+    - 都需要地址空间来放置代码和数据
+
   
 
 ---
@@ -102,11 +150,13 @@ backgroundColor: white
 任务和进程的关系与区别
 这需要从二者对资源的占用和执行的过程这两个方面来进行分析
 
-相同点：二者都能够被操作系统打断并通过切换来分时占用 CPU 资源；都需要 地址空间 来放置代码和数据；都有从开始到结束运行这样的生命周期。
-- 任务生命周期 --> 进程生命周期
-- 任务的三状态模型 --> 进程的三状态模型
-- 任务切换 --> 进程切换
-- 任务上下文  --> 进程上下文
+相同点：
+- 站在执行过程的角度看
+  - 都有从开始到结束运行这样的生命周期
+    - 任务生命周期 --> 进程生命周期
+    - 任务的三状态模型 --> 进程的三状态模型
+    - 任务切换 --> 进程切换
+    - 任务上下文  --> 进程上下文
 
 
 ---
@@ -114,11 +164,98 @@ backgroundColor: white
 任务和进程的关系与区别
 这需要从二者对资源的占用和执行的过程这两个方面来进行分析
 
-不同点：任务 是这里提到的 进程 的初级阶段，任务还没进化到拥有更强大的动态变化功能：进程可以在运行的过程中，创建 子进程 、 用新的 程序 内容覆盖已有的 程序 内容。这种动态变化的功能可让程序在运行过程中动态使用更多的物理或虚拟的 资源 。
+不同点：
+- 任务 是这里提到的进程的初级阶段，不具有如下功能：
+- 进程可以在运行的过程中，创建子进程 、 用新的程序内容覆盖已有的程序内容
+- 进程成为程序执行过程中动态申请/使用/释放各种资源的载体
 
-- 增加进程管理功能，以对进程用到的硬件/虚拟资源进行动态绑定和解绑 。
+进程这种动态功能可让程序的运行更加灵活。
 
 
+
+---
+### 进程管理
+进程管理类的系统调用产生背景
+- 如何让应用方便地动态执行其他应用？
+   - process_id = execute(app_name) ？
+- 如何让应用了解其启动的其他应用是否结束？
+   -  被启动的其他应用 exit(status) ？
+   -  发起的主应用 wait(process_id)？
+
+于是各种OS(UNIX/Windows...)都设计出了类似上面的进程管理类的各种系统调用
+
+---
+### 进程管理
+
+| 系统调用名 | 含义 |
+| -------------------------- | ------ |
+| ``int fork()``           |  创建一个进程，返回子进程的PID。    |
+| ``int exec(char *file)``   |  加载文件并执行；仅当出错时返回。    |
+| ``int exit(int status)`` | 终止自身；报告`status`给执行waitpid()系统调用的父进程。     |
+| ``int waitpid(int pid, int *status)``  |  等待`pid`子进程退出，得到其 ``*status``退出状态。    |
+| ``int getpid()``           |  获得当前进程的PID。    |
+
+
+---
+### 进程管理  -- 应用实例
+```rust
+// usr/src/bin/hello_world.rs
+pub fn main() -> i32 {
+    // 显示自己的PID
+    println!("pid {}: Hello world from user mode program!", getpid()); 
+    0  // 返回的退出码
+}
+```
+
+---
+### 进程管理 -- 应用实例
+```rust
+// usr/src/bin/forkexec.rs
+pub fn main() -> i32 {
+    println!("pid {}: parent start forking ...", getpid());
+    let pid = fork();  // 创建子进程
+    if pid == 0 {
+        // 子进程
+        println!("pid {}: forked child start execing hello_world app ... ", getpid());
+        exec("hello_world");  // 执行hello_world程序
+        100
+    } else {
+        // 父进程
+        let mut exit_code: i32 = 0;
+        println!("pid {}: ready waiting child ...", getpid());
+        assert_eq!(pid, wait(&mut exit_code)); //确认等待的子进程PID
+        assert_eq!(exit_code, 0);  //确认退出码是0
+        println!("pid {}: got child info:: pid {}, exit code: {}", getpid() , pid, exit_code);
+        0
+    }
+}
+```
+
+---
+### 进程管理 -- 应用实例
+执行结果
+```
+Rust user shell
+>> forkexec
+pid 2: parent start forking ...
+pid 2: ready waiting child ...
+pid 3: forked child start execing hello_world app ...
+pid 3: Hello world from user mode program!
+pid 2:  got child info:: pid 3, exit code: 0
+Shell: Process 2 exited with code 0
+>> QEMU: Terminated
+
+```
+
+---
+### 进程管理 -- 应用实例
+![w:550](figs/process-os-key-structures.png)
+![bg right:50% 100%](figs/forkexec-app.png) 
+
+---
+### 进程管理 -- 应用实例
+
+![w:1200](figs/forkexec-app.png) 
 
 ---
 ### 进程管理
@@ -401,3 +538,77 @@ int  main()
 ### 进程控制  v.s. 进程状态 
 
  ![w:700](figs/process-control-and-life-2.png) 
+
+
+ 
+---
+### 重新思考fork -- 一家之言
+
+[Andrew Baumann,etc.,   A fork() in the road，HotOS 2019](https://www.microsoft.com/en-us/research/publication/a-fork-in-the-road/)
+
+![w:700](figs/fork-in-the-road.png)   
+
+---
+### 重新思考fork -- 一家之言
+  
+    The fork system call is one of Unix's great ideas.
+         -- https://cs61.seas.harvard.edu/site/2018/WeensyOS/
+
+- It’s simple: no parameters!
+- It’s elegant: fork is orthogonal to exec
+- It eased concurrency    
+
+
+---
+### 重新思考fork -- 一家之言
+但是！
+-  Fork is no longer simple
+   - Fork encourages memory overcommit
+   - Fork is incompatible with a single address space
+   - Fork is incompatible with heterogeneous hardware
+   - Fork infects an entire system
+
+
+---
+### 重新思考fork -- 一家之言
+但是！
+![w:1100](figs/fork-slow.png)   
+
+
+
+---
+### 重新思考fork -- 一家之言
+![w:1100](figs/unix-ken-why-fork.png)   
+
+
+---
+### 重新思考fork -- 一家之言
+![w:1100](figs/origins-of-fork.png)   
+
+
+
+---
+### 重新思考fork -- 一家之言
+For implementation expedience [Ritchie, 1979]
+- fork was 27 lines of PDP-7 assembly
+   - One process resident at a time
+   - Copy parent’s memory out to swap
+   - Continue running child
+-  exec didn’t exist – it was part of the shell
+   - Would have been more work to combine them  
+
+<!--
+https://www.infoq.cn/article/BYGiWI-fxHTNvSohEUNW
+ 当 Unix 为 PDP-11 计算机（其带有内存转换硬件，允许多个进程保留驻留）重写时，只为了在 exec 中丢弃一个进程就复制进程的全部内存就已经很没效率了。我们怀疑在 Unix 的早期发展阶段，fork 之所以能幸存下来，主要是因为程序和内存都很小（PDP-11 上有只 8 个 8 KiB 页面），内存访问速度相对于指令执行速度较快，而且它提供了一个合理的抽象。这里有两点很重要： -->
+
+---
+### 重新思考fork -- 一家之言
+结论
+- Fork is not an inspired design, but an accident of history
+- Only Unix implemented it this way
+- We may be stuck with fork for a long time to come
+- But, let’s not pretend that it’s still a good idea today!
+
+**Please, stop teaching students that fork is good design**
+- Begin with spawn
+- Teach fork, but include historical context
