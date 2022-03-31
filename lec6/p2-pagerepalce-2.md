@@ -206,7 +206,7 @@ $\tau=4$
 ### 缺页率置换算法
 - 访存时，设置引用位标志
 - 缺页时，计算从上次缺页时间$t_{last}$ 到现在$t_{current}$ 的时间间隔
-- 如果$t_{current} – t_{last}>T$, 则置换所有在$[t_{last} ,  t_{current} ]$时间内没有被引用的页
+- 如果$t_{current} – t_{last}>T$（容忍的缺页窗口）, 则置换所有在$[t_{last} ,  t_{current} ]$时间内没有被引用的页
 - 如果$t_{current} – t_{last} \le T$, 则增加缺失页到工作集中
 
 

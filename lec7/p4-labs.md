@@ -252,7 +252,7 @@ Rust user shell
 - 内核程序设计
 
 
-![bg right:40% 100%](figs/process-os-detail.png)
+![bg right:60% 100%](figs/process-os-detail.png)
 
 
 
@@ -264,7 +264,7 @@ Rust user shell
 **OS角度：理解进程**
 -  **进程** 是应用在其地址空间上的一次执行过程
    - 进程拥有资源，操作系统根据进程的执行状态管理其资源 
-![bg right:40% 100%](figs/seg-addr-space.png)
+![bg right:50% 100%](figs/seg-addr-space.png)
 
 ---
 ## 实践：POS - 程序设计
@@ -274,7 +274,7 @@ Rust user shell
 - 内核程序设计
 
 
-![bg right:40% 100%](figs/process-os-detail.png)
+![bg right:60% 100%](figs/process-os-detail.png)
 
 
 ---
@@ -327,11 +327,11 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 - 应用程序设计
 - **内核程序设计**
 
-![bg right:40% 100%](figs/process-os-detail.png)
+![bg right:60% 100%](figs/process-os-detail.png)
 
 ---
 ### 内核程序设计
-- **应用的链接与加载支持**
+- **应用链接与加载支持**
 - 核心数据结构
     - 进程控制块
     - 进程管理器
@@ -341,7 +341,7 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
   - 进程生成与回收
   - 进程调度
 
-![bg right:50% 100%](figs/process-os-detail.png)
+![bg right:60% 100%](figs/process-os-detail.png)
 
 
 ---
@@ -369,7 +369,7 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 ---
 ### 内核程序设计 -- 核心数据结构 -- 关系图
 
-![w:650](figs/process-os-key-structures.png)
+![w:680](figs/process-os-key-structures.png)
 
 ---
 ### 内核程序设计 -- 核心数据结构
