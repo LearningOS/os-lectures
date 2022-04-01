@@ -86,6 +86,77 @@ backgroundColor: white
 如果任务间有**共享资源占用**的情况，高优先级任务可能会被延误执行！
 
 ---
+### 速率单调调度算法(RM, Rate Monotonic) 
+
+- 进程P1：e=20 p=50
+- 进程P2：e=35 p=100
+
+![w:900](figs/ddsl1.gif)
+
+
+---
+### 速率单调调度算法(RM, Rate Monotonic) 
+
+- 进程P1：e=20 p=50
+- 进程P2：e=35 p=80
+
+![w:900](figs/ddsl2.gif)
+
+---
+
+### 最早截止时间优先算法 (EDF, Earliest Deadline First) 
+
+- 进程P1：e=10 p=20
+- 进程P2：e=25 p=50
+
+![w:1000](figs/edf1.png)
+
+---
+
+### 最早截止时间优先算法 (EDF, Earliest Deadline First) 
+
+- 进程P1：e=10 p=20
+- 进程P2：e=25 p=50
+
+![w:1000](figs/edf2.png)
+
+
+---
+
+### 最早截止时间优先算法 (EDF, Earliest Deadline First) 
+
+- 进程P1：e=10 p=20
+- 进程P2：e=25 p=50
+
+![w:1000](figs/edf3.png)
+
+---
+
+### 最早截止时间优先算法 (EDF, Earliest Deadline First) 
+
+- 进程P1：e=10 p=20
+- 进程P2：e=25 p=50
+
+![w:1000](figs/edf4.png)
+
+---
+
+### 最低松弛度优先算法（LLF）
+
+- 根据任务紧急或者松弛程度，来确定任务优先级
+
+- 任务紧急度越高，优先级越高
+
+- 松弛度=必须完成时间-本身运行时间-当前时间
+
+- 进程P1：e=10 p=20
+- 进程P2：e=25 p=50
+
+![w:900](figs/llf1.png)
+
+
+
+---
 ###  优先级反置(Priority Inversion)
 优先级反置：高优先级进程长时间等待低优先级进程所占用资源的现象
 - 基于优先级的可抢占调度算法存在优先级反置问题
