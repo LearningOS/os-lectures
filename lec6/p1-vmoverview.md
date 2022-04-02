@@ -281,7 +281,7 @@ backgroundColor: white
 ### 虚拟存储的基本概念 -- 性能
 有效存储访问时间（effective memory access time EAT）
 
-EAT = 内存访问时间 * (1-p)  + 缺页异常处理时间 * p
+EAT = 内存访问时间 * (1-p)  + 缺页异常处理时间 
 缺页异常处理时间 = 磁盘访问时间*p(1+q)
 - 缺页率：p  ；写回概率：q
 
