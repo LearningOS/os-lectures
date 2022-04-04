@@ -31,6 +31,7 @@
         * [Github仓库](https://github.com/rcore-os/rCore-Tutorial-v3)
         * [Gitee备份仓库](https://gitee.com/learning-os/rCore-Tutorial-v3)
         * [各章OS的API 在线文档](https://learningos.github.io/rCore-Tutorial-v3/)
+        * [可显示内核动态执行信息的内核分支](https://github.com/rcore-os/rCore-Tutorial-v3/tree/ch9-log)
 ### 课程答疑
 
 * [QA仓库](https://git.tsinghua.edu.cn/os-lab/q-and-a/)
