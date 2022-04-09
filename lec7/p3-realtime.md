@@ -163,6 +163,24 @@ backgroundColor: white
 ![w:800](figs/rt-pi.png)
 
 
+
+---
+###  优先级反置(Priority Inversion)
+优先级反置：高优先级进程长时间等待低优先级进程所占用资源的现象
+- 基于优先级的可抢占调度算法存在优先级反置问题
+优先级：T1>T2>T3
+![w:800](figs/priority1.png)
+
+
+---
+###  优先级继承（Priority Inheritance)
+- 占用资源的低优先级进程继承申请资源的高优先级进程的优先级
+- 只在占有资源的低优先级进程被阻塞时,才提高占有资源进程的优先级
+![w:600](figs/priority2.png)
+
+
+
+
 ---
 ###  优先级继承（Priority Inheritance)
 - 占用资源的低优先级进程继承申请资源的高优先级进程的优先级
