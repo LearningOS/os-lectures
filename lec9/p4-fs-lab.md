@@ -13,7 +13,7 @@ backgroundColor: white
 
 ## 第九讲 文件系统
 
-### 第四节 支持文件系统的操作系统
+### 第四节 支持文件的操作系统
 
 Filesystem OS(FOS)
 
