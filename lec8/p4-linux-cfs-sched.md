@@ -13,7 +13,7 @@ backgroundColor: white
 
 ## 第八讲 多处理器调度
 
-### 第四节 Linux CFS 调度
+### 第四节 Linux CFS（Completely Fair Schduler） 调度
 
 ---
 ### CFS 的思路
