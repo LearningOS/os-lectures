@@ -293,7 +293,7 @@ MQ -- MultiQueue
 ---
 ### 调度算法 -- 多级反馈队列调度算法
 MLFQ -- Multi-Level Feedback Queue
-- 1962年，MIT教授Corbato首次提出多级反馈队列，应用于兼容时分共享系统（CTSS）
+- 1962年，MIT教授Corbato首次提出多级反馈队列，应用于兼容时分共享系统（CTSS-Compatible Time-Sharing System）
 - 解决两方面的问题
   -  如何在不知道工作要运行多久的情况下，优化周转时间
   -  如何降低响应时间，给交互用户很好的交互体验

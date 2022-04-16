@@ -18,8 +18,8 @@ backgroundColor: white
 ---
 ### 单队列多处理器调度
 - Single Queue Multiprocessor Scheduling，SQMS
-- 简单地复用单处理器调度下··下·的基本架构
-- 所有需要调度的进程放入一个单独的队列中下
+- 简单地复用单处理器调度下的基本架构
+- 所有需要调度的进程放入一个单独的队列中
 ![w:800](figs/sqms.png) 
 
 
