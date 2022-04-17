@@ -418,7 +418,7 @@ pub struct TaskManager {
 ```rust
 pub struct Processor {
     current: Option<Arc<TaskControlBlock>>, // 在当前处理器上正在执行的任务
-    idle_task_cx: TaskContext,              // 表示在当前处理器上正在执行的任务
+    idle_task_cx: TaskContext,              // 空闲任务
 }
 ```
 - 负责从任务管理器 `TaskManager` 中分出去的维护 CPU 状态的职责
