@@ -89,6 +89,8 @@ backgroundColor: white
 ---
 ### 速率单调调度算法(RM, Rate Monotonic) 
 
+- 根据任务周期来确定任务优先级（周期越短优先级越高，抢占式）
+
 - 进程P1：e=20 p=50
 - 进程P2：e=35 p=100
 
@@ -98,7 +100,9 @@ backgroundColor: white
 ---
 ### 速率单调调度算法(RM, Rate Monotonic) 
 
-- 进程P1：e=20 p=50
+- 根据任务周期来确定任务优先级（周期越短优先级越高，抢占式）
+
+- 进程P1：e=25 p=50
 - 进程P2：e=35 p=80
 
 ![w:900](figs/ddsl2.gif)
@@ -106,6 +110,9 @@ backgroundColor: white
 ---
 
 ### 最早截止时间优先算法 (EDF, Earliest Deadline First) 
+
+- 固定优先级的问题：有的任务可能错过期限
+
 
 - 进程P1：e=10 p=20
 - 进程P2：e=25 p=50
@@ -116,6 +123,9 @@ backgroundColor: white
 
 ### 最早截止时间优先算法 (EDF, Earliest Deadline First) 
 
+- 固定优先级的问题：有的任务可能错过期限
+
+
 - 进程P1：e=10 p=20
 - 进程P2：e=25 p=50
 
@@ -125,6 +135,9 @@ backgroundColor: white
 ---
 
 ### 最早截止时间优先算法 (EDF, Earliest Deadline First) 
+
+- 固定优先级的问题：有的任务可能错过期限
+
 
 - 进程P1：e=10 p=20
 - 进程P2：e=25 p=50
