@@ -15,47 +15,113 @@ backgroundColor: white
 
 ### 第四节 Linux CFS（Completely Fair Schduler） 调度
 
+
+---
+### CFS的背景
+<!-- 万字长文，锤它！揭秘Linux进程调度器 https://www.eet-china.com/mp/a111242.html -->
+O(1)和O(n)都将CPU资源划分为时间片，采用了固定额度分配机制，在每个调度周期进程可使用的时间片是确定的，调度周期结束被重新分配。
+
+O(1)调度器本质上是MLFQ算法的思想，随着时间的推移也暴露除了很多问题，主要集中在O(1)调度器对进程交互性的判断上积重难返。
+
+无论是O(n)还是O(1)都需要去根据进程的运行状况判断它属于IO密集型还是CPU密集型，再做优先级奖励和惩罚，这种推测本身就会有误差，而且场景越复杂判断难度越大。
+
+
+---
+### CFS的背景
+
+匈牙利人Ingo Molnar所提出和实现CFS调度算法
+- 他也是O(1)调度算法的提出者
+
+![bg right:40% 100%](figs/ingo-molnar.png) 
+
 ---
 ### CFS 的思路
-- 以前的 Linux 调度算法根据进程的优先级进行调度，即通过一系列运行指标确定进程的优先级，然后根据进程的优先级确定调度哪个进程
-- CFS 不计算优先级，而是通过计算进程消耗的 CPU 时间（标准化以后的虚拟 CPU 时间）来确定谁来调度。从而到达所谓的公平性。
+<!-- - CFS 不计算优先级，而是通过计算进程消耗的 CPU 时间（标准化以后的虚拟 CPU 时间）来确定谁来调度。从而到达所谓的公平性。 -->
+- CFS摒弃了固定时间片分配，采用动态时间片分配
+- 本次调度中进程可占用的时间与进程总数、总CPU时间、进程权重等均有关系，每个调度周期的值都可能会不一样
 
-![bg right 100%](figs/rbtree.png) 
+每个进程都有一个nice值, 表示其静态优先级
+
+![bg right 100%](figs/prio-to-weight.png) 
 
 ---
 ### CFS 的绝对公平性：
 - 把 CPU 当做一种资源，并记录下每一个进程对该资源使用的情况，在调度时，调度器总是选择消耗资源最少的进程来运行。
 - 但这种绝对的公平有时也是一种不公平，因为有些进程的工作比其他进程更重要，我们希望能按照权重来分配 CPU 资源。
-![bg right 100%](figs/rbtree.png) 
+![bg right 100%](figs/prio-to-weight.png) 
 
 ---
 ### CFS 的相对公平性：
 - 为了区别不同优先级的进程，就是会根据各个进程的权重分配运行时间
-- 分配给进程的运行时间 = 调度周期 * 进程权重 / 所有进程权重之和
-- 调度周期：将所处于 TASK_RUNNING 态进程都调度一遍的时间
+       
+      分配给进程的运行时间 = 调度周期 * 进程权重 / 所有进程权重总和  公式(1)
 
-![bg right 100%](figs/rbtree.png) 
+- 进程权重越大, 分到的运行时间越多
+
+调度周期：将所处于 TASK_RUNNING 态进程都调度一遍的时间
+
+<!-- ![bg right:40% 100%](figs/prio-to-weight.png)  -->
 
 
 ---
+<!-- CFS（Completely Fair Scheduler） https://www.jianshu.com/p/1da5cfd5cee4 -->
 ### CFS 的相对公平性：
-- 比如系统中只两个进程 A, B，权重分别为 1和 2，假设调度周期设为 30ms，
+- 系统中两个进程 A，B，权重分别为 1， 2，调度周期设为 30ms，
 - A 的 CPU 时间为:30ms * (1/(1+2)) = 10ms
 - B 的 CPU 时间为：30ms * (2/(1+2)) = 20ms
 - 在这 30ms 中 A 将运行 10ms，B 将运行 20ms
 
-![bg right 100%](figs/rbtree.png) 
+它们的运行时间并不一样。 公平怎么体现呢？
+
+<!-- ![bg right 100%](figs/rbtree.png)  -->
 
 
 
 ---
 ### CFS 的实现原理：
-- Linux 通过引入 virtual runtime(vruntime)
-- vruntime = 实际运行时间 * 1024 / 进程权重
-- 谁的 vruntime 值较小就说明它以前占用 cpu的时间较短，受到了“不公平”对待，因此下一个运行进程就是它
-- 这样既能公平选择进程，又能保证高优先级进程获得较多的运行时间。
 
-![bg right 100%](figs/rbtree.png) 
+其实公平是体现在另外一个量上，叫做virtual runtime(vruntime)，它记录着进程已经运行的时间，但是并不是直接记录，而是要根据进程的权重将运行时间放大或者缩小一个比例。
+
+    vruntime = 实际运行时间 * 1024 / 进程权重 公式(2)
+
+
+这里直接写1024，实际上它等于nice为0的进程的权重，代码中是NICE_0_LOAD。也就是说，所有进程都以nice为0的进程的权重1024作为基准，计算自己的vruntime增加速度。
+
+---
+### CFS 的实现原理：
+
+还以上面AB两个进程为例，B的权重是A的2倍，那么B的vruntime增加速度只有A的一半。现在我们把公式(2)中的实际运行时间用公式(1)来替换，可以得到这么一个结果：
+
+    vruntime = (调度周期 * 进程权重 / 所有进程总权重) * 1024 / 进程权重   公式(3)
+             = 调度周期 * 1024 / 所有进程总权重 
+
+虽然进程的权重不同，但是它们的 vruntime增长速度应该是一样的 ，与权重无关。
+
+<!-- O(n)、O(1)和CFS调度器  http://www.wowotech.net/process_management/scheduler-history.html 
+
+Virtual runtime ＝ （physical runtime） X （nice value 0的权重）/进程的权重
+
+通过上面的公式，我们构造了一个虚拟的世界。二维的（load weight，physical runtime）物理世界变成了一维的virtual runtime的虚拟世界。在这个虚拟的世界中，各个进程的vruntime可以比较大小，以便确定其在红黑树中的位置，而CFS调度器的公平也就是维护虚拟世界vruntime的公平，即各个进程的vruntime是相等的。
+
+-->
+
+---
+### CFS 的实现原理：
+CFS的主要思想：
+
+既然所有进程的vruntime增长速度宏观上看应该是同时推进的，那么就可以用这个vruntime来选择运行的进程。
+
+谁的vruntime值较小就说明它以前占用cpu的时间较短，受到了“不公平”对待，因此下一个运行进程就是它。
+
+这样既能公平选择进程，又能保证高优先级进程获得较多的运行时间。
+
+---
+### CFS 的实现原理：
+CFS的主要思想：
+
+CFS的思想就是让每个调度实体（进程或进程组）的vruntime互相追赶，而每个调度实体的vruntime增加速度不同，权重越大的增加的越慢，这样就能获得更多的cpu执行时间。
+
+<!-- ![bg right 100%](figs/rbtree.png)  -->
 
 
 ---
@@ -175,3 +241,10 @@ signed char d = b - 250;
 
 
 ![bg right:50% 100%](figs/rbtree.png) 
+
+---
+### 参考文献
+-  https://www.eet-china.com/mp/a111242.html
+-  https://www.jianshu.com/p/1da5cfd5cee4
+-  https://developer.ibm.com/tutorials/l-completely-fair-scheduler/
+-  http://www.wowotech.net/process_management/scheduler-history.html
