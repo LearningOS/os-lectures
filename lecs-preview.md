@@ -1,3 +1,9 @@
+### 第八讲 课前准备建议
+(初步建议)
+阅读
+1. 《Operating Systems:Three Easy Pieces》第10章 多处理器调度（高级）
+2. 阅读 Lec8 的slides 草稿
+
 ### lec7 （4月2日）课前准备建议
 (初步建议)
 

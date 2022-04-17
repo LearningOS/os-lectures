@@ -57,3 +57,13 @@ backgroundColor: white
 - [第二节 单处理器调度](./lec7/p2-sched.html)
 - [第三节 实时管理与调度](./lec7/p3-realtime.html)
 - [第四节 实践：建立进程的操作系统](./lec7/p4-labs.html)
+
+
+---
+## 第八讲  进程管理与单处理器调度
+- [第一节 对称多处理与多核架构](./lec8/p1-multiprocessor-overview.html)
+- [第二节 多处理器调度概述](./lec8/p2-multiprocessor-sched-overview.html)
+- [第三节 Linux O(1) 调度](./lec8/p3-linux-O1-sched.html)
+- [第四节 Linux CFS（Completely Fair Schduler） 调度](./lec8/p4-linux-cfs-sched.html)
+- [第五节 Linux/FreeBSD BFS 调度](./lec8/p5-linux-bfs-sched.html)
+
