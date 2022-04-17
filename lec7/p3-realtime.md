@@ -154,7 +154,7 @@ backgroundColor: white
 
 - 进程P1：e=10 p=20；进程P2：e=25 p=50
 
-![w:900](figs/llf1.png)
+![w:1000](figs/llf2.png)
 
 
 
