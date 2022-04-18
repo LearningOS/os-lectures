@@ -272,6 +272,7 @@ Shell: Process 2 exited with code 0
 - 程序加载并执行
 - 进程等待与退出
 
+![bg right:60% 100%](figs/process-os-key-structures.png)
 
 ---
 ### 进程管理  -- 进程切换
@@ -284,7 +285,7 @@ Shell: Process 2 exited with code 0
   - 切换前，保存进程上下文
   - 切换后，恢复进程上下文
 
-
+![bg right:40% 100%](figs/process-os-key-structures.png)
 
 
 ---
@@ -297,7 +298,7 @@ Shell: Process 2 exited with code 0
   - 寄存器 (PC, SP, …)
   - CPU状态
   - 内存地址空间
-
+![bg right:40% 100%](figs/process-os-key-structures.png)
  
 ---
 ### 进程管理 -- 进程创建/复制
@@ -315,7 +316,7 @@ Shell: Process 2 exited with code 0
    - exec()用新程序来重写当前进程
       - PID没有改变
 
- 
+  ![bg right:50% 100%](figs/fork-exec.png)
 ---
 ### 进程管理 -- 进程创建/复制
 用fork和exec创建进程的示例
