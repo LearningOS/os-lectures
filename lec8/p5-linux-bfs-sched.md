@@ -56,10 +56,12 @@ BFS全称：Brain Fu*k Scheduler，脑残调度器
 ### BFS 的实现 ：虚拟截止时间计算
 - 依据当前时间、进程优先级和时间片设置计算；
 ```
-offset = jiffies + (prioratio ∗ rr_interval)
+offset = niffies + (prioratio ∗ rr_interval)
 prioratio increases by 10% for every nice level
 ```
-虚拟截止时间计算结果：https://wikimili.com/en/Brain_Fuck_Scheduler
+- niffies是当前时间；prio_ratios[priority]是一个常量数组，不同的priority对应不同的prio_ratios[priority]；rr_interval是timeslice，是CPU分配给每个任务的时间片，是一个常数
+
+- 虚拟截止时间计算结果：https://wikimili.com/en/Brain_Fuck_Scheduler
 
 
 ---
