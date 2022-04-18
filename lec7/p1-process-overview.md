@@ -357,14 +357,14 @@ if(pid == 0) {			// 子进程在这里继续
  
 ---
 ### 进程管理 -- 程序加载并执行
-- 系统调用exec( )加载新程序取代当前运行进程
+- 系统调用exec( )加载新程序取代当前运行进程 (代码是否有问题???)
 ```
 main()
 …
 int pid = fork();			// 创建子进程
-if (pid == 0) {			// 子进程在这里继续
+if (pid == 0) {			        // 子进程在这里继续
     exec_status = exec(“calc”, argc, argv0, argv1, …);
-    printf(“Why would I execute?”);
+    printf(“Why would I execute?”);     // 这行代码能执行到吗???
 }  else {				// 父进程在这里继续
     printf(“Whose your daddy?”);
     …
@@ -381,7 +381,7 @@ if (pid == 0) {			// 子进程在这里继续
 main()
 …
 int pid = fork();			// 创建子进程
-if (pid == 0) {			// 子进程在这里继续
+if (pid == 0) {			        // 子进程在这里继续
     exec_status = exec(“calc”, argc, argv0, argv1, …);
     printf(“Why would I execute?”);
 }  else {				// 父进程在这里继续
@@ -482,14 +482,15 @@ int  main()
   - 复制父进程的内存和CPU寄存器到子进程里
   - 开销昂贵!!
 
+![bg right:50% 100%](figs/fork-exec.png)
 
  ---
 ### 进程管理 -- Fork()的开销？
 - 在99%的情况里，我们在调用fork()之后调用exec()
-  - 在fork()操作中内存复制是没有作用的
-  - 子进程将可能关闭打开的文件和网络连接
+  - 在fork()操作中内存复制是没有作用的  --why?
+  - 子进程将可能关闭打开的文件和网络连接?  --why?
 
-
+![bg right:50% 100%](figs/fork-exec.png)
 
  ---
 ### 进程管理 -- Fork()的开销？
