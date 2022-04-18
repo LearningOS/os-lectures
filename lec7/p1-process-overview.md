@@ -249,13 +249,20 @@ Shell: Process 2 exited with code 0
 
 ---
 ### 进程管理 -- 应用实例
-![w:550](figs/process-os-key-structures.png)
-![bg right:50% 100%](figs/forkexec-app.png) 
+![bg right:70% 100%](figs/process-os-key-structures.png)
+
 
 ---
 ### 进程管理 -- 应用实例
 
 ![w:1200](figs/forkexec-app.png) 
+
+
+---
+### 进程管理 -- 应用实例
+![w:550](figs/process-os-key-structures.png)
+![bg right:50% 100%](figs/forkexec-app.png) 
+
 
 ---
 ### 进程管理
