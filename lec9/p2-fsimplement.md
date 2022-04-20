@@ -312,6 +312,10 @@ backgroundColor: white
 ![w:700](figs/fsall.png)
 
 
+
 --- 
 ### 文件系统的设计与实现 - 分区
-![w:700](figs/fs-oall.png)
+- 多数磁盘划分为一个或多个分区，每个分区有一个独立的文件系统。
+![w:600](figs/fs-oall.png)
+
+![bg right:40% 80%](figs/fs-block.jpg)
