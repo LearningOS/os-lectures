@@ -188,7 +188,7 @@ backgroundColor: white
 
 
 --- 
-### 文件系统的设计与实现 -- 文件
+### 文件系统的设计与实现
 文件大小
 - 大多数文件都很小
   - 需要支持小文件
@@ -196,11 +196,11 @@ backgroundColor: white
 - 一些文件非常大
   - 能支持大文件
   - 可高效读写
-![bg right:40% 100%](figs/fd-openfiletable.png)
+![bg right:50% 100%](figs/fd-openfiletable.png)
 
 
 --- 
-### 文件系统的设计与实现 -- 文件
+### 文件系统的设计与实现
 文件分配：分配文件数据块
 - 分配方式
    - 连续分配
@@ -210,7 +210,7 @@ backgroundColor: white
   - 存储效率：外部碎片等
   - 读写性能：访问速度
 
-![bg right:40% 100%](figs/fd-openfiletable.png)
+![bg right:50% 100%](figs/fd-openfiletable.png)
 
 
 
@@ -308,5 +308,10 @@ backgroundColor: white
 
 
 --- 
-### 文件系统的设计与实现
+### 文件系统的设计与实现 - 总结
 ![w:700](figs/fsall.png)
+
+
+--- 
+### 文件系统的设计与实现 - 分区
+![w:700](figs/fs-oall.png)
