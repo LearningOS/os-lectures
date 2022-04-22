@@ -32,6 +32,13 @@ backgroundColor: white
 文件系统在系统中的分层结构
 ![w:700](figs/fsarchdetail.png)
 
+--- 
+### 文件系统的设计与实现 -- 概述
+文件系统用户空间与内核空间
+![w:500](figs/fslayer.png)
+
+![bg right 50% 100%](figs/fslayout.png)
+
 
 --- 
 ### 文件系统的设计与实现 -- 概述
@@ -40,13 +47,6 @@ backgroundColor: white
 - 内存的文件系统，内存辅助数据结构 - 例如目录项。
 ![bg right 50% 80%](figs/fsarchi.png)
 
-
---- 
-### 文件系统的设计与实现 -- 概述
-文件系统用户空间与内核空间
-![w:500](figs/fslayer.png)
-
-![bg right 50% 100%](figs/fslayout.png)
 
 --- 
 ### 文件系统的设计与实现 -- 概述
@@ -87,29 +87,48 @@ backgroundColor: white
 
 
 --- 
-### 文件系统的设计与实现 -- 概述
-文件系统基本数据结构
+### 文件系统的设计与实现 -- 文件系统基本数据结构
 - 文件卷控制块 (`superblock`)
-  - 每个文件系统一个
+  - **每个文件系统一个**
   - 文件系统详细信息
   - 块大小、空余块数量等
+  - block 与inode 的总量，未使用与已使用的数量
+  - filesystem的挂载时间、最近一次写入时间、最近一次检验磁碟(fsck) 时间
 ![bg right 100%](figs/efs-superblock.png)
 
 
 --- 
-### 文件系统的设计与实现 -- 概述
-文件系统基本数据结构
-- 文件控制块( `inode`/`vnode`)
-  - 每个文件一个
-  - 文件详细信息
-  - 数据块位置\访问权限...
-![bg right 100%](figs/efs-inode.png)
+### 文件系统的设计与实现 -- 文件系统基本数据结构
+- 文件控制块inode( `inode`/`vnode`):**每个文件一个**
+  - 大小、数据块位置（指向一个或多个datablock）
+  - 访问模式(read/write/excute)
+  - 拥有者与群组(owner/group)
+  - 时间信息：建立或状态改变的时间、最近读取时间/修改的时间
+  - **文件名在目录的datablock中**
+<!--![bg right 10% 50%](figs/efs-inode.png)-->
+  ![w:400](figs/efs-inode.png)
 
 
 
 --- 
 ### 文件系统的设计与实现 -- 概述
-文件系统基本数据结构 - 目录
+数据块dnode( `data node`) - 目录和文件的数据块
+- 放置目录和文件内容
+- 在格式化时data block的大小就固定了，且每个block都有编号，以方便inode记录
+- inode一般为128
+- data block一般为4KB
+
+
+--- 
+### 文件系统的设计与实现 -- 概述
+bitmap块( `bitmap inode/dnode`) 
+- inode使用或者未使用标志位
+- dnode使用或者未使用标志位
+
+
+--- 
+### 文件系统的设计与实现 -- 概述
+数据块( `data node`) - 目录的数据块
 ![w:800](figs/fsdir.png)
 
 
