@@ -135,8 +135,7 @@ bitmap块( `bitmap inode/dnode`)
 
 --- 
 ### 文件系统的设计与实现 -- 概述
- 内存缓存
-- 目录项 (`dir_entry`)
+- 目录项 (`dir_entry`) - 一般会被缓存
   - 每个目录项一个(目录和文件)
   - 将目录项数据结构及树型布局编码成树型数据结构
   - 指向文件控制块、父目录、子目录等
@@ -170,7 +169,7 @@ bitmap块( `bitmap inode/dnode`)
   
 ![w:700](figs/pagecache.png)
 
-
+<!--
 --- 
 ### 文件系统的设计与实现 -- 缓存
 虚拟页式存储 -- 页缓存
@@ -180,8 +179,8 @@ bitmap块( `bitmap inode/dnode`)
   - 文件的读/写操作被转换成对内存的访问
   - 可能导致缺页和/或设置为脏页
   - 问题: 页置换算法需要协调虚拟存储和页缓存间的页面数
+-->
 
-  
 
 --- 
 ### 文件系统的设计与实现 -- 缓存
@@ -236,7 +235,7 @@ bitmap块( `bitmap inode/dnode`)
 - 分配方式
    - 连续分配
    - 链式分配
-   - 链式分配
+   - 索引分配
 - 评价指标
   - 存储效率：外部碎片等
   - 读写性能：访问速度
@@ -272,6 +271,7 @@ bitmap块( `bitmap inode/dnode`)
 
 --- 
 ### 文件系统的设计与实现 -- 文件分配
+（3）索引分配:
 - 文件头包含了索引数据块指针
 - 索引数据块中的索引是文件数据块的指针
 ![w:800](figs/indexalloc.png)
@@ -319,7 +319,7 @@ bitmap块( `bitmap inode/dnode`)
 
 --- 
 ### 文件系统的设计与实现 -- 文件分配
-![w:900](figs/filespace.jpg)
+![w:1000](figs/filespace.jpg)
 
 
 
@@ -346,7 +346,7 @@ bitmap块( `bitmap inode/dnode`)
 
 --- 
 ### 文件系统的设计与实现 - 总结
-![w:700](figs/fsall.png)
+![w:850](figs/fsall.png)
 
 
 
