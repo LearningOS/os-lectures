@@ -302,5 +302,6 @@ backgroundColor: white
 Data Journaling时间线 v.s. Metadata Journaling时间线	
 ![bg 100%](figs/ext3-journal-data-timeline.png)
 
+
 ![bg 100%](figs/ext3-journal-metadata-timeline.png)
 
