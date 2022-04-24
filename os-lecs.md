@@ -66,4 +66,9 @@ backgroundColor: white
 - [第三节 Linux O(1) 调度](./lec8/p3-linux-O1-sched.html)
 - [第四节 Linux CFS（Completely Fair Schduler） 调度](./lec8/p4-linux-cfs-sched.html)
 - [第五节 Linux/FreeBSD BFS 调度](./lec8/p5-linux-bfs-sched.html)
-
+---
+## 第九讲  文件系统
+- [第一节 文件系统概述](./lec9/p1-fsoverview.html)
+- [第二节 文件系统的设计与实现](./lec9/p2-fsimplement.html)
+- [第三节 支持崩溃一致性的文件系统](./lec9/p3-fsjournal.html)
+- [第四节 支持文件的操作系统](./lec9/p4-fs-lab.html)

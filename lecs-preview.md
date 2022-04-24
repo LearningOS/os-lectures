@@ -1,3 +1,11 @@
+### 第九讲 课前准备建议
+(初步建议)
+阅读
+1. 《Operating Systems:Three Easy Pieces》第39、40、42章
+2. 阅读 Lec9 的slides 草稿
+3. 阅读 rCore Tutorial Book v3第6章
+4. 编译运行rCore Tutorial v3的ch9-log分支的代码，了解内核中文件系统动态管理情况
+
 ### 第八讲 课前准备建议
 (初步建议)
 阅读
