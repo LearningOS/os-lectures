@@ -29,9 +29,8 @@ Inter Process Communication，IPC
 ### 概述
 - 为何需要协程？
 - 使用协程
-- 协程的概念
 - 协程的设计实现
-
+![bg right:40% 100%](figs/coroutine-2.png)
 ---
 ### 为何需要协程？
 <!-- 什么是协程？ https://zhuanlan.zhihu.com/p/172471249 -->
@@ -51,14 +50,22 @@ Inter Process Communication，IPC
 - 协程(coroutine)是啥？
   -  协程由Melvin Conway在1963年提出并实现
   -  当时他对协程的描述是“行为与主程序相似的子例程(subroutine)”
-![bg right:50% 100%](figs/coroutine.png)
+
+Donald  Knuth ：子例程是协程的特例
+![bg right:40% 100%](figs/coroutine-3.png)
 
 ---
 ### 为何需要协程？
 <!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
 - 协程(coroutine)是啥？
-  - Wiki的定义：协程是一种程序组件，是由子例程（过程、函数、例程、方法、子程序）的概念泛化而来的，子例程只有一个入口点且只返回一次，而协程允许多个入口点，可以在指定位置挂起和恢复执行。
-![bg right:50% 100%](figs/coroutine.png)
+  - Wiki的定义：协程是一种程序组件，是由子例程（过程、函数、例程、方法、子程序）的概念泛化而来的，子例程只有一个入口点且只返回一次，协程允许多个入口点，可在指定位置挂起和恢复执行。
+
+协程的核心思想：控制流的主动让出与恢复
+
+<!-- 协程(Coroutine)-ES中关于Generator/async/await的学习思考 https://blog.csdn.net/shenlei19911210/article/details/61194617 -->
+
+![bg right:35% 100%](figs/coroutine-3.png)
+
 ---
 ### 为何需要协程？
 <!-- C++20协程原理和应用 https://zhuanlan.zhihu.com/p/498253158 -->
@@ -169,3 +176,93 @@ fn main() {
     block_on(future); // `future` is run and "hello, world!" is printed
 }
 ```
+
+<!-- 
+用python 写一个os
+http://www.dabeaz.com/coroutines/
+http://www.dabeaz.com/coroutines/Coroutines.pdf -->
+---
+### 进程/线程/协程性能比较
+<!-- 
+https://www.youtube.com/watch?v=R4Oz8JUuM4s
+https://github.com/nikhilkumarsingh/async-http-requests-tut
+git@github.com:nikhilkumarsingh/async-http-requests-tut.git -->
+单进程：28秒
+```python
+import requests
+from timer import timer
+URL = 'https://httpbin.org/uuid'
+def fetch(session, url):
+    with session.get(url) as response:
+        print(response.json()['uuid'])
+@timer(1, 1)
+def main():
+    with requests.Session() as session:
+        for _ in range(100):
+            fetch(session, URL)
+
+```
+---
+### 进程/线程/协程性能比较
+多进程：7秒
+```python
+from multiprocessing.pool import Pool
+import requests
+from timer import timer
+URL = 'https://httpbin.org/uuid'
+def fetch(session, url):
+    with session.get(url) as response:
+        print(response.json()['uuid'])
+@timer(1, 1)
+def main():
+    with Pool() as pool:
+        with requests.Session() as session:
+            pool.starmap(fetch, [(session, URL) for _ in range(100)])
+```
+
+---
+### 进程/线程/协程性能比较
+线程：4秒
+```python
+from concurrent.futures import ThreadPoolExecutor
+import requests
+from timer import timer
+URL = 'https://httpbin.org/uuid'
+def fetch(session, url):
+    with session.get(url) as response:
+        print(response.json()['uuid'])
+@timer(1, 1)
+def main():
+    with ThreadPoolExecutor(max_workers=100) as executor:
+        with requests.Session() as session:
+            executor.map(fetch, [session] * 100, [URL] * 100)
+            executor.shutdown(wait=True)
+```
+
+---
+### 进程/线程/协程性能比较
+协程：2秒
+```python
+...
+URL = 'https://httpbin.org/uuid'
+async def fetch(session, url):
+    async with session.get(url) as response:
+        json_response = await response.json()
+        print(json_response['uuid'])
+async def main():
+    async with aiohttp.ClientSession() as session:
+        tasks = [fetch(session, URL) for _ in range(100)]
+        await asyncio.gather(*tasks)
+@timer(1, 1)
+def func():
+    asyncio.run(main())
+```
+<!-- import asyncio
+import aiohttp
+from timer import timer 
+
+requirements.txt
+requests
+aiohttp
+
+-->
