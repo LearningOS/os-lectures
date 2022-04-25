@@ -26,7 +26,7 @@ IPC OS (IOS)
 - 相关硬件
 - 程序设计
 
-![bg right:65% 100%](figs/ipc-os-detail.png)
+![bg right:65% 100%](figs/ipc-os-detail-2.png)
 
 
 ---
@@ -46,7 +46,7 @@ IPC OS (IOS)
 - 以文件形式进行串口输入输出  
 - 信号机实现进程间异步通知机制
 
-![bg right:40% 100%](figs/ipc-os-detail.png)
+![bg right:40% 100%](figs/ipc-os-detail-2.png)
 
 ---
 ## 实践：IOS
