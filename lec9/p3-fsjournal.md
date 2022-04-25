@@ -26,8 +26,9 @@ backgroundColor: white
 --- 
 ### 支持崩溃一致性的文件系统
 
-崩溃一致性问题（crash-consistency problem）也称,一致性更新问题，consistent-update problem）
-- 为了完成特定操作，你必须更新两个磁盘上的结构A和B。由于磁盘一次只为一个请求提供服务，因此其中一个请求将首先到达磁盘（A或B）。如果在一次写入完成后系统崩溃或断电，则磁盘上的结构将处于不一致（inconsistent）的状态。
+崩溃一致性问题（crash-consistency problem）也称一致性更新问题，consistent-update problem）
+- 为了完成特定操作，你必须更新两个磁盘上的结构A和B。由于磁盘一次只为一个请求提供服务，因此其中一个请求将首先到达磁盘（A或B）。
+- 如果在一次写入完成后系统崩溃或断电，则磁盘上的结构将处于不一致（inconsistent）的状态。
 
 
 --- 
@@ -301,6 +302,7 @@ backgroundColor: white
 
 Data Journaling时间线 v.s. Metadata Journaling时间线	
 ![bg 100%](figs/ext3-journal-data-timeline.png)
+
 
 ![bg 100%](figs/ext3-journal-metadata-timeline.png)
 
