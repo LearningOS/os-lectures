@@ -578,3 +578,138 @@ pub fn sys_dup(fd: usize) -> isize {
 ```
 
 ![bg right:30% 100%](figs/user-stack-cmdargs.png)
+
+
+
+---
+**signal的设计实现**
+1.  signal的系统调用
+2.  signal核心数据结构
+3.  建立signal_handler
+4.  支持kill系统调用
+
+![bg right:50% 100%](figs/tcb-ipc-standard-file.png)
+
+---
+**signal的设计实现**
+<!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
+- sigaction: 设置信号处理例程
+- sigprocmask: 设置要阻止的信号
+- kill: 将某信号发送给某进程
+- sigreturn: 清除堆栈帧，从信号处理例程返回
+
+![bg right:60% 100%](figs/signal-process.png)
+
+
+---
+**signal的设计实现**
+进程控制块中的signal核心数据结构
+```rust
+pub struct TaskControlBlockInner {
+    ...
+    pub signals: SignalFlags,     // 要响应的信号
+    pub signal_mask: SignalFlags, // 要屏蔽的信号
+    pub handling_sig: isize,      // 正在处理的信号
+    pub signal_actions: SignalActions,       // 信号处理例程表
+    pub killed: bool,             // 任务被杀死了？目前没使用
+    pub frozen: bool,             // 任务被暂停了？目前没使用
+    pub trap_ctx_backup: Option<TrapContext> //被打断的trap上下文
+}
+```
+
+
+---
+**signal的设计实现**  --  建立signal_handler
+
+```rust
+fn sys_sigaction(signum: i32, action: *const SignalAction, 
+                          old_action: *mut SignalAction) -> isize {
+  //保存老的signal_handler地址到old_action中
+  let old_kernel_action = inner.signal_actions.table[signum as usize];
+  *translated_refmut(token, old_action) = old_kernel_action;
+ //设置新的signal_handler地址到TCB的signal_actions中
+  let ref_action = translated_ref(token, action);
+  inner.signal_actions.table[signum as usize] = *ref_action;
+```
+对于signum：
+1. 保存老的signal_handler地址到`old_action`
+2. 设置`action`为新的signal_handler地址
+
+
+
+---
+**signal的设计实现**  --  通过kill发出信号
+
+```rust
+fn sys_kill(pid: usize, signum: i32) -> isize {
+      let Some(task) = pid2task(pid);
+      // insert the signal if legal
+      let mut task_ref = task.inner_exclusive_access();
+      task_ref.signals.insert(flag);
+     ...
+```
+对进程号为`pid`的进程发值为`signum`的信号：
+1. 根据`pid`找到TCB
+2. 在TCB中的signals插入`signum`信号值
+
+
+
+---
+**signal的设计实现**  --  通过kill发出信号
+当进程号为`pid`的进程由于某种原因进入内核后，在从内核返回到用户态继续执行前：
+```
+执行APP --> __alltraps 
+         --> trap_handler 
+            --> handle_signals 
+                --> check_pending_signals 
+                    --> call_kernel_signal_handler
+                    --> call_user_signal_handler
+                       -->  // backup trap Context
+                            // modify trap Context
+                            trap_ctx.sepc = handler; //设置回到中断处理例程的入口
+                            trap_ctx.x[10] = sig;   //把信号值放到Reg[10]
+            --> trap_return //找到并跳转到位于跳板页的`__restore`汇编函数
+       -->  __restore //恢复被修改过的trap Context，执行sret
+执行APP的signal_handler函数
+ ```                               
+
+ 
+---
+**signal的设计实现**  --  APP恢复正常执行
+当进程号为pid的进程执行完signal_handler函数主体后，会发出`sys_sigreturn`系统调用:
+```rust
+fn sys_sigreturn() -> isize {
+  ...
+  // 恢复之前备份的trap上下文
+  let trap_ctx = inner.get_trap_cx();
+  *trap_ctx = inner.trap_ctx_backup.unwrap();
+  ...
+```
+```
+执行APP --> __alltraps 
+       --> trap_handler 
+            --> 处理 sys_sigreturn系统调用
+            --> trap_return //找到并跳转到位于跳板页的`__restore`汇编函数
+    -->  __restore //恢复被修改过的trap Context，执行sret
+执行APP被打断的地方
+```       
+
+
+---
+**signal的设计实现**  -- 屏蔽信号
+```rust
+fn sys_sigprocmask(mask: u32) -> isize {
+    ...
+    inner.signal_mask = flag;
+    old_mask.bits() as isize
+    ...
+```
+把要屏蔽的信号直接记录到TCB的signal_mask数据中
+
+---
+## 小结
+- 管道的概念与实现
+- 信号的概念与实现
+- 能写迅猛龙操作系统
+
+![bg right 80%](figs/velociraptor.png)
