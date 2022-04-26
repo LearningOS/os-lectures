@@ -495,7 +495,7 @@ pub fn add_initproc() {
 进程资源回收机制 -- `exit_current_and_run_next` -- 进程退出 
 - 当前进程控制块从``PROCESSOR``中取出，修改其为僵尸进程
 - 退出码 `exit_code `写入进程控制块中
-- 把自己挂到`initproc`的子进程集合中
+- 把所有子进程挂到`initproc`的子进程集合中
 - 释放应用地址空间
 - 接着调用 schedule 函数来触发调度并切换任务
 
