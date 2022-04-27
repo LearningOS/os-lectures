@@ -1,3 +1,11 @@
+### 第十讲 课前准备建议
+(初步建议)
+阅读
+1. 深入理解计算机系统（ver.2 +）10.1-3节，10.7-8节；《Operating Systems:Three Easy Pieces》5.4节
+1. 阅读 Lec9 的slides 草稿
+2. 阅读 rCore Tutorial Book v3第7章
+3. 编译运行rCore Tutorial v3的ch8分支的代码，了解内核中pipe和signal的执行情况
+
 ### 第九讲 课前准备建议
 (初步建议)
 阅读
