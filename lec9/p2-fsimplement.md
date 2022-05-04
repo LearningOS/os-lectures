@@ -358,6 +358,14 @@ bitmap块( `bitmap inode/dnode`)
 ### 文件系统的设计与实现 - 总结
 ![w:850](figs/fsall.png)
 
+--- 
+### 文件系统的设计与实现 - 总结
+![w:600](figs/fsread.jpg)
+
+--- 
+### 文件系统的设计与实现 - 总结
+![w:600](figs/fswrite.jpg)
+
 
 
 --- 
