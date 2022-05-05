@@ -359,7 +359,7 @@ signal_simple: Done
 
 1.  实现基于文件的标准输入/输出
  - 0 --  Stdin  ; 1/2 -- Stdout
- - 实现File trait 接口
+ - 实现File 接口
  - read -> call(SBI_CONSOLE_GETCHAR)
  - write -> call(SBI_CONSOLE_PUTCHAR)
 
@@ -374,7 +374,7 @@ signal_simple: Done
 ---
 **pipe的设计实现** -- 标准文件
 
-2. 创建TCB时初始化`fd_table`
+1. 创建TCB时初始化`fd_table`
 
 ```rust
 TaskControlBlock::fork(...)->... {
@@ -466,7 +466,7 @@ make_pipe() -> (Arc<Pipe>, Arc<Pipe>) {
 **pipe的设计实现** -- 管道文件
 
 1.  实现基于文件的输入/输出
- - 实现File trait 接口
+ - 实现File 接口
 ```rust
     fn read(&self, buf: UserBuffer) -> usize {
        *byte_ref = ring_buffer.read_byte();
