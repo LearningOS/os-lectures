@@ -50,7 +50,7 @@ backgroundColor: white
 --- 
 ### 支持崩溃一致性的文件系统
 文件系统包括一个inode位图（inode bitmap，只有8位，每个inode一个），一个数据位图（data bitmap，也是8位，每个数据块一个），inode（总共8个，编号为0到7，分布在4个块上），以及数据块（总共8个，编号为0～7）。以下是该文件系统的示意图：
-![w:900](figs/crash-ex.png)
+![w:900](figs/crash-ex.jpg)
 
 
 
@@ -68,29 +68,29 @@ backgroundColor: white
 --- 
 ### 支持崩溃一致性的文件系统
 一个应用以某种方式更新磁盘结构：将单个数据块附加到原有文件
-![w:900](figs/crash-ex-normal.png)
+![w:900](figs/crash-ex-normal.jpg)
 
 --- 
 ### 支持崩溃一致性的文件系统
 在文件操作过程中可能会发生崩溃，从而干扰磁盘的这些更新。特别是，如果这些写入中的一个或两个完成后发生崩溃，而不是全部 3个，则文件系统可能处于**有趣**（不一致）的状态。
-![w:900](figs/crash-ex.png)
-
+<!-- ![w:900](figs/crash-ex.png) -->
+![w:900](figs/crash-ex-normal.jpg)
 
 --- 
 ### 支持崩溃一致性的文件系统
 崩溃场景 
 - 1. 只将数据块（Db）写入磁盘。在这种情况下，数据在磁盘上，但是没有指向它的inode，也没有表示块已分配的位图。因此，就好像写入从未发生过一样。
 
-![w:900](figs/crash-ex.png)
-
+<!-- ![w:900](figs/crash-ex.png) -->
+![w:900](figs/crash-ex-normal.jpg)
 
 --- 
 ### 支持崩溃一致性的文件系统
 崩溃场景 
 - 2. 只有更新的inode（I[v2]）写入了磁盘。在这种情况下，inode指向磁盘地址（5），其中Db即将写入，但Db尚未写入。因此，如果我们信任该指针，我们将从磁盘读取垃圾数据（磁盘地址5的旧内容）。
 
-![w:900](figs/crash-ex.png)
-
+<!-- ![w:900](figs/crash-ex.png) -->
+![w:900](figs/crash-ex-normal.jpg)
 
 
 
@@ -99,8 +99,8 @@ backgroundColor: white
 崩溃场景 
 - 3. 只有更新后的位图（B [v2]）写入了磁盘。在这种情况下，位图指示已分配块5，但没有指向它的inode。因此文件系统再次不一致。如果不解决，这种写入将导致空间泄露（space leak），因为文件系统永远不会使用块5。
 
-![w:900](figs/crash-ex.png)
-
+<!-- ![w:900](figs/crash-ex.png) -->
+![w:900](figs/crash-ex-normal.jpg)
 
 
 --- 
@@ -108,16 +108,16 @@ backgroundColor: white
 崩溃场景 
 - 4. inode（I[v2]）和位图（B[v2]）写入了磁盘，但没有写入数据（Db）。在这种情况下，文件系统元数据是完全一致的：inode有一个指向块5的指针，位图指示5正在使用，因此从文件系统的元数据的角度来看，一切看起来都很正常。但是有一个问题：5中又是垃圾。
 
-![w:900](figs/crash-ex.png)
-
+<!-- ![w:900](figs/crash-ex.png) -->
+![w:900](figs/crash-ex-normal.jpg)
 
 --- 
 ### 支持崩溃一致性的文件系统
 崩溃场景 
 - 5. 写入了inode（I[v2]）和数据块（Db），但没有写入位图（B[v2]）。在这种情况下，inode指向了磁盘上的正确数据，但同样在inode和位图（B1）的旧版本之间存在不一致。因此，我们在使用文件系统之前，又需要解决问题。
 
-![w:900](figs/crash-ex.png)
-
+<!-- ![w:900](figs/crash-ex.png) -->
+![w:900](figs/crash-ex-normal.jpg)
 
 --- 
 ### 支持崩溃一致性的文件系统
