@@ -178,6 +178,11 @@ Remote Procedure Call，RPC = send + recv
 ![w:600](figs/pipe-fds-close.png)
 
 
+---
+### IPC基本概念 -- 管道实现机制
+
+
+![w:750](figs/pipe-imp.jpg)
 
  
 ---
@@ -243,6 +248,15 @@ $ cat name.fifo
    - 相同标识的消息组成按先进先出顺序组成一个消息队列
 
 ![w:1200](figs/msg-q-3.png)
+
+---
+### IPC基本概念 -- 消息队列实现机制
+![w:1000](figs/signal-imp.jpg)
+
+---
+### IPC基本概念 -- 消息队列实现机制
+![w:900](figs/signal-imp2.jpg)
+
 
 ---
 ### IPC基本概念 -- 消息队列
@@ -388,7 +402,10 @@ $ ./a.out
 
 注：需要信号量（后续介绍）等机制协调共享内存的访问冲突
 
+---
+### IPC基本概念 -- 共享内存实现机制
 
+![w:900](figs/shm-imp.jpg)
 
 ---
 ### IPC基本概念 -- 共享内存 -- 创建共享内存
@@ -510,6 +527,10 @@ deleted shared-memory
 - 默认：如果不忽略也不捕获，此时进程会使用内核默认的处理方式来处理信号
   -  内核默认的信号处理：在大多情况下就是杀死进程或者直接忽略信号
 ![bg right:45% 100%](figs/signal.png)
+
+---
+### IPC基本概念 -- 信号实现机制
+![w:1100](figs/action-imp.jpg)
 
 
 ---
