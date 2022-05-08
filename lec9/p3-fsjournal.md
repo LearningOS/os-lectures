@@ -126,6 +126,13 @@ backgroundColor: white
 
 ![w:900](figs/crash-ex.png)
 
+--- 
+### 支持崩溃一致性的文件系统
+解决方案1：文件系统检查程序 fsck
+
+解决方案2：基于预写日志（write ahead log）的文件系统
+
+
 
 --- 
 ### 支持崩溃一致性的文件系统
