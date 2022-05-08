@@ -591,7 +591,7 @@ pub fn sys_dup(fd: usize) -> isize {
 ![bg right:50% 100%](figs/tcb-ipc-standard-file.png)
 
 ---
-**signal的设计实现**
+**signal的设计实现** --syscall
 <!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
 - sigaction: 设置信号处理例程
 - sigprocmask: 设置要阻止的信号
@@ -599,6 +599,50 @@ pub fn sys_dup(fd: usize) -> isize {
 - sigreturn: 清除堆栈帧，从信号处理例程返回
 
 ![bg right:60% 100%](figs/signal-process.png)
+
+---
+**signal的设计实现** -- syscall
+<!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
+```rust
+// 设置信号处理例程
+// signum：指定信号
+// action：新的信号处理配置
+// old_action：老的的信号处理配置
+sys_sigaction(signum: i32, 
+   action: *const SignalAction,
+   old_action: *const SignalAction) 
+   -> isize
+
+pub struct SignalAction {
+    // 信号处理例程的地址
+    pub handler: usize, 
+    // 信号掩码
+    pub mask: SignalFlags
+}   
+```
+
+![bg right:50% 100%](figs/signal-process.png)
+
+
+---
+**signal的设计实现** -- syscall
+<!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
+```rust
+// 设置要阻止的信号
+// mask：信号掩码
+sys_sigprocmask(mask: u32) -> isize 
+```
+```rust
+// 清除堆栈帧，从信号处理例程返回
+ sys_sigreturn() -> isize
+```
+```rust
+// 将某信号发送给某进程
+// pid：进程pid
+// signal：信号的整数码
+sys_kill(pid: usize, signal: i32) -> isize
+```
+![bg right:50% 100%](figs/signal-process.png)
 
 
 ---
@@ -611,12 +655,15 @@ pub struct TaskControlBlockInner {
     pub signal_mask: SignalFlags, // 要屏蔽的信号
     pub handling_sig: isize,      // 正在处理的信号
     pub signal_actions: SignalActions,       // 信号处理例程表
-    pub killed: bool,             // 任务被杀死了？目前没使用
-    pub frozen: bool,             // 任务被暂停了？目前没使用
+    pub killed: bool,             // 任务是否已经被杀死了
+    pub frozen: bool,             // 任务是否已经被暂停了
     pub trap_ctx_backup: Option<TrapContext> //被打断的trap上下文
 }
 ```
+<!-- 
+killed的作用是标志当前进程是否已经被杀死。因为进程收到杀死信号的时候并不会立刻结束，而是会在适当的时候退出。这个时候需要killed作为标记，退出不必要的信号处理循环。
 
+frozen的标志与SIGSTOP和SIGCONT两个信号有关。SIGSTOP会暂停进程的执行，即将frozen置为true。此时当前进程会阻塞等待SIGCONT（即解冻的信号）。当信号收到SIGCONT的时候，frozen置为false，退出等待信号的循环，返回用户态继续执行。 -->
 
 ---
 **signal的设计实现**  --  建立signal_handler
