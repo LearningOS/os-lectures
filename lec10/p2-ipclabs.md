@@ -77,7 +77,7 @@ IPC OS (IOS)
 
 ---
 
-**总体思路** -- 需要考虑的问题
+## 总体思路 -- 需要考虑的问题
 
 - pipe是啥？
 - 如何访问pipe？
@@ -86,7 +86,7 @@ IPC OS (IOS)
 
 ---
 
-**总体思路** -- 理解pipe
+## 总体思路 -- 理解pipe
 
 **pipe是内核中的一块内存**
 -  顺序写入/读出字节流
@@ -103,7 +103,7 @@ IPC OS (IOS)
 
 ---
 
-**总体思路** -- APP example
+## 总体思路 -- APP example (用户态)
 ```rust
 ...// usr/src/bin/pipetest.rs
 static STR: &str = "Hello, world!"
@@ -124,14 +124,14 @@ pub fn main() -> i32 {
 ```
 ---
 
-**总体思路** -- 与进程的关系
+## 总体思路 -- 与进程的关系
 `pipe`是进程控制块的资源
 
 ![bg right:70% 100%](figs/process-os-key-structures-file-ipc.png)
 
 ---
 
-**总体思路** -- 需要考虑的问题
+## 总体思路 -- 需要考虑的问题
 - signal是啥？
 - 如何使用signal？
 - 如何管理signal？
@@ -158,7 +158,7 @@ pub fn main() -> i32 {
 
 ---
 
-**总体思路** -- APP example
+## 总体思路 -- APP example （用户态）
 ```rust
 ...// usr/src/bin/sig_simple.rs
 fn func() { //signal_handler
@@ -180,7 +180,7 @@ pub fn main() -> i32 {
 
 ---
 
-**总体思路** -- 与进程的关系
+## 总体思路 -- 与进程的关系
 `signal`是进程控制块的资源
 
 ![bg right:70% 100%](figs/process-os-key-structures-file-ipc.png)
@@ -199,7 +199,7 @@ pub fn main() -> i32 {
 
 ---
 
-管道：Unix 中最引人注目的发明
+## 管道：Unix 中最引人注目的发明
 
 - 管道的概念来自贝尔实验室的Douglas McIlroy，他在1964年写的一份内部文件中，提出了把多个程序“像花园水管一样”串连并拧在一起的想法，这样数据就可以在不同程序中流动。
 - 大约在1972年下半年，Ken Thompson在听了Douglas McIlroy关于管道的唠叨后，灵机一动，迅速把管道机制实现在UNIX中。
@@ -211,7 +211,7 @@ McIlroy为原始被开发是最响誉 Unix管道实施, 软件元件部分 并�
 
 
 ---
-信号：Unix 中容易出错的软件中断
+## 信号：Unix 中容易出错的软件中断
 
 信号从Unix的第一个版本就已存在，只是与我们今天所知道的有点不同，需要通过不同的系统调用来捕获不同类型的信号。在版本4之后，改进为通过一个系统调用来捕获所有信号。
 
@@ -344,7 +344,7 @@ signal_simple: Done
 
 
 ---
-**pipe的设计实现**
+## pipe设计实现
 1.  实现基于文件的标准输入/输出
 2.  实现基于文件的实现管道
 3.  支持命令行参数
@@ -355,7 +355,7 @@ signal_simple: Done
 
 
 ---
-**pipe的设计实现** -- 标准文件
+## pipe设计实现 -- 标准文件
 
 1.  实现基于文件的标准输入/输出
  - 0 --  Stdin  ; 1/2 -- Stdout
@@ -372,7 +372,7 @@ signal_simple: Done
 
 
 ---
-**pipe的设计实现** -- 标准文件
+## pipe设计实现 -- 标准文件
 
 1. 创建TCB时初始化`fd_table`
 
@@ -395,7 +395,7 @@ TaskControlBlock::fork(...)->... {
 ![bg right:35% 100%](figs/tcb-ipc-standard-file.png)
 
 ---
-**pipe的设计实现** -- 标准文件
+## pipe设计实现 -- 标准文件
 
 3. `fork`时复制`fd_table`
 
@@ -418,7 +418,7 @@ TaskControlBlock::new(elf_data: &[u8]) -> Self{
 
 
 ---
-**pipe的设计实现** -- 管道文件
+## pipe设计实现 -- 管道文件
 
 1. 管道的系统调用
 
@@ -438,7 +438,7 @@ pub fn sys_pipe(pipe: *mut usize) -> isize;
 ![bg right:35% 100%](figs/tcb-ipc-standard-file.png)
 
 ---
-**pipe的设计实现** -- 管道文件
+## pipe设计实现 -- 管道文件
 
 1. 创建管道中的Buffer
 
@@ -463,7 +463,7 @@ make_pipe() -> (Arc<Pipe>, Arc<Pipe>) {
 
 
 ---
-**pipe的设计实现** -- 管道文件
+## pipe设计实现 -- 管道文件
 
 1.  实现基于文件的输入/输出
  - 实现File 接口
@@ -480,7 +480,7 @@ make_pipe() -> (Arc<Pipe>, Arc<Pipe>) {
 
 
 ---
-**pipe的设计实现** -- 命令行参数
+## pipe设计实现 -- 命令行参数
 - sys_exec 的系统调用接口需要发生变化
 ```rust
 // 增加了args参数
@@ -497,7 +497,7 @@ exec(args_copy[0].as_str(), args_addr.as_slice())
 
 
 ---
-**pipe的设计实现** -- 命令行参数
+## pipe设计实现 -- 命令行参数
 - 将获取到的参数字符串压入到用户栈上
 ```rust
 impl TaskControlBlock {
@@ -513,7 +513,7 @@ impl TaskControlBlock {
 
 
 ---
-**pipe的设计实现** -- 命令行参数
+## pipe设计实现  -- 命令行参数
 ```rust
 pub extern "C" fn _start(argc: usize, argv: usize) -> ! {
    //获取应用的命令行个数 argc, 获取应用的命令行参数到v中
@@ -526,7 +526,7 @@ pub extern "C" fn _start(argc: usize, argv: usize) -> ! {
 
 
 ---
-**pipe的设计实现** -- 重定向
+## pipe设计实现  -- 重定向
 - 增加复制文件描述符系统调用
 ```rust
 /// 功能：将进程中一个已经打开的文件复制
@@ -543,7 +543,7 @@ pub fn sys_dup(fd: usize) -> isize;
 
 
 ---
-**pipe的设计实现** -- 重定向
+## pipe设计实现 -- 重定向
 - 增加复制文件描述符系统调用
 ```rust
 pub fn sys_dup(fd: usize) -> isize {
@@ -557,7 +557,7 @@ pub fn sys_dup(fd: usize) -> isize {
 
 
 ---
-**pipe的设计实现** -- 重定向
+## pipe设计实现 -- 重定向
 ```rust
 // user/src/bin/user_shell.rs
 {
@@ -582,7 +582,7 @@ pub fn sys_dup(fd: usize) -> isize {
 
 
 ---
-**signal的设计实现**
+## signal设计实现
 1.  signal的系统调用
 2.  signal核心数据结构
 3.  建立signal_handler
@@ -591,7 +591,8 @@ pub fn sys_dup(fd: usize) -> isize {
 ![bg right:50% 100%](figs/tcb-ipc-standard-file.png)
 
 ---
-**signal的设计实现** --syscall
+## signal设计实现 -- syscall
+
 <!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
 - sigaction: 设置信号处理例程
 - sigprocmask: 设置要阻止的信号
@@ -601,7 +602,7 @@ pub fn sys_dup(fd: usize) -> isize {
 ![bg right:60% 100%](figs/signal-process.png)
 
 ---
-**signal的设计实现** -- syscall
+## signal设计实现 -- syscall
 <!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
 ```rust
 // 设置信号处理例程
@@ -625,7 +626,7 @@ pub struct SignalAction {
 
 
 ---
-**signal的设计实现** -- syscall
+## signal设计实现 -- syscall
 <!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
 ```rust
 // 设置要阻止的信号
@@ -646,7 +647,7 @@ sys_kill(pid: usize, signal: i32) -> isize
 
 
 ---
-**signal的设计实现**
+## signal设计实现
 进程控制块中的signal核心数据结构
 ```rust
 pub struct TaskControlBlockInner {
@@ -666,7 +667,7 @@ killed的作用是标志当前进程是否已经被杀死。因为进程收到�
 frozen的标志与SIGSTOP和SIGCONT两个信号有关。SIGSTOP会暂停进程的执行，即将frozen置为true。此时当前进程会阻塞等待SIGCONT（即解冻的信号）。当信号收到SIGCONT的时候，frozen置为false，退出等待信号的循环，返回用户态继续执行。 -->
 
 ---
-**signal的设计实现**  --  建立signal_handler
+## signal设计实现  --  建立signal_handler
 
 ```rust
 fn sys_sigaction(signum: i32, action: *const SignalAction, 
@@ -685,7 +686,7 @@ fn sys_sigaction(signum: i32, action: *const SignalAction,
 
 
 ---
-**signal的设计实现**  --  通过kill发出信号
+## signal设计实现  --  通过kill发出信号
 
 ```rust
 fn sys_kill(pid: usize, signum: i32) -> isize {
@@ -702,8 +703,8 @@ fn sys_kill(pid: usize, signum: i32) -> isize {
 
 
 ---
-**signal的设计实现**  --  通过kill发出信号
-当进程号为`pid`的进程由于某种原因进入内核后，在从内核返回到用户态继续执行前：
+## signal设计实现  --  通过kill发出信号
+当进程号为`pid`的进程进入内核后，在从内核返回用户态继续执行前：
 ```
 执行APP --> __alltraps 
          --> trap_handler 
@@ -722,7 +723,7 @@ fn sys_kill(pid: usize, signum: i32) -> isize {
 
  
 ---
-**signal的设计实现**  --  APP恢复正常执行
+## signal设计实现  --  APP恢复正常执行
 当进程号为pid的进程执行完signal_handler函数主体后，会发出`sys_sigreturn`系统调用:
 ```rust
 fn sys_sigreturn() -> isize {
@@ -731,8 +732,6 @@ fn sys_sigreturn() -> isize {
   let trap_ctx = inner.get_trap_cx();
   *trap_ctx = inner.trap_ctx_backup.unwrap();
   ...
-```
-```
 执行APP --> __alltraps 
        --> trap_handler 
             --> 处理 sys_sigreturn系统调用
@@ -743,7 +742,7 @@ fn sys_sigreturn() -> isize {
 
 
 ---
-**signal的设计实现**  -- 屏蔽信号
+## signal设计实现  -- 屏蔽信号
 ```rust
 fn sys_sigprocmask(mask: u32) -> isize {
     ...
