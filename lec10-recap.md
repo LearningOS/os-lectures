@@ -138,12 +138,12 @@ backgroundColor: white
    - PCB 
 ![bg right:70% 100%](lec7/figs/process-os-key-structures.png)
 
-
 ---
 ### 回顾
 - lec9: Filesystem OS  
 
 ![bg right:70% 100%](lec9/figs/fs-intro.png)
+
 
 ---
 ### 回顾
@@ -158,3 +158,15 @@ backgroundColor: white
 ![bg right:70% 100%](lec9/figs/process-os-key-structures-file.png)
 
 
+
+---
+### 回顾
+- lec10: IPC OS
+
+![bg right:70% 100%](lec10/figs/ipc-os-detail-2.png)
+
+
+---
+### 回顾
+- lec10: IPC OS 
+![bg right:70% 100%](lec10/figs/process-os-key-structures-file-ipc.png)
