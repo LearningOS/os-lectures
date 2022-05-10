@@ -64,11 +64,6 @@ backgroundColor: white
 虚拟文件系统 (VFS)
 ![w:700](figs/vfs-app.png)
 
---- 
-### 文件系统的设计与实现 -- 概述
-文件系统的组织视图
-![w:600](figs/fsorg.png)
-
 
 --- 
 ### 文件系统的设计与实现 -- 概述
@@ -78,6 +73,12 @@ backgroundColor: white
 - 目录项 (`dir_entry`)
 - 数据块（`data block`）
 ![bg right 100%](figs/fsdisk.png)
+
+--- 
+<!-- ### 文件系统的设计与实现 -- 概述 -->
+<!-- 文件系统的组织视图 -->
+![bg 100%](figs/fsorg.png)
+![bg 100%](figs/fsall.png)
 
 
 --- 
@@ -94,7 +95,7 @@ backgroundColor: white
   - 块大小、空余块数量等
   - block 与inode 的总量，未使用与已使用的数量
   - filesystem的挂载时间、最近一次写入时间、最近一次检验磁碟(fsck) 时间
-![bg right 100%](figs/efs-superblock.png)
+![bg right:40% 100%](figs/efs-superblock.png)
 
 
 --- 
@@ -115,7 +116,7 @@ backgroundColor: white
 数据块dnode( `data node`) - 目录和文件的数据块
 - 放置目录和文件内容
 - 在格式化时data block的大小就固定了，且每个block都有编号，以方便inode记录
-- inode一般为128
+- inode一般为128B
 - data block一般为4KB
 
 
