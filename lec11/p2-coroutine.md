@@ -54,6 +54,8 @@ Inter Process Communication，IPC
 Donald  Knuth ：子例程是协程的特例
 ![bg right:40% 100%](figs/coroutine-3.png)
 
+<!-- 协程的概念最早由Melvin Conway在1963年提出并实现，用于简化COBOL编译器的词法和句法分析器间的协作，当时他对协程的描述是“行为与主程序相似的子例程”。 -->
+
 ---
 ### 为何需要协程？
 <!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
@@ -75,18 +77,41 @@ Donald  Knuth ：子例程是协程的特例
 **无栈协程是普通函数的泛化**
 
 ---
-### 为何需要协程？
+### 为何需要协程？-- 协程分类
+<!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
+2004年Lua的作者Ana Lucia de Moura和Roberto Ierusalimschy发表论文“Revisiting Coroutines”，提出依照三个因素来对协程进行分类：
+- 控制传递（Control-transfer）机制
+- 栈式（Stackful）构造
+- 编程语言中第一类（First-class）对象
+
+---
+### 为何需要协程？-- 协程分类
+控制传递机制：对称（Symmetric） v.s. 非对称（Asymmetric）协程
+- 对称协程：
+   - 只提供一种传递操作，用于在协程间直接传递控制
+   - 对称协程都是等价的，控制权直接在对称协程之间进行传递
+   - 对称协程在挂起时主动指明另外一个对称协程来接收控制权
+- 非对称协程（半对称（Semi-symmetric）协程）：
+  - 提供调用和挂起两种操作，非对称协程挂起时将控制返回给调用者
+  - 调用者或上层管理者根据某调度策略调用其他非对称协程进行工作
+
+<!-- 出于支持并发而提供的协程通常是对称协程，用于表示独立的执行单元，如golang中的协程。用于产生值序列的协程则为非对称协程，如迭代器和生成器。
+这两种控制传递机制可以相互表达，因此要提供通用协程时只须实现其中一种即可。但是，两者表达力相同并不意味着在易用性上也相同。对称协程会把程序的控制流变得相对复杂而难以理解和管理，而非对称协程的行为在某种意义上与函数类似，因为控制总是返回给调用者。使用非对称协程写出的程序更加结构化。 -->
+
+
+---
+### 为何需要协程？-- 协程分类
 <!-- 有栈协程和无栈协程 https://cloud.tencent.com/developer/article/1888257 -->
-协程分类
+栈式（Stackful）构造：有栈(stackful)协程 v.s. 无栈(stackless)协程
 - 无栈协程：指可挂起/恢复的函数
+   - 无独立的上下文空间（栈），数据保存在堆上 
    - 开销： 函数调用的开销
 - 有栈协程：用户态管理并运行的线程
+  - 有独立的上下文空间（栈）
   - 开销：用户态切换线程的开销
-![bg right:40% 100%](figs/function-coroutine.png)
-
 - 是否可以在任意嵌套函数中被挂起？
   - 有栈协程：可以；无栈协程：不行
-
+<!-- ![bg right:40% 100%](figs/function-coroutine.png) -->
 
 <!-- 
 https://zhuanlan.zhihu.com/p/25513336
@@ -99,7 +124,16 @@ Coroutine从入门到劝退
 
 -->
 
-
+---
+### 为何需要协程？-- 协程分类
+<!-- 有栈协程和无栈协程 https://cloud.tencent.com/developer/article/1888257 -->
+第一类（First-class）语言对象：First-class对象 v.s. 受限协程
+- First-class对象 : 协程被在语言中作为first-class对象
+   - 可以作为参数被传递，由函数创建并返回，并存储在一个数据结构中供后续操作
+   - 提供了良好的编程表达力，方便开发者对协程进行操作
+-  受限协程
+   -  特定用途而实现的协程，协程对象限制在指定的代码结构中
+ 
 ---
 ### 为何需要协程？
 支持协程的编程语言
@@ -107,6 +141,7 @@ Coroutine从入门到劝退
 - C#(无栈)，Java 2022(有栈)
 - Python（有/无栈）, Javascript（无栈）, Lua(有栈)
 
+![w:1000](figs/coroutine-langs.png)
 <!-- 
 https://wiki.brewlin.com/wiki/compiler/rust%E5%8D%8F%E7%A8%8B_%E8%B0%83%E5%BA%A6%E5%99%A8%E5%AE%9E%E7%8E%B0/
 
@@ -139,25 +174,43 @@ func main() {
     fmt.Println("done")
 }
 ```
+
+![bg right:30% 100%](figs/go-ex1.png)
+
 ---
+<!-- 
+Making multiple HTTP requests using Python (synchronous, multiprocessing, multithreading, asyncio)
+https://www.youtube.com/watch?v=R4Oz8JUuM4s
+https://github.com/nikhilkumarsingh/async-http-requests-tut -->
 ### 使用协程 -- python
+<!-- asyncio 是 Python 3.4 引入的标准库，直接内置了对异步 IO 的支持。只要在一个函数前面加上 async 关键字就可以将一个函数变为一个协程。 -->
+
 ```python
-...
 URL = 'https://httpbin.org/uuid'
 async def fetch(session, url):
     async with session.get(url) as response:
         json_response = await response.json()
         print(json_response['uuid'])
-
 async def main():
     async with aiohttp.ClientSession() as session:
         tasks = [fetch(session, URL) for _ in range(100)]
         await asyncio.gather(*tasks)
-
-@timer(1, 5)
 def func():
     asyncio.run(main())
 ```    
+```
+// https://github.com/nikhilkumarsingh/async-http-requests-tut/blob/master/test_asyncio.py
+b6e20fef-5ad7-49d9-b8ae-84b08e0f2d35
+69d42300-386e-4c49-ad77-747cae9b2316
+1.5898115579998375
+```
+
+<!-- 进程，线程和协程 (Process, Thread and Coroutine) 理论篇，实践篇，代码 python
+https://leovan.me/cn/2021/04/process-thread-and-coroutine-theory/
+https://leovan.me/cn/2021/04/process-thread-and-coroutine-python-implementation/
+https://github.com/leovan/leovan.me/tree/master/scripts/cn/2021-04-03-process-thread-and-coroutine-python-implementation -->
+
+
 
 ---
 ### 使用协程 -- rust
@@ -175,6 +228,9 @@ fn main() {
     let future = hello_world(); // Nothing is printed
     block_on(future); // `future` is run and "hello, world!" is printed
 }
+```
+```
+https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html 
 ```
 
 <!-- 
@@ -204,6 +260,10 @@ def main():
 ```
 ---
 ### 进程/线程/协程性能比较
+<!-- 
+https://www.youtube.com/watch?v=R4Oz8JUuM4s
+https://github.com/nikhilkumarsingh/async-http-requests-tut
+git@github.com:nikhilkumarsingh/async-http-requests-tut.git -->
 多进程：7秒
 ```python
 from multiprocessing.pool import Pool
@@ -222,6 +282,10 @@ def main():
 
 ---
 ### 进程/线程/协程性能比较
+<!-- 
+https://www.youtube.com/watch?v=R4Oz8JUuM4s
+https://github.com/nikhilkumarsingh/async-http-requests-tut
+git@github.com:nikhilkumarsingh/async-http-requests-tut.git -->
 线程：4秒
 ```python
 from concurrent.futures import ThreadPoolExecutor
@@ -241,6 +305,10 @@ def main():
 
 ---
 ### 进程/线程/协程性能比较
+<!-- 
+https://www.youtube.com/watch?v=R4Oz8JUuM4s
+https://github.com/nikhilkumarsingh/async-http-requests-tut
+git@github.com:nikhilkumarsingh/async-http-requests-tut.git -->
 协程：2秒
 ```python
 ...
