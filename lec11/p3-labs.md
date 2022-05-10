@@ -12,14 +12,9 @@ backgroundColor: white
 <!-- _class: lead -->
 
 # 第十一讲 线程与协程
-Inter Process Communication，IPC
-## 第三节 实验
+## 第三节 支持线程/协程的OS(TCOS)
 
-
-
----
-
-https://blog.aloni.org/posts/a-stack-less-rust-coroutine-100-loc/
+<!-- https://blog.aloni.org/posts/a-stack-less-rust-coroutine-100-loc/
 
 https://stanford-cs242.github.io/f17/assets/projects/2017/kedero.pdf
 
@@ -27,4 +22,300 @@ https://stanford-cs242.github.io/f17/assets/projects/2017/kedero.pdf
 https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/
 
 
-https://tian-deng.github.io/posts/translation/rust/green_threads_explained_in_200_lines_of_rust/
+https://tian-deng.github.io/posts/translation/rust/green_threads_explained_in_200_lines_of_rust/ -->
+---
+### 实践：TCOS
+- **进化目标**
+- 总体思路
+- 历史背景
+- 实践步骤
+- 软件架构
+- 相关硬件
+- 程序设计
+
+![bg right:65% 100%](figs/thread-coroutine-os-detail.png)
+
+
+---
+### 实践：TCOS -- 以往目标
+提高性能、简化开发、加强安全、支持数据持久保存、支持应用的灵活性，支持进程间交互
+- IPC OS：进程间交互
+- Filesystem OS：支持数据持久保存
+- Process OS: 增强进程管理和资源管理
+- Address Space OS: 隔离APP访问的内存地址空间
+- multiprog & time-sharing OS目标: 让APP共享CPU资源
+- BatchOS目标: 让APP与OS隔离，加强系统安全，提高执行效率
+- LibOS目标: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
+
+---
+### 实践：TCOS -- 进化目标
+提高执行效率，支持线程和协程
+- 在进程内实现多个控制流（线程/协程）的执行
+- 在用户态或内核态管理多个控制流（线程/协程）
+
+
+---
+### 实践：TCOS 
+### 同学的进化目标
+- 理解基于任务（Task）的进程/线程/协程抽象
+- 理解进程/线程/协程的实现与运行机制
+- 会写支持线程/协程的OS
+
+
+<!-- 达科塔盗龙Dakotaraptor是一种生存于距今6700万-6500万年前白垩纪晚期的兽脚类驰龙科恐龙，它主打的并不是霸王龙的力量路线，而是利用自己修 长的后肢来提高敏捷度和奔跑速度。它全身几乎都长满了羽毛，可能会滑翔或者其他接近飞行行为的行动模式。 -->
+
+![bg right 80%](figs/dakotaraptor.png)
+
+---
+### 实践：TCOS
+- 进化目标
+- **总体思路**
+- 历史背景
+- 实践步骤
+- 软件架构
+- 程序设计
+
+![bg right:70% 100%](figs/task-abstracts.png)
+
+
+
+---
+
+### 总体思路 
+- 如何管理协程/线程/进程？
+   - 任务上下文
+   - 用户态管理
+   - 内核态管理 
+![bg right:65% 100%](figs/task-abstracts.png)
+
+
+---
+### 总体思路 
+- 如何管理协程/线程/进程？
+   - 任务上下文
+   - 用户态管理
+   - 内核态管理 
+![bg right:65% 100%](figs/thread-coroutine-os-detail.png)
+
+
+---
+### 总体思路 
+**用户态管理的用户线程**
+   - 用户态管理线程的任务控制块
+      - 与 Lec4中的任务控制块类似
+      - 由用户态的Runtime管理
+  - 任务控制块
+```
+struct Task {
+    id: usize,
+    stack: Vec<u8>,
+    ctx: TaskContext,
+    state: State,
+}
+```  
+![bg right:40% 100%](figs/task-abstracts.png)
+
+---
+### 实践步骤
+```
+git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
+cd rCore-Tutorial-v3
+git checkout ch8
+```
+包含一个应用程序
+```
+user/src/bin/
+├──  stackful_coroutine.rs
+```
+---
+### 实践步骤
+执行这个应用程序
+```
+Rust user shell
+>> stackful_coroutine
+stackful_coroutine begin...
+TASK  0(Runtime) STARTING
+TASK  1 STARTING
+task: 1�counter: 0
+TASK 2 STARTING
+task: 2�counter: 0
+TASK 3 STARTING
+task: 3�counter: 0
+TASK 4 STARTING
+task: 4�counter: 0
+...
+```
+
+---
+### 程序设计
+简单的用户态管理多线程应用 `stackful_coroutine.rs`
+```rust
+pub fn main()  {
+    let mut runtime = Runtime::new(); //创建线程管理子系统
+    runtime.init();  // 初始化线程管理子系统
+    runtime.spawn(|| {  //创建一个用户态线程
+        println!("TASK  1 STARTING");
+        let id = 1;
+        for i in 0..4 {
+            println!("task: {} counter: {}", id, i);
+            yield_task();  //主动让出处理器
+        }
+        println!("TASK 1 FINISHED");
+    }); //... 继续创建第2~4个用户态线程
+    runtime.run(); //调度执行各个线程
+}
+```
+
+
+---
+### 程序设计
+用户态管理的线程结构与执行状态
+```rust
+struct Task { //线程控制块
+    id: usize,
+    stack: Vec<u8>,
+    ctx: TaskContext,
+    state: State,
+}
+```
+```rust
+pub struct TaskContext { //线程上下文
+    // 15 u64
+    x1: u64,  //ra: return addres 
+    x2: u64,  //sp
+    ...,  //s[0..11] 寄存器
+    nx1: u64, //new return addres
+}
+```
+
+
+---
+### 程序设计
+用户态管理的线程结构与执行状态
+```rust
+struct Task { //线程控制块
+    id: usize,
+    stack: Vec<u8>,
+    ctx: TaskContext,
+    state: State,
+}
+```
+```rust
+enum State { //线程状态
+    Available,
+    Running,
+    Ready,
+}
+```
+
+
+---
+### 程序设计
+**用户态线程管理运行时初始化**
+Runtime::new() 主要有三个步骤：
+- 初始化应用主线程控制块（TID为 0 ），并设置其状态为 Running；
+- 初始化 tasks 线程控制块向量，加入应用主线程控制块和空闲线程控制块，为后续的线程创建做好准备；
+- 包含 tasks 线程控制块向量和 current 当前线程id（初始值为0， 表示当前正在运行的线程是应用主线程），来建立 Runtime 变量；
+
+---
+### 程序设计
+**用户态线程管理运行时初始化**
+Runtime::init() ，把线程管理运行时的 Runtime 自身的地址指针赋值给全局可变变量 RUNTIME
+
+在应用的 main() 函数中，首先会依次调用上述两个函数。这样线程管理运行时会附在TID为 0 的应用主线程上，处于运行正在运行的 Running 状态。
+
+
+---
+### 程序设计
+**用户态管理的线程创建** 
+```rust
+    pub fn spawn(&mut self, f: fn()) {
+        let available = self  
+            .tasks.iter_mut()
+            .find(|t| t.state == State::Available)
+            .expect("no available task.");
+        let size = available.stack.len();
+        unsafe {
+            let s_ptr = available.stack.as_mut_ptr().offset(size as isize);
+            let s_ptr = (s_ptr as usize & !7) as *mut u8;
+            available.ctx.x1 = guard as u64;  //ctx.x1  is old return address
+            available.ctx.nx1 = f as u64;     //ctx.nx2 is new return address
+            available.ctx.x2 = s_ptr.offset(-32) as u64; //cxt.x2 is sp
+        }
+        available.state = State::Ready;
+    }
+}
+```
+
+---
+### 程序设计
+**用户态管理的线程创建** 
+
+- 在线程向量中查找一个状态为 Available 的空闲线程控制块
+- 初始化该空闲线程的线程控制块的线程上下文
+    -  `x1`寄存器：老的返回地址 -- `guard`函数地址
+    -  `nx1`寄存器：新的返回地址 -- 输入参数 `f` 函数地址
+    -  `x2` 寄存器：新的栈地址 --  available.stack+size
+
+---
+### 程序设计
+**用户态管理的线程切换** 
+当应用要切换线程时，会调用 yield_task 函数，通过 runtime.t_yield 函数来完成具体的切换过程。runtime.t_yield 这个函数主要完成的功能是：
+- 在线程向量中查找一个状态为 Ready 的线程控制块
+- 把当前运行的线程的状态改为`Ready`，把新就绪线程的状态改为`Running`，把 runtime 的 current 设置为新就绪线程控制块的id
+- 调用函数 switch ，完成两个线程的栈和上下文的切换；
+
+
+---
+### 程序设计
+**用户态管理的线程切换** 
+```rust
+fn t_yield(&mut self) -> bool {
+        ...
+    self.tasks[pos].state = State::Running;
+    let old_pos = self.current;
+    self.current = pos;
+
+    unsafe {
+        switch(&mut self.tasks[old_pos].ctx, &self.tasks[pos].ctx);
+    }
+    ...
+```
+
+
+
+---
+### 程序设计
+**用户态管理的线程切换** 
+ switch 主要完成的工作：
+- 完成当前指令指针(PC)的切换；
+- 完成栈指针的切换；
+- 完成通用寄存器集合的切换；
+---
+### 程序设计
+**用户态管理的线程切换** 
+ switch 主要完成的工作：
+```
+unsafe fn switch(old: *mut TaskContext, new: *const TaskContext)  {
+    // a0: _old, a1: _new
+    asm!("
+        sd x1, 0x00(a0)
+        ...
+        sd x1, 0x70(a0)
+        ld x1, 0x00(a1)
+        ...
+        ld t0, 0x70(a1)
+        jr t0
+    ...
+```
+
+
+---
+### 程序设计
+**用户态管理的线程执行&调度** 
+```rust
+    pub fn run(&mut self){
+        while self.t_yield() {} 
+       println!("All tasks finished!");
+    }
+```
