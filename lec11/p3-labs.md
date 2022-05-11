@@ -70,6 +70,7 @@ https://tian-deng.github.io/posts/translation/rust/green_threads_explained_in_20
 ### 实践：TCOS
 - 进化目标
 - **总体思路**
+    - **用户态管理的用户线程**
 - 历史背景
 - 实践步骤
 - 软件架构
@@ -84,7 +85,7 @@ https://tian-deng.github.io/posts/translation/rust/green_threads_explained_in_20
 ### 总体思路 
 - 如何管理协程/线程/进程？
    - 任务上下文
-   - 用户态管理
+   - **用户态管理**
    - 内核态管理 
 ![bg right:65% 100%](figs/task-abstracts.png)
 
@@ -93,7 +94,7 @@ https://tian-deng.github.io/posts/translation/rust/green_threads_explained_in_20
 ### 总体思路 
 - 如何管理协程/线程/进程？
    - 任务上下文
-   - 用户态管理
+   - **用户态管理**
    - 内核态管理 
 ![bg right:65% 100%](figs/thread-coroutine-os-detail.png)
 
@@ -136,13 +137,13 @@ Rust user shell
 stackful_coroutine begin...
 TASK  0(Runtime) STARTING
 TASK  1 STARTING
-task: 1�counter: 0
+task: 1 counter: 0
 TASK 2 STARTING
-task: 2�counter: 0
+task: 2 counter: 0
 TASK 3 STARTING
-task: 3�counter: 0
+task: 3 counter: 0
 TASK 4 STARTING
-task: 4�counter: 0
+task: 4 counter: 0
 ...
 ```
 
@@ -180,7 +181,6 @@ struct Task { //线程控制块
 ```
 ```rust
 pub struct TaskContext { //线程上下文
-    // 15 u64
     x1: u64,  //ra: return addres 
     x2: u64,  //sp
     ...,  //s[0..11] 寄存器
@@ -319,3 +319,279 @@ unsafe fn switch(old: *mut TaskContext, new: *const TaskContext)  {
        println!("All tasks finished!");
     }
 ```
+
+
+
+---
+### 实践：TCOS
+- 进化目标
+- **总体思路**
+    - **内核态管理的用户线程**
+- 历史背景
+- 实践步骤
+- 软件架构
+- 程序设计
+
+
+![bg right:70% 100%](figs/task-abstracts.png)
+
+
+
+---
+
+### 总体思路 
+- 如何管理协程/线程/进程？
+   - 任务上下文
+   - 用户态管理
+   - **内核态管理**
+
+![bg right:65% 100%](figs/task-abstracts.png)
+
+
+---
+### 总体思路 
+- 如何管理协程/线程/进程？
+   - 任务上下文
+   - 用户态管理
+   - **内核态管理** 
+![bg right:65% 100%](figs/thread-coroutine-os-detail.png)
+
+
+---
+### 总体思路 
+**内核态管理的用户线程**
+   - 内核态管理的用户线程的任务控制块
+      - 与 Lec7中的任务控制块类似
+      - 重构：进程中有多个代表线程的任务控制块
+```
+pub struct ProcessControlBlockInner {
+    pub tasks: Vec<Option<Arc<TaskControlBlock>>>,
+    ...
+}  
+```  
+![bg right:40% 100%](figs/task-abstracts.png)
+
+
+
+---
+### 实践步骤
+```
+git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
+cd rCore-Tutorial-v3
+git checkout ch8
+```
+包含几个与内核态管理的用户线程相关的应用程序
+```
+user/src/bin/
+├──  threads.rs
+├──  threads_arg.rs
+```
+---
+### 实践步骤
+执行threads_arg这个应用程序
+```
+Rust user shell
+>> threads_arg
+aaa...bbb...ccc...aaa...bbb...ccc...
+thread#1 exited with code 1
+thread#2 exited with code 2
+ccc...thread#3 exited with code 3
+main thread exited.
+...
+```
+
+---
+### 程序设计
+简单的内核态管理多线程应用 `threads_arg.rs`
+```rust
+fn thread_print(arg: *const Argument) -> ! { //线程的函数主体
+    ...
+    exit(arg.rc)
+}
+pub fn main() -> i32 {
+    let mut v = Vec::new();
+    for arg in args.iter() {
+        v.push(thread_create( thread_print, arg ));  //创建线程
+    ...
+    for tid in v.iter() {
+        let exit_code = waittid(*tid as usize); //等待线程结束
+    ...
+}
+```
+
+
+---
+### 程序设计 -- 系统调用
+在一个进程的运行过程中，进程可以创建多个属于这个进程的线程，每个线程有自己的线程标识符（TID，Thread Identifier）。系统调用 thread_create 的原型如下：
+```rust
+/// 功能：当前进程创建一个新的线程
+/// 参数：entry 表示线程的入口函数地址
+/// 参数：arg：表示线程的一个参数
+pub fn sys_thread_create(entry: usize, arg: usize) -> isize
+```
+- 创建线程不需要要建立新的地址空间
+- 属于同一进程中的线程之间没有父子关系
+
+
+---
+### 程序设计 -- 系统调用
+当一个线程执行完代表它的功能后，会通过 exit 系统调用退出。需要通过该线程需要进程/主线程调用 waittid 来回收其资源，这样整个线程才能被彻底销毁。系统调用 waittid 的原型如下：
+```rust
+/// 参数：tid表示线程id
+/// 返回值：如果线程不存在，返回-1；如果线程还没退出，返回-2；其他情况下，返回结束线程的退出码
+pub fn sys_waittid(tid: usize) -> i32
+```
+- 进程/主线程要负责通过 waittid 来等待它创建出来的线程（不是主线程）结束并回收它们在内核中的资源
+- 如果进程/主线程先调用了 exit 系统调用来退出，那么整个进程（包括所属的所有线程）都会退出
+
+
+---
+### 程序设计 -- 系统调用
+在引入了线程机制后，进程相关的重要系统调用：fork 、 exec 、 waitpid 虽然在接口上没有变化，但在它要完成的功能上需要有一定的扩展。
+- 把以前进程中与处理器执行相关的部分拆分到线程中
+- 通过 fork 创建进程其实也意味着要单独建立一个主线程来使用处理器，并为以后创建新的线程建立相应的线程控制块向量
+- 相对而言， exec 和 waitpid 这两个系统调用要做的改动比较小，还是按照与之前进程的处理方式来进行
+- 总体上看，进程相关的这三个系统调用还是保持了已有的进程操作的语义，并没有由于引入了线程，而带来大的变化
+
+
+---
+### 程序设计 -- 核心数据结构
+为了在现有进程管理的基础上实现线程管理，我们需要改进一些数据结构包含的内容及接口。基本思路就是把进程中与处理器相关的部分分拆出来，形成线程相关的部分：
+- 任务控制块 TaskControlBlock ：表示线程的核心数据结构
+- 任务管理器 TaskManager ：管理线程集合的核心数据结构
+- 处理器管理结构 Processor ：用于线程调度，维护线程的处理器状态
+
+
+---
+### 程序设计 -- 核心数据结构
+线程控制块
+```rust
+pub struct TaskControlBlock {
+    pub process: Weak<ProcessControlBlock>, //线程所属的进程控制块
+    pub kstack: KernelStack,//任务（线程）的内核栈
+    inner: UPSafeCell<TaskControlBlockInner>,
+}
+pub struct TaskControlBlockInner {
+    pub res: Option<TaskUserRes>,  //任务（线程）用户态资源
+    pub trap_cx_ppn: PhysPageNum,//trap上下文地址
+    pub task_cx: TaskContext,//任务（线程）上下文
+    pub task_status: TaskStatus,//任务（线程）状态
+    pub exit_code: Option<i32>,//任务（线程）退出码
+}
+```
+
+
+---
+### 程序设计 -- 核心数据结构
+进程控制块
+```rust
+pub struct ProcessControlBlock {
+    pub pid: PidHandle,
+    inner: UPSafeCell<ProcessControlBlockInner>,
+}
+pub struct ProcessControlBlockInner {
+    pub tasks: Vec<Option<Arc<TaskControlBlock>>>,
+    pub task_res_allocator: RecycleAllocator,
+    ...
+}
+```
+ RecycleAllocator 是对之前的 PidAllocator 的一个升级版，即一个相对通用的资源分配器，可用于分配进程标识符（PID）和线程的内核栈（KernelStack）。
+
+ 
+---
+### 程序设计 -- 管理机制
+线程创建
+当一个进程执行中发出系统调用 sys_thread_create 后，操作系统就需要在当前进程的基础上创建一个线程，即在线程控制块中初始化各个成员变量，建立好进程和线程的关系等，关键要素包括：
+- 线程的用户态栈：确保在用户态的线程能正常执行函数调用
+- 线程的内核态栈：确保线程陷入内核后能正常执行函数调用
+- 线程的跳板页：确保线程能正确的进行用户态<–>内核态切换
+- 线程上下文：即线程用到的寄存器信息，用于线程切换
+
+
+---
+### 程序设计 -- 管理机制
+线程创建
+```rust
+pub fn sys_thread_create(entry: usize, arg: usize) -> isize {
+    // create a new thread
+    let new_task = Arc::new(TaskControlBlock::new(...
+    // add new task to scheduler
+    add_task(Arc::clone(&new_task));
+    // add new thread to current process
+    let tasks = &mut process_inner.tasks;
+    tasks[new_task_tid] = Some(Arc::clone(&new_task));
+    *new_task_trap_cx = TrapContext::app_init_context( //建立trap/task上下文
+        entry,
+        new_task_res.ustack_top(),
+        kernel_token(),
+    ... 
+```
+
+---
+### 程序设计 -- 管理机制
+线程退出
+- 当一个非主线程的其他线程发出 sys_exit 系统调用时，内核会调用 exit_current_and_run_next 函数退出当前线程并切换到下一个线程，但不会导致其所属进程的退出。
+- 当主线程 即进程发出这个系统调用，当内核收到这个系统调用后，会回收整个进程（这包括了其管理的所有线程）资源，并退出。
+
+
+---
+### 程序设计 -- 管理机制
+线程退出
+```rust
+pub fn sys_exit(exit_code: i32) -> ! {
+    exit_current_and_run_next(exit_code); ...
+pub fn exit_current_and_run_next(exit_code: i32) { 
+    let task = take_current_task().unwrap();
+    let mut task_inner = task.inner_exclusive_access();   
+    drop(task_inner); //释放线程资源
+    drop(task);  //释放线程控制块
+     if tid == 0 {
+        // 释放当前进程的所有线程资源
+        // 释放当前进程的资源
+...
+```
+
+
+
+
+---
+### 程序设计 -- 管理机制
+等待线程结束
+- 如果找到 tid 对应的线程，则尝试收集该线程的退出码 exit_tid ，否则返回错误（退出线程不存在）。
+- 如果退出码存在(意味这该线程确实退出了)，则清空进程中对应此线程的线程控制块（至此，线程所占资源算是全部清空了），否则返回错误（线程还没退出）。
+
+---
+### 程序设计 -- 管理机制
+```rust
+pub fn sys_waittid(tid: usize) -> i32 {
+    ...
+    if let Some(waited_task) = waited_task {
+        if let Some(waited_exit_code) = waited_task.....exit_code {
+            exit_code = Some(waited_exit_code);
+        }
+    } else {
+        return -1; // waited thread does not exist
+    }
+    if let Some(exit_code) = exit_code {
+        process_inner.tasks[tid] = None; //dealloc the exited thread
+        exit_code
+    } else {
+        -2 // waited thread has not exited
+    }
+```
+
+---
+### 程序设计 -- 管理机制
+线程执行中的特权级切换和调度切换
+
+- 线程执行中的特权级切换与第四讲中介绍的任务切换的设计与实现是一致的
+- 线程执行中的调度切换过程与第七讲中介绍的进程调度机制是一致的
+
+
+---
+### 小结
+- 用户态管理的用户线程
+- 内核态管理的用户线程
+- 能写达科塔盗龙OS
+
+![bg right 70%](figs/dakotaraptor.png)
