@@ -77,3 +77,10 @@ backgroundColor: white
 ## 第十讲  进程间通信
 - [第一节 进程间通信(IPC)概述](./lec10/p1-ipcoverview.html)
 - [第二节 支持IPC的OS](./lec10/p2-ipclabs.html)
+
+
+---
+## 第十一讲  线程余协程
+- [第一节 线程](./lec11/p1-thread.html)
+- [第二节 协程](./lec11/p2-coroutine.html)
+- [第三节 支持线程/协程的OS(TCOS)](./lec11/p3-labs.html)
