@@ -349,7 +349,7 @@ Shell: Process 2 exited with code 0
 - 历史背景
 - 实践步骤
 - 软件架构
-- **相关硬件 **
+- **相关硬件**
   - 块设备
 - 程序设计
 
@@ -738,7 +738,8 @@ fn open_file(name: &str, flags: OpenFlags) -> Option<Arc<OSInode>> {
                     Arc::new(OSInode::new( 
                         readable,
                         writable,
-                        inode,
+                        inode,  ))
+                })
 ```
 在根目录``ROOT_INODE``中创建一个文件，返回``OSInode``
 
