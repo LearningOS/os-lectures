@@ -205,7 +205,7 @@ read: the 0 message.
 ### IPC基本概念 -- 管道
 Shell也提供了管道 ，只需使用一根竖线 "**|**" 连接两个命令即
 ```
-rCore-Tutorial-v3 on  ch7
+rCore-Tutorial-v3 on ch7
 ❯ cat README.md | grep rcore
 $ git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 ...

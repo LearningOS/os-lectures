@@ -170,13 +170,13 @@ Filesystem OS(FOS)
 ---
 ### 总体思路
 - 编译：内核独立编译，单独的内核镜像
-- 编译：应用程序编译后，组织形成文件系统镜像
+- 编译：应用程序编译后，**组织形成文件系统镜像**
 - 构造：进程的管理与初始化，建立基于页表机制的虚存空间
 - 构造：构建文件系统
 - 运行：特权级切换，进程与OS相互切换
 - 运行：切换地址空间，跨地址空间访问数据
-- 运行：从文件系统加载应用，形成进程
-- 运行：数据切换：内存--磁盘，基于文件的读写
+- 运行：**从文件系统加载应用，形成进程**
+- 运行：数据切换：内存--磁盘，**基于文件的读写**
 
 
 ---
@@ -248,7 +248,7 @@ file_test passed!
 Shell: Process 2 exited with code 0
 >>
 ```
-它会将 Hello, world! 输出到另一个文件 filea ，并读取里面的内容确认输出正确。
+它会将 Hello, world! 输出到另一个文件 filea，并读取里面的内容确认输出正确。
 
 ---
 ### 实践步骤 
@@ -297,7 +297,7 @@ Shell: Process 2 exited with code 0
    │       ├── block_dev.rs(声明块设备抽象接口 BlockDevice，需要库的使用者提供其实现)
    │       ├── efs.rs(实现整个 EasyFileSystem 的磁盘布局)
    │       ├── layout.rs(一些保存在磁盘上的数据结构的内存布局)
-   │       ├── lib.rs
+   │       ├── lib.rs（定义的必要信息）
    │       └── vfs.rs(提供虚拟文件系统的核心抽象，即索引节点 Inode)
    ├── easy-fs-fuse(新增：将当前 OS 上的应用可执行文件按照 easy-fs 的格式进行打包)
    │   ├── Cargo.toml
@@ -351,7 +351,7 @@ Shell: Process 2 exited with code 0
 - 历史背景
 - 实践步骤
 - 软件架构
-- **相关硬件 **
+- **相关硬件**
   - 块设备
 - 程序设计
 
@@ -741,7 +741,8 @@ fn open_file(name: &str, flags: OpenFlags) -> Option<Arc<OSInode>> {
                     Arc::new(OSInode::new( 
                         readable,
                         writable,
-                        inode,
+                        inode,  ))
+                })
 ```
 在根目录``ROOT_INODE``中创建一个文件，返回``OSInode``
 
@@ -759,7 +760,8 @@ fn open_file(name: &str, flags: OpenFlags) -> Option<Arc<OSInode>> {
                 Arc::new(OSInode::new(
                     readable,
                     writable,
-                    inode
+                    inode ))
+            })
 ```
 在根目录``ROOT_INODE``中找到一个文件，返回``OSInode``
 
@@ -787,7 +789,8 @@ sys_close ：将进程控制块中的文件描述符表对应的一项改为 Non
         if let Some(app_inode) = open_file(path.as_str(), ...) {
             let all_data = app_inode.read_all();
             let task = current_task().unwrap();
-            task.exec(all_data.as_slice());
+            task.exec(all_data.as_slice()); 0
+    } else { -1 }
 ```
 
 当获取应用的 ELF 文件数据时，首先调用 ``open_file`` 函数，以只读方式打开应用文件并获取它对应的 ``OSInode`` 。接下来可以通过 ``OSInode::read_all`` 将该文件的数据全部读到一个向量 ``all_data`` 中
