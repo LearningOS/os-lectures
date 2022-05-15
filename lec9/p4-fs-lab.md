@@ -131,12 +131,6 @@ Filesystem OS(FOS)
 
 ![bg right:90% 80%](figs/fs-prog-intro.png)
 
----
-
-**总体思路**
-
-
-![bg right:90% 100%](figs/easyfs-detail.png)
 
 ---
 
@@ -164,6 +158,14 @@ Filesystem OS(FOS)
 
 ![bg right:90% 80%](figs/fs-arch-4.png)
 
+
+
+---
+
+**总体思路**
+
+
+![bg right:90% 100%](figs/easyfs-detail.png)
 
 ---
 ### 总体思路
@@ -512,17 +514,18 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 ---
 ## 实践：FOS -- 应用程序设计 
 ```
+// user/src/bin/filetest_simple.rs
 pub fn main() -> i32 {
     let test_str = "Hello, world!";
     let filea = "filea\0";
-    //创建文件filea，返回文件描述符fd
+    // 创建文件filea，返回文件描述符fd(有符号整数)
     let fd = open(filea, OpenFlags::CREATE | OpenFlags::WRONLY);
-    write(fd, test_str.as_bytes());           //把test_str写入文件中
-    close(fd);                                //关闭文件
-    let fd = open(filea, OpenFlags::RDONLY);  //只读方式打开文件
-    let mut buffer = [0u8; 100];
-    let read_len = read(fd, &mut buffer) as usize;//读取文件内容
-    close(fd);
+    write(fd, test_str.as_bytes());               // 把test_str写入文件中
+    close(fd);                                    // 关闭文件
+    let fd = open(filea, OpenFlags::RDONLY);      // 只读方式打开文件
+    let mut buffer = [0u8; 100];                  // 100字节的数组缓冲区
+    let read_len = read(fd, &mut buffer) as usize;// 读取文件内容到buffer中
+    close(fd);                                    // 关闭文件
 }
 ```
 
@@ -609,7 +612,7 @@ pub struct OSInodeInner {
       - disk_data
       - blk_cache
 
-![bg right:60% 100%](figs/filesystem-os-detail.png)
+![bg right:60% 100%](figs/fsos-fsdisk.png)
 
 
 
@@ -626,7 +629,7 @@ pub struct SuperBlock {
     pub data_area_blocks: u32,
 }
 ```
-![bg right:40% 100%](figs/fsdisk.png)
+![bg right:55% 100%](figs/fs-fsdisk.png)
 
 
 
@@ -641,7 +644,7 @@ pub struct Bitmap {
     blocks: usize,
 }
 ```
-![bg right:40% 100%](figs/fsdisk.png)
+![bg right:55% 100%](figs/fs-fsdisk.png)
 
 ---
 ### 内核程序设计 -- 核心数据结构
@@ -655,7 +658,7 @@ pub struct DiskInode {
     type_: DiskInodeType,
 }
 ```
-![bg right:40% 100%](figs/ufsinode.png)
+![bg right:55% 100%](figs/inode-fsdisk.png)
 
 
 ---
@@ -663,7 +666,7 @@ pub struct DiskInode {
 - ``read_at``和``write_at``把文件偏移量和buf长度转换为一系列的数据块编号，并进行通过``get_block_cache``数据块的读写。
 - ``get_block_id`` 方法体现了 DiskInode 最重要的数据块索引功能，它可以从索引中查到它自身用于保存文件内容的第 block_id 个数据块的块编号，这样后续才能对这个数据块进行访问：
 
-![bg right:40% 100%](figs/ufsinode.png)
+![bg right:40% 100%](figs/inode-fsdisk.png)
 
 
 ---
@@ -677,7 +680,7 @@ pub struct DirEntry {
     inode_number: u32,
 }
 ```
-![bg right:40% 100%](figs/fsdisk.png)
+![bg right:55% 100%](figs/fs-fsdisk.png)
 
 
 ---
@@ -694,8 +697,8 @@ pub struct BlockCache {
     modified: bool, //它有没有被修改过
 }
 ```
-``get_block_cache`` 方法尝试获取一个编号为 ``block_id`` 的块缓存
-![bg right:40% 100%](figs/fsdisk.png)
+``get_block_cache`` ：取一个编号为 ``block_id`` 的块缓存
+![bg right:55% 100%](figs/fs-fsdisk.png)
 
 
 
@@ -706,7 +709,7 @@ pub struct BlockCache {
 3. 基于文件加载应用
 4. 读写文件
 
-![bg right:60% 100%](figs/filesystem-os-detail.png)
+![bg right:60% 100%](figs/fsos-fsdisk.png)
 
 ---
 ### 内核程序设计 -- 设计实现 
