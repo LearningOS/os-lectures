@@ -80,7 +80,7 @@ backgroundColor: white
 
 
 ---
-## 第十一讲  线程余协程
+## 第十一讲  线程与协程
 - [第一节 线程](./lec11/p1-thread.html)
 - [第二节 协程](./lec11/p2-coroutine.html)
 - [第三节 支持线程/协程的OS(TCOS)](./lec11/p3-labs.html)
