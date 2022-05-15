@@ -73,7 +73,7 @@ prioratio increases by 10% for every nice level
 
 ---
 ### BFS 的实现 ：调度思路
-按照O(1)调度器的方式首先查找位图中不为0的那个queue，然后在该queue中执行O(n)查找，查找到virtual deadline(如下所述)最小的那个进程投入执行。
+按照O(1)调度器的方式首先查找位图中不为0的那个queue，然后在该queue中执行O(n)查找，查找到virtual deadline最小的那个进程投入执行。
 
 ![bg right 100%](figs/bfs.png)
 
