@@ -580,3 +580,12 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
 - 内核返回用户态，直接跳到sig_handler;
 - sig_handler函数返回到旧代码位置继续执行
 ![bg right:30% 100%](figs/signal-impl.png)
+
+
+---
+### 小结
+- 管道的机制和实现原理
+- 消息队列的机制和实现原理
+- 共享内存的机制和实现原理
+- 信号的机制和实现原理
+- 上述机制与进程控制与管理的关系
