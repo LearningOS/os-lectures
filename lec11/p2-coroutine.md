@@ -85,6 +85,11 @@ Donald  Knuth ：子例程是协程的特例
 - 编程语言中第一类（First-class）对象
 
 ---
+### 协程 vs 线程
+
+![w 900](figs/coroutinevsthread.png)
+
+---
 ### 为何需要协程？-- 协程分类
 控制传递机制：对称（Symmetric） v.s. 非对称（Asymmetric）协程
 - 对称协程：
