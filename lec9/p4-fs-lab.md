@@ -732,6 +732,22 @@ lazy_static! {
 ---
 ### 内核程序设计 -- 设计实现 
 打开(创建)文件
+```rust
+pub fn sys_open(path: *const u8, flags: u32) -> isize {
+    //调用open_file函数获得一个OSInode结构的inode
+    if let Some(inode) = open_file(path.as_str(), 
+                           OpenFlags::from_bits(flags).unwrap()) {
+        let mut inner = task.inner_exclusive_access();
+        let fd = inner.alloc_fd();  //得到一个空闲的fd_table项的idx，即fd
+        inner.fd_table[fd] = Some(inode); //把inode填入fd_table[fd]中
+        fd as isize  //返回fd 
+    ...
+```
+如果失败，会返回 `-1`
+
+---
+### 内核程序设计 -- 设计实现 
+打开(创建)文件
 
 ```rust
 fn open_file(name: &str, flags: OpenFlags) -> Option<Arc<OSInode>> {
@@ -783,7 +799,7 @@ sys_close ：将进程控制块中的文件描述符表对应的一项改为 Non
 
 ---
 ### 内核程序设计 -- 设计实现 
-基于文件加载应用
+基于文件加载应用（ELF可执行文件格式）
 ```rust
     pub fn sys_exec(path: *const u8) -> isize {
         if let Some(app_inode) = open_file(path.as_str(), ...) {
