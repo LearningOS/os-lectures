@@ -231,6 +231,29 @@ int pthread_join(pthread_t thread, void **retval);
 ![bg right:45% 100%](figs/pure-kernel-thread.png)
 
 ---
+### 线程的设计实现 - 线程 vs 进程 
+
+![bg 100%](figs/threadvsprocess0.png)
+![bg 90%](figs/threadvsprocess1.png)
+
+
+---
+### 线程的设计实现
+- 混合管理且运行的线程
+
+轻量级进程（Light-weight process，LWP）是内核支持的用户线程，一个进程可有一个或多个 LWP，每个 LWP 是跟内核线程一对一映射的，也就是 LWP 都是由一个内核线程支持。 在 LWP 之上也是可以使用用户线程的，那么 LWP 与用户线程的对应关系就有三种：
+
+- 1 : 1，即一个 LWP 对应 一个用户线程；
+- N : 1，即一个 LWP 对应多个用户线程；
+- M : N，即多个 LWP 对应多个用户线程；
+
+
+---
+### 线程的设计实现
+
+![bg 60%](figs/lwp2.png)
+
+---
 ### 线程的设计实现
 - 混合管理且运行的线程
   - 编程人员可以决定有多少个内核级线程和多少个用户级线程彼此多路复用
