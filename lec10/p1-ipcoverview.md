@@ -29,10 +29,10 @@ Inter Process Communication，IPC
 
 ---
 ### IPC基本概念 -- 需求背景
+单个程序的功能有限
 目标：完成复杂应用需求
 - 功能模块化
-- 应用之间可以相对隔离
-- 单个程序的功能有限
+- 程序之间可以相对隔离
 - 多个程序的合作可完成复杂的事情
 
 定义：各进程之间通过数据交换进行交互的行为称为进程间通信（Inter-process communication，IPC）
@@ -580,3 +580,12 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
 - 内核返回用户态，直接跳到sig_handler;
 - sig_handler函数返回到旧代码位置继续执行
 ![bg right:30% 100%](figs/signal-impl.png)
+
+
+---
+### 小结
+- 管道的机制和实现原理
+- 消息队列的机制和实现原理
+- 共享内存的机制和实现原理
+- 信号的机制和实现原理
+- 上述机制与进程控制与管理的关系
