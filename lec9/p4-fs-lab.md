@@ -28,7 +28,7 @@ Filesystem OS(FOS)
 - 相关硬件
 - 程序设计
 
-![bg right:65% 100%](figs/filesystem-os-detail.png)
+![bg right:65% 100%](figs/fsos-fsdisk.png)
 
 
 ---
@@ -73,7 +73,7 @@ Filesystem OS(FOS)
 - 相关硬件
 - 程序设计
 
-![bg right:65% 100%](figs/filesystem-os-detail.png)
+![bg right:65% 100%](figs/fsos-fsdisk.png)
 
 
 
@@ -189,7 +189,7 @@ Filesystem OS(FOS)
 - 相关硬件
 - 程序设计
 
-![bg right:65% 100%](figs/filesystem-os-detail.png)
+![bg right:65% 100%](figs/fsos-fsdisk.png)
 
 
 ---
@@ -210,7 +210,7 @@ Filesystem OS(FOS)
 - 相关硬件
 - 程序设计
 
-![bg right:65% 100%](figs/filesystem-os-detail.png)
+![bg right:65% 100%](figs/fsos-fsdisk.png)
 
 
 ---
@@ -271,7 +271,7 @@ Shell: Process 2 exited with code 0
 - 相关硬件
 - 程序设计
 
-![bg right:65% 100%](figs/filesystem-os-detail.png)
+![bg right:65% 100%](figs/fsos-fsdisk.png)
 
 
 ---
@@ -283,7 +283,7 @@ Shell: Process 2 exited with code 0
     - write
     - close
   
-![bg right:65% 100%](figs/filesystem-os-detail.png)
+![bg right:65% 100%](figs/fsos-fsdisk.png)
 
 ---
 ### 代码结构
@@ -355,7 +355,7 @@ Shell: Process 2 exited with code 0
   - 块设备
 - 程序设计
 
-![bg right:65% 100%](figs/filesystem-os-detail.png)
+![bg right:65% 100%](figs/fsos-fsdisk.png)
 
 ---
 ## 实践：FOS
@@ -368,7 +368,7 @@ Shell: Process 2 exited with code 0
 - **程序设计** 
   <!-- 主要的事情就是**实现文件抽象* -->
 
-![bg right:65% 100%](figs/filesystem-os-detail.png)
+![bg right:65% 100%](figs/fsos-fsdisk.png)
 
 
 
@@ -380,7 +380,7 @@ Shell: Process 2 exited with code 0
      - 用户用它们保存真正关心的数据
 
 
-![bg right:45% 100%](figs/filesystem-os-detail.png)
+![bg right:45% 100%](figs/fsos-fsdisk.png)
 
 
 
@@ -536,7 +536,7 @@ pub fn main() -> i32 {
 - 应用程序设计
 - **内核程序设计**
 
-![bg right:60% 100%](figs/filesystem-os-detail.png)
+![bg right:60% 100%](figs/fsos-fsdisk.png)
 
 
 ---
@@ -550,7 +550,7 @@ pub fn main() -> i32 {
    - 读写文件
    - 基于文件来加载并执行应用
 
-![bg right:60% 100%](figs/filesystem-os-detail.png)
+![bg right:60% 100%](figs/fsos-fsdisk.png)
 
 ---
 ### 内核程序设计
@@ -561,7 +561,7 @@ pub fn main() -> i32 {
       - 文件描述符表
       - inode
 
-![bg right:60% 100%](figs/filesystem-os-detail.png)
+![bg right:60% 100%](figs/fsos-fsdisk.png)
 
 
 ---
@@ -577,7 +577,7 @@ pub struct DirEntry {
 ... 
 let fd = open(filea, OpenFlags::RDONLY);
 ```
-![bg right:40% 100%](figs/fsorg.png)
+![bg right:40% 100%](figs/fs-fsdisk.png)
 
 
 ---
@@ -598,7 +598,7 @@ pub struct OSInodeInner {
     inode: Arc<Inode>,//存储设备inode
 }
 ```
-![bg right:40% 100%](figs/fsorg.png)
+![bg right:40% 100%](figs/fs-fsdisk.png)
 
 
 
