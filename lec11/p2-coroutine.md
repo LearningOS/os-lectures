@@ -77,6 +77,31 @@ Donald  Knuth ：子例程是协程的特例
 **无栈协程是普通函数的泛化**
 
 ---
+### 协程 vs 线程
+- 协程极高的执行效率,没有线程切换的开销; 和多线程比，线程数量越多，协程的性能优势就越明显。
+- 不需要多线程的锁机制，不存在同时写变量冲突，在协程中控制共享资源不加锁，只需要判断状态，所以执行效率比多线程高很多。
+![w 900](figs/coroutinevsthread.png)
+
+---
+### 协程例子
+```
+def func()://普通函数
+   print("a")
+   print("b")
+   print("c")
+```
+```
+def func()://协程函数
+  print("a")
+  yield
+  print("b")
+  yield
+  print("c")
+```
+
+![bg right:45% 80%](figs/coroutine2.png)
+
+---
 ### 为何需要协程？-- 协程分类
 <!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
 2004年Lua的作者Ana Lucia de Moura和Roberto Ierusalimschy发表论文“Revisiting Coroutines”，提出依照三个因素来对协程进行分类：
@@ -84,11 +109,7 @@ Donald  Knuth ：子例程是协程的特例
 - 栈式（Stackful）构造
 - 编程语言中第一类（First-class）对象
 
----
-### 协程 vs 线程
-- 协程极高的执行效率,没有线程切换的开销; 和多线程比，线程数量越多，协程的性能优势就越明显。
-- 不需要多线程的锁机制，不存在同时写变量冲突，在协程中控制共享资源不加锁，只需要判断状态，所以执行效率比多线程高很多。
-![w 900](figs/coroutinevsthread.png)
+
 
 ---
 ### 为何需要协程？-- 协程分类
