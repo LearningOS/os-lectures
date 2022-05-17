@@ -37,7 +37,7 @@ backgroundColor: white
   - 存在不可重现
   - 可能出现难以重现的错误
 
-![bg right:50% 100%](figs/newpidplus.png)
+![bg right:40% 90%](figs/newpidplus.png)
 
 ---
 ### 背景
