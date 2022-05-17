@@ -49,23 +49,23 @@ backgroundColor: white
 ## 第六讲  地址空间-虚拟存储管理
 - [第一节  虚拟存储的基本概念](./lec6/p1-vmoverview.html)
 - [第二节 页面置换算法 -- 局部页面置换算法](./lec6/p2-pagereplace-1.html)
-- [第二节 页面置换算法 -- 全局页面置换算法](./lec6/p2-pagereplace-2.html)
+- [第三节 页面置换算法 -- 全局页面置换算法](./lec6/p2-pagereplace-2.html)
 
 ---
 ## 第七讲  进程管理与单处理器调度
 - [第一节 进程管理](./lec7/p1-process-overview.html)
 - [第二节 单处理器调度](./lec7/p2-sched.html)
 - [第三节 实时管理与调度](./lec7/p3-realtime.html)
-- [第四节 实践：建立进程的操作系统](./lec7/p4-labs.html)
-
+- [第四节 实践：支持进程的操作系统](./lec7/p4-labs.html)
 
 ---
-## 第八讲  进程管理与单处理器调度
+## 第八讲  多处理器调度
 - [第一节 对称多处理与多核架构](./lec8/p1-multiprocessor-overview.html)
 - [第二节 多处理器调度概述](./lec8/p2-multiprocessor-sched-overview.html)
 - [第三节 Linux O(1) 调度](./lec8/p3-linux-O1-sched.html)
 - [第四节 Linux CFS（Completely Fair Schduler） 调度](./lec8/p4-linux-cfs-sched.html)
 - [第五节 Linux/FreeBSD BFS 调度](./lec8/p5-linux-bfs-sched.html)
+
 ---
 ## 第九讲  文件系统
 - [第一节 文件系统概述](./lec9/p1-fsoverview.html)
@@ -84,3 +84,18 @@ backgroundColor: white
 - [第一节 线程](./lec11/p1-thread.html)
 - [第二节 协程](./lec11/p2-coroutine.html)
 - [第三节 支持线程/协程的OS(TCOS)](./lec11/p3-labs.html)
+
+---
+## 第十二讲 同步互斥
+- [第一节 概述](./lec12/p1-syncmutex.html)
+- [第二节 信号量](./lec12/p2-semaphore.html)
+- [第三节 管程与条件变量](./lec12/p3-monitor-cond.html)
+- [第四节 同步互斥实例问题](./lec12/p4-instances.html)
+- [第五节 死锁](./lec12/p5-deadlock.html)
+- [第六节 支持同步互斥的OS(SMOS)](./lec12/p6-labs.html)
+
+---
+## 第十三讲 设备管理
+- [第一节 设备接口](./lec13/p1-devinterface.html)
+- [第二节 磁盘子系统](./lec13/p2-disk.html)
+- [第三节 第三节 支持device的OS（DOS）](./lec12/p3-Labs.html)
