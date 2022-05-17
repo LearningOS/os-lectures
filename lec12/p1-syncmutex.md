@@ -388,10 +388,10 @@ Eisenberg和McGuire
 - 原子操作指令 
   - 测试和置位（Test-and-Set ）指令
      - 从内存单元中读取值
-     - 测试该值是否为1（然后返回真或假）
+     - 测试该值是否为1(然后返回真或假)
      - 内存单元值设置为1
 
-![bg right:40% 100%](figs/test-and-set.png)
+![bg right:35% 100%](figs/test-and-set.png)
  
 
 
@@ -408,7 +408,7 @@ Eisenberg和McGuire
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock) 
-使用TS指令实现自旋锁(spinlock)
+使用TaS指令实现自旋锁(spinlock)
 - 线程在等待的时候消耗CPU时间
 ![w:800](figs/spinlock-ts.png)
 
