@@ -495,7 +495,7 @@ pub struct ProcessControlBlockInner {
     ...
 }
 ```
- RecycleAllocator 是对之前的 PidAllocator 的一个升级版，即一个相对通用的资源分配器，可用于分配进程标识符（PID）和线程的内核栈（KernelStack）。
+ RecycleAllocator是PidAllocator的升级版，即一个相对通用的资源分配器，可用于分配进程标识符（PID）和线程的内核栈（KernelStack）。
 
  
 ---
