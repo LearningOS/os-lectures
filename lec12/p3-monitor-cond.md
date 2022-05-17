@@ -13,8 +13,10 @@ backgroundColor: white
 
 # 第十二讲 同步与互斥
 
-## 第三节 管程（Moniter）
+## 第三节 管程与条件变量
 
+ 管程（Moniter）  条件变量（CoCondVar）
+ 
 ---
 ### 管程
 - 管程是一种用于多线程互斥访问共享资源的程序结构
