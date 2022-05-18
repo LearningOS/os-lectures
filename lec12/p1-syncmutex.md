@@ -340,26 +340,59 @@ exit section
 
 ![bg right:50% 100%](figs/soft-peterson.png)
 - 满足线程Ti和Tj之间互斥的经典的基于软件的解决方法（1981年）
+- 孔融让梨
 
 
 ---  
 ### 方法2：基于软件的解决方法 -- Peterson算法
 
 ![bg right:50% 100%](figs/soft-peterson-2.png)
-- 线程Ti 的代码
-
+```
+flag[i] = True;
+turn = j;
+while(flag[j] && turn == j);
+critical section;
+flag[i] = False;
+remainder section;
+```
+```
+flag[j] = True;
+turn = i;
+while(flag[i] && turn == i);
+critical section;
+flag[j] = False;
+remainder section;
+```
 
 
 ---  
 ### 方法2：基于软件的解决方法 -- Dekkers算法
 
-![bg right:50% 100%](figs/soft-dekkers.png)
-- 线程Ti 的代码
-
+![bg right:35% 100%](figs/soft-dekkers.png)
+```
+do{
+  flag[0] = true;// 首先P0举手示意我要访问
+  while(flag[1]) {// 看看P1是否也举手了
+     if(turn==1){// 如果P1也举手了，那么就看看到底轮到谁
+         flag[0]=false;// 如果确实轮到P1，那么P0先把手放下（让P1先）
+         while(turn==1);// 只要还是P1的时间，P0就不举手，一直等
+         flag[0]=true;// 等到P1用完了（轮到P0了），P0再举手
+     }
+     flag[1] = false; // 只要可以跳出循环，说明P1用完了，应该跳出最外圈的while
+  }
+  critical section;// 访问临界区
+  turn = 1;// P0访问完了，把轮次交给P1，让P1可以访问
+  flag[0]=false;// P0放下手
+  remainder section;
+} while(true);
+```
 ---  
 ### 方法2：基于软件的解决方法 -- N线程
 Eisenberg和McGuire
-![w:900](figs/soft-n.png)
+- 一个共享的turn变量，若干线程排成一个环
+- 每个环有个flag标志，想要进入临界区填写flag标志
+- 有多个想进入临界区，从前往后走，执行完一个线程，turn改为下一个线程的值。
+![bg right:50% 100%](figs/soft-n.png)
 
 ---  
 ### 方法3：更高级的抽象方法
@@ -379,10 +412,10 @@ Eisenberg和McGuire
    - 一个二进制变量（锁定/解锁）
    - 使用锁来控制临界区访问
    - Lock::Acquire()
-      - 锁被释放前一直等待，然后得到锁
+      - 锁被释放前一直等待，后得到锁
    - Lock::Release()
       -  释放锁，唤醒任何等待的线程
-![bg right:50% 100%](figs/lock.png)
+![bg right:40% 100%](figs/lock.png)
 
 
 ---  
@@ -397,6 +430,20 @@ Eisenberg和McGuire
 ![bg right:35% 100%](figs/test-and-set.png)
  
 
+---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+现代CPU体系结构都提供一些特殊的原子操作指令
+```
+do {
+  while(TestAndSet(&lock) ;
+  critical section; 
+  lock = false;
+  remainder section;
+} while (true)
+```
+
+![bg right:35% 100%](figs/test-and-set.png)
+ 
 
 
 ---  
