@@ -420,19 +420,21 @@ Eisenberg和McGuire
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
-现代CPU体系结构都提供一些特殊的原子操作指令
+现代CPU提供一些特殊的原子操作指令
 - 原子操作指令 
   - 测试和置位（Test-and-Set ）指令
      - 从内存单元中读取值
      - 测试该值是否为1(然后返回真或假)
      - 内存单元值设置为1
+       - 输入0，改成1，返回0；
+       - 输入1，保持1，返回1；
 
 ![bg right:35% 100%](figs/test-and-set.png)
  
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
-现代CPU体系结构都提供一些特殊的原子操作指令
+现代CPU都提供一些特殊的原子操作指令
 ```
 do {
   while(TestAndSet(&lock) ;
@@ -444,9 +446,63 @@ do {
 
 ![bg right:35% 100%](figs/test-and-set.png)
  
-
+---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+现代CPU都提供一些特殊的原子操作指令
+```
+do {
+  while(TestAndSet(&lock) ;
+  critical section; 
+  lock = false;
+  remainder section;
+} while (true)
+```
+```
+lock(): while(TestAndSet(&lock));
+critical section; 
+unlock(): lock=false;
+```
+![bg right:35% 100%](figs/test-and-set.png)
 
 ---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+- 原子操作：交换指令CAS（compare and swap）
+```
+bool compare_and_swap(int *value, int old, int new) {
+   if(*value==old) {
+      *value = new; 
+      return true;
+   }
+   return false;
+}
+```
+```
+int lock = 0;
+while(!compare_and_swap(&lock,0,1)); 
+critical section; 
+lock=0;
+remainder section;
+```
+
+---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+- 原子操作：交换指令CAS（compare and swap）
+```
+bool compare_and_swap(int *value, int old, int new) {
+   if(*value==old) {
+      *value = new; 
+      return true;
+   }
+   return false;
+}
+```
+```
+lock(): while(!compare_and_swap(&lock,0,1)); 
+critical section; 
+unlock(): lock=0; 
+```
+
+<!---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
 现代CPU体系结构都提供一些特殊的原子操作指令
 - 原子操作指令 
@@ -454,7 +510,7 @@ do {
      - 交换内存中的两个值
 
 ![bg right:50% 100%](figs/exchange.png)
-
+-->
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock) 
