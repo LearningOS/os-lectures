@@ -486,7 +486,7 @@ remainder section;
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
-- 原子操作：交换指令CAS（compare and swap）
+- 原子操作：交换指令CaS（Compare and Swap）
 ```
 bool compare_and_swap(int *value, int old, int new) {
    if(*value==old) {
@@ -502,6 +502,17 @@ critical section;
 unlock(): lock=0; 
 ```
 
+---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+- 原子操作：交换指令CaS（Compare and Swap）
+- ABA 问题：
+  - value= 100；
+  - Thread1: value - 50; //成功 value=50
+  - Thread2: value - 50; //阻塞
+  - Thread3: value + 50; //成功 value=50
+  - Thread2: 重试成功
+- 解决思路：加上版本号（时间戳）
+  - (100,1); (50,2); (100,3) 
 <!---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
 现代CPU体系结构都提供一些特殊的原子操作指令
