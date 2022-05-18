@@ -323,13 +323,16 @@ exit section
 ---  
 ### 方法2：基于软件的解决方法 -- 尝试二
 ![bg right:50% 100%](figs/soft-2.png)
+
 - 不满足“忙则等待”
+  - flag[i]=flag[j]=0
 
 
 ---  
 ### 方法2：基于软件的解决方法 -- 尝试三
 ![bg right:50% 100%](figs/soft-3.png)
 - 满足“忙则等待”，但是不满足“空闲则入”
+  - flag[i]=flag[j]=1
 
 
 ---  
