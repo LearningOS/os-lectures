@@ -127,8 +127,7 @@ def func()://协程函数
 
 ---
 ### 为何需要协程？-- 协程分类
-![w:300](figs/coroutine-sym.png)
-![w:300](figs/coroutine-asym.png)
+![w:600](figs/coroutine-sym.png)![w:540](figs/coroutine-asym.png)
 
 
 ---
