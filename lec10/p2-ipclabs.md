@@ -696,7 +696,7 @@ fn sys_kill(pid: usize, signum: i32) -> isize {
       task_ref.signals.insert(flag);
      ...
 ```
-对进程号为`pid`的进程发值为`signum`的信号：
+对进程号为`pid`的进程发送值为`signum`的信号：
 1. 根据`pid`找到TCB
 2. 在TCB中的signals插入`signum`信号值
 
