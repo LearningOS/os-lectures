@@ -92,9 +92,11 @@ backgroundColor: white
     }
 }
 ```
+
+
 ---
 ### 现实生活中的同步互斥 -- 方案一 -- 分析
-- 偶尔会购买太多面包
+- 偶尔会购买太多面包 - 重复
   - 检查面包和便签后帖便签前，有其他人检查面包和便签
 
 - 解决方案只是间歇性地失败
@@ -173,7 +175,8 @@ remove note_1;
 
 ### 现实生活中的同步互斥 -- 方案四
 两个人采用不同的处理流程
-![w:900](figs/method-4.png)
+
+![w:1000](figs/method-4.png)
 
 
 ---
@@ -198,7 +201,7 @@ remove note_1;
   -  Lock.Release()
      - 解锁并唤醒任何等待中的线程
 
-![bg right:35% 100%](figs/method-5.png)
+![bg right:32% 100%](figs/method-5.png)
 
 
 --- 
