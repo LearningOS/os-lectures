@@ -246,7 +246,7 @@ int pthread_join(pthread_t thread, void **retval);
 ### 线程的设计实现
 - 内核态管理且用户态运行的线程 
   - 由内核通过系统调用实现的线程机制，由内核完成线程的创建、终止和管理
-  - 由内核维护TCB, 在内核实现
+  - 由内核维护线程控制块TCB, 在内核实现
   - 线程执行系统调用而被阻塞不影响其他线程
 
 ![bg right:45% 100%](figs/kernel-thread.png)
