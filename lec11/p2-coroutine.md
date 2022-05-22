@@ -186,6 +186,7 @@ Coroutine从入门到劝退
   - 进程：页表，堆，栈，寄存器
   - 线程：栈，寄存器
   - 协程：寄存器，无栈协程不换栈
+![w:520](figs/threadvsroutine1.png)![w:520](figs/threadvsroutine2.png)
 
 ---
 ### 为何需要协程？ -- 协程 vs 线程 vs 进程 
