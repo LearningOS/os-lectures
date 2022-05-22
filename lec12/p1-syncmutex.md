@@ -329,7 +329,7 @@ exit section
 ---  
 ### 方法2：基于软件的解决方法 -- 尝试二
 ![bg right:50% 100%](figs/soft-2.png)
-- 互相依赖（频繁线程饿死）
+- 互相依赖（线程盲等）
 - 不满足“忙则等待”
   - flag[i]=flag[j]=0
 ```c
@@ -496,8 +496,7 @@ unlock(): lock=false;
 bool compare_and_swap(int *value, int old, int new) {
    if(*value==old) {
       *value = new; 
-      return true;
-   }
+      return true; }
    return false;
 }
 ```
