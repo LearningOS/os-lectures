@@ -38,6 +38,8 @@ IPC OS (IOS)
 - multiprog & time-sharing OS目标: 让APP共享CPU资源
 - BatchOS目标: 让APP与OS隔离，加强系统安全，提高执行效率
 - LibOS目标: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
+
+
 ---
 ## 实践：IOS -- 进化目标
 支持应用的灵活性，支持进程间交互
@@ -374,7 +376,7 @@ signal_simple: Done
 ---
 ## pipe设计实现 -- 标准文件
 
-1. 创建TCB时初始化`fd_table`
+2. 创建TCB时初始化`fd_table`
 
 ```rust
 TaskControlBlock::fork(...)->... {
@@ -440,7 +442,7 @@ pub fn sys_pipe(pipe: *mut usize) -> isize;
 ---
 ## pipe设计实现 -- 管道文件
 
-1. 创建管道中的Buffer
+2. 创建管道中的Buffer
 
 ```rust
 pub struct PipeRingBuffer {
@@ -465,7 +467,7 @@ make_pipe() -> (Arc<Pipe>, Arc<Pipe>) {
 ---
 ## pipe设计实现 -- 管道文件
 
-1.  实现基于文件的输入/输出
+3.  实现基于文件的输入/输出
  - 实现File 接口
 ```rust
     fn read(&self, buf: UserBuffer) -> usize {
