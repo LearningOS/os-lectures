@@ -323,7 +323,7 @@ exit section
    - Ti不在临界区，Tj想要继续运行，但是必须等待Ti进入过临界区后
    - turn = 0;
      - T0 不需要访问
-     - T1需要访问
+     - T1 需要访问
 
 
 ---  
@@ -332,6 +332,16 @@ exit section
 
 - 不满足“忙则等待”
   - flag[i]=flag[j]=0
+```c
+// 线程 Tj
+do {
+   while (flag[i] == 1) ;
+   flag[j] = 1;
+   critical section
+   flag[j] = 0;
+   remainder section
+} while(1)
+```
 
 
 ---  
