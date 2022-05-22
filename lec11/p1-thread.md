@@ -123,7 +123,7 @@ main: end
 
 ---
 ### 使用线程
-
+创建线程：成功返回零，否则返回非零值
 ```c
 #include <pthread.h> 
 int pthread_create(      pthread_t *        thread,
@@ -155,7 +155,7 @@ typedef struct
 ```
 ---
 ### 使用线程
-
+等待线程：一直阻塞调用它的线程，直至目标线程执行结束
 ```c
 #include <pthread.h>
 int pthread_join(pthread_t thread, void **retval);
@@ -197,12 +197,15 @@ int pthread_join(pthread_t thread, void **retval);
 - 线程共享进程的资源
 - 线程崩溃会导致进程崩溃
 
+线程是一个调度实体 Scheduling Entry
+User-SE  v.s.  Kernel-SE 
+
 ![bg right:50% 100%](figs/thread-process.png)
 
 
 ---
 ### 线程的概念
-线程与进程的比较 
+**线程与进程的比较** 
 - 进程是资源分配单位，线程是CPU调度单位
 - 进程拥有一个完整的资源平台，而线程只独享指令流执行的必要资源，如寄存器和栈
 - 线程具有就绪、等待和运行三种基本状态和状态间的转换关系
@@ -210,16 +213,29 @@ int pthread_join(pthread_t thread, void **retval);
   - 线程的创建/终止/切换时间比进程短
   - 同一进程的各线程间共享内存和文件资源，可不通过内核进行直接通信
 
+
+---
+### 线程的概念  -- **线程与进程的比较** 
+
+
+![bg 100%](figs/threadvsprocess0.png)
+![bg 90%](figs/threadvsprocess1.png)
+
+
 ---
 ### 线程的设计实现
 - 线程的几种实现方式 
-  - 用户态管理且运行的线程(Thread managed&running in User-Mode)
-  - 内核态管理且用户态运行的线程(Thread managed in Kernel-Mode&running in User-Mode)
-  - 内核态管理且内核态运行的线程(Thread managed&running in Kernel-Mode)
-  - 混合管理且运行的线程(Thread managed&running in Mixed-Mode)
+  - 用户态管理且用户态运行的线程（内核不可见的用户线程）
+    - Thread managed&running in User-Mode
+  - 内核态管理且用户态运行的线程（内核可见的用户线程）
+    - Thread managed in Kernel-Mode&running in User-Mode
+  - 内核态管理且内核态运行的线程（内核线程）
+    - Thread managed&running in Kernel-Mode
+  - 混合管理且运行的线程（轻量级进程，混合线程）
+    - Thread managed&running in Mixed-Mode
 ---
 ### 线程的设计实现
-- 用户态管理且运行的线程
+- 用户态管理且用户态运行的线程
   - 在用户态实现线程的管理与运行，操作系统感知不到这类线程的存在
      -  POSIX Pthreads，Mach C-threads，Solaris threads
      - 别名：用户态线程(User-level Thread)、绿色线程(Green Thread)、有栈协程(Stackful Coroutine)、纤程(Fiber)
@@ -230,13 +246,13 @@ int pthread_join(pthread_t thread, void **retval);
 ---
 ### 线程的设计实现
 
-- 用户态管理且运行的线程
+- 用户态管理且用户态运行的线程
    - 由一组用户级的线程库函数来完成线程的管理，包括线程的创建、终止、同步和调度等
 ![bg right:40% 100%](figs/usr-thread.png)
 
 ---
 ### 线程的设计实现
-- 用户态管理且运行的线程的不足
+- 用户态管理且用户态运行的线程的不足之处
      -  一个线程发起系统调用而阻塞时，则整个进程进入等待
      -  不支持基于线程的处理机抢占
      -  只能按进程分配CPU时间
@@ -254,35 +270,76 @@ int pthread_join(pthread_t thread, void **retval);
 
 ---
 ### 线程的设计实现
-- 内核态管理且运行的线程 
+- 内核态管理且用户态运行的线程 
+  - 一个进程中可以包括多个线程
+     - Windows内核的设计 
+     - rCore/uCore内核的设计
+  - 一个进程中只包括一个线程
+    - Linux内核的设计
+
+
+![bg right:45% 100%](figs/kernel-thread.png)
+
+
+---
+### 线程的设计实现
+- 内核态管理且用户态运行的线程的不足之处 
+  - 在一般情况下，线程切换开销与进程切换开销相差不大，大于用户态管理且用户态允许的线程切换开销
+  - 与传统的进程管理机制会产生一些矛盾，一些系统调用的实现功能/语义上会不协调
+    - fork()、signal() ...
+
+![bg right:45% 100%](figs/kernel-thread.png)
+
+---
+### 线程的设计实现
+- 内核态管理且内核态运行的线程 （简称：内核线程）
   - 由内核实现线程机制，由内核完成线程的创建、终止和管理
   - 由内核维护TCB, 在内核实现
   - 线程在内核中执行
+     - 如：Linux的内核线程 
 
 ![bg right:45% 100%](figs/pure-kernel-thread.png)
 
----
-### 线程的设计实现 - 线程 vs 进程 
 
-![bg 100%](figs/threadvsprocess0.png)
-![bg 90%](figs/threadvsprocess1.png)
+---
+### 线程的设计实现
+- 内核态管理且内核态运行的线程 （简称：内核线程）
+  - 内核线程就是内核的分身，一个分身可以分时/并行处理一件特定事情
+  - 内核线程的调度由内核负责，一个内核线程处于阻塞状态时不影响其他的内核线程，因为其是调度的基本单位。
+
+![bg right:45% 100%](figs/pure-kernel-thread.png)
+
+
+---
+### 线程的设计实现
+- 内核态管理且内核态运行的线程 （简称：内核线程）的作用
+  - 执行周期性的任务
+    -  把Buffer-Cache定期写回到存储设备上
+    -  在可用物理内存页很少情况下执行虚存交换操作 
+    -  实现文件系统的事务日志
+   
+![bg right:45% 100%](figs/pure-kernel-thread.png)
 
 
 ---
 ### 线程的设计实现
 - 混合管理且运行的线程
 
-轻量级进程（Light-weight process，LWP）是内核支持的用户线程，一个进程可有一个或多个 LWP，每个 LWP 是跟内核线程一对一映射的，也就是 LWP 都是由一个内核线程支持。 在 LWP 之上也是可以使用用户线程的，那么 LWP 与用户线程的对应关系就有三种：
+轻量级进程（Light-Weight Process，LWP）是内核支持的用户线程，一个进程可有一个或多个 LWP，每个 LWP 是跟内核线程一对一映射的，也就是 LWP 都是由一个内核线程支持。 在 LWP 之上也是可以使用用户线程的，那么 LWP 与用户线程的对应关系就有三种：
 
-- 1 : 1，即一个 LWP 对应 一个用户线程；
-- N : 1，即一个 LWP 对应多个用户线程；
-- M : N，即多个 LWP 对应多个用户线程；
+- 1 : 1，即一个 LWP 对应 一个用户线程：Linux, JVM
+- N : 1，即一个 LWP 对应多个用户线程：与OS无关的Green Thread
+- M : N，即多个 LWP 对应多个用户线程：Solaris OS, Go runtime
 
 
 ---
 ### 线程的设计实现
+- 混合管理且运行的线程
+  - M : N线程模型
+  - Solaris 操作系统+C线程运行时库
+  - Go语言+Go运行时库+OS
 
-![bg 60%](figs/lwp2.png)
+![bg right:50% 100%](figs/lwp2.png)
 
 ---
 ### 线程的设计实现
@@ -304,4 +361,4 @@ int pthread_join(pthread_t thread, void **retval);
 操作系统的任务调度，实际上的调度对象是线程，而进程只是给线程提供了虚拟内存、全局变量等资源。
 
 - 当两个线程不是属于同一个进程，则切换的过程就跟进程上下文切换一样；
-- 当两个线程是属于同一个进程，因为虚拟内存是共享的，所以在切换时，**虚拟内存这些资源就保持不动，只需要切换线程的私有数据、寄存器等不共享的数据；**
+- 当两个线程是属于同一个进程，因为虚拟内存是共享的，所以在切换时，**虚拟内存这些资源就保持不动，只需要切换线程的私有数据、寄存器等不共享的数据**
