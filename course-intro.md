@@ -433,7 +433,7 @@ const SYSCALL_CONDVAR_WAIT: usize = 1032;
 
 - [第一节 设备接口](./lec13/p1-devinterface.html)
 - [第二节 磁盘子系统](./lec13/p2-disk.html)
-- [第三节 第三节 支持device的OS（DOS）](./lec12/p3-Labs.html)
+- [第三节 第三节 支持device的OS（DOS）](./lec13/p3-Labs.html)
 
 
 </div>
