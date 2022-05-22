@@ -47,6 +47,9 @@ IPC OS (IOS)
 - 以文件形式进行进程间数据交换
 - 以文件形式进行串口输入输出  
 - 信号机实现进程间异步通知机制
+- 系统调用数量：11个 --> 17个
+  - 管道：2 个 ：传数据
+  - 信号：4 个 ：发通知
 
 ![bg right:40% 100%](figs/ipc-os-detail-2.png)
 
@@ -315,22 +318,22 @@ signal_simple: Done
 ---
 ### 代码结构  -- OS部分
 ```
-│       ├── fs(新增：文件系统子模块 fs)
-│       │   ├── mod.rs(包含已经打开且可以被进程读写的文件的抽象 File Trait)
-│       │   ├── pipe.rs(实现了 File Trait 的第一个分支——可用来进程间通信的管道)
-│       │   └── stdio.rs(实现了 File Trait 的第二个分支——标准输入/输出)
-│       ├── mm
-│       │   └── page_table.rs(新增：应用地址空间的缓冲区抽象 UserBuffer 及其迭代器实现)
-│       ├── syscall
-│       │   ├── fs.rs(修改：调整 sys_read/write 的实现，新增 sys_close/pipe)
-│       │   ├── mod.rs(修改：调整 syscall 分发)
-│       ├── task
-│       │   ├── action.rs(信号处理SignalAction的定义与缺省行为)
-│       │   ├── mod.rs（信号处理相关函数）
-│       │   ├── signal.rs（信号处理的信号值定义等）
-│       │   └── task.rs(修改：在任务控制块中加入信号相关内容)
-│       └── trap
-│           ├── mod.rs（进入/退出内核时的信号处理）
+├── fs(新增：文件系统子模块 fs)
+│   ├── mod.rs(包含已经打开且可以被进程读写的文件的抽象 File Trait)
+│   ├── pipe.rs(实现了 File Trait 的第一个分支——可用来进程间通信的管道)
+│   └── stdio.rs(实现了 File Trait 的第二个分支——标准输入/输出)
+├── mm
+│   └── page_table.rs(新增：应用地址空间的缓冲区抽象 UserBuffer 及其迭代器实现)
+├── syscall
+│   ├── fs.rs(修改：调整 sys_read/write 的实现，新增 sys_close/pipe)
+│   ├── mod.rs(修改：调整 syscall 分发)
+├── task
+│   ├── action.rs(信号处理SignalAction的定义与缺省行为)
+│   ├── mod.rs（信号处理相关函数）
+│   ├── signal.rs（信号处理的信号值定义等）
+│   └── task.rs(修改：在任务控制块中加入信号相关内容)
+└── trap
+├── mod.rs（进入/退出内核时的信号处理）
 ```        
 
 
@@ -347,10 +350,11 @@ signal_simple: Done
 
 ---
 ## pipe设计实现
-1.  实现基于文件的标准输入/输出
-2.  实现基于文件的实现管道
-3.  支持命令行参数
-4.  支持I/O重定向
+基于文件抽象，支持I/O重定向
+1. [K] 实现基于文件的标准输入/输出
+2. [K] 实现基于文件的实现管道
+3. [U]  支持命令行参数
+4. [U]  支持 “|"  符号
 
 ![bg right:60% 100%](figs/tcb-ipc-standard-file.png)
 
@@ -360,13 +364,13 @@ signal_simple: Done
 ## pipe设计实现 -- 标准文件
 
 1.  实现基于文件的标准输入/输出
- - 0 --  Stdin  ; 1/2 -- Stdout
+ - FD：0 --  Stdin  ; 1/2 -- Stdout
  - 实现File 接口
- - read -> call(SBI_CONSOLE_GETCHAR)
- - write -> call(SBI_CONSOLE_PUTCHAR)
+   - read -> call(SBI_CONSOLE_GETCHAR)
+   - write -> call(SBI_CONSOLE_PUTCHAR)
 
 
-![bg right:35% 100%](figs/tcb-ipc-standard-file.png)
+![bg right:40% 100%](figs/tcb-ipc-standard-file.png)
 
 
 
@@ -529,7 +533,7 @@ pub extern "C" fn _start(argc: usize, argv: usize) -> ! {
 
 ---
 ## pipe设计实现  -- 重定向
-- 增加复制文件描述符系统调用
+- 复制文件描述符系统调用
 ```rust
 /// 功能：将进程中一个已经打开的文件复制
 /// 一份并分配到一个新的文件描述符中。
@@ -541,12 +545,12 @@ pub extern "C" fn _start(argc: usize, argv: usize) -> ! {
 /// syscall ID：24
 pub fn sys_dup(fd: usize) -> isize;
 ```
-![bg right:30% 100%](figs/user-stack-cmdargs.png)
+<!-- ![bg right:30% 100%](figs/user-stack-cmdargs.png) -->
 
 
 ---
 ## pipe设计实现 -- 重定向
-- 增加复制文件描述符系统调用
+- 复制文件描述符系统调用
 ```rust
 pub fn sys_dup(fd: usize) -> isize {
   ...
@@ -555,31 +559,31 @@ pub fn sys_dup(fd: usize) -> isize {
   newfd
 } 
 ```
-![bg right:30% 100%](figs/user-stack-cmdargs.png)
+<!-- ![bg right:30% 100%](figs/user-stack-cmdargs.png) -->
 
 
 ---
-## pipe设计实现 -- 重定向
+## pipe设计实现 -- 重定向 "$ A | B"
 ```rust
 // user/src/bin/user_shell.rs
 {
   let pid = fork();
-    if pid == 0 {
-      let input_fd = open(input, ...); //输入重定向
-      close(0);
-      dup(input_fd);
-      close(input_fd);
- 或者
-      let output_fd = open(output, ...); //输出重定向
-      close(1);
-      dup(output_fd);
-      close(output_fd);
-      //重定向后执行新程序
-      exec(args_copy[0].as_str(), args_addr.as_slice()); 
-}
+    if pid == 0 {  
+        let input_fd = open(input, ...); //输入重定向 -- B 子进程
+        close(0);
+        dup(input_fd);
+        close(input_fd);
+        //或者
+        let output_fd = open(output, ...);//输出重定向 -- A子进程
+        close(1);
+        dup(output_fd);
+        close(output_fd);
+    //重定向后执行新程序
+     exec(args_copy[0].as_str(), args_addr.as_slice()); 
+    }...
 ```
 
-![bg right:30% 100%](figs/user-stack-cmdargs.png)
+<!-- ![bg right:30% 100%](figs/user-stack-cmdargs.png) -->
 
 
 
