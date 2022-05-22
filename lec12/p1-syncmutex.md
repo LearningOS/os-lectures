@@ -349,7 +349,16 @@ do {
 ![bg right:50% 100%](figs/soft-3.png)
 - 满足“忙则等待”，但是不满足“空闲则入”
   - flag[i]=flag[j]=1
-
+```c
+// 线程 Tj
+do {
+   flag[j] = 1;
+   while (flag[i] == 1) ;
+   critical section
+   flag[j] = 0;
+   remainder section
+} while(1)
+```
 
 ---  
 ### 方法2：基于软件的解决方法 -- Peterson算法
