@@ -139,6 +139,22 @@ int pthread_create(      pthread_t *        thread,
 
 ---
 ### 使用线程
+```c
+typedef struct
+{
+       int                       detachstate;   // 线程的分离状态
+       int                       schedpolicy;   // 线程调度策略
+       structsched_param         schedparam;    // 线程的调度参数
+       int                       inheritsched;  // 线程的继承性
+       int                       scope;         // 线程的作用域
+       size_t                    guardsize;     // 线程栈末尾的警戒缓冲区大小
+       int                       stackaddr_set; // 线程的栈设置
+       void*                     stackaddr;     // 线程栈的位置
+       size_t                    stacksize;     // 线程栈的大小
+} pthread_attr_t;
+```
+---
+### 使用线程
 等待线程：一直阻塞调用它的线程，直至目标线程执行结束
 ```c
 #include <pthread.h>
@@ -246,7 +262,7 @@ User-SE  v.s.  Kernel-SE
 ### 线程的设计实现
 - 内核态管理且用户态运行的线程 
   - 由内核通过系统调用实现的线程机制，由内核完成线程的创建、终止和管理
-  - 由内核维护TCB, 在内核实现
+  - 由内核维护线程控制块TCB, 在内核实现
   - 线程执行系统调用而被阻塞不影响其他线程
 
 ![bg right:45% 100%](figs/kernel-thread.png)

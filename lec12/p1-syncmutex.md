@@ -92,9 +92,11 @@ backgroundColor: white
     }
 }
 ```
+
+
 ---
 ### 现实生活中的同步互斥 -- 方案一 -- 分析
-- 偶尔会购买太多面包
+- 偶尔会购买太多面包 - 重复
   - 检查面包和便签后帖便签前，有其他人检查面包和便签
 
 - 解决方案只是间歇性地失败
@@ -173,7 +175,8 @@ remove note_1;
 
 ### 现实生活中的同步互斥 -- 方案四
 两个人采用不同的处理流程
-![w:900](figs/method-4.png)
+
+![w:1000](figs/method-4.png)
 
 
 ---
@@ -198,7 +201,7 @@ remove note_1;
   -  Lock.Release()
      - 解锁并唤醒任何等待中的线程
 
-![bg right:35% 100%](figs/method-5.png)
+![bg right:32% 100%](figs/method-5.png)
 
 
 --- 
@@ -303,7 +306,7 @@ exit section
   - 临界区可能很长
      - 无法确定响应中断所需的时间（可能存在硬件影响）
 
- 要小心使用
+ **要小心使用**
 
 
 
@@ -318,45 +321,103 @@ exit section
 ![bg right:50% 100%](figs/soft-1.png)
 - 满足“忙则等待”，但是有时不满足“空闲则入”
    - Ti不在临界区，Tj想要继续运行，但是必须等待Ti进入过临界区后
+   - turn = 0;
+     - T0 不需要访问
+     - T1 需要访问->一直等待
 
 
 ---  
 ### 方法2：基于软件的解决方法 -- 尝试二
 ![bg right:50% 100%](figs/soft-2.png)
+- 互相依赖（线程盲等）
 - 不满足“忙则等待”
+  - flag[i]=flag[j]=0
+```c
+// 线程 Tj
+do {
+   while (flag[i] == 1) ;
+   flag[j] = 1;
+   critical section
+   flag[j] = 0;
+   remainder section
+} while(1)
+```
 
 
 ---  
 ### 方法2：基于软件的解决方法 -- 尝试三
 ![bg right:50% 100%](figs/soft-3.png)
 - 满足“忙则等待”，但是不满足“空闲则入”
-
+  - flag[i]=flag[j]=1
+```c
+// 线程 Tj
+do {
+   flag[j] = 1;
+   while (flag[i] == 1) ;
+   critical section
+   flag[j] = 0;
+   remainder section
+} while(1)
+```
 
 ---  
 ### 方法2：基于软件的解决方法 -- Peterson算法
 
 ![bg right:50% 100%](figs/soft-peterson.png)
 - 满足线程Ti和Tj之间互斥的经典的基于软件的解决方法（1981年）
+- 孔融让梨
 
 
 ---  
 ### 方法2：基于软件的解决方法 -- Peterson算法
 
 ![bg right:50% 100%](figs/soft-peterson-2.png)
-- 线程Ti 的代码
-
+```
+flag[i] = True;
+turn = j;
+while(flag[j] && turn == j);
+critical section;
+flag[i] = False;
+remainder section;
+```
+```
+flag[j] = True;
+turn = i;
+while(flag[i] && turn == i);
+critical section;
+flag[j] = False;
+remainder section;
+```
 
 
 ---  
 ### 方法2：基于软件的解决方法 -- Dekkers算法
 
-![bg right:50% 100%](figs/soft-dekkers.png)
-- 线程Ti 的代码
-
+![bg right:35% 100%](figs/soft-dekkers.png)
+```
+do{
+  flag[0] = true;// 首先P0举手示意我要访问
+  while(flag[1]) {// 看看P1是否也举手了
+     if(turn==1){// 如果P1也举手了，那么就看看到底轮到谁
+         flag[0]=false;// 如果确实轮到P1，那么P0先把手放下（让P1先）
+         while(turn==1);// 只要还是P1的时间，P0就不举手，一直等
+         flag[0]=true;// 等到P1用完了（轮到P0了），P0再举手
+     }
+     flag[1] = false; // 只要可以跳出循环，说明P1用完了，应该跳出最外圈的while
+  }
+  critical section;// 访问临界区
+  turn = 1;// P0访问完了，把轮次交给P1，让P1可以访问
+  flag[0]=false;// P0放下手
+  remainder section;
+} while(true);
+```
 ---  
 ### 方法2：基于软件的解决方法 -- N线程
 Eisenberg和McGuire
-![w:900](figs/soft-n.png)
+- 一个共享的turn变量，若干线程排成一个环
+- 每个环有个flag标志，想要进入临界区填写flag标志
+- 有多个想进入临界区，从前往后走，执行完一个线程，turn改为下一个线程的值。
+![bg right:50% 100%](figs/soft-n.png)
 
 ---  
 ### 方法3：更高级的抽象方法
@@ -376,27 +437,107 @@ Eisenberg和McGuire
    - 一个二进制变量（锁定/解锁）
    - 使用锁来控制临界区访问
    - Lock::Acquire()
-      - 锁被释放前一直等待，然后得到锁
+      - 锁被释放前一直等待，后得到锁
    - Lock::Release()
       -  释放锁，唤醒任何等待的线程
-![bg right:50% 100%](figs/lock.png)
+![bg right:40% 100%](figs/lock.png)
 
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
-现代CPU体系结构都提供一些特殊的原子操作指令
+现代CPU提供一些特殊的原子操作指令
 - 原子操作指令 
   - 测试和置位（Test-and-Set ）指令
      - 从内存单元中读取值
-     - 测试该值是否为1（然后返回真或假）
+     - 测试该值是否为1(然后返回真或假)
      - 内存单元值设置为1
+       - 输入0，改成1，返回0；
+       - 输入1，保持1，返回1；
 
-![bg right:40% 100%](figs/test-and-set.png)
+![bg right:35% 100%](figs/test-and-set.png)
  
 
+---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+现代CPU都提供一些特殊的原子操作指令
+```
+do {
+  while(TestAndSet(&lock) ;
+  critical section; 
+  lock = false;
+  remainder section;
+} while (true)
+```
 
+![bg right:35% 100%](figs/test-and-set.png)
+ 
+---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+现代CPU都提供一些特殊的原子操作指令
+```
+do {
+  while(TestAndSet(&lock) ;
+  critical section; 
+  lock = false;
+  remainder section;
+} while (true)
+```
+```
+lock(): while(TestAndSet(&lock));
+critical section; 
+unlock(): lock=false;
+```
+![bg right:35% 100%](figs/test-and-set.png)
 
 ---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+- 原子操作：交换指令CAS（compare and swap）
+```
+bool compare_and_swap(int *value, int old, int new) {
+   if(*value==old) {
+      *value = new; 
+      return true; }
+   return false;
+}
+```
+```
+int lock = 0;
+while(!compare_and_swap(&lock,0,1)); 
+critical section; 
+lock=0;
+remainder section;
+```
+
+---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+- 原子操作：交换指令CaS（Compare and Swap）
+```
+bool compare_and_swap(int *value, int old, int new) {
+   if(*value==old) {
+      *value = new; 
+      return true;
+   }
+   return false;
+}
+```
+```
+lock(): while(!compare_and_swap(&lock,0,1)); 
+critical section; 
+unlock(): lock=0; 
+```
+
+---  
+### 方法3：更高级的抽象方法 -- 锁(lock)
+- 原子操作：交换指令CaS（Compare and Swap）
+- ABA 问题：
+  - value= 100；
+  - Thread1: value - 50; //成功 value=50
+  - Thread2: value - 50; //阻塞
+  - Thread3: value + 50; //成功 value=50
+  - Thread2: 重试成功
+- 解决思路：加上版本号（时间戳）
+  - (100,1); (50,2); (100,3) 
+<!---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
 现代CPU体系结构都提供一些特殊的原子操作指令
 - 原子操作指令 
@@ -404,11 +545,11 @@ Eisenberg和McGuire
      - 交换内存中的两个值
 
 ![bg right:50% 100%](figs/exchange.png)
-
+-->
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock) 
-使用TS指令实现自旋锁(spinlock)
+使用TaS指令实现自旋锁(spinlock)
 - 线程在等待的时候消耗CPU时间
 ![w:800](figs/spinlock-ts.png)
 
