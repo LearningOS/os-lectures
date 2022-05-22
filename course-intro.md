@@ -30,7 +30,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 - 硬件简单
 - 软件简洁
 - 循序渐进
-- 理技结合·
+- 理技结合
 - 应用驱动
 - 生物进化
 
@@ -70,6 +70,69 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
     9 SyncMutex OS：在多线程APP中支持对共享资源的同步互斥访问
     10 Device OS：提高APP的I/O效率，支持基于外设中断的串口/块设备
 
+
+---
+### 基本思路
+**30个系统调用**
+```rust
+const SYSCALL_DUP: usize = 24;
+const SYSCALL_OPEN: usize = 56;
+const SYSCALL_CLOSE: usize = 57;
+const SYSCALL_PIPE: usize = 59;
+const SYSCALL_READ: usize = 63;
+const SYSCALL_WRITE: usize = 64;
+const SYSCALL_EXIT: usize = 93;
+const SYSCALL_SLEEP: usize = 101;
+const SYSCALL_YIELD: usize = 124;
+```
+---
+### 基本思路
+**30个系统调用**
+```rust
+const SYSCALL_KILL: usize = 129;
+const SYSCALL_SIGACTION: usize = 134;
+const SYSCALL_SIGPROCMASK: usize = 135;
+const SYSCALL_SIGRETURN: usize = 139;
+const SYSCALL_GET_TIME: usize = 169;
+const SYSCALL_GETPID: usize = 172;
+const SYSCALL_FORK: usize = 220;
+const SYSCALL_EXEC: usize = 221;
+const SYSCALL_WAITPID: usize = 260;
+```
+
+---
+### 基本思路
+**30个系统调用**
+```rust
+const SYSCALL_KILL: usize = 129;
+const SYSCALL_SIGACTION: usize = 134;
+const SYSCALL_SIGPROCMASK: usize = 135;
+const SYSCALL_SIGRETURN: usize = 139;
+const SYSCALL_GET_TIME: usize = 169;
+const SYSCALL_GETPID: usize = 172;
+const SYSCALL_FORK: usize = 220;
+const SYSCALL_EXEC: usize = 221;
+const SYSCALL_WAITPID: usize = 260;
+const SYSCALL_THREAD_CREATE: usize = 1000;
+const SYSCALL_GETTID: usize = 1001;
+const SYSCALL_WAITTID: usize = 1002;
+```
+---
+### 基本思路
+**设计实现满足应用APP逐步递增需求的逐步进化的OS**
+```rust
+const SYSCALL_MUTEX_CREATE: usize = 1010;
+const SYSCALL_MUTEX_LOCK: usize = 1011;
+const SYSCALL_MUTEX_UNLOCK: usize = 1012;
+const SYSCALL_SEMAPHORE_CREATE: usize = 1020;
+const SYSCALL_SEMAPHORE_UP: usize = 1021;
+const SYSCALL_SEMAPHORE_DOWN: usize = 1022;
+const SYSCALL_CONDVAR_CREATE: usize = 1030;
+const SYSCALL_CONDVAR_SIGNAL: usize = 1031;
+const SYSCALL_CONDVAR_WAIT: usize = 1032;
+```
+
+
 ---
 ### 在线信息
 #### 课程实践内容 -- rCore Tutorial Book v3
@@ -88,7 +151,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 - 课程内容
   - 48学时，16次课 
 - 实践内容
-  - 32学时，5次实验
+  - 20~30学时，5次实验
 
 
 ---
