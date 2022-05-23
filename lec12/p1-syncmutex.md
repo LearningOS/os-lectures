@@ -257,9 +257,9 @@ entry section
 exit section
    remainder section
 ```
-- 空闲则入
+- 1 空闲则入
    - 没有线程在临界区时，任何线程可进入
--  忙则等待
+- 2 忙则等待
    -  有线程在临界区时，其他线程均不能进入临界区
   
 
@@ -271,9 +271,9 @@ entry section
 exit section
    remainder section
 ```
-- 有限等待
+- 3 有限等待
    -  等待进入临界区的线程不能无限期等待
-- 让权等待（可选）
+- 4 让权等待（可选）
    - 不能进入临界区的线程，应释放CPU（如转换到阻塞状态）
 
 
@@ -305,7 +305,7 @@ exit section
      - 可能导致其他线程处于饥饿状态
   - 临界区可能很长
      - 无法确定响应中断所需的时间（可能存在硬件影响）
-
+  - 不适合多核
  **要小心使用**
 
 
@@ -418,6 +418,53 @@ Eisenberg和McGuire
 - 每个环有个flag标志，想要进入临界区填写flag标志
 - 有多个想进入临界区，从前往后走，执行完一个线程，turn改为下一个线程的值。
 ![bg right:50% 100%](figs/soft-n.png)
+
+
+---  
+### 方法2：基于软件的解决方法 -- N线程
+```c 
+INITIALIZATION:
+
+enum states flags[n -1]; //{IDLE, WAITING, ACTIVE}
+int turn;
+for (index=0; index<n; index++) {
+   flags[index] = IDLE;
+}
+```
+
+---  
+### 方法2：基于软件的解决方法 -- N线程
+```c 
+ENTRY PROTOCOL (for Process i ):
+
+repeat {
+   flags[i] = WAITING;//表明自己需要资源
+   index = turn;//轮到谁了
+   while (index != i) {//从turn到i轮流找不idle的线程
+      if (flag[index] != IDLE) index = turn;//turn到i有非idle的阻塞
+      else index = (index+1) mod n; //否则轮到i，并跳出
+   }
+   flags[i] = ACTIVE;//Pi 索要资源
+   index = 0;//找到i后面第一个active的
+   while ((index < n) && ((index == i) || (flags[index] != ACTIVE))) {
+      index = index+1;
+   }//如果后面没有active了，并且轮到Pi或者 其他turn idle, 就轮到i;否则继续循环
+} until ((index >= n) && ((turn == i) || (flags[turn] == IDLE)));
+turn = i;
+```
+
+---  
+### 方法2：基于软件的解决方法 -- N线程
+```c 
+EXIT PROTOCOL (for Process i ):
+
+index = turn+1 mod n;//找到一个不idle的
+while (flags[index] == IDLE) {
+   index = index+1 mod n;
+}
+turn = index;//找到不idle的设置为turn
+flag[i] = IDLE;//结束，自己变idle
+```
 
 ---  
 ### 方法3：更高级的抽象方法
