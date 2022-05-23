@@ -101,14 +101,14 @@ backgroundColor: white
 ### 管程 
 管程中条件变量的释放处理方式
 - 线程 T2 的signal，使线程 T1 等待的条件满足时
-  - Hasen： T2 通知完 T1 后，T2 执行结束后（最后signal），然后 T1 再执行
   - Hoare：T2 通知完 T1后，T2 阻塞，T1 马上执行；等 T1 执行完，再唤醒 T2 执行
-  - MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，仅仅是从条件变量的等待队列进到入口等待队列里面
+  - Hasen： T2 通知完 T1 后，T2 执行结束后（最后signal），然后 T1 再执行
+  - MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是从条件变量的等待队列进到入口等待队列里面（重新竞争）
 
 
 ---
 ### 管程 - Hoare 
-  - 1.ThreadA 进入 monitor
+  - 1.ThreadA 进入 管程monitor
   - 2.ThreadA 等待资源 (进入wait queue)
   - 3.ThreadB 进入monitor
   - 4.ThreadB 资源可用 ，通知ThreadA恢复执行，并把自己转移到signal queue。
@@ -124,7 +124,7 @@ backgroundColor: white
   - 1.ThreadA 进入 monitor
   - 2.ThreadA 等待资源 (进入wait queue，并释放monitor)
   - 3.ThreadB 进入monitor
-  - 4.ThreadB 资源可用，通知ThreadA。(ThreadA被转移到entey queue)
+  - 4.ThreadB 资源可用，通知ThreadA。(ThreadA被转移到entey queue，重新竞争)
   - 5.ThreadB 继续执行
   - 6.ThreadB 离开monitor
   - 7.ThreadA 获得执行机会，从entry queue出队列，恢复执行
