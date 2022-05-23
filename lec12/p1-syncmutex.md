@@ -445,12 +445,12 @@ repeat {
       else index = (index+1) mod n; //否则轮到i，并跳出
    }
    flags[i] = ACTIVE;//Pi 索要资源
-   index = 0;//找到i后面第一个active的
+   index = 0;//看看是否还有其他active的
    while ((index < n) && ((index == i) || (flags[index] != ACTIVE))) {
       index = index+1;
-   }//如果后面没有active了，并且轮到Pi或者 其他turn idle, 就轮到i;否则继续循环
+   }//如果后面没有active了，并且轮到Pi或者turn idle, 就轮到i;否则继续循环
 } until ((index >= n) && ((turn == i) || (flags[turn] == IDLE)));
-turn = i;
+turn = i;//获得turn并处理
 ```
 
 ---  
@@ -462,7 +462,7 @@ index = turn+1 mod n;//找到一个不idle的
 while (flags[index] == IDLE) {
    index = index+1 mod n;
 }
-turn = index;//找到不idle的设置为turn
+turn = index;//找到不idle的设置为turn；或者设置为自己
 flag[i] = IDLE;//结束，自己变idle
 ```
 
