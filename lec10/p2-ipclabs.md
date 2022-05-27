@@ -111,26 +111,26 @@ IPC OS (IOS)
 ## 总体思路 -- APP example (用户态)
 ```rust
 ...// usr/src/bin/pipetest.rs
-static STR: &str = "Hello, world!"
+static STR: &str = "Hello, world!"  //字符串全局变量
 pub fn main() -> i32 {
-    let mut pipe_fd = [0usize; 2]; // create pipe
-    pipe(&mut pipe_fd);
+    let mut pipe_fd = [0usize; 2]; //包含两个元素的fd数组
+    pipe(&mut pipe_fd); // create pipe
     if fork() == 0 { // child process, read from parent
         close(pipe_fd[1]); // close write_end
-        let mut buffer = [0u8; 32];
-        let len_read = read(pipe_fd[0], &mut buffer) as usize;
+        let mut buffer = [0u8; 32]; //包含32个字节的字节数组
+        let len_read = read(pipe_fd[0], &mut buffer) as usize; //读pipe
     } else { // parent process, write to child
         close(pipe_fd[0]); // close read end
-        write(pipe_fd[1], STR.as_bytes());
+        write(pipe_fd[1], STR.as_bytes()); //写pipe
         let mut child_exit_code: i32 = 0;
-        wait(&mut child_exit_code);
+        wait(&mut child_exit_code); //父进程等子进程结束
     }
 ...
 ```
 ---
 
 ## 总体思路 -- 与进程的关系
-`pipe`是进程控制块的资源
+`pipe`是进程控制块的资源之一
 
 ![bg right:70% 100%](figs/process-os-key-structures-file-ipc.png)
 
@@ -168,16 +168,16 @@ pub fn main() -> i32 {
 ...// usr/src/bin/sig_simple.rs
 fn func() { //signal_handler
     println!("user_sig_test succsess");
-    sigreturn();
+    sigreturn(); //回到信号处理前的位置继续执行
 }
 pub fn main() -> i32 {
-    let mut new = SignalAction::default();
-    let old = SignalAction::default();
-    new.handler = func as usize; 
+    let mut new = SignalAction::default();  //新信号配置
+    let old = SignalAction::default();      //老信号配置
+    new.handler = func as usize;            //设置新的信号处理例程
     if sigaction(SIGUSR1, &new, &old) < 0 { //setup signal_handler
         panic!("Sigaction failed!");
     }
-    if kill(getpid() as usize, SIGUSR1) < 0 {  //send SIGUSR1 to itself
+    if kill(getpid() as usize, SIGUSR1) <0{ //send SIGUSR1 to itself
       ...
     }
 ...
@@ -186,7 +186,7 @@ pub fn main() -> i32 {
 ---
 
 ## 总体思路 -- 与进程的关系
-`signal`是进程控制块的资源
+`signal`是进程控制块的资源之一
 
 ![bg right:70% 100%](figs/process-os-key-structures-file-ipc.png)
 
@@ -570,15 +570,15 @@ pub fn sys_dup(fd: usize) -> isize {
   let pid = fork();
     if pid == 0 {  
         let input_fd = open(input, ...); //输入重定向 -- B 子进程
-        close(0);
-        dup(input_fd);
-        close(input_fd);
+        close(0);                        //关闭文件描述符0
+        dup(input_fd); //文件描述符0与文件描述符input_fd指向同一文件
+        close(input_fd); //关闭文件描述符input_fd
         //或者
         let output_fd = open(output, ...);//输出重定向 -- A子进程
-        close(1);
-        dup(output_fd);
-        close(output_fd);
-    //重定向后执行新程序
+        close(1);                         //关闭文件描述符1
+        dup(output_fd);//文件描述符1与文件描述符output_fd指向同一文件
+        close(output_fd);//关闭文件描述符output_fd
+    //I/O重定向后执行新程序
      exec(args_copy[0].as_str(), args_addr.as_slice()); 
     }...
 ```
@@ -710,7 +710,7 @@ fn sys_kill(pid: usize, signum: i32) -> isize {
 
 ---
 ## signal设计实现  --  通过kill发出信号
-当进程号为`pid`的进程进入内核后，在从内核返回用户态继续执行前：
+当`pid`进程进入内核后，直到从内核返回用户态前的执行过程：
 ```
 执行APP --> __alltraps 
          --> trap_handler 
