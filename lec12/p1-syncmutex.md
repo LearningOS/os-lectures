@@ -203,7 +203,7 @@ remove note_1;
 
 ![bg right:32% 100%](figs/method-5.png)
 
-
+<!-- 
 --- 
 ### 进/线程的交互关系：相互感知程度
 ![w:900](figs/relations-1.png)
@@ -218,7 +218,7 @@ remove note_1;
 --- 
 ### 进/线程的交互关系：相互感知程度
 ![w:900](figs/relations-3.png)
-
+ -->
 
 
 ---  

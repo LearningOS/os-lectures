@@ -127,15 +127,30 @@ backgroundColor: white
 
 ---
 ### 管程 
+<!-- https://blog.csdn.net/qq_34666857/article/details/103189107 Java并发编程模拟管程（霍尔Hoare管程、汉森Hansan管程、MESA管程) -->
+管程中条件变量的释放处理方式
+
+如果进程P1因条件A未满足处于阻塞状态，那么当进程P2让条件A满足并执行signal操作唤醒P1后，不被许进程P1和P2同时处于管程中，那么如何确定哪个执行哪个等待？
+可采用下面的两种方式之一进行处理：
+
+- 1：P2等待，直至P1离开管程或者等待另一个条件  （ Hoare）
+- 2：P1等待，直至P2离开管程或者等待另一个条件(MESA/Hansen)
+
+
+
+---
+### 管程 
+<!-- https://blog.csdn.net/qq_34666857/article/details/103189107 Java并发编程模拟管程（霍尔Hoare管程、汉森Hansan管程、MESA管程) -->
 管程中条件变量的释放处理方式
 - 线程 T2 的signal，使线程 T1 等待的条件满足时
   - Hoare：T2 通知完 T1后，T2 阻塞，T1 马上执行；等 T1 执行完，再唤醒 T2 执行
-  - Hansen： T2 通知完 T1 后，T2 执行结束后（最后signal），然后 T1 再执行
+  - Hansen： T2 通知完 T1 后，T2 还会接着执行，T2 执行结束后（规定：最后操作是signal），然后 T1 再执行
   - MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是从条件变量的等待队列进到入口等待队列里面（重新竞争）
 
 
 ---
 ### 管程 - Hoare 
+<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
   - 1.ThreadA 进入 管程monitor
   - 2.ThreadA 等待资源 (进入wait queue)
   - 3.ThreadB 进入monitor
@@ -149,10 +164,11 @@ backgroundColor: white
 
 ---
 ### 管程 - Mesa 
+<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
   - 1.ThreadA 进入 monitor
   - 2.ThreadA 等待资源 (进入wait queue，并释放monitor)
   - 3.ThreadB 进入monitor
-  - 4.ThreadB 资源可用，通知ThreadA。(ThreadA被转移到entey queue，重新竞争)
+  - 4.ThreadB 资源可用，通知ThreadA。(ThreadA被转移到entey queue，重新平等竞争)
   - 5.ThreadB 继续执行
   - 6.ThreadB 离开monitor
   - 7.ThreadA 获得执行机会，从entry queue出队列，恢复执行
@@ -162,6 +178,7 @@ backgroundColor: white
 
 ---
 ### 管程 - Hansen： 
+<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
   - 1.ThreadA 进入 monitor
   - 2.ThreadA 等待资源r
   - 3.ThreadB 进入monitor
@@ -174,21 +191,23 @@ backgroundColor: white
 ---
 ### 管程 
 管程中条件变量的释放处理方式
+<!-- https://cseweb.ucsd.edu/classes/sp17/cse120-a/applications/ln/lecture8.html --> 
+<!-- https://juejin.cn/post/6925331537365843981 synchronized原理剖析 -->
 ![w:1100](figs/cond-releases.png)
 
 
 ---
 ### 管程 
-管程中条件变量的释放处理方式
-![w:1000](figs/cond-releases-2.png)
+<!-- 管程中条件变量的释放处理方式 -->
+![w:900](figs/cond-releases-2.png)
 
 
 
 
 ---
 ### 管程 
-管程中条件变量的释放处理方式
-![w:1000](figs/cond-releases-3.png)
+<!-- 管程中条件变量的释放处理方式 -->
+![w:900](figs/cond-releases-3.png)
 
 ---
 ### 管程 -- 生产者-消费者问题
