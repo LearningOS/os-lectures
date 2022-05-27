@@ -100,5 +100,6 @@ backgroundColor: white
 - [第二节 磁盘子系统](./lec13/p2-disk.html)
 - [第三节 第三节 支持device的OS（DOS）](./lec13/p3-Labs.html)
 
+---
 ### OS课程介绍
 - [清华计算机系2022春季OS课程](./course-intro.md)
