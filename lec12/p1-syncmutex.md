@@ -417,7 +417,7 @@ do{
 ---  
 ### 方法2：基于软件的解决方法 -- Dekkers算法
 
-![w:400](figs/dekker.png)
+![w:400](figs/dekker.png)       vs                           ![w:400](figs/dekker1.png)
 
 ---  
 ### 方法2：基于软件的解决方法 -- N线程
@@ -426,6 +426,8 @@ Eisenberg和McGuire
 - 每个环有个flag标志，想要进入临界区填写flag标志
 - 有多个想进入临界区，从前往后走，执行完一个线程，turn改为下一个线程的值。
 ![bg right:50% 100%](figs/soft-n.png)
+
+
 
 
 ---  
