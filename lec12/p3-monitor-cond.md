@@ -40,7 +40,7 @@ backgroundColor: white
    - 一个锁：控制管程代码的互斥访问
    - 0或者多个条件变量: 管理共享数据的并发访问，每个条件变量有个等待（紧急）队列
    - 入口：入口等待队列
-![bg right:40% 100%](figs/basic-monitor-2.png)
+![bg right:40% 100%](figs/moniter.jpg)
 
 ---
 ### 管程 -- 条件变量

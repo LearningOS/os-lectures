@@ -411,6 +411,14 @@ do{
   remainder section;
 } while(true);
 ```
+
+
+
+---  
+### 方法2：基于软件的解决方法 -- Dekkers算法
+
+![w:400](figs/dekker.png)
+
 ---  
 ### 方法2：基于软件的解决方法 -- N线程
 Eisenberg和McGuire
