@@ -534,7 +534,7 @@ unlock(): lock=false;
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
-- 原子操作：交换指令CAS（compare and swap）
+- 原子操作：交换指令CaS（Compare and Swap）
 ```
 bool compare_and_swap(int *value, int old, int new) {
    if(*value==old) {
@@ -544,14 +544,14 @@ bool compare_and_swap(int *value, int old, int new) {
 }
 ```
 ```
-int lock = 0;
-while(!compare_and_swap(&lock,0,1)); 
+int lock = 0;                           // 初始时锁空闲 
+while(!compare_and_swap(&lock,0,1));    // lock 加锁
 critical section; 
-lock=0;
+lock=0;                                 // unlock 解锁
 remainder section;
 ```
 
----  
+<!-- ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
 - 原子操作：交换指令CaS（Compare and Swap）
 ```
@@ -567,10 +567,14 @@ bool compare_and_swap(int *value, int old, int new) {
 lock(): while(!compare_and_swap(&lock,0,1)); 
 critical section; 
 unlock(): lock=0; 
-```
+``` -->
 
 ---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
+<!-- CAS是什么？ABA问题又应该如何理解？https://zhuanlan.zhihu.com/p/139635112 
+https://www.zhihu.com/question/23281499/answer/24112589
+关于ABA问题我想了一个例子：在你非常渴的情况下你发现一个盛满水的杯子，你一饮而尽。之后再给杯子里重新倒满水。然后你离开，当杯子的真正主人回来时看到杯子还是盛满水，他当然不知道是否被人喝完重新倒满。解决这个问题的方案的一个策略是每一次倒水假设有一个自动记录仪记录下，这样主人回来就可以分辨在她离开后是否发生过重新倒满的情况。这也是解决ABA问题目前采用的策略。
+-->
 - 原子操作：交换指令CaS（Compare and Swap）
 - ABA 问题：
   - value= 100；
