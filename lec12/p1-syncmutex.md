@@ -453,8 +453,8 @@ repeat {//从turn到i是否存在请求进程:若存在，则不断循环，直�
       if (flag[index] != IDLE) index = turn;//turn到i有非idle的阻塞
       else index = (index+1) mod n; //否则轮到i，并跳出
    }
-   flags[i] = ACTIVE;//Pi 索要资源
-   //对所有ACTIVE的进程做进一步的判断，就是判断除了当前进程以外，是否还存在其他ACTIVE的进程
+   flags[i] = ACTIVE;//Pi active; 其他线程有可能active
+   //对所有ACTIVE的进程做进一步的判断，判断除了当前进程以外，是否还存在其他ACTIVE的进程
    index = 0;//看看是否还有其他active的
    while ((index < n) && ((index == i) || (flags[index] != ACTIVE))) {
       index = index+1;
