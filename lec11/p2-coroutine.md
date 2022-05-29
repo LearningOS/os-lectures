@@ -394,3 +394,14 @@ requests
 aiohttp
 
 -->
+
+
+---
+### 参考信息
+- https://www.youtube.com/watch?v=R4Oz8JUuM4s
+- https://github.com/nikhilkumarsingh/async-http-requests-tut
+- http://www.dabeaz.com/coroutines/
+- https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html 
+- https://github.com/nikhilkumarsingh/async-http-requests-tut/blob/master/test_asyncio.py
+- https://gobyexample-cn.github.io/goroutines 
+- https://zijiaw.github.io/posts/a7-rsfuture/

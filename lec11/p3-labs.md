@@ -229,20 +229,20 @@ Runtime::init() 的主要工作是把Rutime结构变量的地址赋值给全局�
 ### 程序设计
 **用户态管理的线程创建** 
 ```rust
-    pub fn spawn(&mut self, f: fn()) {
+    pub fn spawn(&mut self, f: fn()) { // f函数是线程入口
         let available = self  
-            .tasks.iter_mut()
-            .find(|t| t.state == State::Available)
+            .tasks.iter_mut()  //遍历队列中的任务
+            .find(|t| t.state == State::Available) //查找可用的任务
             .expect("no available task.");
         let size = available.stack.len();
         unsafe {
             let s_ptr = available.stack.as_mut_ptr().offset(size as isize);
-            let s_ptr = (s_ptr as usize & !7) as *mut u8;
+            let s_ptr = (s_ptr as usize & !7) as *mut u8; // 栈按8字节对齐
             available.ctx.x1 = guard as u64;  //ctx.x1  is old return address
             available.ctx.nx1 = f as u64;     //ctx.nx2 is new return address
             available.ctx.x2 = s_ptr.offset(-32) as u64; //cxt.x2 is sp
         }
-        available.state = State::Ready;
+        available.state = State::Ready; //设置任务为就绪态
     }
 }
 ```
