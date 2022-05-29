@@ -1,3 +1,11 @@
+### 第十三讲 课前准备建议
+(初步建议)
+阅读
+1. 《Operating Systems:Three Easy Pieces》第36、37章
+2. 阅读 Lec13 的slides 草稿
+3. 阅读 rCore Tutorial Book v3第9章
+4. 编译运行rCore Tutorial v3的ch9分支的代码，了解串口和块设备外设驱动的执行情况
+
 ### 第十二讲 课前准备建议
 (初步建议)
 阅读
