@@ -446,8 +446,7 @@ for (index=0; index<n; index++) {
 ### 方法2：基于软件的解决方法 -- N线程
 ```c 
 ENTRY PROTOCOL (for Process i ):
-
-repeat {
+repeat {//从turn到i是否存在请求进程:若存在，则不断循环，直至不存在这样的进程，将当前进程标记为ACTIVE
    flags[i] = WAITING;//表明自己需要资源
    index = turn;//轮到谁了
    while (index != i) {//从turn到i轮流找不idle的线程
@@ -455,6 +454,7 @@ repeat {
       else index = (index+1) mod n; //否则轮到i，并跳出
    }
    flags[i] = ACTIVE;//Pi 索要资源
+   //对所有ACTIVE的进程做进一步的判断，就是判断除了当前进程以外，是否还存在其他ACTIVE的进程
    index = 0;//看看是否还有其他active的
    while ((index < n) && ((index == i) || (flags[index] != ACTIVE))) {
       index = index+1;
