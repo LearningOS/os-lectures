@@ -264,6 +264,12 @@ fn guard() {
         (*rt_ptr).t_return();
     };
 }
+fn t_return(&mut self) {
+    if self.current != 0 {
+        self.tasks[self.current].state = State::Available;
+        self.t_yield();
+    }
+}
 ```
 `guard`函数意味着我们传入的`f`函数（线程的主体）已经返回，这意味着我们的线程已完成运行其任务，因此我们取消引用我们的运行时并调用t_return()。
 
