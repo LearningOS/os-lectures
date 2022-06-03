@@ -222,7 +222,7 @@ backgroundColor: white
 ---
 ### 管程 
 <!-- 管程中条件变量的释放处理方式 -->
-![w:900](figs/cond-releases-3.png)
+![w:1200](figs/cond-releases-3.png)
 
 ---
 ### 管程 -- 生产者-消费者问题
