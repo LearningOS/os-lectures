@@ -157,7 +157,7 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 ---
 ### 管程 
 <!-- 管程中条件变量的释放处理方式 -->
-![w:900](figs/cond-releases-2.png)
+![w:1000](figs/cond-releases-2.png)
 
 
 
