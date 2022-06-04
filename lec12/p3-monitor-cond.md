@@ -28,12 +28,32 @@ backgroundColor: white
 
 ---
 ### 管程
-- 管程是一种用于多线程互斥访问共享资源的程序结构
-- 采用面向对象方法，简化了线程间的同步控制
+- 管程是一种用于多线程互斥访问共享资源的**程序结构**
+- 采用**面向对象方法**，简化了线程间的同步控制
 - 任一时刻最多只有一个线程执行管程代码
 - 正在管程中的线程可临时放弃管程的互斥访问，等待事件出现时恢复
 ![w:600](figs/basic-monitor.png)
 
+
+
+---
+### 管程 -- 条件变量
+- 管程中的共享变量在管程外部是不可见的，外部只能通过调用管程中所说明的外部过程 (函数）来间接地访问管程中的共享变量
+  - 互斥：任一时刻管程中只能有一个活跃进程
+  - 进入管程的线程因资源被占用而进入等待状态
+    - 每个条件变量表示一种等待原因，对应一个等待队列
+    - 入口队列管理未进入管程的线程/进程
+  - 管程中设有进程等待队以及相应的等待及唤醒操作
+    - 进入enter, 离开leave, 等待wait, 唤醒signal
+
+<!--![bg right:40% 100%](figs/basic-monitor-2.png)
+![bg right:40% 100%](figs/basic-monitor-2.png)
+
+
+---
+### 管程 -- 条件变量
+
+-->
 
 
 ---
@@ -52,6 +72,8 @@ https://zhuanlan.zhihu.com/p/465751547 学习进程互斥和进程同步有这�
 https://www.cnblogs.com/uestcliming666/p/13224545.html  《现代操作系统》——第6章 同步互斥机制（二）、进程间通信机制
 
 https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
+
+
 
 ---
 ### 管程 -- 条件变量
@@ -72,35 +94,17 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 ![bg right:40% 100%](figs/moniter.jpg)
 
-
 ---
-### 管程 -- 条件变量
-- 管程中的共享变量在管程外部是不可见的，外部只能通过调用管程中所说明的成员过程 (函数）来间接地访问管程中的共享变量
-  - 规定管程互斥进入；
-  - 管程中设有等待队以及相应的等待及唤醒操作。
-![bg right:40% 100%](figs/basic-monitor-2.png)
-
-
----
-### 管程 -- 条件变量
-- 互斥：任一时刻管程中只能有一个活跃线程
-   - 进入管程的线程因资源被占用而进入等待状态
-   - 每个条件变量表示一种等待原因，对应一个等待队列
-   - 入口队列管理未进入管程的线程
-![bg right:40% 100%](figs/basic-monitor-2.png)
-
-
----
-### 管程 -- 流程
-- enter过程：线程在进入管程之前要获得互斥访问权(lock)；
-- leave过程：当线程离开管程时，如果紧急队列不为空，唤醒紧急队列中的线程，并将所持锁赋予该线程；如果为空，释放lock，唤醒入口等待队列某个线程；
-- wait(c)：1) 阻塞自己，将自己挂到条件变量c的等待队列；
-2）释放所持锁；
-3）唤醒入口等待队列的一个或者多个线程；
+### 管程 -- 流程 （T可以是线程或者进程）
+- T.enter过程：线程T在进入管程之前要获得互斥访问权(lock)
+- T.leave过程：当线程T离开管程时，如果紧急队列**不为空**，唤醒紧急队列中的线程，并将T所持锁赋予唤醒的线程；如果**紧急队列为空**，释放lock，唤醒入口等待队列某个线程
+- T.wait(c)：1)阻塞线程T自己，将t自己挂到条件变量c的等待队列；
+  - 2)释放所持锁； 3)唤醒入口等待队列的一个或者多个线程；
 <!--释放管程权力，进入c的条件等待队列；唤醒紧急等待队列的第一个线程// 为进入管程的进程分配某种类型的资源，如果此时这种资源可用，那么进程使用，否则进程被阻塞，进入条件等待队列-->
-- signal(c)：1）把条件变量c的等待队列某个线程唤醒；
-2）把所持lock给被唤醒的线程；
-3）把自己挂在紧急等待队列；<!--唤醒由于等待这种资源而进入条件等待队列的(c的条件等待队列)第一个线程进入管程的进程某种资源释放，此时进程会唤醒由于等待这种资源而进入条件等待队列的第一个进程-->
+- T.signal(c)：1)把条件变量c的等待队列某个线程唤醒；
+  - 2)把线程T所持lock给被唤醒的线程； 
+  - 3)把线程T自己挂在紧急等待队列
+<!--唤醒由于等待这种资源而进入条件等待队列的(c的条件等待队列)第一个线程进入管程的进程某种资源释放，此时进程会唤醒由于等待这种资源而进入条件等待队列的第一个进程-->
 
 <!--
 ---
@@ -127,11 +131,10 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 管程中条件变量的释放处理方式
 
 如果线程T1因条件A未满足处于阻塞状态，那么当线程T2让条件A满足并执行signal操作唤醒T1后，不允许线程T1和T2同时处于管程中，那么如何确定哪个执行/哪个等待？
-可采用下面的两种方式之一进行处理：
+可采用下面方式之一进行处理：
 
 - 1：(Hoare)：T1执行/T2等待，直至T1离开管程，然后T2继续执行
 - 2：(MESA/Hansen)：T2执行/T1等待，直至T2离开管程，然后T1可能继续执行
-
 
 
 ---
@@ -140,51 +143,8 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 管程中条件变量的释放处理方式
 - 线程 T2 的signal，使线程 T1 等待的条件满足时
   - Hoare：T2 通知完 T1后，T2 阻塞，T1 马上执行；等 T1 执行完，再唤醒 T2 执行
-  - Hansen： T2 通知完 T1 后，T2 还会接着执行，T2 执行结束后（规定：最后操作是signal），然后 T1 再执行
-  - MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是从条件变量的等待队列进到入口等待队列里面（重新竞争）
-
-
----
-### 管程 - Hoare 
-<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-  - 1. T1 进入 管程monitor
-  - 2. T1 等待资源 (进入wait queue)
-  - 3. T2 进入monitor
-  - 4. T2 资源可用 ，通知T1恢复执行，并把自己转移到signal queue
-  - 5. T1 重新进入 monitor
-  - 6. T1 离开monitor
-  - 7. T2 重新进入 monitor
-  - 8. T2 离开monitor
-  - 9. 其他在entry queue中的线程通过竞争进入monitor
-
-
----
-### 管程 - Mesa 
-<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-  - 1. T1 进入 monitor
-  - 2. T1 等待资源 (进入wait queue，并释放monitor)
-  - 3. T2 进入monitor
-  - 4. T2 资源可用，通知T1。(T1被转移到entey queue，重新平等竞争)
-  - 5. T2 继续执行
-  - 6. T2 离开monitor
-  - 7. T1 获得执行机会，从entry queue出队列，恢复执行
-  - 8. T1 离开monitor
-  - 9. 其他在entry queue中的线程通过**竞争**进入monitor
-
-
----
-### 管程 - Hansen： 
-<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-  - 1. T1 进入 monitor
-  - 2. T1 等待资源r
-  - 3. T2 进入monitor
-  - 4. T2 离开Monitor,并给通知等待资源r的线程，资源可用
-  - 5. T1 重新进入 monitor
-  - 6. T1 离开monitor
-  - 7. 其他线程从entry queue中竞争进入monitor
-
-
-
+  - Hansen： T2 通知完 T1 后，T2 还会接着执行，T2 执行结束后（规定：最后操作是signal），然后 T1 再执行（将锁直接给T1）
+  - MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是重新竞争访问权限
 
 ---
 ### 管程 
@@ -205,9 +165,50 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 ---
 ### 管程 
 <!-- 管程中条件变量的释放处理方式 -->
+唤醒一个线程的两种选择：**直接赋予锁** vs **重新公平竞争锁**
+
 ![w:1200](figs/cond-releases-3.png)
 
 
+
+---
+### 管程 - Hoare 
+<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
+  - 1. T1 进入管程monitor
+  - 2. T1 等待资源 (进入等待队列wait queue)
+  - 3. T2 进入管程monitor
+  - 4. T2 资源可用 ，通知T1恢复执行，并把自己转移到紧急等待队列
+  - 5. T1 重新进入管程monitor并执行
+  - 6. T1 离开monitor
+  - 7. T2 重新进入管程monitor并执行
+  - 8. T2 离开管程monitor
+  - 9. 其他在entry queue中的线程通过竞争进入管程monitor
+
+---
+### 管程 - Mesa 
+<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
+
+  - 1. T1 进入管程monitor
+  - 2. T1 等待资源 (进入wait queue，并释放monitor)
+  - 3. T2 进入monitor
+  - 4. T2 资源可用，通知T1。(T1被转移到entey queue，重新平等竞争)
+  - 5. T2 继续执行
+  - 6. T2 离开monitor
+  - 7. T1 获得执行机会，从entry queue出队列，恢复执行
+  - 8. T1 离开monitor
+  - 9. 其他在entry queue中的线程通过**竞争**进入monitor
+
+
+---
+### 管程 - Hansen： 
+<!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
+  - 1. T1 进入管程monitor
+  - 2. T1 等待资源c
+  - 3. T2 进入monitor
+  - 4. T2 离开Monitor,并给通知等待资源c的线程，资源可用
+  - 5. T1 重新进入 monitor
+  - 6. T1 离开monitor
+  - 7. 其他线程从entry queue中竞争进入monitor
 
 ---
 ### 管程 -- 实现条件变量
