@@ -93,7 +93,50 @@ backgroundColor: white
 
 ![w:900](figs/philo-4-1.png)
 
+---
+### 哲学家就餐问题 -- 方案4
+<!-- https://blog.csdn.net/weixin_43237362/article/details/104712647 AND型信号量 -->
 
+AND型信号量集是指同时需要多个资源且每种占用一个资源时的信号量操作。
+
+当一段代码需要同时获取两个或多个临界资源时，就可能出现由于各线程分别获得部分临界资源并等待其余的临界资源的局面。各线程都会“各不相让”，从而出现死锁。
+
+解决这个问题的一个基本思路是：在一个原语中申请整段代码需要的多个临界资源，要么全部分配给它，要么一个都不分配给它。这就是AND型信号量集的基本思想。
+
+---
+### 哲学家就餐问题 -- 方案4
+<!-- https://blog.csdn.net/weixin_43237362/article/details/104712647 AND型信号量 -->
+AND型信号量集
+```
+P(S1, S2, …, Sn)
+{
+    While(TRUE)
+    {
+        if (S1 >=1 and … and Sn>=1 ){
+            for( i=1 ;i<=n; i++) Si--;
+        break;
+        }
+        else{
+             Place the thread in the waiting queue associated  with the first Si 
+             found with Si < 1   
+        }
+    }
+}
+```
+
+---
+### 哲学家就餐问题 -- 方案4
+<!-- https://blog.csdn.net/weixin_43237362/article/details/104712647 AND型信号量 -->
+AND型信号量集
+```
+V(S1, S2, …, Sn){ 
+    for (i=1; i<=n; i++) {
+            Si++ ;
+            Remove all the thread waiting in the queue associated with Si into 
+            the ready queue                
+     }
+}
+```
 ---
 ### 哲学家就餐问题 -- 方案5
 
