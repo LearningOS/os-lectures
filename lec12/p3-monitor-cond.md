@@ -92,15 +92,15 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 ---
 ### 管程 -- 流程
-- enter过程：线程在进入管程之前要获得互斥访问权(lock)
-- leave过程：当线程离开管程时，如果紧急队列不为空，唤醒紧急队列中的线程，并将所持锁赋予该线程；如果为空，释放lock，唤醒入口等待队列某个线程
+- enter过程：线程在进入管程之前要获得互斥访问权(lock)；
+- leave过程：当线程离开管程时，如果紧急队列不为空，唤醒紧急队列中的线程，并将所持锁赋予该线程；如果为空，释放lock，唤醒入口等待队列某个线程；
 - wait(c)：1) 阻塞自己，将自己挂到条件变量c的等待队列；
 2）释放所持锁；
 3）唤醒入口等待队列的一个或者多个线程；
 <!--释放管程权力，进入c的条件等待队列；唤醒紧急等待队列的第一个线程// 为进入管程的进程分配某种类型的资源，如果此时这种资源可用，那么进程使用，否则进程被阻塞，进入条件等待队列-->
 - signal(c)：1）把条件变量c的等待队列某个线程唤醒；
 2）把所持lock给被唤醒的线程；
-3）把自己挂在紧急等待队列<!--唤醒由于等待这种资源而进入条件等待队列的(c的条件等待队列)第一个线程进入管程的进程某种资源释放，此时进程会唤醒由于等待这种资源而进入条件等待队列的第一个进程-->
+3）把自己挂在紧急等待队列；<!--唤醒由于等待这种资源而进入条件等待队列的(c的条件等待队列)第一个线程进入管程的进程某种资源释放，此时进程会唤醒由于等待这种资源而进入条件等待队列的第一个进程-->
 
 <!--
 ---
@@ -126,11 +126,11 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 <!-- https://blog.csdn.net/qq_34666857/article/details/103189107 Java并发编程模拟管程（霍尔Hoare管程、汉森Hansan管程、MESA管程) -->
 管程中条件变量的释放处理方式
 
-如果线程P1因条件A未满足处于阻塞状态，那么当线程P2让条件A满足并执行signal操作唤醒P1后，不被许线程P1和P2同时处于管程中，那么如何确定哪个执行哪个等待？
+如果线程T1因条件A未满足处于阻塞状态，那么当线程T2让条件A满足并执行signal操作唤醒T1后，不允许线程T1和T2同时处于管程中，那么如何确定哪个执行/哪个等待？
 可采用下面的两种方式之一进行处理：
 
-- 1：P2等待，直至P1离开管程或者等待另一个条件  （ Hoare）
-- 2：P1等待，直至P2离开管程或者等待另一个条件(MESA/Hansen)
+- 1：(Hoare)：T1执行/T2等待，直至T1离开管程，然后T2继续执行
+- 2：(MESA/Hansen)：T2执行/T1等待，直至T2离开管程，然后T1可能继续执行
 
 
 
@@ -147,41 +147,41 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 ---
 ### 管程 - Hoare 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-  - 1.ThreadA 进入 管程monitor
-  - 2.ThreadA 等待资源 (进入wait queue)
-  - 3.ThreadB 进入monitor
-  - 4.ThreadB 资源可用 ，通知ThreadA恢复执行，并把自己转移到signal queue。
-  - 5.ThreadA 重新进入 monitor
-  - 6.ThreadA 离开monitor
-  - 7.ThreadB 重新进入 monitor
-  - 8.ThreadB 离开monitor
-  - 9.其他在entry queue中的线程通过竞争进入monitor
+  - 1. T1 进入 管程monitor
+  - 2. T1 等待资源 (进入wait queue)
+  - 3. T2 进入monitor
+  - 4. T2 资源可用 ，通知T1恢复执行，并把自己转移到signal queue
+  - 5. T1 重新进入 monitor
+  - 6. T1 离开monitor
+  - 7. T2 重新进入 monitor
+  - 8. T2 离开monitor
+  - 9. 其他在entry queue中的线程通过竞争进入monitor
 
 
 ---
 ### 管程 - Mesa 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-  - 1.ThreadA 进入 monitor
-  - 2.ThreadA 等待资源 (进入wait queue，并释放monitor)
-  - 3.ThreadB 进入monitor
-  - 4.ThreadB 资源可用，通知ThreadA。(ThreadA被转移到entey queue，重新平等竞争)
-  - 5.ThreadB 继续执行
-  - 6.ThreadB 离开monitor
-  - 7.ThreadA 获得执行机会，从entry queue出队列，恢复执行
-  - 8.ThreadA 离开monitor
-  - 9.其他在entry queue中的线程通过**竞争**进入monitor
+  - 1. T1 进入 monitor
+  - 2. T1 等待资源 (进入wait queue，并释放monitor)
+  - 3. T2 进入monitor
+  - 4. T2 资源可用，通知T1。(T1被转移到entey queue，重新平等竞争)
+  - 5. T2 继续执行
+  - 6. T2 离开monitor
+  - 7. T1 获得执行机会，从entry queue出队列，恢复执行
+  - 8. T1 离开monitor
+  - 9. 其他在entry queue中的线程通过**竞争**进入monitor
 
 
 ---
 ### 管程 - Hansen： 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-  - 1.ThreadA 进入 monitor
-  - 2.ThreadA 等待资源r
-  - 3.ThreadB 进入monitor
-  - 4.ThreadB 离开Monitor,并给通知等待资源r的线程，资源可用
-  - 5.ThreadA 重新进入 monitor
-  - 6.ThreadA 离开monitor
-  - 7.其他线程从entry queue中竞争进入monitor
+  - 1. T1 进入 monitor
+  - 2. T1 等待资源r
+  - 3. T2 进入monitor
+  - 4. T2 离开Monitor,并给通知等待资源r的线程，资源可用
+  - 5. T1 重新进入 monitor
+  - 6. T1 离开monitor
+  - 7. 其他线程从entry queue中竞争进入monitor
 
 
 
