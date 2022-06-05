@@ -74,7 +74,7 @@ backgroundColor: white
 - 需成对使用P()操作和V()操作
    -  P()操作保证互斥访问资源
    -  V()操作在使用后释放资源
-   -  PV操作不能次序错误、重复或遗漏
+   -  PV操作次序不能错误、重复或遗漏
 
 ![bg right:50% 100%](figs/semaphore-use-1.png)
  
