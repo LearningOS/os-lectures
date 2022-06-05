@@ -22,8 +22,6 @@ backgroundColor: white
 - 总体思路
 - 历史背景
 - 实践步骤
-- 软件架构
-- 相关硬件
 - 程序设计
 
 ![bg right:65% 100%](figs/thread-coroutine-os-detail.png)
@@ -67,7 +65,6 @@ backgroundColor: white
     - **同步互斥**
 - 历史背景
 - 实践步骤
-- 软件架构
 - 程序设计
 
 ![bg right:70% 100%](figs/syncmutex-os-key-structures.png)
@@ -79,7 +76,6 @@ backgroundColor: white
     - **同步互斥**
 - 历史背景
 - 实践步骤
-- 软件架构
 - 程序设计
 
 ![bg right:70% 100%](figs/syncmutex-os-detail.png)
