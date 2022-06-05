@@ -107,6 +107,25 @@ user/src/bin/
 ├──  sync_sem.rs          # 基于信号量的同步操作
 ├──  test_condvar.rs      # 基于条件变量的同步操作
 ```
+
+---
+### 实践步骤
+内核代码的主要改进部分
+```
+os/src/
+├── sync
+│   ├── condvar.rs        //条件变量
+│   ├── mod.rs 
+│   ├── mutex.rs          //互斥锁
+│   ├── semaphore.rs      //信号量
+│   └── up.rs
+├── syscall
+│   ├── sync.rs //增加了互斥锁、信号量和条件变量相关系统调用
+├── task
+│   ├── process.rs //进程控制块增加了互斥锁、信号量和条件变量
+├── timer.rs     // 添加与定时相关的TimerCondVar类条件变量
+```
+
 ---
 ### 实践步骤
 比如执行哲学家问题的应用程序，展示了5个哲学家用5把叉子进行思考/进餐/休息的过程。
