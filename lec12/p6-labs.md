@@ -88,7 +88,7 @@ backgroundColor: white
 ---
 ### 实践：SMOS
 历史背景
-- 1963年前后，当时的数学家 Edsger Dijkstra和他的团队正在为Electrologica X8计算机开发一个操作系统（THE多道程序系统）的过程中，提出了信号（Semphore）是一种变量或抽象数据类型，用于控制多个线程对共同资源的访问。
+- 1963年前后，当时的数学家 Edsger Dijkstra和他的团队正在为Electrologica X8计算机开发一个操作系统（THE多道程序系统）的过程中，提出了信号（Semaphore）是一种变量或抽象数据类型，用于控制多个线程对共同资源的访问。
 - Brinch Hansen(1973)和Hoare(1974)结合操作系统和Concurrent Pascal编程语言，提出了一种高级同步原语，称为管程(monitor)。一个管程是一个由过程（procedures，Pascal语言的术语，即函数）、共享变量等组成的集合。线程可调用管程中的过程。
 
 ---
@@ -246,21 +246,38 @@ time cost is 249ms
 time cost is 919ms  
 # 执行系统调用，且进行在就绪队列+等待队列上的取出/插入/等待操作
 ```
+
+---
+###  程序设计
+spin mutex和 block mutex 的核心数据结构： `UPSafeCell`
+```rust
+pub struct UPSafeCell<T> { //允许在单核上安全使用可变全局变量
+    inner: RefCell<T>,  //提供内部可变性和运行时借用检查
+}
+unsafe impl<T> Sync for UPSafeCell<T> {} //声明支持全局变量安全地在线程间共享
+impl<T> UPSafeCell<T> {
+    pub unsafe fn new(value: T) -> Self {
+        Self { inner: RefCell::new(value) }
+    }
+    pub fn exclusive_access(&self) -> RefMut<'_, T> {
+        self.inner.borrow_mut()  //得到它包裹的数据的独占访问权
+    }
+}
+```
+
 ---
 ###  程序设计
 spin mutex和 block mutex 的核心数据结构
 ```rust
 pub struct MutexSpin {
-    locked: UPSafeCell<bool>,
+    locked: UPSafeCell<bool>,  //locked是被UPSafeCell包裹的布尔全局变量
 }
-
 pub struct MutexBlocking {
     inner: UPSafeCell<MutexBlockingInner>,
 }
-
 pub struct MutexBlockingInner {
     locked: bool,
-    wait_queue: VecDeque<Arc<TaskControlBlock>>,
+    wait_queue: VecDeque<Arc<TaskControlBlock>>, //等待获取锁的线程等待队列
 }
 ```
 
@@ -269,14 +286,14 @@ pub struct MutexBlockingInner {
 ###  程序设计
 spin mutex的相关函数
 ```rust
-pub trait Mutex: Sync + Send {
+pub trait Mutex: Sync + Send { //Send表示跨线程 move，Sync表示跨线程share data
     fn lock(&self);
     fn unlock(&self);
 }
 
     fn unlock(&self) {
-        let mut locked = self.locked.exclusive_access();
-        *locked = false;
+        let mut locked = self.locked.exclusive_access(); //独占访问locked
+        *locked = false; //
     }
 ```
 
@@ -287,13 +304,13 @@ spin mutex的相关函数
 impl Mutex for MutexSpin {
     fn lock(&self) {
         loop {
-            let mut locked = self.locked.exclusive_access();
+            let mut locked = self.locked.exclusive_access(); //独占访问locked
             if *locked {
                 drop(locked);
-                suspend_current_and_run_next();
+                suspend_current_and_run_next(); //把当前线程放到就绪队列末尾
                 continue;
             } else {
-                *locked = true;
+                *locked = true; //得到锁了，可以继续进入临界区执行
                 return;
         ...
  ```   
@@ -305,13 +322,15 @@ block mutex的相关函数
 ```rust
 impl Mutex for MutexBlocking {
     fn lock(&self) {
-        let mut mutex_inner = self.inner.exclusive_access();
+        let mut mutex_inner = self.inner.exclusive_access(); //独占访问mutex_inner
         if mutex_inner.locked {
+            //把当前线程挂到此lock相关的等待队列中
             mutex_inner.wait_queue.push_back(current_task().unwrap());
             drop(mutex_inner);
+            //把当前线程从就绪队列中取出，设置为阻塞态，切换到另一就绪线程执行
             block_current_and_run_next();
         } else {
-            mutex_inner.locked = true;
+            mutex_inner.locked = true; //得到锁了，可以继续进入临界区执行
         }
     }
 ```
@@ -324,10 +343,11 @@ block mutex的相关函数
     fn unlock(&self) {
         let mut mutex_inner = self.inner.exclusive_access();
         assert!(mutex_inner.locked);
+        //从等待队列中取出线程，并放入到就绪队列中
         if let Some(waking_task) = mutex_inner.wait_queue.pop_front() {
-            add_task(waking_task);
+            add_task(waking_task); 
         } else {
-            mutex_inner.locked = false;
+            mutex_inner.locked = false; //释放锁
         }
     }
 ```
@@ -387,12 +407,12 @@ sync_sem passed!
 semaphore的核心数据结构
 ```rust
 pub struct Semaphore {
-    pub inner: UPSafeCell<SemaphoreInner>,
+    pub inner: UPSafeCell<SemaphoreInner>, //UPSafeCell包裹的内部可变结构
 }
 
 pub struct SemaphoreInner {
-    pub count: isize,
-    pub wait_queue: VecDeque<Arc<TaskControlBlock>>,
+    pub count: isize, //信号量的计数值
+    pub wait_queue: VecDeque<Arc<TaskControlBlock>>, //信号量的等待队列
 }
 ```
 
@@ -402,10 +422,11 @@ semaphore的相关函数
 ```rust
     pub fn down(&self) {
         let mut inner = self.inner.exclusive_access();
-        inner.count -= 1;
+        inner.count -= 1; //信号量的计数值减一
         if inner.count < 0 {
-            inner.wait_queue.push_back(current_task().unwrap());
+            inner.wait_queue.push_back(current_task().unwrap()); //放入等待队列
             drop(inner);
+            //把当前线程从就绪队列中取出，设置为阻塞态，切换到另一就绪线程执行
             block_current_and_run_next();
         }
     }
@@ -418,8 +439,9 @@ semaphore的相关函数
 ```rust
     pub fn up(&self) {
         let mut inner = self.inner.exclusive_access();
-        inner.count += 1;
+        inner.count += 1;//信号量的计数值加一
         if inner.count <= 0 {
+            //从等待队列中取出线程，并放入到就绪队列中
             if let Some(task) = inner.wait_queue.pop_front() {
                 add_task(task);
             }
@@ -496,11 +518,11 @@ A is 1, Second can work now
 condvar的核心数据结构
 ```rust
 pub struct Condvar {
-    pub inner: UPSafeCell<CondvarInner>,
+    pub inner: UPSafeCell<CondvarInner>, //UPSafeCell包裹的内部可变结构
 }
 
 pub struct CondvarInner {
-    pub wait_queue: VecDeque<Arc<TaskControlBlock>>,
+    pub wait_queue: VecDeque<Arc<TaskControlBlock>>,//等待队列
 }
 ```
 
@@ -509,10 +531,11 @@ pub struct CondvarInner {
 condvar的相关函数
 ```rust
     pub fn wait(&self, mutex: Arc<dyn Mutex>) {
-        mutex.unlock();
+        mutex.unlock(); //释放锁
         let mut inner = self.inner.exclusive_access();
-        inner.wait_queue.push_back(current_task().unwrap());
+        inner.wait_queue.push_back(current_task().unwrap()); //放入等待队列
         drop(inner);
+        //把当前线程从就绪队列中取出，设置为阻塞态，切换到另一就绪线程执行
         block_current_and_run_next();
         mutex.lock();
     }
@@ -524,6 +547,7 @@ condvar的相关函数
 ```rust
     pub fn signal(&self) {
         let mut inner = self.inner.exclusive_access();
+        //从等待队列中取出线程，并放入到就绪队列中
         if let Some(task) = inner.wait_queue.pop_front() {
             add_task(task);
         }
