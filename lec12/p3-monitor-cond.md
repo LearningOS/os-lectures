@@ -164,7 +164,7 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 管程中条件变量的释放处理方式
 <!-- https://cseweb.ucsd.edu/classes/sp17/cse120-a/applications/ln/lecture8.html --> 
 <!-- https://juejin.cn/post/6925331537365843981 synchronized原理剖析 -->
-![w:1000](figs/cond-releases.png)
+![w:1200](figs/cond-releases.png)
 
 
 ---
