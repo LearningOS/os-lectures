@@ -58,7 +58,7 @@ backgroundColor: white
 ### 信号量(semaphore)
 可分为两类信号量
 - 二进制信号量：资源数目为0或1
-- 资源信号量:资源数目为任何非负值
+- 计数信号量:资源数目为任何非负值
 - 两者等价：基于一个可以实现另一个
 
 信号量的使用
@@ -108,8 +108,8 @@ backgroundColor: white
    - 缓冲区满时，生产者必须等待消费者（条件同步）
 - 用信号量描述每个约束
    - 二进制信号量mutex
-   - 资源信号量fullBuffers
-   - 资源信号量emptyBuffers
+   - 计数信号量fullBuffers
+   - 计数信号量emptyBuffers
 
 ---
 ### 信号量(semaphore)
