@@ -187,41 +187,56 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 ---
 ### 管程 - Hoare 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-  - 1. T1 进入管程monitor
-  - 2. T1 等待资源 (进入等待队列wait queue)
-  - 3. T2 进入管程monitor
-  - 4. T2 资源可用 ，通知T1恢复执行，并把自己转移到紧急等待队列
-  - 5. T1 重新进入管程monitor并执行
-  - 6. T1 离开monitor
-  - 7. T2 重新进入管程monitor并执行
-  - 8. T2 离开管程monitor
-  - 9. 其他在entry queue中的线程通过竞争进入管程monitor
+```
+- 1. T1 进入管程monitor
+- 2. T1 等待资源 (进入等待队列wait queue)
+- 3. T2 进入管程monitor
+- 4. T2 资源可用 ，通知T1恢复执行，
+     并把自己转移到紧急等待队列
+- 5. T1 重新进入管程monitor并执行
+- 6. T1 离开monitor
+- 7. T2 重新进入管程monitor并执行
+- 8. T2 离开管程monitor
+- 9. 其他在entry queue中的线程通过竞争
+     进入管程monitor
+```
+![bg right:35% 100%](figs/hoare.png)
 
 ---
 ### 管程 - Mesa 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-
-  - 1. T1 进入管程monitor
-  - 2. T1 等待资源 (进入wait queue，并释放monitor)
-  - 3. T2 进入monitor
-  - 4. T2 资源可用，通知T1。(T1被转移到entey queue，重新平等竞争)
-  - 5. T2 继续执行
-  - 6. T2 离开monitor
-  - 7. T1 获得执行机会，从entry queue出队列，恢复执行
-  - 8. T1 离开monitor
-  - 9. 其他在entry queue中的线程通过**竞争**进入monitor
-
+```
+- 1. T1 进入管程monitor
+- 2. T1 等待资源 
+    (进入wait queue，并释放monitor)
+- 3. T2 进入monitor
+- 4. T2 资源可用，通知T1
+    (T1被转移到entey queue，重新平等竞争)
+- 5. T2 继续执行
+- 6. T2 离开monitor
+- 7. T1 获得执行机会，从entry queue
+     出队列，恢复执行
+- 8. T1 离开monitor
+- 9. 其他在entry queue中的线程通过竞争
+     进入monitor
+```
+![bg right:35% 100%](figs/mesa.png)
 
 ---
 ### 管程 - Hansen： 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
-  - 1. T1 进入管程monitor
-  - 2. T1 等待资源c
-  - 3. T2 进入monitor
-  - 4. T2 离开Monitor,并给通知等待资源c的线程，资源可用
-  - 5. T1 重新进入 monitor
-  - 6. T1 离开monitor
-  - 7. 其他线程从entry queue中竞争进入monitor
+```
+- 1. T1 进入管程monitor
+- 2. T1 等待资源c
+- 3. T2 进入monitor
+- 4. T2 离开Monitor,并给通知等待
+     资源c的线程，资源可用
+- 5. T1 重新进入 monitor
+- 6. T1 离开monitor
+- 7. 其他线程从entry queue中通过竞争
+     进入monitor
+```
+![bg right:35% 100%](figs/hansen.png)
 
 ---
 ### 管程 -- 实现条件变量
