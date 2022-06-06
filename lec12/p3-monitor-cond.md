@@ -17,7 +17,15 @@ backgroundColor: white
 
  管程（Moniter）  条件变量（CoCondVar）
  
-
+<!-- 
+Gregory Kesden, Monitors and Condition Variables https://cseweb.ucsd.edu/classes/sp16/cse120-a/applications/ln/lecture9.html
+Mark Spruiell, The C++ Monitor Class. Apr.2011 https://doc.zeroc.com/pages/viewpage.action?pageId=5048235
+wikipedia, Monitor (synchronization) https://en.wikipedia.org/wiki/Monitor_(synchronization)
+Mike Vine, Making a C++ class a Monitor (in the concurrent sense) https://stackoverflow.com/a/48408987
+David Rodríguez - dribeas, How arrow-> operator overloading works internally in c++? https://stackoverflow.com/a/10678920
+Fruit_初, Monitors, March, 2017. https://www.jianshu.com/p/8b3ed769bc9f
+C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concurency-pattern-6-monitor 
+-->
 ---
 ### 管程 
 - 动机：为什么有管程？ 传统PV和锁机制有如下问题：
