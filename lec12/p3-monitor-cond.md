@@ -15,7 +15,7 @@ backgroundColor: white
 
 ## 第三节 管程与条件变量
 
- 管程（Moniter）  条件变量（CoCondVar）
+ 管程（Monitor）  条件变量（Condition Variable）
  
 <!-- 
 Gregory Kesden, Monitors and Condition Variables https://cseweb.ucsd.edu/classes/sp16/cse120-a/applications/ln/lecture9.html
@@ -164,7 +164,7 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 管程中条件变量的释放处理方式
 <!-- https://cseweb.ucsd.edu/classes/sp17/cse120-a/applications/ln/lecture8.html --> 
 <!-- https://juejin.cn/post/6925331537365843981 synchronized原理剖析 -->
-![w:1000](figs/cond-releases.png)
+![w:1200](figs/cond-releases.png)
 
 
 ---
