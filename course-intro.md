@@ -68,7 +68,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
     7 IPC OS：支持多个APP进程间数据交互与事件通知 
     8 Tread&Coroutine OS：支持线程和协程APP，简化切换与数据共享  
     9 SyncMutex OS：在多线程APP中支持对共享资源的同步互斥访问
-    10 Device OS：提高APP的I/O效率，支持基于外设中断的串口/块设备
+    10 Device OS：提高APP的I/O效率和人机交互能力，支持基于外设中断的串口/块设备/键盘/鼠标/显示设备
 
 
 ---
