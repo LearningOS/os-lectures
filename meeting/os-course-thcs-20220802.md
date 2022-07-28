@@ -61,6 +61,58 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 - 课程：操作系统专题训练（2008年）  高级操作系统（2009）
 
 ---
+### 背景介绍 -- 当前基本情况
+<div class="grid grid-cols-2 gap-4">
+<div>
+
+基本情况
+- 特征：计算机专业课 必修
+- 时间：春季/秋季（48学时）
+- 学分：3学分
+- 教师：向勇 陈渝 李国良 任炬
+- 学生：大三（部分大一/二/四）
+- 有实验内容（不算课时）
+- 无指定教材/有参考教材
+
+</div>
+<div>
+
+课程目标
+- 掌握OS的基本原理和设计思路
+- 掌握OS机制的实现技术
+- 理解计算机软硬件系统
+
+
+先修课
+- 程序设计+编程语言
+- 数据结构+算法
+- 计算机组成原理+编译原理
+
+
+</div>
+</div>
+
+---
+### 背景介绍 -- 当前基本情况
+学生反馈
+- 太难，量太大，不会编程
+- 觉得时间投入太大
+- 部分同学为了学分而学
+- 趣味性不足，缺少及时反馈
+- 碰到问题难以及时获得帮助
+- 就业并不看好
+ 
+
+![bg right 60%](./figs/study-os.png)
+
+---
+### 背景介绍 -- 当前基本情况
+参考教材
+- **Operating Systems: Three Easy Pieces**, Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau
+- **Operating system concepts**,Abraham Silberschatz, Peter Baer Galvin,Greg Gagne
+- **Operating Systems: Internals and Design Principles**,William Stallings,
+- [rCore-Tutorial-Book, 清华OS教学组](http://rcore-os.cn/rCore-Tutorial-Book-v3/)
+---
 ### 背景介绍 -- 教学大纲
 特点：**几十年基本不变**
 * 操作系统结构
