@@ -24,6 +24,16 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 
 2022年8月1日
 
+
+---
+### 报告内容
+- 背景介绍
+   - 历史
+   - 当前基本情况  
+- 课程建设
+   - 目标+策略
+   - 基本思路
+   - 具体实施
 ---
 ### 背景介绍
 清华大学相关院系的操作系统课程
@@ -40,8 +50,8 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 时间 | 任课老师 | 教材 | 实验 
 ---------|----------|--------- |----------
  1990 | 史美林 | / |  /
- 1998 | 张尧学 | 计算机操作系统 |  /
- 19xx | 向勇 | 无固定教材 |  Nachos mips
+ 1995 | 张尧学 | 计算机操作系统 |  /
+ 1996 | 向勇 | 无固定教材 |  Nachos mips
 
 备注：
 
@@ -113,7 +123,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 - **Operating Systems: Internals and Design Principles**,William Stallings,
 - [rCore-Tutorial-Book, 清华OS教学组](http://rcore-os.cn/rCore-Tutorial-Book-v3/)
 ---
-### 背景介绍 -- 教学大纲
+### 背景介绍 -- 当前基本情况 -- 教学大纲
 特点：**几十年基本不变**
 * 操作系统结构
 * 中断及系统调用
@@ -126,7 +136,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 ![bg right 100%](../lec1/figs/ucorearch.png)
 
 ---
-### 背景介绍 -- 教学内容
+### 背景介绍 -- 当前基本情况 -- 教学内容
 特点：**基本抽象（骨）大致不变，内容与实验（肉）一直在变化**
 
 **骨** -- 基本抽象：进程、地址空间、文件
@@ -135,14 +145,14 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 ![bg right 100%](./figs/os-labs-choice.png)
 
 ---
-### 背景介绍 -- 教学内容
+### 背景介绍 -- 当前基本情况 -- 教学内容
 特点：**基本（骨）不变，内容（肉）在变化** -- 骨架子大，没太多肉
 - 1995年前，缺少对实际操作系统的分析
    - 学生感觉像说教类课，把背诵记忆作为主要学习手段
    - 几乎没有实践：只能说
 
 ---
-### 背景介绍 -- 教学内容
+### 背景介绍 -- 当前基本情况 -- 教学内容
 特点：**基本（骨）不变，内容（肉）在变化** -- 骨头撑不起肉
 - 2000~2007年，增加了对实际操作系统（Windows、Linux、Solaris）的分析
   - 学生感觉是雾里看花，只可远观，不过细品
@@ -153,7 +163,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 
 
 ---
-### 背景介绍 -- 教学内容
+### 背景介绍 -- 当前基本情况 -- 教学内容
 特点：**基本（骨）不变，内容（肉）在变化** -- 肉太厚
 - 2008年，MIT教授Frans Kaashoek来清华访问，并引入xv6教学操作系统到本科实验；后简化实验，形成uCore教学操作系统。
 - 2008~2015，弱化了对实际操作系统的深入分析，增加了对教学操作系统的分析与实践
@@ -166,7 +176,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 <!-- 由于难度大，配套课堂教学没有跟上，大部分学生虽然觉得好，但实际掌握起来很困难，任课老师得差评 -->
 
 ---
-### 背景介绍 -- 教学内容
+### 背景介绍 -- 当前基本情况 -- 教学内容
 特点：**基本（骨）不变，内容（肉）在变化** -- 合适的肌肉与脂肪
 - 2015年，探索代替x86的指令集: MIPS、ARM、OR1200、RISC-V
 - 2017年，选择RISC-V指令集，并逐步调整uCore实验和教学内容
@@ -353,13 +363,17 @@ const SYSCALL_CONDVAR_WAIT: usize = 1032;
 
 ---
 ### 课程建设的具体实施 -- 在线学习建设
-- 当前的MOOC/SPOC课程还存在一些需要改进的地方
+- 当前还存在一些需要改进的地方
+  - 学习内容的逐步递进
+    - 进一步细化知识粒度和衔接 
   - 学习效果的及时反馈
     - 在线IDE
     - 在线评测  
   - 学习问题的及时解答 
     - 在线答疑
     - 鼓励机制
+
+![bg right:25% 100%](./figs/online-os.png)
 
 ---
 ### 课程建设的具体实施 --  课程设计
@@ -372,6 +386,30 @@ const SYSCALL_CONDVAR_WAIT: usize = 1032;
   - 实验代替考试
   - 操作系统比赛
 
+![bg right:50% 100%](./figs/build-os-course-goal.png)
+
+
+---
+<!-- theme: gaia -->
+<!-- _class: lead -->
+
+# 谢谢！
+
+开源操作系统训练营
+
+https://github.com/LearningOS/rust-based-os-comp2022
+
+一年三期：春季学期、秋季学期、暑假
+
+
+---
+<!-- theme: gaia -->
+<!-- _class: lead -->
+
+# 备份材料
+- 十三讲的课程内容设计+知识点设计
+- 十一个教学OS的实践设计
+- 五个实验设计
 
 ---
 #### 第一讲 操作系统概述
@@ -920,15 +958,3 @@ App/OS内存布局
 内容
 
 完成对基于信号量/条件变量的同步互斥多线程程序的死锁检测
-
----
-<!-- theme: gaia -->
-<!-- _class: lead -->
-
-# 谢谢！
-
-开源操作系统训练营
-
-https://github.com/LearningOS/rust-based-os-comp2022
-
-一年三期：春季学期、秋季学期、暑假
