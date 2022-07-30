@@ -65,6 +65,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 - 相关课程：
    - 大四本科：操作系统专题训练（2008年开始）  
    - 研究生：高级操作系统（2009开始）
+   - MOOC：学堂在线（2015年开始）
 
 ---
 ### 背景介绍 -- 当前基本情况
