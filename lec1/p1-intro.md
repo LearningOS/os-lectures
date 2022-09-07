@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2022年春季
+2022年秋季
 
 ---
 
@@ -70,28 +70,42 @@ backgroundColor: white
 ---
 
 #### 课程参考
-- [课程在线Slides](http://learningos.github.io/os-lectures/)
-- [参考书: Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
-- [参考书: 深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
-- [RISC-V Reader中文版](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
-#### 课程实践
--  [课程实践参考书:rCore Tutorial Book v3](https://learningos.github.io/rCore-Tutorial-Book-v3/)
--  [课程实践代码:rCore Tutorial v3](https://github.com/rcore-os/rCore-Tutorial-v3)
--  [课程实践代码的API文档:rCore Tutorial v3](https://learningos.github.io/rCore-Tutorial-v3/)
+- [课程幻灯片](https://www.yuque.com/docs/share/4c39608f-3051-4445-96ca-f3c018cb96c7)
+- 参考书
+  * [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+  - [深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
+  - [RISC-V Reader中文版](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
+#### 课程实践：rCore Tutorial Book v3
+-  [课程实践参考书](https://learningos.github.io/rCore-Tutorial-Book-v3/)
+-  [课程实践代码仓库](https://github.com/rcore-os/rCore-Tutorial-v3)
+-  [课程实践代码的API文档](https://github.com/rcore-os/rCore-Tutorial-v3#os-api-docs)
 
 ---
 
 ### 实验指导
 
-放置在[GitHub/LearningOS](https://github.com/LearningOS)和[Gitee/learning-os 备份](https://gitee.com/learning-os)上
-#### uCore Tutorial Guide 2022 Spring
-- [实验文档](https://github.com/LearningOS/uCore-Tutorial-Guide-2022S/) ，[实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2022S)，[测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2022S)
 
-#### rCore Tutorial Guide 2022 Spring
-- [实验文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/)  , [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/) , [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)，[测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
+#### uCore-RV-64
 
-#### 视频介绍
-- [uCore框架](https://cloud.tsinghua.edu.cn/f/358c6c509f0046ddbc4d/) ,  [rCore框架](https://cloud.tsinghua.edu.cn/f/7ab685e3346f4053aedf/) 
+* 基准代码仓库（[lab](https://github.com/uCore-RV-64/uCore-RV-64-lab)）
+* 文档仓库（[doc](https://github.com/uCore-RV-64/uCore-RV-64-doc)）
+* 在线文档[入口](https://ucore-rv-64.github.io/uCore-RV-64-doc/index.html)
+* 实验参考答案仓库（[answer](https://github.com/uCore-RV-64/uCore-RV-64-answer)）
+* 自动测试脚本仓库（[test](https://github.com/uCore-RV-64/uCore-RV-64-test)）
+* codespace开发环境配置脚本仓库（[config](https://github.com/uCore-RV-64/uCore-RV-64-conf)）
+
+---
+
+### 实验指导
+
+#### rCore
+- [实验文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/)
+- [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/#os-api-docs-of-rcore-tutorial-code-2022s) , [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)
+- [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
+
+#### 实验讲解视频
+- https://www.yuque.com/docs/share/1b5b9260-8a80-4427-a612-78ec72b37e5f
+
 ---
 
 
@@ -143,27 +157,32 @@ backgroundColor: white
 
 ### 各种操作系统相关的功能和扩展
 
-- RISC-V、x86-64、MIPS、ARM
-- GUI、驱动、文件系统、网络
-- 内核可加载模块、微内核
+- 多种CPU平台上的操作系统移植
+  * RISC-V、x86-64、MIPS、ARM
+- 多种开发板的驱动开发
+  * RaspBerry PI、U740、D1等
+  * GUI、驱动、文件系统、网络
+- 操作系统内核模块的完善和改进
+  * 内核可加载模块、微内核
+  * 在内核中引入异步编程
 
 --- 
 
 ## 成绩评定
 
 ### 选择1： 
-  - 按时完成实验一至实验五：40% 
-  - 期中考试 20% +期末考试 40% ：60%
+  - 按时完成实验一至实验五：30% 
+  - 期中考试 30% + 期末考试 40% ：70%
 ### 选择2： 
-  - 7周内完成实验一至实验五(2021秋季实验)：40% 
-  - 课程设计（即大实验）：60%
-注：选择大实验的同学如果后续退出课程设计，请完成本学期的实验一至五，并参加考试。
+  - 四周内完成实验一至实验五(2022春季实验)：30% 
+  - 课程设计（即大实验）：70%
+    - 注：选择大实验的同学如果后续退出课程设计，需参加考试。
 
 --- 
 
 ## 调查问卷
 
-[2022年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/kuIuYck)
+[2022年秋季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/fPozIRL)
 
 - 为什么要学这门课？ 
 - 你打算如何来学这门课？
@@ -171,6 +190,3 @@ backgroundColor: white
 - 你愿意如实报告是否独立完成实验任务？
 - 你希望在操作系统课上学到什么知识和什么能力？
 - 以前的学习情况？
-
-**采集仅限于清华和学堂在线的操作系统课内注册的同学信息** 
-
