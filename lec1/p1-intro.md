@@ -182,7 +182,7 @@ backgroundColor: white
 
 ## 调查问卷
 
-[2022年秋季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/fPozIRL)
+[2022年秋季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/fPozIRL)（访问密码：XxW21Ur1CF）
 
 - 为什么要学这门课？ 
 - 你打算如何来学这门课？
