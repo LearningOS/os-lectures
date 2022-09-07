@@ -23,7 +23,7 @@ backgroundColor: white
 <br>
 <br>
 
-2022年春季
+2022年秋季
 
 ---
 ## UNIX/Linux在哪里？
@@ -132,7 +132,7 @@ list.c  open.c echo.c  copy.c  ...
 
 ---
 ## 分析UNIX/Linux类应用
- 例如：copy.c，将输入复制到输出
+ 例如：[copy.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/copy.c)，将输入复制到输出
 从输入中读取字节，将其写入输出中
 
         $ copy
@@ -171,7 +171,7 @@ UNIX的I/O是8位字节
 ---
 ## 分析UNIX/Linux类应用
 
-例如：open.c，创建一个文件
+例如：[open.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/open.c)，创建一个文件
 
     $ open
     $ cat output.txt
@@ -254,7 +254,7 @@ fork()系统调用创建一个新的进程
 唯一的区别：fork()在父进程中返回一个pid，在子进程中返回0。
 pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 
-因此，fork.c的 "fork()返回 "在*两个*进程中都会执行
+因此，[fork.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c)的 "fork()返回 "在**两个**进程中都会执行
 "if(pid == 0) "实现对父子进程的区分
 
 ---
@@ -262,7 +262,7 @@ pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 
 我们怎样才能在这个进程中运行一个新程序呢？  
 
-例如：exec.c，用一个可执行文件代替调用进程。
+例如：[exec.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/exec.c)，用一个可执行文件代替调用进程。
 shell是如何运行一个程序的，例如
 
     $ echo a b c
@@ -291,7 +291,7 @@ echo.c显示了一个程序如何看待它的命令行参数
 ---
 ## 分析UNIX/Linux类应用
 
-例如：forkexec.c，fork()一个新进程，exec()一个程序。
+例如：[forkexec.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/forkexec.c)，fork()一个新进程，exec()一个程序。
 
       $ forkexec
 
@@ -323,7 +323,7 @@ status约定：0 = 成功，1 = 命令遇到了一个错误
 ---
 ## 分析UNIX/Linux类应用
 
-例子：redirect.c，重定向一个命令的输出
+例子：[redirect.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/redirect.c)，重定向一个命令的输出
 shell对此做了什么？
 
     $ echo hello > out
@@ -361,7 +361,7 @@ UNIX的设计很好用，但我们会看到其他的设计
 ---
 ## 分析UNIX/Linux类应用
 
-例子：pipe1.c，通过一个管道进行通信
+例子：[pipe1.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe1.c)，通过一个管道进行通信
 shell是如何实现的
 
     $ ls | grep x
@@ -383,7 +383,7 @@ pipe()系统调用创建了两个FD
 ---
 ## 分析UNIX/Linux类应用
 
-例子：pipe2.c，在进程间通信。
+例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
 管道与fork()结合得很好，可以实现ls | grep x。
 shell创建一个管道。
 然后分叉（两次）。
@@ -399,7 +399,7 @@ shell创建一个管道。
 ## 分析UNIX/Linux类应用
 
 
-* 例子：list.c，列出一个目录中的文件
+* 例子：[list.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/list.c)，列出一个目录中的文件
 ls是如何获得一个目录中的文件列表的？
 你可以打开一个目录并读取它 -> 文件名
 "... "是一个进程的当前目录的假名
