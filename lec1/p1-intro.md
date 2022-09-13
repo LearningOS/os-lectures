@@ -103,8 +103,7 @@ backgroundColor: white
 - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/#os-api-docs-of-rcore-tutorial-code-2022s) , [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)
 - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
 
-#### 实验讲解视频
-- https://www.yuque.com/docs/share/1b5b9260-8a80-4427-a612-78ec72b37e5f
+#### uCore和rCore实验[讲解视频](https://www.yuque.com/docs/share/1b5b9260-8a80-4427-a612-78ec72b37e5f)
 
 ---
 
@@ -142,11 +141,6 @@ backgroundColor: white
 ### 实验一：操作系统的基本支持
 ### 实验二：地址空间
 ### 实验三：进程管理与调度
-
-
----
-## 基础实验
-
 ### 实验四：文件系统与进程间通信
 ### 实验五：同步互斥
 
