@@ -11,55 +11,86 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-## 第二讲 实践与实验介绍
-### 第二节 Compiler与OS
+# 第二讲 实践与实验介绍
+## 第二节 Compiler与OS
+
+<br>
+<br>
+
+向勇 陈渝 李国良 
+
+<br>
+<br>
+
+2022年秋季
 
 ---
-## Compiler与OS
-### 开发的硬件环境
-![bg right 100%](figs/x86.png)
+提纲
+
+### 1. 硬件环境
+2. 应用程序执行环境
+3. 操作系统执行环境
 
 ---
-## Compiler与OS
-### 目标硬件环境
-![bg right 100%](figs/rv.png)
+
+#### 开发的硬件环境
+![bg right:67% 85%](figs/x86.png)
 
 ---
-## 应用程序执行环境
-### 编译器工作
+
+#### 目标硬件环境
+![bg right:70% 85%](figs/rv.png)
+
+---
+提纲
+
+1. 硬件环境
+### 2. 应用程序执行环境
+3. 操作系统执行环境
+
+---
+
+#### 编译器工作
 - 源码-->汇编码
-![bg right 100%](figs/app-software-stack.png)
+![bg right:55% 100%](figs/app-software-stack.png)
 ---
-## 应用程序执行环境
-### Assembler工作
-- 汇编码 ------> 机器码
-![bg right 100%](figs/app-software-stack.png)
+
+#### Assembler工作
+- 汇编码 --> 机器码
+![bg right:55% 100%](figs/app-software-stack.png)
 ---
-## 应用程序执行环境
-### linker（链接器）工作
-- 多个机器码目标文件 -----> 单个机器码执行文件
-![bg right 100%](figs/app-software-stack.png)
+#### linker（链接器）工作
+- 多个机器码目标文件 --> 单个机器码执行文件
+![bg right:55% 100%](figs/app-software-stack.png)
 
 ---
-## 应用程序执行环境
-### OS工作
+
+#### OS工作
 - 加载/执行/管理机器码执行文件
-![bg right 100%](figs/app-software-stack.png)
+![bg right:50% 100%](figs/app-software-stack.png)
 
 
 ---
-## 操作系统执行环境
-### 编译器/汇编器/链接器工作
+提纲
+
+1. 硬件环境
+2. 应用程序执行环境
+### 3. 操作系统执行环境
+
+---
+
+#### 编译器/汇编器/链接器工作
 - 源码 ---> 汇编码 ---> 机器码 --->执行程序
-### Bootloader加载OS执行
+- Bootloader加载OS执行
 
-![bg right 100%](figs/os-software-stack.png)
+![bg right:50% 100%](figs/os-software-stack.png)
 
 
 ---
-## 操作系统执行环境
-### 编译器工作
-三元组： CPU 架构/厂商/操作系统
+
+#### 可执行文件格式
+三元组
+* CPU 架构/厂商/操作系统
 ```
 rustc --print target-list | grep riscv
 riscv32gc-unknown-linux-gnu
@@ -67,30 +98,29 @@ riscv32gc-unknown-linux-gnu
 riscv64gc-unknown-linux-gnu
 riscv64imac-unknown-none-elf
 ```
-ELF：Executable and Linkable Format
+* ELF: Executable and Linkable Format
 
-![bg right 100%](figs/os-software-stack.png)
+![bg right:50% 100%](figs/os-software-stack.png)
 
-
----
-## 操作系统执行环境
-### 编译器工作
-- 链接视图
-- 执行视图
-![bg 55%](figs/link.png)
 
 ---
-## 操作系统执行环境
+
+#### 链接和执行
+
+![bg 70%](figs/link.png)
+
+---
+#### 函数库
 - 标准库：依赖操作系统
   - Rust: std 标准库
   - C：glibc, musl libc 
 - 核心库：与操作系统无关
   - Rust: core 库
   - C: Linux/BSD kernel libc
-![bg right 100%](figs/os-software-stack.png)
+![bg right:50% 100%](figs/os-software-stack.png)
 
 ---
-## 操作系统执行环境
+#### 裸机程序
 与操作系统无关的OS类型的程序（Bare Metal program, 裸机程序）
 ```
 // os/src/main.rs
@@ -109,7 +139,7 @@ fn panic(_info: &PanicInfo) -> ! {
 ```
 
 ---
-## 操作系统执行环境
+#### ELF文件格式
 
 文件格式
 ```
@@ -119,16 +149,15 @@ target/riscv64gc-unknown-none-elf/debug/os: ELF 64-bit LSB executable, UCB RISC-
 [ELF文件格式](https://wiki.osdev.org/ELF) Executable and Linkable Format
 
 ---
-## 操作系统执行环境 -[ELF文件格式](https://wiki.osdev.org/ELF) 
+#### ELF文件格式
 
-![](figs/elf.png)
+![bg 55%](figs/elf.png)
 
 ---
-## 操作系统执行环境
+#### 文件头信息
 
 文件头信息
 ```
-文件头信息
 rust-readobj -h target/riscv64gc-unknown-none-elf/debug/os
    File: target/riscv64gc-unknown-none-elf/debug/os
    Format: elf64-littleriscv
@@ -144,7 +173,7 @@ rust-readobj -h target/riscv64gc-unknown-none-elf/debug/os
 ```
 
 ---
-## 操作系统执行环境
+#### 导出汇编程序
 
 
 反汇编导出汇编程序
@@ -154,14 +183,15 @@ rust-objdump -S target/riscv64gc-unknown-none-elf/debug/os
 ```
 代码中移除了 main 函数并将项目设置为 #![no_main] 
  - 没有一个传统意义上的入口点（即程序首条被执行的指令所在的位置）
- - 因此 Rust 编译器会生成一个空程序
- - 但这是一个**面向操作系统开发**的程序
+ - Rust 编译器会生成一个空程序
+ - 这是一个**面向操作系统开发**的程序
 
 ---
-## 操作系统执行环境 App/OS内存布局
+#### App/OS内存布局
 - .text: 数据段
-- 已初始化数据段.rodata：只读的全局数据（常数或者是常量字符串）、.data：可修改的全局数据。
-- 未初始化数据段 .bss
+- .rodata：已初始化数据段，只读的全局数据（常数或者是常量字符串）
+- .data：可修改的全局数据
+- .bss：未初始化数据段
 - 堆 （heap）向高地址增长
 - 栈 （stack）向低地址增长
-![bg right 120%](figs/memlayout.png)
+![bg right:52% 140%](figs/memlayout.png)
