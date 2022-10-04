@@ -819,3 +819,15 @@ match scause.cause() {
 - 任务与任务切换
 - 中断机制
 
+---
+
+### 课程实验一
+
+* 创建实验提交仓库
+    * 清华git访问入口：[UniLab Platform](https://lab.cs.tsinghua.edu.cn/unilab/home)
+    * 学堂在线同学的[访问入口](https://www.yuque.com/xyong-9fuoz/qczol5/opl4y4#DiUQ0)(待补充)
+        * rCore、uCore-RV、uCore-x86
+* 实验任务
+    * 第三章：多道程序与分时多任务 -> chapter3练习 -> 获取任务信息 -> 增加一个系统调用`sys_task_info()`
+* 实验提交要求
+    * 任务布置后的第11天（2022年10月16日）；
