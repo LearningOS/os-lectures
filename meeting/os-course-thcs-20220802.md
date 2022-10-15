@@ -22,8 +22,11 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 
 <br>
 
-2022年8月1日
+2022年8月2日
 
+<br>
+
+人才培养与核心课程建设研讨会  
 
 ---
 ### 报告内容
@@ -49,7 +52,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 时间 | 任课老师 | 教材 | 实验 
 ---------|----------|--------- |----------
  1997前 | 史美林 张尧学 伍尚广 | 计算机操作系统 |  /
- 1998 | 向勇 | 无固定教材 |  Nachos mips
+ 1998 | 向勇 | 无固定教材 |  Nachos MIPS
  2008~2017 | 向勇 陈渝 | 无固定教材 |  uCore x86
  2018~至今 | 向勇 陈渝 李国良 | 无固定教材 |  uCore/rCore RISC-V
 
@@ -118,10 +121,10 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 - **Operating Systems: Three Easy Pieces**, Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau
 - **Operating system concepts**,Abraham Silberschatz, Peter Baer Galvin,Greg Gagne
 - **Operating Systems: Internals and Design Principles**,William Stallings,
-- [rCore-Tutorial-Book, 清华OS教学组](http://rcore-os.cn/rCore-Tutorial-Book-v3/)
+- [rCore-Tutorial-Book, 清华OS课程教学组](http://rcore-os.cn/rCore-Tutorial-Book-v3/)
 ---
 ### 背景介绍 -- 当前基本情况 -- 教学大纲
-特点：**几十年基本不变**
+特点：粗看：**几十年基本不变**
 * 操作系统结构
 * 中断及系统调用
 * 内存管理
