@@ -11,38 +11,48 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-## 第七讲 进程管理与单处理器调度
+# 第七讲 进程管理与单处理器调度
 ### 第四节 实践：支持进程的操作系统
-<br>
-<br>
 
 Process OS(POS)
 
+<br>
+<br>
+
+向勇 陈渝 李国良 
+
+2022年秋季
 
 ---
-## 实践：POS
-- **进化目标**
-- 总体思路
-- 历史背景
+
+**提纲**
+
+### 1. 实验目标和步骤
+- 实验目标
 - 实践步骤
-- 软件架构
-- 相关硬件
-- 程序设计
+2. 代码结构
+3. 应用程序设计
+4. 内核程序设计
 
-![bg right:65% 100%](figs/process-os-detail.png)
-
+![bg right:57% 100%](figs/process-os-detail.png)
 
 ---
-## 实践：POS -- 以往目标
+
+#### 以往目标
+
 提高性能、简化开发、加强安全
-- Address Space OS: APP不用考虑其运行时的起始执行地址，隔离APP访问的内存地址空间
-- multiprog & time-sharing OS目标: 让APP有效共享CPU，提高系统总体性能和效率
-- BatchOS目标: 让APP与OS隔离，加强系统安全，提高执行效率
-- LibOS目标: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
+- Address Space OS
+    - APP不用考虑运行时的起始执行地址，隔离APP访问的地址空间
+- multiprog & time-sharing
+    - 让APP有效共享CPU，提高系统总体性能和效率
+- BatchOS: 让APP与OS隔离，加强系统安全，提高执行效率
+- LibOS: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
+
 ---
-## 实践：POS -- 进化目标
-增强进程管理和资源管理
-提高性能、简化开发、加强安全
+
+#### 实验目标
+
+增强进程管理和资源管理、提高性能、简化开发、加强安全
 
 - 整合之前的特权级、地址空间、任务，形成进程
 - 进程成为资源的拥有者
@@ -52,8 +62,9 @@ Process OS(POS)
    - 子进程退出/父进程等待子进程退出
 
 ---
-## 实践：POS
-### 同学的进化目标
+
+#### 实验要求
+
 - 理解进程概念
 - 理解进程的动态管理机制的设计与实现
 - 初步认识进程调度
@@ -62,83 +73,48 @@ Process OS(POS)
 
 <!-- 智商最高的白垩纪“伤齿龙” 操作系统 troodon -->
 
-![bg right 50%](figs/troodon.png)
+![bg right 80%](figs/troodon.png)
 
 
 
 ---
-## 实践：POS
-- 进化目标
-- **总体思路**
-- 历史背景
-- 实践步骤
-- 软件架构
-- 相关硬件
-- 程序设计
 
-![bg right:65% 100%](figs/process-os-detail.png)
+#### 总体思路
+
+![bg right:76% 90%](figs/process-os-detail.png)
 
 
 ---
-## 实践：POS
-- 进化目标
-- **总体思路**
-- 历史背景
-- 实践步骤
-- 软件架构
-- 相关硬件
-- 程序设计
 
-![bg right:65% 100%](figs/process-os-key-structures.png)
+#### 总体思路
+
+![bg right:76% 85%](figs/process-os-key-structures.png)
 
 ---
-### 总体思路
+
+#### 总体思路
+
 - 编译：应用程序和内核独立编译，合并为一个镜像
 - 编译：不同应用程序可采用统一的起始地址
-- 构造：系统调用服务，进程的管理与初始化
+- 构造：系统调用服务，**进程的管理与初始化**
 - 构造：建立基于页表机制的虚存空间
 - 运行：特权级切换，进程与OS相互切换
 - 运行：切换地址空间，跨地址空间访问数据
 
 
 ---
-## 实践：POS
-- 进化目标
-- 总体思路
-- **历史背景**
-- 实践步骤
-- 软件架构
-- 相关硬件
-- 程序设计
-
-![bg right:65% 100%](figs/process-os-detail.png)
-
-
----
-### 历史
+#### 历史背景
 - 1965：描述未来的 MULTICS 操作系统
   - MIT 的 Fernando J. Corbató 教授牵头
   - 参与单位：MIT, GE(通用电气公司), AT&T Bell Labs
-  - 提出了进程的动态管理思想，启发和造就了UNIX
+  - 提出了**进程的动态管理思想**，启发和造就了UNIX
 - 1971：Thompson shell 
-  - 由Ken Thompson写的第一个UNIX Shell
+  - 由Ken Thompson写的第一个**UNIX Shell**
   - 按照极简主义设计，语法非常简单，是一个简单的命令行解释器
   - 它的许多特征影响了以后的操作系统命令行界面的发展
 ---
-## 实践：POS
-- 进化目标
-- 总体思路
-- 历史背景
-- **实践步骤**
-- 软件架构
-- 相关硬件
-- 程序设计
 
-![bg right:65% 100%](figs/process-os-detail.png)
-
-
----
-### 实践步骤 
+#### 实践步骤
 ```
 git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 cd rCore-Tutorial-v3
@@ -148,7 +124,7 @@ make run
 ```
 
 ---
-### 实践步骤 
+#### 实践步骤
 ```
 [RustSBI output]
 ...
@@ -161,20 +137,8 @@ Rust user shell
 
 
 ---
-## 实践：POS
-- 进化目标
-- 总体思路
-- 历史背景
-- 实践步骤
-- **软件架构**
-- 相关硬件
-- 程序设计
 
-![bg right:65% 100%](figs/process-os-detail.png)
-
-
----
-**软件架构**
+#### 软件架构
 
 - 管理进程
     - 创建
@@ -182,11 +146,22 @@ Rust user shell
     - fork
     - exec
   
+![bg right:74% 90%](figs/process-os-detail.png)
+
+---
+
+**提纲**
+
+1. 实验目标和步骤
+### 2. 代码结构
+3. 应用程序设计
+4. 内核程序设计
+
 ![bg right:65% 100%](figs/process-os-detail.png)
 
 ---
-### 代码结构
-改进OS
+
+#### 改进OS
 ```
 ├── os
     ├── build.rs(修改：基于应用名的应用构建器)
@@ -197,8 +172,8 @@ Rust user shell
 ```
 
 ---
-### 代码结构
-改进OS
+
+#### 改进OS
 ```
 ├── os
     └── src
@@ -218,68 +193,32 @@ Rust user shell
 
 
 ---
-## 实践：POS
-- 进化目标
-- 总体思路
-- 历史背景
-- 实践步骤
-- 软件架构
-- **相关硬件 无变化**
-- 程序设计
 
-![bg right:65% 100%](figs/process-os-detail.png)
+**提纲**
 
----
-## 实践：POS
-- 进化目标
-- 总体思路
-- 历史背景
-- 实践步骤
-- 软件架构
-- 相关硬件
-- **程序设计** 
-  <!-- 主要的事情就是**实现地址空间** -->
+1. 实验目标和步骤
+2. 代码结构
+### 3. 应用程序设计
+4. 内核程序设计
 
-![bg right:65% 100%](figs/process-os-detail.png)
-
-
+![bg right:63% 90%](figs/process-os-detail.png)
 
 ---
-## 实践：POS - 程序设计
-<!-- **程序设计**  -->
-- **理解进程**
-- 应用程序设计
-- 内核程序设计
 
+#### 理解进程
 
-![bg right:60% 100%](figs/process-os-detail.png)
-
-
-
----
-### 实践：POS  -- 程序设计
-**应用角度：理解进程**
-- **进程** 是正在执行的应用
+- 应用角度
+    - **进程** 是正在执行的应用
   
-**OS角度：理解进程**
--  **进程** 是应用在其地址空间上的一次执行过程
-   - 进程拥有资源，操作系统根据进程的执行状态管理其资源 
+- OS角度
+    -  **进程** 是应用在其地址空间上的一次执行过程
+       - 进程拥有资源，操作系统根据进程的执行状态管理其资源 
 ![bg right:50% 100%](figs/seg-addr-space.png)
 
 ---
-## 实践：POS - 程序设计
-<!-- **程序设计**  -->
-- 理解进程
-- **应用程序设计**
-- 内核程序设计
 
+#### 进程管理系统调用
 
-![bg right:60% 100%](figs/process-os-detail.png)
-
-
----
-## 实践：POS -- 应用程序设计 
-  - 系统调用
 ```
 /// 功能：当前进程 fork 出来一个子进程。
 /// 返回值：对于子进程返回 0，对于当前进程则返回子进程的 PID
@@ -298,8 +237,9 @@ pub fn sys_exec(path: &str) -> isize;
 
 
 ---
-## 实践：POS -- 应用程序设计 
-  - 系统调用
+
+#### 进程管理系统调用
+
 ```
 /// 功能：当前进程等待一个子进程变为僵尸进程，回收其全部资源并收集其返回值。
 /// 参数：pid 表示要等待的子进程的进程 ID，如果为 -1 的话表示等待任意一个子进程；
@@ -312,8 +252,8 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 
 
 ---
-## 实践：POS -- 应用程序设计 
-应用``shell``的执行流程
+
+#### 应用``shell``的执行流程
 1. 通过``sys_read``获取字符串（即文件名）
 2. 通过``sys_fork``创建子进程
 3. 在子进程中通过``sys_exec``创建新应用的进程
@@ -321,31 +261,23 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 5. 跳转到第一步循环执行
 
 ---
-## 实践：POS - 程序设计
-<!-- **程序设计**  -->
-- 理解进程
-- 应用程序设计
-- **内核程序设计**
 
-![bg right:60% 100%](figs/process-os-detail.png)
+**提纲**
 
----
-### 内核程序设计
-- **应用链接与加载支持**
+1. 实验目标和步骤
+2. 代码结构
+3. 应用程序设计
+### 4. 内核程序设计
+- 应用的链接与加载支持
 - 核心数据结构
-    - 进程控制块
-    - 进程管理器
-    - 处理器管理结构
-- 进程管理机制
-  - 初始进程创建
-  - 进程生成与回收
-  - 进程调度
+- 进程管理机制实现
 
-![bg right:60% 100%](figs/process-os-detail.png)
-
+![bg right:57% 90%](figs/process-os-detail.png)
 
 ---
-### 内核程序设计 --  应用的链接与加载支持
+
+#### 应用的链接与加载支持
+
 在编译操作系统的过程中，会生成如下的 link_app.S 文件
 ```
  3 _num_app:
@@ -361,19 +293,37 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 
 
 ---
-### 内核程序设计 --  应用的链接与加载支持
-- 基于应用名的应用加载
-在加载器 loader.rs 中，我们会分析 link_app.S 中的内容，并用一个全局可见的 只读 向量 ``APP_NAMES`` 来按照顺序将所有应用的名字保存在内存中，为通过 exec 系统调用创建新进程做好了前期准备。
+
+#### 基于应用名的应用加载
+
+在加载器 loader.rs 中，分析 link_app.S 中的内容，并用一个全局可见的 **只读** 向量 ``APP_NAMES`` 来按照顺序将所有应用的名字保存在内存中，为通过 exec 系统调用创建新进程做好了前期准备。
 
 
 ---
-### 内核程序设计 -- 核心数据结构 -- 关系图
 
-![w:680](figs/process-os-key-structures.png)
+**提纲**
+
+1. 实验目标和步骤
+2. 代码结构
+3. 应用程序设计
+4. 内核程序设计
+- 应用的链接与加载支持
+### 核心数据结构
+- 进程管理机制实现
+
+![bg right:57% 100%](figs/process-os-detail.png)
 
 ---
-### 内核程序设计 -- 核心数据结构
-进程抽象的对应实现是进程控制块 --TCB  ``TaskControlBlock``
+
+#### 核心数据结构间的关系
+
+![bg right:70% 100%](figs/process-os-key-structures.png)
+
+---
+
+#### 进程控制块TCB
+
+进程抽象的对应实现是进程控制块 -- TCB  ``TaskControlBlock``
 ```rust
 pub struct TaskControlBlock {
     // immutable
@@ -387,8 +337,10 @@ pub struct TaskControlBlock {
 
 
 ---
-### 内核程序设计 -- 核心数据结构
-进程抽象的对应实现是进程控制块 -- ``TaskControlBlock``
+
+#### 进程控制块TCB
+
+进程抽象的对应实现是进程控制块 -- TCB  ``TaskControlBlock``
 ```rust
 pub struct TaskControlBlockInner {
     pub trap_cx_ppn: PhysPageNum,               // 陷入上下文页的物理页号
@@ -403,17 +355,21 @@ pub struct TaskControlBlockInner {
 ```
 
 ---
-### 内核程序设计 -- 核心数据结构
-管理进程的进程管理器 ``TaskManager``
+
+#### 进程管理器``TaskManager``
+
+- 任务管理器自身仅负责管理所有就绪的进程
+
 ```rust
 pub struct TaskManager {
     ready_queue: VecDeque<Arc<TaskControlBlock>>,  // 就绪态任务控制块的链表
 }
 ```
-- 任务管理器自身仅负责管理所有就绪的进程
 
 ---
-### 内核程序设计 -- 核心数据结构
+
+#### 处理器管理结构
+
 处理器管理结构 ``Processor`` 描述CPU 执行状态
 ```rust
 pub struct Processor {
@@ -428,7 +384,23 @@ pub struct Processor {
 
 
 ---
-### 内核程序设计 -- 设计实现  -- 概述
+
+**提纲**
+
+1. 实验目标和步骤
+2. 代码结构
+3. 应用程序设计
+4. 内核程序设计
+- 应用的链接与加载支持
+- 核心数据结构
+### 进程管理机制实现
+
+![bg right:55% 100%](figs/process-os-detail.png)
+
+---
+
+#### 进程管理机制实现概述
+
 1. 创建初始进程：创建第一个用户态进程 `initproc`
 2. 进程生成机制：介绍进程相关的系统调用 `sys_fork`/`sys_exec` 
 3. 进程调度机制：进程主动/被动切换
@@ -438,8 +410,9 @@ pub struct Processor {
 
 
 ---
-### 内核程序设计 -- 设计实现 
-创建初始进程
+
+#### 创建初始进程
+
 ```rust
 lazy_static! {
     pub static ref INITPROC: Arc<TaskControlBlock> = Arc::new(
@@ -455,33 +428,40 @@ pub fn add_initproc() {
 
 
 ---
-### 内核程序设计 -- 设计实现 
-进程生成机制-- `fork` ： 复制父进程内容并构造新的进程控制块
+
+#### 创建新进程`fork()`
+
+复制父进程内容并构造新的进程控制块
+
 ```rust
-   pub fn fork(self: &Arc<TaskControlBlock>) -> Arc<TaskControlBlock> {...}
+pub fn fork(self: &Arc<TaskControlBlock>) -> Arc<TaskControlBlock> {...}
 ```
--   建立新页表，复制父进程地址空间的内容
+-  建立新页表，复制父进程地址空间的内容
 -  创建新的陷入上下文
 -  创建新的应用内核栈
 -  创建任务上下文
 -  建立父子关系
 -  设置`0`为`fork`返回码
 
-
-
 ---
-### 内核程序设计 -- 设计实现 
-进程生成机制-- `exec` ：用新应用的 ELF 可执行文件中的代码和数据替换原有的应用地址空间中的内容
+
+#### 加载新应用`exec()`
+
+用新应用的 ELF 可执行文件中的代码和数据替换原有的应用地址空间中的内容
+
 ```rust
-   pub fn exec(&self, elf_data: &[u8]) {...}
+pub fn exec(&self, elf_data: &[u8]) {...}
 ```
 - 回收已有应用地址空间，基于ELF 文件的全新的地址空间直接替换已有应用地址空间
 - 修改进程控制块的 Trap 上下文，将解析得到的应用入口点、用户栈位置以及一些内核的信息进行初始化
 
 
 ---
-### 内核程序设计 -- 设计实现 
-进程调度机制：暂停当前任务并切换到下一个任务
+
+#### 进程调度机制
+
+暂停当前任务并切换到下一个任务
+
 - 时机
    - `sys_yield`系统调用时
    - 进程的时间片用完时
@@ -491,8 +471,10 @@ pub fn add_initproc() {
       - 接着调用 schedule 函数来触发调度并切换任务
 
 ---
-### 内核程序设计 -- 设计实现 
-进程资源回收机制 -- `exit_current_and_run_next` -- 进程退出 
+
+#### 进程资源回收机制
+
+进程退出`exit_current_and_run_next` 
 - 当前进程控制块从``PROCESSOR``中取出，修改其为僵尸进程
 - 退出码 `exit_code `写入进程控制块中
 - 把所有子进程挂到`initproc`的子进程集合中
@@ -501,16 +483,20 @@ pub fn add_initproc() {
 
 
 ---
-### 内核程序设计 -- 设计实现 
-进程资源回收机制 -- `sys_waitpid` -- 等待子进程退出
 
-- 如果不存在进程 ID 为 pid（pid==-1 或 > 0）的子进程，则返回 -1
-- 如果存在进程 ID 为 pid 的僵尸子进程，则正常回收子进程，返回子进程pid，更新退出码参数为 exit_code 
-- 子进程还没退出，返回 -2，用户库看到是 -2 后，就进一步调用 sys_yield 系统调用，让父进程进入等待状态
+#### 进程资源回收机制
+
+等待子进程退出`sys_waitpid`
+
+- 不存在进程 ID 为 pid（pid==-1 或 > 0）的子进程时，返回 -1
+- 存在进程 ID 为 pid 的僵尸子进程时，正常回收子进程，返回子进程pid，更新退出码参数为 exit_code 
+- 子进程还没退出时，返回 -2，用户库看到是 -2 后，就进一步调用 sys_yield 系统调用，让父进程进入等待状态
 - 返回前，释放子进程的进程控制块
+
 ---
-### 内核程序设计 -- 设计实现 
-字符输入机制
+
+#### 字符输入机制
+
 ```rust
 pub fn sys_read(fd: usize, buf: *const u8, len: usize) -> isize {
    c=sbi::console_getchar(); ...}
@@ -520,9 +506,26 @@ pub fn sys_read(fd: usize, buf: *const u8, len: usize) -> isize {
 - 调用 sbi 子模块提供的从键盘获取输入的接口 `console_getchar` 
 
 ---
-## 小结
+#### 支持进程的操作系统POS
 - 进程概念与进程实现的关系
 - 进程管理机制
 - 基本调度机制
 - 能写伤齿龙OS
-![bg right 50%](figs/troodon.png)
+![bg right 70%](figs/troodon.png)
+
+---
+
+### 小结
+
+**提纲**
+
+1. 实验目标和步骤
+2. 代码结构
+3. 应用程序设计
+4. 内核程序设计
+- 应用的链接与加载支持
+- 核心数据结构
+- 进程管理机制实现
+
+![bg right:57% 100%](figs/process-os-detail.png)
+

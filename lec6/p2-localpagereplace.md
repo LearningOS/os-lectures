@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第五讲 虚拟存储管理
+# 第六讲 虚拟存储管理
 ## 第二节 局部页面置换算法
 
 <br>

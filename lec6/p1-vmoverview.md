@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第五讲 虚拟存储管理
+# 第六讲 虚拟存储管理
 ## 第一节 虚拟存储概念
 
 <br>
