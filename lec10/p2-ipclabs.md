@@ -16,46 +16,57 @@ backgroundColor: white
 ## 第二节 支持IPC的OS
 IPC OS (IOS)
 
+<br>
+<br>
+
+向勇 陈渝 李国良 
+
+2022年秋季
+
 ---
-## 实践：IOS
-- **进化目标**
+
+**提纲**
+
+### 1. 实验安排
+- 实验目标
 - 总体思路
 - 历史背景
 - 实践步骤
-- 软件架构
-- 相关硬件
-- 程序设计
+2. 代码结构
+3. 管道的设计实现
+4. 信号的设计实现
 
-![bg right:65% 100%](figs/ipc-os-detail-2.png)
-
+![bg right:66% 95%](figs/ipc-os-detail-2.png)
 
 ---
-## 实践：IOS -- 以往目标
+
+#### 以往实验目标
+
 提高性能、简化开发、加强安全、支持数据持久保存
 - Filesystem OS：支持数据持久保存
 - Process OS: 增强进程管理和资源管理
 - Address Space OS: 隔离APP访问的内存地址空间
-- multiprog & time-sharing OS目标: 让APP共享CPU资源
-- BatchOS目标: 让APP与OS隔离，加强系统安全，提高执行效率
-- LibOS目标: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
-
+- multiprog & time-sharing OS: 让APP共享CPU资源
+- BatchOS: 让APP与OS隔离，加强系统安全，提高执行效率
+- LibOS: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
 
 ---
-## 实践：IOS -- 进化目标
+#### 实验目标
 支持应用的灵活性，支持进程间交互
 - 扩展文件抽象：Pipe，Stdout, Stdin
 - 以文件形式进行进程间数据交换
 - 以文件形式进行串口输入输出  
-- 信号机实现进程间异步通知机制
+- 信号实现进程间异步通知机制
 - 系统调用数量：11个 --> 17个
-  - 管道：2 个 ：传数据
-  - 信号：4 个 ：发通知
+  - 管道：2 个、用于传数据
+  - 信号：4 个、用于发通知
 
-![bg right:40% 100%](figs/ipc-os-detail-2.png)
+![bg right:40% 95%](figs/ipc-os-detail-2.png)
 
 ---
-## 实践：IOS
-### 同学的进化目标
+
+#### 实验要求
+
 - 理解文件抽象
 - 理解IPC机制的设计与实现
   - pipe
@@ -64,43 +75,47 @@ IPC OS (IOS)
 
 <!-- 迅猛龙Velociraptor具有匿踪能力和狡诈本领。迅猛龙比较聪明具有团队协作能力、擅长团队合作 操作系统  -->
 
-![bg right 80%](figs/velociraptor.png)
+![bg right:63% 80%](figs/velociraptor.png)
 
 
 
 ---
-## 实践：IOS
-- 进化目标
-- **总体思路**
+
+**提纲**
+
+1. 实验安排
+- 实验目标
+### 总体思路
 - 历史背景
 - 实践步骤
-- 软件架构
-- 程序设计
+2. 代码结构
+3. 管道的设计实现
+4. 信号的设计实现
 
-![bg right:65% 100%](figs/ipc-os-detail-2.png)
-
-
----
-
-## 总体思路 -- 需要考虑的问题
-
-- pipe是啥？
-- 如何访问pipe？
-- 如何管理pipe？
-![bg right:50% 100%](figs/pipe-fds.png)
+![bg right:66% 95%](figs/ipc-os-detail-2.png)
 
 ---
 
-## 总体思路 -- 理解pipe
+#### 管道实现需要考虑的问题
 
-**pipe是内核中的一块内存**
+- 管道是啥？
+- 如何访问管道？
+- 如何管理管道？
+
+![w:1100](figs/pipe-fds.png)
+
+---
+
+#### 理解管道
+
+**管道是内核中的一块内存**
 -  顺序写入/读出字节流
 
-**pipe可抽象为文件**
-- 进程中包含pipe文件描述符
-  - pipe的`File`Trait的接口
+**管道可抽象为文件**
+- 进程中包含管道文件描述符
+  - 管道的`File`Trait的接口
   - read/write
-- 应用创建pipe的系统调用
+- 应用创建管道的系统调用
   - `sys_pipe`
 
 ![bg right:50% 100%](figs/pipe-fds-close.png)
@@ -108,7 +123,7 @@ IPC OS (IOS)
 
 ---
 
-## 总体思路 -- APP example (用户态)
+#### 管道示例程序 (用户态)
 ```rust
 ...// usr/src/bin/pipetest.rs
 static STR: &str = "Hello, world!"  //字符串全局变量
@@ -129,25 +144,25 @@ pub fn main() -> i32 {
 ```
 ---
 
-## 总体思路 -- 与进程的关系
-`pipe`是进程控制块的资源之一
+#### 管道与进程的关系
+- `pipe`是进程控制块的资源之一
 
-![bg right:70% 100%](figs/process-os-key-structures-file-ipc.png)
+![bg right:71% 95%](figs/process-os-key-structures-file-ipc.png)
 
 ---
 
-## 总体思路 -- 需要考虑的问题
-- signal是啥？
-- 如何使用signal？
-- 如何管理signal？
+#### 信号实现需要考虑的问题
+- 信号是啥？
+- 如何使用信号？
+- 如何管理信号？
 
-![bg right:50% 100%](figs/signal.png)
+![bg right:66% 90%](figs/signal.png)
 
 <!-- linux signal那些事儿 http://blog.chinaunix.net/uid-24774106-id-4061386.html -->
 
 ---
 
-**总体思路**
+#### 理解信号
 `signal`是内核通知应用的软件中断
 
 **准备阶段**
@@ -163,7 +178,7 @@ pub fn main() -> i32 {
 
 ---
 
-## 总体思路 -- APP example （用户态）
+#### 信号示例程序（用户态）
 ```rust
 ...// usr/src/bin/sig_simple.rs
 fn func() { //signal_handler
@@ -185,59 +200,70 @@ pub fn main() -> i32 {
 
 ---
 
-## 总体思路 -- 与进程的关系
-`signal`是进程控制块的资源之一
+#### 信号与进程的关系
+- `signal`是进程控制块的资源之一
 
-![bg right:70% 100%](figs/process-os-key-structures-file-ipc.png)
+![bg right:70% 90%](figs/process-os-key-structures-file-ipc.png)
 
 
 
 ---
-## 实践：IOS
-- 进化目标
+
+**提纲**
+
+1. 实验安排
+- 实验目标
 - 总体思路
-- **历史背景**
+### 历史背景
 - 实践步骤
-- 软件架构
-- 相关硬件
-- 程序设计
+2. 代码结构
+3. 管道的设计实现
+4. 信号的设计实现
+
+![bg right:66% 95%](figs/ipc-os-detail-2.png)
 
 ---
 
-## 管道：Unix 中最引人注目的发明
+#### 管道：Unix 中最引人注目的发明
 
 - 管道的概念来自贝尔实验室的Douglas McIlroy，他在1964年写的一份内部文件中，提出了把多个程序“像花园水管一样”串连并拧在一起的想法，这样数据就可以在不同程序中流动。
 - 大约在1972年下半年，Ken Thompson在听了Douglas McIlroy关于管道的唠叨后，灵机一动，迅速把管道机制实现在UNIX中。
  
-![bg right:35% 100%](figs/douglas-mcllroy.jpg)
+![bg right:35% 90%](figs/douglas-mcllroy.jpg)
 
 <!-- 道格拉斯McIlroy (生于 1932年)是数学家,工程师和程序员. 自2007年他是附属教授电脑科学在麻省理工学院获得博士。
 McIlroy为原始被开发是最响誉 Unix管道实施, 软件元件部分 并且数 Unix 用工具加工，例如电脑病毒， diff, 排序, 加入图表，讲话，和 tr. -->
 
 
 ---
-## 信号：Unix 中容易出错的软件中断
+#### 信号：Unix 中容易出错的软件中断
 
 信号从Unix的第一个版本就已存在，只是与我们今天所知道的有点不同，需要通过不同的系统调用来捕获不同类型的信号。在版本4之后，改进为通过一个系统调用来捕获所有信号。
 
-![bg right:35% 100%](figs/douglas-mcllroy.jpg)
+![bg right:35% 90%](figs/douglas-mcllroy.jpg)
 
 <!-- https://venam.nixers.net/blog/unix/2016/10/21/unix-signals.html
 https://unix.org/what_is_unix/history_timeline.html
 https://en.wikipedia.org/wiki/Signal_(IPC) -->
 
 ---
-## 实践：IOS
-- 进化目标
+
+**提纲**
+
+1. 实验安排
+- 实验目标
 - 总体思路
 - 历史背景
-- **实践步骤**
-- 软件架构
-- 相关硬件
-- 程序设计
+### 实践步骤
+2. 代码结构
+3. 管道的设计实现
+4. 信号的设计实现
+
+![bg right:66% 95%](figs/ipc-os-detail-2.png)
 
 ---
-### 实践步骤 
+
+#### 实践步骤 
 ```
 git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 cd rCore-Tutorial-v3
@@ -248,7 +274,7 @@ make run
 
 
 ---
-### 实践步骤 
+#### 参考输出
 ```
 [RustSBI output]
 ...
@@ -261,7 +287,7 @@ Rust user shell
 操作系统启动``shell``后，用户可以在``shell``中通过敲入应用名字来执行应用。
 
 ---
-### 实践步骤 
+#### 测例 pipetest 
 在这里我们运行一下本章的测例 pipetest ：
 ```
 >> pipetest
@@ -272,7 +298,7 @@ pipetest passed!
 此应用的父子进程通过pipe完成字符串`"Hello, world!"`的传递。
 
 ---
-### 实践步骤 
+#### 测例 sig_simple
 
 在这里我们运行一下本章的测例 sig_simple ：
 
@@ -288,19 +314,19 @@ signal_simple: Done
 
 
 ---
-## 实践：IOS
-- 进化目标
-- 总体思路
-- 历史背景
-- 实践步骤
-- **软件架构**
-- 相关硬件(无)
-- 程序设计
 
+**提纲**
 
+1. 实验安排
+### 2. 代码结构
+3. 管道的设计实现
+4. 信号的设计实现
+
+![bg right:66% 95%](figs/ipc-os-detail-2.png)
 
 ---
-### 代码结构
+
+#### 用户代码结构
 ```
 └── user
     └── src
@@ -316,7 +342,7 @@ signal_simple: Done
 ```
 
 ---
-### 代码结构  -- OS部分
+#### 内核代码结构
 ```
 ├── fs(新增：文件系统子模块 fs)
 │   ├── mod.rs(包含已经打开且可以被进程读写的文件的抽象 File Trait)
@@ -338,18 +364,18 @@ signal_simple: Done
 
 
 ---
-## 实践：IOS
-- 进化目标
-- 总体思路
-- 历史背景
-- 实践步骤
-- 软件架构
-- 相关硬件(无)
-- **程序设计**
 
+**提纲**
+
+1. 实验安排
+2. 代码结构
+### 3. 管道的设计实现
+4. 信号的设计实现
+
+![bg right:59% 95%](figs/ipc-os-detail-2.png)
 
 ---
-## pipe设计实现
+#### 管道的设计实现
 基于文件抽象，支持I/O重定向
 1. [K] 实现基于文件的标准输入/输出
 2. [K] 实现基于文件的实现管道
@@ -358,10 +384,8 @@ signal_simple: Done
 
 ![bg right:60% 100%](figs/tcb-ipc-standard-file.png)
 
-
-
 ---
-## pipe设计实现 -- 标准文件
+#### 标准文件
 
 1.  实现基于文件的标准输入/输出
  - FD：0 --  Stdin  ; 1/2 -- Stdout
@@ -378,7 +402,7 @@ signal_simple: Done
 
 
 ---
-## pipe设计实现 -- 标准文件
+#### 标准文件初始化
 
 2. 创建TCB时初始化`fd_table`
 
@@ -401,7 +425,7 @@ TaskControlBlock::fork(...)->... {
 ![bg right:35% 100%](figs/tcb-ipc-standard-file.png)
 
 ---
-## pipe设计实现 -- 标准文件
+#### fork实现中的标准文件创建
 
 3. `fork`时复制`fd_table`
 
@@ -424,7 +448,7 @@ TaskControlBlock::new(elf_data: &[u8]) -> Self{
 
 
 ---
-## pipe设计实现 -- 管道文件
+#### 管道文件
 
 1. 管道的系统调用
 
@@ -444,7 +468,7 @@ pub fn sys_pipe(pipe: *mut usize) -> isize;
 ![bg right:35% 100%](figs/tcb-ipc-standard-file.png)
 
 ---
-## pipe设计实现 -- 管道文件
+#### 管道文件
 
 2. 创建管道中的Buffer
 
@@ -469,7 +493,7 @@ make_pipe() -> (Arc<Pipe>, Arc<Pipe>) {
 
 
 ---
-## pipe设计实现 -- 管道文件
+#### 管道文件
 
 3.  实现基于文件的输入/输出
  - 实现File 接口
@@ -486,7 +510,7 @@ make_pipe() -> (Arc<Pipe>, Arc<Pipe>) {
 
 
 ---
-## pipe设计实现 -- 命令行参数
+#### exec系统调用的命令行参数
 - sys_exec 的系统调用接口需要发生变化
 ```rust
 // 增加了args参数
@@ -503,7 +527,9 @@ exec(args_copy[0].as_str(), args_addr.as_slice())
 
 
 ---
-## pipe设计实现 -- 命令行参数
+
+#### exec系统调用的命令行参数
+
 - 将获取到的参数字符串压入到用户栈上
 ```rust
 impl TaskControlBlock {
@@ -519,7 +545,9 @@ impl TaskControlBlock {
 
 
 ---
-## pipe设计实现  -- 命令行参数
+
+#### exec系统调用的命令行参数
+
 ```rust
 pub extern "C" fn _start(argc: usize, argv: usize) -> ! {
    //获取应用的命令行个数 argc, 获取应用的命令行参数到v中
@@ -532,7 +560,7 @@ pub extern "C" fn _start(argc: usize, argv: usize) -> ! {
 
 
 ---
-## pipe设计实现  -- 重定向
+#### 重定向
 - 复制文件描述符系统调用
 ```rust
 /// 功能：将进程中一个已经打开的文件复制
@@ -549,7 +577,7 @@ pub fn sys_dup(fd: usize) -> isize;
 
 
 ---
-## pipe设计实现 -- 重定向
+#### 重定向
 - 复制文件描述符系统调用
 ```rust
 pub fn sys_dup(fd: usize) -> isize {
@@ -563,7 +591,7 @@ pub fn sys_dup(fd: usize) -> isize {
 
 
 ---
-## pipe设计实现 -- 重定向 "$ A | B"
+#### shell重定向 "$ A | B"
 ```rust
 // user/src/bin/user_shell.rs
 {
@@ -588,16 +616,23 @@ pub fn sys_dup(fd: usize) -> isize {
 
 
 ---
-## signal设计实现
-1.  signal的系统调用
-2.  signal核心数据结构
-3.  建立signal_handler
-4.  支持kill系统调用
 
-![bg right:50% 100%](figs/tcb-ipc-standard-file.png)
+**提纲**
+
+1. 实验安排
+2. 代码结构
+3. 管道的设计实现
+### 4. 信号的设计实现
+- signal的系统调用
+- signal核心数据结构
+- 建立signal_handler
+- 支持kill系统调用
+
+![bg right:59% 95%](figs/ipc-os-detail-2.png)
 
 ---
-## signal设计实现 -- syscall
+
+#### 与信号处理相关的系统调用
 
 <!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
 - sigaction: 设置信号处理例程
@@ -608,7 +643,7 @@ pub fn sys_dup(fd: usize) -> isize {
 ![bg right:60% 100%](figs/signal-process.png)
 
 ---
-## signal设计实现 -- syscall
+#### 与信号处理相关的系统调用
 <!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
 ```rust
 // 设置信号处理例程
@@ -632,7 +667,7 @@ pub struct SignalAction {
 
 
 ---
-## signal设计实现 -- syscall
+#### 与信号处理相关的系统调用
 <!-- https://www.onitroad.com/jc/linux/man-pages/linux/man2/sigreturn.2.html -->
 ```rust
 // 设置要阻止的信号
@@ -653,8 +688,8 @@ sys_kill(pid: usize, signal: i32) -> isize
 
 
 ---
-## signal设计实现
-进程控制块中的signal核心数据结构
+#### 信号的核心数据结构
+进程控制块中的信号核心数据结构
 ```rust
 pub struct TaskControlBlockInner {
     ...
@@ -673,7 +708,7 @@ killed的作用是标志当前进程是否已经被杀死。因为进程收到�
 frozen的标志与SIGSTOP和SIGCONT两个信号有关。SIGSTOP会暂停进程的执行，即将frozen置为true。此时当前进程会阻塞等待SIGCONT（即解冻的信号）。当信号收到SIGCONT的时候，frozen置为false，退出等待信号的循环，返回用户态继续执行。 -->
 
 ---
-## signal设计实现  --  建立signal_handler
+#### 建立signal_handler
 
 ```rust
 fn sys_sigaction(signum: i32, action: *const SignalAction, 
@@ -685,14 +720,14 @@ fn sys_sigaction(signum: i32, action: *const SignalAction,
   let ref_action = translated_ref(token, action);
   inner.signal_actions.table[signum as usize] = *ref_action;
 ```
-对于signum：
+对于需要修改的信号编号signum：
 1. 保存老的signal_handler地址到`old_action`
 2. 设置`action`为新的signal_handler地址
 
 
 
 ---
-## signal设计实现  --  通过kill发出信号
+#### 通过kill发出信号
 
 ```rust
 fn sys_kill(pid: usize, signum: i32) -> isize {
@@ -709,7 +744,7 @@ fn sys_kill(pid: usize, signum: i32) -> isize {
 
 
 ---
-## signal设计实现  --  通过kill发出信号
+#### 通过kill发出和处理信号的过程
 当`pid`进程进入内核后，直到从内核返回用户态前的执行过程：
 ```
 执行APP --> __alltraps 
@@ -729,7 +764,7 @@ fn sys_kill(pid: usize, signum: i32) -> isize {
 
  
 ---
-## signal设计实现  --  APP恢复正常执行
+#### APP恢复正常执行
 当进程号为pid的进程执行完signal_handler函数主体后，会发出`sys_sigreturn`系统调用:
 ```rust
 fn sys_sigreturn() -> isize {
@@ -748,7 +783,7 @@ fn sys_sigreturn() -> isize {
 
 
 ---
-## signal设计实现  -- 屏蔽信号
+#### 屏蔽信号
 ```rust
 fn sys_sigprocmask(mask: u32) -> isize {
     ...
@@ -759,9 +794,21 @@ fn sys_sigprocmask(mask: u32) -> isize {
 把要屏蔽的信号直接记录到TCB的signal_mask数据中
 
 ---
-## 小结
+### 小结
 - 管道的概念与实现
 - 信号的概念与实现
 - 能写迅猛龙操作系统
 
 ![bg right 80%](figs/velociraptor.png)
+
+---
+
+### 课程实验四 文件系统与进程间通信
+
+* 第六章：文件系统与I/O重定向 -> chapter6练习 -> 
+    * [rCore](https://learningos.github.io/rCore-Tutorial-Guide-2022A/chapter6/4exercise.html#id1)
+    * [uCore](https://learningos.github.io/uCore-Tutorial-Guide-2022A/chapter6/5exercise.html#id3)
+* 实验任务
+    * 硬链接
+* 实验提交要求
+    * 任务布置后的第11天（2022年12月04日）；
