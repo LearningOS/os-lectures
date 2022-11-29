@@ -14,6 +14,12 @@ backgroundColor: white
 # 第十一讲 线程与协程
 ## 第三节 支持线程/协程的OS(TCOS)
 
+<br>
+<br>
+
+向勇 陈渝 李国良 
+
+2022年秋季
 <!-- https://blog.aloni.org/posts/a-stack-less-rust-coroutine-100-loc/
 
 https://stanford-cs242.github.io/f17/assets/projects/2017/kedero.pdf
