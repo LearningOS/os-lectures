@@ -49,9 +49,9 @@ https://tian-deng.github.io/posts/translation/rust/green_threads_explained_in_20
 - Filesystem OS：支持数据持久保存
 - Process OS: 增强进程管理和资源管理
 - Address Space OS: 隔离APP访问的内存地址空间
-- multiprog & time-sharing OS目标: 让APP共享CPU资源
-- BatchOS目标: 让APP与OS隔离，加强系统安全，提高执行效率
-- LibOS目标: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
+- multiprog & time-sharing OS: 让APP共享CPU资源
+- BatchOS: 让APP与OS隔离，加强系统安全，提高执行效率
+- LibOS: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
 
 ---
 ### 实践：TCOS -- 进化目标
