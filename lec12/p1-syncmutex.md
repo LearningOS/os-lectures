@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2022年春季
+2022年秋季
 
 ---
 ### 背景
