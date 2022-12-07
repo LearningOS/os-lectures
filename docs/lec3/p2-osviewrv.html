@@ -1,0 +1,894 @@
+<!DOCTYPE html><html lang="POSIX"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{-webkit-tap-highlight-color:transparent;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTQwIDcwSDIwVjUwbTIwIDBMMjAgNzBtNDAtNDBoMjB2MjBtLTIwIDAgMjAtMjAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTIwIDUwaDIwdjIwbS0yMCAwIDIwLTIwbTQwIDBINjBWMzBtMjAgMEw2MCA1MCIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{-webkit-animation-name:__bespoke_marp__!important;animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{bottom:0;left:0;position:absolute;right:0;top:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:rgba(0,0,0,.65);border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:transparent}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template-areas:"current next" "current note" "info    note";grid-template-columns:2fr 1fr;grid-template-rows:minmax(140px,1fr) 2fr 3em;height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:transparent;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{word-wrap:break-word;box-sizing:border-box;font-size:1.1em;height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;scrollbar-color:hsla(0,0%,93%,.5) transparent;scrollbar-width:thin;white-space:pre-wrap;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:transparent}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:hsla(0,0%,93%,.5);border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import url("https://fonts.googleapis.com/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap");div#p>svg>foreignObject>section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center}div#p>svg>foreignObject>section:after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#p>svg>foreignObject>section:not([data-marpit-pagination]):after{display:none}/* Normalization */div#p>svg>foreignObject>section h1{font-size:2em;margin:0.67em 0}div#p>svg>foreignObject>section video::-webkit-media-controls{will-change:transform}@page{size:1280px 720px;margin:0}@media print{body,html{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#p>svg>foreignObject>section{page-break-before:always;break-before:page}div#p>svg>foreignObject>section,div#p>svg>foreignObject>section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;transition:none!important}div#p>svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
+/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#p>svg>foreignObject>section .hljs{background:#000;color:#f8f8f8;display:block;overflow-x:auto;padding:.5em}div#p>svg>foreignObject>section .hljs-comment,div#p>svg>foreignObject>section .hljs-quote{color:#aeaeae;font-style:italic}div#p>svg>foreignObject>section .hljs-keyword,div#p>svg>foreignObject>section .hljs-selector-tag,div#p>svg>foreignObject>section .hljs-type{color:#e28964}div#p>svg>foreignObject>section .hljs-string{color:#65b042}div#p>svg>foreignObject>section .hljs-subst{color:#daefa3}div#p>svg>foreignObject>section .hljs-link,div#p>svg>foreignObject>section .hljs-regexp{color:#e9c062}div#p>svg>foreignObject>section .hljs-name,div#p>svg>foreignObject>section .hljs-section,div#p>svg>foreignObject>section .hljs-tag,div#p>svg>foreignObject>section .hljs-title{color:#89bdff}div#p>svg>foreignObject>section .hljs-class .hljs-title,div#p>svg>foreignObject>section .hljs-doctag{text-decoration:underline}div#p>svg>foreignObject>section .hljs-bullet,div#p>svg>foreignObject>section .hljs-number,div#p>svg>foreignObject>section .hljs-symbol{color:#3387cc}div#p>svg>foreignObject>section .hljs-params,div#p>svg>foreignObject>section .hljs-template-variable,div#p>svg>foreignObject>section .hljs-variable{color:#3e87e3}div#p>svg>foreignObject>section .hljs-attribute{color:#cda869}div#p>svg>foreignObject>section .hljs-meta{color:#8996a8}div#p>svg>foreignObject>section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#p>svg>foreignObject>section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#p>svg>foreignObject>section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#p>svg>foreignObject>section .hljs-selector-class{color:#9b703f}div#p>svg>foreignObject>section .hljs-selector-id{color:#8b98ab}div#p>svg>foreignObject>section .hljs-emphasis{font-style:italic}div#p>svg>foreignObject>section .hljs-strong{font-weight:700}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{max-height:580px}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2,div#p>svg>foreignObject>section h3,div#p>svg>foreignObject>section h4,div#p>svg>foreignObject>section h5,div#p>svg>foreignObject>section h6{margin:.5em 0 0}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{font-weight:inherit}div#p>svg>foreignObject>section h1{font-size:1.8em}div#p>svg>foreignObject>section h2{font-size:1.5em}div#p>svg>foreignObject>section h3{font-size:1.3em}div#p>svg>foreignObject>section h4{font-size:1.1em}div#p>svg>foreignObject>section h5{font-size:1em}div#p>svg>foreignObject>section h6{font-size:.9em}div#p>svg>foreignObject>section blockquote,div#p>svg>foreignObject>section p{margin:1em 0 0}div#p>svg>foreignObject>section ol>li,div#p>svg>foreignObject>section ul>li{margin:.3em 0 0}div#p>svg>foreignObject>section ol>li>p,div#p>svg>foreignObject>section ul>li>p{margin:.6em 0 0}div#p>svg>foreignObject>section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#p>svg>foreignObject>section pre{display:block;margin:1em 0 0;min-height:1em;overflow:visible}div#p>svg>foreignObject>section pre code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#p>svg>foreignObject>section pre code svg[data-marp-fitting=svg]{max-height:calc(580px - 1em)}div#p>svg>foreignObject>section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#p>svg>foreignObject>section blockquote:after,div#p>svg>foreignObject>section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#p>svg>foreignObject>section blockquote:before{left:0;top:0}div#p>svg>foreignObject>section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#p>svg>foreignObject>section blockquote>:first-child{margin-top:0}div#p>svg>foreignObject>section mark{background:transparent}div#p>svg>foreignObject>section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header,div#p>svg>foreignObject>section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#p>svg>foreignObject>section:after{--marpit-root-font-size:66%}div#p>svg>foreignObject>section header{top:0}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header{left:0;right:0}div#p>svg>foreignObject>section footer{bottom:0}div#p>svg>foreignObject>section{word-wrap:break-word;--color-background:#fff8e1;--color-background-stripe:rgba(69,90,100,.1);--color-foreground:#455a64;--color-dimmed:#6a7a7d;--color-highlight:#0288d1;background-color:var(--color-background);background-image:linear-gradient(135deg,hsla(0,0%,53%,0),hsla(0,0%,53%,.02) 50%,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.05));color:var(--color-foreground);font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;padding:70px;width:1280px}div#p>svg>foreignObject>section{--marpit-root-font-size:35px}div#p>svg>foreignObject>section:after{bottom:0;font-size:80%;right:0}div#p>svg>foreignObject>section:after{--marpit-root-font-size:80%}div#p>svg>foreignObject>section a,div#p>svg>foreignObject>section mark{color:var(--color-highlight)}div#p>svg>foreignObject>section code{background:var(--color-dimmed);color:var(--color-background)}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{color:var(--color-highlight)}div#p>svg>foreignObject>section pre>code{background:var(--color-foreground)}div#p>svg>foreignObject>section blockquote:after,div#p>svg>foreignObject>section blockquote:before,div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header,div#p>svg>foreignObject>section section:after{color:var(--color-dimmed)}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border-color:var(--color-foreground)}div#p>svg>foreignObject>section table thead th{background:var(--color-foreground);color:var(--color-background)}div#p>svg>foreignObject>section table tbody>tr:nth-child(odd) td,div#p>svg>foreignObject>section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe,transparent)}div#p>svg>foreignObject>section>:first-child,div#p>svg>foreignObject>section>header:first-child+*{margin-top:0}div#p>svg>foreignObject>section.invert{--color-background:#455a64;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#dad8c8;--color-highlight:#81d4fa}div#p>svg>foreignObject>section.gaia{--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa}div#p>svg>foreignObject>section.lead{display:flex;flex-flow:column nowrap;justify-content:center}div#p>svg>foreignObject>section.lead h1,div#p>svg>foreignObject>section.lead h2,div#p>svg>foreignObject>section.lead h3,div#p>svg>foreignObject>section.lead h4,div#p>svg>foreignObject>section.lead h5,div#p>svg>foreignObject>section.lead h6{text-align:center}div#p>svg>foreignObject>section.lead h1 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h2 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h3 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h4 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h5 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h6 svg[data-marp-fitting=svg]{--preserve-aspect-ratio:xMidYMid meet}div#p>svg>foreignObject>section.lead p{text-align:center}div#p>svg>foreignObject>section.lead blockquote>h1,div#p>svg>foreignObject>section.lead blockquote>h2,div#p>svg>foreignObject>section.lead blockquote>h3,div#p>svg>foreignObject>section.lead blockquote>h4,div#p>svg>foreignObject>section.lead blockquote>h5,div#p>svg>foreignObject>section.lead blockquote>h6,div#p>svg>foreignObject>section.lead blockquote>p{text-align:left}div#p>svg>foreignObject>section.lead blockquote svg[data-marp-fitting=svg]:not([data-marp-fitting-math]){--preserve-aspect-ratio:xMinYMin meet}div#p>svg>foreignObject>section.lead ol>li>p,div#p>svg>foreignObject>section.lead ul>li>p{text-align:left}div#p>svg>foreignObject>section.lead table{margin-left:auto;margin-right:auto}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#p>svg>foreignObject>section[data-marpit-advanced-background=content],div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id="p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-background-color="white" data-class="lead" data-theme="gaia" class="lead" style="--background-color:white;--class:lead;--theme:gaia;background-color:white;background-image:none;">
+<h1>第三讲 基于特权级的隔离与批处理</h1>
+<h2>第二节 从OS角度看RISC-V</h2>
+<br />
+<br />
+<p>向勇 陈渝 李国良</p>
+<br />
+<br />
+<p>2022年秋季</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="2" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<h3>1. 主流CPU比较</h3>
+<ol start="2">
+<li>RISC-V系统模式</li>
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="3" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>本节主要目标</h4>
+<ul>
+<li>了解 RISC-V 特权级和硬件隔离方式</li>
+<li>了解 RISC-V 的 M-Mode 和 S-Mode 的基本特征</li>
+<li>了解OS在 M-Mode 和 S-Mode 下如何<strong>访问和控制</strong>计算机系统</li>
+<li>了解不同软件如何在 M-Mode&lt;–&gt;S-Mode&lt;–&gt;U-Mode 之间进行<strong>切换</strong></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>主流CPU比较</h4>
+
+<p><img src="figs/mainstream-isas.png" alt="" style="width:1150px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>主流CPU比较</h4>
+<ul>
+<li data-marpit-fragment="1">由于兼容性和历史原因，导致x86和ARM的设计实现复杂</li>
+<li data-marpit-fragment="2">RISC-V简洁/灵活/可扩展</li>
+</ul>
+<p><img src="figs/x86-arm-rv-compare.png" alt="" style="width:1150px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+</ol>
+<h3>2. RISC-V系统模式</h3>
+<ul>
+<li>概述</li>
+<li>特权级</li>
+<li>CSR寄存器</li>
+</ul>
+<ol start="3">
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V相关术语</h4>
+<ul>
+<li>应用执行环境（Application Execution Environment, AEE)</li>
+<li>应用程序二进制接口（Application Binary Interface,ABI)</li>
+<li>管理员二进制接口（Supervisor Binary Interface, SBI)</li>
+<li>管理员执行环境（Supervisor Execution Environment, SEE)</li>
+<li>Hypervisor：虚拟机监视器</li>
+<li>Hypervisor二进制接口（Hypervisor Binary interface，HBI）</li>
+<li>Hypervisor执行环境（Hypervisor Execution Environment, HEE)</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:800px;" /></p>
+<ul>
+<li>ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface</li>
+<li>AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment</li>
+<li>HAL：Hardware Abstraction Layer</li>
+<li>Hypervisor，虚拟机监视器（virtual machine monitor，VMM）</li>
+<li>RISC-V 系统模式 即 与系统编程相关的RISC-V模式</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：单应用场景</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>不同软件层有清晰的特权级硬件隔离支持</li>
+<li>左侧的<strong>单个应用程序</strong>被编码在ABI上运行</li>
+<li>ABI是用户级ISA(Instruction Set Architecture)和AEE交互的接口</li>
+<li>ABI对应用程序隐藏了AEE的细节，使得AEE具有更大的灵活性</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="10" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：操作系统场景</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>中间加了一个<strong>传统的操作系统</strong>，可支持多个应用程序的多道运行</li>
+<li>每个应用程序通过<strong>ABI</strong>和OS进行通信</li>
+<li>RISC-V操作系统通过<strong>SBI</strong>和SEE进行通信</li>
+<li>SBI是OS内核与SEE交互的接口，支持OS的ISA</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="11" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：虚拟机场景</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>右侧是虚拟机场景，可支持<strong>多个操作系统</strong></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="12" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：应用场景</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>M Mode：小型设备（蓝牙耳机等）</li>
+<li>U+M Mode:嵌入式设备（电视遥控器、刷卡机等）</li>
+<li>U+S+M Mode：手机</li>
+<li>U+S+H+M Mode：数据中心服务器</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：硬件线程</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>特权级是为不同的软件栈部件提供的一种保护机制</li>
+<li><strong>硬件线程</strong>（hart，即CPU core）是运行在某个特权级上（CSR配置）</li>
+<li>当处理器执行当前特权模式不允许的操作时将产生一个<strong>异常</strong>，这些异常通常会产生自陷（trap）导致<strong>下层执行环境接管控制权</strong></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+</ol>
+<ul>
+<li>概述</li>
+</ul>
+<h3>特权级</h3>
+<ul>
+<li>CSR寄存器</li>
+</ul>
+<ol start="3">
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：多个特权级</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>现代处理器一般具有多个特权级的模式（Mode）</li>
+<li><strong>U</strong>：User | <strong>S</strong>: Supervisor | <strong>H</strong>: Hypervisor | <strong>M</strong>: Machine</li>
+</ul>
+<p>为何有这<strong>4种模式</strong>? 它们的<strong>区别和联系</strong>是啥？</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="16" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：执行环境</h4>
+<table>
+<thead>
+<tr>
+<th>执行环境</th>
+<th>编码</th>
+<th>含义</th>
+<th>跨越特权级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>APP</td>
+<td>00</td>
+<td>User/Application</td>
+<td><code>ecall</code></td>
+</tr>
+<tr>
+<td>OS</td>
+<td>01</td>
+<td>Supervisor</td>
+<td><code>ecall</code> <code>sret</code></td>
+</tr>
+<tr>
+<td>VMM</td>
+<td>10</td>
+<td>Hypervisor</td>
+<td>---</td>
+</tr>
+<tr>
+<td>BIOS</td>
+<td>11</td>
+<td>Machine</td>
+<td><code>ecall</code> <code>mret</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>M, S, U 组合在一起的硬件系统适合运行类似UNIX的操作系统</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="17" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：特权级的灵活组合</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>随着应用的<strong>需求变化</strong>，需要<strong>灵活</strong>和<strong>可组合</strong>的硬件构造</li>
+<li>所以就出现了上述4种模式，且模式间可以组合的灵活硬件设计</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="18" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：用户态</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>U-Mode （User Mode，用户模式、用户态）
+<ul>
+<li><strong>非特权</strong>级模式（Unprivileged Mode）：基本计算</li>
+<li>是<strong>应用程序运行</strong>的用户态CPU执行模式</li>
+<li>不能执行特权指令，不能直接影响其他应用程序执行</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="19" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：内核态</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:800px;" /></p>
+<ul>
+<li>S-Mode（Supervisor Mode, Kernel Mode，内核态，内核模式）
+<ul>
+<li>在内核态的操作系统具有足够强大的<strong>硬件控制能力</strong></li>
+<li>特权级模式（Privileged Mode）：<strong>限制APP</strong>的执行与内存访问</li>
+<li>是<strong>操作系统运行</strong>的内核态CPU执行模式</li>
+<li>能执行内核态特权指令，能直接<strong>影响应用程序执行</strong></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：H-Mode</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>H-Mode(Hypervisor Mode, Virtual Machine Mode，虚拟机监控器)
+<ul>
+<li>特权级模式：<strong>限制OS</strong>访问的内存空间</li>
+<li>是<strong>虚拟机监控器运行</strong>的Hypervisor Mode CPU执行模式，能执行H-Mode特权指令，能直接<strong>影响OS执行</strong></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="21" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式：M-Mode</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
+<ul>
+<li>M-Mode（Machine Mode, Physical Machine Mode）
+<ul>
+<li>特权级模式：<strong>控制物理内存</strong>，直接关机</li>
+<li>是<strong>Bootloader/BIOS运行</strong>的Machine Mode CPU执行模式</li>
+<li>能执行M-Mode特权指令，能直接影响上述其他软件的执行</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+</ol>
+<ul>
+<li>概述</li>
+<li>特权级</li>
+</ul>
+<h3>CSR寄存器</h3>
+<ol start="3">
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="23" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V CSR寄存器分类</h4>
+<ul>
+<li><strong>通用寄存器</strong> x0-x31
+<ul>
+<li>一般指令访问</li>
+<li>非特权指令可以使用的速度最快的存储单元</li>
+</ul>
+</li>
+<li><strong>控制状态寄存器</strong>(CSR：Control and Status Registers)
+<ul>
+<li>通过<strong>控制状态寄存器指令</strong>访问，可以有4096个CSR</li>
+<li>运行在<strong>用户态的应用程序</strong>不能访问大部分的CSR寄存器</li>
+<li>运行在<strong>内核态的操作系统</strong>通过访问CSR寄存器控制计算机</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>通过CSR寄存器实现的隔离</h4>
+<p>OS通过硬件隔离手段（三防）来保障计算机的安全可靠</p>
+<ul>
+<li>设置 CSR(控制状态寄存器) 实现隔离
+<ul>
+<li>权力：防止应用访问系统管控相关寄存器
+<ul>
+<li><strong>地址空间配置</strong>寄存器：mstatus/sstatus CSR</li>
+</ul>
+</li>
+<li>时间：防止应用长期使用 100％的 CPU
+<ul>
+<li><strong>中断配置</strong>寄存器：sstatus/stvec CSR</li>
+</ul>
+</li>
+<li>数据：防止应用破坏窃取数据
+<ul>
+<li><strong>地址空间相关</strong>寄存器：sstatus/satp/stvec CSR</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+</ol>
+<h3>3. RISC-V系统编程：用户态编程</h3>
+<ul>
+<li>简述</li>
+<li>U-Mode编程：系统调用</li>
+<li>特权操作</li>
+</ul>
+<ol start="4">
+<li>RISC-V系统编程：M-Mode编程</li>
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>系统编程简述</h4>
+<ul>
+<li>系统编程需要了解处理器的<strong>特权级架构</strong>，熟悉各个特权级能够访问的寄存器资源、内存资源和外设资源</li>
+<li><strong>编写内核级代码</strong>，构造操作系统，支持应用程序执行
+<ul>
+<li>内存管理 进程调度</li>
+<li>异常处理 中断处理</li>
+<li>系统调用 外设控制</li>
+</ul>
+</li>
+<li>系统编程通常<strong>没有</strong>广泛用户<strong>编程库</strong>和方便的动态<strong>调试手段</strong>的支持</li>
+<li>本课程的系统编程主要集中在 RISC-V 的 S-Mode 和 U-Mode，涉及部分对M-Mode的理解</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V U-Mode编程：使用系统调用</h4>
+<ul>
+<li>U-Mode 下的应用程序不能够直接使用计算机的物理资源</li>
+<li>环境调用异常：在执行 <code>ecall</code> 的时候发生，相当于系统调用</li>
+<li>操作系统可以直接访问物理资源</li>
+<li>如果应用程序需要使用硬件资源怎么办？
+<ul>
+<li>在屏幕上打印”hello world”</li>
+<li>从文件中读入数据</li>
+</ul>
+</li>
+<li>通过系统调用从操作系统中获得服务</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="28" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>U-Mode编程：第一个例子”hello world”</h4>
+<p><a href="https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src">在用户态打印”hello world”的小例子</a> 大致执行流</p>
+<p><img src="figs/print-app.png" alt="" style="width:1000px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>第一个例子的启动执行</h4>
+<p><a href="https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302">在用户态打印”hello world”的小例子</a> 启动执行流</p>
+<p><img src="figs/boot-print-app.png" alt="" style="width:1000px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="30" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>第二个例子：在用户态执行特权指令</h4>
+<p><a href="https://github.com/chyyuu/os_kernel_lab/blob/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src/main.rs#L306">在用户态执行特权指令的小例子</a> 启动与执行流程</p>
+<p><img src="figs/boot-priv-code-app.png" alt="" style="width:1000px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="31" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>特权操作</h4>
+<ul>
+<li>
+<p>特权操作：特权指令和CSR读写操作</p>
+</li>
+<li>
+<p>指令非常少：</p>
+<ul>
+<li><code>mret</code> 机器模式返回</li>
+<li><code>sret</code> 监管者模式返回</li>
+<li><code>wfi</code> 等待中断 (wait for interupt)</li>
+<li><code>sfence.vma</code> 虚拟地址屏障(barrier)指令</li>
+</ul>
+</li>
+<li>
+<p>很多其他的系统管理功能通过读写控制状态寄存器来实现</p>
+</li>
+</ul>
+<p>注:<code>fence.i</code>是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+<li>RISC-V系统编程：用户态编程</li>
+</ol>
+<h3>4. RISC-V系统编程：M-Mode编程</h3>
+<ul>
+<li>中断机制和异常机制</li>
+<li>中断/异常的硬件响应</li>
+<li>中断/异常处理的控制权移交</li>
+</ul>
+<ol start="5">
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode编程</h4>
+<ul>
+<li>M-Mode是 RISC-V 中 hart（hardware thread）的<strong>最高权限模式</strong></li>
+<li>M-Mode下，hart 对计算机系统的底层功能有<strong>完全的使用权</strong></li>
+<li>M-Mode最重要的特性是<strong>拦截和处理中断/异常</strong>
+<ul>
+<li><strong>同步的异常</strong>：执行期间产生，访问无效的寄存器地址，或执行无效操作码的指令</li>
+<li><strong>异步的中断</strong>：指令流异步的外部事件，中断，如时钟中断</li>
+</ul>
+</li>
+<li>RISC-V 要求实现<strong>精确异常</strong>：保证异常之前的所有指令都完整执行，后续指令都没有开始执行</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="34" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode的中断控制和状态寄存器</h4>
+<ul>
+<li>mtvec(MachineTrapVector)保存发生中断/异常时要跳转到的<strong>中断处理例程入口地址</strong></li>
+<li>mepc(Machine Exception PC)指向<strong>发生中断/异常时的指令</strong></li>
+<li>mcause(Machine Exception Cause)指示发生<strong>中断/异常的种类</strong></li>
+<li>mie(Machine Interrupt Enable)中断<strong>使能</strong>寄存器</li>
+<li>mip(Machine Interrupt Pending)中断<strong>请求</strong>寄存器</li>
+<li>mtval(Machine Trap Value)保存陷入(trap)<strong>附加信息</strong></li>
+<li>mscratch(Machine Scratch)它暂时存放一个字大小的<strong>数据</strong></li>
+<li>mstatus(Machine Status)保存全局中断以及其他的<strong>状态</strong></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>mstatus CSR寄存器</h4>
+<ul>
+<li>mstatus(Machine Status)保存全局中断以及其他的<strong>状态</strong>
+<ul>
+<li>SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断。</li>
+<li>SPIE、MPIE记录发生中断之前MIE和SIE的值。</li>
+<li>SPP表示变化之前的特权级别是S-Mode还是U-Mode</li>
+<li>MPP表示变化之前是S-Mode还是U-Mode还是M-Mode<br />
+PP：Previous Privilege</li>
+</ul>
+</li>
+</ul>
+<p><img src="figs/mstatus.png" alt="" style="width:1000px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="36" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>mcause CSR寄存器</h4>
+<p>当发生异常时，mcause CSR中被写入一个指示<strong>导致异常的事件</strong>的代码，如果事件由中断引起，则置上<code>Interrupt</code>位，<code>Exception Code</code>字段包含指示最后一个异常的编码。</p>
+<p><img src="figs/rv-cause.png" alt="" style="width:1150px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="37" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode时钟中断Timer</h4>
+<ul>
+<li>中断是异步发生的
+<ul>
+<li>来自处理器外部的 I/O 设备的信号</li>
+</ul>
+</li>
+<li>Timer 可以稳定定时地产生中断
+<ul>
+<li>防止应用程序死占着 CPU 不放, 让 OS Kernel 能得到执行权...</li>
+<li>由<strong>高特权模式下的软件</strong>获得 CPU 控制权</li>
+<li>高特权模式下的软件可<strong>授权</strong>低特权模式软件处理中断</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="38" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V处理器FU540模块图</h4>
+<p><img src="figs/fu540-top-block.png" alt="" style="width:650px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="39" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+</ol>
+<ul>
+<li>中断机制和异常机制</li>
+</ul>
+<h3>中断/异常的硬件响应</h3>
+<ul>
+<li>中断/异常处理的控制权移交</li>
+</ul>
+<ol start="5">
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="40" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode中断的硬件响应过程</h4>
+<ul>
+<li><strong>异常指令的PC</strong>被保存在mepc中，PC设置为mtvec。
+<ul>
+<li>对于同步异常，mepc指向导致异常的指令；</li>
+<li>对于中断，指向中断处理后应该恢复执行的位置。</li>
+</ul>
+</li>
+<li>根据<strong>异常来源</strong>设置 mcause，并将 mtval 设置为出错的地址或者其它适用于<strong>特定异常的信息字</strong></li>
+<li>把mstatus[MIE位]置零以<strong>禁用中断</strong>，并<strong>保留先前MIE值</strong>到MPIE中
+<ul>
+<li>SIE控制S模式下全局中断，MIE控制M模式下全局中断；</li>
+<li>SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值</li>
+</ul>
+</li>
+<li><strong>保留发生异常之前的权限模式</strong>到mstatus 的 MPP 域中，再<strong>更改权限模式</strong>为M。（MPP表示变化之前的特权级别是S、M or U模式）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode中断处理例程</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>    let scause = scause::read();
+    let stval = stval::read();
+
+    match scause.cause() {
+        Trap::Exception(Exception::UserEnvCall) =&gt; {
+            cx.sepc += 4;
+            cx.x[10] = do_syscall(cx.x[17], [cx.x[10], cx.x[11], cx.x[12]]) as usize;
+        }
+        _ =&gt; {
+            panic!(
+                &quot;Unsupported trap {:?}, stval = {:#x}!&quot;,
+                scause.cause(),
+                stval
+            );
+        }
+    }
+
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="42" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode中断分类</h4>
+<p>通过 mcause 寄存器的不同位（mie）来获取中断的类型。</p>
+<ul>
+<li><strong>软件</strong>中断：通过向内存映射寄存器写入数据来触发，一个 hart 中断另外一个hart（处理器间中断）</li>
+<li><strong>时钟</strong>中断：hart 的时间计数器寄存器 mtime 大于时间比较寄存器 mtimecmp</li>
+<li><strong>外部</strong>中断：由中断控制器触发，大部分情况下的外设都会连到这个中断控制器</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="43" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 的中断/异常</h4>
+<p>通过 mcause 寄存器的不同位来获取中断源的信息。<br />
+第一列1代表中断，第2列代表中断ID，第3列中断含义<br />
+<img src="figs/rv-interrupt.png" alt="" style="width:1000px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="44" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode RISC-V异常机制</h4>
+<p>通过 mcause 寄存器的不同位来来获取导致异常的信息。<br />
+第一列0代表异常，第2列代表异常ID，第3列异常含义<br />
+<img src="figs/rv-exception.png" alt="" style="width:900px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="45" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode中断/异常的硬件响应</h4>
+<ul>
+<li><strong>中断/异常的指令的 PC</strong> 被保存在 mepc 中， PC 被设置为 mtvec。
+<ul>
+<li>对于异常，mepc指向导致异常的指令</li>
+<li>对于中断，mepc指向中断处理后应该恢复执行的位置</li>
+</ul>
+</li>
+<li>根据<strong>中断/异常来源</strong>设置 mcause，并将 mtval 设置为出错的地址或者其它适用于特定异常的信息字。</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="46" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode中断/异常的硬件响应</h4>
+<ul>
+<li>把控制状态寄存器 mstatus[MIE位]置零以<strong>禁用中断</strong>，并<strong>保留先前的 MIE 值</strong>到 MPIE 中。
+<ul>
+<li>SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断；</li>
+<li>SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值）</li>
+</ul>
+</li>
+<li><strong>发生异常之前的权限模式</strong>保留在 mstatus 的 MPP 域中，再把权限模式更改为M
+<ul>
+<li>MPP表示变化之前的特权级别是S、M or U-Mode</li>
+</ul>
+</li>
+<li><strong>跳转</strong>到mtvec CSR设置的地址继续执行</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+</ol>
+<ul>
+<li>中断机制和异常机制</li>
+<li>中断/异常的硬件响应</li>
+</ul>
+<h3>中断/异常处理的控制权移交</h3>
+<ol start="5">
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode中断/异常处理的控制权移交</h4>
+<ul>
+<li>默认情况下，所有的中断/异常都使得控制权移交到 M-Mode的中断/异常处理例程</li>
+<li>M-Mode的<strong>中断/异常处理例程</strong>可以将中断/异常重新<strong>导向 S-Mode</strong>，但是这些额外的操作会减慢中断/异常的处理速度</li>
+<li>RISC-V 提供一种<strong>中断/异常委托机制</strong>，通过该机制可以选择性地将中断/异常交给 S-Mode处理，而<strong>完全绕过 M-Mode</strong></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="49" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>M-Mode中断/异常处理的控制权移交</h4>
+<ul>
+<li><strong>mideleg/medeleg</strong> (Machine Interrupt/Exception Delegation）CSR 控制将哪些中断/异常委托给 S-Mode处理</li>
+<li>mideleg/medeleg 中的每个为对应一个中断/异常
+<ul>
+<li>如 mideleg[5] 对应于 S-Mode的时钟中断，如果把它置位，S-Mode的时钟中断将会移交 S-Mode的中断/异常处理程序，而不是 M-Mode的中断/异常处理程序</li>
+<li>委托给 S-Mode的任何中断都可以被 S-Mode的软件屏蔽。sie(Supervisor Interrupt Enable) 和 sip（Supervisor Interrupt Pending）CSR 是 S-Mode的控制状态寄存器</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="50" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>中断委托寄存器mideleg</h4>
+<ul>
+<li>mideleg (Machine Interrupt Delegation）控制将哪些中断委托给 S 模式处理</li>
+<li>mideleg 中的每个为对应一个中断/异常
+<ul>
+<li>mideleg[1]用于控制是否将<strong>核间中断</strong>交给s模式处理</li>
+<li>mideleg[5]用于控制是否将<strong>定时中断</strong>交给s模式处理</li>
+<li>mideleg[9]用于控制是否将<strong>外部中断</strong>交给s模式处理</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="51" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="51" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>异常委托寄存器medeleg</h4>
+<ul>
+<li>medeleg (Machine Exception Delegation）控制将哪些异常委托给 S 模式处理</li>
+<li>medeleg 中的每个为对应一个中断/异常
+<ul>
+<li>medeleg[1]用于控制是否将<strong>指令获取错误异常</strong>交给s模式处理</li>
+<li>medeleg[12]用于控制是否将<strong>指令页异常</strong>交给s模式处理</li>
+<li>medeleg[9]用于控制是否将<strong>数据页异常</strong>交给s模式处理</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="52" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="52" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>中断/异常处理的控制权移交</h4>
+<ul>
+<li>发生中断/异常时,处理器控制权<strong>通常</strong>不会移交给权限更低的模式
+<ul>
+<li>例如 medeleg[15] 会把 store page fault 委托给 S-Mode</li>
+<li>M-Mode下发生的异常总是在 M-Mode下处理</li>
+<li>S-Mode下发生的异常总是在 M-Mode，或者在 S-Mode下处理</li>
+<li>上述两种模式发生的异常不会由 U-Mode处理</li>
+</ul>
+</li>
+</ul>
+<p><strong>Why？</strong></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="53" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="53" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>思考题</h4>
+<ul>
+<li>如何通过断点异常来实现调试器的断点调试功能？</li>
+<li>如何实现单步跟踪？</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="54" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+</ol>
+<h3>5. RISC-V系统编程：内核编程</h3>
+<ul>
+<li>中断/异常机制</li>
+<li>中断/异常的处理</li>
+<li>虚存机制</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="55" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>S-Mode的中断控制和状态寄存器</h4>
+<ul>
+<li>stvec(SupervisorTrapVector)保存发生中断/异常时<strong>要跳转到的地址</strong></li>
+<li>sepc(Supervisor Exception PC)指向<strong>发生中断/异常时的指令</strong></li>
+<li>scause(Supervisor Exception Cause)指示发生中断/异常的<strong>种类</strong></li>
+<li>sie(Supervisor Interrupt Enable)中断<strong>使能</strong>寄存器</li>
+<li>sip(Supervisor Interrupt Pending)中断<strong>请求</strong>寄存器</li>
+<li>stval(Supervisor Trap Value)保存陷入(trap)<strong>附加信息</strong></li>
+<li>sscratch(Supervisor Scratch)不同mode交换<strong>数据中转站</strong></li>
+<li>sstatus(Supervisor Status)保存全局中断以及其他的<strong>状态</strong></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="56" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>sstatus寄存器</h4>
+<ul>
+<li>sstatus的SIE 和 SPIE 位分别保存了当前的和中断/异常发生之前的中断使能<strong>状态</strong></li>
+</ul>
+<p><img src="figs/rv-sstatus.png" alt="" style="width:1100px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="57" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>S-Mode中断/异常机制</h4>
+<p><strong>sie &amp; sip 寄存器</strong>是用于保存<strong>待处理中断</strong>和<strong>中断使能</strong>情况的CSR</p>
+<ul>
+<li>sie （supervisor interrupt-enabled register）</li>
+<li>sip（supervisor interrupt pending）</li>
+</ul>
+<p><img src="figs/rv-sie-sip.png" alt="" style="width:1150px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="58" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>scause寄存器</h4>
+<p>当发生异常时，CSR中被写入一个指示<strong>导致中断/异常的事件</strong>编号，记录在<code>Exception Code</code>字段中；如果事件由中断引起，则置<code>Interrupt</code>位。<br />
+scause 寄存器</p>
+<p><img src="figs/rv-cause.png" alt="" style="width:1150px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="59" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>mtvec &amp; stvec 寄存器</h4>
+<p>中断/异常向量（trap-vector）基地址寄存器stvec CSR用于配置<strong>trap_handler地址</strong></p>
+<ul>
+<li>包括向量基址（BASE）和向量模式（MODE）：BASE 域中的值按 4 字节对齐
+<ul>
+<li>MODE = 0 表示一个trap_handler处理所有的中断/异常</li>
+<li>MODE = 1 表示每个中断/异常有一个对应的trap_handler</li>
+</ul>
+</li>
+</ul>
+<p>mtvec &amp; stvec 寄存器<br />
+<img src="figs/rv-tvec.png" alt="" style="width:1000px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="60" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+<ul>
+<li>中断/异常机制</li>
+</ul>
+<h3>中断/异常的处理</h3>
+<ul>
+<li>虚存机制</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="61" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>S-Mode中断/异常的硬件响应</h4>
+<p><strong>硬件执行内容</strong></p>
+<p>hart 接受了中断/异常，并需要委派给 S-Mode，那么硬件会原子性的经历下面的状态转换</p>
+<ol>
+<li><strong>发生中断/异常的指令PC</strong>被存入 sepc, 且 PC 被设置为 stvec</li>
+<li>scause 设置中断/异常<strong>类型</strong>，stval被设置为出错的地址/异常<strong>相关信息</strong></li>
+<li>把 sstatus中的 SIE 位置零，<strong>屏蔽中断</strong>， <strong>SIE位之前的值</strong>被保存在 SPIE 位中</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="62" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>S-Mode中断/异常的硬件响应</h4>
+<ol start="4">
+<li><strong>发生例外前的特权模式</strong>被保存在 sstatus 的 SPP（previous privilege） 域，然后设置当前特权模式为S-Mode</li>
+<li><strong>跳转</strong>到stvec CSR设置的地址继续执行</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="63" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="63" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>S-Mode中断/异常的软件处理</h4>
+<ul>
+<li><strong>初始化</strong>
+<ul>
+<li>编写中断/异常的处理例程（如trap_handler）</li>
+<li>设置trap_handler地址给stvec</li>
+</ul>
+</li>
+<li>软件执行
+<ol>
+<li>处理器跳转到<strong>trap_handler</strong></li>
+<li>trap_handler<strong>处理</strong>中断/异常/系统调用等</li>
+<li><strong>返回</strong>到之前的指令和之前的特权级继续执行</li>
+</ol>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="64" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="64" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>主流CPU比较</li>
+<li>RISC-V系统模式</li>
+<li>RISC-V系统编程：用户态编程</li>
+<li>RISC-V系统编程：M-Mode编程</li>
+<li>RISC-V系统编程：内核编程</li>
+</ol>
+<ul>
+<li>中断/异常机制</li>
+<li>中断/异常的处理</li>
+</ul>
+<h3>虚存机制</h3>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="65" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="65" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>S-Mode虚拟内存系统</h4>
+<ul>
+<li>虚拟地址将内存划分为<strong>固定大小的页</strong>来进行<strong>地址转换</strong>和<strong>内容保护</strong>。</li>
+<li>satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器<strong>控制分页</strong>。satp 有三个域：
+<ul>
+<li>MODE 域可以<strong>开启分页</strong>并选择页表级数</li>
+<li>ASID（Address Space Identifier，地址空间标识符）域是可选的，它可以用来降低上下文切换的开销</li>
+<li>PPN 字段保存了<strong>根页表的物理页号</strong><br />
+<img src="figs/satp.png" alt="" style="width:900px;" /></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="66" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/riscv_pagetable.svg&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="66" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="66" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>S-Mode虚存机制</h4>
+<ul>
+<li>通过stap CSR建立<strong>页表基址</strong></li>
+<li>建立OS和APP的<strong>页表</strong></li>
+<li>处理内存访问<strong>异常</strong></li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="66" data-marpit-pagination-total="69" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="67" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="67" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>S-Mode虚存的地址转换</h4>
+<p>S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地址：</p>
+<ul>
+<li>satp.PPN 给出了<strong>一级页表基址</strong>， VA [31:22] 给出了一级页号，CPU会读取位于地址(satp. PPN × 4096 + VA[31: 22] × 4)页表项。</li>
+<li>PTE 包含<strong>二级页表基址</strong>，VA[21:12]给出了二级页号，CPU读取位于地址(PTE. PPN × 4096 + VA[21: 12] × 4)叶节点页表项。</li>
+<li><strong>叶节点页表项的PPN字段</strong>和页内偏移（原始虚址的最低 12 个有效位）组成了最终结果：物理地址(LeafPTE.PPN×4096+VA[11: 0])</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="68" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="68" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>S-Mode虚存的地址转换</h4>
+<p><img src="figs/satp2.png" alt="" style="width:650px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="69" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="69" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>小结</h3>
+<ul>
+<li>了解 RISC-V 特权级和硬件隔离方式</li>
+<li>了解 RISC-V 的 M-Mode 和 S-Mode 的基本特征</li>
+<li>了解OS在 M-Mode 和 S-Mode 下如何访问控制计算机系统</li>
+<li>了解不同软件如何在 M-Mode&lt;–&gt;S-Mode&lt;–&gt;U-Mode 之间进行切换</li>
+</ul>
+</section>
+<script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:f}=t.children;for(let r=0;r<f;r+=1){const o=t.children[r];if(o.getScreenCTM){const t=o.getScreenCTM();if(t){const r=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,a=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.children.length;for(let e=0;e<l;e+=1){const n=o.children[e];if("SECTION"===n.tagName){const{style:e}=n;e.transformOrigin||(e.transformOrigin=`${-r}px ${-a}px`),e.transform=`scale(${c}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-d.left}, ${t.f-d.top}) translateZ(0.0001px)`;break}}}}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),f=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",f)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>主要说明x86, arm由于兼容性，历史原因，导致设计实现复杂，riscv简洁/灵活/可扩展，便于学习掌握并用于写OS</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>## RISC-V 系统模式：控制状态寄存器CSR
+强制隔离以避免对整个系统的可用性/可靠性/安全影响</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>## RISC-V 系统模式：控制状态寄存器CSR
+
+- mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址。
+- mepc(Machine Exception PC)指向发生异常的指令。
+- mcause(Machine Exception Cause)指示发生异常的种类。
+- mie(Machine Interrupt Enable)指出处理器目前能处理的中断。
+- mip(Machine Interrupt Pending)列出目前正准备处理的中断。
+- mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身；对于其他异常，值为0。
+- mscratch(Machine Scratch)它暂时存放一个字大小的数据。
+- mstatus(Machine Status)保存全局中断以及其他的状态</p><p>---
+## RISC-V 系统模式：控制状态寄存器CSR
+
+- mcause(Machine Exception Cause)它指示发生异常的种类。
+  - SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断。
+  - SPIE、MPIE记录发生中断之前MIE和SIE的值。
+---
+## RISC-V 系统模式：控制状态寄存器CSR
+
+- sstatus(supervisor status)保存发生异常时需要跳转到的地址。
+- stvec(supervisor trap vector)保存s模式的trap向量基址。stvec总是4字节对齐
+- satp(supervisor Address Translation and Protection) S-Mode控制状态寄存器控制了分页系统。
+- sscratch (supervisor Scratch Register) 保存指向hart-local supervisor上下文的指针. 在trap处理程序的开头，sscratch与用户寄存器交换，以提供初始工作寄存器。
+- sepc(supervisor Exception PC)它指向发生异常的指令。</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>Zifencei扩展 https://www.cnblogs.com/mikewolf2002/p/11191254.html</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>在执行 fence.i 指令之前，对于同一个硬件线程(hart)， RISC-V 不保证用存储指令写到内存指令区的数据可以被取指令取到。使用fence.i指令后，对同一hart，可以确保指令读取是最近写到内存指令区域的数据。但是，fence.i将不保证别的riscv hart的指令读取也能够满足读写一致性。如果要使写指令内存空间对所有的hart都满足一致性要求，需要执行fence指令。</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身；对于其他异常，值为0。</p></div><div class="bespoke-marp-note" data-index="50" tabindex="0"><p>，是 mie 和 mip 的子集。这两个寄存器和 M-Mode下有相同的布局。sie 和 sip 中只有与由 mideleg 委托的中断对应的位才能读写，没有委派的中断对应位总是 0</p></div><div class="bespoke-marp-note" data-index="67" tabindex="0"><p>---
+## RISC-V 系统编程：S-Mode下的隔离
+- S-Mode比 U-Mode权限更高，但是比 M-Mode权限低
+- S-Mode下运行的软件不能使用 M-Mode的 CSR 和指令，并受到 PMP 的限制
+- 支持基于页面的虚拟内存</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@1.4.0/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";const e=document.body,t=(...e)=>history.replaceState(...e),n="presenter",r="next",o=["",n,r],a="data-bespoke-marp-",i=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},s=()=>e.dataset.bespokeView,l=e=>new URLSearchParams(location.search).get(e),c=(e,n={})=>{var r;const o={location,setter:t,...n},a=new URLSearchParams(o.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?a.set(t,n):a.delete(t)}try{o.setter({...null!==(r=window.history.state)&&void 0!==r?r:{}},"",i(a,o.location))}catch(e){console.error(e)}},d=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch(e){return!1}})(),f=e=>{try{return localStorage.getItem(e)}catch(e){return null}},u=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch(e){return!1}},m=e=>{try{return localStorage.removeItem(e),!0}catch(e){return!1}},g=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},p=e=>{e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach((e=>e.classList.add("bespoke-marp-slide"))),e.on("activate",(t=>{const n="bespoke-marp-active",r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach((e=>{e.classList.remove(n),g(e,!0)})),o.add(n),g(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}}))},v=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map((e=>[null,...e.querySelectorAll("[data-marpit-fragment]")]))});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach(((e,t)=>{e.forEach(((e,n)=>{if(null==e)return;const i=t<r||t===r&&n<=o;e.setAttribute(`${a}fragment`,(i?"":"in")+"active");const s=`${a}current-fragment`;t===r&&n===o?e.setAttribute(s,"current"):e.removeAttribute(s)}))})),e.fragmentIndex=o;const i={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",i)};e.on("next",(({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}})),e.on("prev",(({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)})),e.on("slide",(({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)})),o(0,0)},h=document,y=()=>!(!h.fullscreenEnabled&&!h.webkitFullscreenEnabled),x=()=>!(!h.fullscreenElement&&!h.webkitFullscreenElement),w=e=>{e.fullscreen=()=>{y()&&(async()=>{return x()?null===(e=h.exitFullscreen||h.webkitExitFullscreen)||void 0===e?void 0:e.call(h):((e=h.body)=>{var t;return null===(t=e.requestFullscreen||e.webkitRequestFullscreen)||void 0===t?void 0:t.call(e)})();var e})()},document.addEventListener("keydown",(t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!y()||(e.fullscreen(),t.preventDefault())}))},b="bespoke-marp-inactive",k=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout((()=>{r.add(b),o()}),e),r.contains(b)&&(r.remove(b),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},E=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],L=e=>{e.parent.addEventListener("keydown",(e=>{if(!e.target)return;const t=e.target;(E.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()}))},$=e=>{window.addEventListener("load",(()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute(`${a}load`,e)}}))},P=({interval:e=250}={})=>t=>{document.addEventListener("keydown",(e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()}));let n,r,o=0;t.parent.addEventListener("wheel",(a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),(null==e?void 0:e.parentElement)&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const l=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<12)return;r&&clearTimeout(r),r=setTimeout((()=>{n=0}),e);const c=Date.now()-o<e,d=l<=n;if(n=l,c||d)return;let f;(a.deltaX>0||a.deltaY>0)&&(f="next"),(a.deltaX<0||a.deltaY<0)&&(f="prev"),f&&(t[f](),o=Date.now())}))},S=(e=".bespoke-marp-osc")=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${a}osc=${JSON.stringify(e)}]`).forEach(n)};return y()||n("fullscreen",(e=>e.style.display="none")),d||n("presenter",(e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."})),e=>{t.addEventListener("click",(t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?null==e||e.fullscreen():"presenter"===n&&e.openPresenterView()}})),e.parent.appendChild(t),e.on("activate",(({index:t})=>{n("page",(n=>n.textContent=`Page ${t+1} of ${e.slides.length}`))})),e.on("fragment",(({index:t,fragments:r,fragmentIndex:o})=>{n("prev",(e=>e.disabled=0===t&&0===o)),n("next",(n=>n.disabled=t===e.slides.length-1&&o===r.length-1))})),e.on("marp-active",(()=>g(t,!1))),e.on("marp-inactive",(()=>g(t,!0))),y()&&(e=>{for(const t of["","webkit"])h.addEventListener(t+"fullscreenchange",e)})((()=>n("fullscreen",(e=>e.classList.toggle("exit",y()&&x())))))}},I=e=>{window.addEventListener("message",(t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}}))};var T=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"];let A=e=>String(e).replace(/[&<>"']/g,(e=>`&${C[e]};`)),C={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},N="dangerouslySetInnerHTML",K={className:"class",htmlFor:"for"},O={};function D(e,t){let n=[],r="";t=t||{};for(let e=arguments.length;e-- >2;)n.push(arguments[e]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(let e in t)!1!==t[e]&&null!=t[e]&&e!==N&&(r+=` ${K[e]?K[e]:A(e)}="${A(t[e])}"`);r+=">"}if(-1===T.indexOf(e)){if(t[N])r+=t[N].__html;else for(;n.length;){let e=n.pop();if(e)if(e.pop)for(let t=e.length;t--;)n.push(e[t]);else r+=!0===O[e]?e:A(e)}r+=e?`</${e}>`:""}return O[r]=!0,r}const M=({children:e})=>D(null,null,...e),q="bespoke-marp-presenter-",_={container:`${q}container`,next:`${q}next`,nextContainer:`${q}next-container`,noteContainer:`${q}note-container`,infoContainer:`${q}info-container`,infoPage:`${q}info-page`,infoPageText:`${q}info-page-text`,infoPagePrev:`${q}info-page-prev`,infoPageNext:`${q}info-page-next`,infoTime:`${q}info-time`,infoTimer:`${q}info-timer`},U=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=_.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",D(M,null,D("div",{class:_.nextContainer},D("iframe",{class:_.next,src:"?view=next"})),D("div",{class:_.noteContainer}),D("div",{class:_.infoContainer},D("div",{class:_.infoPage},D("button",{class:_.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),D("span",{class:_.infoPageText}),D("button",{class:_.infoPageNext,tabindex:"-1",title:"Next"},"Next")),D("time",{class:_.infoTime,title:"Current time"}),D("div",{class:_.infoTimer})))),t})(e.parent)),(e=>{r(_.nextContainer).addEventListener("click",(()=>e.next()));const t=r(_.next),n=(o=t,(e,t)=>{var n;return null===(n=o.contentWindow)||void 0===n?void 0:n.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin)});var o;t.addEventListener("load",(()=>{r(_.nextContainer).classList.add("active"),n(e.slide(),e.fragmentIndex),e.on("fragment",(({index:e,fragmentIndex:t})=>n(e,t)))}));const a=document.querySelectorAll(".bespoke-marp-note");a.forEach((e=>{e.addEventListener("keydown",(e=>e.stopPropagation())),r(_.noteContainer).appendChild(e)})),e.on("activate",(()=>a.forEach((t=>t.classList.toggle("active",t.dataset.index==e.slide()))))),e.on("activate",(({index:t})=>{r(_.infoPageText).textContent=`${t+1} / ${e.slides.length}`}));const i=r(_.infoPagePrev),s=r(_.infoPageNext);i.addEventListener("click",(t=>{i.blur(),e.prev({fragment:!t.shiftKey})})),s.addEventListener("click",(t=>{s.blur(),e.next({fragment:!t.shiftKey})})),e.on("fragment",(({index:t,fragments:n,fragmentIndex:r})=>{i.disabled=0===t&&0===r,s.disabled=t===e.slides.length-1&&r===n.length-1}));const l=()=>r(_.infoTime).textContent=(new Date).toLocaleTimeString();l(),setInterval(l,250)})(e)},V=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:X},presenterUrl:{enumerable:!0,get:F}}),d&&document.addEventListener("keydown",(t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())}))};function X(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,q+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function F(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),i(e)}const B=e=>{const t=s();return t===r&&e.appendChild(document.createElement("span")),{"":V,[n]:U,[r]:I}[t]},R=e=>{e.on("activate",(t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach((n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"}))}))},j=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},H=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),l=o(0,r(n||0,a[s].length-1));s===e.slide()&&l===e.fragmentIndex||e.slide(s,{fragment:l})})((j(location.hash.slice(1))||1)-1,t.fragment?j(l("f")||""):null)};e.on("fragment",(({index:e,fragmentIndex:r})=>{n||c({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})})),setTimeout((()=>{o(),window.addEventListener("hashchange",(()=>r((()=>{o({fragment:!1}),c({f:void 0})})))),window.addEventListener("popstate",(()=>{n||r((()=>o()))})),n=!1}),0)}},Y=(e={})=>{var n;const r=e.key||(null===(n=window.history.state)||void 0===n?void 0:n.marpBespokeSyncKey)||Math.random().toString(36).slice(2),o=`bespoke-marp-sync-${r}`;var a;a={marpBespokeSyncKey:r},c({},{setter:(e,...n)=>t({...e,...a},...n)});const i=()=>{const e=f(o);return e?JSON.parse(e):Object.create(null)},s=e=>{const t=i(),n={...t,...e(t)};return u(o,JSON.stringify(n)),n},l=()=>{window.removeEventListener("pageshow",l),s((e=>({reference:(e.reference||0)+1})))};return e=>{l(),Object.defineProperty(e,"syncKey",{value:r,enumerable:!0});let t=!0;setTimeout((()=>{e.on("fragment",(e=>{t&&s((()=>({index:e.index,fragmentIndex:e.fragmentIndex})))}))}),0),window.addEventListener("storage",(n=>{if(n.key===o&&n.oldValue&&n.newValue){const r=JSON.parse(n.oldValue),o=JSON.parse(n.newValue);if(r.index!==o.index||r.fragmentIndex!==o.fragmentIndex)try{t=!1,e.slide(o.index,{fragment:o.fragmentIndex})}finally{t=!0}}}));const n=()=>{const{reference:e}=i();void 0===e||e<=1?m(o):s((()=>({reference:e-1})))};window.addEventListener("pagehide",(e=>{e.persisted&&window.addEventListener("pageshow",l),n()})),e.on("destroy",n)}},{PI:J,abs:W,sqrt:z,atan2:G}=Math,Q={passive:!0},Z=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",(({touches:e})=>{r=1===e.length?a(e[0]):void 0}),Q),o.addEventListener("touchmove",(e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=z(W(n)**2+W(o)**2),r.radian=G(n,o)}else r=void 0})),o.addEventListener("touchend",(o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+J)%(2*J)-J;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}}),Q)},ee="_tA",te=e=>{const t=document.documentTransition;if(!t)return;let n;e._tP=!1;const r=(n,{back:r,cond:o})=>a=>{const i=e.slides[e.slide()].querySelector("section[data-transition]");if(!i)return!0;const s=document.querySelector(".bespoke-marp-osc"),l=s?[s]:void 0;if(e._tP){if(a._tA){e._tP=!1;try{t.start({sharedElements:l}).catch((()=>{}))}catch(e){}return!0}}else{if(!o(a))return!0;e._tP=t.prepare({rootTransition:a.back||r?i.dataset.transitionBack:i.dataset.transition,sharedElements:l}).then((()=>n(a))).catch((()=>n(a)))}return!1};e.on("prev",r((t=>e.prev({...t,[ee]:!0})),{back:!0,cond:e=>{var t;return e.index>0&&!((null===(t=e.fragment)||void 0===t||t)&&n.fragmentIndex>0)}})),e.on("next",r((t=>e.next({...t,[ee]:!0})),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout((()=>{e.on("slide",r((t=>e.slide(t.index,{...t,[ee]:!0})),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))}),0),e.on("fragment",(e=>{n=e}))};let ne;const re=()=>(void 0===ne&&(ne="wakeLock"in navigator&&navigator.wakeLock),ne),oe=async()=>{const e=re();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},ae=async()=>{if(!re())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await oe(),e};((t=document.getElementById("p"))=>{(()=>{const t=l("view");e.dataset.bespokeView=t===r||t===n?t:""})();const a=(e=>{const t=l(e);return c({[e]:void 0}),t})("sync")||void 0;var i,d,f,u,m,g,h,y,x,b,E,I;i=t,d=((...e)=>{const t=o.findIndex((e=>s()===e));return e.map((([e,n])=>e[t]&&n)).filter((e=>e))})([[1,1,0],Y({key:a})],[[1,1,1],B(t)],[[1,1,0],L],[[1,1,1],p],[[1,0,0],k()],[[1,1,1],$],[[1,1,1],H({history:!1})],[[1,1,0],P()],[[1,1,0],w],[[1,0,0],R],[[1,1,0],Z()],[[1,0,0],S()],[[1,0,0],te],[[1,1,1],v],[[1,1,0],ae]),u=1===(i.parent||i).nodeType?i.parent||i:document.querySelector(i.parent||i),m=[].filter.call("string"==typeof i.slides?u.querySelectorAll(i.slides):i.slides||u.children,(function(e){return"SCRIPT"!==e.nodeName})),g={},h=function(e,t){return(t=t||{}).index=m.indexOf(e),t.slide=e,t},b=function(e,t){m[e]&&(f&&x("deactivate",h(f,t)),f=m[e],x("activate",h(f,t)))},E=function(e,t){var n=m.indexOf(f)+e;x(e>0?"next":"prev",h(f,t))&&b(n,t)},I={off:y=function(e,t){g[e]=(g[e]||[]).filter((function(e){return e!==t}))},on:function(e,t){return(g[e]||(g[e]=[])).push(t),y.bind(null,e,t)},fire:x=function(e,t){return(g[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},slide:function(e,t){if(!arguments.length)return m.indexOf(f);x("slide",h(m[e],t))&&b(e,t)},next:E.bind(null,1),prev:E.bind(null,-1),parent:u,slides:m,destroy:function(e){x("destroy",h(f,e)),g={}}},(d||[]).forEach((function(e){e(I)})),f||b(0)})()}();</script></body></html>

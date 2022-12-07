@@ -1,0 +1,639 @@
+<!DOCTYPE html><html lang="POSIX"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{-webkit-tap-highlight-color:transparent;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTQwIDcwSDIwVjUwbTIwIDBMMjAgNzBtNDAtNDBoMjB2MjBtLTIwIDAgMjAtMjAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTIwIDUwaDIwdjIwbS0yMCAwIDIwLTIwbTQwIDBINjBWMzBtMjAgMEw2MCA1MCIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{-webkit-animation-name:__bespoke_marp__!important;animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{bottom:0;left:0;position:absolute;right:0;top:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:rgba(0,0,0,.65);border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:transparent}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template-areas:"current next" "current note" "info    note";grid-template-columns:2fr 1fr;grid-template-rows:minmax(140px,1fr) 2fr 3em;height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:transparent;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{word-wrap:break-word;box-sizing:border-box;font-size:1.1em;height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;scrollbar-color:hsla(0,0%,93%,.5) transparent;scrollbar-width:thin;white-space:pre-wrap;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:transparent}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:hsla(0,0%,93%,.5);border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import url("https://fonts.googleapis.com/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap");div#p>svg>foreignObject>section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center}div#p>svg>foreignObject>section:after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#p>svg>foreignObject>section:not([data-marpit-pagination]):after{display:none}/* Normalization */div#p>svg>foreignObject>section h1{font-size:2em;margin:0.67em 0}div#p>svg>foreignObject>section video::-webkit-media-controls{will-change:transform}@page{size:1280px 720px;margin:0}@media print{body,html{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#p>svg>foreignObject>section{page-break-before:always;break-before:page}div#p>svg>foreignObject>section,div#p>svg>foreignObject>section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;transition:none!important}div#p>svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
+/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#p>svg>foreignObject>section .hljs{background:#000;color:#f8f8f8;display:block;overflow-x:auto;padding:.5em}div#p>svg>foreignObject>section .hljs-comment,div#p>svg>foreignObject>section .hljs-quote{color:#aeaeae;font-style:italic}div#p>svg>foreignObject>section .hljs-keyword,div#p>svg>foreignObject>section .hljs-selector-tag,div#p>svg>foreignObject>section .hljs-type{color:#e28964}div#p>svg>foreignObject>section .hljs-string{color:#65b042}div#p>svg>foreignObject>section .hljs-subst{color:#daefa3}div#p>svg>foreignObject>section .hljs-link,div#p>svg>foreignObject>section .hljs-regexp{color:#e9c062}div#p>svg>foreignObject>section .hljs-name,div#p>svg>foreignObject>section .hljs-section,div#p>svg>foreignObject>section .hljs-tag,div#p>svg>foreignObject>section .hljs-title{color:#89bdff}div#p>svg>foreignObject>section .hljs-class .hljs-title,div#p>svg>foreignObject>section .hljs-doctag{text-decoration:underline}div#p>svg>foreignObject>section .hljs-bullet,div#p>svg>foreignObject>section .hljs-number,div#p>svg>foreignObject>section .hljs-symbol{color:#3387cc}div#p>svg>foreignObject>section .hljs-params,div#p>svg>foreignObject>section .hljs-template-variable,div#p>svg>foreignObject>section .hljs-variable{color:#3e87e3}div#p>svg>foreignObject>section .hljs-attribute{color:#cda869}div#p>svg>foreignObject>section .hljs-meta{color:#8996a8}div#p>svg>foreignObject>section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#p>svg>foreignObject>section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#p>svg>foreignObject>section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#p>svg>foreignObject>section .hljs-selector-class{color:#9b703f}div#p>svg>foreignObject>section .hljs-selector-id{color:#8b98ab}div#p>svg>foreignObject>section .hljs-emphasis{font-style:italic}div#p>svg>foreignObject>section .hljs-strong{font-weight:700}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{max-height:580px}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2,div#p>svg>foreignObject>section h3,div#p>svg>foreignObject>section h4,div#p>svg>foreignObject>section h5,div#p>svg>foreignObject>section h6{margin:.5em 0 0}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{font-weight:inherit}div#p>svg>foreignObject>section h1{font-size:1.8em}div#p>svg>foreignObject>section h2{font-size:1.5em}div#p>svg>foreignObject>section h3{font-size:1.3em}div#p>svg>foreignObject>section h4{font-size:1.1em}div#p>svg>foreignObject>section h5{font-size:1em}div#p>svg>foreignObject>section h6{font-size:.9em}div#p>svg>foreignObject>section blockquote,div#p>svg>foreignObject>section p{margin:1em 0 0}div#p>svg>foreignObject>section ol>li,div#p>svg>foreignObject>section ul>li{margin:.3em 0 0}div#p>svg>foreignObject>section ol>li>p,div#p>svg>foreignObject>section ul>li>p{margin:.6em 0 0}div#p>svg>foreignObject>section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#p>svg>foreignObject>section pre{display:block;margin:1em 0 0;min-height:1em;overflow:visible}div#p>svg>foreignObject>section pre code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#p>svg>foreignObject>section pre code svg[data-marp-fitting=svg]{max-height:calc(580px - 1em)}div#p>svg>foreignObject>section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#p>svg>foreignObject>section blockquote:after,div#p>svg>foreignObject>section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#p>svg>foreignObject>section blockquote:before{left:0;top:0}div#p>svg>foreignObject>section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#p>svg>foreignObject>section blockquote>:first-child{margin-top:0}div#p>svg>foreignObject>section mark{background:transparent}div#p>svg>foreignObject>section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header,div#p>svg>foreignObject>section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#p>svg>foreignObject>section:after{--marpit-root-font-size:66%}div#p>svg>foreignObject>section header{top:0}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header{left:0;right:0}div#p>svg>foreignObject>section footer{bottom:0}div#p>svg>foreignObject>section{word-wrap:break-word;--color-background:#fff8e1;--color-background-stripe:rgba(69,90,100,.1);--color-foreground:#455a64;--color-dimmed:#6a7a7d;--color-highlight:#0288d1;background-color:var(--color-background);background-image:linear-gradient(135deg,hsla(0,0%,53%,0),hsla(0,0%,53%,.02) 50%,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.05));color:var(--color-foreground);font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;padding:70px;width:1280px}div#p>svg>foreignObject>section{--marpit-root-font-size:35px}div#p>svg>foreignObject>section:after{bottom:0;font-size:80%;right:0}div#p>svg>foreignObject>section:after{--marpit-root-font-size:80%}div#p>svg>foreignObject>section a,div#p>svg>foreignObject>section mark{color:var(--color-highlight)}div#p>svg>foreignObject>section code{background:var(--color-dimmed);color:var(--color-background)}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{color:var(--color-highlight)}div#p>svg>foreignObject>section pre>code{background:var(--color-foreground)}div#p>svg>foreignObject>section blockquote:after,div#p>svg>foreignObject>section blockquote:before,div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header,div#p>svg>foreignObject>section section:after{color:var(--color-dimmed)}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border-color:var(--color-foreground)}div#p>svg>foreignObject>section table thead th{background:var(--color-foreground);color:var(--color-background)}div#p>svg>foreignObject>section table tbody>tr:nth-child(odd) td,div#p>svg>foreignObject>section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe,transparent)}div#p>svg>foreignObject>section>:first-child,div#p>svg>foreignObject>section>header:first-child+*{margin-top:0}div#p>svg>foreignObject>section.invert{--color-background:#455a64;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#dad8c8;--color-highlight:#81d4fa}div#p>svg>foreignObject>section.gaia{--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa}div#p>svg>foreignObject>section.lead{display:flex;flex-flow:column nowrap;justify-content:center}div#p>svg>foreignObject>section.lead h1,div#p>svg>foreignObject>section.lead h2,div#p>svg>foreignObject>section.lead h3,div#p>svg>foreignObject>section.lead h4,div#p>svg>foreignObject>section.lead h5,div#p>svg>foreignObject>section.lead h6{text-align:center}div#p>svg>foreignObject>section.lead h1 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h2 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h3 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h4 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h5 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h6 svg[data-marp-fitting=svg]{--preserve-aspect-ratio:xMidYMid meet}div#p>svg>foreignObject>section.lead p{text-align:center}div#p>svg>foreignObject>section.lead blockquote>h1,div#p>svg>foreignObject>section.lead blockquote>h2,div#p>svg>foreignObject>section.lead blockquote>h3,div#p>svg>foreignObject>section.lead blockquote>h4,div#p>svg>foreignObject>section.lead blockquote>h5,div#p>svg>foreignObject>section.lead blockquote>h6,div#p>svg>foreignObject>section.lead blockquote>p{text-align:left}div#p>svg>foreignObject>section.lead blockquote svg[data-marp-fitting=svg]:not([data-marp-fitting-math]){--preserve-aspect-ratio:xMinYMin meet}div#p>svg>foreignObject>section.lead ol>li>p,div#p>svg>foreignObject>section.lead ul>li>p{text-align:left}div#p>svg>foreignObject>section.lead table{margin-left:auto;margin-right:auto}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#p>svg>foreignObject>section[data-marpit-advanced-background=content],div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id="p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-background-color="white" data-class="lead" data-theme="gaia" class="lead" style="--background-color:white;--class:lead;--theme:gaia;background-color:white;background-image:none;">
+<h1>第十一讲 线程与协程</h1>
+<h2>第三节 支持线程/协程的OS(TCOS)</h2>
+<br />
+<br />
+<p>向勇 陈渝 李国良</p>
+<p>2022年秋季</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="2" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/thread-coroutine-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="35%" height="720"><section id="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="2" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>实践：TCOS</h3>
+<ul>
+<li><strong>进化目标</strong></li>
+<li>总体思路</li>
+<li>历史背景</li>
+<li>实践步骤</li>
+<li>软件架构</li>
+<li>相关硬件</li>
+<li>程序设计</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="2" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="3" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>实践：TCOS -- 以往目标</h3>
+<p>提高性能、简化开发、加强安全、支持数据持久保存、支持应用的灵活性，支持进程间交互</p>
+<ul>
+<li>IPC OS：进程间交互</li>
+<li>Filesystem OS：支持数据持久保存</li>
+<li>Process OS: 增强进程管理和资源管理</li>
+<li>Address Space OS: 隔离APP访问的内存地址空间</li>
+<li>multiprog &amp; time-sharing OS: 让APP共享CPU资源</li>
+<li>BatchOS: 让APP与OS隔离，加强系统安全，提高执行效率</li>
+<li>LibOS: 让APP与HW隔离，简化应用访问硬件的难度和复杂性</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>实践：TCOS -- 进化目标</h3>
+<p>提高执行效率，支持线程和协程</p>
+<ul>
+<li>在进程内实现多个控制流（线程/协程）的执行</li>
+<li>在用户态或内核态管理多个控制流（线程/协程）</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/dakotaraptor.png&quot;);background-size:80%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="5" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>实践：TCOS</h3>
+<h3>同学的进化目标</h3>
+<ul>
+<li>理解基于任务（Task）的进程/线程/协程抽象</li>
+<li>理解进程/线程/协程的实现与运行机制</li>
+<li>会写支持线程/协程的OS</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:70%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/task-abstracts.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="30%" height="720"><section id="6" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:70%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>实践：TCOS</h3>
+<ul>
+<li>进化目标</li>
+<li><strong>总体思路</strong>
+<ul>
+<li><strong>用户态管理的用户线程</strong></li>
+</ul>
+</li>
+<li>历史背景</li>
+<li>实践步骤</li>
+<li>软件架构</li>
+<li>程序设计</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/task-abstracts.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="35%" height="720"><section id="7" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>总体思路</h3>
+<ul>
+<li>如何管理协程/线程/进程？
+<ul>
+<li>任务上下文</li>
+<li><strong>用户态管理</strong></li>
+<li>内核态管理<br />
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/thread-coroutine-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="35%" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>总体思路</h3>
+<ul>
+<li>如何管理协程/线程/进程？
+<ul>
+<li>任务上下文</li>
+<li><strong>用户态管理</strong></li>
+<li>内核态管理<br />
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/task-abstracts.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720"><section id="9" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>总体思路</h3>
+<p><strong>用户态管理的用户线程</strong></p>
+<ul>
+<li>用户态管理线程的任务控制块
+<ul>
+<li>与 Lec4中的任务控制块类似</li>
+<li>由用户态的Runtime管理</li>
+</ul>
+</li>
+<li>任务控制块</li>
+</ul>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>struct Task {
+    id: usize,
+    stack: Vec&lt;u8&gt;,
+    ctx: TaskContext,
+    state: State,
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="10" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>实践步骤</h3>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
+cd rCore-Tutorial-v3
+git checkout ch8
+</span></span></foreignObject></svg></code></pre>
+<p>包含一个应用程序</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>user/src/bin/
+├──  stackful_coroutine.rs
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="11" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>实践步骤</h3>
+<p>执行这个应用程序</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>Rust user shell
+&gt;&gt; stackful_coroutine
+stackful_coroutine begin...
+TASK  0(Runtime) STARTING
+TASK  1 STARTING
+task: 1 counter: 0
+TASK 2 STARTING
+task: 2 counter: 0
+TASK 3 STARTING
+task: 3 counter: 0
+TASK 4 STARTING
+task: 4 counter: 0
+...
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="12" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p>简单的用户态管理多线程应用 <code>stackful_coroutine.rs</code></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>()  {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> runtime = Runtime::new(); <span class="hljs-comment">//创建线程管理子系统</span>
+    runtime.init();  <span class="hljs-comment">// 初始化线程管理子系统</span>
+    runtime.spawn(|| {  <span class="hljs-comment">//创建一个用户态线程</span>
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;TASK  1 STARTING&quot;</span>);
+        <span class="hljs-keyword">let</span> id = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">0</span>..<span class="hljs-number">4</span> {
+            <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;task: {} counter: {}&quot;</span>, id, i);
+            yield_task();  <span class="hljs-comment">//主动让出处理器</span>
+        }
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;TASK 1 FINISHED&quot;</span>);
+    }); <span class="hljs-comment">//... 继续创建第2~4个用户态线程</span>
+    runtime.run(); <span class="hljs-comment">//调度执行各个线程</span>
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p>用户态管理的线程结构与执行状态</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Task</span></span> { <span class="hljs-comment">//线程控制块</span>
+    id: <span class="hljs-built_in">usize</span>,
+    stack: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">u8</span>&gt;,
+    ctx: TaskContext,
+    state: State,
+}
+</span></span></foreignObject></svg></code></pre>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TaskContext</span></span> { <span class="hljs-comment">//线程上下文</span>
+    x1: <span class="hljs-built_in">u64</span>,  <span class="hljs-comment">//ra: return addres </span>
+    x2: <span class="hljs-built_in">u64</span>,  <span class="hljs-comment">//sp</span>
+    ...,  <span class="hljs-comment">//s[0..11] 寄存器</span>
+    nx1: <span class="hljs-built_in">u64</span>, <span class="hljs-comment">//new return addres</span>
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p>用户态管理的线程结构与执行状态</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Task</span></span> { <span class="hljs-comment">//线程控制块</span>
+    id: <span class="hljs-built_in">usize</span>,
+    stack: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">u8</span>&gt;,
+    ctx: TaskContext,
+    state: State,
+}
+</span></span></foreignObject></svg></code></pre>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">State</span></span> { <span class="hljs-comment">//线程状态</span>
+    Available,
+    Running,
+    Ready,
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态线程管理运行时初始化</strong><br />
+Runtime::new() 主要有三个步骤：</p>
+<ul>
+<li>
+<ol>
+<li>设置主线程：初始化应用主线程控制块（TID为 0 ），并设置其状态为 Running；</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>设置调度队列：初始化线程控制块向量(线程调度队列)，加入应用主线程控制块和空闲线程控制块，为后续的线程运行做好准备；</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>设置当前运行线程id：设置Runtime 结构变量中的 current 值为0， 表示当前正在运行的线程是应用主线程。</li>
+</ol>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="16" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态线程管理运行时初始化</strong><br />
+Runtime::init() 的主要工作是把Rutime结构变量的地址赋值给全局可变变量<code>RUNTIME</code>。这样在多线程应用在后续执行中会根据<code>RUNTIME</code>找到Runtime结构变量。</p>
+<p>在应用的 main() 函数中，首先会依次调用上述两个函数（new和init），完成线程管理运行时的初始化过程。这样正在运行的TID为 0 的主线程就可代表线程运行时进行后续创建线程等一系列工作。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="17" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态管理的线程创建</strong></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">spawn</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, f: <span class="hljs-function"><span class="hljs-keyword">fn</span></span>()) { <span class="hljs-comment">// f函数是线程入口</span>
+        <span class="hljs-keyword">let</span> available = <span class="hljs-keyword">self</span>  
+            .tasks.iter_mut()  <span class="hljs-comment">//遍历队列中的任务</span>
+            .find(|t| t.state == State::Available) <span class="hljs-comment">//查找可用的任务</span>
+            .expect(<span class="hljs-string">&quot;no available task.&quot;</span>);
+        <span class="hljs-keyword">let</span> size = available.stack.len();
+        <span class="hljs-keyword">unsafe</span> {
+            <span class="hljs-keyword">let</span> s_ptr = available.stack.as_mut_ptr().offset(size <span class="hljs-keyword">as</span> <span class="hljs-built_in">isize</span>);
+            <span class="hljs-keyword">let</span> s_ptr = (s_ptr <span class="hljs-keyword">as</span> <span class="hljs-built_in">usize</span> &amp; !<span class="hljs-number">7</span>) <span class="hljs-keyword">as</span> *<span class="hljs-keyword">mut</span> <span class="hljs-built_in">u8</span>; <span class="hljs-comment">// 栈按8字节对齐</span>
+            available.ctx.x1 = guard <span class="hljs-keyword">as</span> <span class="hljs-built_in">u64</span>;  <span class="hljs-comment">//ctx.x1  is old return address</span>
+            available.ctx.nx1 = f <span class="hljs-keyword">as</span> <span class="hljs-built_in">u64</span>;     <span class="hljs-comment">//ctx.nx2 is new return address</span>
+            available.ctx.x2 = s_ptr.offset(-<span class="hljs-number">32</span>) <span class="hljs-keyword">as</span> <span class="hljs-built_in">u64</span>; <span class="hljs-comment">//cxt.x2 is sp</span>
+        }
+        available.state = State::Ready; <span class="hljs-comment">//设置任务为就绪态</span>
+    }
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="18" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态管理的线程创建</strong></p>
+<ul>
+<li>在线程向量中查找一个状态为 Available 的空闲线程控制块</li>
+<li>初始化该空闲线程的线程控制块的线程上下文
+<ul>
+<li><code>x1</code>寄存器：老的返回地址 -- <code>guard</code>函数地址</li>
+<li><code>nx1</code>寄存器：新的返回地址 -- 输入参数 <code>f</code> 函数地址</li>
+<li><code>x2</code> 寄存器：新的栈地址 --  available.stack+size</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="19" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">guard</span></span>() {
+    <span class="hljs-keyword">unsafe</span> {
+        <span class="hljs-keyword">let</span> rt_ptr = RUNTIME <span class="hljs-keyword">as</span> *<span class="hljs-keyword">mut</span> Runtime;
+        (*rt_ptr).t_return();
+    };
+}
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">t_return</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) {
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">self</span>.current != <span class="hljs-number">0</span> {
+        <span class="hljs-keyword">self</span>.tasks[<span class="hljs-keyword">self</span>.current].state = State::Available;
+        <span class="hljs-keyword">self</span>.t_yield();
+    }
+}
+</span></span></foreignObject></svg></code></pre>
+<p><code>guard</code>函数意味着我们传入的<code>f</code>函数（线程的主体）已经返回，这意味着我们的线程已完成运行其任务，因此我们取消引用我们的运行时并调用t_return()。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态管理的线程切换</strong><br />
+当应用要切换线程时，会调用 yield_task 函数，通过 runtime.t_yield 函数来完成具体的切换过程。runtime.t_yield 这个函数主要完成的功能：</p>
+<ul>
+<li>在线程向量中查找一个状态为 Ready 的线程控制块</li>
+<li>把当前运行的线程的状态改为<code>Ready</code>，把新就绪线程的状态改为<code>Running</code>，把 runtime 的 current 设置为新就绪线程控制块的id</li>
+<li>调用函数 switch ，完成两个线程的栈和上下文的切换；</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="21" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态管理的线程切换</strong></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">t_yield</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>) -&gt; <span class="hljs-built_in">bool</span> {
+        ...
+    <span class="hljs-keyword">self</span>.tasks[pos].state = State::Running;
+    <span class="hljs-keyword">let</span> old_pos = <span class="hljs-keyword">self</span>.current;
+    <span class="hljs-keyword">self</span>.current = pos;
+
+    <span class="hljs-keyword">unsafe</span> {
+        switch(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>.tasks[old_pos].ctx, &amp;<span class="hljs-keyword">self</span>.tasks[pos].ctx);
+    }
+    ...
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态管理的线程切换</strong><br />
+switch 主要完成的工作：</p>
+<ul>
+<li>完成当前指令指针(PC)的切换；</li>
+<li>完成栈指针的切换；</li>
+<li>完成通用寄存器集合的切换；</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="23" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态管理的线程切换</strong><br />
+switch 主要完成的工作：</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>unsafe fn switch(old: *mut TaskContext, new: *const TaskContext)  {
+    // a0: _old, a1: _new
+    asm!(&quot;
+        sd x1, 0x00(a0)
+        ...
+        sd x1, 0x70(a0)
+        ld x1, 0x00(a1)
+        ...
+        ld t0, 0x70(a1)
+        jr t0
+    ...
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p><strong>用户态管理的线程执行&amp;调度</strong></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>    <span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">run</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>){
+        <span class="hljs-keyword">while</span> <span class="hljs-keyword">self</span>.t_yield() {} 
+       <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;All tasks finished!&quot;</span>);
+    }
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:70%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/task-abstracts.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="30%" height="720"><section id="25" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:70%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>实践：TCOS</h3>
+<ul>
+<li>进化目标</li>
+<li><strong>总体思路</strong>
+<ul>
+<li><strong>内核态管理的用户线程</strong></li>
+</ul>
+</li>
+<li>历史背景</li>
+<li>实践步骤</li>
+<li>软件架构</li>
+<li>程序设计</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/task-abstracts.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="35%" height="720"><section id="26" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>总体思路</h3>
+<ul>
+<li>如何管理协程/线程/进程？
+<ul>
+<li>任务上下文</li>
+<li>用户态管理</li>
+<li><strong>内核态管理</strong></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/thread-coroutine-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="35%" height="720"><section id="27" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>总体思路</h3>
+<ul>
+<li>如何管理协程/线程/进程？
+<ul>
+<li>任务上下文</li>
+<li>用户态管理</li>
+<li><strong>内核态管理</strong><br />
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="28" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/task-abstracts.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720"><section id="28" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="28" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>总体思路</h3>
+<p><strong>内核态管理的用户线程</strong></p>
+<ul>
+<li>内核态管理的用户线程的任务控制块
+<ul>
+<li>与 Lec7中的任务控制块类似</li>
+<li>重构：进程中有多个代表线程的任务控制块</li>
+</ul>
+</li>
+</ul>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>pub struct ProcessControlBlockInner {
+    pub tasks: Vec&lt;Option&lt;Arc&lt;TaskControlBlock&gt;&gt;&gt;,
+    ...
+}  
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="28" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>实践步骤</h3>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
+cd rCore-Tutorial-v3
+git checkout ch8
+</span></span></foreignObject></svg></code></pre>
+<p>包含几个与内核态管理的用户线程相关的应用程序</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>user/src/bin/
+├──  threads.rs
+├──  threads_arg.rs
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="30" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>实践步骤</h3>
+<p>执行threads_arg这个应用程序</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>Rust user shell
+&gt;&gt; threads_arg
+aaa...bbb...ccc...aaa...bbb...ccc...
+thread#1 exited with code 1
+thread#2 exited with code 2
+ccc...thread#3 exited with code 3
+main thread exited.
+...
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="31" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计</h3>
+<p>简单的内核态管理多线程应用 <code>threads_arg.rs</code></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">thread_print</span></span>(arg: *<span class="hljs-keyword">const</span> Argument) -&gt; ! { <span class="hljs-comment">//线程的函数主体</span>
+    ...
+    exit(arg.rc)
+}
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() -&gt; <span class="hljs-built_in">i32</span> {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> v = <span class="hljs-built_in">Vec</span>::new();
+    <span class="hljs-keyword">for</span> arg <span class="hljs-keyword">in</span> args.iter() {
+        v.push(thread_create( thread_print, arg ));  <span class="hljs-comment">//创建线程</span>
+    ...
+    <span class="hljs-keyword">for</span> tid <span class="hljs-keyword">in</span> v.iter() {
+        <span class="hljs-keyword">let</span> exit_code = waittid(*tid <span class="hljs-keyword">as</span> <span class="hljs-built_in">usize</span>); <span class="hljs-comment">//等待线程结束</span>
+    ...
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 系统调用</h3>
+<p>在一个进程的运行过程中，进程可以创建多个属于这个进程的线程，每个线程有自己的线程标识符（TID，Thread Identifier）。系统调用 thread_create 的原型如下：</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">/// 功能：当前进程创建一个新的线程</span>
+<span class="hljs-comment">/// 参数：entry 表示线程的入口函数地址</span>
+<span class="hljs-comment">/// 参数：arg：表示线程的一个参数</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sys_thread_create</span></span>(entry: <span class="hljs-built_in">usize</span>, arg: <span class="hljs-built_in">usize</span>) -&gt; <span class="hljs-built_in">isize</span>
+</span></span></foreignObject></svg></code></pre>
+<ul>
+<li>创建线程不需要建立新的地址空间</li>
+<li>属于同一进程中的线程之间没有父子关系</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 系统调用</h3>
+<p>当一个线程执行完代表它的功能后，会通过 exit 系统调用退出。需要通过该线程需要进程/主线程调用 waittid 来回收其资源，这样整个线程才能被彻底销毁。系统调用 waittid 的原型如下：</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">/// 参数：tid表示线程id</span>
+<span class="hljs-comment">/// 返回值：如果线程不存在，返回-1；如果线程还没退出，返回-2；其他情况下，返回结束线程的退出码</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sys_waittid</span></span>(tid: <span class="hljs-built_in">usize</span>) -&gt; <span class="hljs-built_in">i32</span>
+</span></span></foreignObject></svg></code></pre>
+<ul>
+<li>进程/主线程要负责通过 waittid 来等待它创建出来的线程（不是主线程）结束并回收它们在内核中的资源</li>
+<li>如果进程/主线程先调用了 exit 系统调用来退出，那么整个进程（包括所属的所有线程）都会退出</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="34" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 系统调用</h3>
+<p>在引入了线程机制后，进程相关的重要系统调用：fork 、 exec 、 waitpid 虽然在接口上没有变化，但在它要完成的功能上需要有一定的扩展。</p>
+<ul>
+<li>把以前进程中与处理器执行相关的部分拆分到线程中</li>
+<li>通过 fork 创建进程其实也意味着要单独建立一个主线程来使用处理器，并为以后创建新的线程建立相应的线程控制块向量</li>
+<li>相对而言， exec 和 waitpid 这两个系统调用要做的改动比较小，还是按照与之前进程的处理方式来进行</li>
+<li>总体上看，进程相关的这三个系统调用还是保持了已有的进程操作的语义，并没有由于引入了线程，而带来大的变化</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 系统调用</h3>
+<p>问题：“被fork的子进程是否要复制父进程的多个线程？”</p>
+<p>选择A：要复制多个线程；选择B：不复制，只复制当前执行fork的这个线程；选择C：不支持多线程进程执行fork这种情况</p>
+<p>目前的rcore tutorial ，选择了C，简化了应用的使用场景，即在使用fork和create_thread（以及基于线程的信号量，条件变量等）是不会同时出现的。所以如果有fork，假定是这个应用是单线程的进程，所以只拷贝了这个单线程的结构。这种简化设计虽然是一种鸵鸟做法，但也避免了一些允许fork和create_thread共存而导致的比较复杂的情况：...</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="36" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 系统调用</h3>
+<p>问题：“被fork的子进程是否要复制父进程的多个线程？”</p>
+<p>比如：</p>
+<p>在fork前，有三个线程Main thread， thread A, thread B, 且Thread A拿到一个lock，在临界区中执行；Thread B正在写一个文件。如果Main thread执行fork，如采用A选择，会出现子进程的Thread B和 父进程的Thread B都在写一个文件的情况。如采用B选择，则子进程中只有Main Thread，当它想得到ThreadA的那个lock时，这个lock是得不到的（因为ThreadA 在子进程中不存在，没法释放锁），会陷入到持续忙等中。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="37" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 核心数据结构</h3>
+<p>为了在现有进程管理的基础上实现线程管理，需要改进一些数据结构包含的内容及接口。基本思路就是把进程中与处理器相关的部分分拆出来，形成线程相关的部分：</p>
+<ul>
+<li>任务控制块 TaskControlBlock ：表示线程的核心数据结构</li>
+<li>任务管理器 TaskManager ：管理线程集合的核心数据结构</li>
+<li>处理器管理结构 Processor ：用于线程调度，维护线程的处理器状态</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="38" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 核心数据结构</h3>
+<p>线程控制块</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TaskControlBlock</span></span> {
+    <span class="hljs-keyword">pub</span> process: Weak&lt;ProcessControlBlock&gt;, <span class="hljs-comment">//线程所属的进程控制块</span>
+    <span class="hljs-keyword">pub</span> kstack: KernelStack,<span class="hljs-comment">//任务（线程）的内核栈</span>
+    inner: UPSafeCell&lt;TaskControlBlockInner&gt;,
+}
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TaskControlBlockInner</span></span> {
+    <span class="hljs-keyword">pub</span> res: <span class="hljs-built_in">Option</span>&lt;TaskUserRes&gt;,  <span class="hljs-comment">//任务（线程）用户态资源</span>
+    <span class="hljs-keyword">pub</span> trap_cx_ppn: PhysPageNum,<span class="hljs-comment">//trap上下文地址</span>
+    <span class="hljs-keyword">pub</span> task_cx: TaskContext,<span class="hljs-comment">//任务（线程）上下文</span>
+    <span class="hljs-keyword">pub</span> task_status: TaskStatus,<span class="hljs-comment">//任务（线程）状态</span>
+    <span class="hljs-keyword">pub</span> exit_code: <span class="hljs-built_in">Option</span>&lt;<span class="hljs-built_in">i32</span>&gt;,<span class="hljs-comment">//任务（线程）退出码</span>
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="39" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 核心数据结构</h3>
+<p>进程控制块</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ProcessControlBlock</span></span> {
+    <span class="hljs-keyword">pub</span> pid: PidHandle,
+    inner: UPSafeCell&lt;ProcessControlBlockInner&gt;,
+}
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ProcessControlBlockInner</span></span> {
+    <span class="hljs-keyword">pub</span> tasks: <span class="hljs-built_in">Vec</span>&lt;<span class="hljs-built_in">Option</span>&lt;Arc&lt;TaskControlBlock&gt;&gt;&gt;,
+    <span class="hljs-keyword">pub</span> task_res_allocator: RecycleAllocator,
+    ...
+}
+</span></span></foreignObject></svg></code></pre>
+<p>RecycleAllocator是PidAllocator的升级版，即一个相对通用的资源分配器，可用于分配进程标识符（PID）和线程的内核栈（KernelStack）。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="40" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 管理机制</h3>
+<p>线程创建<br />
+当一个进程执行中发出系统调用 sys_thread_create 后，操作系统就需要在当前进程的基础上创建一个线程，即在线程控制块中初始化各个成员变量，建立好进程和线程的关系等，关键要素包括：</p>
+<ul>
+<li>线程的用户态栈：确保在用户态的线程能正常执行函数调用</li>
+<li>线程的内核态栈：确保线程陷入内核后能正常执行函数调用</li>
+<li>线程的跳板页：确保线程能正确的进行用户态&lt;–&gt;内核态切换</li>
+<li>线程上下文：即线程用到的寄存器信息，用于线程切换</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 管理机制</h3>
+<p>线程创建</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sys_thread_create</span></span>(entry: <span class="hljs-built_in">usize</span>, arg: <span class="hljs-built_in">usize</span>) -&gt; <span class="hljs-built_in">isize</span> {
+    <span class="hljs-comment">// create a new thread</span>
+    <span class="hljs-keyword">let</span> new_task = Arc::new(TaskControlBlock::new(...
+    <span class="hljs-comment">// add new task to scheduler</span>
+    add_task(Arc::clone(&amp;new_task));
+    <span class="hljs-comment">// add new thread to current process</span>
+    <span class="hljs-keyword">let</span> tasks = &amp;<span class="hljs-keyword">mut</span> process_inner.tasks;
+    tasks[new_task_tid] = <span class="hljs-literal">Some</span>(Arc::clone(&amp;new_task));
+    *new_task_trap_cx = TrapContext::app_init_context( <span class="hljs-comment">//建立trap/task上下文</span>
+        entry,
+        new_task_res.ustack_top(),
+        kernel_token(),
+    ... 
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="42" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 管理机制</h3>
+<p>线程退出</p>
+<ul>
+<li>当一个非主线程的其他线程发出 sys_exit 系统调用时，内核会调用 exit_current_and_run_next 函数退出当前线程并切换到下一个线程，但不会导致其所属进程的退出。</li>
+<li>当主线程 即进程发出这个系统调用，当内核收到这个系统调用后，会回收整个进程（这包括了其管理的所有线程）资源，并退出。</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="43" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 管理机制</h3>
+<p>线程退出</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sys_exit</span></span>(exit_code: <span class="hljs-built_in">i32</span>) -&gt; ! {
+    exit_current_and_run_next(exit_code); ...
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">exit_current_and_run_next</span></span>(exit_code: <span class="hljs-built_in">i32</span>) { 
+    <span class="hljs-keyword">let</span> task = take_current_task().unwrap();
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> task_inner = task.inner_exclusive_access();   
+    <span class="hljs-built_in">drop</span>(task_inner); <span class="hljs-comment">//释放线程资源</span>
+    <span class="hljs-built_in">drop</span>(task);  <span class="hljs-comment">//释放线程控制块</span>
+     <span class="hljs-keyword">if</span> tid == <span class="hljs-number">0</span> {
+        <span class="hljs-comment">// 释放当前进程的所有线程资源</span>
+        <span class="hljs-comment">// 释放当前进程的资源</span>
+...
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="44" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 管理机制</h3>
+<p>等待线程结束</p>
+<ul>
+<li>如果找到 tid 对应的线程，则尝试收集该线程的退出码 exit_tid ，否则返回错误（退出线程不存在）。</li>
+<li>如果退出码存在(意味该线程确实退出了)，则清空进程中对应此线程的线程控制块（至此，线程所占资源算是全部清空了），否则返回错误（线程还没退出）。</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="45" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 管理机制</h3>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sys_waittid</span></span>(tid: <span class="hljs-built_in">usize</span>) -&gt; <span class="hljs-built_in">i32</span> {
+    ...
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(waited_task) = waited_task {
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(waited_exit_code) = waited_task.....exit_code {
+            exit_code = <span class="hljs-literal">Some</span>(waited_exit_code);
+        }
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>; <span class="hljs-comment">// waited thread does not exist</span>
+    }
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(exit_code) = exit_code {
+        process_inner.tasks[tid] = <span class="hljs-literal">None</span>; <span class="hljs-comment">//dealloc the exited thread</span>
+        exit_code
+    } <span class="hljs-keyword">else</span> {
+        -<span class="hljs-number">2</span> <span class="hljs-comment">// waited thread has not exited</span>
+    }
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="46" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>程序设计 -- 管理机制</h3>
+<p>线程执行中的特权级切换和调度切换</p>
+<ul>
+<li>线程执行中的特权级切换与第四讲中介绍的任务切换的设计与实现是一致的</li>
+<li>线程执行中的调度切换过程与第七讲中介绍的进程调度机制是一致的</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/dakotaraptor.png&quot;);background-size:70%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="47" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="47" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>小结</h3>
+<ul>
+<li>用户态管理的用户线程</li>
+<li>内核态管理的用户线程</li>
+<li>能写达科塔盗龙OS</li>
+</ul>
+</section>
+<script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:f}=t.children;for(let r=0;r<f;r+=1){const o=t.children[r];if(o.getScreenCTM){const t=o.getScreenCTM();if(t){const r=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,a=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.children.length;for(let e=0;e<l;e+=1){const n=o.children[e];if("SECTION"===n.tagName){const{style:e}=n;e.transformOrigin||(e.transformOrigin=`${-r}px ${-a}px`),e.transform=`scale(${c}) matrix(${t.a}, ${t.b}, ${t.c}, ${t.d}, ${t.e-d.left}, ${t.f-d.top}) translateZ(0.0001px)`;break}}}}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),f=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",f)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
+</script></foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="47" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg></div><div class="bespoke-marp-note" data-index="0" tabindex="0"><p>https://blog.aloni.org/posts/a-stack-less-rust-coroutine-100-loc/
+
+https://stanford-cs242.github.io/f17/assets/projects/2017/kedero.pdf
+
+
+https://cfsamson.gitbook.io/green-threads-explained-in-200-lines-of-rust/
+
+
+https://tian-deng.github.io/posts/translation/rust/green_threads_explained_in_200_lines_of_rust/</p></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>达科塔盗龙Dakotaraptor是一种生存于距今6700万-6500万年前白垩纪晚期的兽脚类驰龙科恐龙，它主打的并不是霸王龙的力量路线，而是利用自己修 长的后肢来提高敏捷度和奔跑速度。它全身几乎都长满了羽毛，可能会滑翔或者其他接近飞行行为的行动模式。</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@1.4.0/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";const e=document.body,t=(...e)=>history.replaceState(...e),n="presenter",r="next",o=["",n,r],a="data-bespoke-marp-",i=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},s=()=>e.dataset.bespokeView,l=e=>new URLSearchParams(location.search).get(e),c=(e,n={})=>{var r;const o={location,setter:t,...n},a=new URLSearchParams(o.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?a.set(t,n):a.delete(t)}try{o.setter({...null!==(r=window.history.state)&&void 0!==r?r:{}},"",i(a,o.location))}catch(e){console.error(e)}},d=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch(e){return!1}})(),f=e=>{try{return localStorage.getItem(e)}catch(e){return null}},u=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch(e){return!1}},m=e=>{try{return localStorage.removeItem(e),!0}catch(e){return!1}},g=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},p=e=>{e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach((e=>e.classList.add("bespoke-marp-slide"))),e.on("activate",(t=>{const n="bespoke-marp-active",r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach((e=>{e.classList.remove(n),g(e,!0)})),o.add(n),g(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}}))},v=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map((e=>[null,...e.querySelectorAll("[data-marpit-fragment]")]))});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach(((e,t)=>{e.forEach(((e,n)=>{if(null==e)return;const i=t<r||t===r&&n<=o;e.setAttribute(`${a}fragment`,(i?"":"in")+"active");const s=`${a}current-fragment`;t===r&&n===o?e.setAttribute(s,"current"):e.removeAttribute(s)}))})),e.fragmentIndex=o;const i={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",i)};e.on("next",(({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}})),e.on("prev",(({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)})),e.on("slide",(({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)})),o(0,0)},h=document,y=()=>!(!h.fullscreenEnabled&&!h.webkitFullscreenEnabled),x=()=>!(!h.fullscreenElement&&!h.webkitFullscreenElement),w=e=>{e.fullscreen=()=>{y()&&(async()=>{return x()?null===(e=h.exitFullscreen||h.webkitExitFullscreen)||void 0===e?void 0:e.call(h):((e=h.body)=>{var t;return null===(t=e.requestFullscreen||e.webkitRequestFullscreen)||void 0===t?void 0:t.call(e)})();var e})()},document.addEventListener("keydown",(t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!y()||(e.fullscreen(),t.preventDefault())}))},b="bespoke-marp-inactive",k=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout((()=>{r.add(b),o()}),e),r.contains(b)&&(r.remove(b),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},E=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],L=e=>{e.parent.addEventListener("keydown",(e=>{if(!e.target)return;const t=e.target;(E.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()}))},$=e=>{window.addEventListener("load",(()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute(`${a}load`,e)}}))},P=({interval:e=250}={})=>t=>{document.addEventListener("keydown",(e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()}));let n,r,o=0;t.parent.addEventListener("wheel",(a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),(null==e?void 0:e.parentElement)&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const l=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<12)return;r&&clearTimeout(r),r=setTimeout((()=>{n=0}),e);const c=Date.now()-o<e,d=l<=n;if(n=l,c||d)return;let f;(a.deltaX>0||a.deltaY>0)&&(f="next"),(a.deltaX<0||a.deltaY<0)&&(f="prev"),f&&(t[f](),o=Date.now())}))},S=(e=".bespoke-marp-osc")=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${a}osc=${JSON.stringify(e)}]`).forEach(n)};return y()||n("fullscreen",(e=>e.style.display="none")),d||n("presenter",(e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."})),e=>{t.addEventListener("click",(t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?null==e||e.fullscreen():"presenter"===n&&e.openPresenterView()}})),e.parent.appendChild(t),e.on("activate",(({index:t})=>{n("page",(n=>n.textContent=`Page ${t+1} of ${e.slides.length}`))})),e.on("fragment",(({index:t,fragments:r,fragmentIndex:o})=>{n("prev",(e=>e.disabled=0===t&&0===o)),n("next",(n=>n.disabled=t===e.slides.length-1&&o===r.length-1))})),e.on("marp-active",(()=>g(t,!1))),e.on("marp-inactive",(()=>g(t,!0))),y()&&(e=>{for(const t of["","webkit"])h.addEventListener(t+"fullscreenchange",e)})((()=>n("fullscreen",(e=>e.classList.toggle("exit",y()&&x())))))}},I=e=>{window.addEventListener("message",(t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}}))};var T=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"];let A=e=>String(e).replace(/[&<>"']/g,(e=>`&${C[e]};`)),C={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},N="dangerouslySetInnerHTML",K={className:"class",htmlFor:"for"},O={};function D(e,t){let n=[],r="";t=t||{};for(let e=arguments.length;e-- >2;)n.push(arguments[e]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(let e in t)!1!==t[e]&&null!=t[e]&&e!==N&&(r+=` ${K[e]?K[e]:A(e)}="${A(t[e])}"`);r+=">"}if(-1===T.indexOf(e)){if(t[N])r+=t[N].__html;else for(;n.length;){let e=n.pop();if(e)if(e.pop)for(let t=e.length;t--;)n.push(e[t]);else r+=!0===O[e]?e:A(e)}r+=e?`</${e}>`:""}return O[r]=!0,r}const M=({children:e})=>D(null,null,...e),q="bespoke-marp-presenter-",_={container:`${q}container`,next:`${q}next`,nextContainer:`${q}next-container`,noteContainer:`${q}note-container`,infoContainer:`${q}info-container`,infoPage:`${q}info-page`,infoPageText:`${q}info-page-text`,infoPagePrev:`${q}info-page-prev`,infoPageNext:`${q}info-page-next`,infoTime:`${q}info-time`,infoTimer:`${q}info-timer`},U=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=_.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",D(M,null,D("div",{class:_.nextContainer},D("iframe",{class:_.next,src:"?view=next"})),D("div",{class:_.noteContainer}),D("div",{class:_.infoContainer},D("div",{class:_.infoPage},D("button",{class:_.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),D("span",{class:_.infoPageText}),D("button",{class:_.infoPageNext,tabindex:"-1",title:"Next"},"Next")),D("time",{class:_.infoTime,title:"Current time"}),D("div",{class:_.infoTimer})))),t})(e.parent)),(e=>{r(_.nextContainer).addEventListener("click",(()=>e.next()));const t=r(_.next),n=(o=t,(e,t)=>{var n;return null===(n=o.contentWindow)||void 0===n?void 0:n.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin)});var o;t.addEventListener("load",(()=>{r(_.nextContainer).classList.add("active"),n(e.slide(),e.fragmentIndex),e.on("fragment",(({index:e,fragmentIndex:t})=>n(e,t)))}));const a=document.querySelectorAll(".bespoke-marp-note");a.forEach((e=>{e.addEventListener("keydown",(e=>e.stopPropagation())),r(_.noteContainer).appendChild(e)})),e.on("activate",(()=>a.forEach((t=>t.classList.toggle("active",t.dataset.index==e.slide()))))),e.on("activate",(({index:t})=>{r(_.infoPageText).textContent=`${t+1} / ${e.slides.length}`}));const i=r(_.infoPagePrev),s=r(_.infoPageNext);i.addEventListener("click",(t=>{i.blur(),e.prev({fragment:!t.shiftKey})})),s.addEventListener("click",(t=>{s.blur(),e.next({fragment:!t.shiftKey})})),e.on("fragment",(({index:t,fragments:n,fragmentIndex:r})=>{i.disabled=0===t&&0===r,s.disabled=t===e.slides.length-1&&r===n.length-1}));const l=()=>r(_.infoTime).textContent=(new Date).toLocaleTimeString();l(),setInterval(l,250)})(e)},V=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:X},presenterUrl:{enumerable:!0,get:F}}),d&&document.addEventListener("keydown",(t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())}))};function X(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,q+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function F(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),i(e)}const B=e=>{const t=s();return t===r&&e.appendChild(document.createElement("span")),{"":V,[n]:U,[r]:I}[t]},R=e=>{e.on("activate",(t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach((n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"}))}))},j=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},H=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),l=o(0,r(n||0,a[s].length-1));s===e.slide()&&l===e.fragmentIndex||e.slide(s,{fragment:l})})((j(location.hash.slice(1))||1)-1,t.fragment?j(l("f")||""):null)};e.on("fragment",(({index:e,fragmentIndex:r})=>{n||c({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})})),setTimeout((()=>{o(),window.addEventListener("hashchange",(()=>r((()=>{o({fragment:!1}),c({f:void 0})})))),window.addEventListener("popstate",(()=>{n||r((()=>o()))})),n=!1}),0)}},Y=(e={})=>{var n;const r=e.key||(null===(n=window.history.state)||void 0===n?void 0:n.marpBespokeSyncKey)||Math.random().toString(36).slice(2),o=`bespoke-marp-sync-${r}`;var a;a={marpBespokeSyncKey:r},c({},{setter:(e,...n)=>t({...e,...a},...n)});const i=()=>{const e=f(o);return e?JSON.parse(e):Object.create(null)},s=e=>{const t=i(),n={...t,...e(t)};return u(o,JSON.stringify(n)),n},l=()=>{window.removeEventListener("pageshow",l),s((e=>({reference:(e.reference||0)+1})))};return e=>{l(),Object.defineProperty(e,"syncKey",{value:r,enumerable:!0});let t=!0;setTimeout((()=>{e.on("fragment",(e=>{t&&s((()=>({index:e.index,fragmentIndex:e.fragmentIndex})))}))}),0),window.addEventListener("storage",(n=>{if(n.key===o&&n.oldValue&&n.newValue){const r=JSON.parse(n.oldValue),o=JSON.parse(n.newValue);if(r.index!==o.index||r.fragmentIndex!==o.fragmentIndex)try{t=!1,e.slide(o.index,{fragment:o.fragmentIndex})}finally{t=!0}}}));const n=()=>{const{reference:e}=i();void 0===e||e<=1?m(o):s((()=>({reference:e-1})))};window.addEventListener("pagehide",(e=>{e.persisted&&window.addEventListener("pageshow",l),n()})),e.on("destroy",n)}},{PI:J,abs:W,sqrt:z,atan2:G}=Math,Q={passive:!0},Z=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",(({touches:e})=>{r=1===e.length?a(e[0]):void 0}),Q),o.addEventListener("touchmove",(e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=z(W(n)**2+W(o)**2),r.radian=G(n,o)}else r=void 0})),o.addEventListener("touchend",(o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+J)%(2*J)-J;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}}),Q)},ee="_tA",te=e=>{const t=document.documentTransition;if(!t)return;let n;e._tP=!1;const r=(n,{back:r,cond:o})=>a=>{const i=e.slides[e.slide()].querySelector("section[data-transition]");if(!i)return!0;const s=document.querySelector(".bespoke-marp-osc"),l=s?[s]:void 0;if(e._tP){if(a._tA){e._tP=!1;try{t.start({sharedElements:l}).catch((()=>{}))}catch(e){}return!0}}else{if(!o(a))return!0;e._tP=t.prepare({rootTransition:a.back||r?i.dataset.transitionBack:i.dataset.transition,sharedElements:l}).then((()=>n(a))).catch((()=>n(a)))}return!1};e.on("prev",r((t=>e.prev({...t,[ee]:!0})),{back:!0,cond:e=>{var t;return e.index>0&&!((null===(t=e.fragment)||void 0===t||t)&&n.fragmentIndex>0)}})),e.on("next",r((t=>e.next({...t,[ee]:!0})),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout((()=>{e.on("slide",r((t=>e.slide(t.index,{...t,[ee]:!0})),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))}),0),e.on("fragment",(e=>{n=e}))};let ne;const re=()=>(void 0===ne&&(ne="wakeLock"in navigator&&navigator.wakeLock),ne),oe=async()=>{const e=re();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},ae=async()=>{if(!re())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await oe(),e};((t=document.getElementById("p"))=>{(()=>{const t=l("view");e.dataset.bespokeView=t===r||t===n?t:""})();const a=(e=>{const t=l(e);return c({[e]:void 0}),t})("sync")||void 0;var i,d,f,u,m,g,h,y,x,b,E,I;i=t,d=((...e)=>{const t=o.findIndex((e=>s()===e));return e.map((([e,n])=>e[t]&&n)).filter((e=>e))})([[1,1,0],Y({key:a})],[[1,1,1],B(t)],[[1,1,0],L],[[1,1,1],p],[[1,0,0],k()],[[1,1,1],$],[[1,1,1],H({history:!1})],[[1,1,0],P()],[[1,1,0],w],[[1,0,0],R],[[1,1,0],Z()],[[1,0,0],S()],[[1,0,0],te],[[1,1,1],v],[[1,1,0],ae]),u=1===(i.parent||i).nodeType?i.parent||i:document.querySelector(i.parent||i),m=[].filter.call("string"==typeof i.slides?u.querySelectorAll(i.slides):i.slides||u.children,(function(e){return"SCRIPT"!==e.nodeName})),g={},h=function(e,t){return(t=t||{}).index=m.indexOf(e),t.slide=e,t},b=function(e,t){m[e]&&(f&&x("deactivate",h(f,t)),f=m[e],x("activate",h(f,t)))},E=function(e,t){var n=m.indexOf(f)+e;x(e>0?"next":"prev",h(f,t))&&b(n,t)},I={off:y=function(e,t){g[e]=(g[e]||[]).filter((function(e){return e!==t}))},on:function(e,t){return(g[e]||(g[e]=[])).push(t),y.bind(null,e,t)},fire:x=function(e,t){return(g[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},slide:function(e,t){if(!arguments.length)return m.indexOf(f);x("slide",h(m[e],t))&&b(e,t)},next:E.bind(null,1),prev:E.bind(null,-1),parent:u,slides:m,destroy:function(e){x("destroy",h(f,e)),g={}}},(d||[]).forEach((function(e){e(I)})),f||b(0)})()}();</script></body></html>
