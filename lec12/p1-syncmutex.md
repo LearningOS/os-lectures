@@ -505,7 +505,7 @@ flag[i] = IDLE;//结束，自己变idle
 现代CPU都提供一些特殊的原子操作指令
 ```
 do {
-  while(TestAndSet(&lock) ;
+  while(TestAndSet(&lock)） ;
   critical section; 
   lock = false;
   remainder section;
@@ -519,7 +519,7 @@ do {
 现代CPU都提供一些特殊的原子操作指令
 ```
 do {
-  while(TestAndSet(&lock) ;
+  while(TestAndSet(&lock)） ;
   critical section; 
   lock = false;
   remainder section;
