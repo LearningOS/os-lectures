@@ -196,6 +196,8 @@ Panicked at src/main.rs:46 Shutdown machine!
 8. LibOS初始化
 9. SBI调用
 
+![bg right:55% 100%](figs/lib-os-detail.png)
+
 ---
 #### LibOS代码结构
 ```
