@@ -7,13 +7,14 @@ excalidraw-plugin: parsed
 
 
 # Text Elements
-进程继续执行 ^civJ0kAx
+进程阻塞于
+sys_read系统调用 ^civJ0kAx
 
 进程 ^BCJVH8ZY
 
-sys_async_read ^1YqUYTPI
+sys_read ^1YqUYTPI
 
-异步系统调用 ^Lm01RAUs
+系统调用 ^Lm01RAUs
 
 OS kernel ^vhIkgWjV
 
@@ -26,17 +27,12 @@ OS kernel ^vhIkgWjV
 
 复制完成 ^fUTFDj0v
 
-发出async_read
-指定的信号 ^Peq5q6BO
+系统调用成功 ^Peq5q6BO
 
-信号处理例程
-接收信号并
-处理数据 ^SC6hOMAr
+进程继续执行 ^SC6hOMAr
 
 将数据从内核空间
 复制到进程用户空间 ^55xRyF4q
-
-返回 ^RfMVNzFK
 
 
 # Embedded files
@@ -53,8 +49,8 @@ OS kernel ^vhIkgWjV
 	"elements": [
 		{
 			"type": "image",
-			"version": 224,
-			"versionNonce": 279007035,
+			"version": 243,
+			"versionNonce": 976227253,
 			"isDeleted": false,
 			"id": "tWjTglTJnXPD5ypf0Uv0_",
 			"fillStyle": "hachure",
@@ -73,7 +69,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "round",
 			"boundElements": [],
-			"updated": 1672484183158,
+			"updated": 1672484336814,
 			"link": null,
 			"status": "pending",
 			"fileId": "68c7c6dd54ceeaf9fe3714d73426a7e28acb1343",
@@ -84,8 +80,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "image",
-			"version": 333,
-			"versionNonce": 1078629877,
+			"version": 352,
+			"versionNonce": 1232041499,
 			"isDeleted": false,
 			"id": "0rvQufkGA8v1SYcfAMa1V",
 			"fillStyle": "hachure",
@@ -104,7 +100,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "round",
 			"boundElements": [],
-			"updated": 1672484183158,
+			"updated": 1672484336814,
 			"link": null,
 			"status": "pending",
 			"fileId": "169984e76ba14bc041af28d804b7d3a330edff64",
@@ -115,8 +111,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 173,
-			"versionNonce": 682324443,
+			"version": 104,
+			"versionNonce": 471849461,
 			"isDeleted": false,
 			"id": "civJ0kAx",
 			"fillStyle": "hachure",
@@ -125,32 +121,32 @@ OS kernel ^vhIkgWjV
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -817.6757312499999,
-			"y": -759.3948322021483,
+			"x": -888.2224841796874,
+			"y": -730.9132648193358,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 120,
-			"height": 22,
+			"width": 152,
+			"height": 44,
 			"seed": 961748245,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1672484153958,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
-			"text": "进程继续执行",
-			"rawText": "进程继续执行",
-			"baseline": 19,
+			"text": "进程阻塞于\nsys_read系统调用",
+			"rawText": "进程阻塞于\nsys_read系统调用",
+			"baseline": 40,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "进程继续执行"
+			"originalText": "进程阻塞于\nsys_read系统调用"
 		},
 		{
 			"type": "text",
-			"version": 37,
-			"versionNonce": 1809580155,
+			"version": 36,
+			"versionNonce": 433761243,
 			"isDeleted": false,
 			"id": "BCJVH8ZY",
 			"fillStyle": "hachure",
@@ -169,7 +165,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1672484142020,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
@@ -183,8 +179,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 70,
-			"versionNonce": 1815169909,
+			"version": 26,
+			"versionNonce": 123392853,
 			"isDeleted": false,
 			"id": "1YqUYTPI",
 			"fillStyle": "hachure",
@@ -193,37 +189,32 @@ OS kernel ^vhIkgWjV
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -650.1877856933593,
-			"y": -935.5830951416015,
+			"x": -621.7062183105468,
+			"y": -932.0776630126952,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 126,
+			"width": 72,
 			"height": 22,
 			"seed": 472292667,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
-			"boundElements": [
-				{
-					"id": "f4P_IgiPz7NmYGhyR9Y21",
-					"type": "arrow"
-				}
-			],
-			"updated": 1672484207704,
+			"boundElements": [],
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
-			"text": "sys_async_read",
-			"rawText": "sys_async_read",
+			"text": "sys_read",
+			"rawText": "sys_read",
 			"baseline": 19,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "sys_async_read"
+			"originalText": "sys_read"
 		},
 		{
 			"type": "arrow",
-			"version": 47,
-			"versionNonce": 1260140827,
+			"version": 46,
+			"versionNonce": 1324251259,
 			"isDeleted": false,
 			"id": "6HE0Y-_UNkpavyzncr-GU",
 			"fillStyle": "hachure",
@@ -242,7 +233,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "round",
 			"boundElements": [],
-			"updated": 1672484142020,
+			"updated": 1672481527400,
 			"link": null,
 			"startBinding": {
 				"elementId": "VW1MNzEKMKJFs7Ub9FUyN",
@@ -270,8 +261,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 61,
-			"versionNonce": 808722901,
+			"version": 39,
+			"versionNonce": 934256821,
 			"isDeleted": false,
 			"id": "Lm01RAUs",
 			"fillStyle": "hachure",
@@ -280,11 +271,11 @@ OS kernel ^vhIkgWjV
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -534.348125048828,
-			"y": -959.5308032714843,
+			"x": -512.8773608886718,
+			"y": -960.8453326904296,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 120,
+			"width": 80,
 			"height": 22,
 			"seed": 1818665915,
 			"groupIds": [],
@@ -295,22 +286,22 @@ OS kernel ^vhIkgWjV
 					"type": "arrow"
 				}
 			],
-			"updated": 1672484177133,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
-			"text": "异步系统调用",
-			"rawText": "异步系统调用",
+			"text": "系统调用",
+			"rawText": "系统调用",
 			"baseline": 19,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "异步系统调用"
+			"originalText": "系统调用"
 		},
 		{
 			"type": "text",
-			"version": 46,
-			"versionNonce": 1234338139,
+			"version": 36,
+			"versionNonce": 354398491,
 			"isDeleted": false,
 			"id": "vhIkgWjV",
 			"fillStyle": "hachure",
@@ -319,7 +310,7 @@ OS kernel ^vhIkgWjV
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -387.0596118652343,
+			"x": -398.8904224121093,
 			"y": -962.9132190429686,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
@@ -329,7 +320,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1672484305331,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
@@ -343,8 +334,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 52,
-			"versionNonce": 1332401685,
+			"version": 50,
+			"versionNonce": 314819093,
 			"isDeleted": false,
 			"id": "zFS35GNs",
 			"fillStyle": "hachure",
@@ -370,13 +361,9 @@ OS kernel ^vhIkgWjV
 				{
 					"id": "ZHHkb5epjMdos1tRpHtiq",
 					"type": "arrow"
-				},
-				{
-					"id": "f4P_IgiPz7NmYGhyR9Y21",
-					"type": "arrow"
 				}
 			],
-			"updated": 1672484207704,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
@@ -390,8 +377,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 55,
-			"versionNonce": 2127490651,
+			"version": 54,
+			"versionNonce": 1038144955,
 			"isDeleted": false,
 			"id": "4l1N0fGM",
 			"fillStyle": "hachure",
@@ -410,7 +397,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1672484142020,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
@@ -424,8 +411,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "arrow",
-			"version": 67,
-			"versionNonce": 1285683413,
+			"version": 66,
+			"versionNonce": 764196725,
 			"isDeleted": false,
 			"id": "ZHHkb5epjMdos1tRpHtiq",
 			"fillStyle": "hachure",
@@ -444,7 +431,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "round",
 			"boundElements": [],
-			"updated": 1672484142020,
+			"updated": 1672481527400,
 			"link": null,
 			"startBinding": {
 				"elementId": "zFS35GNs",
@@ -472,8 +459,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 46,
-			"versionNonce": 1094085371,
+			"version": 45,
+			"versionNonce": 1213490779,
 			"isDeleted": false,
 			"id": "UTvK4Os9",
 			"fillStyle": "hachure",
@@ -497,7 +484,7 @@ OS kernel ^vhIkgWjV
 					"type": "arrow"
 				}
 			],
-			"updated": 1672484142021,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
@@ -511,8 +498,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "arrow",
-			"version": 69,
-			"versionNonce": 1677071925,
+			"version": 68,
+			"versionNonce": 1649410261,
 			"isDeleted": false,
 			"id": "2Ci7XkikVvawIiRKlPR_q",
 			"fillStyle": "hachure",
@@ -531,7 +518,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "round",
 			"boundElements": [],
-			"updated": 1672484142021,
+			"updated": 1672481527400,
 			"link": null,
 			"startBinding": null,
 			"endBinding": {
@@ -555,8 +542,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 98,
-			"versionNonce": 247813019,
+			"version": 97,
+			"versionNonce": 726459131,
 			"isDeleted": false,
 			"id": "fUTFDj0v",
 			"fillStyle": "hachure",
@@ -580,7 +567,7 @@ OS kernel ^vhIkgWjV
 					"type": "arrow"
 				}
 			],
-			"updated": 1672484142021,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
@@ -594,8 +581,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 140,
-			"versionNonce": 467034715,
+			"version": 85,
+			"versionNonce": 648224309,
 			"isDeleted": false,
 			"id": "Peq5q6BO",
 			"fillStyle": "hachure",
@@ -604,37 +591,32 @@ OS kernel ^vhIkgWjV
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -512.8528857910155,
-			"y": -570.5605731689452,
+			"x": -532.1326709472655,
+			"y": -569.246059008789,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 132,
-			"height": 44,
+			"width": 120,
+			"height": 22,
 			"seed": 1787385749,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
-			"boundElements": [
-				{
-					"id": "T-Fje2WKVwSizg-69ozMZ",
-					"type": "arrow"
-				}
-			],
-			"updated": 1672484292698,
+			"boundElements": [],
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
-			"text": "发出async_read\n指定的信号",
-			"rawText": "发出async_read\n指定的信号",
-			"baseline": 40,
+			"text": "系统调用成功",
+			"rawText": "系统调用成功",
+			"baseline": 19,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "发出async_read\n指定的信号"
+			"originalText": "系统调用成功"
 		},
 		{
 			"type": "arrow",
-			"version": 71,
-			"versionNonce": 1420800411,
+			"version": 41,
+			"versionNonce": 1598868379,
 			"isDeleted": false,
 			"id": "T-Fje2WKVwSizg-69ozMZ",
 			"fillStyle": "hachure",
@@ -643,27 +625,23 @@ OS kernel ^vhIkgWjV
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -369.46004198985986,
-			"y": -522.5712345600281,
+			"x": -399.741679736328,
+			"y": -522.6299091064452,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 170.67384966053066,
-			"height": 0.05867454641713721,
+			"width": 140.3922119140625,
+			"height": 0,
 			"seed": 62831573,
 			"groupIds": [],
 			"strokeSharpness": "round",
 			"boundElements": [],
-			"updated": 1672484296717,
+			"updated": 1672481527400,
 			"link": null,
-			"startBinding": {
-				"elementId": "Peq5q6BO",
-				"focus": -1.178908337085624,
-				"gap": 11.392843801155664
-			},
+			"startBinding": null,
 			"endBinding": {
-				"elementId": "SC6hOMAr",
-				"focus": 0.06478307440539724,
-				"gap": 3.50836181640625
+				"elementId": "Ju5XXkILkgyo5f4zZ0T_f",
+				"focus": -0.4326116388494318,
+				"gap": 10.39556884765625
 			},
 			"lastCommittedPoint": null,
 			"startArrowhead": null,
@@ -674,15 +652,15 @@ OS kernel ^vhIkgWjV
 					0
 				],
 				[
-					-170.67384966053066,
-					-0.05867454641713721
+					-140.3922119140625,
+					0
 				]
 			]
 		},
 		{
 			"type": "text",
-			"version": 249,
-			"versionNonce": 1076557307,
+			"version": 142,
+			"versionNonce": 560697237,
 			"isDeleted": false,
 			"id": "SC6hOMAr",
 			"fillStyle": "hachure",
@@ -691,12 +669,12 @@ OS kernel ^vhIkgWjV
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -663.6422534667968,
-			"y": -557.7909198486327,
+			"x": -671.5294604980468,
+			"y": -528.8711810791015,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
 			"width": 120,
-			"height": 66,
+			"height": 22,
 			"seed": 1358357787,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
@@ -706,22 +684,22 @@ OS kernel ^vhIkgWjV
 					"type": "arrow"
 				}
 			],
-			"updated": 1672484261992,
+			"updated": 1672481527400,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
-			"text": "信号处理例程\n接收信号并\n处理数据",
-			"rawText": "信号处理例程\n接收信号并\n处理数据",
-			"baseline": 62,
+			"text": "进程继续执行",
+			"rawText": "进程继续执行",
+			"baseline": 19,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "信号处理例程\n接收信号并\n处理数据"
+			"originalText": "进程继续执行"
 		},
 		{
 			"type": "image",
-			"version": 333,
-			"versionNonce": 801746907,
+			"version": 352,
+			"versionNonce": 1610534165,
 			"isDeleted": false,
 			"id": "IRixo4n4dgJoOBAABNkah",
 			"fillStyle": "hachure",
@@ -740,7 +718,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "round",
 			"boundElements": [],
-			"updated": 1672484183158,
+			"updated": 1672484336814,
 			"link": null,
 			"status": "pending",
 			"fileId": "169984e76ba14bc041af28d804b7d3a330edff64",
@@ -751,8 +729,8 @@ OS kernel ^vhIkgWjV
 		},
 		{
 			"type": "text",
-			"version": 165,
-			"versionNonce": 639133269,
+			"version": 164,
+			"versionNonce": 2099548021,
 			"isDeleted": false,
 			"id": "55xRyF4q",
 			"fillStyle": "hachure",
@@ -771,7 +749,7 @@ OS kernel ^vhIkgWjV
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1672484142021,
+			"updated": 1672481551574,
 			"link": null,
 			"fontSize": 20,
 			"fontFamily": 4,
@@ -782,88 +760,6 @@ OS kernel ^vhIkgWjV
 			"verticalAlign": "top",
 			"containerId": null,
 			"originalText": "将数据从内核空间\n复制到进程用户空间"
-		},
-		{
-			"type": "arrow",
-			"version": 132,
-			"versionNonce": 1189370261,
-			"isDeleted": false,
-			"id": "f4P_IgiPz7NmYGhyR9Y21",
-			"fillStyle": "hachure",
-			"strokeWidth": 1,
-			"strokeStyle": "solid",
-			"roughness": 1,
-			"opacity": 100,
-			"angle": 0,
-			"x": -420.1089130126952,
-			"y": -901.6086688720702,
-			"strokeColor": "#000000",
-			"backgroundColor": "transparent",
-			"width": 114.18804731909188,
-			"height": 1.1036397676142542,
-			"seed": 684808859,
-			"groupIds": [],
-			"strokeSharpness": "round",
-			"boundElements": [],
-			"updated": 1672484211027,
-			"link": null,
-			"startBinding": {
-				"elementId": "zFS35GNs",
-				"focus": -1.5156787311690754,
-				"gap": 9.957138061523438
-			},
-			"endBinding": {
-				"elementId": "1YqUYTPI",
-				"focus": 1.8399320956757585,
-				"gap": 10.870786501916996
-			},
-			"lastCommittedPoint": null,
-			"startArrowhead": null,
-			"endArrowhead": "arrow",
-			"points": [
-				[
-					0,
-					0
-				],
-				[
-					-114.18804731909188,
-					-1.1036397676142542
-				]
-			]
-		},
-		{
-			"id": "RfMVNzFK",
-			"type": "text",
-			"x": -501.49373967285146,
-			"y": -881.9740558349608,
-			"width": 40,
-			"height": 22,
-			"angle": 0,
-			"strokeColor": "#000000",
-			"backgroundColor": "transparent",
-			"fillStyle": "hachure",
-			"strokeWidth": 1,
-			"strokeStyle": "solid",
-			"roughness": 1,
-			"opacity": 100,
-			"groupIds": [],
-			"strokeSharpness": "sharp",
-			"seed": 212852821,
-			"version": 56,
-			"versionNonce": 1754901691,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1672484206286,
-			"link": null,
-			"text": "返回",
-			"rawText": "返回",
-			"fontSize": 20,
-			"fontFamily": 4,
-			"textAlign": "left",
-			"verticalAlign": "top",
-			"baseline": 19,
-			"containerId": null,
-			"originalText": "返回"
 		}
 	],
 	"appState": {
