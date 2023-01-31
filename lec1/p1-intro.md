@@ -17,20 +17,19 @@ backgroundColor: white
 <br>
 <br>
 
-向勇 陈渝 李国良 
+向勇 陈渝 李国良 任炬 
 
 <br>
 <br>
 
-2022年秋季
+2023年春季
 
 ---
 
 ## 课程信息
 
 ### 主讲教师：
-  - 向勇
-  - 陈渝
+  - 向勇 陈渝 李国良 任炬 
 
 ### 助教
   - 闭浩扬、田凯夫、赵方亮、贺鲲鹏
@@ -176,7 +175,7 @@ backgroundColor: white
 
 ## 调查问卷
 
-[2022年秋季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/fPozIRL)（访问密码：XxW21Ur1CF）
+[2023年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/fPozIRL)（访问密码：XxW21Ur1CF）
 
 - 为什么要学这门课？ 
 - 你打算如何来学这门课？

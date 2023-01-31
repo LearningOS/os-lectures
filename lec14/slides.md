@@ -6,7 +6,7 @@ layout: cover
 ## 第一节 课程概述 & 教学安排
 
 <div class="ml-3 flex flex-col text-left">
-  向勇 陈渝 李国良 
+  向勇 陈渝 李国良 任炬 
 </div>
 
 <div class="abs-bl mx-14 my-12 flex">

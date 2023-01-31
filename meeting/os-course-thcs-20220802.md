@@ -54,7 +54,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
  1997前 | 史美林 张尧学 伍尚广 | 计算机操作系统 |  /
  1998 | 向勇 | 无固定教材 |  Nachos MIPS
  2008~2017 | 向勇 陈渝 | 无固定教材 |  uCore x86
- 2018~至今 | 向勇 陈渝 李国良 | 无固定教材 |  uCore/rCore RISC-V
+ 2018~至今 | 向勇 陈渝 李国良 任炬 | 无固定教材 |  uCore/rCore RISC-V
 
 
 
@@ -79,7 +79,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 - 特征：计算机专业课 必修
 - 时间：春季/秋季（48学时）
 - 学分：3学分
-- 教师：向勇 陈渝 李国良 任炬
+- 教师：向勇 陈渝 李国良 任炬 任炬
 - 学生：大三（部分大一/二/四）
 - 有实验内容（不算课时）
 - 无指定教材/有参考教材
