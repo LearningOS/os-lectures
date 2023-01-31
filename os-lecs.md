@@ -8,8 +8,25 @@ footer: ''
 backgroundColor: white
 ---
 
-<!-- theme: gaia -->
 
+<br>
+<br>
+
+# <center>清华大学计算机系操作系统课程</center>
+
+<br>
+<br>
+<br>
+
+### <center> 向勇 陈渝 李国良 任炬</center>
+
+<br>
+
+## <center>2023 春季</center>
+
+---
+
+<!-- theme: gaia -->
 ## 第一讲 操作系统概述
 - [第一节 课程概述 & 教学安排](./lec1/p1-intro.html)
 - [第二节 什么是操作系统](./lec1/p2-whatisos.html)
@@ -71,19 +88,20 @@ backgroundColor: white
 - [第一节 文件系统概述](./lec9/p1-fsoverview.html)
 - [第二节 文件系统的设计与实现](./lec9/p2-fsimplement.html)
 - [第三节 支持崩溃一致性的文件系统](./lec9/p3-fsjournal.html)
-- [第四节 支持文件的操作系统](./lec9/p4-fs-lab.html)
-
----
-## 第十讲  进程间通信
-- [第一节 进程间通信(IPC)概述](./lec10/p1-ipcoverview.html)
-- [第二节 支持IPC的OS](./lec10/p2-ipclabs.html)
+- [第四节 实践：支持文件的操作系统](./lec9/p4-fs-lab.html)
 
 
 ---
-## 第十一讲  线程与协程
+## 第十讲  线程与协程
 - [第一节 线程](./lec11/p1-thread.html)
 - [第二节 协程](./lec11/p2-coroutine.html)
-- [第三节 支持线程/协程的OS(TCOS)](./lec11/p3-labs.html)
+- [第三节 实践：支持线程/协程的OS(TCOS)](./lec11/p3-labs.html)
+
+
+---
+## 第十一讲  进程间通信
+- [第一节 进程间通信(IPC)概述](./lec10/p1-ipcoverview.html)
+- [第二节 实践：支持IPC的OS](./lec10/p2-ipclabs.html)
 
 ---
 ## 第十二讲 同步互斥
@@ -92,13 +110,13 @@ backgroundColor: white
 - [第三节 管程与条件变量](./lec12/p3-monitor-cond.html)
 - [第四节 同步互斥实例问题](./lec12/p4-instances.html)
 - [第五节 死锁](./lec12/p5-deadlock.html)
-- [第六节 支持同步互斥的OS(SMOS)](./lec12/p6-labs.html)
+- [第六节 实践：支持同步互斥的OS(SMOS)](./lec12/p6-labs.html)
 
 ---
 ## 第十三讲 设备管理
 - [第一节 设备接口](./lec13/p1-devinterface.html)
-- [第二节 磁盘子系统](./lec13/p2-disk.html)
-- [第三节 支持device的OS（DOS）](./lec13/p3-labs.html)
+- [第二节 磁盘系统](./lec13/p2-disk.html)
+- [第三节 实践：支持device的OS（DOS）](./lec13/p3-labs.html)
 
 ---
 ### OS课程介绍
