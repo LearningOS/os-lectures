@@ -8,21 +8,20 @@ footer: ''
 backgroundColor: white
 ---
 
+<!-- theme: gaia -->
+<!-- _class: lead -->
+
+# 清华大学计算机系操作系统课程
 
 <br>
 <br>
 
-# <center>清华大学计算机系操作系统课程</center>
+###  向勇 陈渝 李国良 任炬
 
 <br>
 <br>
-<br>
 
-### <center> 向勇 陈渝 李国良 任炬 任炬</center>
-
-<br>
-
-## <center>2023 春季</center>
+## 2023 春季
 
 ---
 
