@@ -8,7 +8,7 @@
 - [v4](https://github.com/LearningOS/os-lectures/blob/1d07e4bfc55af586079499db65f926b52c0afeb1/os-course-outline.md): cooperate with 2021-spring labs
 - [v5](https://github.com/LearningOS/os-lectures/blob/f001a6c5bacc7be80e27a168959c288c91ec1639/os-course-outline.md): 2021年秋季学期结束时更新教学内容部分
 - [v6](https://github.com/LearningOS/os-lectures/blob/0d92ea949ff7345454cdea685643aab693255c99/os-course-outline.md): 2022 spring
-- [v7](https://github.com/LearningOS/os-lectures/blob/cd2412ec74a1701200c769e0b4dd0a6dfc39d4e3/os-course-outline.md): 2022 autumn
+- [v7](https://github.com/LearningOS/os-lectures/blob/74fe703ead4ad4d70fb678ff84140a2326704757/os-course-outline.md): 2022 autumn
 - v8：2023 spring
 ### 课程组织与基本目的
 
