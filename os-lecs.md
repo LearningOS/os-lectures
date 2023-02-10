@@ -119,4 +119,4 @@ backgroundColor: white
 
 ---
 ### OS课程介绍
-- [清华计算机系2022春季OS课程](./course-intro.md)
+- [清华计算机系2022春季OS课程](./course-intro.html)
