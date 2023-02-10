@@ -7,7 +7,8 @@ on:
   workflow_dispatch:
   push:
     branches: [ master ]
-
+permissions:
+  contents: write
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -18,28 +19,22 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so marp-action can access it
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Build Source
-      run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs && cp course-intro.md docs/course-intro.md
+      - name: Setup Source
+        run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs && cp course-intro.md docs/course-intro.md
 
-    - name: Build & Deploy to GitHub Pages
-      env: 
-        # You may wish to customize MARP_ARGS
-        # See https://github.com/marp-team/marp-cli#basic-usage for more details
-        # For a multi-page site, try `MARP_ARGS: "-I slides/ --output dist/"`
-        # Check examples for more: https://github.com/ralexander-phi/test-marp-action/blob/dev/README.md#example-sites
-        # But to keep things simple, let's just convert a single README.md into index.html
-        MARP_ARGS: " --html --input-dir docs/ --output docs/"
+      - name: Marp Build (docs folder)
+        uses: docker://marpteam/marp-cli:v1.7.0
+        with:
+          args: -I docs/ -o build/
+        env:
+          MARP_USER: root:root
 
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY: ${{ github.repository }}
-        PUBLISH_TO_BRANCH: gh-pages
-        
-        # You'll want to set this to your domain
-        # BASE_URL: https://alexsci.com/test-marp-action/
-
-      # consider using a tagged release here
-      # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsuses
-      uses: ralexander-phi/marp-action@master
+      - name: Deploy production
+        if: ${{ github.event_name == 'push' }}
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: ./build/
       
