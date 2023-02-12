@@ -30,8 +30,8 @@
 <p>pub struct Inode {<br />
 block_id: usize,<br />
 block_offset: usize,<br />
-fs: Arc&lt;Mutex&lt;EasyFileSystem&gt;&gt;,<br />
-block_device: Arc&lt;dyn BlockDevice&gt;,<br />
+fs: Arc&lt;Mutex<EasyFileSystem>&gt;,<br />
+block_device: Arc<dyn BlockDevice>,<br />
 } ^SnXpeurR</p>
 <p>read_at<br />
 write_at<br />
@@ -42,7 +42,7 @@ ls ^Kc6lq3DU</p>
 <p>open_file ^KqSK06CY</p>
 <p>PCB.fd_table.OSInode ^wTd0vZkX</p>
 <p>pub struct EasyFileSystem {<br />
-pub block_device: Arc&lt;dyn BlockDevice&gt;,<br />
+pub block_device: Arc<dyn BlockDevice>,<br />
 pub inode_bitmap: Bitmap,<br />
 pub data_bitmap: Bitmap,<br />
 inode_area_start_block: u32,<br />
@@ -59,7 +59,7 @@ dealloc_data ^ie75YuD5</p>
 <p>pub struct BlockCache {<br />
 cache: [u8; BLOCK_SZ],<br />
 block_id: usize,<br />
-block_device: Arc&lt;dyn BlockDevice&gt;,<br />
+block_device: Arc<dyn BlockDevice>,<br />
 modified: bool,<br />
 } ^Qv4qJPpc</p>
 <p>pub struct DiskInode {<br />
@@ -82,7 +82,7 @@ inode_number ^74onnoPq</p>
 <p>read<br />
 ^rPreyUL7</p>
 <p>pub struct BlockCacheManager {<br />
-queue: VecDeque&lt;(usize, Arc&lt;Mutex&lt;BlockCache&gt;&gt;)&gt;,<br />
+queue: VecDeque&lt;(usize, Arc&lt;Mutex<BlockCache>&gt;)&gt;,<br />
 } ^TiVegFTP</p>
 <p>get_block_cache ^qZuAttY1</p>
 <p>block_cache_sync_all ^u7xkvw1W</p>
@@ -110,11 +110,11 @@ sync ^GKZNpp17</p>
 <p>pub struct OSInode {<br />
 readable: bool,<br />
 writable: bool,<br />
-inner: UPIntrFreeCell&lt;OSInodeInner&gt;,<br />
+inner: UPIntrFreeCell<OSInodeInner>,<br />
 } ^Ckm1IwKa</p>
 <p>pub struct OSInodeInner {<br />
 offset: usize,<br />
-inode: Arc&lt;Inode&gt;,<br />
+inode: Arc<Inode>,<br />
 } ^xvQBkMSy</p>
 <p>文件是OSInode(内存中的Inode) ^fsATLANT</p>
 <p>包含了VFS上的Inode ^l1NEtbox</p>
