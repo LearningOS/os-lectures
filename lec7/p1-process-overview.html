@@ -1,0 +1,805 @@
+<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{-webkit-tap-highlight-color:transparent;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTQwIDcwSDIwVjUwbTIwIDBMMjAgNzBtNDAtNDBoMjB2MjBtLTIwIDAgMjAtMjAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTIwIDUwaDIwdjIwbS0yMCAwIDIwLTIwbTQwIDBINjBWMzBtMjAgMEw2MCA1MCIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMTIgNTBoODBNNTIgOTBWMTAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjUiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMTIgNTBoODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjUiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{-webkit-animation-name:__bespoke_marp__!important;animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{bottom:0;left:0;position:absolute;right:0;top:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:rgba(0,0,0,.65);border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:transparent}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:transparent;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{bottom:0;display:block;left:0;position:absolute;right:0;top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:rgba(0,0,0,.65);border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{word-wrap:break-word;box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;scrollbar-color:hsla(0,0%,93%,.5) transparent;scrollbar-width:thin;white-space:pre-wrap;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:transparent}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:hsla(0,0%,93%,.5);border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import url("https://fonts.googleapis.com/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap");div#p>svg>foreignObject>section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center}div#p>svg>foreignObject>section:after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#p>svg>foreignObject>section:not([data-marpit-pagination]):after{display:none}/* Normalization */div#p>svg>foreignObject>section h1{font-size:2em;margin:0.67em 0}div#p>svg>foreignObject>section video::-webkit-media-controls{will-change:transform}@page{size:1280px 720px;margin:0}@media print{body,html{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#p>svg>foreignObject>section{page-break-before:always;break-before:page}div#p>svg>foreignObject>section,div#p>svg>foreignObject>section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;transition:none!important}div#p>svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
+/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#p>svg>foreignObject>section .hljs{background:#000;color:#f8f8f8;display:block;overflow-x:auto;padding:.5em}div#p>svg>foreignObject>section .hljs-comment,div#p>svg>foreignObject>section .hljs-quote{color:#aeaeae;font-style:italic}div#p>svg>foreignObject>section .hljs-keyword,div#p>svg>foreignObject>section .hljs-selector-tag,div#p>svg>foreignObject>section .hljs-type{color:#e28964}div#p>svg>foreignObject>section .hljs-string{color:#65b042}div#p>svg>foreignObject>section .hljs-subst{color:#daefa3}div#p>svg>foreignObject>section .hljs-link,div#p>svg>foreignObject>section .hljs-regexp{color:#e9c062}div#p>svg>foreignObject>section .hljs-name,div#p>svg>foreignObject>section .hljs-section,div#p>svg>foreignObject>section .hljs-tag,div#p>svg>foreignObject>section .hljs-title{color:#89bdff}div#p>svg>foreignObject>section .hljs-class .hljs-title,div#p>svg>foreignObject>section .hljs-doctag{text-decoration:underline}div#p>svg>foreignObject>section .hljs-bullet,div#p>svg>foreignObject>section .hljs-number,div#p>svg>foreignObject>section .hljs-symbol{color:#3387cc}div#p>svg>foreignObject>section .hljs-params,div#p>svg>foreignObject>section .hljs-template-variable,div#p>svg>foreignObject>section .hljs-variable{color:#3e87e3}div#p>svg>foreignObject>section .hljs-attribute{color:#cda869}div#p>svg>foreignObject>section .hljs-meta{color:#8996a8}div#p>svg>foreignObject>section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#p>svg>foreignObject>section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#p>svg>foreignObject>section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#p>svg>foreignObject>section .hljs-selector-class{color:#9b703f}div#p>svg>foreignObject>section .hljs-selector-id{color:#8b98ab}div#p>svg>foreignObject>section .hljs-emphasis{font-style:italic}div#p>svg>foreignObject>section .hljs-strong{font-weight:700}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{max-height:580px}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2,div#p>svg>foreignObject>section h3,div#p>svg>foreignObject>section h4,div#p>svg>foreignObject>section h5,div#p>svg>foreignObject>section h6{margin:.5em 0 0}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{font-weight:inherit}div#p>svg>foreignObject>section h1{font-size:1.8em}div#p>svg>foreignObject>section h2{font-size:1.5em}div#p>svg>foreignObject>section h3{font-size:1.3em}div#p>svg>foreignObject>section h4{font-size:1.1em}div#p>svg>foreignObject>section h5{font-size:1em}div#p>svg>foreignObject>section h6{font-size:.9em}div#p>svg>foreignObject>section blockquote,div#p>svg>foreignObject>section p{margin:1em 0 0}div#p>svg>foreignObject>section ol>li,div#p>svg>foreignObject>section ul>li{margin:.3em 0 0}div#p>svg>foreignObject>section ol>li>p,div#p>svg>foreignObject>section ul>li>p{margin:.6em 0 0}div#p>svg>foreignObject>section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#p>svg>foreignObject>section pre{display:block;margin:1em 0 0;min-height:1em;overflow:visible}div#p>svg>foreignObject>section pre code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#p>svg>foreignObject>section pre code svg[data-marp-fitting=svg]{max-height:calc(580px - 1em)}div#p>svg>foreignObject>section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#p>svg>foreignObject>section blockquote:after,div#p>svg>foreignObject>section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#p>svg>foreignObject>section blockquote:before{left:0;top:0}div#p>svg>foreignObject>section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#p>svg>foreignObject>section blockquote>:first-child{margin-top:0}div#p>svg>foreignObject>section mark{background:transparent}div#p>svg>foreignObject>section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header,div#p>svg>foreignObject>section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#p>svg>foreignObject>section:after{--marpit-root-font-size:66%}div#p>svg>foreignObject>section header{top:0}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header{left:0;right:0}div#p>svg>foreignObject>section footer{bottom:0}div#p>svg>foreignObject>section{word-wrap:break-word;--color-background:#fff8e1;--color-background-stripe:rgba(69,90,100,.1);--color-foreground:#455a64;--color-dimmed:#6a7a7d;--color-highlight:#0288d1;background-color:var(--color-background);background-image:linear-gradient(135deg,hsla(0,0%,53%,0),hsla(0,0%,53%,.02) 50%,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.05));color:var(--color-foreground);font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;padding:70px;width:1280px}div#p>svg>foreignObject>section{--marpit-root-font-size:35px}div#p>svg>foreignObject>section:after{bottom:0;font-size:80%;right:0}div#p>svg>foreignObject>section:after{--marpit-root-font-size:80%}div#p>svg>foreignObject>section a,div#p>svg>foreignObject>section mark{color:var(--color-highlight)}div#p>svg>foreignObject>section code{background:var(--color-dimmed);color:var(--color-background)}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{color:var(--color-highlight)}div#p>svg>foreignObject>section pre>code{background:var(--color-foreground)}div#p>svg>foreignObject>section blockquote:after,div#p>svg>foreignObject>section blockquote:before,div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header,div#p>svg>foreignObject>section section:after{color:var(--color-dimmed)}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border-color:var(--color-foreground)}div#p>svg>foreignObject>section table thead th{background:var(--color-foreground);color:var(--color-background)}div#p>svg>foreignObject>section table tbody>tr:nth-child(odd) td,div#p>svg>foreignObject>section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe,transparent)}div#p>svg>foreignObject>section>:first-child,div#p>svg>foreignObject>section>header:first-child+*{margin-top:0}div#p>svg>foreignObject>section.invert{--color-background:#455a64;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#dad8c8;--color-highlight:#81d4fa}div#p>svg>foreignObject>section.gaia{--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa}div#p>svg>foreignObject>section.lead{display:flex;flex-flow:column nowrap;justify-content:center}div#p>svg>foreignObject>section.lead h1,div#p>svg>foreignObject>section.lead h2,div#p>svg>foreignObject>section.lead h3,div#p>svg>foreignObject>section.lead h4,div#p>svg>foreignObject>section.lead h5,div#p>svg>foreignObject>section.lead h6{text-align:center}div#p>svg>foreignObject>section.lead h1 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h2 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h3 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h4 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h5 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h6 svg[data-marp-fitting=svg]{--preserve-aspect-ratio:xMidYMid meet}div#p>svg>foreignObject>section.lead p{text-align:center}div#p>svg>foreignObject>section.lead blockquote>h1,div#p>svg>foreignObject>section.lead blockquote>h2,div#p>svg>foreignObject>section.lead blockquote>h3,div#p>svg>foreignObject>section.lead blockquote>h4,div#p>svg>foreignObject>section.lead blockquote>h5,div#p>svg>foreignObject>section.lead blockquote>h6,div#p>svg>foreignObject>section.lead blockquote>p{text-align:left}div#p>svg>foreignObject>section.lead blockquote svg[data-marp-fitting=svg]:not([data-marp-fitting-math]){--preserve-aspect-ratio:xMinYMin meet}div#p>svg>foreignObject>section.lead ol>li>p,div#p>svg>foreignObject>section.lead ul>li>p{text-align:left}div#p>svg>foreignObject>section.lead table{margin-left:auto;margin-right:auto}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#p>svg>foreignObject>section[data-marpit-advanced-background=content],div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id="p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-background-color="white" data-class="lead" data-theme="gaia" class="lead" style="--background-color:white;--class:lead;--theme:gaia;background-color:white;background-image:none;">
+<h1>第七讲 进程管理与单处理器调度</h1>
+<h2>第一节 进程管理</h2>
+<br />
+<br />
+<p>向勇 陈渝 李国良 任炬</p>
+<p>2023年春季</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="2" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<h3>1. 进程的基本概念</h3>
+<ul>
+<li>进程管理的需求背景</li>
+<li>进程的概念</li>
+<li>进程与任务</li>
+</ul>
+<ol start="2">
+<li>进程管理</li>
+<li>关于Fork()的思考</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="3" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理的需求背景</h4>
+<ul>
+<li>
+<p>背景</p>
+<ul>
+<li><strong>硬件</strong>越来越强大
+<ul>
+<li>更快的CPU with MMU/TLB/Cache</li>
+<li>更大的内存和外存</li>
+<li>更丰富的外设</li>
+</ul>
+</li>
+<li>开发者希望能够在计算机上有更多的<strong>动态交互和控制能力</strong></li>
+<li>使用者需要更<strong>方便</strong>的计算机交互能力</li>
+</ul>
+</li>
+<li>
+<p>目标</p>
+<ul>
+<li><strong>提高开发效率和执行效率</strong></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:53%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cli-gui.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="47%" height="720"><section id="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:53%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>进程管理的需求背景</h4>
+<ul>
+<li>操作系统需要<strong>与用户交互</strong>的接口/界面
+<ul>
+<li><strong>命令行</strong>界面（CLI）
+<ul>
+<li>用户通过键盘直接输入命令</li>
+<li>Shell</li>
+</ul>
+</li>
+<li><strong>图形</strong>界面（GUI）
+<ul>
+<li>用户通过鼠标/窗口等输入命令</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="4" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:53%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cli-gui.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="47%" height="720"><section id="5" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:53%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>进程管理的需求背景</h4>
+<ul>
+<li>用户需要<strong>动态管理和控制应用执行</strong></li>
+<li>在应用的执行过程中，用户通过界面主动给操作系统发出<strong>请求</strong>，来<strong>创建并执行</strong>新的应用程序，<strong>暂停或停止</strong>应用程序的执行等。</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="5" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:47%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cli-gui.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="53%" height="720"><section id="6" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:47%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>引入进程(Process)概念的目的</h4>
+<ul>
+<li>清晰地<strong>刻画</strong>操作系统系统中程序运行的动态内在规律</li>
+<li>有效<strong>管理和调度</strong>多个程序的执行和对资源的使用</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="6" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:47%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cli-gui.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="53%" height="720"><section id="7" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:47%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>进程提供给应用程序的抽象</h4>
+<ul>
+<li>从应用角度看，进程提供给应用程序的<strong>关键抽象</strong>
+<ul>
+<li>独立的逻辑<strong>控制流</strong>：好像自己的程序独占地使用处理器</li>
+<li>私有的<strong>地址空间</strong>：好像自己的程序独占地使用内存系统</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="7" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cli-gui.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>从实现角度看进程</h4>
+<p>从实现角度看，进程是操作系统建立程序运行中的过程管理相关的<strong>数据结构</strong>，以及对数据结构的<strong>动态操作</strong>过程</p>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="8" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:52%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cli-gui.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="48%" height="720"><section id="9" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:52%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>从资源角度看进程</h4>
+<ul>
+<li>从资源角度看，进程是程序执行中<strong>占用资源的集合</strong>
+<ul>
+<li>共享资源 v.s. 独占资源</li>
+<li>处理器、时间</li>
+<li>内存、地址空间</li>
+<li>文件、I/O、...</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="9" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="10" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:46%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cli-gui.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="54%" height="720"><section id="10" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="10" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:46%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>什么是进程？</h4>
+<ul>
+<li>简单定义
+<ul>
+<li>一个程序的执行<strong>过程</strong></li>
+<li>一个执行中程序的<strong>实例</strong></li>
+</ul>
+</li>
+<li>详细定义：一个具有一定<strong>独立功能</strong>的程序在某<strong>数据集合</strong>上的一次<strong>执行和资源使用的动态过程</strong>
+<ul>
+<li>执行程序逻辑并读写数据</li>
+<li>创建并执行新进程</li>
+<li>使用共享资源：文件等</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="10" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="11" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>任务和进程</h4>
+<p>从<strong>资源占用</strong>和<strong>执行过程</strong>两个方面分析</p>
+<p>相同点：</p>
+<ul>
+<li>从用户的角度看，任务和进程都表示运行的程序</li>
+<li>从操作系统的角度看，任务和进程都表示为一个程序的执行过程</li>
+<li>从资源使用的角度看
+<ul>
+<li>二者都能够被操作系统打断并通过切换来分时占用 CPU 资源</li>
+<li>都需要地址空间来放置代码和数据</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="12" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>任务和进程</h4>
+<p>从<strong>资源占用</strong>和<strong>执行过程</strong>两个方面分析</p>
+<p>相同点：</p>
+<ul>
+<li>从执行过程的角度看
+<ul>
+<li>都有从开始到结束运行这样的<strong>生命周期</strong>
+<ul>
+<li>任务生命周期 --&gt; 进程生命周期</li>
+<li>任务的三状态模型 --&gt; 进程的三状态模型</li>
+<li>任务切换 --&gt; 进程切换</li>
+<li>任务上下文  --&gt; 进程上下文</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>任务和进程</h4>
+<p>从<strong>资源占用</strong>和<strong>执行过程</strong>两个方面分析</p>
+<p>不同点：</p>
+<ul>
+<li>任务 是这里提到的进程的<strong>初级阶段</strong>，不具有如下功能：
+<ul>
+<li>进程可以在运行的过程中，创建子进程 、 用新的程序内容覆盖已有的程序内容</li>
+<li>进程成为程序执行过程中动态申请/使用/释放各种资源的载体</li>
+</ul>
+</li>
+</ul>
+<p>进程的动态功能可让程序的运行更加灵活。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cli-gui.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="35%" height="720"><section id="14" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>进程是计算机科学中的重要概念</h4>
+<p><strong>进程</strong>是计算机科学中最深刻、最成功的概念之一(from CSAPP)<br />
+</p>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="14" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>进程的基本概念</li>
+</ol>
+<h3>2. 进程管理</h3>
+<ul>
+<li>进程管理系统调用</li>
+<li>进程控制块PCB</li>
+<li>进程创建和程序加载</li>
+<li>进程等待与退出</li>
+</ul>
+<ol start="3">
+<li>关于Fork()的思考</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="16" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理系统调用产生背景</h4>
+<ul>
+<li>如何让应用<strong>方便地动态执行其他应用</strong>？
+<ul>
+<li>process_id = execute(app_name)？</li>
+</ul>
+</li>
+<li>如何让应用<strong>了解其启动的其他应用</strong>是否结束？
+<ul>
+<li>被启动的其他应用 exit(status)？</li>
+<li>发起的主应用 wait(process_id)？</li>
+</ul>
+</li>
+</ul>
+<p>于是各种OS(UNIX/Windows...)都设计出了类似上面的进程管理类的各种<strong>系统调用</strong></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="17" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理系统调用</h4>
+<table>
+<thead>
+<tr>
+<th>系统调用名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>int fork()</code></td>
+<td><strong>创建</strong>一个进程，返回子进程的PID。</td>
+</tr>
+<tr>
+<td><code>int exec(char *file)</code></td>
+<td><strong>加载</strong>文件并执行；仅当出错时返回。</td>
+</tr>
+<tr>
+<td><code>int exit(int status)</code></td>
+<td><strong>终止</strong>自身；报告<code>status</code>给执行waitpid()系统调用的父进程。</td>
+</tr>
+<tr>
+<td><code>int waitpid(int pid, int *status)</code></td>
+<td><strong>等待</strong><code>pid</code>子进程退出，得到其 <code>*status</code>退出状态。</td>
+</tr>
+<tr>
+<td><code>int getpid()</code></td>
+<td><strong>获得</strong>当前进程的PID。</td>
+</tr>
+</tbody>
+</table>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="18" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理应用示例：<code>getpid()</code></h4>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// usr/src/bin/hello_world.rs</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() -&gt; <span class="hljs-built_in">i32</span> {
+    <span class="hljs-comment">// 显示自己的PID</span>
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;pid {}: Hello world from user mode program!&quot;</span>, getpid()); 
+    <span class="hljs-number">0</span>  <span class="hljs-comment">// 返回的退出码</span>
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="19" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理应用示例：<code>fork()</code>和<code>exec()</code></h4>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// usr/src/bin/forkexec.rs</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() -&gt; <span class="hljs-built_in">i32</span> {
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;pid {}: parent start forking ...&quot;</span>, getpid());
+    <span class="hljs-keyword">let</span> pid = fork();  <span class="hljs-comment">// 创建子进程</span>
+    <span class="hljs-keyword">if</span> pid == <span class="hljs-number">0</span> {
+        <span class="hljs-comment">// 子进程</span>
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;pid {}: forked child start execing hello_world app ... &quot;</span>, getpid());
+        exec(<span class="hljs-string">&quot;hello_world&quot;</span>);  <span class="hljs-comment">// 执行hello_world程序</span>
+        <span class="hljs-number">100</span>
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// 父进程</span>
+        <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> exit_code: <span class="hljs-built_in">i32</span> = <span class="hljs-number">0</span>;
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;pid {}: ready waiting child ...&quot;</span>, getpid());
+        <span class="hljs-built_in">assert_eq!</span>(pid, wait(&amp;<span class="hljs-keyword">mut</span> exit_code)); <span class="hljs-comment">//确认等待的子进程PID</span>
+        <span class="hljs-built_in">assert_eq!</span>(exit_code, <span class="hljs-number">0</span>);  <span class="hljs-comment">//确认退出码是0</span>
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;pid {}: got child info:: pid {}, exit code: {}&quot;</span>, getpid() , pid, exit_code);
+        <span class="hljs-number">0</span>
+    }
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理应用示例：<code>fork()</code>和<code>exec()</code></h4>
+<p>执行结果</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>Rust user shell
+&gt;&gt; forkexec
+pid 2: parent start forking ...
+pid 2: ready waiting child ...
+pid 3: forked child start execing hello_world app ...
+pid 3: Hello world from user mode program!
+pid 2:  got child info:: pid 3, exit code: 0
+Shell: Process 2 exited with code 0
+&gt;&gt; QEMU: Terminated
+
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="21" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>进程的基本概念</li>
+<li>进程管理</li>
+</ol>
+<ul>
+<li>进程管理系统调用</li>
+</ul>
+<h3>进程控制块PCB</h3>
+<ul>
+<li>进程创建和程序加载</li>
+<li>进程等待与退出</li>
+</ul>
+<ol start="3">
+<li>关于Fork()的思考</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:70%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/process-os-key-structures.png&quot;);background-size:95%;"></figure></div></section></foreignObject><foreignObject width="30%" height="720"><section id="22" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:70%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>进程控制块PCB</h4>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="22" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="23" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>shell执行用户输入命令</h4>
+<p><img src="figs/forkexec-app.png" alt="" style="width:1200px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/forkexec-app.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="24" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>shell执行中的进程控制块</h4>
+<p><img src="figs/process-os-key-structures.png" alt="" style="width:550px;" /><br />
+</p>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="24" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/process-os-key-structures.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720"><section id="25" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>进程切换</h4>
+<ul>
+<li>
+<p>进程切换过程</p>
+<ul>
+<li><strong>暂停</strong>当前运行进程，从运行状态变成其他状态</li>
+<li><strong>调度</strong>另一个进程从就绪状态变成运行状态</li>
+</ul>
+</li>
+<li>
+<p>进程切换的要求</p>
+<ul>
+<li>切换前，<strong>保存</strong>进程上下文</li>
+<li>切换后，<strong>恢复</strong>进程上下文</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="25" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:53%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/process-os-key-structures.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="47%" height="720"><section id="26" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:53%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>进程生命周期</h4>
+<ul>
+<li>
+<p>进程切换</p>
+<ul>
+<li>暂停当前运行进程，从运行状态变成其他状态</li>
+<li>调度另一个进程从就绪状态变成运行状态</li>
+</ul>
+</li>
+<li>
+<p>进程生命周期的信息</p>
+<ul>
+<li><strong>寄存器</strong> (PC, SP, …)</li>
+<li><strong>CPU状态</strong></li>
+<li><strong>内存地址空间</strong><br />
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="26" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>进程的基本概念</li>
+<li>进程管理</li>
+</ol>
+<ul>
+<li>进程管理系统调用</li>
+<li>进程控制块PCB</li>
+</ul>
+<h3>进程创建和程序加载</h3>
+<ul>
+<li>进程等待与退出</li>
+</ul>
+<ol start="3">
+<li>关于Fork()的思考</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="28" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>Windows进程创建API： <code>CreateProcess(filename)</code></h4>
+<ul>
+<li>创建时关闭所有在子进程里的文件描述符
+<ul>
+<li><code>CreateProcess(filename, CLOSE_FD)</code></li>
+</ul>
+</li>
+<li>创建时改变子进程的环境
+<ul>
+<li><code>CreateProcess(filename, CLOSE_FD, new_envp)</code></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/fork-exec.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="29" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>进程创建/加载</h4>
+<ul>
+<li>
+<p>Unix进程创建/加载系统调用： fork/exec</p>
+<ul>
+<li>fork()把一个进程复制成两个进程
+<ul>
+<li>parent (old PID), child (new PID)</li>
+</ul>
+</li>
+<li>exec()用新程序来重写当前进程
+<ul>
+<li>PID没有改变</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="29" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="30" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>用fork和exec创建进程的示例</h4>
+<pre><code class="language-C"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">int</span> pid = fork()；		<span class="hljs-comment">// 创建子进程</span>
+<span class="hljs-keyword">if</span>(pid == <span class="hljs-number">0</span>) {			<span class="hljs-comment">// 子进程在这里继续</span>
+     <span class="hljs-comment">// Do anything (unmap memory, close net connections…)</span>
+     exec(“program”, argc, argv0, argv1, …);
+}
+</span></span></foreignObject></svg></code></pre>
+<ul>
+<li>fork() 创建一个继承的子进程
+<ul>
+<li><strong>复制</strong>父进程的所有变量和内存</li>
+<li><strong>复制</strong>父进程的所有CPU寄存器(有一个寄存器<strong>例外</strong>)</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="31" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>用fork和exec创建进程的示例</h4>
+<pre><code class="language-C"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">int</span> pid = fork()；		<span class="hljs-comment">// 创建子进程</span>
+<span class="hljs-keyword">if</span>(pid == <span class="hljs-number">0</span>) {			<span class="hljs-comment">// 子进程在这里继续</span>
+     <span class="hljs-comment">// Do anything (unmap memory, close net connections…)</span>
+     exec(“program”, argc, argv0, argv1, …);
+}
+</span></span></foreignObject></svg></code></pre>
+<ul>
+<li>fork()的返回值
+<ul>
+<li>子进程的fork()返回0</li>
+<li>父进程的fork()返回子进程标识符</li>
+<li>fork() 返回值可方便后续使用，子进程可使用getpid()获取PID</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程创建<code>fork()</code>的执行过程</h4>
+<ul>
+<li>对于子进程而言，fork()是对父进程地址空间的一次复制过程<br />
+<img src="figs/fork.png" alt="" style="width:1000px;" /></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>程序加载并执行的示例</h4>
+<ul>
+<li>系统调用exec( )加载新程序取代当前运行进程 (代码是否有问题???)</li>
+</ul>
+<pre><code class="language-C"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>main()
+…
+<span class="hljs-keyword">int</span> pid = fork();			<span class="hljs-comment">// 创建子进程</span>
+<span class="hljs-keyword">if</span> (pid == <span class="hljs-number">0</span>) {			        <span class="hljs-comment">// 子进程在这里继续</span>
+    exec_status = exec(“calc”, argc, argv0, argv1, …);
+    <span class="hljs-built_in">printf</span>(“Why would I execute?”);     <span class="hljs-comment">// 这行代码能执行到吗???</span>
+}  <span class="hljs-keyword">else</span> {				<span class="hljs-comment">// 父进程在这里继续</span>
+    <span class="hljs-built_in">printf</span>(“Whose your daddy?”);
+    …
+    child_status = wait(pid);
+}
+
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="34" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>程序加载并执行的示例</h4>
+<ul>
+<li>系统调用exec( )加载新程序取代当前运行进程</li>
+</ul>
+<pre><code class="language-C"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>main()
+…
+<span class="hljs-keyword">int</span> pid = fork();			<span class="hljs-comment">// 创建子进程</span>
+<span class="hljs-keyword">if</span> (pid == <span class="hljs-number">0</span>) {			        <span class="hljs-comment">// 子进程在这里继续</span>
+    exec_status = exec(“calc”, argc, argv0, argv1, …);
+    <span class="hljs-built_in">printf</span>(“Why would I execute?”);
+}  <span class="hljs-keyword">else</span> {				<span class="hljs-comment">// 父进程在这里继续</span>
+    <span class="hljs-built_in">printf</span>(“Whose your daddy?”);
+    …
+    child_status = wait(pid);
+}
+<span class="hljs-keyword">if</span> (pid &lt; <span class="hljs-number">0</span>) { <span class="hljs-comment">/* error occurred */</span>
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>程序加载并执行的过程</h4>
+<p>在shell中调用fork()后加载计算器</p>
+<p><img src="figs/exec-1.png" alt="" style="width:900px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="36" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>程序加载并执行的过程</h4>
+<p>在shell中调用fork()后加载计算器</p>
+<p><img src="figs/exec-2.png" alt="" style="width:900px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="37" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>程序加载并执行的过程</h4>
+<p>在shell中调用fork()后加载计算器</p>
+<p><img src="figs/exec-3.png" alt="" style="width:900px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="38" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>程序加载并执行的过程</h4>
+<p>在shell中调用fork()后加载计算器</p>
+<p><img src="figs/exec-4.png" alt="" style="width:800px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="39" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="39" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>程序加载并执行的过程</h4>
+<p>在shell中调用fork()后加载计算器</p>
+<p><img src="figs/exec-5.png" alt="" style="width:800px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="40" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>程序加载并执行的过程</h4>
+<p>在shell中调用fork()后加载计算器</p>
+<p><img src="figs/exec-6.png" alt="" style="width:800px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理应用示例：<code>fork()</code></h4>
+<pre><code class="language-C"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">int</span>  <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+     <span class="hljs-keyword">pid_t</span>  pid;
+      <span class="hljs-keyword">int</span>  i;
+
+      <span class="hljs-keyword">for</span>  (i=<span class="hljs-number">0</span>;  i&lt;LOOP;  i++)
+      {
+           <span class="hljs-comment">/* fork  another  process  */</span>
+           pid = fork();
+           <span class="hljs-keyword">if</span>  (pid &lt; <span class="hljs-number">0</span>) { <span class="hljs-comment">/*error  occurred  */</span>
+                <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stderr</span>, “Fork Failed”);
+                <span class="hljs-built_in">exit</span>(<span class="hljs-number">-1</span>);
+           }
+           <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pid == <span class="hljs-number">0</span>) { <span class="hljs-comment">/* child process */</span>
+                <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stdout</span>,  “i=%d,  pid=%d,  parent  pid=%d\n”,I,      
+                             getpid() ,getppid());
+           }   
+      }
+      wait(<span class="hljs-literal">NULL</span>);
+      <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);
+} 
+
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="42" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理应用示例：<code>fork()</code></h4>
+<p><img src="figs/fork-example.png" alt="" style="width:1000px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="43" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>进程的基本概念</li>
+<li>进程管理</li>
+</ol>
+<ul>
+<li>进程管理系统调用</li>
+<li>进程控制块PCB</li>
+<li>进程创建和程序加载</li>
+</ul>
+<h3>进程等待与退出</h3>
+<ol start="3">
+<li>关于Fork()的思考</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="44" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>父进程等待子进程</h4>
+<ul>
+<li>wait()系统调用用于父进程等待子进程的结束
+<ul>
+<li>子进程结束时通过exit()向父进程返回一个值</li>
+<li>父进程通过wait()接受并处理返回值</li>
+</ul>
+</li>
+<li>wait()系统调用的功能
+<ul>
+<li>有子进程存活时，父进程进入等待状态，等待子进程的返回结果</li>
+<li>当某子进程调用exit()时，唤醒父进程，将exit()返回值作为父进程中wait的返回值</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="45" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>僵尸进程与孤儿进程</h4>
+<ul>
+<li>僵尸进程：已经执行sys_exit系统调用，但还<strong>没有</strong>被父进程通过sys_wait系统调用回收其进程控制块的子进程。
+<ul>
+<li>等待僵尸子进程时，wait()立即返回其中一个值</li>
+</ul>
+</li>
+<li>孤儿进程：其<strong>父进程先退出</strong>的子进程。
+<ul>
+<li>孤儿进程由root进程负责等待并回收</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="46" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程退出<code>exit()</code></h4>
+<ul>
+<li>进程结束执行时调用exit()，完成进程资源回收
+<ul>
+<li>exit()系统调用的功能</li>
+<li>将调用参数作为进程的“结果”</li>
+<li>关闭所有打开的文件等占用资源</li>
+<li>释放内存</li>
+<li>释放大部分进程相关的内核数据结构</li>
+<li>保留结果的值，检查是否父进程存活
+<ul>
+<li>如没有存活，设置父进程为Root进程</li>
+</ul>
+</li>
+<li>进入僵尸（zombie/defunct）状态，等待父进程回收</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理的其他相关系统调用</h4>
+<ul>
+<li>优先级控制
+<ul>
+<li>nice()指定进程的初始优先级</li>
+<li>Unix系统中进程优先级会随执行时间而衰减</li>
+</ul>
+</li>
+<li>进程调试
+<ul>
+<li>ptrace()允许一个进程控制另一个进程的执行</li>
+<li>设置断点和查看寄存器等</li>
+</ul>
+</li>
+<li>定时
+<ul>
+<li>sleep()可以让进程在定时器的等待队列中等待指定</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理与进程状态的关系</h4>
+<p>进程管理相关的系统调用可能会影响进程的状态<br />
+<img src="figs/process-control-and-life.png" alt="" style="width:600px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="49" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="49" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>进程管理与进程状态的关系</h4>
+<p><img src="figs/process-control-and-life-2.png" alt="" style="width:700px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="50" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<p><strong>提纲</strong></p>
+<ol>
+<li>进程的基本概念</li>
+<li>进程管理</li>
+</ol>
+<h3>3. 关于Fork()的思考</h3>
+<ul>
+<li>Fork()的开销？</li>
+<li>重新思考fork</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="51" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/fork-exec.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="51" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="51" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>Fork()的开销？</h4>
+<ul>
+<li>fork()的实现开销
+<ul>
+<li>对子进程分配内存</li>
+<li>复制父进程的内存和CPU寄存器到子进程里</li>
+<li>开销昂贵!!</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="51" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="52" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/fork-exec.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="52" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="52" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>Fork()的开销？</h4>
+<ul>
+<li>在99%的情况里，我们在调用fork()之后调用exec()
+<ul>
+<li>在fork()操作中内存复制是没有作用的  --why?</li>
+<li>子进程将可能关闭打开的文件和网络连接?  --why?</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="52" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="53" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/cow.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="53" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="53" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>Fork()的开销？</h4>
+<ul>
+<li>vfork()创建进程时，不再创建一个同样的内存映像
+<ul>
+<li>轻量级fork()</li>
+<li>子进程应该几乎立即调用exec()</li>
+<li>现在使用 Copy on Write  (COW) 技术<br />
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="53" data-marpit-pagination-total="62"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="54" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>重新思考fork</h4>
+<p><a href="https://www.microsoft.com/en-us/research/publication/a-fork-in-the-road/">Andrew Baumann,etc.,   A fork() in the road，HotOS 2019</a></p>
+<p><img src="figs/fork-in-the-road.png" alt="" style="width:800px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="55" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>重新思考fork</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>The fork system call is one of Unix's great ideas.
+     -- https://cs61.seas.harvard.edu/site/2018/WeensyOS/
+</span></span></foreignObject></svg></code></pre>
+<ul>
+<li>It’s simple: no parameters!</li>
+<li>It’s elegant: fork is orthogonal to exec</li>
+<li>It eased concurrency</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="56" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>重新思考fork</h4>
+<p>但是！</p>
+<ul>
+<li>Fork is no longer simple
+<ul>
+<li>Fork encourages memory overcommit</li>
+<li>Fork is incompatible with a single address space</li>
+<li>Fork is incompatible with heterogeneous hardware</li>
+<li>Fork infects an entire system</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="57" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>重新思考fork</h4>
+<p>但是！<br />
+<img src="figs/fork-slow.png" alt="" style="width:1100px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="58" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>重新思考fork</h4>
+<p><img src="figs/unix-ken-why-fork.png" alt="" style="width:1100px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="59" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="59" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>重新思考fork</h4>
+<p><img src="figs/origins-of-fork.png" alt="" style="width:1100px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="60" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="60" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>重新思考fork</h4>
+<p>For implementation expedience [Ritchie, 1979]</p>
+<ul>
+<li>fork was 27 lines of PDP-7 assembly
+<ul>
+<li>One process resident at a time</li>
+<li>Copy parent’s memory out to swap</li>
+<li>Continue running child</li>
+</ul>
+</li>
+<li>exec didn’t exist – it was part of the shell
+<ul>
+<li>Would have been more work to combine them</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="61" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="61" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>重新思考fork</h4>
+<p>结论</p>
+<ul>
+<li>Fork is not an inspired design, but an accident of history</li>
+<li>Only Unix implemented it this way</li>
+<li>We may be stuck with fork for a long time to come</li>
+<li>But, let’s not pretend that it’s still a good idea today!</li>
+</ul>
+<p><strong>Please, stop teaching students that fork is good design</strong></p>
+<ul>
+<li>Begin with spawn</li>
+<li>Teach fork, but include historical context</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="62" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h3>小结</h3>
+<ol>
+<li>进程的基本概念</li>
+<li>进程管理</li>
+<li>关于Fork()的思考</li>
+</ol>
+<ul>
+<li>Fork()的开销？</li>
+<li>重新思考fork</li>
+</ul>
+</section>
+<script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:u}=t.children;for(let r=0;r<u;r+=1){const o=t.children[r],a=o.getScreenCTM();if(a){const t=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,r=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.firstElementChild,{style:u}=l;u.transformOrigin||(u.transformOrigin=`${-t}px ${-r}px`),u.transform=`scale(${c}) matrix(${a.a}, ${a.b}, ${a.c}, ${a.d}, ${a.e-d.left}, ${a.f-d.top}) translateZ(0.0001px)`}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),u=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",u)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="59" tabindex="0"><p>https://www.infoq.cn/article/BYGiWI-fxHTNvSohEUNW
+ 当 Unix 为 PDP-11 计算机（其带有内存转换硬件，允许多个进程保留驻留）重写时，只为了在 exec 中丢弃一个进程就复制进程的全部内存就已经很没效率了。我们怀疑在 Unix 的早期发展阶段，fork 之所以能幸存下来，主要是因为程序和内存都很小（PDP-11 上有只 8 个 8 KiB 页面），内存访问速度相对于指令执行速度较快，而且它提供了一个合理的抽象。这里有两点很重要：</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@1.7.0/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";const e=document.body,t=(...e)=>history.replaceState(...e),n="presenter",r="next",o=["",n,r],a="data-bespoke-marp-",i=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},s=()=>e.dataset.bespokeView,l=e=>new URLSearchParams(location.search).get(e),d=(e,n={})=>{var r;const o={location,setter:t,...n},a=new URLSearchParams(o.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?a.set(t,n):a.delete(t)}try{o.setter({...null!==(r=window.history.state)&&void 0!==r?r:{}},"",i(a,o.location))}catch(e){console.error(e)}},c=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch(e){return!1}})(),u=e=>{try{return localStorage.getItem(e)}catch(e){return null}},f=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch(e){return!1}},m=e=>{try{return localStorage.removeItem(e),!0}catch(e){return!1}},g=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},p=e=>{e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach((e=>e.classList.add("bespoke-marp-slide"))),e.on("activate",(t=>{const n="bespoke-marp-active",r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach((e=>{e.classList.remove(n),g(e,!0)})),o.add(n),g(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}}))},v=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map((e=>[null,...e.querySelectorAll("[data-marpit-fragment]")]))});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach(((e,t)=>{e.forEach(((e,n)=>{if(null==e)return;const i=t<r||t===r&&n<=o;e.setAttribute(`${a}fragment`,(i?"":"in")+"active");const s=`${a}current-fragment`;t===r&&n===o?e.setAttribute(s,"current"):e.removeAttribute(s)}))})),e.fragmentIndex=o;const i={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",i)};e.on("next",(({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}})),e.on("prev",(({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)})),e.on("slide",(({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)})),o(0,0)},h=document,y=()=>!(!h.fullscreenEnabled&&!h.webkitFullscreenEnabled),b=()=>!(!h.fullscreenElement&&!h.webkitFullscreenElement),x=e=>{e.fullscreen=()=>{y()&&(async()=>{return b()?null===(e=h.exitFullscreen||h.webkitExitFullscreen)||void 0===e?void 0:e.call(h):((e=h.body)=>{var t;return null===(t=e.requestFullscreen||e.webkitRequestFullscreen)||void 0===t?void 0:t.call(e)})();var e})()},document.addEventListener("keydown",(t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!y()||(e.fullscreen(),t.preventDefault())}))},w="bespoke-marp-inactive",k=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout((()=>{r.add(w),o()}),e),r.contains(w)&&(r.remove(w),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},E=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],L=e=>{e.parent.addEventListener("keydown",(e=>{if(!e.target)return;const t=e.target;(E.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()}))},$=e=>{window.addEventListener("load",(()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute(`${a}load`,e)}}))},S=({interval:e=250}={})=>t=>{document.addEventListener("keydown",(e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()}));let n,r,o=0;t.parent.addEventListener("wheel",(a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),(null==e?void 0:e.parentElement)&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const l=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<12)return;r&&clearTimeout(r),r=setTimeout((()=>{n=0}),e);const d=Date.now()-o<e,c=l<=n;if(n=l,d||c)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())}))},P=(e=".bespoke-marp-osc")=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${a}osc=${JSON.stringify(e)}]`).forEach(n)};return y()||n("fullscreen",(e=>e.style.display="none")),c||n("presenter",(e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."})),e=>{t.addEventListener("click",(t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?null==e||e.fullscreen():"presenter"===n&&e.openPresenterView()}})),e.parent.appendChild(t),e.on("activate",(({index:t})=>{n("page",(n=>n.textContent=`Page ${t+1} of ${e.slides.length}`))})),e.on("fragment",(({index:t,fragments:r,fragmentIndex:o})=>{n("prev",(e=>e.disabled=0===t&&0===o)),n("next",(n=>n.disabled=t===e.slides.length-1&&o===r.length-1))})),e.on("marp-active",(()=>g(t,!1))),e.on("marp-inactive",(()=>g(t,!0))),y()&&(e=>{for(const t of["","webkit"])h.addEventListener(t+"fullscreenchange",e)})((()=>n("fullscreen",(e=>e.classList.toggle("exit",y()&&b())))))}},T=e=>{window.addEventListener("message",(t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}}))};var I=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"];let N=e=>String(e).replace(/[&<>"']/g,(e=>`&${C[e]};`)),C={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},A="dangerouslySetInnerHTML",D={className:"class",htmlFor:"for"},M={};function B(e,t){let n=[],r="";t=t||{};for(let e=arguments.length;e-- >2;)n.push(arguments[e]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(let e in t)!1!==t[e]&&null!=t[e]&&e!==A&&(r+=` ${D[e]?D[e]:N(e)}="${N(t[e])}"`);r+=">"}if(-1===I.indexOf(e)){if(t[A])r+=t[A].__html;else for(;n.length;){let e=n.pop();if(e)if(e.pop)for(let t=e.length;t--;)n.push(e[t]);else r+=!0===M[e]?e:N(e)}r+=e?`</${e}>`:""}return M[r]=!0,r}const K=({children:e})=>B(null,null,...e),O="bespoke-marp-presenter-",q={container:`${O}container`,dragbar:`${O}dragbar-container`,next:`${O}next`,nextContainer:`${O}next-container`,noteContainer:`${O}note-container`,noteWrapper:`${O}note-wrapper`,noteButtons:`${O}note-buttons`,infoContainer:`${O}info-container`,infoPage:`${O}info-page`,infoPageText:`${O}info-page-text`,infoPagePrev:`${O}info-page-prev`,infoPageNext:`${O}info-page-next`,noteButtonsBigger:`${O}note-bigger`,noteButtonsSmaller:`${O}note-smaller`,infoTime:`${O}info-time`,infoTimer:`${O}info-timer`},_=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=q.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",B(K,null,B("div",{class:q.nextContainer},B("iframe",{class:q.next,src:"?view=next"})),B("div",{class:q.dragbar}),B("div",{class:q.noteContainer},B("div",{class:q.noteWrapper}),B("div",{class:q.noteButtons},B("button",{class:q.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),B("button",{class:q.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),B("div",{class:q.infoContainer},B("div",{class:q.infoPage},B("button",{class:q.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),B("span",{class:q.infoPageText}),B("button",{class:q.infoPageNext,tabindex:"-1",title:"Next"},"Next")),B("time",{class:q.infoTime,title:"Current time"}),B("time",{class:q.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(q.dragbar).addEventListener("mousedown",(()=>{t=!0,r(q.dragbar).classList.add("active")})),window.addEventListener("mouseup",(()=>{t=!1,r(q.dragbar).classList.remove("active")})),window.addEventListener("mousemove",(e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(q.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)})),r(q.nextContainer).addEventListener("click",(()=>e.next()));const n=r(q.next),o=(a=n,(e,t)=>{var n;return null===(n=a.contentWindow)||void 0===n?void 0:n.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin)});var a;n.addEventListener("load",(()=>{r(q.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",(({index:e,fragmentIndex:t})=>o(e,t)))}));const i=document.querySelectorAll(".bespoke-marp-note");i.forEach((e=>{e.addEventListener("keydown",(e=>e.stopPropagation())),r(q.noteWrapper).appendChild(e)})),e.on("activate",(()=>i.forEach((t=>t.classList.toggle("active",t.dataset.index==e.slide())))));let s=0;const l=e=>{s=Math.max(-5,s+e),r(q.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},d=()=>l(1),c=()=>l(-1),u=r(q.noteButtonsBigger),f=r(q.noteButtonsSmaller);u.addEventListener("click",(()=>{u.blur(),d()})),f.addEventListener("click",(()=>{f.blur(),c()})),document.addEventListener("keydown",(e=>{"+"===e.key&&d(),"-"===e.key&&c()}),!0),e.on("activate",(({index:t})=>{r(q.infoPageText).textContent=`${t+1} / ${e.slides.length}`}));const m=r(q.infoPagePrev),g=r(q.infoPageNext);m.addEventListener("click",(t=>{m.blur(),e.prev({fragment:!t.shiftKey})})),g.addEventListener("click",(t=>{g.blur(),e.next({fragment:!t.shiftKey})})),e.on("fragment",(({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1}));let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(q.infoTime).textContent=e.toLocaleTimeString(),r(q.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(q.infoTimer).addEventListener("click",(()=>{p=new Date}))})(e)},X=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:F},presenterUrl:{enumerable:!0,get:U}}),c&&document.addEventListener("keydown",(t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())}))};function F(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,O+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function U(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),i(e)}const V=e=>{const t=s();return t===r&&e.appendChild(document.createElement("span")),{"":X,[n]:_,[r]:T}[t]},R=e=>{e.on("activate",(t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach((n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"}))}))},j=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},H=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),l=o(0,r(n||0,a[s].length-1));s===e.slide()&&l===e.fragmentIndex||e.slide(s,{fragment:l})})((j(location.hash.slice(1))||1)-1,t.fragment?j(l("f")||""):null)};e.on("fragment",(({index:e,fragmentIndex:r})=>{n||d({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})})),setTimeout((()=>{o(),window.addEventListener("hashchange",(()=>r((()=>{o({fragment:!1}),d({f:void 0})})))),window.addEventListener("popstate",(()=>{n||r((()=>o()))})),n=!1}),0)}},W=(e={})=>{var n;const r=e.key||(null===(n=window.history.state)||void 0===n?void 0:n.marpBespokeSyncKey)||Math.random().toString(36).slice(2),o=`bespoke-marp-sync-${r}`;var a;a={marpBespokeSyncKey:r},d({},{setter:(e,...n)=>t({...e,...a},...n)});const i=()=>{const e=u(o);return e?JSON.parse(e):Object.create(null)},s=e=>{const t=i(),n={...t,...e(t)};return f(o,JSON.stringify(n)),n},l=()=>{window.removeEventListener("pageshow",l),s((e=>({reference:(e.reference||0)+1})))};return e=>{l(),Object.defineProperty(e,"syncKey",{value:r,enumerable:!0});let t=!0;setTimeout((()=>{e.on("fragment",(e=>{t&&s((()=>({index:e.index,fragmentIndex:e.fragmentIndex})))}))}),0),window.addEventListener("storage",(n=>{if(n.key===o&&n.oldValue&&n.newValue){const r=JSON.parse(n.oldValue),o=JSON.parse(n.newValue);if(r.index!==o.index||r.fragmentIndex!==o.fragmentIndex)try{t=!1,e.slide(o.index,{fragment:o.fragmentIndex})}finally{t=!0}}}));const n=()=>{const{reference:e}=i();void 0===e||e<=1?m(o):s((()=>({reference:e-1})))};window.addEventListener("pagehide",(e=>{e.persisted&&window.addEventListener("pageshow",l),n()})),e.on("destroy",n)}},{PI:Y,abs:J,sqrt:z,atan2:G}=Math,Q={passive:!0},Z=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",(({touches:e})=>{r=1===e.length?a(e[0]):void 0}),Q),o.addEventListener("touchmove",(e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=z(J(n)**2+J(o)**2),r.radian=G(n,o)}else r=void 0})),o.addEventListener("touchend",(o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+Y)%(2*Y)-Y;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}}),Q)},ee="_tA",te=e=>{const t=document.documentTransition;if(!t)return;let n;e._tP=!1;const r=(n,{back:r,cond:o})=>a=>{var i,s;const l=e.slides[e.slide()].querySelector("section[data-transition]");if(!l)return!0;const d=document.querySelector(".bespoke-marp-osc"),c=d?[d]:void 0;if(e._tP){if(a._tA){e._tP=!1;try{t.start({sharedElements:c}).catch((()=>{}))}catch(e){}return!0}}else{if(!o(a))return!0;const d="transition"+(a.back||r?"Back":""),u=Number.parseInt(null!==(i=l.dataset[`${d}Duration`])&&void 0!==i?i:"",10),f=Number.parseInt(null!==(s=l.dataset[`${d}Delay`])&&void 0!==s?s:"",10),m={};Number.isNaN(u)||(m.duration=u.toString()),Number.isNaN(f)||(m.delay=f.toString()),e._tP=t.prepare({rootTransition:l.dataset[d],rootConfig:m,sharedElements:c}).then((()=>n(a))).catch((()=>n(a)))}return!1};e.on("prev",r((t=>e.prev({...t,[ee]:!0})),{back:!0,cond:e=>{var t;return e.index>0&&!((null===(t=e.fragment)||void 0===t||t)&&n.fragmentIndex>0)}})),e.on("next",r((t=>e.next({...t,[ee]:!0})),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout((()=>{e.on("slide",r((t=>e.slide(t.index,{...t,[ee]:!0})),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))}),0),e.on("fragment",(e=>{n=e}))};let ne;const re=()=>(void 0===ne&&(ne="wakeLock"in navigator&&navigator.wakeLock),ne),oe=async()=>{const e=re();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},ae=async()=>{if(!re())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await oe(),e};((t=document.getElementById("p"))=>{(()=>{const t=l("view");e.dataset.bespokeView=t===r||t===n?t:""})();const a=(e=>{const t=l(e);return d({[e]:void 0}),t})("sync")||void 0;var i,c,u,f,m,g,h,y,b,w,E,T;i=t,c=((...e)=>{const t=o.findIndex((e=>s()===e));return e.map((([e,n])=>e[t]&&n)).filter((e=>e))})([[1,1,0],W({key:a})],[[1,1,1],V(t)],[[1,1,0],L],[[1,1,1],p],[[1,0,0],k()],[[1,1,1],$],[[1,1,1],H({history:!1})],[[1,1,0],S()],[[1,1,0],x],[[1,0,0],R],[[1,1,0],Z()],[[1,0,0],P()],[[1,0,0],te],[[1,1,1],v],[[1,1,0],ae]),f=1===(i.parent||i).nodeType?i.parent||i:document.querySelector(i.parent||i),m=[].filter.call("string"==typeof i.slides?f.querySelectorAll(i.slides):i.slides||f.children,(function(e){return"SCRIPT"!==e.nodeName})),g={},h=function(e,t){return(t=t||{}).index=m.indexOf(e),t.slide=e,t},w=function(e,t){m[e]&&(u&&b("deactivate",h(u,t)),u=m[e],b("activate",h(u,t)))},E=function(e,t){var n=m.indexOf(u)+e;b(e>0?"next":"prev",h(u,t))&&w(n,t)},T={off:y=function(e,t){g[e]=(g[e]||[]).filter((function(e){return e!==t}))},on:function(e,t){return(g[e]||(g[e]=[])).push(t),y.bind(null,e,t)},fire:b=function(e,t){return(g[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},slide:function(e,t){if(!arguments.length)return m.indexOf(u);b("slide",h(m[e],t))&&w(e,t)},next:E.bind(null,1),prev:E.bind(null,-1),parent:f,slides:m,destroy:function(e){b("destroy",h(u,e)),g={}}},(c||[]).forEach((function(e){e(T)})),u||w(0)})()}();</script></body></html>

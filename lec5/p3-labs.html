@@ -1,0 +1,1100 @@
+<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{-webkit-tap-highlight-color:transparent;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTQwIDcwSDIwVjUwbTIwIDBMMjAgNzBtNDAtNDBoMjB2MjBtLTIwIDAgMjAtMjAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTIwIDUwaDIwdjIwbS0yMCAwIDIwLTIwbTQwIDBINjBWMzBtMjAgMEw2MCA1MCIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMTIgNTBoODBNNTIgOTBWMTAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjUiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMTIgNTBoODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjUiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{-webkit-animation-name:__bespoke_marp__!important;animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{bottom:0;left:0;position:absolute;right:0;top:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:rgba(0,0,0,.65);border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:transparent}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:transparent;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{bottom:0;display:block;left:0;position:absolute;right:0;top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:rgba(0,0,0,.65);border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{word-wrap:break-word;box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;scrollbar-color:hsla(0,0%,93%,.5) transparent;scrollbar-width:thin;white-space:pre-wrap;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:transparent}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:hsla(0,0%,93%,.5);border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>@charset "UTF-8";@import url("https://fonts.googleapis.com/css?family=Lato:400,900|Roboto+Mono:400,700&display=swap");div#p>svg>foreignObject>section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center}div#p>svg>foreignObject>section:after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#p>svg>foreignObject>section:not([data-marpit-pagination]):after{display:none}/* Normalization */div#p>svg>foreignObject>section h1{font-size:2em;margin:0.67em 0}div#p>svg>foreignObject>section video::-webkit-media-controls{will-change:transform}@page{size:1280px 720px;margin:0}@media print{body,html{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#p>svg>foreignObject>section{page-break-before:always;break-before:page}div#p>svg>foreignObject>section,div#p>svg>foreignObject>section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;transition:none!important}div#p>svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
+/*!
+ * Marp / Marpit Gaia theme.
+ *
+ * @theme gaia
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#p>svg>foreignObject>section .hljs{background:#000;color:#f8f8f8;display:block;overflow-x:auto;padding:.5em}div#p>svg>foreignObject>section .hljs-comment,div#p>svg>foreignObject>section .hljs-quote{color:#aeaeae;font-style:italic}div#p>svg>foreignObject>section .hljs-keyword,div#p>svg>foreignObject>section .hljs-selector-tag,div#p>svg>foreignObject>section .hljs-type{color:#e28964}div#p>svg>foreignObject>section .hljs-string{color:#65b042}div#p>svg>foreignObject>section .hljs-subst{color:#daefa3}div#p>svg>foreignObject>section .hljs-link,div#p>svg>foreignObject>section .hljs-regexp{color:#e9c062}div#p>svg>foreignObject>section .hljs-name,div#p>svg>foreignObject>section .hljs-section,div#p>svg>foreignObject>section .hljs-tag,div#p>svg>foreignObject>section .hljs-title{color:#89bdff}div#p>svg>foreignObject>section .hljs-class .hljs-title,div#p>svg>foreignObject>section .hljs-doctag{text-decoration:underline}div#p>svg>foreignObject>section .hljs-bullet,div#p>svg>foreignObject>section .hljs-number,div#p>svg>foreignObject>section .hljs-symbol{color:#3387cc}div#p>svg>foreignObject>section .hljs-params,div#p>svg>foreignObject>section .hljs-template-variable,div#p>svg>foreignObject>section .hljs-variable{color:#3e87e3}div#p>svg>foreignObject>section .hljs-attribute{color:#cda869}div#p>svg>foreignObject>section .hljs-meta{color:#8996a8}div#p>svg>foreignObject>section .hljs-formula{background-color:#0e2231;color:#f8f8f8;font-style:italic}div#p>svg>foreignObject>section .hljs-addition{background-color:#253b22;color:#f8f8f8}div#p>svg>foreignObject>section .hljs-deletion{background-color:#420e09;color:#f8f8f8}div#p>svg>foreignObject>section .hljs-selector-class{color:#9b703f}div#p>svg>foreignObject>section .hljs-selector-id{color:#8b98ab}div#p>svg>foreignObject>section .hljs-emphasis{font-style:italic}div#p>svg>foreignObject>section .hljs-strong{font-weight:700}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{max-height:580px}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2,div#p>svg>foreignObject>section h3,div#p>svg>foreignObject>section h4,div#p>svg>foreignObject>section h5,div#p>svg>foreignObject>section h6{margin:.5em 0 0}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{font-weight:inherit}div#p>svg>foreignObject>section h1{font-size:1.8em}div#p>svg>foreignObject>section h2{font-size:1.5em}div#p>svg>foreignObject>section h3{font-size:1.3em}div#p>svg>foreignObject>section h4{font-size:1.1em}div#p>svg>foreignObject>section h5{font-size:1em}div#p>svg>foreignObject>section h6{font-size:.9em}div#p>svg>foreignObject>section blockquote,div#p>svg>foreignObject>section p{margin:1em 0 0}div#p>svg>foreignObject>section ol>li,div#p>svg>foreignObject>section ul>li{margin:.3em 0 0}div#p>svg>foreignObject>section ol>li>p,div#p>svg>foreignObject>section ul>li>p{margin:.6em 0 0}div#p>svg>foreignObject>section code{display:inline-block;font-family:Roboto Mono,monospace;font-size:.8em;letter-spacing:0;margin:-.1em .15em;padding:.1em .2em;vertical-align:baseline}div#p>svg>foreignObject>section pre{display:block;margin:1em 0 0;min-height:1em;overflow:visible}div#p>svg>foreignObject>section pre code{box-sizing:border-box;font-size:.7em;margin:0;min-width:100%;padding:.5em}div#p>svg>foreignObject>section pre code svg[data-marp-fitting=svg]{max-height:calc(580px - 1em)}div#p>svg>foreignObject>section blockquote{margin:1em 0 0;padding:0 1em;position:relative}div#p>svg>foreignObject>section blockquote:after,div#p>svg>foreignObject>section blockquote:before{content:"“";display:block;font-family:Times New Roman,serif;font-weight:700;position:absolute}div#p>svg>foreignObject>section blockquote:before{left:0;top:0}div#p>svg>foreignObject>section blockquote:after{bottom:0;right:0;transform:rotate(180deg)}div#p>svg>foreignObject>section blockquote>:first-child{margin-top:0}div#p>svg>foreignObject>section mark{background:transparent}div#p>svg>foreignObject>section table{border-collapse:collapse;border-spacing:0;margin:1em 0 0}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border-style:solid;border-width:1px;padding:.2em .4em}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header,div#p>svg>foreignObject>section:after{box-sizing:border-box;font-size:66%;height:70px;line-height:50px;overflow:hidden;padding:10px 25px;position:absolute}div#p>svg>foreignObject>section:after{--marpit-root-font-size:66%}div#p>svg>foreignObject>section header{top:0}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header{left:0;right:0}div#p>svg>foreignObject>section footer{bottom:0}div#p>svg>foreignObject>section{word-wrap:break-word;--color-background:#fff8e1;--color-background-stripe:rgba(69,90,100,.1);--color-foreground:#455a64;--color-dimmed:#6a7a7d;--color-highlight:#0288d1;background-color:var(--color-background);background-image:linear-gradient(135deg,hsla(0,0%,53%,0),hsla(0,0%,53%,.02) 50%,hsla(0,0%,100%,0) 0,hsla(0,0%,100%,.05));color:var(--color-foreground);font-family:Lato,Avenir Next,Avenir,Trebuchet MS,Segoe UI,sans-serif;font-size:35px;height:720px;letter-spacing:1.25px;line-height:1.35;padding:70px;width:1280px}div#p>svg>foreignObject>section{--marpit-root-font-size:35px}div#p>svg>foreignObject>section:after{bottom:0;font-size:80%;right:0}div#p>svg>foreignObject>section:after{--marpit-root-font-size:80%}div#p>svg>foreignObject>section a,div#p>svg>foreignObject>section mark{color:var(--color-highlight)}div#p>svg>foreignObject>section code{background:var(--color-dimmed);color:var(--color-background)}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{color:var(--color-highlight)}div#p>svg>foreignObject>section pre>code{background:var(--color-foreground)}div#p>svg>foreignObject>section blockquote:after,div#p>svg>foreignObject>section blockquote:before,div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header,div#p>svg>foreignObject>section section:after{color:var(--color-dimmed)}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border-color:var(--color-foreground)}div#p>svg>foreignObject>section table thead th{background:var(--color-foreground);color:var(--color-background)}div#p>svg>foreignObject>section table tbody>tr:nth-child(odd) td,div#p>svg>foreignObject>section table tbody>tr:nth-child(odd) th{background:var(--color-background-stripe,transparent)}div#p>svg>foreignObject>section>:first-child,div#p>svg>foreignObject>section>header:first-child+*{margin-top:0}div#p>svg>foreignObject>section.invert{--color-background:#455a64;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#dad8c8;--color-highlight:#81d4fa}div#p>svg>foreignObject>section.gaia{--color-background:#0288d1;--color-background-stripe:rgba(255,248,225,.1);--color-foreground:#fff8e1;--color-dimmed:#cce2de;--color-highlight:#81d4fa}div#p>svg>foreignObject>section.lead{display:flex;flex-flow:column nowrap;justify-content:center}div#p>svg>foreignObject>section.lead h1,div#p>svg>foreignObject>section.lead h2,div#p>svg>foreignObject>section.lead h3,div#p>svg>foreignObject>section.lead h4,div#p>svg>foreignObject>section.lead h5,div#p>svg>foreignObject>section.lead h6{text-align:center}div#p>svg>foreignObject>section.lead h1 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h2 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h3 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h4 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h5 svg[data-marp-fitting=svg],div#p>svg>foreignObject>section.lead h6 svg[data-marp-fitting=svg]{--preserve-aspect-ratio:xMidYMid meet}div#p>svg>foreignObject>section.lead p{text-align:center}div#p>svg>foreignObject>section.lead blockquote>h1,div#p>svg>foreignObject>section.lead blockquote>h2,div#p>svg>foreignObject>section.lead blockquote>h3,div#p>svg>foreignObject>section.lead blockquote>h4,div#p>svg>foreignObject>section.lead blockquote>h5,div#p>svg>foreignObject>section.lead blockquote>h6,div#p>svg>foreignObject>section.lead blockquote>p{text-align:left}div#p>svg>foreignObject>section.lead blockquote svg[data-marp-fitting=svg]:not([data-marp-fitting-math]){--preserve-aspect-ratio:xMinYMin meet}div#p>svg>foreignObject>section.lead ol>li>p,div#p>svg>foreignObject>section.lead ul>li>p{text-align:left}div#p>svg>foreignObject>section.lead table{margin-left:auto;margin-right:auto}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#p>svg>foreignObject>section[data-marpit-advanced-background=content],div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id="p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-background-color="white" data-class="lead" data-theme="gaia" class="lead" style="--background-color:white;--class:lead;--theme:gaia;background-color:white;background-image:none;">
+<h1>第五讲 物理内存管理</h1>
+<h2>第三节 实践：建立地址空间的OS</h2>
+<p>Address Space OS(ASOS)<br />
+<br /><br />
+<br /></p>
+<p>向勇 陈渝 李国良 任炬</p>
+<p>2023年春季</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="2" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="41%" height="720"><section id="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="2" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<h3>1. 实验目标和步骤</h3>
+<ul>
+<li>实验目标</li>
+<li>实践步骤</li>
+</ul>
+<ol start="2">
+<li>系统架构</li>
+<li>用户视角的地址空间</li>
+<li>内核管理地址空间</li>
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="2" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="3" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>以往目标</h4>
+<p>提高性能、简化开发、加强安全</p>
+<ul>
+<li>multiprog &amp; time-sharing OS目标
+<ul>
+<li>让APP有效共享CPU，提高系统总体性能和效率</li>
+</ul>
+</li>
+<li>BatchOS目标
+<ul>
+<li>让APP与OS隔离，加强系统安全，提高执行效率</li>
+</ul>
+</li>
+<li>LibOS目标
+<ul>
+<li>让APP与硬件隔离，简化应用访问硬件的难度和复杂性</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>实验目标</h4>
+<p><s>提高性能</s>、简化开发、加强安全、</p>
+<ul>
+<li>简化编程，APP不用考虑其运行时的起始执行地址
+<ul>
+<li>与编译器达成共识，给每个APP设定一个固定起始执行地址</li>
+</ul>
+</li>
+<li><strong>隔离APP访问的内存地址空间</strong>
+<ul>
+<li>给APP的内存地址空间划界，不能越界访问OS和其他APP</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/ankylosauridae.png&quot;);background-size:80%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="5" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>实验要求</h4>
+<ul>
+<li>理解地址空间</li>
+<li>掌握页机制</li>
+<li>会处理页访问异常</li>
+<li>会写支持页机制的操作系统</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="5" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:65%;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;" data-marpit-advanced-background="content">
+<h4>总体思路</h4>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="6" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>总体思路</h4>
+<ul>
+<li>编译：应用程序和内核独立编译，合并为一个镜像</li>
+<li>编译：不同应用程序可采用<strong>统一的起始地址</strong></li>
+<li>构造：系统调用服务，任务的管理与初始化</li>
+<li>构造：建立基于<strong>页表机制</strong>的虚存空间</li>
+<li>运行：特权级切换，任务与OS相互切换</li>
+<li>运行：<strong>切换地址空间</strong>，跨地址空间访问数据</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>历史背景</h4>
+<ul>
+<li>在 1940 年出现了<strong>两级存储</strong>系统
+<ul>
+<li>主存：磁芯；辅助：磁鼓</li>
+</ul>
+</li>
+<li>提出**虚拟内存（Virtual memory）**技术概念
+<ul>
+<li>德国的柏林工业大学博士生 Fritz-Rudolf Güntsch</li>
+</ul>
+</li>
+<li>1959 年的Atlas Supervisor 操作系统
+<ul>
+<li>英国曼彻斯特大学的 Tom Kilburn 教授团队展示了 Atlas 计算机和 Atlas Supervisor 操作系统</li>
+<li><strong>创造</strong>出分页（paging）技术和虚拟内存技术（virtual memory，当时称为 one-level storage system）</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="41%" height="720"><section id="9" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+</ol>
+<ul>
+<li>实验目标</li>
+</ul>
+<h3>实践步骤</h3>
+<ol start="2">
+<li>系统架构</li>
+<li>用户视角的地址空间</li>
+<li>内核管理地址空间</li>
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="9" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="10" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>实践步骤</h4>
+<ul>
+<li>修改APP的链接脚本(定制起始地址)</li>
+<li>加载&amp;执行应用</li>
+<li>切换任务和<strong>任务的地址空间</strong></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="11" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>编译步骤</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
+cd rCore-Tutorial-v3
+git checkout ch4
+cd os
+make run
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="12" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>输出结果</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>Into Test load_fault, we will insert an invalid load operation...
+Kernel should kill this application!
+[kernel] PageFault in application, bad addr = 0x0, bad instruction = 0x1009c, kernel killed it.
+
+store_fault APP running...
+
+Into Test store_fault, we will insert an invalid store operation...
+Kernel should kill this application!
+[kernel] PageFault in application, bad addr = 0x0, bad instruction = 0x1009c, kernel killed it.
+power_3 [130000/300000]
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>测试应用</h4>
+<p>其中包含两个应用程序<code>04load_fault</code>, <code>05store_fault</code></p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>// usr/src/bin/04load_fault.rs
+......
+    unsafe {
+        let _i=read_volatile(null_mut::&lt;u8&gt;());
+    }
+
+// usr/src/bin/05store_fault.rs
+......
+    unsafe {
+       null_mut::&lt;u8&gt;().write_volatile(1);
+    }
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="41%" height="720"><section id="14" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+</ol>
+<h3>2. 系统架构</h3>
+<ul>
+<li>代码结构</li>
+<li>RISC-V SV39页机制</li>
+</ul>
+<ol start="3">
+<li>用户视角的地址空间</li>
+<li>内核管理地址空间</li>
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="14" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="35%" height="720"><section id="15" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>软件架构</h4>
+<ul>
+<li>简化应用</li>
+<li>建立Paging</li>
+<li>内核页表</li>
+<li>应用页表</li>
+<li>信息传递</li>
+<li>跳板机制</li>
+<li>扩展TCB</li>
+<li>扩展异常</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="15" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="16" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>构建应用</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>└── user
+    ├── build.py(移除：给应用设定唯一起始地址的脚本)
+    └── src（用户态库和应用程序）
+        ├── bin（各个应用程序）
+        ├── ...
+        └── linker.ld(修改：将所有应用放在各自地址空间中固定的位置)
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="17" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>地址空间</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>├── os
+    └── src
+         ├── config.rs(修改：新增一些内存管理的相关配置)
+         ├── linker-k210.ld(修改：将跳板页引入内存布局)
+         ├── linker-qemu.ld(修改：将跳板页引入内存布局)
+         ├── loader.rs(修改：仅保留获取应用数量和数据的功能)
+         ├── main.rs(修改)
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="18" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>mm子模块</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>├── os
+    └── src
+         ├── mm(新增：内存管理的 mm 子模块)
+             ├──address.rs(物理/虚拟 地址/页号的 Rust 抽象)
+             ├──frame_allocator.rs(物理页帧分配器)
+             ├──heap_allocator.rs(内核动态内存分配器)
+             ├──memory_set.rs(引入地址空间 MemorySet 及逻辑段 MemoryArea 等)
+             ├──mod.rs(定义了 mm 模块初始化方法 init)
+             └──page_table.rs(多级页表抽象 PageTable 以及其他内容)
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="19" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>改进OS</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>├── os
+    └── src
+         ├── syscall
+             ├──fs.rs(修改：基于地址空间的 sys_write 实现)
+         ├── task
+             ├──context.rs(修改：构造一个跳转到不同位置的初始任务上下文)
+             ├──mod.rs(修改)
+             └──task.rs(修改)
+         └── trap
+             ├── context.rs(修改：在 Trap 上下文中加入了更多内容)
+             ├── mod.rs(修改：基于地址空间修改了 Trap 机制)
+             └── trap.S(修改：基于地址空间修改了 Trap 上下文保存与恢复汇编代码) 
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:56%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="44%" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:56%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+<li>系统架构</li>
+</ol>
+<ul>
+<li>代码结构</li>
+</ul>
+<h3>RISC-V SV39页机制</h3>
+<ol start="3">
+<li>用户视角的地址空间</li>
+<li>内核管理地址空间</li>
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="20" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="21" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 基于SATP的虚拟内存系统</h4>
+<ul>
+<li>虚拟地址将内存划分为固定大小的页来进行地址转换和内容保护。</li>
+<li>页表基址寄存器satp：内核态控制状态寄存器控制了分页。satp 有三个域：
+<ul>
+<li>MODE 域：开启分页并选择页表级数</li>
+<li>ASID（Address Space Identifier，地址空间标识符）域：可选的，用来降低上下文切换的开销</li>
+<li>PPN 字段：保存了根页表的物理地址<br />
+<img src="figs/satp.png" alt="" style="width:800px;" /></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/sv39-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="22" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>页表基址寄存器satp</h4>
+<ul>
+<li>satp CSR:(S-Mode)<br />
+Supervisor Address Translation and Protection，监管者地址转换和保护</li>
+<li>控制硬件分页机制</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="22" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="23" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/sv39-full.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="23" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="23" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>初始化&amp;使能页机制</h4>
+<ul>
+<li>M模式的RustSBI在第一次进入S-Mode之前会把0写入satp，以禁用分页</li>
+<li>然后S-Mode的OS在初始化页表后会再次写satp
+<ul>
+<li>使能页表:<code>MODE</code>=8</li>
+<li>设定页表起始物理地址页号 <code>PPN</code></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="23" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/sv39-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="24" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>页表项属性</h4>
+<ul>
+<li>V：有效位</li>
+<li>R,W,X：读/写/执行位</li>
+<li>U：U-Mode能否访问</li>
+<li>G：是否对所有地址有效</li>
+<li>A：Access，访问位</li>
+<li>D：Dirty，修改位</li>
+<li>RSW：保留位</li>
+<li>PPN：物理页号</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="24" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:52%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="48%" height="720"><section id="25" data-marpit-fragments="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:52%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+<li>系统架构</li>
+</ol>
+<h3>3. 用户视角的地址空间</h3>
+<ul>
+<li data-marpit-fragment="1">ASOS地址空间</li>
+<li data-marpit-fragment="2">跳板页</li>
+<li data-marpit-fragment="3">应用的地址空间</li>
+</ul>
+<ol start="4">
+<li>内核管理地址空间</li>
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="25" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/seg-addr-space.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="26" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>应用程序的地址空间</h4>
+<ul>
+<li><strong>地址空间</strong>：一系列<strong>有关联</strong>和<strong>不一定连续</strong>的逻辑段</li>
+<li>由若干逻辑段组成的虚拟/物理内存空间与一个运行的程序（目前把一个运行的程序称为<strong>任务</strong>和<strong>进程</strong>）绑定</li>
+<li>进程对代码和数据的直接访问范围限制在它关联的地址空间之内<br />
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="26" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:47%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="53%" height="720"><section id="27" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:47%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>应用地址空间和内核地址空间</h4>
+<ul>
+<li>应用地址空间
+<ul>
+<li>编译器给应用生成的地址空间，内核通过页表来约束应用地址空间，应用不能访问它之外的地址空间</li>
+</ul>
+</li>
+<li>内核地址空间
+<ul>
+<li>编译器给内核生成的地址空间，内核通过页表调整应用/内核地址空间，并管理整个物理内存<br />
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="27" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="28" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="41%" height="720"><section id="28" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="28" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+<li>系统架构</li>
+<li>用户视角的地址空间</li>
+</ol>
+<ul>
+<li data-marpit-fragment="1">ASOS地址空间</li>
+</ul>
+<h3>跳板页</h3>
+<ul>
+<li data-marpit-fragment="2">应用的地址空间</li>
+</ul>
+<ol start="4">
+<li>内核管理地址空间</li>
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="28" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="35%" height="720"><section id="29" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:65%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>跳板页</h4>
+<ul>
+<li>应用与内核的跳板Trampoline页的虚拟地址是相同的，且映射到同一物理页</li>
+<li>放置的是<code>trap.S</code>中的执行代码</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="29" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="30" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="30" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="30" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>基于跳板页的平滑过渡</h4>
+<ul>
+<li><strong>特权级过渡</strong>：产生异常/中断时，CPU会跳到跳板页的<code>_all_traps</code>入口</li>
+<li><strong>地址空间过渡</strong>：在切换页表后，可平滑地继续执行内核代码</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="30" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="31" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="31" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="31" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>陷入(Trap)上下文页</h4>
+<ul>
+<li>跳板页的<code>_all_traps</code>汇编函数会<strong>保存</strong>相关寄存器到陷入上下文</li>
+<li>跳板页的<code>_restore</code>汇编函数会从陷入上下文中<strong>恢复</strong>相关寄存器</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="31" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>回顾：没有页机制的OS</h4>
+<p>陷入上下文保存在内核栈顶，<code>sscratch</code>保存应用的内核栈</p>
+<ul>
+<li>只通过<code>sscratch</code>寄存器中转<strong>用户/内核的栈指针</strong></li>
+<li>当一个应用 Trap 到内核时，sscratch 已指向该应用的内核栈栈顶，用一条指令即可从用户栈切换到内核栈，然后直接将 Trap 上下文压入内核栈栈顶。</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:30%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/kernel-stack.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="70%" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:30%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>对比使能页机制的OS</h4>
+<p>如何只通过<code>sscratch</code>寄存器中转<strong>栈指针</strong>和<strong>页表基址</strong>？</p>
+<ul>
+<li>能用之前的方法吗？</li>
+<li>方案1：通过<code>sscratch</code>寄存器中转<strong>用户/内核的栈指针</strong></li>
+<li>方案2：通过<code>sscratch</code>寄存器中转<strong>用户栈指针/页表基址</strong></li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="33" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="34" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:30%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/kernel-stack.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="70%" height="720"><section id="34" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="34" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:30%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>方案1：通过<code>sscratch</code>寄存器中转用户/内核的栈指针</h4>
+<ul>
+<li>通过<code>sscratch</code>寄存器中转<strong>用户/内核的栈指针</strong>
+<ul>
+<li>当前sp指针指向的是内核地址空间</li>
+<li>而此时页表还是用的用户态页表</li>
+</ul>
+</li>
+<li>导致在内核态产生异常，<strong>系统崩溃</strong></li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="34" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:25%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/kernel-stack.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="75%" height="720"><section id="35" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:25%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>方案2：通过<code>sscratch</code>寄存器中转用户栈指针/页表基址</h4>
+<ul>
+<li>通过<code>sscratch</code>寄存器中转<strong>用户栈指针/页表基址</strong></li>
+<li>当前用的是内核态页表，访问内核地址空间</li>
+<li>接下来需要取得应用的内核栈指针来把用户态当前的通用寄存器保存到陷入上下文中</li>
+<li>获取内核栈指针需要修改（<strong>破坏</strong>）通用寄存器才能完成，无法<strong>正确保存</strong></li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="35" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="36" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:42%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="58%" height="720"><section id="36" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="36" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:42%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>方案3：<code>sscratch</code> - 应用的陷入上下文地址</h4>
+<ul>
+<li>通过<code>sscratch</code>进行应用的用户态栈指针&lt;-&gt;陷入上下文地址切换;</li>
+<li>保存用户态寄存器到陷入上下文;</li>
+<li>读出陷入上下文中的页表基址/应用的内核栈指针/<strong>trap_handler</strong>地址；</li>
+<li>切换页表，跳转<strong>trap_handler</strong></li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="36" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="37" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="41%" height="720"><section id="37" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="37" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+<li>系统架构</li>
+<li>用户视角的地址空间</li>
+</ol>
+<ul>
+<li data-marpit-fragment="1">ASOS地址空间</li>
+<li data-marpit-fragment="2">跳板页</li>
+</ul>
+<h3>应用的地址空间</h3>
+<ol start="4">
+<li>内核管理地址空间</li>
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="37" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="38" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:60%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/app-as-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="40%" height="720"><section id="38" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="38" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:60%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>应用程序设计</h4>
+<ul>
+<li>应用程序
+<ul>
+<li><strong>内存布局</strong>有调整</li>
+</ul>
+</li>
+<li>没有更新
+<ul>
+<li>项目结构</li>
+<li>应用代码</li>
+<li>函数调用</li>
+<li>系统调用</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="38" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="39" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:60%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/app-as-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="40%" height="720"><section id="39" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="39" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:60%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>应用程序的内存布局</h4>
+<ul>
+<li data-marpit-fragment="1">由于每个应用被加载到的位置都相同，所以它们共用一个链接脚本 linker.ld
+<ul>
+<li data-marpit-fragment="2"><strong><code>BASE_ADDRESS</code></strong> =  0x10000</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="39" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="40" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="40" data-marpit-fragments="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="40" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+<li>系统架构</li>
+<li>用户视角的地址空间</li>
+</ol>
+<h3>4. 内核管理地址空间</h3>
+<ul>
+<li data-marpit-fragment="1">管理物理内存</li>
+<li data-marpit-fragment="2">建立内核/应用页表</li>
+<li data-marpit-fragment="3">管理地址空间</li>
+</ul>
+<ol start="5">
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="40" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="41" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>从内核角度看地址空间</h4>
+<ul>
+<li>理解地址空间</li>
+<li>理解陷入上下文页</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="41" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="42" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:43%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="57%" height="720"><section id="42" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="42" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:43%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>从内核角度看地址空间</h4>
+<ul>
+<li><strong>内核理解地址空间</strong>
+<ul>
+<li>建立&amp;感知虚拟/物理地址</li>
+<li>在内核/应用虚拟地址空间之间穿越</li>
+</ul>
+</li>
+<li>应用的页表
+<ul>
+<li>代表了内核管理下的现实情况下的应用地址空间</li>
+<li>让CPU&quot;能看&quot;到的应用地址空间</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="42" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="43" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:62%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/page-overview.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="38%" height="720"><section id="43" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="43" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:62%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>页表机制</h4>
+<ul>
+<li><strong>管理物理内存</strong></li>
+<li>建立内核/应用页表</li>
+<li>使能页机制</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="43" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="44" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>物理内存</h4>
+<ul>
+<li>物理内存(RAM 设定位8MB)
+<ul>
+<li>物理内存起始地址：：<code>0x80000000</code></li>
+<li>可用物理内存起始地址： <code>os/src/linker.ld</code> 中<code>ekernel</code>地址</li>
+<li>物理内存结束地址：<code>0x80800000</code></li>
+</ul>
+</li>
+<li>物理内存中有啥？</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="45" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>物理内存</h4>
+<ul>
+<li>物理内存(RAM 设定位8MB)，包括：
+<ul>
+<li>应用/内核的数据/代码/栈/堆</li>
+<li>空闲的空间</li>
+</ul>
+</li>
+<li>特别是各种管理类数据
+<ul>
+<li>任务控制块
+<ul>
+<li>MemorySet
+<ul>
+<li>应用/内核的多级页表等</li>
+</ul>
+</li>
+<li>应用核心栈</li>
+<li>应用的TrapContext页 ....</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="46" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="46" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>管理物理内存</h4>
+<ul>
+<li>物理内存上已经有<strong>一部分</strong>用于放置内核的代码和数据</li>
+<li>需要将<strong>剩下的空闲内存</strong>以单个物理页帧为单位管理起来
+<ul>
+<li>当需要存应用数据或扩展应用的多级页表时<strong>分配</strong>空闲的物理页帧</li>
+<li>在应用出错或退出的时候<strong>回收</strong>应用占的所有物理页帧</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:49%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="51%" height="720"><section id="47" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:49%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>管理物理内存</h4>
+<ul>
+<li>采用连续内存的<strong>动态分配策略</strong></li>
+<li><strong>分配/回收物理页帧</strong>的接口
+<ul>
+<li>提供<code>alloc()</code>和<code>dealloc()</code>函数接口</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="47" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:58%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="42%" height="720"><section id="48" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:58%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+<li>系统架构</li>
+<li>用户视角的地址空间</li>
+<li>内核管理地址空间</li>
+</ol>
+<ul>
+<li data-marpit-fragment="1">管理物理内存</li>
+</ul>
+<h3>建立内核/应用页表</h3>
+<ul>
+<li data-marpit-fragment="2">管理地址空间</li>
+</ul>
+<ol start="5">
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="48" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="49" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:45%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/sv39-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="55%" height="720"><section id="49" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="49" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:45%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>SV39多级页表</h4>
+<ul>
+<li>SV39 多级页表是以页大小的节点为单位进行管理。每个节点恰好存储在一个物理页帧中，它的位置可以用一个物理页号来表示</li>
+<li>satp CSR<br />
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="49" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="50" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/sv39-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720"><section id="50" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="50" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>建立内核/应用页表</h4>
+<ul>
+<li>页表起始物理地址</li>
+<li>页表内容:虚地址&lt;-&gt;物理地址映射
+<ul>
+<li>恒等映射 Identical Mapping</li>
+<li>随机映射 Framed Mapping</li>
+</ul>
+</li>
+</ul>
+<p>VPN: Virtual Page Number<br />
+PPN: Physical Page Number<br />
+satp: 包含页表起始处PPN的CSR<br />
+</p>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="50" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="51" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/sv39-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="51" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="51" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>建立和拆除虚实地址映射关系</h4>
+<ul>
+<li data-marpit-fragment="1">在多级页表中找到一个虚拟地址对应的<strong>页表项</strong>。</li>
+<li data-marpit-fragment="2">通过<strong>修改页表项</strong>的内容即可完成<strong>键值对</strong>的插入和删除，从而实现<strong>映射关系</strong>的建立和拆除。<br />
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="51" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="52" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/kernel-as-low.png&quot;);background-size:100%;"></figure><figure style="background-image:url(&quot;figs/kernel-as-high.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="52" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="52" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>使能页机制</h4>
+<ul>
+<li>设置<code>satp= root_ppn</code></li>
+</ul>
+<p>核心数据结构的包含关系</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>TCB--&gt;MemorySet--&gt;PageTable--&gt;root_ppn
+任务控制块  ---------------&gt;任务的页表基址
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="52" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="53" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="41%" height="720"><section id="53" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="53" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<ol>
+<li>实验目标和步骤</li>
+<li>系统架构</li>
+<li>用户视角的地址空间</li>
+<li>内核管理地址空间</li>
+</ol>
+<ul>
+<li data-marpit-fragment="1">管理物理内存</li>
+<li data-marpit-fragment="2">建立内核/应用页表</li>
+</ul>
+<h3>管理地址空间</h3>
+<ol start="5">
+<li>实现ASOS</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="53" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="54" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="54" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>应用地址空间</h4>
+<p><img src="figs/app-as-full.png" alt="" style="width:950px;" /></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="55" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:48%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/seg-addr-space.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="52%" height="720"><section id="55" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="55" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:48%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>逻辑段</h4>
+<ul>
+<li>逻辑段：内核/应用会用到的一段连续地址的虚拟内存</li>
+<li>内核/应用运行的虚拟地址空间：由多个逻辑段组成</li>
+</ul>
+<p><strong>理想: 丰满  v.s.  现实: 骨感</strong></p>
+<ul>
+<li>应用的<strong>页表</strong>
+<ul>
+<li>现实情况下的应用地址空间</li>
+</ul>
+</li>
+<li>应用的<strong>逻辑段</strong>
+<ul>
+<li>理想情况下的应用地址空间</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="55" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="56" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="56" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>逻辑段的数据结构<code>MapArea</code></h4>
+<ul>
+<li>逻辑段：一段连续地址的虚拟内存</li>
+</ul>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/mm/memory_set.rs</span>
+
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MapArea</span></span> {
+    vpn_range: VPNRange, <span class="hljs-comment">//一段虚拟页号的连续区间</span>
+    data_frames: BTreeMap&lt;VirtPageNum, FrameTracker&gt;,<span class="hljs-comment">//VPN&lt;--&gt;PPN映射关系</span>
+    map_type: MapType,  <span class="hljs-comment">//映射类型</span>
+    map_perm: MapPermission, <span class="hljs-comment">//可读/可写/可执行属性</span>
+}
+</span></span></foreignObject></svg></code></pre>
+<p><code>data_frames</code> 是一个保存了该逻辑段内的每个虚拟页面和它被映射到的物理页面 FrameTracker 的一个键值对容器</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="57" data-marpit-fragments="1" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="57" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>地址空间的数据结构 <code>MemorySet</code></h4>
+<ul>
+<li><strong>地址空间</strong>：一系列有关联的不一定连续的逻辑段</li>
+</ul>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/mm/memory_set.rs</span>
+
+<span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MemorySet</span></span> {
+    page_table: PageTable, <span class="hljs-comment">//页表</span>
+    areas: <span class="hljs-built_in">Vec</span>&lt;MapArea&gt;, <span class="hljs-comment">//一系列有关联的不一定连续的逻辑段</span>
+}
+</span></span></foreignObject></svg></code></pre>
+<ul>
+<li data-marpit-fragment="1"><strong>地址空间</strong>的数据结构字段
+<ul>
+<li>多级页表： 基于数据结构<code>PageTable</code>的变量<code>page_table</code></li>
+<li>逻辑段集合： 基于数据结构<code>MapArea</code> 的向量 <code>areas</code></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="58" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>内核管理任务地址空间的时机</h4>
+<ul>
+<li>操作系统管理的<strong>地址空间</strong> <code>MemorySet</code>=<code>PageTable</code>+<code>MapAreas</code>
+<ul>
+<li><strong>创建</strong>任务：创建任务的 <code>MemorySet</code></li>
+<li><strong>清除</strong>任务：回收任务的 <code>MemorySet</code>所占内存</li>
+<li><strong>调整</strong>应用的内存空间大小： 修改任务的<code>MemorySet</code></li>
+<li>用户态<strong>切换</strong>到内核态：切换任务的<code>MemorySet</code>为内核的<code>MemorySet</code></li>
+<li>内核态<strong>切换</strong>到用户态：切换内核的<code>MemorySet</code>为任务的<code>MemorySet</code></li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="59" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:64%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/app-as-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="36%" height="720"><section id="59" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="59" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:64%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>新建任务地址空间<code>MemorySet</code>的过程</h4>
+<ul>
+<li>创建页表</li>
+<li>创建逻辑段向量</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="59" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="60" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/app-as-full.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="41%" height="720"><section id="60" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="60" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>在地址空间插入/删除一个逻辑段</h4>
+<ul>
+<li>更新页表中的相应页表项</li>
+<li>更新逻辑段对应的物理页帧内容<br />
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="60" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="5" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="61" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:58%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="42%" height="720"><section id="61" data-marpit-fragments="5" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="61" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:58%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<p>......<br />
+3. 用户视角的地址空间<br />
+4. 内核管理地址空间</p>
+<h3>5. 实现ASOS</h3>
+<ul>
+<li data-marpit-fragment="1">启动分页模式</li>
+<li data-marpit-fragment="2">实现跳板机制</li>
+<li data-marpit-fragment="3">加载和执行应用程序</li>
+<li data-marpit-fragment="4">改进 Trap 处理的实现</li>
+<li data-marpit-fragment="5">改进 sys_write 的实现</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="61" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="62" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="62" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>对分时共享多任务操作系统的扩展</h4>
+<ol>
+<li>创建<strong>内核页表</strong>，使能分页机制，建立内核的虚拟地址空间；</li>
+<li>扩展<strong>Trap上下文</strong>，在保存与恢复Trap上下文的过程中切换页表（即切换虚拟地址空间）；</li>
+<li>建立用于内核地址空间与应用地址空间相互切换所需的<strong>跳板空间</strong>；</li>
+<li>扩展<strong>任务控制块</strong>包括虚拟内存相关信息，并在加载执行创建基于某应用的任务时，建立应用的虚拟地址空间；</li>
+<li>改进Trap处理过程和sys_write等<strong>系统调用</strong>的实现以支持分离的应用地址空间和内核地址空间。</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="63" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:63%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="37%" height="720"><section id="63" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="63" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:63%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>启动分页模式</h4>
+<ol>
+<li>创建内核地址空间</li>
+<li>内存管理子系统的初始化</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="63" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="64" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="64" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>创建内核地址空间的全局实例</h4>
+<ul>
+<li>内核地址空间<code>KERNEL_SPACE</code></li>
+</ul>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> KERNEL_SPACE: MemorySet = MemorySet::new_kernel()
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="65" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="65" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>内存管理子系统的初始化</h4>
+<ol>
+<li>把<strong>空闲物理内存</strong>按照堆(heap)进行动态连续内存管理初始化</li>
+<li>基于堆实现<strong>物理页帧分配</strong>管理初始化</li>
+<li>设置<strong>satp</strong>，启动分页机制，激活内核地址空间<code>KERNEL_SPACE</code>，</li>
+</ol>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/mm/mod.rs</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">init</span></span>() {
+    heap_allocator::init_heap();
+    frame_allocator::init_frame_allocator();
+    KERNEL_SPACE.exclusive_access().activate();
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="66" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:58%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="42%" height="720"><section id="66" data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="66" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:58%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<p>......<br />
+3. 用户视角的地址空间<br />
+4. 内核管理地址空间<br />
+5. 实现ASOS</p>
+<ul>
+<li data-marpit-fragment="1">启动分页模式</li>
+</ul>
+<h3>实现跳板机制</h3>
+<ul>
+<li data-marpit-fragment="2">加载和执行应用程序</li>
+<li data-marpit-fragment="3">改进 Trap 处理的实现</li>
+<li data-marpit-fragment="4">改进 sys_write 的实现</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="66" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="67" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:56%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="44%" height="720"><section id="67" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="67" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:56%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>实现跳板机制的动机</h4>
+<p>在启动分页机制后，让处于不同地址空间的应用和内核能够进行正常的<strong>特权级切换</strong>操作和<strong>数据交互</strong>。</p>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="67" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="68" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="46%" height="720"><section id="68" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="68" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>跳板机制的思路</h4>
+<ul>
+<li>内核和应用的虚拟地址空间中<strong>最高的虚拟页面</strong>是一个跳板(trampoline)页</li>
+<li>在<strong>特权级</strong>切换后，要迅速完成<strong>地址空间</strong>切换，<strong>内核栈</strong>切换，并<strong>平滑地继续执行</strong>内核代码</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="68" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="69" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="46%" height="720"><section id="69" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="69" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>跳板机制的思路</h4>
+<ul>
+<li>应用地址空间的<strong>次高虚拟页面</strong>被设置为存放应用的 Trap 上下文</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="69" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="70" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="46%" height="720"><section id="70" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="70" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>跳板机制的思路</h4>
+<ul>
+<li>Q:为何不直接把 Trap 上下文仍放到应用的内核栈中呢？</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="70" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="71" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/trampoline.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="46%" height="720"><section id="71" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="71" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>跳板机制的思路</h4>
+<ul>
+<li>Q:为何不直接把Trap上下文仍放到应用的内核栈中呢？
+<ul>
+<li>访问内核栈中的Trap上下文地址，需要先切换<strong>页表</strong>；</li>
+<li>页表信息放在 <strong>Trap上下文</strong>中，形成了相互依赖。</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="71" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="72" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="72" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>建立跳板页面</h4>
+<p>将 trap.S 中的整段汇编代码放置在 .text.trampoline 段，并在调整内存布局的时候将它对齐到代码段的一个页面中</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap># os/src/linker.ld
+    stext = .;
+        .text : {
+        *(.text.entry)
+        . = ALIGN(4K);
+        strampoline = .;
+        *(.text.trampoline);
+        . = ALIGN(4K);
+        *(.text .text.*)
+    }
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="73" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="73" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>扩展Trap 上下文数据结构</h4>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap> <span class="hljs-comment">// os/src/trap/context.rs</span>
+ <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TrapContext</span></span> {
+     <span class="hljs-keyword">pub</span> x: [<span class="hljs-built_in">usize</span>; <span class="hljs-number">32</span>],
+     <span class="hljs-keyword">pub</span> sstatus: Sstatus,
+     <span class="hljs-keyword">pub</span> sepc: <span class="hljs-built_in">usize</span>,
+     <span class="hljs-keyword">pub</span> kernel_satp: <span class="hljs-built_in">usize</span>, <span class="hljs-comment">//内核页表的起始物理地址</span>
+     <span class="hljs-keyword">pub</span> kernel_sp: <span class="hljs-built_in">usize</span>,   <span class="hljs-comment">//当前应用内核栈栈顶的虚拟地址</span>
+     <span class="hljs-keyword">pub</span> trap_handler: <span class="hljs-built_in">usize</span>,<span class="hljs-comment">//内核中 trap handler 入口点的虚拟地址</span>
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="74" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="74" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>切换Traps上下文</h4>
+<ul>
+<li data-marpit-fragment="1"><strong>保存Trap上下文</strong>
+<ul>
+<li>把<strong>用户栈指针</strong>切换到用户地址空间中的TrapContext</li>
+<li>在TrapContext<strong>保存</strong>通用寄存器、sstatus、sepc</li>
+<li>在TrapContext<strong>读出</strong>kernel_satp、kernel_sp、trap_handler</li>
+<li><strong>切换</strong>内核地址空间，切换到内核栈</li>
+<li><strong>跳转</strong>到trap_handler继续执行</li>
+</ul>
+</li>
+<li data-marpit-fragment="2"><strong>恢复Trap上下文</strong>
+<ul>
+<li>上述过程的逆过程</li>
+</ul>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="75" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="75" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>跳转到trap_handler继续执行</h4>
+<p>Q:为何用<code>jr t1</code> 而不是 <code>call trap_handler</code>完成跳转？</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="76" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="76" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>保存Trap上下文</h4>
+<p>Q:为何用<code>jr t1</code> 而不是 <code>call trap_handler</code>完成跳转？</p>
+<ul>
+<li>在内存布局中，这条 .text.trampoline 段中的跳转指令和 trap_handler 都在代码段之内，汇编器（Assembler）和链接器（Linker）会根据 linker-qemu.ld 的地址布局描述，设定跳转指令的地址，并计算二者地址偏移量，让跳转指令的实际效果为当前 pc 自增这个偏移量。</li>
+<li>这条跳转指令在被执行的时候，它的虚拟地址被操作系统内核设置在地址空间中的最高页面之内，所以加上这个偏移量并不能正确的得到 trap_handler 的入口地址。</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="77" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:56%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="44%" height="720"><section id="77" data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="77" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:56%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<p>......<br />
+3. 用户视角的地址空间<br />
+4. 内核管理地址空间<br />
+5. 实现ASOS</p>
+<ul>
+<li data-marpit-fragment="1">启动分页模式</li>
+<li data-marpit-fragment="2">实现跳板机制</li>
+</ul>
+<h3>加载和执行应用程序</h3>
+<ul>
+<li data-marpit-fragment="3">改进 Trap 处理的实现</li>
+<li data-marpit-fragment="4">改进 sys_write 的实现</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="77" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="78" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:61%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="39%" height="720"><section id="78" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="78" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:61%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h4>加载和执行应用程序</h4>
+<ol>
+<li>扩展任务控制块</li>
+<li>更新任务管理</li>
+</ol>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="78" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="79" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="79" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>扩展任务控制块TCB</h4>
+<ul>
+<li>应用的<strong>地址空间</strong> memory_set</li>
+<li><strong>Trap 上下文</strong>所在物理页帧的物理页号trap_cx_ppn</li>
+<li><strong>应用数据大小</strong>base_size</li>
+</ul>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>// os/src/task/task.rs
+pub struct TaskControlBlock {
+    pub task_cx: TaskContext,
+    pub task_status: TaskStatus,
+    pub memory_set: MemorySet,
+    pub trap_cx_ppn: PhysPageNum,
+    pub base_size: usize,
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="80" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="80" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>更新任务管理</h4>
+<ul>
+<li>创建任务控制块TCB
+<ol>
+<li>根据应用的<strong>ELF执行文件</strong>内容形成应用的虚拟地址空间</li>
+<li>建立应用转换到内核态后用的<strong>内核栈</strong></li>
+<li>在内核地址空间建立应用的<strong>TCB</strong></li>
+<li>在用户地址空间构造出一个<strong>Trap上下文</strong>TrapContext</li>
+</ol>
+</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="81" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="46%" height="720"><section id="81" data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="81" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:54%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<p>......<br />
+3. 用户视角的地址空间<br />
+4. 内核管理地址空间<br />
+5. 实现ASOS</p>
+<ul>
+<li data-marpit-fragment="1">启动分页模式</li>
+<li data-marpit-fragment="2">实现跳板机制</li>
+<li data-marpit-fragment="3">加载和执行应用程序</li>
+</ul>
+<h3>改进 Trap 处理的实现</h3>
+<ul>
+<li data-marpit-fragment="4">改进 sys_write 的实现</li>
+</ul>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="81" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="82" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="82" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>改进 Trap 处理的实现</h4>
+<p>由于应用的 Trap 上下文不在内核地址空间，因此调用 current_trap_cx 来<strong>获取当前应用的 Trap 上下文</strong>的可变引用而不是像之前那样作为参数传入 trap_handler 。至于 Trap 处理的过程则没有发生什么变化。</p>
+<p>为了简单起见，弱化了 S态 –&gt; S态的 Trap 处理过程：直接 panic 。<br />
+注：ch9会支持 S态 –&gt; S态的 Trap 处理过程</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="83" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="83" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>改进 Trap 处理的实现</h4>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">let</span> restore_va = __restore <span class="hljs-keyword">as</span> <span class="hljs-built_in">usize</span> - __alltraps <span class="hljs-keyword">as</span> <span class="hljs-built_in">usize</span> + TRAMPOLINE;
+<span class="hljs-keyword">unsafe</span> {
+  asm!(
+     <span class="hljs-string">&quot;fence.i&quot;</span>,
+     <span class="hljs-string">&quot;jr {restore_va}&quot;</span>,
+  )
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="84" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:53%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="47%" height="720"><section id="84" data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="84" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:53%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<p><strong>提纲</strong></p>
+<p>......<br />
+3. 用户视角的地址空间<br />
+4. 内核管理地址空间<br />
+5. 实现ASOS</p>
+<ul>
+<li data-marpit-fragment="1">启动分页模式</li>
+<li data-marpit-fragment="2">实现跳板机制</li>
+<li data-marpit-fragment="3">加载和执行应用程序</li>
+<li data-marpit-fragment="4">改进 Trap 处理的实现</li>
+</ul>
+<h3>改进 sys_write 的实现</h3>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="84" data-marpit-pagination-total="87"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="85" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="85" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>改进 sys_write 的实现</h4>
+<ul>
+<li>由于内核和应用地址空间的隔离， sys_write 不再能够直接访问<strong>位于应用空间中的数据</strong></li>
+<li>需要<strong>手动查页表</strong>才能知道那些数据被放置在哪些物理页帧上并进行访问。</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="86" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="86" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>访问应用空间数据的辅助函数</h4>
+<p>页表模块 page_table 提供了将应用地址空间中一个缓冲区转化为在内核空间中能够直接访问的形式的辅助函数：</p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/mm/page_table.rs</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">translated_byte_buffer</span></span>(
+</span></span></foreignObject></svg></code></pre>
+<ol>
+<li>查找应用的页表，根据应用虚地址找到物理地址</li>
+<li>查找内核的页表，根据物理地址找到内核虚地址</li>
+<li>基于内核虚地址完成对应用数据的读写</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="87" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/addr-space-os-detail.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="41%" height="720"><section id="87" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="87" data-marpit-pagination-total="87" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:59%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+<h3>小结</h3>
+<ul>
+<li>地址空间</li>
+<li>连续内存分配</li>
+<li>段机制</li>
+<li>页表机制</li>
+<li>页访问异常</li>
+<li>能写头甲龙OS<br />
+</li>
+</ul>
+</section>
+<script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:u}=t.children;for(let r=0;r<u;r+=1){const o=t.children[r],a=o.getScreenCTM();if(a){const t=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,r=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.firstElementChild,{style:u}=l;u.transformOrigin||(u.transformOrigin=`${-t}px ${-r}px`),u.transform=`scale(${c}) matrix(${a.a}, ${a.b}, ${a.c}, ${a.d}, ${a.e-d.left}, ${a.f-d.top}) translateZ(0.0001px)`}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),u=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",u)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
+</script></foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="87" data-marpit-pagination-total="87"></section></foreignObject></svg></div><div class="bespoke-marp-note" data-index="4" tabindex="0"><p>头甲龙 ankylosauridae 白垩纪晚期</p></div><div class="bespoke-marp-note" data-index="20" tabindex="0"><p>---
+## S-Mode编程 -- 虚存机制
+
+- 通过stap CSR建立页表基址
+- 建立OS和APP的页表
+- 处理内存访问异常
+
+
+![bg right 90%](figs/riscv_pagetable.svg)
+
+
+---
+##  S-Mode编程 -- 虚存机制
+- S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地址：
+
+  - satp.PPN 给出了一级页表的基址， VA [31:22] 给出了一级页号，CPU会读取位于地址(satp. PPN × 4096 + VA[31: 22] × 4)页表项。
+  - PTE 包含二级页表的基址，VA[21:12]给出了二级页号，CPU读取位于地址(PTE. PPN × 4096 + VA[21: 12] × 4)叶节点页表项。
+  - 叶节点页表项的PPN字段和页内偏移（原始虚址的最低 12 个有效位）组成了最终结果：物理地址(LeafPTE.PPN×4096+VA[11: 0])
+
+
+---
+##  S-Mode编程 -- 虚存机制
+- S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地址：
+![w:500](figs/satp2.png)</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>- 但用户态无法访问此内存区域
+- 产生异常/中断时，会跳到跳板页的``_all_traps``入口
+- 并在切换页表后，平滑地继续执行</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>![bg right:50% 100%](figs/trampoline.png)</p></div><div class="bespoke-marp-note" data-index="71" tabindex="0"><p>---
+RISC-V只提供一个 sscratch 寄存器可用来进行临时周转
+
+1. 必须先切换到内核地址空间，这就需要将内核地址空间的 token 写入 satp 寄存器;
+2. 之后还需要保存应用的内核栈栈顶的位置，这样才能以它为基址保存 Trap 上下文。
+3. 这两步需要用通用寄存器作为临时周转，然而我们无法在不破坏任何一个通用寄存器的情况下做到这一点。
+4. 所以，我们不得不将 Trap 上下文保存在应用地址空间的一个虚拟页面中，而不是切换到内核地址空间去保存。</p></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@1.7.0/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";const e=document.body,t=(...e)=>history.replaceState(...e),n="presenter",r="next",o=["",n,r],a="data-bespoke-marp-",i=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},s=()=>e.dataset.bespokeView,l=e=>new URLSearchParams(location.search).get(e),d=(e,n={})=>{var r;const o={location,setter:t,...n},a=new URLSearchParams(o.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?a.set(t,n):a.delete(t)}try{o.setter({...null!==(r=window.history.state)&&void 0!==r?r:{}},"",i(a,o.location))}catch(e){console.error(e)}},c=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch(e){return!1}})(),u=e=>{try{return localStorage.getItem(e)}catch(e){return null}},f=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch(e){return!1}},m=e=>{try{return localStorage.removeItem(e),!0}catch(e){return!1}},g=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},p=e=>{e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach((e=>e.classList.add("bespoke-marp-slide"))),e.on("activate",(t=>{const n="bespoke-marp-active",r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach((e=>{e.classList.remove(n),g(e,!0)})),o.add(n),g(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}}))},v=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map((e=>[null,...e.querySelectorAll("[data-marpit-fragment]")]))});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach(((e,t)=>{e.forEach(((e,n)=>{if(null==e)return;const i=t<r||t===r&&n<=o;e.setAttribute(`${a}fragment`,(i?"":"in")+"active");const s=`${a}current-fragment`;t===r&&n===o?e.setAttribute(s,"current"):e.removeAttribute(s)}))})),e.fragmentIndex=o;const i={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",i)};e.on("next",(({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}})),e.on("prev",(({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)})),e.on("slide",(({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)})),o(0,0)},h=document,y=()=>!(!h.fullscreenEnabled&&!h.webkitFullscreenEnabled),b=()=>!(!h.fullscreenElement&&!h.webkitFullscreenElement),x=e=>{e.fullscreen=()=>{y()&&(async()=>{return b()?null===(e=h.exitFullscreen||h.webkitExitFullscreen)||void 0===e?void 0:e.call(h):((e=h.body)=>{var t;return null===(t=e.requestFullscreen||e.webkitRequestFullscreen)||void 0===t?void 0:t.call(e)})();var e})()},document.addEventListener("keydown",(t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!y()||(e.fullscreen(),t.preventDefault())}))},w="bespoke-marp-inactive",k=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout((()=>{r.add(w),o()}),e),r.contains(w)&&(r.remove(w),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},E=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],L=e=>{e.parent.addEventListener("keydown",(e=>{if(!e.target)return;const t=e.target;(E.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()}))},$=e=>{window.addEventListener("load",(()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute(`${a}load`,e)}}))},S=({interval:e=250}={})=>t=>{document.addEventListener("keydown",(e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()}));let n,r,o=0;t.parent.addEventListener("wheel",(a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),(null==e?void 0:e.parentElement)&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const l=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<12)return;r&&clearTimeout(r),r=setTimeout((()=>{n=0}),e);const d=Date.now()-o<e,c=l<=n;if(n=l,d||c)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())}))},P=(e=".bespoke-marp-osc")=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${a}osc=${JSON.stringify(e)}]`).forEach(n)};return y()||n("fullscreen",(e=>e.style.display="none")),c||n("presenter",(e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."})),e=>{t.addEventListener("click",(t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?null==e||e.fullscreen():"presenter"===n&&e.openPresenterView()}})),e.parent.appendChild(t),e.on("activate",(({index:t})=>{n("page",(n=>n.textContent=`Page ${t+1} of ${e.slides.length}`))})),e.on("fragment",(({index:t,fragments:r,fragmentIndex:o})=>{n("prev",(e=>e.disabled=0===t&&0===o)),n("next",(n=>n.disabled=t===e.slides.length-1&&o===r.length-1))})),e.on("marp-active",(()=>g(t,!1))),e.on("marp-inactive",(()=>g(t,!0))),y()&&(e=>{for(const t of["","webkit"])h.addEventListener(t+"fullscreenchange",e)})((()=>n("fullscreen",(e=>e.classList.toggle("exit",y()&&b())))))}},T=e=>{window.addEventListener("message",(t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}}))};var I=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"];let N=e=>String(e).replace(/[&<>"']/g,(e=>`&${C[e]};`)),C={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},A="dangerouslySetInnerHTML",D={className:"class",htmlFor:"for"},M={};function B(e,t){let n=[],r="";t=t||{};for(let e=arguments.length;e-- >2;)n.push(arguments[e]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(let e in t)!1!==t[e]&&null!=t[e]&&e!==A&&(r+=` ${D[e]?D[e]:N(e)}="${N(t[e])}"`);r+=">"}if(-1===I.indexOf(e)){if(t[A])r+=t[A].__html;else for(;n.length;){let e=n.pop();if(e)if(e.pop)for(let t=e.length;t--;)n.push(e[t]);else r+=!0===M[e]?e:N(e)}r+=e?`</${e}>`:""}return M[r]=!0,r}const K=({children:e})=>B(null,null,...e),O="bespoke-marp-presenter-",q={container:`${O}container`,dragbar:`${O}dragbar-container`,next:`${O}next`,nextContainer:`${O}next-container`,noteContainer:`${O}note-container`,noteWrapper:`${O}note-wrapper`,noteButtons:`${O}note-buttons`,infoContainer:`${O}info-container`,infoPage:`${O}info-page`,infoPageText:`${O}info-page-text`,infoPagePrev:`${O}info-page-prev`,infoPageNext:`${O}info-page-next`,noteButtonsBigger:`${O}note-bigger`,noteButtonsSmaller:`${O}note-smaller`,infoTime:`${O}info-time`,infoTimer:`${O}info-timer`},_=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=q.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",B(K,null,B("div",{class:q.nextContainer},B("iframe",{class:q.next,src:"?view=next"})),B("div",{class:q.dragbar}),B("div",{class:q.noteContainer},B("div",{class:q.noteWrapper}),B("div",{class:q.noteButtons},B("button",{class:q.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),B("button",{class:q.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),B("div",{class:q.infoContainer},B("div",{class:q.infoPage},B("button",{class:q.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),B("span",{class:q.infoPageText}),B("button",{class:q.infoPageNext,tabindex:"-1",title:"Next"},"Next")),B("time",{class:q.infoTime,title:"Current time"}),B("time",{class:q.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(q.dragbar).addEventListener("mousedown",(()=>{t=!0,r(q.dragbar).classList.add("active")})),window.addEventListener("mouseup",(()=>{t=!1,r(q.dragbar).classList.remove("active")})),window.addEventListener("mousemove",(e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(q.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)})),r(q.nextContainer).addEventListener("click",(()=>e.next()));const n=r(q.next),o=(a=n,(e,t)=>{var n;return null===(n=a.contentWindow)||void 0===n?void 0:n.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin)});var a;n.addEventListener("load",(()=>{r(q.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",(({index:e,fragmentIndex:t})=>o(e,t)))}));const i=document.querySelectorAll(".bespoke-marp-note");i.forEach((e=>{e.addEventListener("keydown",(e=>e.stopPropagation())),r(q.noteWrapper).appendChild(e)})),e.on("activate",(()=>i.forEach((t=>t.classList.toggle("active",t.dataset.index==e.slide())))));let s=0;const l=e=>{s=Math.max(-5,s+e),r(q.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},d=()=>l(1),c=()=>l(-1),u=r(q.noteButtonsBigger),f=r(q.noteButtonsSmaller);u.addEventListener("click",(()=>{u.blur(),d()})),f.addEventListener("click",(()=>{f.blur(),c()})),document.addEventListener("keydown",(e=>{"+"===e.key&&d(),"-"===e.key&&c()}),!0),e.on("activate",(({index:t})=>{r(q.infoPageText).textContent=`${t+1} / ${e.slides.length}`}));const m=r(q.infoPagePrev),g=r(q.infoPageNext);m.addEventListener("click",(t=>{m.blur(),e.prev({fragment:!t.shiftKey})})),g.addEventListener("click",(t=>{g.blur(),e.next({fragment:!t.shiftKey})})),e.on("fragment",(({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1}));let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(q.infoTime).textContent=e.toLocaleTimeString(),r(q.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(q.infoTimer).addEventListener("click",(()=>{p=new Date}))})(e)},X=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:F},presenterUrl:{enumerable:!0,get:U}}),c&&document.addEventListener("keydown",(t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())}))};function F(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,O+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function U(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),i(e)}const V=e=>{const t=s();return t===r&&e.appendChild(document.createElement("span")),{"":X,[n]:_,[r]:T}[t]},R=e=>{e.on("activate",(t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach((n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"}))}))},j=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},H=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),l=o(0,r(n||0,a[s].length-1));s===e.slide()&&l===e.fragmentIndex||e.slide(s,{fragment:l})})((j(location.hash.slice(1))||1)-1,t.fragment?j(l("f")||""):null)};e.on("fragment",(({index:e,fragmentIndex:r})=>{n||d({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})})),setTimeout((()=>{o(),window.addEventListener("hashchange",(()=>r((()=>{o({fragment:!1}),d({f:void 0})})))),window.addEventListener("popstate",(()=>{n||r((()=>o()))})),n=!1}),0)}},W=(e={})=>{var n;const r=e.key||(null===(n=window.history.state)||void 0===n?void 0:n.marpBespokeSyncKey)||Math.random().toString(36).slice(2),o=`bespoke-marp-sync-${r}`;var a;a={marpBespokeSyncKey:r},d({},{setter:(e,...n)=>t({...e,...a},...n)});const i=()=>{const e=u(o);return e?JSON.parse(e):Object.create(null)},s=e=>{const t=i(),n={...t,...e(t)};return f(o,JSON.stringify(n)),n},l=()=>{window.removeEventListener("pageshow",l),s((e=>({reference:(e.reference||0)+1})))};return e=>{l(),Object.defineProperty(e,"syncKey",{value:r,enumerable:!0});let t=!0;setTimeout((()=>{e.on("fragment",(e=>{t&&s((()=>({index:e.index,fragmentIndex:e.fragmentIndex})))}))}),0),window.addEventListener("storage",(n=>{if(n.key===o&&n.oldValue&&n.newValue){const r=JSON.parse(n.oldValue),o=JSON.parse(n.newValue);if(r.index!==o.index||r.fragmentIndex!==o.fragmentIndex)try{t=!1,e.slide(o.index,{fragment:o.fragmentIndex})}finally{t=!0}}}));const n=()=>{const{reference:e}=i();void 0===e||e<=1?m(o):s((()=>({reference:e-1})))};window.addEventListener("pagehide",(e=>{e.persisted&&window.addEventListener("pageshow",l),n()})),e.on("destroy",n)}},{PI:Y,abs:J,sqrt:z,atan2:G}=Math,Q={passive:!0},Z=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",(({touches:e})=>{r=1===e.length?a(e[0]):void 0}),Q),o.addEventListener("touchmove",(e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=z(J(n)**2+J(o)**2),r.radian=G(n,o)}else r=void 0})),o.addEventListener("touchend",(o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+Y)%(2*Y)-Y;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}}),Q)},ee="_tA",te=e=>{const t=document.documentTransition;if(!t)return;let n;e._tP=!1;const r=(n,{back:r,cond:o})=>a=>{var i,s;const l=e.slides[e.slide()].querySelector("section[data-transition]");if(!l)return!0;const d=document.querySelector(".bespoke-marp-osc"),c=d?[d]:void 0;if(e._tP){if(a._tA){e._tP=!1;try{t.start({sharedElements:c}).catch((()=>{}))}catch(e){}return!0}}else{if(!o(a))return!0;const d="transition"+(a.back||r?"Back":""),u=Number.parseInt(null!==(i=l.dataset[`${d}Duration`])&&void 0!==i?i:"",10),f=Number.parseInt(null!==(s=l.dataset[`${d}Delay`])&&void 0!==s?s:"",10),m={};Number.isNaN(u)||(m.duration=u.toString()),Number.isNaN(f)||(m.delay=f.toString()),e._tP=t.prepare({rootTransition:l.dataset[d],rootConfig:m,sharedElements:c}).then((()=>n(a))).catch((()=>n(a)))}return!1};e.on("prev",r((t=>e.prev({...t,[ee]:!0})),{back:!0,cond:e=>{var t;return e.index>0&&!((null===(t=e.fragment)||void 0===t||t)&&n.fragmentIndex>0)}})),e.on("next",r((t=>e.next({...t,[ee]:!0})),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout((()=>{e.on("slide",r((t=>e.slide(t.index,{...t,[ee]:!0})),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))}),0),e.on("fragment",(e=>{n=e}))};let ne;const re=()=>(void 0===ne&&(ne="wakeLock"in navigator&&navigator.wakeLock),ne),oe=async()=>{const e=re();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},ae=async()=>{if(!re())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await oe(),e};((t=document.getElementById("p"))=>{(()=>{const t=l("view");e.dataset.bespokeView=t===r||t===n?t:""})();const a=(e=>{const t=l(e);return d({[e]:void 0}),t})("sync")||void 0;var i,c,u,f,m,g,h,y,b,w,E,T;i=t,c=((...e)=>{const t=o.findIndex((e=>s()===e));return e.map((([e,n])=>e[t]&&n)).filter((e=>e))})([[1,1,0],W({key:a})],[[1,1,1],V(t)],[[1,1,0],L],[[1,1,1],p],[[1,0,0],k()],[[1,1,1],$],[[1,1,1],H({history:!1})],[[1,1,0],S()],[[1,1,0],x],[[1,0,0],R],[[1,1,0],Z()],[[1,0,0],P()],[[1,0,0],te],[[1,1,1],v],[[1,1,0],ae]),f=1===(i.parent||i).nodeType?i.parent||i:document.querySelector(i.parent||i),m=[].filter.call("string"==typeof i.slides?f.querySelectorAll(i.slides):i.slides||f.children,(function(e){return"SCRIPT"!==e.nodeName})),g={},h=function(e,t){return(t=t||{}).index=m.indexOf(e),t.slide=e,t},w=function(e,t){m[e]&&(u&&b("deactivate",h(u,t)),u=m[e],b("activate",h(u,t)))},E=function(e,t){var n=m.indexOf(u)+e;b(e>0?"next":"prev",h(u,t))&&w(n,t)},T={off:y=function(e,t){g[e]=(g[e]||[]).filter((function(e){return e!==t}))},on:function(e,t){return(g[e]||(g[e]=[])).push(t),y.bind(null,e,t)},fire:b=function(e,t){return(g[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},slide:function(e,t){if(!arguments.length)return m.indexOf(u);b("slide",h(m[e],t))&&w(e,t)},next:E.bind(null,1),prev:E.bind(null,-1),parent:f,slides:m,destroy:function(e){b("destroy",h(u,e)),g={}}},(c||[]).forEach((function(e){e(T)})),u||w(0)})()}();</script></body></html>
