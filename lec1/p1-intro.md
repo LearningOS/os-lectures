@@ -86,23 +86,21 @@ backgroundColor: white
 ### 实验指导
 
 
-#### uCore-RV-64
+#### uCore Tutorial
 
-* 基准代码仓库（[lab](https://github.com/uCore-RV-64/uCore-RV-64-lab)）
-* 文档仓库（[doc](https://github.com/uCore-RV-64/uCore-RV-64-doc)）
-* 在线文档[入口](https://ucore-rv-64.github.io/uCore-RV-64-doc/index.html)
-* 实验参考答案仓库（[answer](https://github.com/uCore-RV-64/uCore-RV-64-answer)）
-* 自动测试脚本仓库（[test](https://github.com/uCore-RV-64/uCore-RV-64-test)）
-* codespace开发环境配置脚本仓库（[config](https://github.com/uCore-RV-64/uCore-RV-64-conf)）
+- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2023S/)
+- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2023S/)
+* [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2023S)
 
 ---
 
 ### 实验指导
 
-#### rCore
-- [实验文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2023S/)
-- [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2023S/#os-api-docs-of-rcore-tutorial-code-2022s) , [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)
-- [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
+#### rCore Tutorial
+- [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2023S/)
+- [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2023S/#os-api-docs-of-rcore-tutorial-code-2022s) 
+- [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2023S)
+- [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2023S)
 
 #### uCore和rCore实验[讲解视频（须更新）](https://www.yuque.com/docs/share/1b5b9260-8a80-4427-a612-78ec72b37e5f)
 
@@ -178,7 +176,7 @@ backgroundColor: white
 
 ## 调查问卷
 
-[2023年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/fPozIRL)（访问密码：XxW21Ur1CF）
+[2023年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/k2KiFjA)（访问密码：8VC7x2Yxk）
 
 - 为什么要学这门课？ 
 - 你打算如何来学这门课？
