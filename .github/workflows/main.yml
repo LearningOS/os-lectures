@@ -30,6 +30,9 @@ jobs:
           args: -allow-local-files --html -I docs/ -o build/
         env:
           MARP_USER: root:root
+          
+      - name: copy imgs
+        run: cp -r lec[1-9]*/figs build/
 
       - name: Deploy production
         if: ${{ github.event_name == 'push' }}
