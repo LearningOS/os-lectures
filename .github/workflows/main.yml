@@ -19,7 +19,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so marp-action can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup Source
         run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs && cp course-intro.md docs/course-intro.md
@@ -30,7 +30,7 @@ jobs:
           args: -allow-local-files --html -I docs/ -o build/
         env:
           MARP_USER: root:root
-          
+
       - name: copy imgs
         run: cp -r lec[1-9]*/figs build/
 
