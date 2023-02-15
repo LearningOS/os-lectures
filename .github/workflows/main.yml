@@ -25,7 +25,7 @@ jobs:
         run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs && cp course-intro.md docs/course-intro.md
 
       - name: Marp Build (docs folder)
-        uses: docker://marpteam/marp-cli:v1.7.0
+        uses: docker://marpteam/marp-cli:v1.7.2
         with:
           args: -allow-local-files --html -I docs/ -o build/
         env:
