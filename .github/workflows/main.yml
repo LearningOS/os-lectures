@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: [ master ]
-permissions: read-all|write-all
+permissions: write-all
 #  contents: write
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
