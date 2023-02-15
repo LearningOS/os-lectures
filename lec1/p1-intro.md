@@ -102,7 +102,8 @@ backgroundColor: white
 - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2023S)
 - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2023S)
 
-#### uCore和rCore实验[讲解视频（须更新）](https://www.yuque.com/docs/share/1b5b9260-8a80-4427-a612-78ec72b37e5f)
+#### [uCore和rCore实验讲解视频](https://www.yuque.com/docs/share/1b5b9260-8a80-4427-a612-78ec72b37e5f)
+- 部分内容将逐步更新
 
 ---
 
