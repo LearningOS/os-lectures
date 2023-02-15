@@ -22,17 +22,18 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Source
-        run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs && cp course-intro.md docs/course-intro.md && mkdir build && cp -r lec[1-9]*/figs build/
+        run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs && cp course-intro.md docs/course-intro.md 
+      # && mkdir build && cp -r lec[1-9]*/figs build/
 
       - name: Marp Build (docs folder)
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
           args: --html -I docs/ -o build/
-        env:
-          MARP_USER: root:root
+        #env:
+        #  MARP_USER: root:root
 
-      #- name: copy imgs
-      #  run: cp -r lec[1-9]*/figs build/
+      - name: copy imgs
+        run: cp -r lec[1-9]*/figs build/
 
       - name: Deploy production
         if: ${{ github.event_name == 'push' }}
