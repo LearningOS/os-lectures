@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: [ master ]
-permissions: write-all
+  permissions: write-all
 #  contents: write
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -28,17 +28,18 @@ jobs:
       - name: Marp Build (docs folder)
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
-          args: --html -I docs/ -o build/
-        #env:
-        #  MARP_USER: root:root
+          args: --html -I docs/ -o docs/
+          #args: --html -I docs/ -o build/
+        env:
+          MARP_USER: root:root
 
-      - name: copy imgs
-        run: cp -r lec[1-9]*/figs build/
+      #- name: copy imgs
+      #  run: cp -r lec[1-9]*/figs build/
 
       - name: Deploy production
         if: ${{ github.event_name == 'push' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ./build/
+          folder: ./docs/
       
