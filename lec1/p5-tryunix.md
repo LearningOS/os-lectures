@@ -42,7 +42,10 @@ backgroundColor: white
 ## Try Linux
 
 - shell
-   - bash, fish, zsh, starship ...
+   - bash
+   - fish 一个强调交互性和可用性的 UNIX shell 环境
+   - zsh 带有自动补全、支持插件的shell
+   - starship 轻量、迅速、可无限定制
 
 - program
    - ls, rm，gcc，gdb, vim ...
