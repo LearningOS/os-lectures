@@ -44,7 +44,7 @@
 <li>
 <p>shell</p>
 <ul>
-<li>bash</li>
+<li>bash 基本的shell环境</li>
 <li>fish 一个强调交互性和可用性的 UNIX shell 环境</li>
 <li>zsh 带有自动补全、支持插件的shell</li>
 <li>starship 轻量、迅速、可无限定制</li>
@@ -208,16 +208,16 @@
 <td>创建一个设备文件。</td>
 </tr>
 <tr>
-<td><code>int fstat(int fd, struct stat *st)</code></td>
-<td>将文件fd的元信息放入 <code>*st</code></td>
+<td><code>int fstat(int fd,struct stat *st)</code></td>
+<td>将文件fd的元信息放入<code>*st</code></td>
 </tr>
 <tr>
-<td><code>int stat(char *file, struct stat *st)</code></td>
+<td><code>int stat(char *file,struct stat *st)</code></td>
 <td>将文件 <code>*file</code> 的元信息放入 <code>*st</code></td>
 </tr>
 <tr>
 <td><code>int link(char *file1，char *file2)</code></td>
-<td>为文件file1创建另一个名称(file2)。</td>
+<td>为文件file1创建另一个名称(file2)</td>
 </tr>
 <tr>
 <td><code>int unlink(char *file)</code></td>
@@ -237,7 +237,7 @@
 <p>pipe1.c  pipe2.c  redirect.c ...</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="12" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - copy</h2>
 <p>例如：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/copy.c">copy.c</a>，将输入复制到输出<br />
 从输入中读取字节，将其写入输出中</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>    $ copy
@@ -248,24 +248,40 @@ read()/write()第一个参数是&quot;文件描述符&quot;(fd)<br />
 传递给内核，告诉它要读/写哪个 &quot;打开的文件&quot;。</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
-<p>必须先前已经打开过的一个FD（描述符）连接到一个文件/设备/socket<br />
-一个进程可以打开许多文件，有许多描述符<br />
-UNIX惯例：FD： 0是 &quot;标准输入&quot;，1是 &quot;标准输出&quot;</p>
+<h2>分析UNIX/Linux类应用 - read</h2>
+<ul>
+<li>
+<p>必须先前已经打开过的一个FD（描述符）连接到一个文件/设备/socket</p>
+</li>
+<li>
+<p>一个进程可以打开许多文件，有许多描述符</p>
+</li>
+<li>
+<p>UNIX惯例：FD： 0是 &quot;标准输入&quot;，1是 &quot;标准输出&quot;</p>
+</li>
+<li>
 <p>read()第二个参数是一个指针，指向要读入的一些内存。</p>
+</li>
+<li>
 <p>read()第三个参数是要读取的最大字节数</p>
+</li>
+<li>
 <p>注：read()可以少读，但不能多读</p>
+</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
-<p>返回值：实际读取的字节数，或者-1表示错误<br />
-注意：copy.c并不关心数据的格式。<br />
-UNIX的I/O是8位字节<br />
-解释是特定于应用的，例如数据库记录、C源码等<br />
-文件描述符从何而来？</p>
+<h2>分析UNIX/Linux类应用 - read</h2>
+<ul>
+<li>返回值：实际读取的字节数，或者-1表示错误</li>
+<li>注意：copy.c并不关心数据的格式。</li>
+<li>UNIX的I/O是8位字节</li>
+<li>数据格式的解释是特定于应用的，例如数据库记录、C源码等</li>
+<li>文件描述符从何而来？</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - open</h2>
 <p>例如：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/open.c">open.c</a>，创建一个文件</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ open
 $ cat output.txt
@@ -277,7 +293,7 @@ FD是一个小整数，FD索引到一个由内核维护的每进程表中</p>
 man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="16" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - open</h2>
 <p>当程序调用open()这样的系统调用时会发生什么？</p>
 <ul>
 <li>看起来像一个函数调用，但它实际上是一个特殊的指令</li>
@@ -288,7 +304,7 @@ man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明</p
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="17" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - open</h2>
 <p>当程序调用open()这样的系统调用时会发生什么？</p>
 <ul>
 <li>内核调用系统调用实现</li>
@@ -302,7 +318,7 @@ man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明</p
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="18" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - shell</h2>
 <p>在向UNIX的命令行界面（shell）输入信息。<br />
 shell打印出&quot;$&quot;的提示。<br />
 shell让你运行UNIX的命令行工具<br />
@@ -313,7 +329,7 @@ $ grep x &lt; out
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="19" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用  - shell</h2>
 <p>但通过shell来支持分时共享多任务执行是UNIX设计之初的重点。<br />
 可以通过shell行使许多系统调用。</p>
 <p>shell为你输入的每个命令创建一个新的进程，例如，对于</p>
@@ -321,7 +337,7 @@ $ grep x &lt; out
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - fork</h2>
 <p>fork()系统调用创建一个新的进程</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ fork
 </span></span></foreignObject></svg></code></pre>
@@ -332,14 +348,14 @@ $ grep x &lt; out
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="21" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - fork</h2>
 <p>唯一的区别：fork()在父进程中返回一个pid，在子进程中返回0。<br />
 pid（进程ID）是一个整数，内核给每个进程一个不同的pid</p>
 <p>因此，<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c">fork.c</a>的 &quot;fork()返回 &quot;在<strong>两个</strong>进程中都会执行<br />
 &quot;if(pid == 0) &quot;实现对父子进程的区分</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - exec</h2>
 <p>我们怎样才能在这个进程中运行一个新程序呢？</p>
 <p>例如：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/exec.c">exec.c</a>，用一个可执行文件代替调用进程。<br />
 shell是如何运行一个程序的，例如</p>
@@ -349,7 +365,7 @@ shell是如何运行一个程序的，例如</p>
 所以有一个叫echo的文件，包含对 <code>exec</code> 系统调用的操作命令</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="23" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用  - exec</h2>
 <p>exec()用一个可执行文件取代当前进程</p>
 <ul>
 <li>丢弃指令和数据存储器</li>
@@ -358,7 +374,7 @@ shell是如何运行一个程序的，例如</p>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - exec</h2>
 <p>exec(filename, argument-array)<br />
 argument-array保存命令行参数；exec传递给main()</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>cat user/echo.c
@@ -366,7 +382,7 @@ argument-array保存命令行参数；exec传递给main()</p>
 <p>echo.c显示了一个程序如何看待它的命令行参数</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - forkexec</h2>
 <p>例如：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/forkexec.c">forkexec.c</a>，fork()一个新进程，exec()一个程序。</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>  $ forkexec
 </span></span></foreignObject></svg></code></pre>
@@ -378,13 +394,13 @@ argument-array保存命令行参数；exec传递给main()</p>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="26" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - wait</h2>
 <p>shell对你输入的每个命令都进行fork/exec/wait操作。<br />
 在wait()之后，shell会打印出下一个提示信息<br />
 在后台运行 -- <code>&amp;</code> -- , shell会跳过wait()</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - exit</h2>
 <p>exit(status) --&gt; wait(&amp;status)</p>
 <p>status约定：0 = 成功，1 = 命令遇到了一个错误<br />
 注意：fork()会复制，但exec()会丢弃复制的内存。<br />
@@ -392,7 +408,7 @@ argument-array保存命令行参数；exec传递给main()</p>
 你可以通过 &quot;写时复制 &quot;技术透明地消除复制</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="28" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - redirect</h2>
 <p>例子：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/redirect.c">redirect.c</a>，重定向一个命令的输出<br />
 shell对此做了什么？</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ echo hello &gt; out
@@ -404,13 +420,15 @@ $ cat output.txt
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用</h2>
-<p>注意：open()总是选择最低的未使用的FD；选择1是由于close(1)。<br />
-fork、FD和exec很好地互动，以实现I/O重定向<br />
-独立的fork-then-exec给子进程一个机会在exec之前改变FD。<br />
-FDs提供了指示作用<br />
-命令只需使用FDs 0和1，不需要知道它们的位置<br />
-exec保留了sh设置的FDs<br />
-因此：只有sh需要知道I/O重定向，而不是每个程序</p>
+<ul>
+<li>注意：open()总是选择最低的未使用的FD；选择1是由于close(1)。</li>
+<li>fork、FD和exec很好地互动，以实现I/O重定向</li>
+<li>独立的fork-then-exec给子进程一个机会在exec之前改变FD。</li>
+<li>FDs提供了指示作用</li>
+<li>命令只需使用FDs 0和1，不需要知道它们的位置</li>
+<li>exec保留了sh设置的FDs</li>
+<li>因此：只有sh需要知道I/O重定向，而不是每个程序</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="30" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用</h2>
@@ -425,7 +443,7 @@ exec保留了sh设置的FDs<br />
 <p>UNIX的设计很好用，但我们会看到其他的设计</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="31" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - pipe</h2>
 <p>例子：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe1.c">pipe1.c</a>，通过一个管道进行通信<br />
 shell是如何实现的</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ ls | grep x
@@ -439,7 +457,7 @@ pipe()系统调用创建了两个FD</p>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - write/read</h2>
 <p>内核为每个管道维护一个缓冲区</p>
 <ul>
 <li>write()添加到缓冲区中</li>
@@ -447,7 +465,7 @@ pipe()系统调用创建了两个FD</p>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h2>分析UNIX/Linux类应用</h2>
+<h2>分析UNIX/Linux类应用 - list</h2>
 <p>例子：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c">pipe2.c</a>，在进程间通信。<br />
 管道与fork()结合得很好，可以实现ls | grep x。<br />
 shell创建一个管道。<br />
