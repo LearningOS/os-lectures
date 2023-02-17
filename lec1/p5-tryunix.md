@@ -261,15 +261,14 @@ pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 ---
 ## 分析UNIX/Linux类应用 - exec
 
-我们怎样才能在这个进程中运行一个新程序呢？  
+怎样才能在这个进程中运行一个新程序呢？  
 
 例如：[exec.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/exec.c)，用一个可执行文件代替调用进程。
 shell是如何运行一个程序的，例如
 
     $ echo a b c
 
-一个程序被储存在一个文件中：指令和初始内存，由编译器和链接器创建
-所以有一个叫echo的文件，包含对 `exec` 系统调用的操作命令
+一个程序被储存在一个文件中：指令和初始内存，由编译器和链接器创建，所以有一个叫echo的文件，包含对 `exec` 系统调用的操作命令
 
 ---
 ## 分析UNIX/Linux类应用  - exec
@@ -305,20 +304,20 @@ forkexec.c包含了一个常见的UNIX习惯用语。
 ---
 ## 分析UNIX/Linux类应用 - wait
 
-shell对你输入的每个命令都进行fork/exec/wait操作。
-在wait()之后，shell会打印出下一个提示信息
-在后台运行 -- `&` -- , shell会跳过wait()
+- shell你输入的每个命令都进行fork/exec/wait操作。
+- 在wait()之后，shell会打印出下一个提示信息
+- 在后台运行 -- `&` -- , shell会跳过wait()
 
 
 ---
 ## 分析UNIX/Linux类应用 - exit
 
-exit(status) --> wait(&status)
+* exit(status) --> wait(&status)
 
-status约定：0 = 成功，1 = 命令遇到了一个错误
-注意：fork()会复制，但exec()会丢弃复制的内存。
-这可能看起来很浪费
-你可以通过 "写时复制 "技术透明地消除复制
+- status约定：0 = 成功，1 = 命令遇到了一个错误
+- 注意：fork()会复制，但exec()会丢弃复制的内存。
+- 这可能看起来很浪费
+- 可以通过 "写时复制 "技术透明地消除复制
 
 
 ---
@@ -342,8 +341,8 @@ shell对此做了什么？
 - 独立的fork-then-exec给子进程一个机会在exec之前改变FD。
 - FDs提供了指示作用
 - 命令只需使用FDs 0和1，不需要知道它们的位置
-- exec保留了sh设置的FDs
-- 因此：只有sh需要知道I/O重定向，而不是每个程序
+- exec保留了shell设置的FDs
+- 因此：只有shell需要知道I/O重定向，而不是每个程序
 
 
 
@@ -384,16 +383,15 @@ pipe()系统调用创建了两个FD
 ---
 ## 分析UNIX/Linux类应用 - list
 
-例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
-管道与fork()结合得很好，可以实现ls | grep x。
-shell创建一个管道。
-然后分叉（两次）。
-然后将ls的FD1连接到管道的写FD。
-和grep的FD 0连接到管道上。
+* 例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
+- 管道与fork()结合得很好，可以实现ls | grep x。
+- shell创建一个管道。
+- 然后分叉（两次），将ls的FD1连接到管道的写FD。
+- 和grep的FD 0连接到管道上。
 
    $ pipe2 -- 一个简化版本
 
-管道是一个独立的抽象概念，但与 fork() 结合得很好
+- 管道是一个独立的抽象概念，但与 fork() 结合得很好
 
 
 ---
@@ -401,10 +399,10 @@ shell创建一个管道。
 
 
 * 例子：[list.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/list.c)，列出一个目录中的文件
-ls是如何获得一个目录中的文件列表的？
-你可以打开一个目录并读取它 -> 文件名
-"... "是一个进程的当前目录的假名
-更多细节见ls.c
+- ls是如何获得一个目录中的文件列表的？
+- 可以打开一个目录并读取它 -> 文件名
+- "... "是一个进程的当前目录的假名
+- 更多细节见ls.c
 
 ---
 ## 分析UNIX/Linux类应用
