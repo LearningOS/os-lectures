@@ -280,27 +280,32 @@ read()/write()第一个参数是&quot;文件描述符&quot;(fd)<br />
 <li>文件描述符从何而来？</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-marpit-fragments="1" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用 - open</h2>
+<ul>
+<li data-marpit-fragment="1">
 <p>例如：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/open.c">open.c</a>，创建一个文件</p>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ open
-$ cat output.txt
-</span></span></foreignObject></svg></code></pre>
-<p>open() 创建一个文件，返回一个文件描述符（或-1表示错误）。<br />
-FD是一个小整数，FD索引到一个由内核维护的每进程表中</p>
-<p>不同的进程有不同的FD命名空间。例如，FD 1对不同的进程意味不同</p>
-<p>进一步细节可以参考UNIX手册，例如 &quot;man 2 open&quot;。<br />
-man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明</p>
+<p>$ open<br />
+$ cat output.txt</p>
+</li>
+</ul>
+<ul>
+<li>open() 创建一个文件，返回一个文件描述符（或-1表示错误）。</li>
+<li>FD是一个小整数，FD索引到一个由内核维护的每进程表中</li>
+<li>不同的进程有不同的FD命名空间。例如FD 1对不同的进程意味不同</li>
+<li>进一步细节可以参考UNIX手册，例如 &quot;man 2 open&quot;。</li>
+<li>man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="16" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用 - open</h2>
 <p>当程序调用open()这样的系统调用时会发生什么？</p>
 <ul>
 <li>看起来像一个函数调用，但它实际上是一个特殊的指令</li>
-<li>硬件保存了一些用户寄存器</li>
-<li>硬件提高权限级别</li>
-<li>硬件跳转到内核中一个已知的 &quot;入口点&quot;</li>
-<li>现在在内核中运行C代码</li>
+<li>硬件保存了一些用户寄存器（用户态）</li>
+<li>硬件提高权限级别（内核态）</li>
+<li>硬件跳转到内核中一个已知的 &quot;入口点&quot;（内核态入口）</li>
+<li>然后在内核中运行C代码（执行内核态代码）</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="17" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -314,27 +319,43 @@ man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明</p
 <li>恢复用户寄存器</li>
 <li>降低权限级别</li>
 <li>跳回程序中的调用点，继续运行</li>
-<li>我们将在后面的课程中看到更多的细节</li>
+<li>将在后面的课程中看到更多的细节</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="18" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用 - shell</h2>
-<p>在向UNIX的命令行界面（shell）输入信息。<br />
-shell打印出&quot;$&quot;的提示。<br />
-shell让你运行UNIX的命令行工具<br />
-对系统管理、处理文件、开发和编写脚本很有用</p>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ ls
-$ ls &gt; out
-$ grep x &lt; out
-</span></span></foreignObject></svg></code></pre>
+<ul>
+<li>
+<p>在向UNIX的命令行界面（shell）输入信息。</p>
+</li>
+<li>
+<p>shell打印出&quot;$&quot;的提示。</p>
+</li>
+<li>
+<p>shell让你运行UNIX的命令行工具</p>
+</li>
+<li>
+<p>对系统管理、处理文件、开发和编写脚本很有用</p>
+<p>$ ls<br />
+$ ls &gt; out<br />
+$ grep x &lt; out</p>
+</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="19" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用  - shell</h2>
-<p>但通过shell来支持分时共享多任务执行是UNIX设计之初的重点。<br />
-可以通过shell行使许多系统调用。</p>
-<p>shell为你输入的每个命令创建一个新的进程，例如，对于</p>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ echo hello
-</span></span></foreignObject></svg></code></pre>
+<ul>
+<li>
+<p>但通过shell来支持分时共享多任务执行是UNIX设计之初的重点。</p>
+</li>
+<li>
+<p>可以通过shell行使许多系统调用。</p>
+</li>
+<li>
+<p>shell为输入的每个命令创建一个新的进程，例如，对于</p>
+<p>$ echo hello</p>
+</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用 - fork</h2>
@@ -349,19 +370,41 @@ $ grep x &lt; out
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="21" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用 - fork</h2>
-<p>唯一的区别：fork()在父进程中返回一个pid，在子进程中返回0。<br />
-pid（进程ID）是一个整数，内核给每个进程一个不同的pid</p>
-<p>因此，<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c">fork.c</a>的 &quot;fork()返回 &quot;在<strong>两个</strong>进程中都会执行<br />
-&quot;if(pid == 0) &quot;实现对父子进程的区分</p>
+<ul>
+<li>
+<p>唯一的区别：fork()在父进程中返回一个pid，在子进程中返回0。</p>
+</li>
+<li>
+<p>pid（进程ID）是一个整数，内核给每个进程一个不同的pid</p>
+</li>
+<li>
+<p>因此，<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c">fork.c</a>的 &quot;fork()返回</p>
+</li>
+<li>
+<p><code>在**两个**进程中都会执行</code></p>
+<ul>
+<li><code>&quot;if(pid == 0) &quot;实现对父子进程的区分</code></li>
+</ul>
+</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用 - exec</h2>
+<ul>
+<li>
 <p>怎样才能在这个进程中运行一个新程序呢？</p>
-<p>例如：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/exec.c">exec.c</a>，用一个可执行文件代替调用进程。<br />
-shell是如何运行一个程序的，例如</p>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ echo a b c
-</span></span></foreignObject></svg></code></pre>
+</li>
+<li>
+<p>例如：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/exec.c">exec.c</a>，用一个可执行文件代替调用进程。</p>
+</li>
+<li>
+<p>shell是如何运行一个程序的，例如</p>
+<p>$ echo a b c</p>
+</li>
+<li>
 <p>一个程序被储存在一个文件中：指令和初始内存，由编译器和链接器创建，所以有一个叫echo的文件，包含对 <code>exec</code> 系统调用的操作命令</p>
+</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="23" data-marpit-pagination-total="35" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h2>分析UNIX/Linux类应用  - exec</h2>
