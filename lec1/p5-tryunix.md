@@ -172,18 +172,16 @@ list.c  open.c echo.c  copy.c  ...
 ---
 ## 分析UNIX/Linux类应用 - open
 
-例如：[open.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/open.c)，创建一个文件
+* 例如：[open.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/open.c)，创建一个文件
 
     $ open
     $ cat output.txt
 
-open() 创建一个文件，返回一个文件描述符（或-1表示错误）。
-FD是一个小整数，FD索引到一个由内核维护的每进程表中
-
-不同的进程有不同的FD命名空间。例如，FD 1对不同的进程意味不同
-
-进一步细节可以参考UNIX手册，例如 "man 2 open"。 
-man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明
+- open() 创建一个文件，返回一个文件描述符（或-1表示错误）。
+- FD是一个小整数，FD索引到一个由内核维护的每进程表中
+- 不同的进程有不同的FD命名空间。例如FD 1对不同的进程意味不同
+- 进一步细节可以参考UNIX手册，例如 "man 2 open"。 
+- man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明
 
 ---
 ## 分析UNIX/Linux类应用 - open
@@ -191,10 +189,10 @@ man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明
 当程序调用open()这样的系统调用时会发生什么？
 
 - 看起来像一个函数调用，但它实际上是一个特殊的指令
-- 硬件保存了一些用户寄存器
-- 硬件提高权限级别
-- 硬件跳转到内核中一个已知的 "入口点"
-- 现在在内核中运行C代码
+- 硬件保存了一些用户寄存器（用户态）
+- 硬件提高权限级别（内核态）
+- 硬件跳转到内核中一个已知的 "入口点"（内核态入口）
+- 然后在内核中运行C代码（执行内核态代码）
 
 
 ---
@@ -209,15 +207,15 @@ man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明
 - 恢复用户寄存器
 - 降低权限级别
 - 跳回程序中的调用点，继续运行
-- 我们将在后面的课程中看到更多的细节
+- 将在后面的课程中看到更多的细节
 
 ---
 ## 分析UNIX/Linux类应用 - shell
 
-在向UNIX的命令行界面（shell）输入信息。
-shell打印出"$"的提示。
-shell让你运行UNIX的命令行工具
-对系统管理、处理文件、开发和编写脚本很有用
+- 在向UNIX的命令行界面（shell）输入信息。
+- shell打印出"$"的提示。
+- shell让你运行UNIX的命令行工具
+- 对系统管理、处理文件、开发和编写脚本很有用
 
     $ ls
     $ ls > out
@@ -226,10 +224,10 @@ shell让你运行UNIX的命令行工具
 ---
 ## 分析UNIX/Linux类应用  - shell
 
-但通过shell来支持分时共享多任务执行是UNIX设计之初的重点。
-可以通过shell行使许多系统调用。
+- 但通过shell来支持分时共享多任务执行是UNIX设计之初的重点。
+- 可以通过shell行使许多系统调用。
 
-shell为你输入的每个命令创建一个新的进程，例如，对于
+- shell为输入的每个命令创建一个新的进程，例如，对于
 
     $ echo hello
 
@@ -252,23 +250,25 @@ fork()系统调用创建一个新的进程
 
 ## 分析UNIX/Linux类应用 - fork 
 
-唯一的区别：fork()在父进程中返回一个pid，在子进程中返回0。
-pid（进程ID）是一个整数，内核给每个进程一个不同的pid
+- 唯一的区别：fork()在父进程中返回一个pid，在子进程中返回0。
+- pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 
-因此，[fork.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c)的 "fork()返回 "在**两个**进程中都会执行
-"if(pid == 0) "实现对父子进程的区分
+- 因此，[fork.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c)的 "fork()返回 
+
+- ``在**两个**进程中都会执行``
+  - ``"if(pid == 0) "实现对父子进程的区分``
 
 ---
 ## 分析UNIX/Linux类应用 - exec
 
-怎样才能在这个进程中运行一个新程序呢？  
+- 怎样才能在这个进程中运行一个新程序呢？  
 
-例如：[exec.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/exec.c)，用一个可执行文件代替调用进程。
-shell是如何运行一个程序的，例如
+- 例如：[exec.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/exec.c)，用一个可执行文件代替调用进程。
+- shell是如何运行一个程序的，例如
 
     $ echo a b c
 
-一个程序被储存在一个文件中：指令和初始内存，由编译器和链接器创建，所以有一个叫echo的文件，包含对 `exec` 系统调用的操作命令
+- 一个程序被储存在一个文件中：指令和初始内存，由编译器和链接器创建，所以有一个叫echo的文件，包含对 `exec` 系统调用的操作命令
 
 ---
 ## 分析UNIX/Linux类应用  - exec
