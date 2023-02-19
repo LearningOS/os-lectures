@@ -1,0 +1,20 @@
+[package]
+name = "fork-exec"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[bin]]
+name = "fork"
+path = "src/fork.rs"
+
+[[bin]]
+name = "exec"
+path = "src/exec.rs"
+
+[dependencies]
+exec = "0.3.1"
+fork = "0.1.20"
+#fork = {path = "./fork"}
+#exec = {path = "./exec-rs"}
