@@ -373,7 +373,7 @@ shell如何使用管道机制 `"|"`
     $ ls | grep x
 ```
 pipe()系统调用创建了两个fd
-- 写入fd[1]，从fd[0]中读取
+- 从fd[1]写入，从fd[0]中读取
 
 
 ![bg right:50% 100%](../lec10/figs/pipe-fds-close.png)
