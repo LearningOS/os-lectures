@@ -425,4 +425,5 @@ UNIX的设计很好用，但我们会看到其他的设计
 -  这些抽象结合得很好，例如，I/O重定向
 
 练习
-- [rCore-Tutorial-Book-v3 第零章--练习](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter0/7exercise.html#)
+- 解答[rCore-Tutorial-Book-v3 第零章--练习](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter0/7exercise.html#)
+- 分析理解或运行调试[各种小例子用户程序](https://github.com/LearningOS/os-lectures/tree/master/lec1/examples)
