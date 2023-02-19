@@ -20,9 +20,10 @@ backgroundColor: white
 向勇 陈渝 李国良 任炬 
 
 <br>
-<br>
 
 2023年春季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
 
 ---
 
