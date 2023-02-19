@@ -73,7 +73,7 @@ backgroundColor: white
 #### 课程参考
 - [课程幻灯片](https://www.yuque.com/docs/share/4c39608f-3051-4445-96ca-f3c018cb96c7)
 - 参考书
-  * [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+  - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
   - [深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
   - [RISC-V Reader中文版](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
 #### 课程实践：rCore Tutorial Book v3
@@ -90,7 +90,7 @@ backgroundColor: white
 
 - [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2023S/)
 - [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2023S/)
-* [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2023S)
+- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2023S)
 
 ---
 
@@ -113,14 +113,14 @@ backgroundColor: white
 
 ### OS 原理与设计思想
 
-* 操作系统结构
-* 中断及系统调用
-* 内存管理
-* 进程管理
-* 处理机调度
-* 同步互斥
-* 文件系统
-* I/O 子系统
+- 操作系统结构
+- 中断及系统调用
+- 内存管理
+- 进程管理
+- 处理机调度
+- 同步互斥
+- 文件系统
+- I/O 子系统
 
 
 ---
@@ -152,12 +152,12 @@ backgroundColor: white
 ## 课程设计（大实验）
 ### 用组件来组合操作系统内核 
 ### 各种操作系统相关的功能和扩展
-  * 操作系统内核模块的完善和改进
-  * 内核可加载模块、微内核
-  * 在内核中引入异步编程
-  * RISC-V、x86-64、MIPS、ARM支持
-  * RaspBerry PI、U740、D1等
-  * GUI、驱动、文件系统、网络
+  - 操作系统内核模块的完善和改进
+  - 内核可加载模块、微内核
+  - 在内核中引入异步编程
+  - RISC-V、x86-64、MIPS、ARM支持
+  - RaspBerry PI、U740、D1等
+  - GUI、驱动、文件系统、网络
 
 
 --- 
