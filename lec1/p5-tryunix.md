@@ -60,26 +60,26 @@ backgroundColor: white
 ---
 ## UNIX/Linux提供哪些服务？
 
-  * 进程（正在运行的程序）
-  * 内存分配
-  * 文件内容、文件名、目录
-  * 访问控制（安全）
-  * 许多其他的：用户、IPC、网络、时间
+  - 进程（正在运行的程序）
+  - 内存分配
+  - 文件内容、文件名、目录
+  - 访问控制（安全）
+  - 许多其他的：用户、IPC、网络、时间
 
 ![bg right 100%](./figs/ucorearch.png)
 
 ---
 ## UNIX/Linux提供的应用/内核接口？
 
-  * APP -> C lib -> Syscall -> Kernel
-  * 例子，用C语言，来自类UNIX OS
+  - APP -> C lib -> Syscall -> Kernel
+  - 例子，用C语言，来自类UNIX OS
 
             fd = open("out", 1);
             write(fd, "hello\n", 6);
 
 
- *  看起来像函数调用
- *  核心的系统调用数量并不多
+ -  看起来像函数调用
+ -  核心的系统调用数量并不多
 
 ![bg right:50% 100%](./figs/linux-syscall.png)
 
@@ -146,7 +146,7 @@ list.c  open.c echo.c  copy.c
 ---
 ## UNIX/Linux应用 - open
 
-* 例如：[open.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/open.c)，创建一个文件
+- 例如：[open.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/open.c)，创建一个文件
 
     $ open
     $ cat output.txt
@@ -319,7 +319,7 @@ echo.c显示了一个程序如何看待它的命令行参数 -->
 <!-- 
 ---
 ## UNIX/Linux应用 - exit
-* exit(status) --\> wait(&status)
+- exit(status) --\> wait(&status)
 
 - status约定：0 = 成功，1 = 命令遇到了一个错误
 - 注意：fork()会复制，但exec()会丢弃复制的内存。
@@ -367,7 +367,7 @@ pipe()系统调用创建了两个fd
 ---
 ## 分析UNIX/Linux类应用 - pipe2
 
-* 例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
+- 例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
 shell如何使用管道机制 `"|"`
 ```
     $ ls | grep x
@@ -409,7 +409,7 @@ UNIX的设计很好用，但我们会看到其他的设计
 ## 分析UNIX/Linux类应用
 
 
-* 例子：[list.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/list.c)，列出一个目录中的文件
+- 例子：[list.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/list.c)，列出一个目录中的文件
 - ls是如何获得一个目录中的文件列表的？
 - 可以打开一个目录并读取它 -> 文件名
 - "... "是一个进程的当前目录的假名
@@ -420,6 +420,9 @@ UNIX的设计很好用，但我们会看到其他的设计
 
 小结
 
-  * 我们已经研究了UNIX的I/O、文件系统和进程的抽象
-  * 这些接口很简洁，只有整数和I/O缓冲区
-  * 这些抽象结合得很好，例如，I/O重定向
+- 我们已经研究了UNIX的I/O、文件系统和进程的抽象
+- 这些接口很简洁，只有整数和I/O缓冲区
+-  这些抽象结合得很好，例如，I/O重定向
+
+练习
+- [rCore-Tutorial-Book-v3 第零章--练习](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter0/7exercise.html#)
