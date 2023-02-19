@@ -153,7 +153,7 @@ list.c  open.c echo.c  copy.c
 
 - open() 创建一个文件，返回一个文件描述符（File Descriptor，简称FD，或-1表示错误）。
 - FD是正整数，代表一个打开的文件
-- - 进一步细节可以参考UNIX/Linux手册，例如执行 "man 2 open"
+- 进一步细节可以参考UNIX/Linux手册，例如执行 "man 2 open"
 - man的第一个参数：1 表示查shell命令；2 表示查系统调用
 
 ---
