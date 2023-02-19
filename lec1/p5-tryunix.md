@@ -26,56 +26,65 @@ backgroundColor: white
 2023年春季
 
 ---
-## UNIX/Linux在哪里？
+## UNIX/Linux？
 
 - Linux 
    - Ubuntu、Fedora、SuSE、openEuler 
    - 麒麟  统信  
 - Windows with WSL (Windows Subsystem of Linux)
 - MacOS with UNIX shell 
+
+![bg right 90%](./figs/linux-dists.png)
+
 ---
-## 为什么是Linux？
+## UNIX/Linux？
 - 开放源码，有很好的文档，设计简洁，使用广泛
 - 如果你了解Linux的内部情况，学习ucore/rcore会有帮助。
 
+![bg right 100%](./figs/ucorearch.png)
+
 ---
-## Try Linux
+## Try UNIX/Linux
 
 - shell
    - bash 基本的shell环境
-   - fish 一个强调交互性和可用性的 UNIX shell 环境
-   - zsh 带有自动补全、支持插件的shell
+   - fish 强调交互性和可用性
+   - zsh 带有自动补全、支持插件
    - starship 轻量、迅速、可无限定制
 
 - program
    - ls, rm，gcc，gdb, vim ...
 
----
-## Linux内核通常提供哪些服务？
+![bg right:40% 100%](./figs/shells.png)
 
-  * 进程（一个正在运行的程序）
+---
+## UNIX/Linux提供哪些服务？
+
+  * 进程（正在运行的程序）
   * 内存分配
-  * 文件内容
-  * 文件名、目录
+  * 文件内容、文件名、目录
   * 访问控制（安全）
-  * 许多其他的：用户、IPC、网络、时间、终端
+  * 许多其他的：用户、IPC、网络、时间
 
+![bg right 100%](./figs/ucorearch.png)
 
 ---
-## Linux内核提供的应用程序/内核接口？
+## UNIX/Linux提供的应用/内核接口？
 
-  * "系统调用"
-  * 例子，用C语言，来自UNIX（例如Linux、macOS、FreeBSD）。
+  * APP -> C lib -> Syscall -> Kernel
+  * 例子，用C语言，来自类UNIX OS
 
             fd = open("out", 1);
             write(fd, "hello\n", 6);
-            pid = fork()
 
- *  这些看起来像函数调用，但它们并不是
- *  核心的系统调用数量并不多（20个左右）
+
+ *  看起来像函数调用
+ *  核心的系统调用数量并不多
+
+![bg right:50% 100%](./figs/linux-syscall.png)
 
 ---
-## Linux内核提供的应用程序/内核接口？
+## UNIX/Linux提供的应用/内核接口？
 
 | 系统调用名 | 含义 |
 | ------------------------ | ---- |
@@ -86,7 +95,7 @@ backgroundColor: white
 | ``int getpid()``             |   返回当前进程的PID。   |
 
 ---
-## Linux内核提供的应用程序/内核接口？
+## UNIX/Linux提供的应用/内核接口？
 
 | 系统调用名 | 含义 |
 | ------------------------ | ---- |
@@ -97,7 +106,7 @@ backgroundColor: white
 |   ``int write(int fd，char *buf，int n)``   |  从buf向文件描述符fd写入n个字节；返回n。    |
 
 ---
-## Linux内核提供的应用程序/内核接口？
+## UNIX/Linux提供的应用/内核接口？
 
 | 系统调用名 | 含义 |
 | ------------------------ | ---- |
@@ -108,7 +117,7 @@ backgroundColor: white
 |  ``int chdir(char *dir)``     | 更改当前目录。|
 
 ---
-## Linux内核提供的应用程序/内核接口？
+## UNIX/Linux提供的应用/内核接口？
 | 系统调用名 | 含义 |
 | ------------------------ | ---- |
 |  ``int mkdir(char *dir) ``     |  创建一个新目录。    |
@@ -120,71 +129,72 @@ backgroundColor: white
 
 
 ---
-## 分析UNIX/Linux类应用
+## UNIX/Linux应用
 
 [分析一些非常简单的小程序](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/)
 
 #### 进程相关
 
-fork.c  exec.c  forkexec.c ...
+fork.c  exec.c  forkexec.c
 #### 文件系统相关
-list.c  open.c echo.c  copy.c  ... 
+list.c  open.c echo.c  copy.c
 #### 进程间通信相关
- pipe1.c  pipe2.c  redirect.c ...
+ pipe1.c  pipe2.c  redirect.c
+
+![bg right:55% 100%](./figs/xv6-syscall.png)
 
 ---
-## 分析UNIX/Linux类应用 - copy
- 例如：[copy.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/copy.c)，将输入复制到输出
-从输入中读取字节，将其写入输出中
-
-        $ copy
-
-  copy.c是用C语言编写的
-    
-  read()和write()是系统调用
-  read()/write()第一个参数是"文件描述符"(fd)
-  传递给内核，告诉它要读/写哪个 "打开的文件"。
-
----
-## 分析UNIX/Linux类应用 - read
-
-- 必须先前已经打开过的一个FD（描述符）连接到一个文件/设备/socket
-- 一个进程可以打开许多文件，有许多描述符
-- UNIX惯例：FD： 0是 "标准输入"，1是 "标准输出"
-
-- read()第二个参数是一个指针，指向要读入的一些内存。
-
-- read()第三个参数是要读取的最大字节数
-
-- 注：read()可以少读，但不能多读
-
-
----
-## 分析UNIX/Linux类应用 - read 
-
-- 返回值：实际读取的字节数，或者-1表示错误
-- 注意：copy.c并不关心数据的格式。
-- UNIX的I/O是8位字节
-- 数据格式的解释是特定于应用的，例如数据库记录、C源码等
-- 文件描述符从何而来？
-
-
----
-## 分析UNIX/Linux类应用 - open
+## UNIX/Linux应用 - open
 
 * 例如：[open.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/open.c)，创建一个文件
 
     $ open
     $ cat output.txt
 
-- open() 创建一个文件，返回一个文件描述符（或-1表示错误）。
-- FD是一个小整数，FD索引到一个由内核维护的每进程表中
-- 不同的进程有不同的FD命名空间。例如FD 1对不同的进程意味不同
-- 进一步细节可以参考UNIX手册，例如 "man 2 open"。 
-- man 1是shell命令如ls；man 2是系统调用如open；man 3是函数说明
+- open() 创建一个文件，返回一个文件描述符（File Descriptor，简称FD，或-1表示错误）。
+- FD是正整数，代表一个打开的文件
+- - 进一步细节可以参考UNIX/Linux手册，例如执行 "man 2 open"
+- man的第一个参数：1 表示查shell命令；2 表示查系统调用
 
 ---
-## 分析UNIX/Linux类应用 - open
+## UNIX/Linux应用 - copy
+ 例如：[copy.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/copy.c)，将输入文件内容复制到输出文件中
+从输入文件中读取字节内容，将其写入输出文件中
+
+        $ copy
+    
+  read()和write()是系统调用
+  read()/write()第一个参数是"文件描述符"(fd)
+  传递给内核，告诉它要读/写哪个 "打开的文件"
+
+---
+## UNIX/Linux应用 - copy
+
+- 一个文件描述符对应一个打开的文件
+- 一个进程可以打开许多文件，有许多描述符
+- 缺省情况：
+  - 文件描述符`0`是 "标准输入", 通常是键盘
+  - 文件描述符`1`是 "标准输出"，通常是显示器
+
+- read()第二个参数是指向要读取的缓冲区的指针，缓冲区的大小由第三个参数指定
+- 文件访问模式：`open -> read/write -> close`
+
+
+
+
+<!-- ---
+## UNIX/Linux应用 - copy 
+
+- 返回值：实际读取的字节数，或者-1表示错误
+- 注意：copy.c并不关心数据的格式
+- 数据格式的解释是特定于应用的，例如数据库记录、C源码等
+- 文件描述符从何而来？ -->
+
+
+
+
+<!-- ---
+## UNIX/Linux应用 - open
 
 当程序调用open()这样的系统调用时会发生什么？
 
@@ -196,7 +206,7 @@ list.c  open.c echo.c  copy.c  ...
 
 
 ---
-## 分析UNIX/Linux类应用 - open
+## UNIX/Linux应用 - open
 
 当程序调用open()这样的系统调用时会发生什么？
 
@@ -207,10 +217,10 @@ list.c  open.c echo.c  copy.c  ...
 - 恢复用户寄存器
 - 降低权限级别
 - 跳回程序中的调用点，继续运行
-- 将在后面的课程中看到更多的细节
+- 将在后面的课程中看到更多的细节 -->
 
----
-## 分析UNIX/Linux类应用 - shell
+<!-- ---
+## UNIX/Linux应用 - shell
 
 - 在向UNIX的命令行界面（shell）输入信息。
 - shell打印出"$"的提示。
@@ -222,119 +232,154 @@ list.c  open.c echo.c  copy.c  ...
     $ grep x < out
 
 ---
-## 分析UNIX/Linux类应用  - shell
+## UNIX/Linux应用  - shell
 
 - 但通过shell来支持分时共享多任务执行是UNIX设计之初的重点。
 - 可以通过shell行使许多系统调用。
 
 - shell为输入的每个命令创建一个新的进程，例如，对于
 
-    $ echo hello
+    $ echo hello -->
 
 
 
 ---
 
 
-## 分析UNIX/Linux类应用 - fork
-fork()系统调用创建一个新的进程
+## UNIX/Linux应用 - fork
+fork()系统调用创建一个进程的副本（子进程）
 
-    $ fork
+- 复制：指令、数据、寄存器、文件描述符、当前目录
+- 形成"父 "和 "子 "进程
 
-内核创建一个调用进程的副本
-- 指令、数据、寄存器、文件描述符、当前目录
-- "父 "和 "子 "进程
+![bg right:50% 100%](../lec7/figs/fork.png)
 
 ---
 
 
-## 分析UNIX/Linux类应用 - fork 
+## UNIX/Linux应用 - fork 
 
-- 唯一的区别：fork()在父进程中返回一个pid，在子进程中返回0。
+- 区别：fork()在父进程中返回一个pid，在子进程中返回0。
 - pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 
 - 因此，[fork.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c)的 "fork()返回 
 
-- ``在**两个**进程中都会执行``
-  - ``"if(pid == 0) "实现对父子进程的区分``
+- 执行的差别体现在对`pid`的判别上
+   - ``if(pid == 0) \\判别父子进程``
+
+![bg right:40% 100%](../lec7/figs/fork.png)
 
 ---
-## 分析UNIX/Linux类应用 - exec
+## UNIX/Linux应用 - exec
 
 - 怎样才能在这个进程中运行一个新程序呢？  
 
 - 例如：[exec.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/exec.c)，用一个可执行文件代替调用进程。
-- shell是如何运行一个程序的，例如
 
-    $ echo a b c
+exec(filename, argument-array)
+argument-array保存命令行参数；exec传递给main()
 
-- 一个程序被储存在一个文件中：指令和初始内存，由编译器和链接器创建，所以有一个叫echo的文件，包含对 `exec` 系统调用的操作命令
+exec()用新执行文件取代当前进程
+- 丢弃已有指令和数据内存空间
+- 从文件中加载新执行程序的指令和数据
 
----
-## 分析UNIX/Linux类应用  - exec
-
-exec()用一个可执行文件取代当前进程
-- 丢弃指令和数据存储器
-- 从文件中加载指令和内存
-- 保留了文件描述符
-
----
-## 分析UNIX/Linux类应用 - exec
+<!-- ---
+## UNIX/Linux应用 - exec
 
 exec(filename, argument-array)
 argument-array保存命令行参数；exec传递给main()
 
     cat user/echo.c
 
-echo.c显示了一个程序如何看待它的命令行参数
+echo.c显示了一个程序如何看待它的命令行参数 -->
 
 ---
-## 分析UNIX/Linux类应用 - forkexec
+## UNIX/Linux应用 - forkexec
 
 例如：[forkexec.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/forkexec.c)，fork()一个新进程，exec()一个程序。
 
-      $ forkexec
-
-forkexec.c包含了一个常见的UNIX习惯用语。
-- fork() 一个子进程
-- exec() 子进程中的一条命令
-- 父进程等待子进程完成
 
 
----
-## 分析UNIX/Linux类应用 - wait
+常见的UNIX APP执行模式
+- fork()：创建子进程
+- exec()：子进程中执行新程序
+- wait()：父进程等待子进程完成
+- exit()：进程退出
+
+![bg right:45% 100%](../lec7/figs/fork-exec.png)
+
+<!-- ---
+## UNIX/Linux应用 - wait
 
 - shell你输入的每个命令都进行fork/exec/wait操作。
 - 在wait()之后，shell会打印出下一个提示信息
-- 在后台运行 -- `&` -- , shell会跳过wait()
+- 在后台运行 -- `&` -- , shell会跳过wait() -->
 
 
+<!-- 
 ---
-## 分析UNIX/Linux类应用 - exit
-
-* exit(status) --> wait(&status)
+## UNIX/Linux应用 - exit
+* exit(status) --\> wait(&status)
 
 - status约定：0 = 成功，1 = 命令遇到了一个错误
 - 注意：fork()会复制，但exec()会丢弃复制的内存。
 - 这可能看起来很浪费
-- 可以通过 "写时复制 "技术透明地消除复制
+- 可以通过 "写时复制 "技术透明地消除复制 
+-->
 
 
 ---
-## 分析UNIX/Linux类应用 - redirect
+## UNIX/Linux应用 - redirect
 
 例子：[redirect.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/redirect.c)，重定向一个命令的输出
-shell对此做了什么？
 
-    $ echo hello > out
- 
-答案：fork，改变子进程的FD1，执行echo
-
+- 缺省情况下，文件描述符为`1`的文件是`屏幕输出`
+- open()总是选择值最小的未使用的文件描述符
+- 通过 `close(1) + open(...)`操作，设定"output.txt"的文件描述符为1
+- exec(...)系统调用保留了文件描述符，执行echo命令后，它的屏幕输出将被重定向到"output.txt"
+```
     $ redirect
     $ cat output.txt
+```
+
+<!-- ---
+## 分析UNIX/Linux类应用 - pipe1
+
+例子：[pipe1.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe1.c)，通过一个管道（PIPE）进行通信
+shell如何使用管道机制 `"|"`
+
+    $ ls | grep x
+    $ pipe1
+
+
+pipe()系统调用创建了两个fd
+- 写入fd[1]，从fd[0]中读取
+  
+![bg right 90%](../lec10/figs/pipe-fds-close.png) -->
+
+<!-- ---
+## 分析UNIX/Linux类应用 - pipe1
+
+内核为每个管道维护一个缓冲区
+- write()添加到缓冲区中
+- read()等待，直到有数据出现 -->
 
 ---
-## 分析UNIX/Linux类应用
+## 分析UNIX/Linux类应用 - pipe2
+
+* 例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
+shell如何使用管道机制 `"|"`
+```
+    $ ls | grep x
+```
+pipe()系统调用创建了两个fd
+- 写入fd[1]，从fd[0]中读取
+
+
+![bg right:50% 100%](../lec10/figs/pipe-fds-close.png)
+
+<!-- ---
+## UNIX/Linux应用
 
 - 注意：open()总是选择最低的未使用的FD；选择1是由于close(1)。
 - fork、FD和exec很好地互动，以实现I/O重定向
@@ -342,59 +387,25 @@ shell对此做了什么？
 - FDs提供了指示作用
 - 命令只需使用FDs 0和1，不需要知道它们的位置
 - exec保留了shell设置的FDs
-- 因此：只有shell需要知道I/O重定向，而不是每个程序
+- 因此：只有shell需要知道I/O重定向，而不是每个程序 -->
 
 
 
 ---
-## 分析UNIX/Linux类应用
+## UNIX/Linux应用
 
 一些值得思考的问题：
 - 为什么是这些I/O和进程的抽象？为什么不是其他的东西？
-- 为什么要提供一个文件系统？为什么不让程序以他们自己的方式使用磁盘？
-- 为什么是FDs？为什么不向write()传递一个文件名？
+- 为什么要提供一个文件系统，而不让程序以自己的方式使用磁盘？
+- 为什么read/write文件用FD而不是文件名？
 - 为什么文件是字节流，而不是磁盘块或格式化记录？
 - 为什么不把fork()和exec()结合起来？
 
 UNIX的设计很好用，但我们会看到其他的设计
 
----
-## 分析UNIX/Linux类应用 - pipe
-
-例子：[pipe1.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe1.c)，通过一个管道进行通信
-shell是如何实现的
-
-    $ ls | grep x
-    $ pipe1
-
-一个FD可以指一个 "管道"，也可以指一个文件。
-pipe()系统调用创建了两个FD
-- 从第一个FD中读取
-- 写入第二个FD
-  
-
----
-## 分析UNIX/Linux类应用 - write/read
-
-内核为每个管道维护一个缓冲区
-- write()添加到缓冲区中
-- read()等待，直到有数据出现
-
----
-## 分析UNIX/Linux类应用 - list
-
-* 例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
-- 管道与fork()结合得很好，可以实现ls | grep x。
-- shell创建一个管道。
-- 然后分叉（两次），将ls的FD1连接到管道的写FD。
-- 和grep的FD 0连接到管道上。
-
-   $ pipe2 -- 一个简化版本
-
-- 管道是一个独立的抽象概念，但与 fork() 结合得很好
 
 
----
+<!-- ---
 ## 分析UNIX/Linux类应用
 
 
@@ -402,7 +413,7 @@ pipe()系统调用创建了两个FD
 - ls是如何获得一个目录中的文件列表的？
 - 可以打开一个目录并读取它 -> 文件名
 - "... "是一个进程的当前目录的假名
-- 更多细节见ls.c
+- 更多细节见ls.c -->
 
 ---
 ## 分析UNIX/Linux类应用
@@ -410,5 +421,5 @@ pipe()系统调用创建了两个FD
 小结
 
   * 我们已经研究了UNIX的I/O、文件系统和进程的抽象
-  * 这些接口很简单，只有整数和I/O缓冲区
+  * 这些接口很简洁，只有整数和I/O缓冲区
   * 这些抽象结合得很好，例如，I/O重定向
