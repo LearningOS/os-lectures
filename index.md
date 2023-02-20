@@ -23,6 +23,8 @@ backgroundColor: white
 
 ## 2023 春季
 
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
+
 ---
 
 <!-- theme: gaia -->
