@@ -72,13 +72,13 @@ backgroundColor: white
 ## UNIX/Linux提供的应用/内核接口？
 
   - APP -> C lib -> Syscall -> Kernel
-  - 例子，用C语言，来自类UNIX OS
+  - 用C语言，来自类UNIX OS
 
             fd = open("out", 1);
             write(fd, "hello\n", 6);
 
 
- -  看起来像函数调用
+ -  看起来像函数调用，其实是系统调用
  -  核心的系统调用数量并不多
 
 ![bg right:50% 100%](./figs/linux-syscall.png)
@@ -367,8 +367,8 @@ pipe()系统调用创建了两个fd
 ---
 ## 分析UNIX/Linux类应用 - pipe2
 
-- 例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
-shell如何使用管道机制 `"|"`
+- 例子[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，进程间通信。
+- shell如何使用管道机制 `"|"`
 ```
     $ ls | grep x
 ```
