@@ -308,9 +308,12 @@ read()/write()第一个参数是&quot;文件描述符&quot;(fd)<br />
 <p>pid（进程ID）是一个整数，内核给每个进程一个不同的pid</p>
 </li>
 <li>
-<p><a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c">fork.c</a>的 fork()返回执行的差别体现在对<code>pid</code>的判别上</p>
+<p>因此，<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c">fork.c</a>中父子进程的<code>fork()</code>返回值<code>pid</code>不同</p>
+</li>
+<li>
+<p>父子进程的执行差别就体现在对<code>fork()</code>返回值<code>pid</code>的判别上</p>
 <ul>
-<li><code>if(pid == 0) \\判别父子进程</code></li>
+<li>0代表子进程，否则代表父进程</li>
 </ul>
 </li>
 </ul>

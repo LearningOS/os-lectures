@@ -262,8 +262,10 @@ fork()系统调用创建一个进程的副本（子进程）
 - 区别：fork()在父进程中返回一个pid，在子进程中返回0。
 - pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 
-- [fork.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c)的 fork()返回执行的差别体现在对`pid`的判别上
-   - ``if(pid == 0) \\判别父子进程``
+- 因此，[fork.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c)中父子进程的`fork()`返回值`pid`不同 
+
+- 父子进程的执行差别就体现在对`fork()`返回值`pid`的判别上
+   - 0代表子进程，否则代表父进程 
 
 ![bg right:40% 100%](../lec7/figs/fork.png)
 
