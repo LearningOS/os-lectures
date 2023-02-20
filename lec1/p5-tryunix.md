@@ -72,13 +72,13 @@ backgroundColor: white
 ## UNIX/Linux提供的应用/内核接口？
 
   - APP -> C lib -> Syscall -> Kernel
-  - 例子，用C语言，来自类UNIX OS
+  - 用C语言，来自类UNIX OS
 
             fd = open("out", 1);
             write(fd, "hello\n", 6);
 
 
- -  看起来像函数调用
+ -  看起来像函数调用，其实是系统调用
  -  核心的系统调用数量并不多
 
 ![bg right:50% 100%](./figs/linux-syscall.png)
@@ -262,9 +262,7 @@ fork()系统调用创建一个进程的副本（子进程）
 - 区别：fork()在父进程中返回一个pid，在子进程中返回0。
 - pid（进程ID）是一个整数，内核给每个进程一个不同的pid
 
-- 因此，[fork.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c)的 "fork()返回 
-
-- 执行的差别体现在对`pid`的判别上
+- [fork.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c)的 fork()返回执行的差别体现在对`pid`的判别上
    - ``if(pid == 0) \\判别父子进程``
 
 ![bg right:40% 100%](../lec7/figs/fork.png)
@@ -367,8 +365,8 @@ pipe()系统调用创建了两个fd
 ---
 ## 分析UNIX/Linux类应用 - pipe2
 
-- 例子：[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，在进程间通信。
-shell如何使用管道机制 `"|"`
+- 例子[pipe2.c](https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c)，进程间通信。
+- shell如何使用管道机制 `"|"`
 ```
     $ ls | grep x
 ```

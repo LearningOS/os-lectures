@@ -75,13 +75,13 @@
 <p>APP -&gt; C lib -&gt; Syscall -&gt; Kernel</p>
 </li>
 <li>
-<p>例子，用C语言，来自类UNIX OS</p>
+<p>用C语言，来自类UNIX OS</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>    fd = open(&quot;out&quot;, 1);
     write(fd, &quot;hello\n&quot;, 6);
 </span></span></foreignObject></svg></code></pre>
 </li>
 <li>
-<p>看起来像函数调用</p>
+<p>看起来像函数调用，其实是系统调用</p>
 </li>
 <li>
 <p>核心的系统调用数量并不多</p>
@@ -308,10 +308,7 @@ read()/write()第一个参数是&quot;文件描述符&quot;(fd)<br />
 <p>pid（进程ID）是一个整数，内核给每个进程一个不同的pid</p>
 </li>
 <li>
-<p>因此，<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c">fork.c</a>的 &quot;fork()返回</p>
-</li>
-<li>
-<p>执行的差别体现在对<code>pid</code>的判别上</p>
+<p><a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/fork.c">fork.c</a>的 fork()返回执行的差别体现在对<code>pid</code>的判别上</p>
 <ul>
 <li><code>if(pid == 0) \\判别父子进程</code></li>
 </ul>
@@ -363,8 +360,8 @@ argument-array保存命令行参数；exec传递给main()</p>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="22" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;../lec10/figs/pipe-fds-close.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="22" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h2>分析UNIX/Linux类应用 - pipe2</h2>
 <ul>
-<li>例子：<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c">pipe2.c</a>，在进程间通信。<br />
-shell如何使用管道机制 <code>&quot;|&quot;</code></li>
+<li>例子<a href="https://pdos.csail.mit.edu/6.828/2021/lec/l-overview/pipe2.c">pipe2.c</a>，进程间通信。</li>
+<li>shell如何使用管道机制 <code>&quot;|&quot;</code></li>
 </ul>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>    $ ls | grep x
 </span></span></foreignObject></svg></code></pre>
