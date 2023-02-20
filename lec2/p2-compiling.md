@@ -25,7 +25,7 @@ backgroundColor: white
 2023年春季
 
 ---
-提纲
+### 提纲
 
 ### 1. 硬件环境
 2. 应用程序执行环境
@@ -42,7 +42,7 @@ backgroundColor: white
 ![bg right:70% 85%](figs/rv.png)
 
 ---
-提纲
+### 提纲
 
 1. 硬件环境
 ### 2. 应用程序执行环境
@@ -71,7 +71,7 @@ backgroundColor: white
 
 
 ---
-提纲
+### 提纲
 
 1. 硬件环境
 2. 应用程序执行环境
