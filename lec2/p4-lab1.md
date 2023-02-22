@@ -73,7 +73,7 @@ backgroundColor: white
 
 #### LibOS总体思路
 - 编译：通过设置编译器支持编译裸机程序
-- 构造：建立裸机程序的栈和SBI服务请求接口
+- 构造：建立裸机程序的栈和SBI（Supervisor Binary Interface）服务请求接口
 - 运行：OS的起始地址和执行环境初始化
 
 ![bg right:50% 100%](figs/os-as-lib.png)
@@ -104,9 +104,8 @@ backgroundColor: white
 ---
 #### 掌握基本概念
 - **会写三叶虫操作系统了！**
-  - ABI是啥？
-  - SBI是啥？ 
-  - Supervisor Binary Interface？ 
+  - ABI是啥？ Application Binary Interface 
+  - SBI是啥？ Supervisor Binary Interface？ 
 ![bg right:50% 90%](figs/trilobita.png)
 
 注：三叶虫Trilobita是寒武纪最有代表性的远古动物
@@ -424,7 +423,7 @@ riscv64-unknown-elf-gdb \
 伪指令            | 基本指令    | 含义   | 
 :----------------|:-----------|:----------|
 ret      | jalr x0, x1, 0       | 函数返回
-call offset   | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]     | 函数调用
+call offset   | auipc x6, offset[31:12];  jalr x1, x6, offset[11:0]     | 函数调用
 
 auipc(add upper immediate to pc)被用来构建 PC 相对的地址，使用的是 U 型立即数。 auipc 以低 12 位补 0，高 20 位是 U 型立即数的方式形成 32 位偏移量，然后和 PC 相加，最后把结果保存在寄存器 x1。
 
@@ -516,6 +515,13 @@ fp = previous fp
 
 ---
 
+#### RISC-V函数调用约定：函数结构
+函数结构组成：``prologue``,``body part`` 和``epilogue``
+- Prologue的目的是为了保存程序的执行状态（保存返回地址寄存器和堆栈寄存器FP）
+- Epilogue的目的是在执行函数体之后恢复到之前的执行状态（跳转到之前存储的返回地址以及恢复之前保存FP寄存器）。
+
+
+---
 #### RISC-V函数调用约定：函数结构
 函数结构组成：``prologue``,``body part`` 和``epilogue``
 ```
