@@ -125,7 +125,10 @@
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
 </span></span></foreignObject></svg></code></pre>
-<p>一般来说，计算机加电之后的启动流程可以分成若干个阶段，每个阶段均由一层软件负责，每一层软件的功能是进行它应当承担的初始化工作，并在此之后跳转到下一层软件的入口地址，也就是将计算机的控制权移交给了下一层软件。</p>
+<ul>
+<li>一般来说，计算机加电之后的启动流程可以分成若干个阶段，每个阶段均由一层软件负责</li>
+<li>每一层软件的功能是进行它应当承担的初始化工作，并在此之后跳转到下一层软件的入口地址，也就是将计算机的控制权移交给了下一层软件。</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="15" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>QEMU启动流程</h4>
