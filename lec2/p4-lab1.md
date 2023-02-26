@@ -337,7 +337,7 @@ SECTIONS
 ```
 
 BSS：Block Started by Symbol
-SBSS：small bss，近数据
+SBSS：small bss，近数据，即使用短指针（near）寻址的数据
 
 
 ![bg right:50% 130%](figs/memlayout.png)
