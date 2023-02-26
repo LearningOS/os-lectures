@@ -105,7 +105,7 @@ backgroundColor: white
 #### 掌握基本概念
 - **会写三叶虫操作系统了！**
   - ABI是啥？ Application Binary Interface 
-  - SBI是啥？ Supervisor Binary Interface？ 
+  - SBI是啥？ Supervisor Binary Interface
 ![bg right:50% 90%](figs/trilobita.png)
 
 注：三叶虫Trilobita是寒武纪最有代表性的远古动物
