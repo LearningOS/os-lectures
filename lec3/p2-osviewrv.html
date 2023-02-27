@@ -68,6 +68,17 @@
 </ol>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+<h4>RISC-V 系统模式</h4>
+<p><img src="figs/rv-privil-arch.png" alt="" style="width:800px;" /></p>
+<ul>
+<li>ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface</li>
+<li>AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment</li>
+<li>HAL：Hardware Abstraction Layer</li>
+<li>Hypervisor，虚拟机监视器（virtual machine monitor，VMM）</li>
+<li>RISC-V 系统模式 即 与系统编程相关的RISC-V模式</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>RISC-V相关术语</h4>
 <ul>
 <li>应用执行环境（Application Execution Environment, AEE)</li>
@@ -77,17 +88,6 @@
 <li>Hypervisor：虚拟机监视器</li>
 <li>Hypervisor二进制接口（Hypervisor Binary interface，HBI）</li>
 <li>Hypervisor执行环境（Hypervisor Execution Environment, HEE)</li>
-</ul>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h4>RISC-V 系统模式</h4>
-<p><img src="figs/rv-privil-arch.png" alt="" style="width:800px;" /></p>
-<ul>
-<li>ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface</li>
-<li>AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment</li>
-<li>HAL：Hardware Abstraction Layer</li>
-<li>Hypervisor，虚拟机监视器（virtual machine monitor，VMM）</li>
-<li>RISC-V 系统模式 即 与系统编程相关的RISC-V模式</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -309,17 +309,17 @@
 <ul>
 <li>权力：防止应用访问系统管控相关寄存器
 <ul>
-<li><strong>地址空间配置</strong>寄存器：mstatus/sstatus CSR</li>
+<li><strong>地址空间配置</strong>寄存器：mstatus/sstatus CSR(中断及状态)</li>
 </ul>
 </li>
 <li>时间：防止应用长期使用 100％的 CPU
 <ul>
-<li><strong>中断配置</strong>寄存器：sstatus/stvec CSR</li>
+<li><strong>中断配置</strong>寄存器：sstatus/stvec CSR（中断跳转地址）</li>
 </ul>
 </li>
 <li>数据：防止应用破坏窃取数据
 <ul>
-<li><strong>地址空间相关</strong>寄存器：sstatus/satp/stvec CSR</li>
+<li><strong>地址空间相关</strong>寄存器：sstatus/stvec/satp CSR （分页系统）</li>
 </ul>
 </li>
 </ul>
@@ -864,7 +864,10 @@ scause 寄存器</p>
 </section>
 <script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:u}=t.children;for(let r=0;r<u;r+=1){const o=t.children[r],a=o.getScreenCTM();if(a){const t=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,r=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.firstElementChild,{style:u}=l;u.transformOrigin||(u.transformOrigin=`${-t}px ${-r}px`),u.transform=`scale(${c}) matrix(${a.a}, ${a.b}, ${a.c}, ${a.d}, ${a.e-d.left}, ${a.f-d.top}) translateZ(0.0001px)`}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),u=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",u)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
 </script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="3" tabindex="0"><p>主要说明x86, arm由于兼容性，历史原因，导致设计实现复杂，riscv简洁/灵活/可扩展，便于学习掌握并用于写OS</p></div><div class="bespoke-marp-note" data-index="22" tabindex="0"><p>## RISC-V 系统模式：控制状态寄存器CSR
-强制隔离以避免对整个系统的可用性/可靠性/安全影响</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>## RISC-V 系统模式：控制状态寄存器CSR
+强制隔离以避免对整个系统的可用性/可靠性/安全影响</p></div><div class="bespoke-marp-note" data-index="23" tabindex="0"><p>- mstatus/status(Machine/Supervisor Status)全局中断及其他状态
+- mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址
+
+## RISC-V 系统模式：控制状态寄存器CSR
 
 - mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址。
 - mepc(Machine Exception PC)指向发生异常的指令。
