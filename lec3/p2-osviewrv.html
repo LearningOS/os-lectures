@@ -400,14 +400,14 @@
 <li><code>mret</code> 机器模式返回</li>
 <li><code>sret</code> 监管者模式返回</li>
 <li><code>wfi</code> 等待中断 (wait for interupt)</li>
-<li><code>sfence.vma</code> 虚拟地址屏障(barrier)指令</li>
+<li><code>sfence.vma</code> 虚拟地址屏障(barrier)指令，用于虚拟内存无效和同步</li>
 </ul>
 </li>
 <li>
 <p>很多其他的系统管理功能通过读写控制状态寄存器来实现</p>
 </li>
 </ul>
-<p>注:<code>fence.i</code>是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范</p>
+<p>注:<code>fence.i</code>是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范，用于i-cache和d-cache一致性</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <p><strong>提纲</strong></p>
