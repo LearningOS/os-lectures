@@ -65,19 +65,20 @@ backgroundColor: white
 
 - 远古操作系统雏形
 - 现代简单嵌入式操作系统
-
 ##### 相关知识点
+- 以库的形式提供给应用程序的OS
 - 函数调用: 编译器与操作系统的配合
 - 硬件启动和软件启动
 - 编写/调试裸机程序
 
 裸机程序(Bare Metal Program)：与操作系统无关的OS类型的程序
 
-![bg right:45% 100%](figs/os-as-lib.png)
+![bg right:40% 100%](figs/os-as-lib.png)
 
 --- 
 
 #### 批处理OS
+- 内存只驻留单道程序
 - 支持系统调用
 
 ##### 相关知识点
@@ -88,7 +89,7 @@ backgroundColor: white
 - 加载&执行&切换应用程序
 - 特权级切换
 
-![bg right:53% 100%](figs/batch-os.png)
+![bg right:50% 100%](figs/batch-os.png)
 
 --- 
 
