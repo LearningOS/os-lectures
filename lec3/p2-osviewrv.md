@@ -65,6 +65,17 @@ backgroundColor: white
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
 
+
+---
+#### RISC-V 系统模式
+![w:800](figs/rv-privil-arch.png)
+- ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface
+- AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment
+- HAL：Hardware Abstraction Layer
+- Hypervisor，虚拟机监视器（virtual machine monitor，VMM）
+- RISC-V 系统模式 即 与系统编程相关的RISC-V模式 
+
+
 ---
 
 #### RISC-V相关术语
@@ -77,14 +88,7 @@ backgroundColor: white
 - Hypervisor执行环境（Hypervisor Execution Environment, HEE)
 
 
----
-#### RISC-V 系统模式
-![w:800](figs/rv-privil-arch.png)
-- ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface
-- AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment
-- HAL：Hardware Abstraction Layer
-- Hypervisor，虚拟机监视器（virtual machine monitor，VMM）
-- RISC-V 系统模式 即 与系统编程相关的RISC-V模式 
+
 
 
 
@@ -234,13 +238,17 @@ backgroundColor: white
 OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - 设置 CSR(控制状态寄存器) 实现隔离
   - 权力：防止应用访问系统管控相关寄存器
-    - **地址空间配置**寄存器：mstatus/sstatus CSR
+    - **地址空间配置**寄存器：mstatus/sstatus CSR(中断及状态)
   - 时间：防止应用长期使用 100％的 CPU
-    - **中断配置**寄存器：sstatus/stvec CSR
+    - **中断配置**寄存器：sstatus/stvec CSR（中断跳转地址）
   - 数据：防止应用破坏窃取数据
-    - **地址空间相关**寄存器：sstatus/satp/stvec CSR 
+    - **地址空间相关**寄存器：sstatus/stvec/satp CSR （分页系统）
+
 
 <!---
+- mstatus/status(Machine/Supervisor Status)全局中断及其他状态
+- mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址
+
 ## RISC-V 系统模式：控制状态寄存器CSR
 
 - mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址。
