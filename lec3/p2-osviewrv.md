@@ -435,14 +435,14 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 ---
 
 #### M-Mode中断的硬件响应过程
-- **异常指令的PC**被保存在mepc中，PC设置为mtvec。
+- **异常/中断指令的PC**被保存在mepc中，PC设置为mtvec。
   - 对于同步异常，mepc指向导致异常的指令；
   - 对于中断，指向中断处理后应该恢复执行的位置。
-- 根据**异常来源**设置 mcause，并将 mtval 设置为出错的地址或者其它适用于**特定异常的信息字**
+- 根据**异常/中断来源**设置 mcause，并将 mtval 设置为出错的地址或者其它适用于**特定异常的信息字**
 - 把mstatus[MIE位]置零以**禁用中断**，并**保留先前MIE值**到MPIE中
     - SIE控制S模式下全局中断，MIE控制M模式下全局中断；
     - SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值
-- **保留发生异常之前的权限模式**到mstatus 的 MPP 域中，再**更改权限模式**为M。（MPP表示变化之前的特权级别是S、M or U模式）
+- **保留发生异常之前的权限模式**到mstatus 的 MPP 域中，然后**更改权限模式**为M。（MPP表示变化之前的特权级别是S、M or U模式）
 
 ---
 #### M-Mode中断处理例程 
@@ -523,7 +523,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 ---
 #### M-Mode中断/异常处理的控制权移交
 - **mideleg/medeleg** (Machine Interrupt/Exception Delegation）CSR 控制将哪些中断/异常委托给 S-Mode处理
-- mideleg/medeleg 中的每个为对应一个中断/异常
+- mideleg/medeleg 中的每个位对应一个中断/异常
   - 如 mideleg[5] 对应于 S-Mode的时钟中断，如果把它置位，S-Mode的时钟中断将会移交 S-Mode的中断/异常处理程序，而不是 M-Mode的中断/异常处理程序
   - 委托给 S-Mode的任何中断都可以被 S-Mode的软件屏蔽。sie(Supervisor Interrupt Enable) 和 sip（Supervisor Interrupt Pending）CSR 是 S-Mode的控制状态寄存器
 

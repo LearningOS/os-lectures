@@ -516,20 +516,20 @@ PP：Previous Privilege</li>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="40" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="40" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>M-Mode中断的硬件响应过程</h4>
 <ul>
-<li><strong>异常指令的PC</strong>被保存在mepc中，PC设置为mtvec。
+<li><strong>异常/中断指令的PC</strong>被保存在mepc中，PC设置为mtvec。
 <ul>
 <li>对于同步异常，mepc指向导致异常的指令；</li>
 <li>对于中断，指向中断处理后应该恢复执行的位置。</li>
 </ul>
 </li>
-<li>根据<strong>异常来源</strong>设置 mcause，并将 mtval 设置为出错的地址或者其它适用于<strong>特定异常的信息字</strong></li>
+<li>根据<strong>异常/中断来源</strong>设置 mcause，并将 mtval 设置为出错的地址或者其它适用于<strong>特定异常的信息字</strong></li>
 <li>把mstatus[MIE位]置零以<strong>禁用中断</strong>，并<strong>保留先前MIE值</strong>到MPIE中
 <ul>
 <li>SIE控制S模式下全局中断，MIE控制M模式下全局中断；</li>
 <li>SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值</li>
 </ul>
 </li>
-<li><strong>保留发生异常之前的权限模式</strong>到mstatus 的 MPP 域中，再<strong>更改权限模式</strong>为M。（MPP表示变化之前的特权级别是S、M or U模式）</li>
+<li><strong>保留发生异常之前的权限模式</strong>到mstatus 的 MPP 域中，然后<strong>更改权限模式</strong>为M。（MPP表示变化之前的特权级别是S、M or U模式）</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="69" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -632,7 +632,7 @@ PP：Previous Privilege</li>
 <h4>M-Mode中断/异常处理的控制权移交</h4>
 <ul>
 <li><strong>mideleg/medeleg</strong> (Machine Interrupt/Exception Delegation）CSR 控制将哪些中断/异常委托给 S-Mode处理</li>
-<li>mideleg/medeleg 中的每个为对应一个中断/异常
+<li>mideleg/medeleg 中的每个位对应一个中断/异常
 <ul>
 <li>如 mideleg[5] 对应于 S-Mode的时钟中断，如果把它置位，S-Mode的时钟中断将会移交 S-Mode的中断/异常处理程序，而不是 M-Mode的中断/异常处理程序</li>
 <li>委托给 S-Mode的任何中断都可以被 S-Mode的软件屏蔽。sie(Supervisor Interrupt Enable) 和 sip（Supervisor Interrupt Pending）CSR 是 S-Mode的控制状态寄存器</li>
