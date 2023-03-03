@@ -245,6 +245,15 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
     - **地址空间相关**寄存器：sstatus/stvec/satp CSR （分页系统）
 
 
+---
+#### CSR寄存器功能
+- 信息类：主要用于获取当前芯片id和cpu核id等信息。 
+- Trap设置：用于设置中断和异常相关寄存器。 
+- Trap处理：用于处理中断和异常相关寄存器。 
+- 内存保护：作用类似于conterx-m中的mpu功能。
+
+```Risc-V中异常和中断统称Trap```
+
 <!---
 - mstatus/status(Machine/Supervisor Status)全局中断及其他状态
 - mtvec(MachineTrapVector)保存发生异常时需要跳转到的地址
