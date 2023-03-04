@@ -630,7 +630,7 @@ PP：Previous Privilege</li>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="73" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>M-Mode RISC-V异常机制</h4>
-<p>通过 mcause 寄存器的不同位来来获取导致异常的信息。<br />
+<p>通过 mcause 寄存器的不同位来获取导致异常的信息。<br />
 第一列0代表异常，第2列代表异常ID，第3列异常含义<br />
 <img src="figs/rv-exception.png" alt="" style="width:900px;" /></p>
 </section>
@@ -885,7 +885,7 @@ scause 寄存器</p>
 <li>satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器<strong>控制分页</strong>。satp 有三个域：
 <ul>
 <li>MODE 域可以<strong>开启分页</strong>并选择页表级数</li>
-<li>ASID（Address Space Identifier，地址空间标识符）域是可选的，它可以用来降低上下文切换的开销</li>
+<li>ASID（Address Space Identifier，地址空间标识符）域是可选的，避免了切换进程时将TLB刷新的问题，降低上下文切换的开销</li>
 <li>PPN 字段保存了<strong>根页表的物理页号</strong><br />
 <img src="figs/satp.png" alt="" style="width:900px;" /></li>
 </ul>

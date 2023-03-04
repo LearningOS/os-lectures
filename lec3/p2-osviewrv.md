@@ -528,7 +528,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 ---
 #### M-Mode RISC-V异常机制
-通过 mcause 寄存器的不同位来来获取导致异常的信息。
+通过 mcause 寄存器的不同位来获取导致异常的信息。
 第一列0代表异常，第2列代表异常ID，第3列异常含义
 ![w:900](figs/rv-exception.png)
 
@@ -736,7 +736,7 @@ hart 接受了中断/异常，并需要委派给 S-Mode，那么硬件会原子�
 - 虚拟地址将内存划分为**固定大小的页**来进行**地址转换**和**内容保护**。
 - satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器**控制分页**。satp 有三个域：
   - MODE 域可以**开启分页**并选择页表级数
-  - ASID（Address Space Identifier，地址空间标识符）域是可选的，它可以用来降低上下文切换的开销
+  - ASID（Address Space Identifier，地址空间标识符）域是可选的，避免了切换进程时将TLB刷新的问题，降低上下文切换的开销
   - PPN 字段保存了**根页表的物理页号**
 ![w:900](figs/satp.png)
 
