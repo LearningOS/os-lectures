@@ -453,15 +453,15 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="73" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>中断/异常的硬件响应</h4>
 <ol>
-<li><strong>发生中断/异常的指令PC</strong>被存入 sepc, 且 PC 被设置为 stvec</li>
-<li>scause 设置中断/异常<strong>类型</strong>，stval被设置为出错的地址/异常<strong>相关信息</strong>
+<li><strong>发生中断/异常的指令PC</strong>被存入 mepc, 且 PC 被设置为 mtvec</li>
+<li>mcause 设置中断/异常<strong>类型</strong>,mtval被设置为出错的地址/异常<strong>相关信息</strong>
 <ul>
 <li>映射表：存储了系统调用或中断到其所对应的处理例程的地址</li>
 </ul>
 </li>
-<li>把 sstatus中的 SIE 位置零，<strong>屏蔽中断</strong>， <strong>SIE位之前的值</strong>被保存在 SPIE 位中</li>
-<li><strong>发生例外前的特权模式</strong>被保存在 sstatus 的 SPP（previous privilege） 域，然后设置当前特权模式为S-Mode</li>
-<li><strong>跳转</strong>到stvec CSR设置的地址继续执行
+<li>把 mstatus中的 SIE 位置零，<strong>屏蔽中断</strong>， <strong>SIE位之前的值</strong>被保存在 SPIE 位中</li>
+<li><strong>发生例外前的特权模式</strong>被保存在 sstatus 的 SPP（previous privilege） 域，然后设置当前特权模式为M-Mode</li>
+<li><strong>跳转</strong>到mtvec CSR设置的地址继续执行
 <ul>
 <li>堆栈：保存上下文；切换页表</li>
 </ul>
