@@ -90,12 +90,13 @@
 <ul>
 <li><strong>显式分配</strong>(explicit allocation)
 <ul>
-<li>应用显式地释放任何已分配的块</li>
+<li>要求应用显式地释放任何已分配的块，例如malloc，free</li>
 </ul>
 </li>
 <li><strong>隐式分配</strong>(implicit allocation)
 <ul>
 <li>编译器/运行时库自动释放未使用的已分配的块</li>
+<li>隐式分配器称为垃圾收集器（Garbage Collector），比如Java</li>
 </ul>
 </li>
 </ul>
@@ -187,7 +188,7 @@
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="14" data-marpit-pagination-total="60"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="60" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:42%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/malloc-overview.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="58%" height="720"><section id="15" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="60" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:42%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h4>动态分区分配的设计要解决的问题</h4>
 <ul>
-<li><strong>空闲块组织</strong>：如何记录空闲块？</li>
+<li><strong>空闲块组织</strong>：如何记录和组织空闲块？</li>
 <li><strong>放置位置</strong>：如何选择合适的空闲块来分配？</li>
 <li><strong>分割</strong>：如何处理没分配完的空闲块中的剩余部分？</li>
 <li><strong>合并</strong>：如何处理一个刚刚被释放的块？</li>
