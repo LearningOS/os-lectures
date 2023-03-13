@@ -90,7 +90,7 @@ Address Space OS(ASOS)
 
 - 在 1940 年出现了**两级存储**系统
   - 主存：磁芯；辅助：磁鼓
-- 提出**虚拟内存（Virtual memory）**技术概念
+- 提出**虚拟内存Virtual memory**技术概念
   - 德国的柏林工业大学博士生 Fritz-Rudolf Güntsch
 - 1959 年的Atlas Supervisor 操作系统
   - 英国曼彻斯特大学的 Tom Kilburn 教授团队展示了 Atlas 计算机和 Atlas Supervisor 操作系统
