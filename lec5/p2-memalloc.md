@@ -40,9 +40,9 @@ backgroundColor: white
       - 连续内存分配
       - 非连续内存分配
 * 内存管理的目的
-  - 让应用方便/灵活/高效地使用有限的内存
+  - 让应用方便/灵活/高效地使用有限内存
 
-![bg right:50% 140%](figs/app-mem-layout.png)
+![bg right:35% 150%](figs/app-mem-layout.png)
 
 ---
 
