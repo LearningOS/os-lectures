@@ -387,6 +387,9 @@ pub extern "C" fn _start() -> ! {
 - ``ecall`` 指令会触发 名为 Environment call from U-mode 的异常
 - Trap 进入 S 模式执行批处理系统针对这个异常特别提供的服务代码
 - a0~a6 保存系统调用的参数， a0 保存返回值, a7 用来传递 syscall ID
+
+![bg right:40% 100%](figs/riscv-regs.png)
+
 ---
 #### 系统调用支撑库
 ``` rust --
@@ -589,7 +592,7 @@ unsafe fn load_app(&self, app_id: usize) {
 #### 特权级切换后的硬件逻辑
 
 1. sstatus 的 SPP 字段会被修改为 CPU 当前的特权级（U/S）；
-2. sepc 会被修改为 Trap 处理完成后默认会执行的下一条指令的地址；
+2. sepc 会被修改为产生 Trap 的指令地址；
 3. scause/stval 分别会被修改成这次 Trap 的原因以及相关的附加信息；
 4. CPU 将当前特权级设为 S，跳到 stvec 所设置的 Trap 处理入口地址。
 
@@ -599,7 +602,7 @@ unsafe fn load_app(&self, app_id: usize) {
 #### 特权级切换与用户栈和内核栈
 Why 使用两个不同的栈？
 
-安全 安全 安全
+**安全 安全 安全**
 
 ``` rust
 const USER_STACK_SIZE: usize = 4096 * 2;

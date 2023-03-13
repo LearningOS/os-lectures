@@ -448,7 +448,7 @@ Hello, world!
 <h4>应用程序的系统调用执行流</h4>
 <p><img src="figs/EnvironmentCallFlow.png" alt="" style="width:1050px;" /></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/riscv-regs.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="60%" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:40%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h4>应用程序的系统调用执行流</h4>
 <ul>
 <li>在子模块 syscall 中，应用程序通过 ecall 调用批处理系统提供的接口</li>
@@ -457,7 +457,7 @@ Hello, world!
 <li>a0~a6 保存系统调用的参数， a0 保存返回值, a7 用来传递 syscall ID</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="32" data-marpit-pagination-total="77"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>系统调用支撑库</h4>
 <pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">/// 功能：将内存中缓冲区中的数据写入文件。</span>
 <span class="hljs-comment">/// 参数：`fd` 表示待写入文件的文件描述符；</span>
@@ -676,7 +676,7 @@ app_0_end:
 <h4>特权级切换后的硬件逻辑</h4>
 <ol>
 <li>sstatus 的 SPP 字段会被修改为 CPU 当前的特权级（U/S）；</li>
-<li>sepc 会被修改为 Trap 处理完成后默认会执行的下一条指令的地址；</li>
+<li>sepc 会被修改为产生 Trap 的指令地址；</li>
 <li>scause/stval 分别会被修改成这次 Trap 的原因以及相关的附加信息；</li>
 <li>CPU 将当前特权级设为 S，跳到 stvec 所设置的 Trap 处理入口地址。</li>
 </ol>
@@ -684,7 +684,7 @@ app_0_end:
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>特权级切换与用户栈和内核栈</h4>
 <p>Why 使用两个不同的栈？</p>
-<p>安全 安全 安全</p>
+<p><strong>安全 安全 安全</strong></p>
 <pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">const</span> USER_STACK_SIZE: <span class="hljs-built_in">usize</span> = <span class="hljs-number">4096</span> * <span class="hljs-number">2</span>;
 <span class="hljs-keyword">const</span> KERNEL_STACK_SIZE: <span class="hljs-built_in">usize</span> = <span class="hljs-number">4096</span> * <span class="hljs-number">2</span>;
 
