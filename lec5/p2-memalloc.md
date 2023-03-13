@@ -85,9 +85,10 @@ backgroundColor: white
 #### 动态内存分配方式的分类
 
 - **显式分配**(explicit allocation)
-  - 应用显式地释放任何已分配的块
+  - 要求应用显式地释放任何已分配的块，例如malloc，free
 - **隐式分配**(implicit allocation)
   - 编译器/运行时库自动释放未使用的已分配的块
+  - 隐式分配器称为垃圾收集器（Garbage Collector），比如Java
 
 ![bg right:49% 140%](figs/app-mem-layout.png)
 
@@ -157,7 +158,7 @@ backgroundColor: white
 
 ---
 #### 动态分区分配的设计要解决的问题
--  **空闲块组织**：如何记录空闲块？
+-  **空闲块组织**：如何记录和组织空闲块？
 -  **放置位置**：如何选择合适的空闲块来分配？
 -  **分割**：如何处理没分配完的空闲块中的剩余部分？
 -  **合并**：如何处理一个刚刚被释放的块？
