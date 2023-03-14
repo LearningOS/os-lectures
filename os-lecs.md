@@ -23,7 +23,7 @@ backgroundColor: white
 
 ## 2023 春季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?) -- [课程总体简介](./course-intro.html) -- [大实验简介](./oslabs/biglabs.html)
 
 ---
 
@@ -119,6 +119,3 @@ backgroundColor: white
 - [第二节 磁盘系统](./lec13/p2-disk.html)
 - [第三节 实践：支持device的OS（DOS）](./lec13/p3-labs.html)
 
----
-### OS课程介绍
-- [清华计算机系2023春季OS课程](./course-intro.html)
