@@ -23,8 +23,7 @@ style: |
 
 # 大实验可选项目
 - [ArceOS: 组件化操作系统](https://github.com/rcore-os/arceos)
-- Componentized OS Tutorial
-  - [组件化 rCore Tutorial 教学OS](https://github.com/YdrMaster/rCore-Tutorial-in-single-workspace)
+- [组件化 rCore Tutorial 教学OS](https://github.com/YdrMaster/rCore-Tutorial-in-single-workspace)
 
 - 基于用户态中断的软硬件协同优化  
   
