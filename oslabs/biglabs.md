@@ -21,6 +21,16 @@ style: |
     }
 ---
 
+# 大实验可选项目
+- [ArceOS: 组件化操作系统](https://github.com/rcore-os/arceos)
+- Componentized OS Tutorial
+  - [组件化 rCore Tutorial 教学OS](https://github.com/YdrMaster/rCore-Tutorial-in-single-workspace)
+
+- 基于用户态中断的软硬件协同优化  
+  
+---
+<!-- theme: gaia -->
+<!-- _class: lead -->
 # **ArceOS: 组件化操作系统的初步探索**
 
 贾越凯 陈渝
@@ -34,11 +44,13 @@ style: |
 # 背景
 
 * 为什么要做组件化的 OS？
+  * 可形成不同特征/形态/架构的操作系统内核
     + 易于定制
         + 性能
         + 安全
     + 易于开发
     + 易于复用
+
 
 <!--
 硬件和应用都在发展，但 OS 发展滞后，用的大多都还是 Linux 等通用 OS
@@ -61,11 +73,58 @@ style: |
 
 * https://github.com/rcore-os/arceos
 * Ar-Qs, Ar-key-O-S
-* Unikernel
-    + 只运行一个用户程序
-    + 用户程序与内核链接为同一镜像
-    + 不区分地址空间与特权级
-    + 安全性由底层 hypervisor 保证
+  - 提供了一套组件化的操作系统框架
+  - 提供各种内核组件的实现
+    - 各种内核组件可在没有OS kernel的情况下独立运行
+       - 如filesystem, network stack等内核组件可以在裸机或用户态以库的形式运行
+       - 各种设备驱动等内核组件可以在裸机上运行
+  - 内核组件+组件化的OS框架 = 不同形态的OS kernel
+---
+
+# ArceOS 简介
+
+* https://github.com/rcore-os/arceos
+* Ar-Qs, Ar-key-O-S
+* 支持形成unikernel
+    - 只运行一个用户程序
+    - 用户程序与内核链接为同一镜像
+    - 不区分地址空间与特权级
+    - 安全性由底层 hypervisor 保证
+
+---
+
+# ArceOS 简介
+
+* https://github.com/rcore-os/arceos
+* Ar-Qs, Ar-key-O-S
+* 支持形成normal kernel
+    - 在用户态运行多个用户程序
+    - 用户程序与内核分开
+    - 区分地址空间与特权级
+    - 安全性由kernel保证
+
+---
+
+# ArceOS 简介
+
+* https://github.com/rcore-os/arceos
+* Ar-Qs, Ar-key-O-S
+* 支持形成micro kernel
+    - 在用户态运行多个用户程序和OS服务
+    - 用户程序和OS服务与内核分开
+    - 区分地址空间与特权级
+    - 安全性由内核保证
+
+---
+
+# ArceOS 简介
+
+* https://github.com/rcore-os/arceos
+* Ar-Qs, Ar-key-O-S
+* 支持形成hypervisor
+    - 在hyervisor态运行hyerpvisor
+    - 用户程序和OS内核运行在VM中，与hyerpvisor分开
+    - 安全性由hypervisor保证
 
 ---
 
