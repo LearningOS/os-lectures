@@ -26,7 +26,8 @@ style: |
 - [组件化 rCore Tutorial 教学OS](https://github.com/YdrMaster/rCore-Tutorial-in-single-workspace)
 
 - 基于用户态中断的软硬件协同优化  
-  
+- 其它学生自己感兴趣的OS相关题目
+   - 请联系老师协商确认  
 ---
 <!-- theme: gaia -->
 <!-- _class: lead -->
