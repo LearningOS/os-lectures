@@ -148,10 +148,18 @@ backgroundColor: white
 
 - 交换**时机**：何时需要发生交换？
   - 只当内存空间不够或有不够的可能时换出
-- 交换区**大小**：存放所有用户进程的所有内存映像的拷贝
 - 程序换入时的**重定位**：换出后再换入时要放在原处吗？
   - 不一定在原处，需要某种机制保证程序正确寻址&执行 
 
+---
+
+#### 交换技术面临的问题
+
+- 交换区（空间）**大小**：经验值。下面是Linux专家给出的建议
+
+![w:1200](figs/swap-size.png)
+
+<!-- redhat的建议 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/installation_guide/s2-diskpartrecommend-ppc#id4394007 -->
 
 ---
 
