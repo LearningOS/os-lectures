@@ -84,5 +84,5 @@
       - [ubuntu 用 markdown + vscode + marp 编写 slides 并输出为 pdf](https://www.cnblogs.com/luyi07/p/14736322.html)
 
         ```
-        marp --pdf --allow-local-files lec[1-9]*/*.md
+        marp --pdf --html --allow-local-files lec[1-9]*/*.md
         ```
