@@ -272,6 +272,18 @@ power_3 [130000/300000]
   - PPN 字段：保存了根页表的物理地址
 ![w:800](figs/satp.png)
 
+<!-- 
+TLB、PCID与ASID的故事 https://blog.csdn.net/lee_ham/article/details/103107135
+
+有的TLB在每个TLB条目中还保存地址空间标识码（address-space identifier，ASID）。
+ASID可用来唯一标识进程，并为进程提供地址空间保护。当TLB试图解析虚拟页号时，它确保当前运行进程的ASID与虚拟页相关的ASID相匹配。如果不匹配，那么就作为TLB失效。
+除了提供地址空间保护外，ASID允许TLB同时包含多个进程的条目。如果TLB不支持独立的ASID，每次选择一个页表时（例如，上下文切换时），TLB就必须被冲刷（flushed）或删除，以确保下一个进程不会使用错误的地址转换。
+
+PCID的功能和ASID类似。ASID主要在ARM。
+PCID（进程上下文标识符）是在Westmere架构引入的新特性。简单来说，在此之前，TLB是单纯的VA到PA的转换表，进程1和进程2的VA对应的PA不同，不能放在一起。加上PCID后，转换变成”VA和进程上下文ID“到PA的转换表，放在一起完全没有问题了。这样进程1和进程2的页表可以和谐的在TLB中共处。
+
+ASID域（Address Space IDentifier）为地址空间标识符，标记该项地址属于哪个地址空间，只有CPU当前的ASID号和该域匹配的时候，地址查找才能命中，ASID域可以理解为用于区分不同进程表项的编号 -->
+
 <!--
 ---
 ## S-Mode编程 -- 虚存机制
