@@ -188,7 +188,7 @@ rust-objdump -S target/riscv64gc-unknown-none-elf/debug/os
 
 ---
 #### App/OS内存布局
-- .text: 数据段
+- .text: 代码段
 - .rodata：已初始化数据段，只读的全局数据（常数或者是常量字符串）
 - .data：可修改的全局数据
 - .bss：未初始化数据段
