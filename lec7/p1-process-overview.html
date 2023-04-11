@@ -536,13 +536,10 @@ Shell: Process 2 exited with code 0
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>进程管理应用示例：<code>fork()</code></h4>
-<pre><code class="language-C"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">int</span>  <span class="hljs-title">main</span><span class="hljs-params">()</span>
-</span>{
+<pre><code class="language-C"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">int</span>  <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
      <span class="hljs-keyword">pid_t</span>  pid;
       <span class="hljs-keyword">int</span>  i;
-
-      <span class="hljs-keyword">for</span>  (i=<span class="hljs-number">0</span>;  i&lt;LOOP;  i++)
-      {
+      <span class="hljs-keyword">for</span>  (i=<span class="hljs-number">0</span>;  i&lt;LOOP;  i++){
            <span class="hljs-comment">/* fork  another  process  */</span>
            pid = fork();
            <span class="hljs-keyword">if</span>  (pid &lt; <span class="hljs-number">0</span>) { <span class="hljs-comment">/*error  occurred  */</span>
@@ -550,14 +547,12 @@ Shell: Process 2 exited with code 0
                 <span class="hljs-built_in">exit</span>(<span class="hljs-number">-1</span>);
            }
            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pid == <span class="hljs-number">0</span>) { <span class="hljs-comment">/* child process */</span>
-                <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stdout</span>,  “i=%d,  pid=%d,  parent  pid=%d\n”,I,      
-                             getpid() ,getppid());
+            <span class="hljs-built_in">fprintf</span>(<span class="hljs-built_in">stdout</span>, “i=%d, pid=%d, parent  pid=%d\n”,I, getpid() ,getppid());
            }   
       }
       wait(<span class="hljs-literal">NULL</span>);
       <span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);
 } 
-
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="42" data-marpit-pagination-total="62" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">

@@ -504,13 +504,10 @@ if (pid < 0) { /* error occurred */
 #### 进程管理应用示例：``fork()``
 
 ```C
-int  main()
-{
+int  main() {
      pid_t  pid;
       int  i;
-
-      for  (i=0;  i<LOOP;  i++)
-      {
+      for  (i=0;  i<LOOP;  i++){
            /* fork  another  process  */
            pid = fork();
            if  (pid < 0) { /*error  occurred  */
@@ -518,14 +515,12 @@ int  main()
                 exit(-1);
            }
            else if (pid == 0) { /* child process */
-                fprintf(stdout,  “i=%d,  pid=%d,  parent  pid=%d\n”,I,      
-                             getpid() ,getppid());
+            fprintf(stdout, “i=%d, pid=%d, parent  pid=%d\n”,I, getpid() ,getppid());
            }   
       }
       wait(NULL);
       exit(0);
 } 
-
 ```
 
 
