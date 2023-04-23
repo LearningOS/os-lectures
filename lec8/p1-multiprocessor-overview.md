@@ -38,7 +38,14 @@ backgroundColor: white
 
 ---
 #### 超线程(Hyperthread, Simultaneous multithreading)处理器
-![w:500](figs/hyperthread.png) 
+- 将CPU内部暂时闲置处理资源充分调动起来
+  - 寄存器、程序计数器独立
+  - 算术计算单元等硬件共用
+  - 不适合计算密集型任务
+  - 适合IO密集型任务
+
+
+![bg right 80%](figs/hyperthread.png) 
 
 
 ---

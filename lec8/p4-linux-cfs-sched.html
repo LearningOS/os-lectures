@@ -130,7 +130,7 @@
 <h4>CFS 的虚拟时间计算</h4>
 <p>所有进程的vruntime增长速度宏观上看应该是同时推进的，就可以用这个vruntime来选择运行的进程。</p>
 <ul>
-<li data-marpit-fragment="1">进程的vruntime值较小说明它以前占用cpu的时间较短，受到了“不公平”对待，因此下一个运行进程就是它。</li>
+<li data-marpit-fragment="1">进程的vruntime值较小说明它以前占用cpu的时间较短，受到了“不公平”对待，因此下一个运行进程就选择它。</li>
 <li data-marpit-fragment="2">这样既能公平选择进程，又能保证高优先级进程获得较多的运行时间。</li>
 </ul>
 </section>
