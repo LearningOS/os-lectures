@@ -43,7 +43,7 @@ Process OS(POS)
 提高性能、简化开发、加强安全
 - Address Space OS
     - APP不用考虑运行时的起始执行地址，隔离APP访问的地址空间
-- multiprog & time-sharing
+- multiprog & time-sharing OS
     - 让APP有效共享CPU，提高系统总体性能和效率
 - BatchOS: 让APP与OS隔离，加强系统安全，提高执行效率
 - LibOS: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
