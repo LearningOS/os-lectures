@@ -13,7 +13,7 @@ backgroundColor: white
 
 ## 第一讲 操作系统概述
 
-### 第五节 实践：试试UNIX/Linux
+### 第四节 实践：试试UNIX/Linux
 
 <br>
 <br>
@@ -55,7 +55,7 @@ backgroundColor: white
 - program
    - ls, rm，gcc，gdb, vim ...
 
-![bg right:40% 100%](./figs/shells.png)
+![bg right:40% 90%](./figs/shells.png)
 
 ---
 ## UNIX/Linux提供哪些服务？
@@ -95,7 +95,7 @@ backgroundColor: white
 | ``int getpid()``             |   返回当前进程的PID。   |
 
 ---
-## UNIX/Linux提供的应用/内核接口？
+### UNIX/Linux提供的应用/内核接口？
 
 | 系统调用名 | 含义 |
 | ------------------------ | ---- |
@@ -416,14 +416,11 @@ UNIX的设计很好用，但也存在其他的设计
 - 更多细节见ls.c -->
 
 ---
-## 分析UNIX/Linux类应用
+## 课后练习
 
-小结
-
-- 介绍了UNIX的I/O、文件系统和进程的抽象
-- 这些接口很简洁，只有整数和I/O缓冲区
--  这些抽象结合得很好，例如，I/O重定向
-
-练习
-- 解答[rCore-Tutorial-Book-v3 第零章--练习](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter0/7exercise.html#)
 - 分析理解或运行调试[各种小例子用户程序](https://github.com/LearningOS/os-lectures/tree/master/lec1/examples)
+    - 从列表中找一个你有兴趣的小例子
+    - 给出该程序的运行结果
+    - 分析该程序的功能和执行过程
+    - 这个例子使用了哪些系统调用？
+    - 这些系统调用的功能和参数是什么？
