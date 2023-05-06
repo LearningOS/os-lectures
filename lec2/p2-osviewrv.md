@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第三讲 基于特权级的隔离与批处理
+# 第二讲 基于特权级的隔离与批处理
 ## 第二节 从OS角度看RISC-V
 
 <br>
