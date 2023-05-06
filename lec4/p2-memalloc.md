@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第五讲 物理内存管理
+# 第四讲 物理内存管理
 ## 第二节 内存分配
 <br>
 <br>
