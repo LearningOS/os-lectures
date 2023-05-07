@@ -62,6 +62,9 @@ backgroundColor: white
   - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
   - [深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
   - [RISC-V Reader中文版](http://riscvbook.com/chinese/RISC-V-Reader-Chinese-v2p1.pdf)
+- 往年教学视频
+  - [操作系统(RISC-V)](https://www.xuetangx.com/course/thu08091002729/12425488)
+  - [操作系统](https://www.xuetangx.com/course/THU08091000267/12424484)
 
 ---
 
