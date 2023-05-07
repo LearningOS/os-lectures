@@ -335,8 +335,8 @@
 <h4>数据日志（data journaling）</h4>
 <p><img src="figs/ext3-journal-struct.png" alt="" style="width:900px;" /></p>
 <ul>
-<li>数据日志写到磁盘上</li>
-<li>更新磁盘，覆盖相关结构 (checkpoint)
+<li>数据日志写到磁盘上（写日志）</li>
+<li>更新磁盘，覆盖相关结构（写真实数据） (checkpoint)
 <ul>
 <li>I[V2] B[v2] Db</li>
 </ul>
@@ -408,6 +408,7 @@
 <li>如果崩溃是在事务提交到日志之后，但在检查点完成之前发生</li>
 </ul>
 <p>太多写，慢！</p>
+<p><strong>数据+元数据日志 -&gt; 元数据日志</strong></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <p><strong>提纲</strong></p>
@@ -425,8 +426,9 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="42" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="42" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>日志超级块 journal superblock</h4>
 <ul>
+<li>单独区域存储</li>
 <li>批处理日志更新</li>
-<li>使日志有限：循环日志</li>
+<li>循环日志回收与复用</li>
 </ul>
 <p><img src="figs/ext3-journal-batch.png" alt="" style="width:900px;" /><br />
 <img src="figs/ext3-journal-superblock.png" alt="" style="width:900px;" /></p>
@@ -464,9 +466,11 @@
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="46" data-marpit-pagination-total="48"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h3>不同日志模式</h3>
-<p>-Journal Mode: 操作的metadata和file data都会写入到日志中然后提交，这是最慢的。<br />
--Ordered Mode: 只有metadata操作会写入到日志中，但是确保数据在日志提交前写入到磁盘中<br />
--Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入。</p>
+<ul>
+<li>Journal Mode: 操作的metadata和file data都会写入到日志中然后提交，这是最慢的。</li>
+<li>Ordered Mode: 只有metadata操作会写入到日志中，但是确保数据在日志提交前写入到磁盘中，速度较快</li>
+<li>Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入，速度最快</li>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h3>小结</h3>
