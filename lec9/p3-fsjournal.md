@@ -339,8 +339,8 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 #### 数据日志（data journaling）
 
 ![w:900](figs/ext3-journal-struct.png)
-- 数据日志写到磁盘上
-- 更新磁盘，覆盖相关结构 (checkpoint)
+- 数据日志写到磁盘上（写日志）
+- 更新磁盘，覆盖相关结构（写真实数据） (checkpoint)
   - I[V2] B[v2] Db
 
 ---
@@ -402,6 +402,8 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 
 太多写，慢！
 
+**数据+元数据日志 -> 元数据日志**
+
 ---
 
 **提纲**
@@ -417,8 +419,9 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 
 #### 日志超级块 journal superblock
 
+- 单独区域存储
 - 批处理日志更新
-- 使日志有限：循环日志
+- 循环日志回收与复用
 
 ![w:900](figs/ext3-journal-batch.png)
 ![w:900](figs/ext3-journal-superblock.png)
@@ -466,9 +469,9 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 
 ### 不同日志模式
 
--Journal Mode: 操作的metadata和file data都会写入到日志中然后提交，这是最慢的。
--Ordered Mode: 只有metadata操作会写入到日志中，但是确保数据在日志提交前写入到磁盘中
--Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入。
+- Journal Mode: 操作的metadata和file data都会写入到日志中然后提交，这是最慢的。
+- Ordered Mode: 只有metadata操作会写入到日志中，但是确保数据在日志提交前写入到磁盘中，速度较快
+- Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入，速度最快
 
 ---
 
