@@ -52,10 +52,13 @@ backgroundColor: white
 
 #### 文件系统的用户视图与内核视图
 
-![w:450](figs/fslayer.png)
+![w:1000](figs/fslayer.png)
 
-![bg right:55% 95%](figs/fslayout.png)
+---
 
+#### 文件系统的用户视图与内核视图
+
+![w:680](figs/fslayout.png)
 
 ---
 
@@ -165,10 +168,11 @@ bitmap块( `bitmap inode/dnode`)
 
 --- 
 #### 目录项 (`dir_entry`)
-- 目录项一般会在内存中缓存
+-  一个目录（文件夹）包含多个目录项
   - 每个目录项一个(目录和文件)
   - 将目录项数据结构及树型布局编码成树型数据结构
   - 指向文件控制块、父目录、子目录等
+  - 目录项一般会在内存中缓存
 ![bg right 100%](figs/efs-direntry.png)
 
 ![bg right 100%](figs/fslayout.png)
