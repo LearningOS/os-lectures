@@ -243,7 +243,7 @@ bitmap块( `bitmap inode/dnode`)
 
 --- 
 #### 打开文件表
-- 每个进程一个进程打开文件表
+- 每个进程1个进程打开文件表
 - 一个系统打开文件表
 
 ![w:750](figs/fd-openfiletable.png)
