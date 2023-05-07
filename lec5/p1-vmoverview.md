@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第六讲 虚拟存储管理
+# 第五讲 虚拟存储管理
 ## 第一节 虚拟存储概念
 
 <br>
@@ -19,7 +19,7 @@ backgroundColor: white
 <br>
 <br>
 
-向勇 陈渝 李国良 任炬 
+向勇 陈渝 李国良 任炬
 
 2023年春季
 
