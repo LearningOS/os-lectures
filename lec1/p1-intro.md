@@ -28,10 +28,12 @@ backgroundColor: white
 ## 课程信息
 
 ### 主讲教师：
-  - 向勇 
+  - 向勇
+    * xyong@tsinghua.edu.cn
 
 ### 助教
   - 廖东海
+      * ctrlz.donghai@gmail.com
 
 ---
 
@@ -132,4 +134,4 @@ backgroundColor: white
 
 - 基本信息
 - 知识背景
-- 课程学习目标和态度
+- 课程学习目标和要求

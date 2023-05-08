@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第十三讲 设备管理
+# 第十二讲 设备管理
 ## 第一节 设备接口
 
 <br>
