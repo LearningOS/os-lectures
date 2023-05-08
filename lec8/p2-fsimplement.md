@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第九讲 文件系统
+# 第八讲 文件系统
 
 ## 第二节 文件系统的设计与实现
 
