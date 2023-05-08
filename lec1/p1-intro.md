@@ -31,7 +31,7 @@ backgroundColor: white
   - 向勇 
 
 ### 助教
-  - 赵方亮
+  - 廖东海
 
 ---
 
