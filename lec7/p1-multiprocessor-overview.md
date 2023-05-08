@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第八讲 多处理器调度
+# 第七讲 多处理器调度
 
 ## 第一节 对称多处理与多核架构
 

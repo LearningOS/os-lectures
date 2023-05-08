@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第十讲 进程间通信
+# 第九讲 进程间通信
 Inter Process Communication, IPC
 ## 第一节 进程间通信(IPC)概述
 

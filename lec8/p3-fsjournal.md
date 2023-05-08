@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第九讲 文件系统
+# 第八讲 文件系统
 
 ## 第三节 支持崩溃一致性的文件系统
 
