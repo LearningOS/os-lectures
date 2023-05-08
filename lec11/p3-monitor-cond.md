@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第十二讲 同步与互斥
+# 第十一讲 同步与互斥
 
 ## 第三节 管程与条件变量
 
