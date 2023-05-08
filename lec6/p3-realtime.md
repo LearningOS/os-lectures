@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第七讲 进程管理与单处理器调度
+# 第六讲 进程管理与单处理器调度
 ### 第三节 实时调度
 
 <br>
