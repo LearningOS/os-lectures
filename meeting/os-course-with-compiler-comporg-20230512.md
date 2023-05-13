@@ -131,6 +131,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 # 背景与问题
 ## 解决上述问题的已有方法
 - 新类型教材与实验
+- 《计算机系统基础 第2版》，袁春风、余子濠
 - 《计算机系统- 系统架构与操作系统的高度集成》(Computer Systems: An  Integrated Approach to Architecture and Operating System), Umakishore Ramachandran等
 - 《计算机系统设计原理》(Principal of Computer System Design), Jerome H. Saltzer等
 
