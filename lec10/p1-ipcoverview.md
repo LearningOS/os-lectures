@@ -600,6 +600,11 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
 ---
 #### 信号实现机制
 
+![w:420](figs/signal-2.png)
+
+---
+#### 信号实现机制
+
 ![w:950](figs/CatchingSignal.png)
 
 ---
