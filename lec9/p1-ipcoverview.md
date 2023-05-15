@@ -13,7 +13,6 @@ backgroundColor: white
 
 # 第九讲 进程间通信
 Inter Process Communication, IPC
-## 第一节 进程间通信(IPC)概述
 
 
 <br>
