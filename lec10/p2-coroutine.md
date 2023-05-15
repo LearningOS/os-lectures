@@ -596,22 +596,24 @@ fn main() { //Asynchronous multi-threaded concurrent webserver
 
 ---
 
-#### [线程与协程的统一调度](https://lexiangla.com/teams/k100041/classes/14e3d0ba33e211ecb668e28d1509205c/courses/8b52ee1233e111ecbcb4be09afb7b0ee)
+#### 线程与协程的统一调度：[共享调度器](https://www.overleaf.com/project/642c06d43bf0f32ce0c0ab3a)
 
-1. 协程与线程灵活绑定；
-2. 实现协程（future）在单CPU上并发执行；可在多CPU上并行执行；
-3. 线程和协程可采取不同的调度策略；
-4. 沿用线程中断的处理过程，**协程可被强制中断**；
-
-![width:800px](figs/thread-corouting-scheduler.png)
+1. PCB和TCB处于内核地址空间中，由内核进行管理；
+    * 由内核完成进程、线程调度；
+2. CCB处于内核和用户进程地址空间中，由内核和用户进程各自管理；
+    * 内核、用户进程内部的协程调度
+3. 沿用线程中断的处理过程，**协程可被强制中断**；
 
 ---
 
-#### 用户态的协程控制块(CCB, Coroutine Control Block)
+#### 共享调度器
+![width:900](figs/thread-corouting-scheduler.png)
 
-![bg right:60% 90%](figs/coroutine-CCB.png)
+---
 
-Ref: [A Design and Implementation of Rust Coroutine with priority in Operating System](https://github.com/AmoyCherry/papper_Async_rCore)
+#### 线程、协程状态模型
+
+![width:1100](figs/state_model.png)
 
 ---
 
@@ -620,10 +622,16 @@ Ref: [A Design and Implementation of Rust Coroutine with priority in Operating S
 ![width:850px](figs/coroutine-scheduler-bitmap.png)
 
 ---
+<!--
+#### 线程和协程的性能比较
+-->
 
+![width:1000px](figs/throughput.png)
+
+---
 #### 线程和协程的性能比较
 
-![width:950px](figs/pipe-thread-coroutine-performance.png)
+![bg right:70% 90%](figs/cwpt.png)
 
 ---
 #### 参考信息
