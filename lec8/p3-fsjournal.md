@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 第八讲 文件系统
+# 第九讲 文件系统
 
 ## 第三节 支持崩溃一致性的文件系统
 
@@ -339,15 +339,15 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 #### 数据日志（data journaling）
 
 ![w:900](figs/ext3-journal-struct.png)
-- 数据日志写到磁盘上
-- 更新磁盘，覆盖相关结构 (checkpoint)
+- 数据日志写到磁盘上（写日志）
+- 更新磁盘，覆盖相关结构（写真实数据） (checkpoint)
   - I[V2] B[v2] Db
 
 ---
 
 #### 写入日志期间发生崩溃
 
-磁盘内部可以（1）写入TxB、I[v2]、B[v2]和TxE，然后才写入Db。
+磁盘内部可以（1）写入TxB、I[v2]、B[v2]和TxE，然后（2）才写入Db。
 * 如果磁盘在（1）和（2）之间断电，那么磁盘上会变成：
 
 ![w:1000](figs/ext3-journal-struct-err.png)
@@ -373,12 +373,23 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 #### 数据日志的更新流程
 
 当前更新文件系统的协议如下，3个阶段中的每一个都标上了名称。
-1. **日志写入**
-   - 将事务的内容（包括TxB、元数据和数据）写入日志，等待这些写入完成。
-2. **日志提交**
-   - 将事务提交块（包括TxE）写入日志，等待写完成，事务被认为已提交（committed）。
-3. **加检查点**
-   - 将更新内容（元数据和数据）写入其最终的磁盘位置。
+1. **日志写入 Journal write：**
+   - 将事务的内容（包括TxB、元数据和数据）写入**日志**，等待这些写入完成。
+2. **日志提交 Journal Commit：**
+   - 将事务提交块（包括TxE）写入**日志**，等待写完成，事务被认为已提交（committed）。
+3. **加检查点 Checkpoint**
+   - 将更新内容（元数据和数据）写入其**最终的磁盘位置**。
+
+---
+
+#### 数据日志的崩溃恢复
+
+- 崩溃发生在Journal Commit完成前：文件系统可以丢掉之前写入的log。由于磁盘具体位置的bitmap，inodes，data blocks都没变，所以可以确保文件系统一致性。
+
+- 崩溃发生在Journal Commit后，Checkpoint之前：文件系统在启动时候，可以扫描所有已经commited的log，然后针对每一个log记录操作进行replay，即recovery的过程中执行Checkpoint，将log的信息回写到磁盘对应的位置。这种操作也成为redo logging。
+
+- 崩溃发生在Checkpoint完成后：那无所谓，都已经成功回写到磁盘了，文件系统的bitmap、inodes、data blocks也能确保一致性。
+
 
 ---
 
@@ -390,6 +401,8 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 - 如果崩溃是在事务提交到日志之后，但在检查点完成之前发生
 
 太多写，慢！
+
+**数据+元数据日志 -> 元数据日志**
 
 ---
 
@@ -406,8 +419,9 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 
 #### 日志超级块 journal superblock
 
+- 单独区域存储
 - 批处理日志更新
-- 使日志有限：循环日志
+- 循环日志回收与复用
 
 ![w:900](figs/ext3-journal-batch.png)
 ![w:900](figs/ext3-journal-superblock.png)
@@ -415,9 +429,9 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 ---
 
 #### 日志超级块的更新过程
-- Journal write
-- Journal commit
-- Checkpoint
+- Journal write：将TxB以及对应的文件操作写入到事务中
+- Journal commit：写入TxE，并等待完成。完成后，这个事务是committed。
+- Checkpoint：将事务中的数据，分别各自回写到各自的磁盘位置中。
 - Free: 一段时间后，通过更新日记帐，超级块将交易记录标记为空闲
 
 
@@ -432,11 +446,11 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 ---
 
 #### 元数据日志的更新过程
-- Data write
-- Journal metadata write
-- Journal commit
-- Checkpoint metadata
-- Free
+- Data write：写入数据到磁盘的对应位置
+- Journal metadata write：将TxB以及对应的文件metadata操作写入到事务中
+- Journal commit：写入TxE，并等待完成。完成后，这个事务是committed。
+- Checkpoint metadata：将事务中的metadata的操作相关数据，分别各自回写到各自的磁盘位置中。
+- Free：释放journal区域的log记录
 
 通过强制首先写入数据，文件系统可保证指针永远不会指向垃圾数据。
 
@@ -448,6 +462,16 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 
 
 ![bg 90%](figs/ext3-journal-metadata-timeline.png)
+
+
+
+---
+
+### 不同日志模式
+
+- Journal Mode: 操作的metadata和file data都会写入到日志中然后提交，这是最慢的。
+- Ordered Mode: 只有metadata操作会写入到日志中，但是确保数据在日志提交前写入到磁盘中，速度较快
+- Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入，速度最快
 
 ---
 
