@@ -515,7 +515,7 @@ int  main() {
                 exit(-1);
            }
            else if (pid == 0) { /* child process */
-            fprintf(stdout, “i=%d, pid=%d, parent  pid=%d\n”,I, getpid() ,getppid());
+            fprintf(stdout, “i=%d, pid=%d, parent  pid=%d\n”,i, getpid() ,getppid());
            }   
       }
       wait(NULL);
