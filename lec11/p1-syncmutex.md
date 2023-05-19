@@ -403,7 +403,7 @@ do{
 ---  
 ### 方法2：基于软件的解决方法 -- Dekkers算法
 
-![w:400](figs/dekker.png)       vs                           ![w:400](figs/dekker1.png)
+![w:380](figs/dekker.png)       vs                           ![w:380](figs/dekker1.png)
 
 ---  
 ### 方法2：基于软件的解决方法 -- N线程
@@ -626,5 +626,3 @@ https://www.zhihu.com/question/23281499/answer/24112589
   - 锁是一种高级的同步抽象方法
      - 硬件原子操作指令（单处理器或多处理器均可）
      - 互斥可以使用锁来实现
-
-

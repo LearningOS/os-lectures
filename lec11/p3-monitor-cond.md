@@ -26,6 +26,15 @@ David Rodríguez - dribeas, How arrow-> operator overloading works internally in
 Fruit_初, Monitors, March, 2017. https://www.jianshu.com/p/8b3ed769bc9f
 C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concurency-pattern-6-monitor 
 -->
+
+
+<br>
+<br>
+
+向勇 陈渝 李国良 任炬 
+
+2023年春季
+
 ---
 ### 管程 
 - 动机：为什么有管程？ 传统PV和锁机制有如下问题：

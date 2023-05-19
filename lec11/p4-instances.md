@@ -15,6 +15,14 @@ backgroundColor: white
 
 ## 第四节 同步互斥实例问题
 
+
+<br>
+<br>
+
+向勇 陈渝 李国良 任炬 
+
+2023年春季
+
 ---
 ### 哲学家就餐问题
 - 5个哲学家围绕一张圆桌而坐
@@ -160,7 +168,7 @@ V(S1, S2, …, Sn){
 
 每个线程将函数`philosopher`作为主代码运行，而其他函数`take_forks`、`put_forks`和`test`只是普通的函数，而非单独的线程。
 
-![bg right:40% 100%](figs/philo-5.png)
+![bg right:40% 87%](figs/philo-5.png)
 
 ---
 ### 读者-写者问题
