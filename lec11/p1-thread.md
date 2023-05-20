@@ -163,13 +163,13 @@ User-SE  v.s.  Kernel-SE
 typedef struct
 {
        int                       detachstate;   // 线程的分离状态
-       int                       schedpolicy;   // 线程调度策略
-       structsched_param         schedparam;    // 线程的调度参数
+       int                       schedpolicy;   // 线程调度策略 FIFO、RR等
+       structsched_param         schedparam;    // 线程的调度参数 优先级
        int                       inheritsched;  // 线程的继承性
-       int                       scope;         // 线程的作用域
+       int                       scope;         // 线程的作用域进程级、系统级
        size_t                    guardsize;     // 线程栈末尾的警戒缓冲区大小
        int                       stackaddr_set; // 线程的栈设置
-       void*                     stackaddr;     // 线程栈的位置
+       void*                     stackaddr;     // 线程栈的位置，起始地址
        size_t                    stacksize;     // 线程栈的大小
 } pthread_attr_t;
 ```
