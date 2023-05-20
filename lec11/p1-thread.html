@@ -156,13 +156,13 @@ User-SE  v.s.  Kernel-SE</p>
 <pre><code class="language-c"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span>
 {</span>
        <span class="hljs-keyword">int</span>                       detachstate;   <span class="hljs-comment">// 线程的分离状态</span>
-       <span class="hljs-keyword">int</span>                       schedpolicy;   <span class="hljs-comment">// 线程调度策略</span>
-       structsched_param         schedparam;    <span class="hljs-comment">// 线程的调度参数</span>
+       <span class="hljs-keyword">int</span>                       schedpolicy;   <span class="hljs-comment">// 线程调度策略 FIFO、RR等</span>
+       structsched_param         schedparam;    <span class="hljs-comment">// 线程的调度参数 优先级</span>
        <span class="hljs-keyword">int</span>                       inheritsched;  <span class="hljs-comment">// 线程的继承性</span>
-       <span class="hljs-keyword">int</span>                       scope;         <span class="hljs-comment">// 线程的作用域</span>
+       <span class="hljs-keyword">int</span>                       scope;         <span class="hljs-comment">// 线程的作用域进程级、系统级</span>
        <span class="hljs-keyword">size_t</span>                    guardsize;     <span class="hljs-comment">// 线程栈末尾的警戒缓冲区大小</span>
        <span class="hljs-keyword">int</span>                       stackaddr_set; <span class="hljs-comment">// 线程的栈设置</span>
-       <span class="hljs-keyword">void</span>*                     stackaddr;     <span class="hljs-comment">// 线程栈的位置</span>
+       <span class="hljs-keyword">void</span>*                     stackaddr;     <span class="hljs-comment">// 线程栈的位置，起始地址</span>
        <span class="hljs-keyword">size_t</span>                    stacksize;     <span class="hljs-comment">// 线程栈的大小</span>
 } <span class="hljs-keyword">pthread_attr_t</span>;
 </span></span></foreignObject></svg></code></pre>
