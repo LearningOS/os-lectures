@@ -490,9 +490,11 @@ pub fn sys_waittid(tid: usize) -> i32
 
 问题：“被fork的子进程是否要复制父进程的多个线程？”
 
-比如：
+比如：在fork前，有三个线程Main thread， thread X, thread Y, 且Thread X拿到一个lock，在临界区中执行；Thread Y正在写一个文件。Main thread执行fork.
 
-在fork前，有三个线程Main thread， thread A, thread B, 且Thread A拿到一个lock，在临界区中执行；Thread B正在写一个文件。如果Main thread执行fork，如采用A选择，会出现子进程的Thread B和 父进程的Thread B都在写一个文件的情况。如采用B选择，则子进程中只有Main Thread，当它想得到ThreadA的那个lock时，这个lock是得不到的（因为ThreadA 在子进程中不存在，没法释放锁），会陷入到持续忙等中。
+如采用A选择，会出现子进程的Thread Y和 父进程的Thread Y都在写一个文件的情况。
+
+如采用B选择，则子进程中只有Main Thread，当它想得到Thread X的那个lock时，这个lock是得不到的（因为Thread X 在子进程中不存在，没法释放锁），会陷入到持续忙等中。
 
 ---
 ### 程序设计 -- 核心数据结构

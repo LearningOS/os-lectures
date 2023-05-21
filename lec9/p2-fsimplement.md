@@ -138,18 +138,27 @@ backgroundColor: white
   - 访问模式(read/write/excute)
   - 拥有者与群组(owner/group)
   - 时间信息：建立或状态改变的时间、最近读取时间/修改的时间
-  - **文件名在目录的datablock中**
+  - **文件名存放在目录的datablock**
 <!--![bg right 10% 50%](figs/efs-inode.png)-->
 
 ![bg right:46% 90%](figs/efs-inode.png)
 
 
+--- 
+#### 文件控制块inode
+每个文件有一个文件控制块inode (`inode`/`vnode`)
+- 文件的字节数。
+- 文件拥有者的 User ID。
+- 文件的 Group ID。
+- 链接数，即有多少文件名指向这个 inode。
+- 文件数据 block 的位置（直接、间接）
 
 --- 
 #### bitmap块
 bitmap块( `bitmap inode/dnode`) 
 - inode使用或者未使用标志位
 - dnode使用或者未使用标志位
+- 用于空间分配
 
 --- 
 #### 数据块dnode( `data node`)
@@ -169,10 +178,10 @@ bitmap块( `bitmap inode/dnode`)
 --- 
 #### 目录项 (`dir_entry`)
 -  一个目录（文件夹）包含多个目录项
-  - 每个目录项一个(目录和文件)
-  - 将目录项数据结构及树型布局编码成树型数据结构
-  - 指向文件控制块、父目录、子目录等
-  - 目录项一般会在内存中缓存
+   - 每个目录项一个(目录和文件)
+   - 将目录项数据结构及树型布局编码成树型数据结构
+   - 指向文件控制块、父目录、子目录等
+- OS会缓存一个读过目录项来提升效率
 ![bg right 100%](figs/efs-direntry.png)
 
 ![bg right 100%](figs/fslayout.png)

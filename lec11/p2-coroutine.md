@@ -193,11 +193,11 @@ Coroutine从入门到劝退
 ---
 #### 基于第一类语言对象的协程
 <!-- 有栈协程和无栈协程 https://cloud.tencent.com/developer/article/1888257 -->
-第一类（First-class）语言对象：First-class对象 v.s. 受限协程 (**是否可以作为参数传递**)
+第一类（First-class）语言对象：First-class对象 v.s. second-class对象 (**是否可以作为参数传递**)
 - First-class对象 : 协程被在语言中作为first-class对象
    - 可以作为参数被传递，由函数创建并返回，并存储在一个数据结构中供后续操作
    - 提供了良好的编程表达力，方便开发者对协程进行操作
--  受限协程
+受限协程
    -  特定用途而实现的协程，协程对象限制在指定的代码结构中
  
 ---
@@ -206,6 +206,39 @@ Coroutine从入门到劝退
 - 可以嵌入到数据结构中
 - 可以作为参数传递给函数
 - 可以作为值被函数返回
+
+
+---
+#### 第一类（First-class）语言对象 
+First-class 对象优势：
+
+- 可以作为函数参数传递，使得代码更加灵活。
+- 可以作为函数返回值返回，方便编写高阶函数。
+- 可以被赋值给变量或存储在数据结构中，- 方便编写复杂的数据结构。
+
+First-class 对象劣势：
+
+- 可能会增加程序的开销和复杂度。
+- 可能存在安全性问题，例如对象被篡改等。
+- 可能会导致内存泄漏和性能问题。
+
+
+---
+#### 第二类（Second-class）语言对象 
+Second-class 对象优势：
+
+- 可以通过类型系统来保证程序的正确性。
+- 可以减少程序的复杂度和开销。
+- 可以提高程序的运行效率和性能。
+
+Second-class 对象劣势：
+
+- 缺乏灵活性，不能像 First-class 对- 象一样灵活使用。
+- 不太适合处理复杂的数据结构和算法。
+- 不支持函数式编程和面向对象编程的高级特性。
+
+
+
 
 ---
 
@@ -219,6 +252,37 @@ A future is a representation of some operation which will **complete in the futu
 
 ![bg right:54% 95%](figs/async-example.png)
 
+
+---
+
+#### Rust语言中的协程Future
+
+Rust 的 Future 实现了 Async Trait，它包含了三个方法：
+
+- poll: 用于检查 Future 是否完成。
+- map: 用于将 Future 的结果转换为另一个类型。
+- and_then: 用于将 Future 的结果传递给下一个 Future。
+
+
+使用 Future 时，可以通过链式调用的方式对多个异步任务进行串联。
+
+---
+#### Rust语言中的协程Future
+
+```rust
+use futures::future::Future;
+
+fn main() {
+    let future1 = async { 1 + 2 };
+    let future2 = async { 3 + 4 };
+
+    let result = future1
+        .and_then(|x| future2.map(move |y| x + y))
+        .await;
+
+    println!("Result: {}", result);
+}
+```
 ---
 
 #### 基于有限状态机的Rust协程实现

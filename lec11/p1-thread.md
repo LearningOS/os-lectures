@@ -163,13 +163,13 @@ User-SE  v.s.  Kernel-SE
 typedef struct
 {
        int                       detachstate;   // 线程的分离状态
-       int                       schedpolicy;   // 线程调度策略
-       structsched_param         schedparam;    // 线程的调度参数
+       int                       schedpolicy;   // 线程调度策略 FIFO、RR等
+       structsched_param         schedparam;    // 线程的调度参数 优先级
        int                       inheritsched;  // 线程的继承性
-       int                       scope;         // 线程的作用域
+       int                       scope;         // 线程的作用域进程级、系统级
        size_t                    guardsize;     // 线程栈末尾的警戒缓冲区大小
        int                       stackaddr_set; // 线程的栈设置
-       void*                     stackaddr;     // 线程栈的位置
+       void*                     stackaddr;     // 线程栈的位置，起始地址
        size_t                    stacksize;     // 线程栈的大小
 } pthread_attr_t;
 ```
@@ -290,10 +290,23 @@ main: end
 
 ---
 ### 线程的设计实现
+用户线程的优点：
+
+- 线程的调度不需要内核直接参与，控制简单。
+- 可以在不支持线程的操作系统中实现。
+- 创建和销毁线程、线程切换等线程管理的代价比内核线程少得多。
+- 允许每个进程定制自己的调度算法，线程管理比较灵活。
+- 线程能够利用的表空间和堆栈空间比内核级线程多。
+- 同一进程中只能同时有一个线程在运行，如果有一个线程使用了系统调用而阻塞，那么整个进程都会被挂起。
+
+
+---
+### 线程的设计实现
 - 用户态管理且用户态运行的线程的不足之处
      -  一个线程发起系统调用而阻塞时，则整个进程进入等待
      -  不支持基于线程的处理机抢占
      -  只能按进程分配CPU时间
+     - 多个处理机下，同一个进程中的线程只能在同一个处理机下分时复用
 ![bg right:40% 100%](figs/usr-thread.png)
 
 ---
