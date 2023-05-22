@@ -713,7 +713,7 @@ Ref: [A Design and Implementation of Rust Coroutine with priority in Operating S
 
 ---
 
-#### 内核态的进程调度
+#### 内核态的协程调度
 
 ![width:850px](figs/coroutine-scheduler-bitmap.png)
 
