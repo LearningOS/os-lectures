@@ -17,7 +17,7 @@ backgroundColor: white
 <br>
 <br>
 
-向勇 陈渝 李国良 任炬 任炬
+向勇 陈渝 李国良 任炬
 
 <br>
 <br>
