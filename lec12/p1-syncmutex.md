@@ -353,20 +353,44 @@ do {
 - 满足线程Ti和Tj之间互斥的经典的基于软件的解决方法（1981年）
 - 孔融让梨
 
+---
+### 方法2：基于软件的解决方法 -- Peterson算法
+```
+// 共享变量
+let mut flag = [false; N]; // 标识进程是否请求进入临界区
+let mut turn = 0; // 记录应该让哪个进程进入临界区
+// 进程P0
+while (true) {
+    flag[0] = true;
+    turn = 1;
+    while (flag[1] == true && turn == 1) ;
+    // 进入临界区执行任务
+    // 退出临界区
+    flag[0] = false;
+}
+// 进程P1
+while (true) {
+    flag[1] = true;
+    turn = 0;
+    while (flag[0] == true && turn == 0) ;
+    // 进入临界区执行任务
+    // 退出临界区
+    flag[1] = false;
+}
+```
 
 ---  
 ### 方法2：基于软件的解决方法 -- Peterson算法
-
 ![bg right:50% 100%](figs/soft-peterson-2.png)
 ```
+//进程Pi
 flag[i] = True;
 turn = j;
 while(flag[j] && turn == j);
 critical section;
 flag[i] = False;
 remainder section;
-```
-```
+//进程Pj
 flag[j] = True;
 turn = i;
 while(flag[i] && turn == i);
