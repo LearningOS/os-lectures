@@ -15,7 +15,7 @@ backgroundColor: white
 
 ## 第三节 管程与条件变量
 
- 管程（Monitor）  条件变量（Condition Variable）
+ 管程（Monitor）、条件变量（Condition Variable）
  
 <!-- 
 Gregory Kesden, Monitors and Condition Variables https://cseweb.ucsd.edu/classes/sp16/cse120-a/applications/ln/lecture9.html
