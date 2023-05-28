@@ -170,8 +170,10 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 -->
 
+---
+### 管程 -- 流程 （T可以是线程或者进程）
 
-
+![w:1000](figs/monitorex.png)
 
 ---
 ### 管程 -- 实现方式
