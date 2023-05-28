@@ -370,8 +370,8 @@ exit section
 <li>Ti不在临界区，Tj想要继续运行，但是必须等待Ti进入过临界区后</li>
 <li>turn = 0;
 <ul>
-<li>T0 不需要访问</li>
-<li>T1 需要访问-&gt;一直等待</li>
+<li>T0 不需要访问临界区</li>
+<li>T1 需要访问，但没有轮到，只能一直等待</li>
 </ul>
 </li>
 </ul>
@@ -480,7 +480,6 @@ remainder section;
          while(turn==1);// 只要还是P1的时间，P0就不举手，一直等
          flag[0]=true;// 等到P1用完了（轮到P0了），P0再举手
      }
-     flag[1] = false; // 只要可以跳出循环，说明P1用完了，应该跳出最外圈的while
   }
   critical section;// 访问临界区
   turn = 1;// P0访问完了，把轮次交给P1，让P1可以访问
@@ -750,7 +749,7 @@ remainder section;
 
 --- 
 ### 进/线程的交互关系：相互感知程度
-![w:900](figs/relations-3.png)</p></div><div class="bespoke-marp-note" data-index="39" tabindex="0"><p>---  
+![w:900](figs/relations-3.png)</p></div><div class="bespoke-marp-note" data-index="28" tabindex="0"><p>lag[1] = false; // 只要可以跳出循环，说明P1用完了，应该跳出最外圈的while</p></div><div class="bespoke-marp-note" data-index="39" tabindex="0"><p>---  
 ### 方法3：更高级的抽象方法 -- 锁(lock)
 - 原子操作：交换指令CaS（Compare and Swap）
 ```
