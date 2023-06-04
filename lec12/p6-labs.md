@@ -264,9 +264,9 @@ time cost is 919ms
 
 ---
 ###  程序设计
-spin mutex和 block mutex 的核心数据结构： `UPSafeCell`
+spin mutex和 block mutex 的核心数据结构（**全局变量**）： `UPSafeCell`
 ```rust
-pub struct UPSafeCell<T> { //允许在单核上安全使用可变全局变量
+pub struct UPSafeCell<T> { //允许在单核上安全**使用可变全局变量**
     inner: RefCell<T>,  //提供内部可变性和运行时借用检查
 }
 unsafe impl<T> Sync for UPSafeCell<T> {} //声明支持全局变量安全地在线程间共享
