@@ -9,7 +9,8 @@
 - [v5](https://github.com/LearningOS/os-lectures/blob/f001a6c5bacc7be80e27a168959c288c91ec1639/os-course-outline.md): 2021年秋季学期结束时更新教学内容部分
 - [v6](https://github.com/LearningOS/os-lectures/blob/0d92ea949ff7345454cdea685643aab693255c99/os-course-outline.md): 2022 spring
 - [v7](https://github.com/LearningOS/os-lectures/blob/74fe703ead4ad4d70fb678ff84140a2326704757/os-course-outline.md): 2022 autumn
-- v8：2023 spring
+- [v8](https://github.com/LearningOS/os-lectures/blob/c40fd42e0b43649286d3c29120e71386221dfc0f/os-course-outline.md): 2023 spring
+- v9: 2023 autumn
 ### 课程组织与基本目的
 
 操作系统是计算机系统中负责管理各种软硬件资源的核心系统软件，掌握操作系统的基本原理及其设计实现技术是研究型大学计算机专业本科毕业生的基本要求。本课程是计算机专业核心课，从系统程序员的视角进行内容组织，强调实践教学以及对计算机软硬件系统的深入理解，教学操作系统以基于C语言的uCore Tutorial kernel、基于Rust语言的rCore Tutorial kernel和RISC-V处理器为实验环境，讲授操作系统的核心概念、基本原理、关键技术和设计实现方法，并介绍当前操作系统领域的研究热点、相关论文和开源项目，帮助学生了解和掌握大型复杂系统软件的分析方法和核心设计思路，并为学生充分利用操作系统功能进行应用软件研究和开发打下扎实的基础。
