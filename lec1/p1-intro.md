@@ -21,9 +21,9 @@ backgroundColor: white
 
 <br>
 
-2023年春季
+2023年秋季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/ap9sac2dk7qq7bqy)
 
 ---
 
@@ -33,18 +33,17 @@ backgroundColor: white
   - 向勇 陈渝 李国良 任炬 
 
 ### 助教
-  - 卢军、黄旺、郝子胥、饶淙元、刘般若、闭浩扬、田凯夫
+  - 田凯夫、赵方亮、刘晓义、陈张萌
 
 ---
 
 ## 上课信息
 
 ### 上课时间地点
-- 星期一   上午第二大节 09:50-12:15 (1-16周) 
+- 星期一 第3大节 下午13:30-15:05 (1-12周)
+- 星期四 第2大节 上午09:50-11:25 (1-12周) 
 - 地点
-   - 六教 6A201（陈渝）
-   - 六教 6A205（李国良）
-   - 六教 6A209（任炬）
+   - 建华楼A109
 
 ----
 
@@ -72,7 +71,7 @@ backgroundColor: white
 ---
 
 #### 课程参考
-- [课程幻灯片](https://www.yuque.com/docs/share/4c39608f-3051-4445-96ca-f3c018cb96c7)
+- [课程幻灯片](https://www.yuque.com/xyong-9fuoz/qczol5/ap9sac2dk7qq7bqy)
 - 参考书
   - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
   - [深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
@@ -89,27 +88,27 @@ backgroundColor: white
 
 #### uCore Tutorial
 
-- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2023S/)
-- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2023S/)
-- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2023S)
+- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2023A/)
+- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2023A/)
+- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2023A)
 
 ---
 
 ### 实验指导
 
-#### rCore Tutorial
-- [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2023S/)
-- [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2023S/#os-api-docs-of-rcore-tutorial-code-2022s) 
-- [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2023S)
-- [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2023S)
-
-#### [uCore和rCore实验讲解视频](https://www.yuque.com/docs/share/1b5b9260-8a80-4427-a612-78ec72b37e5f)
-- 部分内容将逐步更新
+* rCore Tutorial
+  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2023A/)
+  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2023A/#os-api-docs-of-rcore-tutorial-code-2022a) 
+  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2023A)
+  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2023A)
+* [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/lt5qafszpz62hob1?singleDoc)
+  - 讲解视频
+  - 部分内容将逐步更新
 
 ---
 
 
-![bg right 100%](figs/ucorearch.png)
+![bg right:57% 100%](figs/ucorearch.png)
 
 
 ### OS 原理与设计思想
@@ -128,56 +127,66 @@ backgroundColor: white
 
 ## 作业与实验
 
-### 平时作业
+* **平时作业**
   - 课后练习：包括问答题和编程题目
 
-### 基础实验
+* **基础实验**
   - （必做）：面向 RISC-V CPU 用 Rust/C 设计实现操作系统的功能
   - （选做）：难度和工作量比必做题目大的其它题目
  
-### 课程设计 （大实验）：用组件来组合操作系统内核 
+* **课程设计（大实验）**
+  - 用组件来组合操作系统内核 
 
 
 ---
 ## 基础实验
-### 实验一：操作系统的基本支持
-### 实验二：地址空间
-### 实验三：进程管理与调度
-### 实验四：文件系统与进程间通信
-### 实验五：同步互斥
+* 实验一：操作系统的基本支持
+* 实验二：地址空间
+* 实验三：进程管理与调度
+* 实验四：文件系统与进程间通信
+* 实验五：同步互斥
+
 **注意：每次实验的必做题和选做题的提交截止时间相同。**
 
 
 ---
 
 ## 课程设计（大实验）
-### 用组件来组合操作系统内核 
-### 各种操作系统相关的功能和扩展
-  - 操作系统内核模块的完善和改进
-  - 内核可加载模块、微内核
-  - 在内核中引入异步编程
+
+* **用组件来组合操作系统内核**
+
+  - 组件化操作系统[ArceOS](http://arceos.org/overview.html)
+* **操作系统功能和扩展**
+  - 内核模块的完善和改进
+  - 内核可加载模块、微内核、在内核中引入异步编程
   - RISC-V、x86-64、MIPS、ARM支持
   - RaspBerry PI、U740、D1等
   - GUI、驱动、文件系统、网络
-
+* 往届同学的[课程设计成果](https://shimo.im/docs/QTPRT8h8jyGQCqkJ)
 
 --- 
 
 ## 成绩评定
 
 ### 选择1：（总分不超过100） 
-  - 实验一~五必做题目：35% ；期中考试 15% ； 期末考试 50%
-  - 加分：实验可选题目（可只做一题），加0~7分，总分不超过100分 
+  - 实验一~五必做题目： ??% ；期中考试 ??% ； 期末考试 ??%
+  - 加分：
+    - 实验可选题目（可只做一题）：加0~7分，总分不超过100分
+    - 平时作业（可只完成30%）：加0~5分，总分不超过100分
+
+---
+
 ### 选择2： 
-  - 五周内完成实验一~五(2023春季实验)：35% 
-  - 课程设计（即大实验）：65%
-    - **注：选择大实验的同学如果后续退出课程设计，需参加考试。**
+  - 四周内完成实验一~五(2023秋季实验)：??% 
+  - 课程设计（即大实验）：??%
+
+**注：选择大实验的同学如果后续退出课程设计，需参加考试。**
 
 --- 
 
 ## 调查问卷
 
-[2023年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/k2KiFjA)（访问密码：8VC7x2Yxk）
+[2023年秋季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/XnNwXY0)（访问密码：CsXs2hK7gV）
 
 - 为什么要学这门课？ 
 - 你打算如何来学这门课？
