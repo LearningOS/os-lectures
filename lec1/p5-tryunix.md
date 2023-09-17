@@ -23,7 +23,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年春季
+2023年秋季
 
 ---
 ## UNIX/Linux？
@@ -423,7 +423,3 @@ UNIX的设计很好用，但也存在其他的设计
 - 介绍了UNIX的I/O、文件系统和进程的抽象
 - 这些接口很简洁，只有整数和I/O缓冲区
 -  这些抽象结合得很好，例如，I/O重定向
-
-练习
-- 解答[rCore-Tutorial-Book-v3 第零章--练习](http://rcore-os.cn/rCore-Tutorial-Book-v3/chapter0/7exercise.html#)
-- 分析理解或运行调试[各种小例子用户程序](https://github.com/LearningOS/os-lectures/tree/master/lec1/examples)
