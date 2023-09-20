@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年春季
+2023年秋季
 
 ---
 ### 提纲
@@ -117,7 +117,7 @@ riscv64imac-unknown-none-elf
 - 核心库：与操作系统无关
   - Rust: core 库
   - C: Linux/BSD kernel libc
-![bg right:50% 100%](figs/os-software-stack.png)
+  ![bg right:50% 100%](figs/os-software-stack.png)
 
 ---
 #### 裸机程序

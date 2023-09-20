@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年春季
+2023年秋季
 
 ---
 ### 提纲
@@ -75,7 +75,7 @@ backgroundColor: white
 
 ![bg right:40% 100%](figs/os-as-lib.png)
 
---- 
+---
 
 #### 批处理OS
 - 内存只驻留单道程序
@@ -91,7 +91,7 @@ backgroundColor: white
 
 ![bg right:50% 100%](figs/batch-os.png)
 
---- 
+---
 
 #### 多道程序OS
 - 支持多个程序**同时驻留内存**
@@ -102,7 +102,7 @@ backgroundColor: white
 
 ![bg right:51% 100%](figs/multiprog-os.png)
 
---- 
+---
 
 #### 分时多任务OS
 - 支持多个程序**轮流执行**
@@ -114,7 +114,7 @@ backgroundColor: white
 
 ![bg right:57% 100%](figs/timesharing-os.png)
 
---- 
+---
 #### OS的地址空间抽象
 - 支持程序间**内存空间隔离**
 
@@ -126,7 +126,7 @@ backgroundColor: white
 
 ![bg right:54% 100%](figs/address-space-os.png)
 
---- 
+---
 #### OS的地址空间抽象
 - **超越物理内存**的虚拟存储
 ##### 相关知识点
@@ -136,7 +136,7 @@ backgroundColor: white
 - 置换算法
 ![bg right:50% 100%](figs/address-space-os.png)
 
---- 
+---
 
 #### OS的进程抽象
 
@@ -148,9 +148,10 @@ backgroundColor: white
 - 进程管理
 - 调度机制
   
+
 ![bg right:57% 100%](figs/process-os.png)
 
---- 
+---
 
 #### OS的进程抽象
 
@@ -161,9 +162,10 @@ backgroundColor: white
 - 多处理器调度
 - 实际OS调度
   
+
 ![bg right:62% 100%](figs/process-os.png)
 
---- 
+---
 #### OS的文件抽象
 - 处理数据的**便捷持久存储**
 
@@ -174,7 +176,7 @@ backgroundColor: white
 
 ![bg right:54% 100%](figs/fs-os.png)
 
---- 
+---
 #### 可进程间通信的OS
 - 进程间可显式/隐式**交互**信息
 ##### 相关知识点
@@ -185,7 +187,7 @@ backgroundColor: white
 ![bg right:50% 100%](figs/ipc-os.png)
 
 
---- 
+---
 #### 可并发的OS
 - 提升CPU的**利用率**
 ##### 相关知识点
@@ -195,7 +197,7 @@ backgroundColor: white
 
 ![bg right:54% 100%](figs/sync-os.png)
 
---- 
+---
 #### 可并发的OS
 - 合理**共享资源**
 - 同步与互斥
@@ -204,7 +206,7 @@ backgroundColor: white
 - 同步互斥解决并发问题
 - 死锁等问题
 ![bg right:57% 100%](figs/sync-os.png)
---- 
+---
 #### 管理I/O设备的OS
 - 支持各种外设
 ##### 相关知识点

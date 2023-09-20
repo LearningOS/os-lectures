@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年春季
+2023年秋季
 
 ---
 提纲
@@ -70,7 +70,7 @@ qemu-system-riscv64 \
     -nographic \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
-``` 
+```
 - machine virt 表示将模拟的 64 位 RISC-V 计算机设置为名为 virt 的虚拟计算机
 - 物理内存的默认大小为 128MiB 
 
@@ -82,7 +82,7 @@ qemu-system-riscv64 \
     -nographic \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
-``` 
+```
 - nographic 表示模拟器不需要提供图形界面，而只需要对外输出字符流
 
 
@@ -94,7 +94,7 @@ qemu-system-riscv64 \
     -nographic \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
-``` 
+```
 - bios 可以设置 QEMU 模拟器开机时用来初始化的引导加载程序（bootloader）
 - 这里使用预编译好的 rustsbi-qemu.bin
 
@@ -106,7 +106,7 @@ qemu-system-riscv64 \
     -nographic \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
-``` 
+```
 - device的loader 参数可以在 QEMU 模拟器开机之前将一个宿主机上的文件载入到 QEMU 的物理内存的指定位置中
 - file 和 addr 参数分别可以设置待载入文件的路径以及将文件载入到的 QEMU 物理内存上的物理地址
 
@@ -119,7 +119,7 @@ qemu-system-riscv64 \
     -nographic \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
-``` 
+```
 - 一般来说，计算机加电之后的启动流程可以分成若干个阶段，每个阶段均由一层软件负责
 - 每一层软件的功能是进行它应当承担的初始化工作，并在此之后跳转到下一层软件的入口地址，也就是将计算机的控制权移交给了下一层软件。
 
@@ -132,7 +132,7 @@ qemu-system-riscv64 \
     -nographic \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
-``` 
+```
 QEMU 模拟的启动流程则可以分为三个阶段：
 1. 由固化在 [QEMU模拟的计算机内存](https://github.com/LearningOS/qemu/blob/386b2a5767f7642521cd07930c681ec8a6057e60/hw/riscv/virt.c#L59)中的[一小段汇编程序](https://github.com/LearningOS/qemu/blob/386b2a5767f7642521cd07930c681ec8a6057e60/hw/riscv/virt.c#L536)初始化并跳转执行bootloader；
 2. 由 bootloader 负责，初始化并加载OS，跳转OS执行；

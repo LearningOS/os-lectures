@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年春季
+2023年秋季
 
 ---
 提纲
@@ -47,7 +47,7 @@ backgroundColor: white
   - 让应用与硬件隔离
   - 简化应用访问硬件的难度和复杂性
 - **执行环境(Execution Environment)**：负责给在其上执行的软件提供相应的功能与资源的多层次**软硬件系统** 
- 
+
 ![bg right:35% 100%](figs/os-as-lib.png)
 
 
@@ -106,7 +106,7 @@ backgroundColor: white
 - **会写三叶虫操作系统了！**
   - ABI是啥？ Application Binary Interface 
   - SBI是啥？ Supervisor Binary Interface
-![bg right:50% 90%](figs/trilobita.png)
+  ![bg right:50% 90%](figs/trilobita.png)
 
 注：三叶虫Trilobita是寒武纪最有代表性的远古动物
 
@@ -671,7 +671,7 @@ fn clear_bss() {
 * RustSBI
     - 实现基本的SBI服务
     - 遵循SBI调用约定
-![bg right:55% 90%](figs/rv-privil-arch.png)
+    ![bg right:55% 90%](figs/rv-privil-arch.png)
 ---
 
 #### SBI服务编号
