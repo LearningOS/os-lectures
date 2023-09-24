@@ -120,8 +120,8 @@ qemu-system-riscv64 \
     -bios ../bootloader/rustsbi-qemu.bin \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000
 ```
-- 一般来说，计算机加电之后的启动流程可以分成若干个阶段，每个阶段均由一层软件负责
-- 每一层软件的功能是进行它应当承担的初始化工作，并在此之后跳转到下一层软件的入口地址，也就是将计算机的控制权移交给了下一层软件。
+- 通常计算机加电之后的启动流程可以分成若干个阶段，每个阶段均由一层软件负责
+- 每一层软件在完成它承担的初始化工作，然后跳转到下一层软件的入口地址，将计算机的控制权移交给了下一层软件。
 
 ---
 #### QEMU启动流程
@@ -147,9 +147,9 @@ QEMU 模拟的启动流程则可以分为三个阶段：
 
 ---
 #### 真实计算机(x86)的启动流程
-实际上基于x86的PC的启动固件的引导流程从IBM PC机诞生第一天起，本质上就没有改变过。
+基于x86的PC的启动固件的引导流程，从IBM PC机诞生第一天起，本质上就没有改变过。
 
-1. Rom Stage：在这个阶段直接在ROM上运行BIOS代码；
-2. Ram Stage：在这个阶段在RAM上运行代码，检测并初始化芯片组、主板等；
+1. Rom Stage：直接在ROM上运行BIOS代码；
+2. Ram Stage：在RAM上运行代码，检测并初始化芯片组、主板等；
 3. Bootloader Stage：在存储设备上找到Bootloader，加载执行Bootloader；
 4. OS Stage：Bootloader初始化外设，在存储设备上找到OS，加载执行OS。

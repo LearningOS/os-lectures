@@ -55,7 +55,7 @@ backgroundColor: white
 ![bg right:55% 100%](figs/app-software-stack.png)
 ---
 
-#### Assembler工作
+#### Assembler（汇编器）工作
 - 汇编码 --> 机器码
 ![bg right:55% 100%](figs/app-software-stack.png)
 ---
@@ -115,7 +115,7 @@ riscv64imac-unknown-none-elf
   - Rust: std 标准库
   - C：glibc, musl libc 
 - 核心库：与操作系统无关
-  - Rust: core 库
+  - Rust: core 核心库
   - C: Linux/BSD kernel libc
   ![bg right:50% 100%](figs/os-software-stack.png)
 
