@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年春季
+2023年秋季
 
 ---
 **提纲**
@@ -34,19 +34,19 @@ backgroundColor: white
 5. RISC-V系统编程：内核编程
 
 ---
-#### 本节主要目标
+##### 本节主要目标
 
 - 了解 RISC-V 特权级和硬件隔离方式
 - 了解 RISC-V 的 M-Mode 和 S-Mode 的基本特征
 - 了解OS在 M-Mode 和 S-Mode 下如何**访问和控制**计算机系统
 - 了解不同软件如何在 M-Mode<–>S-Mode<–>U-Mode 之间进行**切换**
 ---
-#### 主流CPU比较
+##### 主流CPU比较
 <!-- 主要说明x86, arm由于兼容性，历史原因，导致设计实现复杂，riscv简洁/灵活/可扩展，便于学习掌握并用于写OS -->
 ![w:1150](figs/mainstream-isas.png)
 
 ---
-#### 主流CPU比较
+##### 主流CPU比较
 * 由于兼容性和历史原因，导致x86和ARM的设计实现复杂
 *  RISC-V简洁/灵活/可扩展
 
@@ -54,20 +54,42 @@ backgroundColor: white
 
 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 ### 2. RISC-V系统模式
-  - 概述
-  - 特权级
-  - CSR寄存器
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
 
+</div>
+
+<div class="col">
+
+#### 2.1 概述
+2.2 特权级
+2.3 CSR寄存器
+
+</div>
+
+</div>
 
 ---
-#### RISC-V 系统模式
+##### RISC-V 系统模式
 ![w:800](figs/rv-privil-arch.png)
 - ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface
 - AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment
@@ -77,8 +99,7 @@ backgroundColor: white
 
 
 ---
-
-#### RISC-V相关术语
+##### RISC-V相关术语
 - 应用执行环境（Application Execution Environment, AEE)
 - 应用程序二进制接口（Application Binary Interface,ABI)
 - 管理员二进制接口（Supervisor Binary Interface, SBI)
@@ -93,7 +114,7 @@ backgroundColor: white
 
 
 ---
-#### RISC-V 系统模式：单应用场景
+##### RISC-V 系统模式：单应用场景
 ![w:900](figs/rv-privil-arch.png)
 - 不同软件层有清晰的特权级硬件隔离支持
 - 左侧的**单个应用程序**被编码在ABI上运行
@@ -101,7 +122,7 @@ backgroundColor: white
 - ABI对应用程序隐藏了AEE的细节，使得AEE具有更大的灵活性
 
 ---
-#### RISC-V 系统模式：操作系统场景
+##### RISC-V 系统模式：操作系统场景
 ![w:900](figs/rv-privil-arch.png)
 - 中间加了一个**传统的操作系统**，可支持多个应用程序的多道运行
 - 每个应用程序通过**ABI**和OS进行通信
@@ -109,14 +130,14 @@ backgroundColor: white
 - SBI是OS内核与SEE交互的接口，支持OS的ISA
 
 ---
-#### RISC-V 系统模式：虚拟机场景
+##### RISC-V 系统模式：虚拟机场景
 ![w:900](figs/rv-privil-arch.png)
 - 右侧是虚拟机场景，可支持**多个操作系统**
 
 
 
 ---
-#### RISC-V 系统模式：应用场景
+##### RISC-V 系统模式：应用场景
 ![w:900](figs/rv-privil-arch.png)
 - M Mode：小型设备（蓝牙耳机等）
 - U+M Mode:嵌入式设备（电视遥控器、刷卡机等）
@@ -124,27 +145,49 @@ backgroundColor: white
 - U+S+H+M Mode：数据中心服务器
 
 ---
-#### RISC-V 系统模式：硬件线程
+##### RISC-V 系统模式：硬件线程
 ![w:900](figs/rv-privil-arch.png)
 - 特权级是为不同的软件栈部件提供的一种保护机制
 - **硬件线程**（hart，即CPU core）是运行在某个特权级上（CSR配置）
 - 当处理器执行当前特权模式不允许的操作时将产生一个**异常**，这些异常通常会产生自陷（trap）导致**下层执行环境接管控制权**
 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 2. RISC-V系统模式
-  - 概述
-### 特权级
-  - CSR寄存器
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
 
----
+</div>
 
-#### RISC-V 系统模式：多个特权级
+<div class="col">
+
+2.1 概述
+#### 2.2 特权级
+2.3 CSR寄存器
+
+</div>
+
+</div>
+
+---
+##### RISC-V 系统模式：多个特权级
 ![w:900](figs/rv-privil-arch.png)
 - 现代处理器一般具有多个特权级的模式（Mode）
 - **U**：User | **S**: Supervisor | **H**: Hypervisor | **M**: Machine
@@ -155,7 +198,7 @@ backgroundColor: white
 
 
 ---
-#### RISC-V 系统模式：执行环境
+##### RISC-V 系统模式：执行环境
 | 执行环境  |  编码 | 含义  |  跨越特权级 |
 | --- | --- | --------------------- | --- |
 |  APP |  00 | User/Application  | ``ecall`` |
@@ -167,13 +210,13 @@ backgroundColor: white
 
 
 ---
-#### RISC-V 系统模式：特权级的灵活组合
+##### RISC-V 系统模式：特权级的灵活组合
 ![w:900](figs/rv-privil-arch.png)
 - 随着应用的**需求变化**，需要**灵活**和**可组合**的硬件构造
 - 所以就出现了上述4种模式，且模式间可以组合的灵活硬件设计
 
 ---
-#### RISC-V 系统模式：用户态
+##### RISC-V 系统模式：用户态
 ![w:900](figs/rv-privil-arch.png)
 - U-Mode （User Mode，用户模式、用户态）
   - **非特权**级模式（Unprivileged Mode）：基本计算 
@@ -182,7 +225,7 @@ backgroundColor: white
 
 
 ---
-#### RISC-V 系统模式：内核态
+##### RISC-V 系统模式：内核态
 ![w:800](figs/rv-privil-arch.png)
 - S-Mode（Supervisor Mode, Kernel Mode，内核态，内核模式）
   - 在内核态的操作系统具有足够强大的**硬件控制能力**
@@ -191,7 +234,7 @@ backgroundColor: white
   - 能执行内核态特权指令，能直接**影响应用程序执行**
 
 ---
-#### RISC-V 系统模式：H-Mode
+##### RISC-V 系统模式：H-Mode
 ![w:900](figs/rv-privil-arch.png)
 - H-Mode(Hypervisor Mode, Virtual Machine Mode，虚拟机监控器)
   - 特权级模式：**限制OS**访问的内存空间 
@@ -199,7 +242,7 @@ backgroundColor: white
 
 
 ---
-#### RISC-V 系统模式：M-Mode
+##### RISC-V 系统模式：M-Mode
 ![w:900](figs/rv-privil-arch.png)
 - M-Mode（Machine Mode, Physical Machine Mode）
   - 特权级模式：**控制物理内存**，直接关机 
@@ -207,20 +250,42 @@ backgroundColor: white
   - 能执行M-Mode特权指令，能直接影响上述其他软件的执行
 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 2. RISC-V系统模式
-  - 概述
-  - 特权级
-### CSR寄存器
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
 
----
+</div>
 
-#### RISC-V CSR寄存器分类
+<div class="col">
+
+2.1 概述
+2.2 特权级
+#### 2.3 CSR寄存器
+
+</div>
+
+</div>
+
+---
+##### RISC-V CSR寄存器分类
 
 - **通用寄存器** x0-x31
   - 一般指令访问
@@ -230,11 +295,12 @@ backgroundColor: white
   - 运行在**用户态的应用程序**不能访问大部分的CSR寄存器
   - 运行在**内核态的操作系统**通过访问CSR寄存器控制计算机
 
-<!---
+<!--
 ## RISC-V 系统模式：控制状态寄存器CSR
-强制隔离以避免对整个系统的可用性/可靠性/安全影响-->
+强制隔离以避免对整个系统的可用性/可靠性/安全影响
+-->
 ---
-#### 通过CSR寄存器实现的隔离
+##### 通过CSR寄存器实现的隔离
 OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - 设置 CSR(控制状态寄存器) 实现隔离
   - 权力：防止应用访问系统管控相关寄存器
@@ -246,7 +312,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 
 ---
-#### CSR寄存器功能
+##### CSR寄存器功能
 - 信息类：主要用于获取当前芯片id和cpu核id等信息。 
 - Trap设置：用于设置中断和异常相关寄存器。 
 - Trap处理：用于处理中断和异常相关寄存器。 
@@ -294,15 +360,11 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 1. 主流CPU比较
 2. RISC-V系统模式
 ### 3. RISC-V系统编程：用户态编程
-  - 简述
-  - U-Mode编程：系统调用
-  - 特权操作
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
 
 ---
-
-#### 系统编程简述
+##### 系统编程简述
 - 系统编程需要了解处理器的**特权级架构**，熟悉各个特权级能够访问的寄存器资源、内存资源和外设资源
 - **编写内核级代码**，构造操作系统，支持应用程序执行
   - 内存管理 进程调度
@@ -312,7 +374,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - 本课程的系统编程主要集中在 RISC-V 的 S-Mode 和 U-Mode，涉及部分对M-Mode的理解
 
 ---
-#### RISC-V U-Mode编程：使用系统调用
+##### RISC-V U-Mode编程：使用系统调用
 - U-Mode 下的应用程序不能够直接使用计算机的物理资源
 - 环境调用异常：在执行 ``ecall`` 的时候发生，相当于系统调用
 - 操作系统可以直接访问物理资源
@@ -322,14 +384,14 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - 通过系统调用从操作系统中获得服务
 
 ---
-#### U-Mode编程：第一个例子”hello world”
+##### U-Mode编程：第一个例子”hello world”
 [在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src) 大致执行流
 
 ![w:1000](figs/print-app.png)
 
 
 ---
-#### 第一个例子的启动执行
+##### 第一个例子的启动执行
 [在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302) 启动执行流
 
 ![w:1000](figs/boot-print-app.png)
@@ -337,7 +399,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 
 ---
-#### 第二个例子：在用户态执行特权指令
+##### 第二个例子：在用户态执行特权指令
 [在用户态执行特权指令的小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src/main.rs#L306) 启动与执行流程
 
 ![w:1000](figs/boot-priv-code-app.png)
@@ -345,7 +407,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 <!-- Zifencei扩展 https://www.cnblogs.com/mikewolf2002/p/11191254.html -->
 ---
-#### 特权操作
+##### 特权操作
 - 特权操作：特权指令和CSR读写操作
 - 指令非常少：
   - ``mret`` 机器模式返回 
@@ -361,20 +423,42 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 ### 4. RISC-V系统编程：M-Mode编程
-  - 中断机制和异常机制
-  - 中断/异常的硬件响应
-  - 中断/异常处理的控制权移交
 5. RISC-V系统编程：内核编程
 
----
+</div>
 
-#### M-Mode编程
+<div class="col">
+
+#### 4.1 中断机制和异常机制
+4.2 中断/异常的硬件响应
+4.3 中断/异常处理的控制权移交
+
+</div>
+
+</div>
+
+---
+##### M-Mode编程
 - M-Mode是 RISC-V 中 hart（hardware thread）的**最高权限模式**
 - M-Mode下，hart 对计算机系统的底层功能有**完全的使用权**
 - M-Mode最重要的特性是**拦截和处理中断/异常**
@@ -382,20 +466,20 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
   - **异步的中断**：指令流异步的外部事件，中断，如时钟中断
 - RISC-V 要求实现**精确异常**：保证异常之前的所有指令都完整执行，后续指令都没有开始执行
    <!-- - 堆栈：保存上下文；切换页表 -->
-<!-- --- 是smode的硬件处理流程 有误，应该是m-mode的才对
-
-#### 中断/异常的硬件响应
+<!--
+ --- 是smode的硬件处理流程 有误，应该是m-mode的才对
+##### 中断/异常的硬件响应
 1. **发生中断/异常的指令PC**被存入 mepc, 且 PC 被设置为 mtvec
 2. mcause 设置中断/异常**类型**,mtval被设置为出错的地址/异常**相关信息**
    - 映射表：存储了系统调用或中断到其所对应的处理例程的地址 
 3. 把 sstatus中的 SIE 位置零，**屏蔽中断**， **SIE位之前的值**被保存在 SPIE 位中
 4. **发生例外前的特权模式**被保存在 sstatus 的 SPP（previous privilege） 域，然后设置当前特权模式为S-Mode
-5. **跳转**到stvec CSR设置的地址继续执行 -->
+5. **跳转**到stvec CSR设置的地址继续执行
+-->
 
 
 ---
-
-#### 中断/异常的硬件响应
+##### 中断/异常的硬件响应
 - 硬件
   - 设置中断标记
   - 依据**中断向量**调用相应**中断服务**
@@ -409,19 +493,15 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 
 ---
-
-#### 中断/异常开销
-1、建立中断/异常/系统调用号与对应服务的开销；
-2、内核堆栈的建立；
-3、验证系统调用参数；
-4、内核态数据拷贝到用户态；
-5、内存状态改变（Cache/TLB 刷新的开销）。
-
-
-
+##### 中断/异常开销
+1. 建立中断/异常/系统调用号与对应服务的开销；
+2. 内核堆栈的建立；
+3. 验证系统调用参数；
+4. 内核态数据拷贝到用户态；
+5. 内存状态改变（Cache/TLB 刷新的开销）。
 
 ---
-#### M-Mode的中断控制和状态寄存器
+##### M-Mode的中断控制和状态寄存器
 
 - mtvec(MachineTrapVector)保存发生中断/异常时要跳转到的**中断处理例程入口地址**
 - mepc(Machine Exception PC)指向**发生中断/异常时的指令**
@@ -434,7 +514,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 <!-- mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身；对于其他异常，值为0。 -->
 ---
-#### mstatus CSR寄存器
+##### mstatus CSR寄存器
 
 - mstatus(Machine Status)保存全局中断以及其他的**状态**
   - SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断。
@@ -448,14 +528,14 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 
 ---
-#### mcause CSR寄存器
+##### mcause CSR寄存器
 
 当发生异常时，mcause CSR中被写入一个指示**导致异常的事件**的代码，如果事件由中断引起，则置上``Interrupt``位，``Exception Code``字段包含指示最后一个异常的编码。
 
 ![w:1150](figs/rv-cause.png)
 
 ---
-#### M-Mode时钟中断Timer
+##### M-Mode时钟中断Timer
 - 中断是异步发生的
   - 来自处理器外部的 I/O 设备的信号
 - Timer 可以稳定定时地产生中断
@@ -464,24 +544,46 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
   - 高特权模式下的软件可**授权**低特权模式软件处理中断
 
 ---
-#### RISC-V处理器FU540模块图
+##### RISC-V处理器FU540模块图
 ![w:650](figs/fu540-top-block.png)
 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
-  - 中断机制和异常机制
-### 中断/异常的硬件响应
-  - 中断/异常处理的控制权移交
 5. RISC-V系统编程：内核编程
 
----
+</div>
 
-#### M-Mode中断的硬件响应过程
+<div class="col">
+
+4.1 中断机制和异常机制
+#### 4.2 中断/异常的硬件响应
+4.3 中断/异常处理的控制权移交
+
+</div>
+
+</div>
+
+---
+##### M-Mode中断的硬件响应过程
 - **异常/中断指令的PC**被保存在mepc中，PC设置为mtvec。
   - 对于同步异常，mepc指向导致异常的指令；
   - 对于中断，指向中断处理后应该恢复执行的位置。
@@ -492,7 +594,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - **保留发生异常之前的权限模式**到mstatus 的 MPP 域中，然后**更改权限模式**为M。（MPP表示变化之前的特权级别是S、M or U模式）
 <!-- 是smode的代码 有误
 ---
-#### M-Mode中断处理例程 
+##### M-Mode中断处理例程 
 ```
     let scause = scause::read();
     let stval = stval::read();
@@ -513,34 +615,34 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 ``` -->
 ---
-#### M-Mode中断分类
+##### M-Mode中断分类
 通过 mcause 寄存器的不同位（mie）来获取中断的类型。
 - **软件**中断：通过向内存映射寄存器写入数据来触发，一个 hart 中断另外一个hart（处理器间中断）
 - **时钟**中断：hart 的时间计数器寄存器 mtime 大于时间比较寄存器 mtimecmp
 - **外部**中断：由中断控制器触发，大部分情况下的外设都会连到这个中断控制器
 
 ---
-#### RISC-V 的中断/异常
+##### RISC-V 的中断/异常
 通过 mcause 寄存器的不同位来获取中断源的信息。
 第一列1代表中断，第2列代表中断ID，第3列中断含义
 ![w:1000](figs/rv-interrupt.png)
 
 
 ---
-#### M-Mode RISC-V异常机制
+##### M-Mode RISC-V异常机制
 通过 mcause 寄存器的不同位来获取导致异常的信息。
 第一列0代表异常，第2列代表异常ID，第3列异常含义
 ![w:900](figs/rv-exception.png)
 
 ---
-#### M-Mode中断/异常的硬件响应
+##### M-Mode中断/异常的硬件响应
 - **中断/异常的指令的 PC** 被保存在 mepc 中， PC 被设置为 mtvec。
    - 对于异常，mepc指向导致异常的指令
    - 对于中断，mepc指向中断处理后应该恢复执行的位置
 - 根据**中断/异常来源**设置 mcause，并将 mtval 设置为出错的地址或者其它适用于特定异常的信息字。
 
 ---
-#### M-Mode中断/异常的硬件响应
+##### M-Mode中断/异常的硬件响应
 
 - 把控制状态寄存器 mstatus[MIE位]置零以**禁用中断**，并**保留先前的 MIE 值**到 MPIE 中。
   - SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断；
@@ -550,33 +652,55 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - **跳转**到mtvec CSR设置的地址继续执行
 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
-  - 中断机制和异常机制
-  - 中断/异常的硬件响应
-### 中断/异常处理的控制权移交
 5. RISC-V系统编程：内核编程
 
+</div>
+
+<div class="col">
+
+4.1 中断机制和异常机制
+4.2 中断/异常的硬件响应
+#### 4.3 中断/异常处理的控制权移交
+
+</div>
+
+</div>
+
 ---
-#### M-Mode中断/异常处理的控制权移交
+##### M-Mode中断/异常处理的控制权移交
 - 默认情况下，所有的中断/异常都使得控制权移交到 M-Mode的中断/异常处理例程
 - M-Mode的**中断/异常处理例程**可以将中断/异常重新**导向 S-Mode**，但是这些额外的操作会减慢中断/异常的处理速度
 - RISC-V 提供一种**中断/异常委托机制**，通过该机制可以选择性地将中断/异常交给 S-Mode处理，而**完全绕过 M-Mode**
 
 ---
-#### M-Mode中断/异常处理的控制权移交
+##### M-Mode中断/异常处理的控制权移交
 - **mideleg/medeleg** (Machine Interrupt/Exception Delegation）CSR 控制将哪些中断/异常委托给 S-Mode处理
 - mideleg/medeleg 中的每个位对应一个中断/异常
   - 如 mideleg[5] 对应于 S-Mode的时钟中断，如果把它置位，S-Mode的时钟中断将会移交 S-Mode的中断/异常处理程序，而不是 M-Mode的中断/异常处理程序
   - 委托给 S-Mode的任何中断都可以被 S-Mode的软件屏蔽。sie(Supervisor Interrupt Enable) 和 sip（Supervisor Interrupt Pending）CSR 是 S-Mode的控制状态寄存器
 
 ---
-
-#### 中断委托寄存器mideleg
+##### 中断委托寄存器mideleg
 - mideleg (Machine Interrupt Delegation）控制将哪些中断委托给 S 模式处理
 - mideleg 中的每个为对应一个中断/异常
   - mideleg[1]用于控制是否将**核间中断**交给s模式处理
@@ -585,8 +709,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 
 ---
-
-#### 异常委托寄存器medeleg
+##### 异常委托寄存器medeleg
 - medeleg (Machine Exception Delegation）控制将哪些异常委托给 S 模式处理
 - medeleg 中的每个为对应一个中断/异常
   - medeleg[1]用于控制是否将**指令获取错误异常**交给s模式处理
@@ -596,7 +719,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 <!-- ，是 mie 和 mip 的子集。这两个寄存器和 M-Mode下有相同的布局。sie 和 sip 中只有与由 mideleg 委托的中断对应的位才能读写，没有委派的中断对应位总是 0 -->
 
 ---
-#### 中断/异常处理的控制权移交
+##### 中断/异常处理的控制权移交
 
 
 - 发生中断/异常时,处理器控制权**通常**不会移交给权限更低的模式
@@ -609,24 +732,47 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 
 ---
-#### 思考题
+##### 思考题
 
 - 如何通过断点异常来实现调试器的断点调试功能？
 - 如何实现单步跟踪？ 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
 ### 5. RISC-V系统编程：内核编程
-  - 中断/异常机制
-  - 中断/异常的处理
-  - 虚存机制
----
 
-#### S-Mode的中断控制和状态寄存器
+</div>
+
+<div class="col">
+
+#### 5.1 中断/异常机制
+5.2 中断/异常的处理
+5.3 虚存机制
+
+</div>
+
+</div>
+
+---
+##### S-Mode的中断控制和状态寄存器
 
 - stvec(SupervisorTrapVector)保存发生中断/异常时**要跳转到的地址**
 - sepc(Supervisor Exception PC)指向**发生中断/异常时的指令**
@@ -638,13 +784,13 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - sstatus(Supervisor Status)保存全局中断以及其他的**状态**
 
 ---
-#### sstatus寄存器
+##### sstatus寄存器
 - sstatus的SIE 和 SPIE 位分别保存了当前的和中断/异常发生之前的中断使能**状态**
 
 ![w:1100](figs/rv-sstatus.png)
 
 ---
-#### S-Mode中断/异常机制
+##### S-Mode中断/异常机制
 
 **sie & sip 寄存器**是用于保存**待处理中断**和**中断使能**情况的CSR
 
@@ -655,7 +801,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 
 ---
-#### scause寄存器
+##### scause寄存器
 当发生异常时，CSR中被写入一个指示**导致中断/异常的事件**编号，记录在``Exception Code``字段中；如果事件由中断引起，则置``Interrupt``位。
 scause 寄存器
 
@@ -663,7 +809,7 @@ scause 寄存器
 
 
 ---
-#### mtvec & stvec 寄存器
+##### mtvec & stvec 寄存器
 中断/异常向量（trap-vector）基地址寄存器stvec CSR用于配置**trap_handler地址**
  - 包括向量基址（BASE）和向量模式（MODE）：BASE 域中的值按 4 字节对齐
     - MODE = 0 表示一个trap_handler处理所有的中断/异常
@@ -675,19 +821,42 @@ mtvec & stvec 寄存器
 
 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
-  - 中断/异常机制
-### 中断/异常的处理
-  - 虚存机制
----
 
-#### S-Mode中断/异常的硬件响应
+</div>
+
+<div class="col">
+
+5.1 中断/异常机制
+#### 5.2 中断/异常的处理
+5.3 虚存机制
+
+</div>
+
+</div>
+
+---
+##### S-Mode中断/异常的硬件响应
 
 **硬件执行内容**
 
@@ -699,14 +868,14 @@ hart 接受了中断/异常，并需要委派给 S-Mode，那么硬件会原子�
 
 
 ---
-#### S-Mode中断/异常的硬件响应
+##### S-Mode中断/异常的硬件响应
 
 4. **发生例外前的特权模式**被保存在 sstatus 的 SPP（previous privilege） 域，然后设置当前特权模式为S-Mode
 5. **跳转**到stvec CSR设置的地址继续执行
 
 
 ---
-#### S-Mode中断/异常的软件处理
+##### S-Mode中断/异常的软件处理
 
 
 - **初始化**
@@ -719,19 +888,42 @@ hart 接受了中断/异常，并需要委派给 S-Mode，那么硬件会原子�
 
 
 ---
+
 **提纲**
+
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;    
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 主流CPU比较
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
-  - 中断/异常机制
-  - 中断/异常的处理
-### 虚存机制
----
 
-#### S-Mode虚拟内存系统
+</div>
+
+<div class="col">
+
+5.1 中断/异常机制
+5.2 中断/异常的处理
+#### 5.3 虚存机制
+
+</div>
+
+</div>
+
+---
+##### S-Mode虚拟内存系统
 
 - 虚拟地址将内存划分为**固定大小的页**来进行**地址转换**和**内容保护**。
 - satp（Supervisor Address Translation and Protection，监管者地址转换和保护）S模式控制状态寄存器**控制分页**。satp 有三个域：
@@ -741,7 +933,7 @@ hart 接受了中断/异常，并需要委派给 S-Mode，那么硬件会原子�
 ![w:900](figs/satp.png)
 
 ---
-#### S-Mode虚存机制
+##### S-Mode虚存机制
 
 - 通过stap CSR建立**页表基址**
 - 建立OS和APP的**页表**
@@ -750,7 +942,7 @@ hart 接受了中断/异常，并需要委派给 S-Mode，那么硬件会原子�
 ![bg right:55% 85%](figs/riscv_pagetable.svg)
 
 ---
-#### S-Mode虚存的地址转换
+##### S-Mode虚存的地址转换
 S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地址：
 
 - satp.PPN 给出了**一级页表基址**， VA [31:22] 给出了一级页号，CPU会读取位于地址(satp. PPN × 4096 + VA[31: 22] × 4)页表项。
@@ -759,7 +951,7 @@ S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地�
 
 
 ---
-#### S-Mode虚存的地址转换
+##### S-Mode虚存的地址转换
 
 ![w:650](figs/satp2.png)
 
