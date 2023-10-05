@@ -58,18 +58,18 @@ LibOS目标
 
 ---
 ##### 实验要求
-- 理解运行其他软件的软件
-- 理解特权级和特权级切换
-- 理解系统调用
-- 会写``邓式鱼``批处理操作系统
+- 理解**运行其他软件**的软件
+- 理解特权级和**特权级切换**
+- 理解**系统调用**
+- 会写`邓式鱼`批处理操作系统
 
-邓式鱼：Dunkleosteus 在泥盆纪有坚固盾甲的海洋霸主  
+邓式鱼：Dunkleosteus 在泥盆纪有**坚固盾甲**的海洋霸主  
 ![bg right:52% 90%](figs/dunkleosteus.png)
 
 ---
 ##### 总体思路
 - 编译：应用程序和内核**独立编译**，合并为一个镜像
-- 构造：系统调用服务请求接口，应用的**管理与初始化**
+- 构造：**系统调用**服务请求接口，**应用管理与初始化**
 - 运行：OS一个一个地**执行应用**
 - 运行：应用发出**系统调用**请求，OS完成系统调用
 - 运行：应用与OS基于硬件特权级机制进行**特权级切换**
@@ -78,7 +78,7 @@ LibOS目标
 
 ---
 ##### 历史背景
-- GM-NAA I/O System(1956)
+- [GM-NAA I/O System](http://en.wikipedia.org/wiki/GM-NAA_I/O)(1956)
   - 启发：汽车生产线 
 - MULTICS OS(1969,MIT/GE/AT&T)
   - GE 645 具有 8 级硬件支持的保护环
@@ -86,7 +86,7 @@ LibOS目标
  GE： General Electric
 ![bg right:38% 95%](figs/deng-fish.png)
 
-
+Ref: [What was the first operating system to be called an "operating system"?](https://retrocomputing.stackexchange.com/questions/24622/what-was-the-first-operating-system-to-be-called-an-operating-system)
 
 ---
 **提纲**
@@ -104,7 +104,7 @@ LibOS目标
 - 通过批处理支持多个**APP的自动加载和运行**
 - 利用硬件特权级机制实现对操作系统自身的**保护**
 - 支持跨特权级的**系统调用** 
-- 实现特权级的**穿越**
+- 实现特权级的**切换**
 
 ![bg right:54% 100%](figs/batch-os.png)
 
@@ -197,7 +197,7 @@ Hello, world!
       ├── bin(基于用户库 user_lib 开发的应用，每个应用放在一个源文件中)
       │   ├── 00hello_world.rs # 显示字符串的应用
       │   ├── 01store_fault.rs # 非法写操作的应用
-      │   ├── 02power.rs       # 计算/IO频繁交替的应用 
+      │   ├── 02power.rs       # 计算与I/O频繁交替的应用 
       │   ├── 03priv_inst.rs   # 执行特权指令的应用
       │   └── 04priv_csr.rs    # 执行CSR操作指令的应用
 ```            
@@ -242,6 +242,11 @@ Hello, world!
 ---
 ##### RISC-V异常向量
 
+<style scoped>
+table {
+  font-size: 18px;
+}
+</style>
 | Interrupt | Exception Code | Description                    |
 | --------- | -------------- | ------------------------------ |
 | 0         | 0              | Instruction address misaligned |
@@ -250,30 +255,14 @@ Hello, world!
 | 0         | 3              | **Breakpoint**                     |
 | 0         | 4              | Load address misaligned        |
 | 0         | 5              | Load access fault              |
-
-
-            
----
-##### RISC-V异常向量
-
-| Interrupt | Exception Code | Description                    |
-| --------- | -------------- | ------------------------------ |
 | 0         | 6              | Store/AMO address misaligned   |
 | 0         | 7              | Store/AMO access fault         |
 | 0         | 8              | **Environment call from U-mode**   |
 | 0         | 9              | Environment call from S-mode   |
 | 0         | 11             | Environment call from M-mode   |
-
-            
----
-##### RISC-V异常向量
-
-| Interrupt | Exception Code | Description                    |
-| --------- | -------------- | ------------------------------ |
 | 0         | 12             | Instruction page fault         |
 | 0         | 13             | Load page fault                |
 | 0         | 15             | Store/AMO page fault           |
-
 
 - AMO: atomic memory operation 
 
@@ -368,7 +357,7 @@ pub extern "C" fn _start() -> ! {
 2. 实践步骤
 3. 软件架构
 4. 相关硬件
-5. 应用程序设计
+5. **应用程序设计**
 6. 内核程序设计
 
 </div>
@@ -386,14 +375,14 @@ pub extern "C" fn _start() -> ! {
 ---
 ##### 应用程序的内存布局
 
-![bg 70%](figs/memlayout.png)
+![bg 77%](figs/memlayout.png)
 
 ---
 ##### 设计支撑库
 `user/src/linker.ld`
 
-- 将程序的起始物理地址调整为 0x80400000 ，应用程序都会被加载到这个物理地址上运行；
-- 将 _start 所在的 .text.entry 放在整个程序的开头，也就是说批处理系统只要在加载之后跳转到 0x80400000 就已经进入了 用户库的入口点，并会在初始化之后跳转到应用程序主逻辑；
+- 将**程序的起始物理地址**调整为 0x80400000 ，应用程序都会被加载到这个物理地址上运行；
+- 将 _start 所在的 .text.entry 放在整个程序的开头，也就是说批处理系统只要在加载之后**跳转到 0x80400000** 就已经进入了 用户库的入口点，并会在初始化之后跳转到应用程序主逻辑；
 - 提供了最终生成可执行文件的 .bss 段的起始和终止地址，方便 clear_bss 函数使用。
 
 其余的部分与之前相同
@@ -420,7 +409,7 @@ pub extern "C" fn _start() -> ! {
 2. 实践步骤
 3. 软件架构
 4. 相关硬件
-5. 应用程序设计
+5. **应用程序设计**
 6. 内核程序设计
 
 </div>
@@ -448,7 +437,7 @@ pub extern "C" fn _start() -> ! {
 - Trap 进入 S 模式执行批处理系统针对这个异常特别提供的服务代码
 - a0~a6 保存系统调用的参数， a0 保存返回值, a7 用来传递 syscall ID
 
-![bg right:40% 100%](figs/riscv-regs.png)
+![bg right:42% 100%](figs/riscv-regs.png)
 
 ---
 ##### 系统调用支撑库
@@ -487,7 +476,7 @@ fn syscall(id: usize, args: [usize; 3]) -> isize {
     ret //返回值
 }
 ```
-
+参考文档：Rust by Example - [Inline assembly](https://doc.rust-lang.org/rust-by-example/unsafe/asm.html)
 
 ---
 ##### 系统调用封装
@@ -643,7 +632,7 @@ unsafe fn load_app(&self, app_id: usize) {
 
 - CPU 对物理内存所做的缓存又分成d-cache和i-cache
 - OS将修改会被 CPU 取指的内存区域，这会使得 i-cache 中含有与内存中不一致的内容
-- OS在这里必须使用 fence.i 指令手动清空 i-cache ，让里面所有的内容全部失效，才能够保证CPU访问内存数据和代码的正确性。
+- OS在这里必须使用 fence.i 指令手动清空 i-cache ，让里面所有的内容全部失效，才能够**保证CPU访问内存数据和代码的正确性**。
 
 
 
@@ -669,7 +658,7 @@ unsafe fn load_app(&self, app_id: usize) {
 3. 软件架构
 4. 相关硬件
 5. 应用程序设计
-6. 内核程序设计
+6. **内核程序设计**
 
 </div>
 
@@ -754,7 +743,7 @@ RegSP = KERNEL_STACK.get_sp();
 3. 软件架构
 4. 相关硬件
 5. 应用程序设计
-6. 内核程序设计
+6. **内核程序设计**
 
 </div>
 
@@ -781,7 +770,7 @@ pub struct TrapContext {
 }
 ```
 - 对于通用寄存器而言，应用程序/内核控制流运行在不同的特权级
-- 进入 Trap 的时候，硬件会立即覆盖掉 scause/stval/sstatus/sepc
+- 进入 Trap 的时候，**硬件会立即覆盖掉** scause/stval/sstatus/sepc
 
 
 ---
@@ -798,29 +787,19 @@ pub fn init() {
 
 ---
 ##### 系统调用过程中的Trap上下文处理
-1. 应用程序通过 ecall 进入到内核状态时，操作系统保存被打断的应用程序的 Trap 上下文；
 
+1. **应用程序**通过 ecall 进入到内核状态时，**操作系统**保存被打断的应用程序的 Trap 上下文；
+2. **操作系统**根据Trap相关的CSR寄存器内容，完成系统调用服务的分发与处理；
+3. **操作系统**完成系统调用服务后，需要恢复被打断的应用程序的Trap 上下文，并通 ``sret``指令让应用程序继续执行。
 ![bg right:40% 100%](figs/kernel-stack.png)
 
 
 ---
-##### 系统调用过程中的Trap上下文处理
 
-2. 操作系统根据Trap相关的CSR寄存器内容，完成系统调用服务的分发与处理；
-
-![bg right:40% 100%](figs/kernel-stack.png)
-
-
----
-##### 系统调用过程中的Trap上下文处理
-
-3. 操作系统完成系统调用服务后，需要恢复被打断的应用程序的Trap 上下文，并通 ``sret``指令让应用程序继续执行。
-![bg right:40% 100%](figs/kernel-stack.png)
----
 ##### 用户栈到内核栈的切换
 **sscratch CSR** 重要的中转寄存器
 
-在特权级切换的时候，我们需要将 Trap 上下文保存在内核栈上，因此需要一个寄存器暂存内核栈地址，并以它作为基地址指针来依次保存 Trap 上下文的内容。
+在特权级切换的时候，我们需要将 Trap 上下文保存在内核栈上，因此**需要一个寄存器暂存内核栈地址**，并以它作为基地址指针来依次保存 Trap 上下文的内容。
 
 但是所有的通用寄存器都不能够用作基地址指针，因为它们都需要被保存，如果覆盖掉它们，就会影响后续应用控制流的执行。
 
@@ -867,7 +846,7 @@ pub fn init() {
 3. 软件架构
 4. 相关硬件
 5. 应用程序设计
-6. 内核程序设计
+6. **内核程序设计**
 
 </div>
 
@@ -1016,7 +995,7 @@ pub fn sys_exit(xstate: i32) -> ! {
 3. 软件架构
 4. 相关硬件
 5. 应用程序设计
-6. 内核程序设计
+6. **内核程序设计**
 
 </div>
 
