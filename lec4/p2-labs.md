@@ -21,24 +21,45 @@ backgroundColor: white
 <br>
 <br>
 
-2023年春季
+2023年秋季
 
 ---
+
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
 
-### 1. 实验目标和步骤
-- 实验目标
-- 实践步骤
-2. 多道批处理操作系统设计
-3. 应用程序设计
-4. 锯齿螈OS：支持应用程序加载
-5. 始初龙OS：支持多道程序协作调度
-6. 腔骨龙OS：分时多任务OS
+<div class="container">
 
-<!-- 锯齿螈  始初龙  腔骨龙 -->
+<div class="col">
 
+
+### 1. <font size=6>实验目标和步骤</font>
+2. <font size=6>多道批处理操作系统设计</font>
+2. <font size=6>应用程序设计</font>
+3. <font size=6>LibOS：支持应用程序加载</font>
+4. <font size=6>BatchOS：支持多道程序协作调度</font>
+5. <font size=6>MultiprogOS：分时多任务OS</font>
+
+</div>
+
+<div class="col">
+
+#### 1.1 实验目标
+1.2 实践步骤
+</div>
+
+</div>
+
+<!-- 锯齿螈  始初龙  腔骨龙
 ![bg right:40% 70%](figs/ch3-oses.png)
-
+-->
 ---
 
 #### 实验目标
@@ -46,11 +67,11 @@ backgroundColor: white
 ![bg right:53% 90%](figs/multiprog-os-detail.png)
 
 - MultiprogOS目标
-    - 进一步提高系统中多个应用的总体性能和效率
+    - 进一步提高系统中多个应用的总体**性能和效率**
 - BatchOS目标
-    - 让APP与OS隔离，提高系统的安全性和效率
+    - 让APP与OS隔离，提高系统的**安全性和效率**
 - LibOS目标
-    - 让应用与硬件隔离，简化应用访问硬件的难度和复杂性
+    - 让应用与硬件隔离，简化应用**访问硬件**的难度和复杂性
 
 ---
 #### 实验要求
@@ -75,9 +96,9 @@ backgroundColor: white
 - 编译：应用程序和内核独立编译，合并为一个镜像
 - 编译：应用程序需要各自的起始地址
 - 构造：系统调用服务请求接口，进程的管理与初始化
-- 构造：进程控制块，进程上下文/状态管理
-- 运行：特权级切换，进程与OS相互切换
-- 运行：进程通过系统调用/中断实现主动/被动切换
+- 构造：**进程控制块**，进程上下文/状态管理
+- 运行：**特权级切换**，进程与OS相互切换
+- 运行：进程通过系统调用/中断实现**主动/被动切换**
 
 ---
 #### 历史背景
@@ -96,16 +117,42 @@ J. Lyons & Co.是一家成立于1884年的英国连锁餐厅，食品制造业�
 ![bg right 100%](figs/multiprog-os.png)
 
 ---
-**提纲**
 
-1. 实验目标和步骤
-- 实验目标
-### 实践步骤
-2. 多道批处理操作系统设计
-3. 应用程序设计
-4. 锯齿螈OS：支持应用程序加载
-5. 始初龙OS：支持多道程序协作调度
-6. 腔骨龙OS：分时多任务OS
+**提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
+
+
+1. <font size=6>**实验目标和步骤**</font>
+2. <font size=6>多道批处理操作系统设计</font>
+3. <font size=6>应用程序设计</font>
+4. <font size=6>LibOS：支持应用程序加载</font>
+5. <font size=6>BatchOS：支持多道程序协作调度</font>
+6. <font size=6>MultiprogOS：分时多任务OS</font>
+
+</div>
+
+<div class="col">
+
+1.1 实验目标
+#### 1.2 实践步骤
+</div>
+
+</div>
+
+<!-- 锯齿螈  始初龙  腔骨龙
+![bg right:40% 70%](figs/ch3-oses.png)
+-->
 
 ---
 
@@ -151,16 +198,16 @@ CCCCCCCCCC [3/3]
 [kernel] Panicked at src/task/mod.rs:106 All applications completed!
 ```
 
-
 ---
+
 **提纲**
 
-1. 实验目标和步骤
-### 2. 多道批处理操作系统设计
-3. 应用程序设计
-4. 锯齿螈OS：支持应用程序加载
-5. 始初龙OS：支持多道程序协作调度
-6. 腔骨龙OS：分时多任务OS
+1. <font size=6>实验目标和步骤</font>
+### 2. <font size=6>多道批处理操作系统设计</font>
+3. <font size=6>应用程序设计</font>
+4. <font size=6>LibOS：支持应用程序加载</font>
+5. <font size=6>BatchOS：支持多道程序协作调度</font>
+6. <font size=6>MultiprogOS：分时多任务OS</font>
 
 ---
 
@@ -178,7 +225,6 @@ CCCCCCCCCC [3/3]
     ├── Makefile(修改：使用 build.py 构建应用)
     └── src (各种应用程序)    
 ```
-
 
 ---
 
@@ -215,12 +261,12 @@ CCCCCCCCCC [3/3]
 
 **提纲**
 
-1. 实验目标和步骤
-2. 多道批处理操作系统设计
-### 3. 应用程序设计
-4. 锯齿螈OS：支持应用程序加载
-5. 始初龙OS：支持多道程序协作调度
-6. 腔骨龙OS：分时多任务OS
+1. <font size=6>实验目标和步骤</font>
+2. <font size=6>多道批处理操作系统设计</font>
+### 3. <font size=6>应用程序设计</font>
+4. <font size=6>LibOS：支持应用程序加载</font>
+5. <font size=6>BatchOS：支持多道程序协作调度</font>
+6. <font size=6>MultiprogOS：分时多任务OS</font>
 
 ---
 
@@ -270,8 +316,6 @@ fn main() -> i32 {
 - 需要通过**新的系统调用**实现  
   - **``const SYSCALL_YIELD: usize = 124;``**
 
-
-
 ---
 
 #### yield系统调用  
@@ -288,20 +332,22 @@ pub fn yield_() -> isize {
 
 
 ---
+
 **提纲**
 
-1. 实验目标和步骤
-2. 多道批处理操作系统设计
-3. 应用程序设计
-### 4. 锯齿螈OS：支持应用程序加载
-5. 始初龙OS：支持多道程序协作调度
-6. 腔骨龙OS：分时多任务OS
+1. <font size=6>实验目标和步骤</font>
+2. <font size=6>多道批处理操作系统设计</font>
+3. <font size=6>应用程序设计</font>
+### 4. <font size=6>LibOS：支持应用程序加载</font>
+5. <font size=6>BatchOS：支持多道程序协作调度</font>
+6. <font size=6>MultiprogOS：分时多任务OS</font>
 
 ---
-#### 锯齿螈OS：支持应用程序加载
 
-二叠纪“锯齿螈”操作系统支持在内存中驻留多个应用，形成多道程序操作系统 – Multiprog OS；
-  
+#### LibOS：支持应用程序加载
+
+LibOS支持在内存中驻留多个应用，形成多道程序操作系统；
+
 ![bg right:57% 100%](figs/multiprog-os-detail.png)
 
 ---
@@ -358,25 +404,51 @@ dst.copy_from_slice(src);
 
 ![bg right:55% 90%](figs/kernel-stack.png)
 
-
 ---
 
 #### 执行程序
 
-现在完成了支持**把应用都放到内存中**的锯齿螈OS
+现在完成了支持**把应用都放到内存中**的LibOS。
 ![bg right:57% 95%](figs/jcy-multiprog-os-detail.png)
 
 ---
+
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
 
-... ...
+<div class="container">
 
-4. 锯齿螈OS：支持应用程序加载
-### 5. 始初龙OS：支持多道程序协作调度
-* 任务切换
-* Trap控制流切换
-* 协作式调度
-6. 腔骨龙OS：分时多任务OS
+<div class="col">
+
+
+1. <font size=6>实验目标和步骤</font>
+2. <font size=6>多道批处理操作系统设计</font>
+3. <font size=6>应用程序设计</font>
+4. <font size=6>LibOS：支持应用程序加载</font>
+### 5. <font size=6>BatchOS：支持多道程序协作调度</font>
+6. <font size=6>MultiprogOS：分时多任务OS</font>
+
+</div>
+
+<div class="col">
+
+#### 5.1 任务切换
+5.2 Trap控制流切换
+5.3 协作式调度
+</div>
+
+</div>
+
+<!-- 锯齿螈  始初龙  腔骨龙
+![bg right:40% 70%](figs/ch3-oses.png)
+-->
 
 ---
 
@@ -429,9 +501,9 @@ pub enum TaskStatus {
 
 #### 任务切换
   - 从一个应用的执行过程切换到另外一个应用的执行过程
-    - 暂停一个应用的执行过程（当前任务）
-    - 继续另一应用的执行过程（下一任务）
-![bg right:65% 100%](figs/more-task-multiprog-os-detail.png)
+    - **暂停**一个应用的执行过程（当前任务）
+    - **继续**另一应用的执行过程（下一任务）
+    ![bg right:65% 100%](figs/more-task-multiprog-os-detail.png)
 
 
 ---
@@ -452,7 +524,7 @@ pub enum TaskStatus {
 
 ---
 
-#### 任务上下文数据结构
+#### 任务上下文和trap上下文数据结构
 
 ```rust
 1// os/src/task/context.rs
@@ -490,6 +562,7 @@ pub struct TrapContext {
 - 任务切换不涉及**特权级**切换；Trap切换涉及特权级切换；
 - 任务切换只保存编译器约定的callee 函数应该保存的**部分寄存器**；而Trap切换需要保存所有通用寄存器；
 - 任务切换和Trap切换都是**对应用是透明**的
+- Trap切换需要硬件参与，任务切换完全由软件完成；
 
 ---
 #### 控制流
@@ -500,13 +573,13 @@ pub struct TrapContext {
 ---
 #### 普通控制流：从应用程序员的角度来看控制流
 
-- 控制流是应用程序员编写的应用程序的**执行序列**，这些序列是程序员预设好的。
+- 控制流是应用程序员编写的应用程序的**执行序列**，这些序列是程序员**预设好的**。
 - 称为 **普通控制流** (CCF，Common Control Flow)  
 
 ---
 #### 异常控制流：从操作系统程序员的角度来看控制流
 
-- 应用程序在执行过程中，如果发出系统调用请求，或出现外设中断、CPU 异常等情况，会出现前一条指令还在应用程序的代码段中，后一条指令就跑到操作系统的代码段中去了。
+- 应用程序在执行过程中，如果发出系统调用请求，或出现外设中断、CPU 异常等情况，会出现前一条指令还在应用程序的代码段中，后一条指令就跑到**操作系统的代码**段中去了。
 - 这是一种控制流的“**突变**”，即控制流脱离了其所在的执行环境，并产生**执行环境的切换**。 
 - 这种“突变”的控制流称为 **异常控制流** (ECF, Exceptional Control Flow) 。
   - 在RISC-V场景中，**异常控制流** == **Trap控制流** 
@@ -535,16 +608,42 @@ pub struct TrapContext {
     - 操作系统中任务（进程）执行相关切换代码时的控制流的上下文
 
 ---
+
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
 
-... ...
+<div class="container">
 
-4. 锯齿螈OS：支持应用程序加载
-5. 始初龙OS：支持多道程序协作调度
-* 任务切换
-### Trap控制流切换
-* 协作式调度
-6. 腔骨龙OS：分时多任务OS
+<div class="col">
+
+1. <font size=6>实验目标和步骤</font>
+2. <font size=6>多道批处理操作系统设计</font>
+3. <font size=6>应用程序设计</font>
+4. <font size=6>LibOS：支持应用程序加载</font>
+5. <font size=6>**BatchOS：支持多道程序协作调度**</font>
+6. <font size=6>MultiprogOS：分时多任务OS</font>
+
+</div>
+
+<div class="col">
+
+5.1 任务切换
+#### 5.2 Trap控制流切换
+5.3 协作式调度
+</div>
+
+</div>
+
+<!-- 锯齿螈  始初龙  腔骨龙
+![bg right:40% 70%](figs/ch3-oses.png)
+-->
 
 ---
 
@@ -562,7 +661,7 @@ pub struct TrapContext {
 ---
 ####  Trap控制流切换：暂停运行
 - 一个特殊的函数`__switch()`
-- 调用 `__switch()` 之后直到它返回前的这段时间，原 Trap 控制流 A 会先被暂停并被切换出去， CPU 转而运行另一个应用在内核中的 Trap 控制流 B 。
+- 调用 `__switch()` 之后直到它返回前的这段时间，原 Trap 控制流 A 会先被**暂停**并被切换出去， CPU 转而**运行**另一个应用在内核中的 Trap 控制流 B 。
 ![bg right 95%](figs/task-context.png)
 
 
@@ -670,16 +769,42 @@ pub struct TrapContext {
 
 
 ---
+
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
 
-... ...
+<div class="container">
 
-4. 锯齿螈OS：支持应用程序加载
-5. 始初龙OS：支持多道程序协作调度
-* 任务切换
-* Trap控制流切换
-### 协作式调度
-6. 腔骨龙OS：分时多任务OS
+<div class="col">
+
+1. <font size=6>实验目标和步骤</font>
+2. <font size=6>多道批处理操作系统设计</font>
+3. <font size=6>应用程序设计</font>
+4. <font size=6>LibOS：支持应用程序加载</font>
+5. <font size=6>**BatchOS：支持多道程序协作调度**</font>
+6. <font size=6>MultiprogOS：分时多任务OS</font>
+
+</div>
+
+<div class="col">
+
+5.1 任务切换
+5.2 Trap控制流切换
+#### 5.3 协作式调度
+</div>
+
+</div>
+
+<!-- 锯齿螈  始初龙  腔骨龙
+![bg right:40% 70%](figs/ch3-oses.png)
+-->
 
 ---
 
@@ -755,29 +880,30 @@ pub fn exit_current_and_run_next() {
 #### 第一次进入用户态
 **Q:如何实现？**
 
-如果能搞定，我们就实现了支持多道程序协作调度的始初龙操作系统
+如果能搞定，我们就实现了支持多道程序协作调度的BatchOS
 
 ---
+
 **提纲**
 
-1. 实验目标和步骤
-2. 多道批处理操作系统设计
-3. 应用程序设计
-4. 锯齿螈OS：支持应用程序加载
-5. 始初龙OS：支持多道程序协作调度
-### 6. 腔骨龙OS：分时多任务OS
+1. <font size=6>实验目标和步骤</font>
+2. <font size=6>多道批处理操作系统设计</font>
+3. <font size=6>应用程序设计</font>
+4. <font size=6>LibOS：支持应用程序加载</font>
+5. <font size=6>BatchOS：支持多道程序协作调度</font>
+### 6. <font size=6>MultiprogOS：分时多任务OS</font>
 
 ---
 
-#### 腔骨龙OS：分时多任务OS
+#### MultiprogOS：分时多任务OS
 
-三叠纪“腔骨龙”操作系统 – Timesharing OS 则可以**抢占**应用的执行，从而可以公平和高效地分时执行多个应用，提高系统的整体效率。
+BatchOS可**抢占**应用的执行，从而可以公平和高效地**分时执行**多个应用，提高系统的整体效率。
 
 ![bg right:52% 100%](figs/time-task-multiprog-os-detail.png)
 
 ---
 
-#### 分时多任务操作系统的基本思路
+#### MultiprogOS的基本思路
 - 设置时钟中断
 - 在收到时钟中断后统计任务的使用时间片
 - 在时间片用完后，切换任务
@@ -828,11 +954,10 @@ match scause.cause() {
 
 ### 课程实验一
 
-* 创建实验提交仓库
-    * 清华git访问入口：[UniLab Platform](https://lab.cs.tsinghua.edu.cn/unilab/home)
-    * 学堂在线同学的[访问入口](https://www.yuque.com/xyong-9fuoz/qczol5/opl4y4#DiUQ0)(待补充)
-        * rCore、uCore-RV、uCore-x86
-* 实验任务
-    * 第三章：多道程序与分时多任务 -> chapter3练习 -> 获取任务信息 -> 增加一个系统调用`sys_task_info()`
+* 实验任务：增加一个系统调用`sys_task_info()`
+    * [uCore实验一任务描述](https://learningos.github.io/uCore-Tutorial-Guide-2023A/chapter3/5exercise.html#id1)
+    * [rCore实验一任务描述](https://learningos.github.io/rCore-Tutorial-Guide-2023A/chapter3/5exercise.html#chapter3)
 * 实验提交要求
-    * 2023年3月26日24点前；
+    * 在自己的已创建实验仓库中提交完整的代码和文档；
+    * 在荷塘雨课中提交实验一报告链接和commit ID；
+    * 实验截止时间：布置实验任务后的第13天（10月22日24点）；
