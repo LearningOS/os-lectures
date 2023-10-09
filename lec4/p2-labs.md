@@ -474,8 +474,9 @@ dst.copy_from_slice(src);
 
 ---
 
-#### 时间片（slice）
-
+#### 时间片（time slice）
+- 应用执行过程中的一个时间片段称为时间片（time slice）
+#### 任务片（task slice）
 - 应用执行过程中的一个时间片段上的执行片段或空闲片段，称为 “ 计算任务片 ” 或“ 空闲任务片 ”，统称**任务片**（task slice）
 ![bg right 100%](figs/task-multiprog-os-detail.png)
 
