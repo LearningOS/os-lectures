@@ -440,7 +440,7 @@ dst.copy_from_slice(src);
 <pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-number">1</span><span class="hljs-comment">// os/src/task/context.rs</span>
 <span class="hljs-number">2</span> <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">TaskContext</span></span> {
 <span class="hljs-number">3</span>    ra: <span class="hljs-built_in">usize</span>,      <span class="hljs-comment">//函数返回地址</span>
-<span class="hljs-number">4</span>    sp: <span class="hljs-built_in">usize</span>,      <span class="hljs-comment">//用户栈指针</span>
+<span class="hljs-number">4</span>    sp: <span class="hljs-built_in">usize</span>,      <span class="hljs-comment">//task内核栈指针</span>
 <span class="hljs-number">5</span>    s: [<span class="hljs-built_in">usize</span>; <span class="hljs-number">12</span>], <span class="hljs-comment">//属于Callee函数保存的寄存器集s0~s11</span>
 <span class="hljs-number">6</span>}
 </span></span></foreignObject></svg></code></pre>
@@ -498,8 +498,12 @@ dst.copy_from_slice(src);
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="43" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="43" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>普通控制流：从应用程序员的角度来看控制流</h4>
 <ul>
-<li>控制流是应用程序员编写的应用程序的<strong>执行序列</strong>，这些序列是程序员<strong>预设好的</strong>。</li>
-<li>称为 <strong>普通控制流</strong> (CCF，Common Control Flow)</li>
+<li><strong>普通控制流</strong> (CCF，Common Control Flow)  是指程序中的常规控制流程,比如顺序执行、条件判断、循环等基本结构。是程序员编写的程序的<strong>执行序列</strong>，这些序列是程序员<strong>预设好的</strong>。
+<ul>
+<li>普通控制流是可预测的。</li>
+<li>普通控制流是程序正常运行所遵循的流。</li>
+</ul>
+</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="44" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
