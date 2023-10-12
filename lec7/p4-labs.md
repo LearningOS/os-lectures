@@ -21,24 +21,43 @@ Process OS(POS)
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 ### 1. 实验目标和步骤
-- 实验目标
-- 实践步骤
 2. 代码结构
 3. 应用程序设计
 4. 内核程序设计
 
-![bg right:57% 100%](figs/process-os-detail.png)
+</div>
+
+<div class="col">
+
+- 实验目标
+- 实践步骤
+
+</div>
+
+</div>
 
 ---
 
-#### 以往目标
+##### 以往目标
 
 提高性能、简化开发、加强安全
 - Address Space OS
@@ -50,7 +69,7 @@ Process OS(POS)
 
 ---
 
-#### 实验目标
+##### 实验目标
 
 增强进程管理和资源管理、提高性能、简化开发、加强安全
 
@@ -63,7 +82,7 @@ Process OS(POS)
 
 ---
 
-#### 实验要求
+##### 实验要求
 
 - 理解进程概念
 - 理解进程的动态管理机制的设计与实现
@@ -75,24 +94,21 @@ Process OS(POS)
 
 ![bg right 80%](figs/troodon.png)
 
-
-
 ---
 
-#### 总体思路
+##### 总体思路
 
 ![bg right:76% 90%](figs/process-os-detail.png)
 
-
 ---
 
-#### 总体思路
+##### 总体思路
 
 ![bg right:76% 85%](figs/process-os-key-structures.png)
 
 ---
 
-#### 总体思路
+##### 总体思路
 
 - 编译：应用程序和内核独立编译，合并为一个镜像
 - 编译：不同应用程序可采用统一的起始地址
@@ -101,9 +117,9 @@ Process OS(POS)
 - 运行：特权级切换，进程与OS相互切换
 - 运行：切换地址空间，跨地址空间访问数据
 
-
 ---
-#### 历史背景
+
+##### 历史背景
 - 1965：描述未来的 MULTICS 操作系统
   - MIT 的 Fernando J. Corbató 教授牵头
   - 参与单位：MIT, GE(通用电气公司), AT&T Bell Labs
@@ -114,7 +130,7 @@ Process OS(POS)
   - 它的许多特征影响了以后的操作系统命令行界面的发展
 ---
 
-#### 实践步骤
+##### 实践步骤
 ```
 git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 cd rCore-Tutorial-v3
@@ -124,7 +140,8 @@ make run
 ```
 
 ---
-#### 实践步骤
+
+##### 实践步骤
 ```
 [RustSBI output]
 ...
@@ -135,10 +152,9 @@ Rust user shell
 ```
 操作系统启动``shell``后，用户可以在``shell``中通过敲入应用名字来执行应用。
 
-
 ---
 
-#### 软件架构
+##### 软件架构
 
 - 管理进程
     - 创建
@@ -151,17 +167,35 @@ Rust user shell
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 ### 2. 代码结构
 3. 应用程序设计
 4. 内核程序设计
 
-![bg right:65% 100%](figs/process-os-detail.png)
+</div>
+
+<div class="col">
+
+</div>
+
+</div>
 
 ---
 
-#### 改进OS
+##### 改进OS
 ```
 ├── os
     ├── build.rs(修改：基于应用名的应用构建器)
@@ -173,12 +207,12 @@ Rust user shell
 
 ---
 
-#### 改进OS
+##### 改进OS
 ```
 ├── os
     └── src
          ├── syscall
-             ├──fs.rs(修改：新增 sys_read)
+             ├── fs.rs(修改：新增 sys_read)
              ├── mod.rs(修改：新的系统调用的分发处理)
              └── process.rs（修改：新增 sys_getpid/fork/exec/waitpid）
          ├── task
@@ -191,21 +225,38 @@ Rust user shell
               ├── mod.rs(修改：对于系统调用的实现进行修改以支持进程系统调用)
 ```
 
-
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 2. 代码结构
 ### 3. 应用程序设计
 4. 内核程序设计
 
-![bg right:63% 90%](figs/process-os-detail.png)
+</div>
+
+<div class="col">
+
+</div>
+
+</div>
 
 ---
 
-#### 理解进程
+##### 理解进程
 
 - 应用角度
     - **进程** 是正在执行的应用
@@ -217,7 +268,7 @@ Rust user shell
 
 ---
 
-#### 进程管理系统调用
+##### 进程管理系统调用
 
 ```
 /// 功能：当前进程 fork 出来一个子进程。
@@ -234,11 +285,9 @@ pub fn sys_exec(path: &str) -> isize;
 ```
 <!-- ![bg right:50% 100%](figs/app-as-full.png) -->
 
-
-
 ---
 
-#### 进程管理系统调用
+##### 进程管理系统调用
 
 ```
 /// 功能：当前进程等待一个子进程变为僵尸进程，回收其全部资源并收集其返回值。
@@ -250,10 +299,9 @@ pub fn sys_exec(path: &str) -> isize;
 pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 ```
 
-
 ---
 
-#### 应用``shell``的执行流程
+##### 应用``shell``的执行流程
 1. 通过``sys_read``获取字符串（即文件名）
 2. 通过``sys_fork``创建子进程
 3. 在子进程中通过``sys_exec``创建新应用的进程
@@ -263,20 +311,39 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 2. 代码结构
 3. 应用程序设计
 ### 4. 内核程序设计
-- 应用的链接与加载支持
-- 核心数据结构
-- 进程管理机制实现
 
-![bg right:57% 90%](figs/process-os-detail.png)
+</div>
+
+<div class="col">
+
+#### 4.1 应用的链接与加载支持
+4.2 核心数据结构
+4.3 进程管理机制实现
+
+</div>
+
+</div>
 
 ---
 
-#### 应用的链接与加载支持
+##### 应用的链接与加载支持
 
 在编译操作系统的过程中，会生成如下的 link_app.S 文件
 ```
@@ -291,37 +358,54 @@ pub fn sys_waitpid(pid: isize, exit_code: *mut i32) -> isize;
 19 app_0_end:              #app0的结束位置
 ```
 
-
 ---
 
-#### 基于应用名的应用加载
+##### 基于应用名的应用加载
 
 在加载器 loader.rs 中，分析 link_app.S 中的内容，并用一个全局可见的 **只读** 向量 ``APP_NAMES`` 来按照顺序将所有应用的名字保存在内存中，为通过 exec 系统调用创建新进程做好了前期准备。
-
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 2. 代码结构
 3. 应用程序设计
-4. 内核程序设计
-- 应用的链接与加载支持
-### 核心数据结构
-- 进程管理机制实现
+4. **内核程序设计**
 
-![bg right:57% 100%](figs/process-os-detail.png)
+</div>
+
+<div class="col">
+
+4.1 应用的链接与加载支持
+#### 4.2 核心数据结构
+4.3 进程管理机制实现
+
+</div>
+
+</div>
 
 ---
 
-#### 核心数据结构间的关系
+##### 核心数据结构间的关系
 
 ![bg right:70% 100%](figs/process-os-key-structures.png)
 
 ---
 
-#### 进程控制块TCB
+##### 进程控制块TCB
 
 进程抽象的对应实现是进程控制块 -- TCB  ``TaskControlBlock``
 ```rust
@@ -334,11 +418,9 @@ pub struct TaskControlBlock {
 }
 ```
 
-
-
 ---
 
-#### 进程控制块TCB
+##### 进程控制块TCB
 
 进程抽象的对应实现是进程控制块 -- TCB  ``TaskControlBlock``
 ```rust
@@ -356,7 +438,7 @@ pub struct TaskControlBlockInner {
 
 ---
 
-#### 进程管理器``TaskManager``
+##### 进程管理器``TaskManager``
 
 - 任务管理器自身仅负责管理所有就绪的进程
 
@@ -368,7 +450,7 @@ pub struct TaskManager {
 
 ---
 
-#### 处理器管理结构
+##### 处理器管理结构
 
 处理器管理结构 ``Processor`` 描述CPU 执行状态
 ```rust
@@ -381,25 +463,42 @@ pub struct Processor {
 - 维护在一个处理器上正在执行的任务，可以查看它的信息或是对它进行替换
 - `Processor` 有一个 idle 控制流，功能是尝试从任务管理器中选出一个任务来在当前 CPU 核上执行，有自己的CPU启动内核栈上
 
-
-
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 2. 代码结构
 3. 应用程序设计
-4. 内核程序设计
-- 应用的链接与加载支持
-- 核心数据结构
-### 进程管理机制实现
+4. **内核程序设计**
 
-![bg right:55% 100%](figs/process-os-detail.png)
+</div>
+
+<div class="col">
+
+4.1 应用的链接与加载支持
+4.2 核心数据结构
+#### 4.3 进程管理机制实现
+
+</div>
+
+</div>
 
 ---
 
-#### 进程管理机制实现概述
+##### 进程管理机制实现概述
 
 1. 创建初始进程：创建第一个用户态进程 `initproc`
 2. 进程生成机制：介绍进程相关的系统调用 `sys_fork`/`sys_exec` 
@@ -408,10 +507,9 @@ pub struct Processor {
 5. 进程资源回收机制：父进程通过 `sys_waitpid` 收集该进程的信息并回收其资源
 6. 字符输入机制：通过`sys_read` 系统调用获得字符输入
 
-
 ---
 
-#### 创建初始进程
+##### 创建初始进程
 
 ```rust
 lazy_static! {
@@ -425,11 +523,9 @@ pub fn add_initproc() {
 - `TaskControlBlock::new` 会解析`initproc`的ELF执行文件格式，并建立应用的地址空间、内核栈等，形成一个就绪的进程控制块
 - `add_task`会把进程控制块加入就绪队列中
 
-
-
 ---
 
-#### 创建新进程`fork()`
+##### 创建新进程`fork()`
 
 复制父进程内容并构造新的进程控制块
 
@@ -445,7 +541,7 @@ pub fn fork(self: &Arc<TaskControlBlock>) -> Arc<TaskControlBlock> {...}
 
 ---
 
-#### 加载新应用`exec()`
+##### 加载新应用`exec()`
 
 用新应用的 ELF 可执行文件中的代码和数据替换原有的应用地址空间中的内容
 
@@ -455,10 +551,9 @@ pub fn exec(&self, elf_data: &[u8]) {...}
 - 回收已有应用地址空间，基于ELF 文件的全新的地址空间直接替换已有应用地址空间
 - 修改进程控制块的 Trap 上下文，将解析得到的应用入口点、用户栈位置以及一些内核的信息进行初始化
 
-
 ---
 
-#### 进程调度机制
+##### 进程调度机制
 
 暂停当前任务并切换到下一个任务
 
@@ -472,7 +567,7 @@ pub fn exec(&self, elf_data: &[u8]) {...}
 
 ---
 
-#### 进程资源回收机制
+##### 进程资源回收机制
 
 进程退出`exit_current_and_run_next` 
 - 当前进程控制块从``PROCESSOR``中取出，修改其为僵尸进程
@@ -481,10 +576,9 @@ pub fn exec(&self, elf_data: &[u8]) {...}
 - 释放应用地址空间
 - 接着调用 schedule 函数来触发调度并切换任务
 
-
 ---
 
-#### 进程资源回收机制
+##### 进程资源回收机制
 
 等待子进程退出`sys_waitpid`
 
@@ -495,7 +589,7 @@ pub fn exec(&self, elf_data: &[u8]) {...}
 
 ---
 
-#### 字符输入机制
+##### 字符输入机制
 
 ```rust
 pub fn sys_read(fd: usize, buf: *const u8, len: usize) -> isize {
@@ -506,7 +600,9 @@ pub fn sys_read(fd: usize, buf: *const u8, len: usize) -> isize {
 - 调用 sbi 子模块提供的从键盘获取输入的接口 `console_getchar` 
 
 ---
-#### 支持进程的操作系统POS
+
+##### 支持进程的操作系统POS
+
 - 进程概念与进程实现的关系
 - 进程管理机制
 - 基本调度机制

@@ -19,20 +19,41 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 ### 1. 处理机调度概念
-  - 处理机调度的时机和策略
-  - 比较调度算法的准则
 2. 调度算法
+
+</div>
+
+<div class="col">
+
+#### 1.1 处理机调度的时机和策略
+1.2 比较调度算法的准则
+
+</div>
+
+</div>
 
 ---
 
-#### CPU资源的时分复用
+##### CPU资源的时分复用
 
 - 进程切换：CPU资源的当前占用者切换
   - 保存当前进程在PCB中的执行上下文(CPU状态)
@@ -47,7 +68,8 @@ backgroundColor: white
 
 
 ---
-#### 调度时机
+
+##### 调度时机
 
 - 内核执行调度的条件
    - 进程从运行状态切换到等待/就绪状态
@@ -59,7 +81,7 @@ backgroundColor: white
 
 ---
 
-#### 调度策略
+##### 调度策略
 
 确定如何从就绪队列中选择下一个执行进程
 - 要解决的问题
@@ -71,7 +93,8 @@ backgroundColor: white
    - 哪一个策略/算法较好?
  
 ---
-#### 处理机资源的使用模式
+
+##### 处理机资源的使用模式
 - 进程在CPU计算和I/O操作间交替
    - 每次调度决定在下一个CPU计算时将哪个工作交给CPU
    - 在时间片机制下，进程可能在结束当前CPU计算前被迫放弃CPU
@@ -82,15 +105,36 @@ backgroundColor: white
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
 
-1. 处理机调度概念
-  - 处理机调度的时机和策略
-### 比较调度算法的准则
+<div class="container">
+
+<div class="col">
+
+1. **处理机调度概念**
 2. 调度算法
+
+</div>
+
+<div class="col">
+
+1.1 处理机调度的时机和策略
+#### 1.2 比较调度算法的准则
+
+</div>
+
+</div>
 
 ---
 
-#### 比较调度算法的准则
+##### 比较调度算法的准则
 - CPU使用率 : CPU处于忙状态的时间百分比
 - 吞吐量：单位时间内完成的进程数量
 - 周转时间：进程从初始化到结束(包括等待)的总时间
@@ -110,8 +154,9 @@ backgroundColor: white
 
  
 ---
-#### 比较调度算法的吞吐量与延迟准则
-- 调度算法的要求：   希望“更快”的服务
+
+##### 比较调度算法的吞吐量与延迟准则
+- 调度算法的要求：希望“更快”的服务
 - 什么是更快？
   - 传输文件时的高带宽，调度算法的高吞吐量
   - 玩游戏时的低延迟，调度算法的低响应延迟
@@ -122,7 +167,8 @@ backgroundColor: white
 
  
 ---
-#### 比较调度算法的响应时间准则
+
+##### 比较调度算法的响应时间准则
 - 减少响应时间
   - 及时处理用户的输入请求，尽快将输出反馈给用户
 - 减少平均响应时间的波动
@@ -133,7 +179,8 @@ backgroundColor: white
 
  
 ---
-#### 比较调度算法的吞吐量准则
+
+##### 比较调度算法的吞吐量准则
 - 增加吞吐量
    - 减少开销（操作系统开销，上下文切换）
    - 系统资源的高效利用（CPU，I/O设备）
@@ -145,7 +192,8 @@ backgroundColor: white
 
  
 ---
-#### 比较调度算法的公平准则
+
+##### 比较调度算法的公平准则
 
 一个用户比其他用户运行更多的进程时，公平吗？怎么办？
 
@@ -158,19 +206,37 @@ backgroundColor: white
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 处理机调度概念
 ### 2. 调度算法
-- 先来先服务算法FCFS、短作业优先算法SJF
-- 最短剩余时间算法SRT、最高响应比优先算法HRRN
-- 时间片轮转算法RR
-- 多级队列调度算法MQ、多级反馈队列算法MLFQ
-- 公平共享调度算法FSS
 
+</div>
+
+<div class="col">
+
+#### 2.1 FCFS、SJF、SRT和HRRN
+2.2 时间片轮转算法RR
+2.3 MQ、MLFQ和FSS
+
+</div>
+
+</div>
 
 ---
 
-#### 先来先服务调度算法FCFS
+##### 先来先服务调度算法FCFS
 
 FCFS: First Come, First Served
 - 依据进程进入就绪状态的先后顺序排列
@@ -180,7 +246,7 @@ FCFS: First Come, First Served
   
 ---
 
-#### 先来先服务调度算法示例
+##### 先来先服务调度算法示例
 
 - 示例：3个进程，计算时间分别为12,3,3
 
@@ -189,7 +255,7 @@ FCFS: First Come, First Served
    
 ---
 
-#### 先来先服务调度算法的特征
+##### 先来先服务调度算法的特征
 
 - 优点：简单
 - 缺点
@@ -201,7 +267,7 @@ I/O密集型进程也等待
   
 ---
 
-#### 短作业优先调度算法SJF
+##### 短作业优先调度算法SJF
 
 Short Job First
 - 选择就绪队列中执行时间最短作业/进程占用CPU进入运行状态
@@ -211,7 +277,7 @@ Short Job First
 
 ---
 
-#### 短作业优先调度算法的特征
+##### 短作业优先调度算法的特征
 
 **具有最优平均周转时间**
 
@@ -221,7 +287,7 @@ Short Job First
 
  ---
 
-#### 短作业优先调度算法的特征
+##### 短作业优先调度算法的特征
 
 - 可能导致饥饿
   - 连续的短作业/进程流会使长作业/进程无法获得CPU资源
@@ -233,7 +299,7 @@ Short Job First
      - 用户不知道怎么办？
 ---
 
-#### 短作业优先算法的执行时间预估
+##### 短作业优先算法的执行时间预估
 
 - 用历史的执行时间来预估未来的执行时间
 
@@ -246,7 +312,7 @@ $\tau_{n+1} = \alpha t_n+(1-\alpha) \alpha t_{n-1} + (1-\alpha)  (1-\alpha) \alp
 
 ---
 
-#### 短作业优先算法的执行时间预估
+##### 短作业优先算法的执行时间预估
 
 - 执行时间预估
  ![w:800](figs/sched-sjf-time.png) 
@@ -255,7 +321,7 @@ $\tau_{n+1} = \alpha t_n+(1-\alpha) \alpha t_{n-1} + (1-\alpha)  (1-\alpha) \alp
 
 ---
 
-#### 最短剩余时间算法SRT
+##### 最短剩余时间算法SRT
 
 Shortest Remaining Time, SRT
 
@@ -263,7 +329,7 @@ Shortest Remaining Time, SRT
 
 ---
 
-#### 最高响应比优先算法HRRN
+##### 最高响应比优先算法HRRN
 
 Highest Response Ratio Next，HRRN
 
@@ -273,11 +339,11 @@ Highest Response Ratio Next，HRRN
 
 ---
 
-#### 最高响应比优先算法HRRN
+##### 最高响应比优先算法HRRN
 
 - 选择就绪队列中响应比R值最高的进程
 
-$Ｒ＝（ｗ+s)/s$
+$Ｒ＝(ｗ+s)/s$
 w: 就绪等待时间(waiting time)
 s: 执行时间(service time)
 
@@ -288,18 +354,37 @@ s: 执行时间(service time)
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 处理机调度概念
-2. 调度算法
-- 先来先服务算法FCFS、短作业优先算法SJF
-- 最短剩余时间算法SRT、最高响应比优先算法HRRN
-### 时间片轮转算法RR
-- 多级队列调度算法MQ、多级反馈队列算法MLFQ
-- 公平共享调度算法FSS
+2. **调度算法**
+
+</div>
+
+<div class="col">
+
+2.1 FCFS、SJF、SRT和HRRN
+#### 2.2 时间片轮转算法RR
+2.3 MQ、MLFQ和FSS
+
+</div>
+
+</div>
 
 ---
 
-#### 时间片轮转算法RR
+##### 时间片轮转算法RR
 
 RR, Round-Robin
 
@@ -312,13 +397,13 @@ RR, Round-Robin
 
  ---
 
-#### 时间片轮转算法示例
+##### 时间片轮转算法示例
 
  ![w:700](figs/sched-rr-2.png) 
 
 ---
 
-#### 时间片轮转算法的时间片长度参数
+##### 时间片轮转算法的时间片长度参数
 
 - RR算法开销： 额外的上下文切换
 - 时间片太大
@@ -332,7 +417,7 @@ RR, Round-Robin
 
 ---
 
-#### 比较FCFS和RR
+##### 比较FCFS和RR
 
 ![w:800](figs/sched-rr-3.png) 
 
@@ -340,18 +425,37 @@ RR, Round-Robin
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 处理机调度概念
-2. 调度算法
-- 先来先服务算法FCFS、短作业优先算法SJF
-- 最短剩余时间算法SRT、最高响应比优先算法HRRN
-- 时间片轮转算法RR
-### 多级队列调度算法MQ、多级反馈队列算法MLFQ
-- 公平共享调度算法FSS
+2. **调度算法**
+
+</div>
+
+<div class="col">
+
+2.1 FCFS、SJF、SRT和HRRN
+2.2 时间片轮转算法RR
+#### 2.3 MQ、MLFQ和FSS
+
+</div>
+
+</div>
 
 ---
 
-#### 多级队列调度算法MQ
+##### 多级队列调度算法MQ
 
 MQ, MultiQueue
 - 就绪队列被划分成多个独立的子队列
@@ -364,7 +468,7 @@ MQ, MultiQueue
  - 规则2：如果A的优先级 = B的优先级，轮转运行A和B。
 ---
 
-#### 多级队列调度算法MQ
+##### 多级队列调度算法MQ
 
 - 队列间的调度
   - 固定优先级
@@ -377,7 +481,7 @@ MQ, MultiQueue
 
 ---
 
-#### 多级反馈队列调度算法MLFQ
+##### 多级反馈队列调度算法MLFQ
 
 MLFQ, Multi-Level Feedback Queue
 - 1962年，MIT教授Corbato首次提出多级反馈队列，应用于兼容时分共享系统（CTSS-Compatible Time-Sharing System）
@@ -388,7 +492,7 @@ MLFQ, Multi-Level Feedback Queue
 
 ---
 
-#### 多级反馈队列调度算法MLFQ
+##### 多级反馈队列调度算法MLFQ
 
 - 关键问题：没有完备的知识如何调度？
    - 对进程工作长度未知情况下，如何构建能同时减少响应时间和周转时间的调度程序？
@@ -399,7 +503,7 @@ MLFQ, Multi-Level Feedback Queue
    - 如果A的优先级 = B的优先级，轮转/FIFO运行A和B
 ---
 
-#### 多级反馈队列调度算法MLFQ
+##### 多级反馈队列调度算法MLFQ
 
 基本调度规则
    - 工作进入系统时，放在最高优先级（最上层队列）
@@ -411,7 +515,7 @@ MLFQ, Multi-Level Feedback Queue
  
 ---
 
-#### 三个优先级队列的MLFQ调度例子
+##### 三个优先级队列的MLFQ调度例子
 
 - CPU密集型进程首先进入最高优先级队列；
 - 执行1ms时间片后，调度器将进程的优先级减1，进入次高优先级队列；
@@ -419,7 +523,7 @@ MLFQ, Multi-Level Feedback Queue
 
 ---
 
-#### 多级反馈队列调度算法MLFQ
+##### 多级反馈队列调度算法MLFQ
 
 - MLFQ算法的特征
    - CPU密集型进程的优先级下降很快
@@ -433,8 +537,7 @@ MLFQ, Multi-Level Feedback Queue
  
 ---
 
-
-#### 多级反馈队列调度算法MLFQ
+##### 多级反馈队列调度算法MLFQ
 
 基本调度规则
    - 如果A的优先级 > B的优先级，运行A（不运行B）
@@ -445,7 +548,7 @@ MLFQ, Multi-Level Feedback Queue
 
 ---
 
-#### 公平共享调度算法FSS
+##### 公平共享调度算法FSS
 
 FSS, Fair Share Scheduling
 - 控制用户对系统资源的访问
@@ -459,7 +562,7 @@ FSS, Fair Share Scheduling
   
 ---
 
-#### 调度算法的特征
+##### 调度算法的特征
 
 - 先来先服务算法
    - 平均等待时间较差 
@@ -473,7 +576,7 @@ FSS, Fair Share Scheduling
   
 ---
 
-#### 调度算法的特征
+##### 调度算法的特征
 
 - 最高响应比优先算法
    -  基于短作业优先调度，不可抢占
@@ -490,8 +593,9 @@ FSS, Fair Share Scheduling
 ### 小结
 
 1. 处理机调度概念
-- 处理机调度的时机和策略、比较调度算法的准则
+   - 处理机调度的时机和策略
+   - 比较调度算法的准则
 2. 调度算法
-- FCFS、SJF、SRT、HRRN
-- RR
-- MQ、MLFQ、FSS
+   - FCFS、SJF、SRT、HRRN
+   - RR
+   - MQ、MLFQ、FSS
