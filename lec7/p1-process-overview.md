@@ -19,22 +19,43 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 ### 1. 进程的基本概念
-   - 进程管理的需求背景
-   - 进程的概念
-   - 进程与任务
 2. 进程管理
 3. 关于Fork()的思考
 
+</div>
+
+<div class="col">
+
+- 进程管理的需求背景
+- 进程的概念
+- 进程与任务
+
+</div>
+
+</div>
+
 ---
 
-#### 进程管理的需求背景
+##### 进程管理的需求背景
 
 - 背景
   - **硬件**越来越强大
@@ -49,7 +70,7 @@ backgroundColor: white
 
 ---
 
-#### 进程管理的需求背景
+##### 进程管理的需求背景
 
 - 操作系统需要**与用户交互**的接口/界面
      - **命令行**界面（CLI）
@@ -60,10 +81,9 @@ backgroundColor: white
 
 ![bg right:53% 90%](figs/cli-gui.png) 
 
-
 ---
 
-#### 进程管理的需求背景
+##### 进程管理的需求背景
 
 - 用户需要**动态管理和控制应用执行** 
 - 在应用的执行过程中，用户通过界面主动给操作系统发出**请求**，来**创建并执行**新的应用程序，**暂停或停止**应用程序的执行等。
@@ -72,7 +92,7 @@ backgroundColor: white
 
 ---
 
-#### 引入进程(Process)概念的目的
+##### 引入进程(Process)概念的目的
   - 清晰地**刻画**操作系统系统中程序运行的动态内在规律
   - 有效**管理和调度**多个程序的执行和对资源的使用
 
@@ -80,7 +100,7 @@ backgroundColor: white
 
 ---
 
-#### 进程提供给应用程序的抽象
+##### 进程提供给应用程序的抽象
 
 - 从应用角度看，进程提供给应用程序的**关键抽象**
     - 独立的逻辑**控制流**：好像自己的程序独占地使用处理器
@@ -90,15 +110,15 @@ backgroundColor: white
 
 ---
 
-#### 从实现角度看进程
+##### 从实现角度看进程
 
 从实现角度看，进程是操作系统建立程序运行中的过程管理相关的**数据结构**，以及对数据结构的**动态操作**过程
 
 ![bg right:55% 90%](figs/cli-gui.png) 
 
-
 ---
-#### 从资源角度看进程
+
+##### 从资源角度看进程
 
 - 从资源角度看，进程是程序执行中**占用资源的集合**
   - 共享资源 v.s. 独占资源
@@ -110,7 +130,7 @@ backgroundColor: white
 
 ---
 
-#### 什么是进程？
+##### 什么是进程？
 
 - 简单定义
   - 一个程序的执行**过程**
@@ -124,35 +144,7 @@ backgroundColor: white
 
 ---
 
-#### 任务和进程
-
-从**资源占用**和**执行过程**两个方面分析
-
-相同点：
-- 从用户的角度看，任务和进程都表示运行的程序
-- 从操作系统的角度看，任务和进程都表示为一个程序的执行过程
-- 从资源使用的角度看
-    - 二者都能够被操作系统打断并通过切换来分时占用 CPU 资源
-    - 都需要地址空间来放置代码和数据
-
----
-
-#### 任务和进程
-
-从**资源占用**和**执行过程**两个方面分析
-
-相同点：
-- 从执行过程的角度看
-  - 都有从开始到结束运行这样的**生命周期**
-    - 任务生命周期 --> 进程生命周期
-    - 任务的三状态模型 --> 进程的三状态模型
-    - 任务切换 --> 进程切换
-    - 任务上下文  --> 进程上下文
-
-
----
-
-#### 任务和进程
+##### 任务和进程
 
 从**资源占用**和**执行过程**两个方面分析
 
@@ -165,7 +157,7 @@ backgroundColor: white
 
 ---
 
-#### 进程是计算机科学中的重要概念
+##### 进程是计算机科学中的重要概念
 
 **进程**是计算机科学中最深刻、最成功的概念之一(from CSAPP)
 ![bg right:65% 90%](figs/cli-gui.png) 
@@ -173,18 +165,39 @@ backgroundColor: white
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 进程的基本概念
 ### 2. 进程管理
-  - 进程管理系统调用
-  - 进程控制块PCB
-  - 进程创建和程序加载
-  - 进程等待与退出
 3. 关于Fork()的思考
+
+</div>
+
+<div class="col">
+
+#### 2.1 进程管理系统调用
+2.2 进程控制块PCB
+2.3 进程创建和程序加载
+2.4 进程等待与退出
+
+</div>
+
+</div>
 
 ---
 
-#### 进程管理系统调用产生背景
+##### 进程管理系统调用产生背景
 
 - 如何让应用**方便地动态执行其他应用**？
    - process_id = execute(app_name)？
@@ -196,7 +209,7 @@ backgroundColor: white
 
 ---
 
-#### 进程管理系统调用
+##### 进程管理系统调用
 
 | 系统调用名 | 含义 |
 | -------------------------- | ------ |
@@ -206,10 +219,9 @@ backgroundColor: white
 | ``int waitpid(int pid, int *status)``  |  **等待**`pid`子进程退出，得到其 ``*status``退出状态。    |
 | ``int getpid()``           |  **获得**当前进程的PID。    |
 
-
 ---
 
-#### 进程管理应用示例：``getpid()``
+##### 进程管理应用示例：``getpid()``
 
 ```rust
 // usr/src/bin/hello_world.rs
@@ -222,7 +234,7 @@ pub fn main() -> i32 {
 
 ---
 
-#### 进程管理应用示例：``fork()``和``exec()``
+##### 进程管理应用示例：``fork()``和``exec()``
 
 ```rust
 // usr/src/bin/forkexec.rs
@@ -248,7 +260,7 @@ pub fn main() -> i32 {
 
 ---
 
-#### 进程管理应用示例：``fork()``和``exec()``
+##### 进程管理应用示例：``fork()``和``exec()``
 
 执行结果
 ```
@@ -267,40 +279,58 @@ Shell: Process 2 exited with code 0
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 进程的基本概念
-2. 进程管理
-  - 进程管理系统调用
-### 进程控制块PCB
-  - 进程创建和程序加载
-  - 进程等待与退出
+2. **进程管理**
 3. 关于Fork()的思考
+
+</div>
+
+<div class="col">
+
+2.1 进程管理系统调用
+#### 2.2 进程控制块PCB
+2.3 进程创建和程序加载
+2.4 进程等待与退出
+
+</div>
+
+</div>
 
 ---
 
-#### 进程控制块PCB
+##### 进程控制块PCB
 
 ![bg right:70% 95%](figs/process-os-key-structures.png)
 
-
 ---
 
-#### shell执行用户输入命令
+##### shell执行用户输入命令
 
 ![w:1200](figs/forkexec-app.png) 
 
-
 ---
 
-#### shell执行中的进程控制块
+##### shell执行中的进程控制块
 
 ![w:550](figs/process-os-key-structures.png)
 ![bg right:50% 100%](figs/forkexec-app.png) 
 
-
 ---
 
-#### 进程切换
+##### 进程切换
 
 - 进程切换过程
    -   **暂停**当前运行进程，从运行状态变成其他状态
@@ -312,10 +342,9 @@ Shell: Process 2 exited with code 0
 
 ![bg right:40% 100%](figs/process-os-key-structures.png)
 
-
 ---
 
-#### 进程生命周期
+##### 进程生命周期
 
 - 进程切换
    -   暂停当前运行进程，从运行状态变成其他状态
@@ -330,18 +359,39 @@ Shell: Process 2 exited with code 0
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 进程的基本概念
-2. 进程管理
-  - 进程管理系统调用
-  - 进程控制块PCB
-### 进程创建和程序加载
-  - 进程等待与退出
+2. **进程管理**
 3. 关于Fork()的思考
+
+</div>
+
+<div class="col">
+
+2.1 进程管理系统调用
+2.2 进程控制块PCB
+#### 2.3 进程创建和程序加载
+2.4 进程等待与退出
+
+</div>
+
+</div>
 
 ---
 
-#### Windows进程创建API： ``CreateProcess(filename)``
+##### Windows进程创建API： ``CreateProcess(filename)``
 
   - 创建时关闭所有在子进程里的文件描述符                
      -  ``CreateProcess(filename, CLOSE_FD)``
@@ -350,7 +400,7 @@ Shell: Process 2 exited with code 0
  
 ---
 
-#### 进程创建/加载
+##### 进程创建/加载
 
 - Unix进程创建/加载系统调用： fork/exec
    - fork()把一个进程复制成两个进程 
@@ -361,7 +411,7 @@ Shell: Process 2 exited with code 0
   ![bg right:55% 90%](figs/fork-exec.png)
 ---
 
-#### 用fork和exec创建进程的示例
+##### 用fork和exec创建进程的示例
 
 ```C
 int pid = fork()；		// 创建子进程
@@ -377,7 +427,7 @@ if(pid == 0) {			// 子进程在这里继续
  
 ---
 
-#### 用fork和exec创建进程的示例
+##### 用fork和exec创建进程的示例
 
 ```C
 int pid = fork()；		// 创建子进程
@@ -393,14 +443,14 @@ if(pid == 0) {			// 子进程在这里继续
 
 ---
 
-#### 进程创建``fork()``的执行过程
+##### 进程创建``fork()``的执行过程
 
 - 对于子进程而言，fork()是对父进程地址空间的一次复制过程
  ![w:1000](figs/fork.png) 
 
 ---
 
-#### 程序加载并执行的示例
+##### 程序加载并执行的示例
 
 - 系统调用exec( )加载新程序取代当前运行进程 (代码是否有问题???)
 ```C
@@ -421,7 +471,7 @@ if (pid == 0) {			        // 子进程在这里继续
  
 ---
 
-#### 程序加载并执行的示例
+##### 程序加载并执行的示例
 
 - 系统调用exec( )加载新程序取代当前运行进程
 ```C
@@ -443,7 +493,7 @@ if (pid < 0) { /* error occurred */
  
 ---
 
-#### 程序加载并执行的过程
+##### 程序加载并执行的过程
 
 在shell中调用fork()后加载计算器
 
@@ -453,7 +503,7 @@ if (pid < 0) { /* error occurred */
  
 ---
 
-#### 程序加载并执行的过程
+##### 程序加载并执行的过程
 
 在shell中调用fork()后加载计算器
 
@@ -463,7 +513,7 @@ if (pid < 0) { /* error occurred */
  
 ---
 
-#### 程序加载并执行的过程
+##### 程序加载并执行的过程
 
 在shell中调用fork()后加载计算器
 
@@ -472,7 +522,7 @@ if (pid < 0) { /* error occurred */
   
 ---
 
-#### 程序加载并执行的过程
+##### 程序加载并执行的过程
 
 在shell中调用fork()后加载计算器
 
@@ -482,7 +532,7 @@ if (pid < 0) { /* error occurred */
  
 ---
 
-#### 程序加载并执行的过程
+##### 程序加载并执行的过程
 
 在shell中调用fork()后加载计算器
 
@@ -492,16 +542,15 @@ if (pid < 0) { /* error occurred */
  
 ---
 
-#### 程序加载并执行的过程
+##### 程序加载并执行的过程
 
 在shell中调用fork()后加载计算器
 
  ![w:800](figs/exec-6.png) 
 
-
 ---
 
-#### 进程管理应用示例：``fork()``
+##### 进程管理应用示例：``fork()``
 
 ```C
 int  main() {
@@ -527,27 +576,46 @@ int  main() {
 
  ---
 
-#### 进程管理应用示例：``fork()``
+##### 进程管理应用示例：``fork()``
 
  ![w:1000](figs/fork-example.png) 
-
-
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 进程的基本概念
-2. 进程管理
-  - 进程管理系统调用
-  - 进程控制块PCB
-  - 进程创建和程序加载
-### 进程等待与退出
+2. **进程管理**
 3. 关于Fork()的思考
+
+</div>
+
+<div class="col">
+
+2.1 进程管理系统调用
+2.2 进程控制块PCB
+2.3 进程创建和程序加载
+#### 2.4 进程等待与退出
+
+</div>
+
+</div>
 
 ---
 
-#### 父进程等待子进程
+##### 父进程等待子进程
 
 - wait()系统调用用于父进程等待子进程的结束
   - 子进程结束时通过exit()向父进程返回一个值
@@ -558,7 +626,7 @@ int  main() {
 
 ---
 
-#### 僵尸进程与孤儿进程
+##### 僵尸进程与孤儿进程
 
 - 僵尸进程：已经执行sys_exit系统调用，但还**没有**被父进程通过sys_wait系统调用回收其进程控制块的子进程。
   - 等待僵尸子进程时，wait()立即返回其中一个值
@@ -567,7 +635,7 @@ int  main() {
 
 ---
 
-#### 进程退出``exit()``
+##### 进程退出``exit()``
 
 - 进程结束执行时调用exit()，完成进程资源回收
   - exit()系统调用的功能
@@ -581,7 +649,7 @@ int  main() {
 
 ---
 
-#### 进程管理的其他相关系统调用
+##### 进程管理的其他相关系统调用
 
 -  优先级控制
    - nice()指定进程的初始优先级
@@ -592,11 +660,9 @@ int  main() {
 - 定时
    - sleep()可以让进程在定时器的等待队列中等待指定时间
 
-
-
 ---
 
-#### 进程管理与进程状态的关系
+##### 进程管理与进程状态的关系
 
 进程管理相关的系统调用可能会影响进程的状态
  ![w:600](figs/process-control-and-life.png) 
@@ -604,7 +670,7 @@ int  main() {
  
 ---
 
-#### 进程管理与进程状态的关系
+##### 进程管理与进程状态的关系
 
 ![w:700](figs/process-control-and-life-2.png) 
 
@@ -613,16 +679,37 @@ int  main() {
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 进程的基本概念
 2. 进程管理
 ### 3. 关于Fork()的思考
+
+</div>
+
+<div class="col">
+
 - Fork()的开销？
 - 重新思考fork
 
+</div>
+
+</div>
+
 ---
 
-#### Fork()的开销？
+##### Fork()的开销？
 
 - fork()的实现开销
   - 对子进程分配内存
@@ -633,7 +720,7 @@ int  main() {
 
 ---
 
-#### Fork()的开销？
+##### Fork()的开销？
 
 - 在99%的情况里，我们在调用fork()之后调用exec()
   - 在fork()操作中内存复制是没有作用的  --why?
@@ -643,7 +730,7 @@ int  main() {
 
 ---
 
-#### Fork()的开销？
+##### Fork()的开销？
 
 - vfork()创建进程时，不再创建一个同样的内存映像
   - 轻量级fork() 
@@ -652,7 +739,7 @@ int  main() {
 ![bg right:50% 100%](figs/cow.png) 
 ---
 
-#### 重新思考fork
+##### 重新思考fork
 
 [Andrew Baumann,etc.,   A fork() in the road，HotOS 2019](https://www.microsoft.com/en-us/research/publication/a-fork-in-the-road/)
 
@@ -660,7 +747,7 @@ int  main() {
 
 ---
 
-#### 重新思考fork
+##### 重新思考fork
 
     The fork system call is one of Unix's great ideas.
          -- https://cs61.seas.harvard.edu/site/2018/WeensyOS/
@@ -669,10 +756,9 @@ int  main() {
 - It’s elegant: fork is orthogonal to exec
 - It eased concurrency    
 
-
 ---
 
-#### 重新思考fork
+##### 重新思考fork
 
 但是！
 -  Fork is no longer simple
@@ -681,34 +767,28 @@ int  main() {
    - Fork is incompatible with heterogeneous hardware
    - Fork infects an entire system
 
-
 ---
 
-#### 重新思考fork
+##### 重新思考fork
 
 但是！
 ![w:1100](figs/fork-slow.png)   
 
-
-
 ---
 
-#### 重新思考fork
+##### 重新思考fork
 
 ![w:1100](figs/unix-ken-why-fork.png)   
 
+---
+
+##### 重新思考fork
+
+![w:1100](figs/origins-of-fork.png)
 
 ---
 
-#### 重新思考fork
-
-![w:1100](figs/origins-of-fork.png)   
-
-
-
----
-
-#### 重新思考fork
+##### 重新思考fork
 
 For implementation expedience [Ritchie, 1979]
 - fork was 27 lines of PDP-7 assembly
@@ -724,7 +804,7 @@ https://www.infoq.cn/article/BYGiWI-fxHTNvSohEUNW
 
 ---
 
-#### 重新思考fork
+##### 重新思考fork
 
 结论
 - Fork is not an inspired design, but an accident of history

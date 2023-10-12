@@ -19,19 +19,41 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 ### 1. 实时操作系统
-- 实时操作系统的定义
-- 实时任务
 2. 实时调度
 3. 优先级反置
 
+</div>
+
+<div class="col">
+
+- 实时操作系统的定义
+- 实时任务
+
+</div>
+
+</div>
+
 ---
+
 #### 实时操作系统的定义
 - 实时操作系统的定义
   - 正确性依赖于其时间和功能两方面的操作系统
@@ -92,15 +114,37 @@ backgroundColor: white
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实时操作系统
 ### 2. 实时调度
+3. 优先级反置
+
+</div>
+
+<div class="col">
+
 - 速率单调调度算法
 - 最早截止时间优先算法
 - 最低松弛度优先算法
-3. 优先级反置
+
+</div>
+
+</div>
 
 ---
+
 ####  实时调度
 - **静态**优先级调度：速率单调调度算法(RM, Rate Monotonic) 
   - 通过周期安排优先级
@@ -201,14 +245,36 @@ backgroundColor: white
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实时操作系统
 2. 实时调度
 ### 3. 优先级反置
+
+</div>
+
+<div class="col">
+
 - 优先级继承
 - 优先级天花板协议
 
+</div>
+
+</div>
+
 ---
+
 ####  优先级反置(Priority Inversion)
 
 高优先级进程长时间等待低优先级进程所占用资源的现象
@@ -297,8 +363,8 @@ backgroundColor: white
 ### 小结
 
 1. 实时操作系统
-- 实时操作系统的定义、实时任务
+   - 实时操作系统的定义、实时任务
 2. 实时调度
-- 速率单调调度算法、最早截止时间优先算法、最低松弛度优先算法
+   - 速率单调调度算法、最早截止时间优先算法、最低松弛度优先算法
 3. 优先级反置
-- 优先级继承、优先级天花板协议
+   - 优先级继承、优先级天花板协议
