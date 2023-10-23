@@ -304,8 +304,8 @@ Short Job First
 - 用历史的执行时间来预估未来的执行时间
 
 $\tau_{n+1} = \alpha t_n+(1-\alpha) \tau_n，其中 0\le \alpha \le 1$
-$t_n$ -- 第n次的CPU计算时间
-$\tau_{n+1}$ -- 第n+1次的CPU计算时间预估
+* $t_n$ -- 第n次的CPU计算时间
+* $\tau_{n+1}$ -- 第n+1次的CPU计算时间预估
 
 $\tau_{n+1} = \alpha t_n+(1-\alpha) \alpha t_{n-1} + (1-\alpha)  (1-\alpha) \alpha t_{n-2} + ...$
 
@@ -342,10 +342,9 @@ Highest Response Ratio Next，HRRN
 ##### 最高响应比优先算法HRRN
 
 - 选择就绪队列中响应比R值最高的进程
-
-$Ｒ＝(ｗ+s)/s$
-w: 就绪等待时间(waiting time)
-s: 执行时间(service time)
+  - $Ｒ＝(ｗ+s)/s$
+  - w: 就绪等待时间(waiting time)
+  - s: 执行时间(service time)
 
 - 在短作业优先算法的基础上改进
 - 关注进程的等待时间
