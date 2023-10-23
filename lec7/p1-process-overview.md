@@ -335,12 +335,11 @@ Shell: Process 2 exited with code 0
 - 进程切换过程
    -   **暂停**当前运行进程，从运行状态变成其他状态
    -   **调度**另一个进程从就绪状态变成运行状态
-
 - 进程切换的要求
   - 切换前，**保存**进程上下文
   - 切换后，**恢复**进程上下文
 
-![bg right:40% 100%](figs/process-os-key-structures.png)
+![bg right:51% 100%](figs/process-os-key-structures.png)
 
 ---
 
@@ -349,12 +348,11 @@ Shell: Process 2 exited with code 0
 - 进程切换
    -   暂停当前运行进程，从运行状态变成其他状态
    -   调度另一个进程从就绪状态变成运行状态
-
 - 进程生命周期的信息
   - **寄存器** (PC, SP, …)
   - **CPU状态**
   - **内存地址空间**
-![bg right:53% 90%](figs/process-os-key-structures.png)
+![bg right:51% 100%](figs/process-os-key-structures.png)
  
 ---
 
@@ -778,7 +776,7 @@ int  main() {
 
 ##### 重新思考fork
 
-![w:1100](figs/unix-ken-why-fork.png)   
+![w:900](figs/unix-ken-why-fork.png)   
 
 ---
 
