@@ -12,17 +12,14 @@ backgroundColor: white
 <!-- _class: lead -->
 
 # 第八讲 多处理器调度
-
 ## 第五节 Linux/FreeBSD BFS 调度
-
--- From [Analysis of the BFS Scheduler in FreeBSD](http://vellvisher.github.io/papers_reports/doc/BFS_FreeBSD.pdf)
 
 <br>
 <br>
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
@@ -30,6 +27,15 @@ backgroundColor: white
 
 ### 1. BFS调度器
 2. BFS 与 CFS 的性能对比 (2012)
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Ref: [Analysis of the BFS Scheduler in FreeBSD](http://vellvisher.github.io/papers_reports/doc/BFS_FreeBSD.pdf)
 
 ---
 
@@ -41,6 +47,7 @@ BFS全称：Brain Fuck Scheduler，脑残调度器
   - 减少了负载均衡算法开销
 
 ---
+
 #### BFS 的进程优先级
 
 - 进程有 103 个优先级
@@ -52,6 +59,7 @@ BFS全称：Brain Fuck Scheduler，脑残调度器
 
 
 ---
+
 #### BFS 的就绪队列
 
 - 就绪队列
@@ -60,6 +68,7 @@ BFS全称：Brain Fuck Scheduler，脑残调度器
   - 相同优先级的每个进程有一个时间片长度和虚拟截止时间；
 
 ---
+
 #### BFS 的时间片
 - 时间片大小：由算法参数指定，可在 1ms 到 1000ms 间选择，缺省设置为 6ms；
 - 虚拟截止时间（Virtual Deadline）：关于就绪队列中进程等待 CPU 最长时间的排序，并不是真实的截止时间；
@@ -69,6 +78,7 @@ BFS全称：Brain Fuck Scheduler，脑残调度器
 
 
 ---
+
 #### BFS 的虚拟截止时间计算
 - 依据当前时间、进程优先级和时间片设置计算；
 ```
@@ -81,13 +91,15 @@ prioratio increases by 10% for every nice level
 
 
 ---
+
 #### BFS 的调度思路
-使用O(1)调度器中的**位图**概念，所有进程被安排到103个queue中，各个进程不是按照优先级而是按照优先级区间被排列到各自所在的区间，每一个区间拥有一个queue。
+使用O(1)调度器中的**位图**概念，所有进程被安排到103个queue中，各个进程不是按照优先级而是按照**优先级区间**被排列到各自所在的区间，每一个区间拥有一个queue。
 <!-- https://www.cnblogs.com/dragonsuc/p/7144265.html -->
 ![bg right 100%](figs/bfs.png)
 
 
 ---
+
 #### BFS 的调度思路
 按照O(1)调度器的方式首先查找位图中不为0的那个queue，然后在该queue中执行O(n)查找，查找到virtual deadline最小的那个进程投入执行。
 
@@ -107,6 +119,15 @@ prioratio increases by 10% for every nice level
 1. BFS调度器
 ### 2. BFS 与 CFS 的性能对比 (2012)
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+Ref: [Analysis of the BFS Scheduler in FreeBSD](http://vellvisher.github.io/papers_reports/doc/BFS_FreeBSD.pdf)
+
 ---
 
 #### BFS 与 CFS 的[性能对比](http://repo-ck.com/bench/cpu_schedulers_compared.pdf) (2012)
@@ -118,10 +139,12 @@ prioratio increases by 10% for every nice level
 ![bg right:53% 90%](figs/test-machines.png)
 
 ---
+
 #### BFS 与 CFS 的性能对比: 压缩测试
 ![w:1000](figs/compression-test.png)
 
 ---
+
 #### BFS 与 CFS 的性能对比: 测试编译
 ![w:1000](figs/make-test.png)
 

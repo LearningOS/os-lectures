@@ -12,7 +12,6 @@ backgroundColor: white
 <!-- _class: lead -->
 
 # 第八讲 多处理器调度
-
 ## 第三节 Linux O(1) 调度
 
 <br>
@@ -20,15 +19,35 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 ### 1. SMP 和 早期Linux 内核
 2. Linux O(n)调度器
 3. Linux O(1) 调度器
+
+</div>
+
+<div class="col">
+
+</div>
+
+</div>
 
 ---
 
@@ -45,17 +64,19 @@ https://www.scaler.com/topics/operating-system/process-scheduling/
 -->
 
 ---
+
 #### 调度器需要考虑的关键问题
 
 - 采用何种**数据结构**来组织进程
 - 如何根据进程优先级来确定**进程运行时间**
-- 如何判断**进程类型**(I/O密集，CPU密集型，实时，非实时)
+- 如何判断**进程类型**(I/O密集、CPU密集型；实时、非实时)
 - 如何确定进程的动态**优先级**：影响因素
   - 静态优先级、nice值
   - I/O密集型和CPU密集型产生的优先级奖惩
 - 如何**适配多处理器**情况
 
 ---
+
 #### SMP 和 早期Linux 内核
 
 <!-- https://courses.engr.illinois.edu/cs423/sp2018/slides/13-linux-schedulers.pdf
@@ -79,10 +100,30 @@ Linux历史 -->
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. SMP 和 早期Linux 内核
 ### 2. Linux O(n)调度器
 3. Linux O(1) 调度器
+
+</div>
+
+<div class="col">
+
+</div>
+
+</div>
 
 ---
 
@@ -91,6 +132,7 @@ Linux历史 -->
 ![w:700](figs/linux-o-n-sched.png)
 
 ---
+
 #### Linux $O(n)$调度器
 - 使用多处理器可以加快内核的处理速度，调度器是复杂度为 $O(n)$
   - $O(n)$ 这个名字，来源于算法复杂度的大$O$表示法 
@@ -100,6 +142,7 @@ Linux历史 -->
 ![bg right:43% 90%](figs/linux-o-n-sched.png)
 
 ---
+
 #### Linux $O(n)$ 调度算法的思路
 
 - 把时间分成大量的微小时间片（Epoch）
@@ -116,12 +159,14 @@ Linux Kernel 排程機制介紹
 https://loda.hala01.com/2017/06/linux-kernel.html
 -->
 ---
+
 #### $O(n)$ 调度算法的复杂度
 O(n)调度算法的复杂度为$O(n)$ 
 - 每次使用时间片前都要**检查所有就绪进程的优先级**
 - **检查时间**和进程中进程数目$n$成正比
 
 ---
+
 #### Linux O(n)调度器数据结构
 - 只用一个 global runqueue放置就绪任务
 - 各个 core 需要竞争同一个 runqueue 里面的任务
@@ -140,6 +185,7 @@ O(n)调度算法的复杂度为$O(n)$
 ![bg right:40% 100%](figs/one-task-queue.png)
 
 <!-- ---
+
 #### Linux 2.4 内核：SMP 实现在内核态
 - 使用多处理器可以加快内核的处理速度，调度器是复杂度为 O(n)
   - 内核调度器维护两个 queue：runqueue 和 expired queue
@@ -150,6 +196,7 @@ O(n)调度算法的复杂度为$O(n)$
 
 
 ---
+
 #### Linux 2.4 内核：SMP 实现在内核态
 - 使用多处理器可以加快内核的处理速度，调度器是复杂度为 O(n)
   - 全局共享的就绪队列
@@ -159,6 +206,7 @@ O(n)调度算法的复杂度为$O(n)$
 
 
 ---
+
 #### Linux 2.4 内核：SMP 实现在内核态
 - 使用多处理器可以加快内核的处理速度，调度器是复杂度为 O(n)
   - 现代操作系统都能运行成千上万个进程
@@ -172,10 +220,30 @@ O(n)调度算法的复杂度为$O(n)$
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. SMP 和 早期Linux 内核
 2. Linux O(n)调度器
 ### 3. Linux O(1) 调度器
+
+</div>
+
+<div class="col">
+
+</div>
+
+</div>
 
 ---
 
@@ -215,6 +283,7 @@ Linux 2.6 版本的调度器是由 Ingo Molnar 设计并实现的。
 
   
 ---
+
 #### 常用数据结构访问的时间复杂度
 - 满足 O(1) 的数据结构？
 - 常用数据结构的四种基本操作和时间复杂度
@@ -226,6 +295,7 @@ Linux 2.6 版本的调度器是由 Ingo Molnar 设计并实现的。
 
   
 ---
+
 #### 常用数据结构的搜索操作
 - search：搜索
   - hash table 时间复杂度是 O(1)，但它最坏情况下是 O(N)
@@ -234,6 +304,7 @@ Linux 2.6 版本的调度器是由 Ingo Molnar 设计并实现的。
 
   
 ---
+
 #### 常用数据结构的插入和删除操作
 - insert/deletion：插入和删除
   - hash table 时间复杂度是 O(1)，但它最坏情况下是 O(N)
@@ -291,6 +362,7 @@ Linux 2.6 版本的调度器是由 Ingo Molnar 设计并实现的。
 
     
 ---
+
 #### Linux O(1) 调度器的多核/SMP支持
 - 按一定时间间隔，分析各CPU负载
   - 在每个时钟中断后进行计算CPU负载
