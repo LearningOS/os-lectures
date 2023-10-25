@@ -12,7 +12,6 @@ backgroundColor: white
 <!-- _class: lead -->
 
 # 第八讲 多处理器调度
-
 ## 第四节 Linux CFS 调度
 完全公平调度(CFS, Completely Fair Scheduler)
 
@@ -21,14 +20,34 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 ### 1. CFS的原理
 2. CFS 的实现
+
+</div>
+
+<div class="col">
+
+</div>
+
+</div>
 
 ---
 
@@ -45,6 +64,7 @@ backgroundColor: white
 
 
 ---
+
 #### CFS的背景
 
 匈牙利人Ingo Molnar所提出和实现CFS调度算法
@@ -53,6 +73,7 @@ backgroundColor: white
 ![bg right:40% 100%](figs/ingo-molnar.png) 
 
 ---
+
 #### CFS 的思路
 <!-- - CFS 不计算优先级，而是通过计算进程消耗的 CPU 时间（标准化以后的虚拟 CPU 时间）来确定谁来调度。从而到达所谓的公平性。 -->
 - 摒弃固定时间片分配，采用**动态时间片分配**
@@ -62,6 +83,7 @@ backgroundColor: white
 ![bg right 90%](figs/prio-to-weight.png) 
 
 ---
+
 #### CFS 的思路
 - **把 CPU 视为资源**，并记录下每一个进程对该资源使用的情况
     - 在调度时，调度器总是选择消耗资源最少的进程来运行（**公平分配**）
@@ -70,12 +92,13 @@ backgroundColor: white
 ![bg right:47% 90%](figs/prio-to-weight.png) 
 
 ---
+
 #### CFS 的进程运行时间动态分配
 - 根据各个进程的优先级权重分配运行时间
     - 进程权重越大, 分到的运行时间越多
 `分配给进程的运行时间 = 调度周期 * 进程权重 / 所有进程权重总和`
 - 调度周期
-    - 将所处于 TASK_RUNNING 态进程都调度一遍的时间
+    - 将所有处于 TASK_RUNNING 态进程都调度一遍的时间
 
 <!-- ![bg right:40% 100%](figs/prio-to-weight.png)  -->
 
@@ -124,6 +147,7 @@ Virtual runtime ＝ （physical runtime） X （nice value 0的权重）/进程�
 -->
 
 ---
+
 #### CFS 的虚拟时间计算
 
 所有进程的vruntime增长速度宏观上看应该是同时推进的，就可以用这个vruntime来选择运行的进程。
@@ -136,11 +160,12 @@ Virtual runtime ＝ （physical runtime） X （nice value 0的权重）/进程�
 
 
 ---
+
 #### CFS 的虚拟时间计算示例
 
 CFS让每个调度实体（进程或进程组）的vruntime互相追赶，而每个调度实体的vruntime增加速度不同，权重越大的增加的越慢，这样就能获得更多的cpu执行时间。
 
-     A每周期6时间片，B每周期3时间片，C每周期2时间片
+     A每6个时间片执行1个时间片，B每3个时间片执行1个时间片，，C每2个时间片执行1个时间片
      vruntime：
      A:   0  6  6  6  6  6  6  12 12 12 12 12 12
      B:   0  0  3  3  3  6  6  6  9  9  9  12 12
@@ -154,9 +179,29 @@ CFS让每个调度实体（进程或进程组）的vruntime互相追赶，而每
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. CFS的原理
 ### 2. CFS 的实现
+
+</div>
+
+<div class="col">
+
+</div>
+
+</div>
 
 ---
 
@@ -231,8 +276,6 @@ CFS让每个调度实体（进程或进程组）的vruntime互相追赶，而每
 - 在多 CPU 的系统上，不同的 CPU 的负载不一样，有的 CPU 更忙一些，而每个 CPU 都有自己的运行队列，每个队列中的进程的vruntime 也走得**有快有慢**，每个CPU运行队列的 min_vruntime 值，都会有不同
 ![bg right:48% 90%](figs/smp-min-vruntime.png) 
 
-
-
 ---
 
 #### CFS中的进程迁移
@@ -243,6 +286,7 @@ CFS让每个调度实体（进程或进程组）的vruntime互相追赶，而每
 ![bg right:45% 90%](figs/smp-min-vruntime.png) 
 
 ---
+
 #### CFS的vruntime 溢出问题
 
 - vruntime 的类型 usigned long
@@ -286,11 +330,11 @@ signed char d = b - 250;
 
 ### 课程实验三 进程及进程管理
 
-* 第五章：进程及进程管理 -> chapter5练习 -> 
-    * [rCore](https://learningos.github.io/rCore-Tutorial-Guide-2022A/chapter5/4exercise.html)
-    * [uCore](https://learningos.github.io/uCore-Tutorial-Guide-2022A/chapter5/4exercise.html)
-* 实验任务
+* 实验目标
     * spawn 系统调用
     * stride 调度算法
+* 实验任务描述
+    * [rCore](https://learningos.github.io/rCore-Tutorial-Guide-2023A/chapter5/4exercise.html)
+    * [uCore](https://learningos.github.io/uCore-Tutorial-Guide-2023A/chapter5/4exercise.html)
 * 实验提交要求
-    * 2023年5月7日
+    * 布置实验任务后的第13天（11月12日24点）；
