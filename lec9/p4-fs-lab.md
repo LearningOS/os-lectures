@@ -12,36 +12,54 @@ backgroundColor: white
 <!-- _class: lead -->
 
 # 第九讲 文件系统
-
 ## 第四节 支持文件的操作系统
 
 Filesystem OS(FOS)
-
 
 <br>
 <br>
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 ### 1. 实验目标和步骤
-- 实验目标
-- 文件系统接口和数据结构
-- 实践步骤
 2. 代码结构
 3. 应用程序设计
 4. 内核程序设计
 
-![bg right:59% 95%](figs/fsos-fsdisk.png)
+</div>
+
+<div class="col">
+
+#### 1.1 实验目标
+1.2 文件系统接口和数据结构
+1.3 实践步骤
+
+
+</div>
+
+</div>
 
 ---
 
-#### 以往实验目标
+##### 以往实验目标
 
 提高性能、简化开发、加强安全
 - Process OS: 增强**进程管理**和资源管理
@@ -50,7 +68,8 @@ Filesystem OS(FOS)
 - BatchOS: 让APP与OS**隔离**，加强系统安全，提高执行效率
 - LibOS: 让APP与HW**隔离**，简化应用访问硬件的难度和复杂性
 ---
-#### 实验目标
+
+##### 实验目标
 
 支持**数据持久保存**
 - 以**文件**形式保存持久数据，并能进行文件数据读写
@@ -61,16 +80,23 @@ Filesystem OS(FOS)
 ![bg right:51% 90%](figs/fs-intro.png)
 
 ---
-#### 历史
+
+##### Filesystem OS (FOS)
+
+![bg right:74% 95%](figs/fsos-fsdisk.png)
+
+---
+
+##### 历史：UNIX文件系统
 - 1965：描述未来的 MULTICS 操作系统
   - 指明方向的舵手
     - **文件**数据看成是一个无格式的字节流 
     - 第一次引入了**层次文件系统**的概念
-  - 启发和造就了UNIX
-     - 眼中**一切皆文件**的UNIX文件系统
+  - 启发和造就了**UNIX文件系统**
+     - **一切皆文件**
 ---
 
-#### 实验要求
+##### 实验要求
 
 - 理解文件系统/文件**概念**
 - 理解文件系统的**设计与实现**
@@ -85,7 +111,7 @@ Filesystem OS(FOS)
 
 ---
 
-#### 需要考虑的问题
+##### 需要考虑的问题
 
 - 硬盘上的文件系统如何组织？硬盘布局？
 - 如何管理空闲磁盘块？
@@ -100,7 +126,7 @@ Filesystem OS(FOS)
 
 ---
 
-####  实验中的文件类型
+#####  实验中的文件类型
 - 当前
   - Regular file 常规文件
   - Directory 目录文件
@@ -113,55 +139,74 @@ Filesystem OS(FOS)
 
 ---
 
-#### 总体思路
+##### 总体思路
 
 ![bg 95%](figs/efs-disk.png)
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
 
-1. 实验目标和步骤
-- 实验目标
-### 文件系统接口和数据结构
-- 实践步骤
+<div class="container">
+
+<div class="col">
+
+1. **实验目标和步骤**
 2. 代码结构
 3. 应用程序设计
 4. 内核程序设计
 
-![bg right:66% 95%](figs/fsos-fsdisk.png)
+</div>
 
+<div class="col">
+
+1.1 实验目标
+#### 1.2 文件系统接口和数据结构
+1.3 实践步骤
+
+
+</div>
+
+</div>
 
 ---
 
-#### 文件访问流程
+##### 文件访问流程
 
 ![bg 90%](figs/fs-prog-intro.png)
 
 
 ---
 
-#### 文件系统访问接口
+##### 文件系统访问接口
 
 ![w:950](figs/fs-arch-1.png)
 
 ---
 
-#### 文件系统访问接口
+##### 文件系统访问接口
 
 ![w:950](figs/fs-arch-2.png)
 
 
 ---
 
-#### 文件系统访问接口
+##### 文件系统访问接口
 
 ![w:1100](figs/fs-arch-3.png)
 
 
 ---
 
-#### 文件系统的数据结构
+##### 文件系统的数据结构
 
 ![bg right:90% w:850](figs/fs-arch-4.png)
 
@@ -169,28 +214,47 @@ Filesystem OS(FOS)
 
 ---
 
-#### 文件系统的数据结构
+##### 文件系统的数据结构
 
 ![bg right:90% 95%](figs/easyfs-detail.png)
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
 
-1. 实验目标和步骤
-- 实验目标
-- 文件系统接口和数据结构
-### 实践步骤
+<div class="container">
+
+<div class="col">
+
+1. **实验目标和步骤**
 2. 代码结构
 3. 应用程序设计
 4. 内核程序设计
 
-![bg right:66% 95%](figs/fsos-fsdisk.png)
+</div>
 
+<div class="col">
+
+1.1 实验目标
+1.2 文件系统接口和数据结构
+#### 1.3 实践步骤
+
+
+</div>
+
+</div>
 
 ---
 
-#### 实验步骤
+##### 实验步骤
 
 - 编译：内核独立编译，单独的内核镜像
 - 编译：应用程序编译后，**组织形成文件系统镜像**
@@ -204,7 +268,7 @@ Filesystem OS(FOS)
 
 ---
 
-#### 实践步骤 
+##### 实践步骤 
 ```
 git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 cd rCore-Tutorial-v3
@@ -214,7 +278,8 @@ make run
 ```
 
 ---
-#### 实践步骤 
+
+##### 实践步骤 
 ```
 [RustSBI output]
 ...
@@ -230,7 +295,8 @@ Rust user shell
 
 
 ---
-#### 实践步骤 
+
+##### 实践步骤 
 在这里我们运行一下本章的测例 filetest_simple ：
 ```
 >> filetest_simple
@@ -241,7 +307,8 @@ Shell: Process 2 exited with code 0
 它会将 Hello, world! 输出到另一个文件 filea，并读取里面的内容确认输出正确。
 
 ---
-#### 实践步骤 
+
+##### 实践步骤 
 
 我们也可以通过命令行工具 cat_filea 来更直观的查看 filea 中的内容：
 
@@ -265,7 +332,7 @@ Shell: Process 2 exited with code 0
 
 ---
 
-#### 软件架构
+##### 软件架构
 
 - 文件操作
     - open
@@ -276,7 +343,8 @@ Shell: Process 2 exited with code 0
 ![bg right:74% 90%](figs/fsos-fsdisk.png)
 
 ---
-#### 代码结构
+
+##### 代码结构
 添加easy-fs
 ```
 ├── easy-fs(新增：从内核中独立出来的一个简单的文件系统 EasyFileSystem 的实现)
@@ -296,7 +364,8 @@ Shell: Process 2 exited with code 0
 ```
 
 ---
-#### 代码结构
+
+##### 代码结构
 改进OS
 ```
 ├── os
@@ -315,7 +384,8 @@ Shell: Process 2 exited with code 0
 ```
 
 ---
-#### 代码结构
+
+##### 代码结构
 改进OS
 ```
 ├── os
@@ -335,27 +405,46 @@ Shell: Process 2 exited with code 0
 
 ---
 
-#### 存储块设备
+##### 存储块设备
 
 ![bg right:90% 85%](figs/fsos-fsdisk.png)
 
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 2. 代码结构
 ### 3. 应用程序设计
-- 文件和目录
-- 文件访问系统调用
 4. 内核程序设计
 
-![bg right:63% 95%](figs/fsos-fsdisk.png)
+</div>
 
+<div class="col">
+
+#### 3.1 文件和目录
+3.2 文件访问系统调用
+
+
+</div>
+
+</div>
 
 ---
 
-#### 理解文件
+##### 理解文件
 
 <!-- **程序设计**  -->
   - 对持久存储（persistent storage）的虚拟化和抽象
@@ -369,7 +458,7 @@ Shell: Process 2 exited with code 0
 
 ---
 
-#### 从应用角度理解文件
+##### 从应用角度理解文件
 
 - **文件** 是一个特殊的线性**字节数组**，每个字节都可以读取或写入。
 -  每个文件都有一个给用户可理解的字符串**名字**
@@ -382,7 +471,7 @@ Shell: Process 2 exited with code 0
 
 ---
 
-#### 从内核角度理解文件
+##### 从内核角度理解文件
 
 - **文件** 是存储设备上的**数据**，需要通过文件系统进行管理
 - **管理文件的结构**称为inode，inode描述了文件的各种属性和数据位置
@@ -394,7 +483,7 @@ Shell: Process 2 exited with code 0
 
 ---
 
-#### 从应用角度理解目录
+##### 从应用角度理解目录
 
 -   **目录** 是一个特殊的文件，它的内容包含一个位于该目录下的**文件名列表**
 - 显示目录内容  
@@ -408,7 +497,7 @@ Shell: Process 2 exited with code 0
 
 ---
 
-#### 从内核角度理解目录
+##### 从内核角度理解目录
 
 -   **目录** 是一个特殊的文件，它的内容包含一个（用户可读文件名字，inode）对的数组
 -   ``DirEntry``数组
@@ -426,20 +515,45 @@ pub struct DirEntry {
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 2. 代码结构
-3. 应用程序设计
-- 文件和目录
-### 文件访问系统调用
+3. **应用程序设计**
 4. 内核程序设计
 
-![bg right:63% 95%](figs/fsos-fsdisk.png)
+</div>
 
+<div class="col">
+
+3.1 文件和目录
+#### 3.2 文件访问系统调用
+
+
+</div>
+
+</div>
 
 ---
 
-#### open()系统调用
+##### Filesystem OS (FOS)
+
+![bg right:74% 95%](figs/fsos-fsdisk.png)
+
+---
+
+##### open()系统调用
 
 ```
 /// 功能：打开一个常规文件，并返回可以访问它的文件描述符。
@@ -453,7 +567,7 @@ fn sys_open(path: &str, flags: u32) -> isize
 ```
 ---
 
-#### close()系统调用
+##### close()系统调用
 
 ```
 /// 功能：当前进程关闭一个文件。
@@ -467,7 +581,7 @@ fn sys_close(fd: usize) -> isize
 
 ---
 
-#### read()系统调用
+##### read()系统调用
 
 ```
 /// 功能：当前进程读取文件。
@@ -482,7 +596,7 @@ sys_read(fd: usize, buf: *const u8, len: usize) -> isize
 
 ---
 
-#### write()系统调用
+##### write()系统调用
 
 ```
 /// 功能：当前进程写入一个文件。
@@ -498,7 +612,7 @@ fn sys_write(fd: usize, buf: *const u8, len: usize) -> isize
 
 ---
 
-#### 应用程序示例
+##### 应用程序示例
 
 ```
 // user/src/bin/filetest_simple.rs
@@ -519,20 +633,45 @@ pub fn main() -> i32 {
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 2. 代码结构
 3. 应用程序设计
 ### 4. 内核程序设计
-- 核心数据结构
-- 文件管理机制
 
-![bg right:63% 100%](figs/fsos-fsdisk.png)
+</div>
 
+<div class="col">
+
+#### 4.1 核心数据结构
+4.2 文件管理机制
+
+
+</div>
+
+</div>
 
 ---
 
-#### 核心数据结构
+##### Filesystem OS (FOS)
+
+![bg right:74% 95%](figs/fsos-fsdisk.png)
+
+---
+
+##### 核心数据结构
 - 进程管理文件
   - 目录、文件
   - inode
@@ -544,7 +683,7 @@ pub fn main() -> i32 {
 
 ---
 
-#### 核心数据结构
+##### 核心数据结构
 
 - 文件位于根目录``ROOT_INODE``中
 - 目录的内容是``DirEntry``组成的数组
@@ -562,7 +701,7 @@ let fd = open(filea, OpenFlags::RDONLY);
 
 ---
 
-#### 核心数据结构
+##### 核心数据结构
 
 - 打开的文件在进程中``fd_table``中
 - ``fd_table``是``OSInode``组成的数组
@@ -586,7 +725,7 @@ pub struct OSInodeInner {
 
 ---
 
-#### 核心数据结构
+##### 核心数据结构
 - 超级块
 - inode/data位图
 - disk_inode
@@ -599,7 +738,7 @@ pub struct OSInodeInner {
 
 ---
 
-#### 超级块
+##### 超级块
 
 超级块(SuperBlock)描述文件系统全局信息
 ```rust
@@ -619,7 +758,7 @@ pub struct SuperBlock {
 
 ---
 
-#### 位图(bitmap)
+##### 位图(bitmap)
 
 位图(bitmap)描述文件系统全局信息
 * 在 easy-fs 布局中存在两类位图
@@ -635,7 +774,7 @@ pub struct Bitmap {
 
 ---
 
-#### 磁盘索引节点(DiskInode)
+##### 磁盘索引节点(DiskInode)
 
 - ``read_at``和``write_at``把文件偏移量和buf长度转换为一系列的数据块编号，并进行通过``get_block_cache``数据块的读写。
 - ``get_block_id`` 方法体现了 DiskInode 最重要的数据块索引功能，它可以从索引中查到它自身用于保存文件内容的第 block_id 个数据块的块编号，这样后续才能对这个数据块进行访问
@@ -645,7 +784,7 @@ pub struct Bitmap {
 
 ---
 
-#### 磁盘索引节点(DiskInode)
+##### 磁盘索引节点(DiskInode)
 
 磁盘索引节点(DiskInode)描述文件信息和数据
 ```rust
@@ -662,7 +801,7 @@ pub struct DiskInode {
 
 ---
 
-#### 数据块与目录项
+##### 数据块与目录项
 
 ```rust
 type DataBlock = [u8; BLOCK_SZ];
@@ -677,7 +816,7 @@ pub struct DirEntry {
 
 ---
 
-#### 块缓存``BlockCache``
+##### 块缓存``BlockCache``
 
 ```rust
 pub const BLOCK_SZ: usize = 512;
@@ -698,20 +837,39 @@ pub struct BlockCache {
 ---
 
 **提纲**
+<style>
+.container{
+    display: flex;    
+}
+.col{
+    flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
 
 1. 实验目标和步骤
 2. 代码结构
 3. 应用程序设计
-4. 内核程序设计
-- 核心数据结构
-### 文件管理机制
+4. **内核程序设计**
 
-![bg right:66% 95%](figs/fsos-fsdisk.png)
+</div>
 
+<div class="col">
+
+4.1 核心数据结构
+#### 4.2 文件管理机制
+
+
+</div>
+
+</div>
 
 ---
 
-#### 文件管理机制概述
+##### 文件管理机制概述
 
 1. 文件系统初始化
 2. 打开与关闭文件
@@ -722,7 +880,7 @@ pub struct BlockCache {
 
 ---
 
-#### 文件系统初始化
+##### 文件系统初始化
 
 1. 打开块设备 BLOCK_DEVICE ；
 2. 从块设备 BLOCK_DEVICE 上打开文件系统；
@@ -741,7 +899,7 @@ lazy_static! {
 
 ---
 
-#### 打开(创建)文件
+##### 打开(创建)文件
 
 ```rust
 pub fn sys_open(path: *const u8, flags: u32) -> isize {
@@ -758,7 +916,7 @@ pub fn sys_open(path: *const u8, flags: u32) -> isize {
 
 ---
 
-#### 打开(创建)文件
+##### 打开(创建)文件
 
 ```rust
 fn open_file(name: &str, flags: OpenFlags) -> Option<Arc<OSInode>> {
@@ -777,7 +935,7 @@ fn open_file(name: &str, flags: OpenFlags) -> Option<Arc<OSInode>> {
 
 ---
 
-#### 打开(查找)文件
+##### 打开(查找)文件
 
 ```rust
 fn open_file(name: &str, flags: OpenFlags) -> Option<Arc<OSInode>> {
@@ -795,7 +953,7 @@ fn open_file(name: &str, flags: OpenFlags) -> Option<Arc<OSInode>> {
 
 ---
 
-#### 关闭文件
+##### 关闭文件
 
 ```rust
 pub fn sys_close(fd: usize) -> isize {
@@ -811,7 +969,7 @@ sys_close ：将进程控制块中的文件描述符表对应的一项改为 Non
 
 ---
 
-#### 基于文件加载应用
+##### 基于文件加载应用
 
 基于文件加载应用（ELF可执行文件格式）
 ```rust
@@ -829,7 +987,7 @@ sys_close ：将进程控制块中的文件描述符表对应的一项改为 Non
 
 ---
 
-#### 读写文件
+##### 读写文件
 
 - 基于文件抽象接口和文件描述符表
 - 可以按照无结构的字节流在处理基本的文件读写
@@ -844,7 +1002,7 @@ sys_close ：将进程控制块中的文件描述符表对应的一项改为 Non
 
 ---
 
-#### 读写文件
+##### 读写文件
 
 - 基于文件抽象接口和文件描述符表
 - 可以按照无结构的字节流在处理基本的文件读写
@@ -858,6 +1016,7 @@ sys_close ：将进程控制块中的文件描述符表对应的一项改为 Non
 操作系统都是通过文件描述符在当前进程的文件描述符表中找到某个文件，无需关心文件具体的类型。
 
 ---
+
 ### 小结
 - 文件/目录的概念与实现
 - 文件系统设计与实现
