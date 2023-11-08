@@ -15,13 +15,12 @@ backgroundColor: white
 Inter Process Communication, IPC
 ## 第一节 进程间通信(IPC)概述
 
-
 <br>
 <br>
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
@@ -40,11 +39,11 @@ Inter Process Communication, IPC
 - 挑战：单个程序的功能有限
 - IPC的目标：多进程协作完成复杂应用需求
   - 功能模块化
-  - 程序之间可以相对隔离
-  - 多个程序的合作可完成复杂的事情
+  - 程序之间相对隔离
+  - 多个程序合作可完成复杂任务
 
-**进程间通信的定义**：各进程之间通过数据交换（共享或传递）进行**交互**的行为
-![bg right:40% 95%](figs/ipcintro.png)
+**进程间通信的定义**：进程间通过数据交换（共享或传递）进行**交互**的行为
+![bg right:43% 95%](figs/ipcintro.png)
 
 ---
 #### 进程间的交互关系
@@ -77,9 +76,9 @@ $ git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 
 | IPC机制  |  含义  | 通信方式 |
 | ------------------------ | ---- |---- |
-|   管道 (Pipe)   | 单方向传输字节流  |间接通信 |
-|   消息队列 (Message Queue)   | 通过队列中收/发消息 |间接通信 |
 |  信号 (Signal)    | 异步发送信号给进程处理  |间接通信 |
+|   管道 (Pipe)   | 单方向传输字节流  |间接通信 |
+|   消息队列 (Message Queue)   | 通过队列中转收/发消息 |间接通信 |
 |  套接字 (Socket)    | 多/单机进程间网络通信  |间接通信 |
 |  共享内存 (Shared Memory)    |  多个进程共享一块物理内存  | 直接通信 |
 | 文件 (File)     |  多个进程可访问同一文件 | 间接通信 |
@@ -600,11 +599,6 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
 ---
 #### 信号实现机制
 
-![w:420](figs/signal-2.png)
-
----
-#### 信号实现机制
-
 ![w:950](figs/CatchingSignal.png)
 
 ---
@@ -617,6 +611,11 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
 - 内核返回用户态，直接跳到sig_handler;
 - sig_handler函数返回到旧代码位置继续执行
 ![bg right:31% 95%](figs/CatchingSignal.png)
+
+---
+#### 信号实现机制
+
+![bg right:70% 60%](figs/signal-2.png)
 
 ---
 
