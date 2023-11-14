@@ -13,15 +13,14 @@ backgroundColor: white
 
 # 第十一讲 线程与协程
 
-## 第二节 协程
-
+## 第二节 协程（Coroutine）
 
 <br>
 <br>
 
 向勇 陈渝 李国良 任炬 
 
-2023年春季
+2023年秋季
 
 ---
 
@@ -39,12 +38,11 @@ backgroundColor: white
 #### 线程存在的不足
 
 <!-- 什么是协程？ https://zhuanlan.zhihu.com/p/172471249 -->
-- 线程有啥不足？
-  -  大规模并发I/O操作场景
-     -  大量线程**占内存**总量大
-     -  管理线程程开销大
-        - 创建/删除/切换
-     -  访问共享数据易错
+-  大规模并发I/O操作场景
+   -  大量线程**占内存**总量大
+   -  管理线程程开销大
+      - 创建/删除/切换
+   -  访问共享数据易错
 ![bg right:51% 100%](figs/thread-issue1.png)
 
 
@@ -53,7 +51,7 @@ backgroundColor: white
 
 <!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
 协程由Melvin Conway在1963年提出并实现
-- 作者对协程的描述是“行为与主程序相似的子例程(subroutine)”
+- 作者对协程的描述是“**行为与主程序相似的子例程**(subroutine)”
 - 协程采用同步编程方式支持大规模并发I/O异步操作
 
 Donald  Knuth ：子例程是协程的特例
@@ -66,7 +64,7 @@ Donald  Knuth ：子例程是协程的特例
 #### 协程的定义
 
 <!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
-- Wiki的定义：协程是一种程序组件，是由子例程（过程、函数、例程、方法、子程序）的概念泛化而来的，子例程只有一个入口点且只返回一次，协程允许多个入口点，可在指定位置挂起和恢复执行。
+- Wiki的定义：协程是一种程序组件，是由子例程（过程、函数、例程、方法、子程序）的概念泛化而来的，子例程只有一个入口点且只返回一次，协程允许**多个入口点**，可在**指定位置挂起和恢复**执行。
 
 协程的核心思想：控制流的主动让出与恢复
 
@@ -141,68 +139,55 @@ def func()://协程函数
 
 控制传递机制：对称（Symmetric） v.s. 非对称（Asymmetric）协程
 - 对称协程：
-   - 只提供一种传递操作，用于在协程间直接传递控制
+   - 只提供一种传递操作，用于**在协程间直接传递控制**
    - 对称协程都是等价的，控制权直接在对称协程之间进行传递
    - 对称协程在挂起时主动指明另外一个对称协程来接收控制权
-- 非对称协程（半对称（Semi-symmetric）协程）：
-  - 提供调用和挂起两种操作，非对称协程挂起时将控制返回给调用者
-  - 调用者或上层管理者根据某调度策略调用其他非对称协程进行工作
+- 非对称协程（半对称(Semi-symmetric)协程）：
+  - 提供调用和挂起两种操作，非对称协程挂起时将**控制返回给调用者**
+  - 调用者或上层管理者根据某调度策略调用其他非对称协程
 
 <!-- 出于支持并发而提供的协程通常是对称协程，用于表示独立的执行单元，如golang中的协程。用于产生值序列的协程则为非对称协程，如迭代器和生成器。
 这两种控制传递机制可以相互表达，因此要提供通用协程时只须实现其中一种即可。但是，两者表达力相同并不意味着在易用性上也相同。对称协程会把程序的控制流变得相对复杂而难以理解和管理，而非对称协程的行为在某种意义上与函数类似，因为控制总是返回给调用者。使用非对称协程写出的程序更加结构化。 -->
 
 ---
 
-#### 基于控制传递的协程
+#### 对称协程的控制传递
 
 ![w:900](figs/coroutine-sym.png)
 
 ---
 
-#### 基于控制传递的协程
+#### 非对称协程的控制传递
 
 ![w:850](figs/coroutine-asym.png)
 
 
 ---
 
-#### 对称协程 vs 非对称协程是实现协程的两种方式：
+#### 对称协程
 
-对称协程是指所有协程都是对等的，每个协程可以主动挂起自己，并让出处理器给其他协程执行。对称协程不需要操作系统内核的支持，可以在用户空间中实现，具有更快的上下文切换速度和更小的内存开销。
-
-优点：
-
-- 简单易用，没有复杂的调度逻辑。
-
-缺点：
-
-- 如果某个协程死循环或阻塞，会导致整个程序挂起。
+**对称协程**是指所有协程都是对等的，每个协程可以主动挂起自己，并让出处理器给其他协程执行。对称协程不需要操作系统内核的支持，可以在用户空间中实现，具有更快的上下文切换速度和更小的内存开销。
+* 优点：简单易用，没有复杂的调度逻辑。
+* 缺点：如果某个协程死循环或阻塞，会导致整个程序挂起。
 
 ---
 
-#### 对称协程 vs 非对称协程是实现协程的两种方式：
+#### 非对称协程
 
-非对称协程是指协程和线程一起使用，协程作为线程的子任务来执行。只有线程可以主动挂起自己，而协程则由线程控制其执行状态。
-
-
-优点：
-
-- 支持并发执行，可以通过多线程实现更高的并发性。
-- 协程之间不会相互阻塞，因此可以处理一些长时间任务。
-
-
-缺点：
-
-- 实现较为复杂，需要操作系统内核的支持。
-- 需要通过锁等机制来保证协程之间的同步和互斥。
-
+**非对称协程**是指协程和线程一起使用，协程作为线程的子任务来执行。只有线程可以主动挂起自己，而协程则由线程控制其执行状态。
+* 优点：
+  - 支持并发执行，可以通过多线程实现更高的并发性。
+  - 协程之间不会相互阻塞，可处理一些长时间任务。
+* 缺点：
+  - 实现较为复杂，需要操作系统内核的支持。
+  - 需要通过锁等机制来保证协程之间的同步和互斥。
 
 ---
 
-#### 有栈协程和无栈协程
+#### 有栈(stackful)协程和无栈(stackless)协程
 
 <!-- 有栈协程和无栈协程 https://cloud.tencent.com/developer/article/1888257 -->
-栈式（Stackful）构造：有栈(stackful)协程 v.s. 无栈(stackless)协程
+
 - 无栈协程：指可挂起/恢复的函数
    - 无独立的上下文空间（栈），数据保存在堆上 
    - 开销： 函数调用的开销
@@ -229,50 +214,40 @@ Coroutine从入门到劝退
 <!-- 有栈协程和无栈协程 https://cloud.tencent.com/developer/article/1888257 -->
 第一类（First-class）语言对象：First-class对象 v.s. second-class对象 (**是否可以作为参数传递**)
 - First-class对象 : 协程被在语言中作为first-class对象
-   - 可以作为参数被传递，由函数创建并返回，并存储在一个数据结构中供后续操作
+   - 可作为参数被传递，由函数创建并返回，并存储在一个数据结构中供后续操作
    - 提供了良好的编程表达力，方便开发者对协程进行操作
-受限协程
-   -  特定用途而实现的协程，协程对象限制在指定的代码结构中
+- 受限协程
+   - 特定用途而实现的协程，协程对象限制在指定的代码结构中
  
 ---
 #### 第一类（First-class）语言对象
-- 可以被赋值给一个变量
-- 可以嵌入到数据结构中
-- 可以作为参数传递给函数
-- 可以作为值被函数返回
-
+- 可被赋值给一个变量
+- 可嵌入到数据结构中
+- 可作为参数传递给函数
+- 可作为值被函数返回
 
 ---
 #### 第一类（First-class）语言对象 
-First-class 对象优势：
 
-- 可以作为函数参数传递，使得代码更加灵活。
-- 可以作为函数返回值返回，方便编写高阶函数。
-- 可以被赋值给变量或存储在数据结构中，方便编写复杂的数据结构。
-
-First-class 对象劣势：
-
-- 可能会增加程序的开销和复杂度。
-- 可能存在安全性问题，例如对象被篡改等。
-- 可能会导致内存泄漏和性能问题。
-
+* First-class 对象优势：
+  - 可作为函数参数传递，使得代码更加灵活
+  - 可作为函数返回值返回，方便编写高阶函数
+  - 可被赋值给变量或存储在数据结构中，方便编写复杂的数据结构
+* First-class 对象劣势：
+  - 可能会增加程序的开销和复杂度。
+  - 可能存在安全性问题，例如对象被篡改等。
+  - 可能会导致内存泄漏和性能问题。
 
 ---
 #### 第二类（Second-class）语言对象 
-Second-class 对象优势：
-
-- 可以通过类型系统来保证程序的正确性。
-- 可以减少程序的复杂度和开销。
-- 可以提高程序的运行效率和性能。
-
-Second-class 对象劣势：
-
-- 缺乏灵活性，不能像 First-class 对象一样灵活使用。
-- 不太适合处理复杂的数据结构和算法。
-- 不支持函数式编程和面向对象编程的高级特性（例如不支持多态）。
-
-
-
+* Second-class 对象优势：
+  - 可以通过类型系统来保证程序的正确性
+  - 可以减少程序的复杂度和开销
+  - 可以提高程序的运行效率和性能
+* Second-class 对象劣势：
+  - 缺乏灵活性，不能像 First-class 对象一样灵活使用
+  - 不太适合处理复杂的数据结构和算法
+  - 不支持函数式编程和面向对象编程的高级特性（例如不支持多态）
 
 ---
 
@@ -286,17 +261,14 @@ A future is a representation of some operation which will **complete in the futu
 
 ![bg right:54% 95%](figs/async-example.png)
 
-
 ---
 
 #### Rust语言中的协程Future
 
 Rust 的 Future 实现了 Async Trait，它包含了三个方法：
-
 - poll: 用于检查 Future 是否完成。
 - map: 用于将 Future 的结果转换为另一个类型。
 - and_then: 用于将 Future 的结果传递给下一个 Future。
-
 
 使用 Future 时，可以通过链式调用的方式对多个异步任务进行串联。
 
@@ -420,7 +392,8 @@ https://wiki.brewlin.com/wiki/compiler/rust%E5%8D%8F%E7%A8%8B_%E8%B0%83%E5%BA%A6
 <!-- Rust中的协程: Future与async/await https://zijiaw.github.io/posts/a7-rsfuture/ -->
 
 ---
-### 使用协程 -- go
+
+#### GO协程(goroutine)
 <!-- Go by Example 中文版: 协程
 https://gobyexample-cn.github.io/goroutines -->
 
@@ -445,11 +418,14 @@ func main() {
 ![bg right:30% 100%](figs/go-ex1.png)
 
 ---
+
+#### python协程
+
 <!-- 
 Making multiple HTTP requests using Python (synchronous, multiprocessing, multithreading, asyncio)
 https://www.youtube.com/watch?v=R4Oz8JUuM4s
 https://github.com/nikhilkumarsingh/async-http-requests-tut -->
-### 使用协程 -- python
+
 <!-- asyncio 是 Python 3.4 引入的标准库，直接内置了对异步 IO 的支持。只要在一个函数前面加上 async 关键字就可以将一个函数变为一个协程。 -->
 
 ```python
@@ -480,7 +456,8 @@ https://github.com/leovan/leovan.me/tree/master/scripts/cn/2021-04-03-process-th
 
 
 ---
-### 使用协程 -- rust
+
+#### Rust协程
 
 <!-- https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html -->
 
@@ -505,7 +482,8 @@ https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html
 http://www.dabeaz.com/coroutines/
 http://www.dabeaz.com/coroutines/Coroutines.pdf -->
 ---
-### 进程/线程/协程性能比较
+
+#### 进程/线程/协程性能比较
 <!-- 
 https://www.youtube.com/watch?v=R4Oz8JUuM4s
 https://github.com/nikhilkumarsingh/async-http-requests-tut
@@ -526,7 +504,8 @@ def main():
 
 ```
 ---
-### 进程/线程/协程性能比较
+
+#### 进程/线程/协程性能比较
 <!-- 
 https://www.youtube.com/watch?v=R4Oz8JUuM4s
 https://github.com/nikhilkumarsingh/async-http-requests-tut
@@ -548,7 +527,8 @@ def main():
 ```
 
 ---
-### 进程/线程/协程性能比较
+
+#### 进程/线程/协程性能比较
 <!-- 
 https://www.youtube.com/watch?v=R4Oz8JUuM4s
 https://github.com/nikhilkumarsingh/async-http-requests-tut
@@ -571,7 +551,8 @@ def main():
 ```
 
 ---
-### 进程/线程/协程性能比较
+
+#### 进程/线程/协程性能比较
 <!-- 
 https://www.youtube.com/watch?v=R4Oz8JUuM4s
 https://github.com/nikhilkumarsingh/async-http-requests-tut
@@ -694,44 +675,137 @@ fn main() { //Asynchronous multi-threaded concurrent webserver
 
 ---
 
-#### [线程与协程的统一调度](https://lexiangla.com/teams/k100041/classes/14e3d0ba33e211ecb668e28d1509205c/courses/8b52ee1233e111ecbcb4be09afb7b0ee)
+#### 共享调度器：[一种支持优先级的协程调度框架](https://github.com/zflcs/SharedScheduler)（赵方亮、廖东海）
 
-1. 协程与线程灵活绑定；
-2. 实现协程（future）在单CPU上并发执行；可在多CPU上并行执行；
-3. 线程和协程可采取不同的调度策略；
-4. 沿用线程中断的处理过程，**协程可被强制中断**；
+* 将协程作为操作系统和应用程序的最小任务单元
+* 引入协程的优先级属性，基于优先级位图，操作系统和应用程序实现协程调度
 
-![width:800px](figs/thread-corouting-scheduler.png)
-
----
-
-#### 用户态的协程控制块(CCB, Coroutine Control Block)
-
-![bg right:60% 90%](figs/coroutine-CCB.png)
-
-Ref: [A Design and Implementation of Rust Coroutine with priority in Operating System](https://github.com/AmoyCherry/papper_Async_rCore)
+<!--
+-->
 
 ---
 
-#### 内核态的协程调度
+#### Architecture of SharedScheduler
 
-![width:850px](figs/coroutine-scheduler-bitmap.png)
+![bg right:60% 95% arch](figs/arch.png)
+
+1. 操作系统与用户程序各自的 Executor 维护协程
+2. SharedScheduler 通过 vDSO 共享给用户进程
+3. 通过 Global Bitmap 进行操作系统与用户进程之间协调调度
+
+<!--
+-->
 
 ---
 
-#### 线程和协程的性能比较
+#### Coroutine Control Block
 
-![width:950px](figs/pipe-thread-coroutine-performance.png)
+```rust
+pub struct Coroutine{
+ /// Immutable fields
+ pub cid: CoroutineId,
+ pub kind: CoroutineKind,
+ /// Mutable fields
+ pub priority: usize,
+ pub future: Pin<Box<dyn Future<Output=()> + 'static + Send + Sync>>, 
+ pub waker: Arc<Waker>,
+}
+```
+
+<font size=5>
+
+1. future、waker 字段由 Rust 协程特性决定
+
+2. cid 字段用于标识协程
+
+3. kind 字段标识协程任务类型，根据类型进行不同处理
+
+4. priority 字段表示优先级，实现优先级调度的关键
+
+</font>
+
+<!--
+-->
 
 ---
-#### 参考信息
-- https://www.youtube.com/watch?v=R4Oz8JUuM4s
-- https://github.com/nikhilkumarsingh/async-http-requests-tut
-- http://www.dabeaz.com/coroutines/
-- https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html 
-- https://github.com/nikhilkumarsingh/async-http-requests-tut/blob/master/test_asyncio.py
-- https://gobyexample-cn.github.io/goroutines 
-- https://zijiaw.github.io/posts/a7-rsfuture/
+
+#### Coroutine state transition model
+
+![bg right:55% 90% cstate](figs/cstate.png)
+
+根据 CPU 和 stack 占用的情况划分为三类
+* 状态转换
+   1. 就绪 <==> 运行
+   2. 运行 <==> 运行挂起
+   3. 运行 <==> 阻塞
+   4. 阻塞  ==> 就绪
+
+<!--
+根据 CPU 和 stack 占用的情况划分为三类（创建、退出、就绪、阻塞 | 运行 | 运行挂起）
+-->
+
+---
+
+#### Asynchronous system call
+
+```rust
+read!(fd, buffer, cid); // Async call
+read!(fd, buffer); // Sync call
+```
+
+1. 用户态系统调用接口，通过参数区分
+2. 内核协程与异步 I/O 机制结合，内核协程完成读取、复制数据操作
+![width:900px async_syscall](figs/async_syscall.png)
+
+<!--
+-->
+
+---
+
+#### Throughput and message latency
+
+![width:750px throughput](figs/throughput.png)
+
+1. kcuc: 内核协程 + 用户协程
+2. kcut：内核协程 + 用户线程
+3. ktut：内核线程 + 用户线程
+4. ktuc：内核线程 + 用户协程
+
+<!--
+-->
+
+---
+
+#### Throughput and message latency
+
+![width:750px latency](figs/latency.png)
+
+1. SharedScheduler 同步互斥开销，不适用于低并发或低响应要求的场景
+2. 协程切换开销小
+3. SharedScheduler 适用于高并发场景
+
+<!--
+-->
+
+---
+
+#### Throughput and message latency of different priority connections
+
+![width:700px prio-throughput](figs/prio-throughput.png)
+
+
+<!--
+-->
+
+---
+
+#### Throughput and message latency of different priority connections
+
+![width:550px prio-latency](figs/prio-latency.png)
+结论：在资源有限的条件下，高优先级协程能够得到保证
+
+<!--
+-->
 
 ---
 
@@ -743,3 +817,15 @@ Ref: [A Design and Implementation of Rust Coroutine with priority in Operating S
 4. 协程与操作系统内核
 
 ![bg right:40% 100%](figs/coroutine-2.png)
+
+---
+
+#### 参考文献
+
+- https://www.youtube.com/watch?v=R4Oz8JUuM4s
+- https://github.com/nikhilkumarsingh/async-http-requests-tut
+- http://www.dabeaz.com/coroutines/
+- https://rust-lang.github.io/async-book/01_getting_started/01_chapter.html 
+- https://github.com/nikhilkumarsingh/async-http-requests-tut/blob/master/test_asyncio.py
+- https://gobyexample-cn.github.io/goroutines 
+- https://zijiaw.github.io/posts/a7-rsfuture/
