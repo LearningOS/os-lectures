@@ -35,30 +35,33 @@ backgroundColor: white
 
 ##### 进程存在的不足
 
-  -  并行/并发处理困难
-  -  进程之间地址空间隔离
-  -  通过IPC共享/交换数据不方便
-  -  管理进程开销大
-     - 创建/删除/切换
+-  进程之间地址空间隔离
+-  通过IPC共享/交换数据不方便
+-  管理进程开销大
+  - 创建/删除/切换
+-  并行/并发处理困难
 ![bg right:62% 100%](figs/ps-issue1.png)
 
 ---
 
 ##### 进程存在的不足
 
-  -  并行/并发处理困难
-  -  进程之间地址空间隔离
-  -  通过IPC共享/交换数据不方便
-  -  管理进程开销大
-     - 创建/删除/切换
+-  进程之间地址空间隔离
+-  通过IPC共享/交换数据不方便
+-  管理进程开销大
+  - 创建/删除/切换
+-  并行/并发处理困难
 ![bg right:62% 100%](figs/ps-issue2.png)
 
 ---
 
 ##### 为何需要线程？
 
-在应用中可能同时发生多种活动，且某些活动会被阻塞。将**程序分解成可并行运行的多个顺序控制流**，可提高执行**效率**，且程序设计模型也会变得更**简单**。
-![bg right:63% 95%](figs/thread-process.png)
+* 在应用中可能同时发生多种活动，且某些活动会被阻塞
+* 将**程序分解成可并行运行的多个顺序控制流**
+  * 可提高执行**效率**
+  * 程序设计模型也会变得更**简单**
+![bg right:62% 95%](figs/thread-process.png)
 
 <!--
 ![bg right:48% 95%](figs/thread.png)
@@ -154,7 +157,7 @@ backgroundColor: white
 
 ##### 进程和线程的关系
 
-**线程 = 进程 - 共享资源**
+**进程 = 线程 + 共享资源**
 - 一个进程中可存在多个线程
 - 线程共享进程的地址空间
 - 线程共享进程的资源
@@ -282,12 +285,12 @@ int pthread_join(pthread_t thread, void **retval);
 7       int rc;
 8       printf("main: begin\n");
 9       rc = pthread_create(&p1, NULL, mythread, "A"); assert(rc == 0);
-10       rc = pthread_create(&p2, NULL, mythread, "B"); assert(rc == 0);
-11       // join waits for the threads to finish
-12       rc = pthread_join(p1, NULL); assert(rc == 0);
-13       rc = pthread_join(p2, NULL); assert(rc == 0);
-14       printf("main: end\n");
-15       return 0;
+10      rc = pthread_create(&p2, NULL, mythread, "B"); assert(rc == 0);
+11      // join waits for the threads to finish
+12      rc = pthread_join(p1, NULL); assert(rc == 0);
+13      rc = pthread_join(p2, NULL); assert(rc == 0);
+14      printf("main: end\n");
+15      return 0;
 16   }
 ```
 
