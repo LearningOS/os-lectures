@@ -12,10 +12,9 @@ backgroundColor: white
 <!-- _class: lead -->
 
 # 第十二讲 同步与互斥
-
 ## 第三节 管程与条件变量
 
- 管程（Monitor）、条件变量（Condition Variable）
+管程（Monitor）、条件变量（Condition Variable）
  
 <!-- 
 Gregory Kesden, Monitors and Condition Variables https://cseweb.ucsd.edu/classes/sp16/cse120-a/applications/ln/lecture9.html
@@ -27,16 +26,33 @@ Fruit_初, Monitors, March, 2017. https://www.jianshu.com/p/8b3ed769bc9f
 C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concurency-pattern-6-monitor 
 -->
 
+<br>
+<br>
+
+向勇 陈渝 李国良 任炬 
+
+2023年秋季
+
 ---
-### 条件变量
+
+**提纲**
+
+### 1. 条件变量
+2. 管程
+3. 管程实现方式
+4. 管程的实现
+5. 生产者-消费者问题的管程实现
+
+---  
+
+#### 条件变量
 条件变量是多线程编程中的一种同步机制，用于在线程间进行通信和协调。它是一个结构体，包含了一个等待队列和一些基本操作函数，可以通过条件变量实现线程的阻塞、唤醒和通讯等功能。
 
 条件变量通常与互斥锁（mutex）配合使用，以实现线程间的同步和互斥。当某个共享资源被占用时，线程可以通过条件变量挂起自己，等待其他线程释放该资源后再继续执行。
 
+---  
 
-
----
-### 条件变量
+#### 条件变量
 条件变量的主要操作包括：
 
 - 初始化：通过 pthread_cond_init() 函数初始化一个条件变量。
@@ -47,8 +63,9 @@ C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concuren
 
 - 唤醒等待：通过 pthread_cond_signal() 或 pthread_cond_broadcast() 函数唤醒一个或多个等待在条件变量上的线程。
 
----
-### 条件变量
+---  
+
+#### 条件变量
 
 使用条件变量的一般步骤如下：
 
@@ -62,15 +79,26 @@ C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concuren
 
 
 ---
-### 管程 
+
+**提纲**
+
+1. 条件变量
+### 2. 管程
+3. 管程实现方式
+4. 管程的实现
+5. 生产者-消费者问题的管程实现
+
+---
+#### 管程
 - 动机：为什么有管程？ 传统PV和锁机制有如下问题：
   - 程序易读性差：要了解对于一组共享变量及信号量的操作是否正确，则必须通读整个系统或者并发程序。
   - 程序不利于修改和维护：程序局部性很差，所以任一组变量或一段代码的修改都可能影响全局。
   - 正确性难以保证：操作系统或并发程序通常很大，很难保证一个复杂的系统没有逻辑错误。
   - 容易发生死锁：如果不使用好P、V操作时，逻辑上发生错误，很有可能会导致死锁。
 
----
-### 管程
+---  
+
+#### 管程
 - 管程是一种用于多线程互斥访问共享资源的**程序结构**
 - 采用**面向对象方法**，简化了线程间的同步控制
 - 任一时刻最多只有一个线程执行管程代码
@@ -78,8 +106,9 @@ C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concuren
 ![w:600](figs/basic-monitor.png)
 
 
----
-### 管程 
+---  
+
+#### 管程 
 - 模块化，一个管程是一个基本程序单位，可以单独编译。
 
 - 抽象数据类型，管程是一种特殊的数据类型，其中不仅有数据，而且有对数据进行操作的代码。
@@ -88,8 +117,9 @@ C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concuren
 
 ![bg right:40% 100%](figs/moniter.jpg)
 
----
-### 管程 -- 条件变量
+---  
+
+#### 管程 -- 条件变量
 - 管程中的共享变量在管程外部是不可见的，外部只能通过调用管程中所说明的外部过程 (函数）来间接地访问管程中的共享变量
   - 互斥：任一时刻管程中只能有一个活跃进程，通过锁竞争进入管程
   - 等待：进入管程的线程**因资源被占用**而进入等待状态
@@ -103,8 +133,9 @@ C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concuren
 ![bg right:40% 100%](figs/basic-monitor-2.png)
 
 
----
-### 管程 -- 条件变量
+---  
+
+#### 管程 -- 条件变量
 
 -->
 
@@ -120,8 +151,9 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 
 
----
-### 管程 -- 条件变量
+---  
+
+#### 管程 -- 条件变量
 - 管程的组成：一个由过程（函数）、变量及数据结构等组成的一个集合
    - 一个锁：控制管程代码的互斥访问
    - 0或者多个条件变量: 管理共享数据的并发访问，每个条件变量有个等待（紧急）队列
@@ -131,8 +163,9 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 ![bg right:40% 100%](figs/moniter.jpg)
 
 
----
-### 管程 -- 条件变量
+---  
+
+#### 管程 -- 条件变量
 - 入口等待队列：管程入口处等待队列
 - 条件等待队列：某个条件变量的等待队列（为资源占用而等待）
 - 紧急等待队列：唤醒使用的紧急队列
@@ -142,8 +175,9 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 ![bg right:40% 100%](figs/moniter.jpg)
 
----
-### 管程 -- 流程 （T可以是线程或者进程）
+---  
+
+#### 管程 -- 流程 （T可以是线程或者进程）
 - T.enter过程：线程T在进入管程之前要获得互斥访问权(lock)
 - T.leave过程：当线程T离开管程时，如果紧急队列**不为空**，唤醒紧急队列中的线程，并将T所持锁赋予唤醒的线程；如果**紧急队列为空**，释放lock，唤醒入口等待队列某个线程
 - T.wait(c)：1)阻塞线程T自己，将T自己挂到条件变量c的等待队列；
@@ -155,8 +189,9 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 <!--唤醒由于等待这种资源而进入条件等待队列的(c的条件等待队列)第一个线程进入管程的进程某种资源释放，此时进程会唤醒由于等待这种资源而进入条件等待队列的第一个进程-->
 
 <!--
----
-### 管程 -- 条件变量
+---  
+
+#### 管程 -- 条件变量
 - 同步：条件变量（Condition Variables)以及相关的两个操作：wait和signal，处理等待机制。
 - Wait()操作
    - 将自己阻塞在等待队列中
@@ -170,13 +205,25 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 -->
 
----
-### 管程 -- 流程 （T可以是线程或者进程）
+---  
+
+#### 管程 -- 流程 （T可以是线程或者进程）
 
 ![w:1000](figs/monitorex.png)
 
 ---
-### 管程 -- 实现方式
+
+**提纲**
+
+1. 条件变量
+2. 管程
+### 3. 管程实现方式
+4. 管程的实现
+5. 生产者-消费者问题的管程实现
+
+---
+
+#### 管程实现方式
 <!-- https://blog.csdn.net/qq_34666857/article/details/103189107 Java并发编程模拟管程（霍尔Hoare管程、汉森Hansan管程、MESA管程) -->
 管程中条件变量的释放处理方式
 
@@ -187,8 +234,9 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
   - 2：(MESA/Hansen)：T2执行/T1等待，直至T2离开管程，然后T1可能继续执行
 
 
----
-### 管程 -- 实现方式
+---  
+
+#### 管程 -- 实现方式
 <!-- https://blog.csdn.net/qq_34666857/article/details/103189107 Java并发编程模拟管程（霍尔Hoare管程、汉森Hansan管程、MESA管程) -->
 管程中条件变量的释放处理方式
 - 线程 T2 的signal，使线程 T1 等待的条件满足时
@@ -196,24 +244,27 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
   - Hansen： T2 通知完 T1 后，T2 还会接着执行，T2 执行结束后（规定：最后操作是signal），然后 T1 再执行（将锁直接给T1）
   - MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是重新竞争访问权限
 
----
-### 管程 
+---  
+
+#### 管程 
 管程中条件变量的释放处理方式
 <!-- https://cseweb.ucsd.edu/classes/sp17/cse120-a/applications/ln/lecture8.html --> 
 <!-- https://juejin.cn/post/6925331537365843981 synchronized原理剖析 -->
 ![w:1200](figs/cond-releases.png)
 
 
----
-### 管程 
+---  
+
+#### 管程 
 <!-- 管程中条件变量的释放处理方式 -->
 ![w:1000](figs/cond-releases-2.png)
 
 
 
 
----
-### 管程 
+---  
+
+#### 管程 
 <!-- 管程中条件变量的释放处理方式 -->
 唤醒一个线程的两种选择：**直接赋予锁** vs **重新公平竞争锁**
 
@@ -221,8 +272,9 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 
 
----
-### 管程 - Hoare 
+---  
+
+#### 管程 - Hoare 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
 ```
 - 1. T1 进入管程monitor
@@ -239,8 +291,9 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 ```
 ![bg right:35% 100%](figs/hoare.png)
 
----
-### 管程 - Mesa 
+---  
+
+#### 管程 - Mesa 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
 ```
 - 1. T1 进入管程monitor
@@ -259,8 +312,9 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 ```
 ![bg right:35% 100%](figs/mesa.png)
 
----
-### 管程 - Hansen： 
+---  
+
+#### 管程 - Hansen： 
 <!-- https://www.cnblogs.com/upnote/p/13030741.html   Java synchronized的理论基础-管程(Monitor) -->
 ```
 - 1. T1 进入管程monitor
@@ -276,60 +330,92 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 ![bg right:35% 100%](figs/hansen.png)
 
 ---
-### 管程 -- 实现条件变量
+
+**提纲**
+
+1. 条件变量
+2. 管程
+3. 管程实现方式
+### 4. 管程的实现
+5. 生产者-消费者问题的管程实现
+
+---
+
+#### 读者写者问题的管程实现
 ![w:1000](figs/cond-1.png)
 
----
-### 管程 -- 实现条件变量
+---  
+
+#### 管程 -- 实现条件变量
 ![w:1000](figs/cond-2.png)
 
----
-### 管程 -- 实现条件变量
+---  
+
+#### 管程 -- 实现条件变量
 ![w:1000](figs/cond-3.png)
 
----
-### 管程 -- 实现条件变量
+---  
+
+#### 管程 -- 实现条件变量
 ![w:1000](figs/cond-4.png)
 
----
-### 管程 -- 实现条件变量
+---  
+
+#### 管程 -- 实现条件变量
 ![w:1000](figs/cond-5.png)
 
----
-### 管程 -- 实现条件变量
+---  
+
+#### 管程 -- 实现条件变量
 ![w:1000](figs/cond-6.png)
 
----
-### 管程 -- 实现条件变量
+---  
+
+#### 管程 -- 实现条件变量
 ![w:1000](figs/cond-7.png)
 
----
-### 管程 -- 实现条件变量
+---  
+
+#### 管程 -- 实现条件变量
 ![w:1000](figs/cond-8.png)
 
 
----
-### 管程 -- 实现条件变量
+---  
+
+#### 管程 -- 实现条件变量
 ![w:1000](figs/cond-9.png)
 
 
 
 ---
-### 管程 -- 生产者-消费者问题
+
+**提纲**
+
+1. 条件变量
+2. 管程
+3. 管程实现方式
+4. 管程的实现
+### 5. 生产者-消费者问题的管程实现
+
+---
+#### 管程 -- 生产者-消费者问题
 ![w:1000](figs/monitor-pc-1.png)
 
 
----
-### 管程 -- 生产者-消费者问题
+---  
+
+#### 管程 -- 生产者-消费者问题
 ![w:1000](figs/monitor-pc-2.png)
 
 
----
-### 管程 -- 生产者-消费者问题
+---  
+
+#### 管程 -- 生产者-消费者问题
 ![w:1000](figs/monitor-pc-3.png)
 
 
----
-### 管程 -- 生产者-消费者问题
+---  
+
+#### 管程 -- 生产者-消费者问题
 ![w:1000](figs/monitor-pc-4.png)
 

@@ -50,11 +50,11 @@ backgroundColor: white
 #### 协程(coroutine)的提出
 
 <!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
-协程由Melvin Conway在1963年提出并实现
+协程由Melvin Conway在1963年提出并实现([Ref](http://melconway.com/Home/pdf/compiler.pdf))
 - 作者对协程的描述是“**行为与主程序相似的子例程**(subroutine)”
 - 协程采用同步编程方式支持大规模并发I/O异步操作
 
-Donald  Knuth ：子例程是协程的特例
+[Donald  Knuth](https://www.chiark.greenend.org.uk/~sgtatham/coroutines.html) ：子例程是协程的特例
 ![bg right:42% 100%](figs/coroutine-3.png)
 
 <!-- 协程的概念最早由Melvin Conway在1963年提出并实现，用于简化COBOL编译器的词法和句法分析器间的协作，当时他对协程的描述是“行为与主程序相似的子例程”。 -->
@@ -84,7 +84,7 @@ Donald  Knuth ：子例程是协程的特例
 
 ---
 
-#### 协程(无栈协程)与用户线程的比较
+#### 协程与用户线程的比较
 
 - 协程的内存占用比线程小
   - 线程数量越多，协程的性能优势越明显
@@ -93,7 +93,7 @@ Donald  Knuth ：子例程是协程的特例
 
 ---
 
-#### 协程示例
+#### 协程示例(python)
 
 ```
 def func()://普通函数
@@ -128,7 +128,7 @@ def func()://协程函数
 #### 协程的实现方式
 
 <!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
-2004年Lua的作者Ana Lucia de Moura和Roberto Ierusalimschy发表论文“[Revisiting Coroutines](https://www.researchgate.net/publication/2934331_Revisiting_Coroutines)”，提出依照三个因素来对协程进行分类：
+2004年Lua的作者Ana Lucia de Moura和Roberto Ierusalimschy发表论文“[Revisiting Coroutines](https://dl.acm.org/doi/pdf/10.1145/1462166.1462167)”，提出依照三个因素来对协程进行分类：
 - 控制传递（Control-transfer）机制
 - 栈式（Stackful）构造
 - 编程语言中第一类（First-class）对象
@@ -168,7 +168,7 @@ def func()://协程函数
 
 **对称协程**是指所有协程都是对等的，每个协程可以主动挂起自己，并让出处理器给其他协程执行。对称协程不需要操作系统内核的支持，可以在用户空间中实现，具有更快的上下文切换速度和更小的内存开销。
 * 优点：简单易用，没有复杂的调度逻辑。
-* 缺点：如果某个协程死循环或阻塞，会导致整个程序挂起。
+* 缺点：如果某个协程死循环或阻塞，会导致整个进程挂起。
 
 ---
 
@@ -377,7 +377,7 @@ async fn example(min_len: usize) -> String {
 ---
 
 #### 支持协程的编程语言
-- 无栈协程：Rust、C++20、C Python、Java、Javascript等
+- 无栈协程：Rust、C++20、C、Python、Java、Javascript等
 - 有栈协程（即线程）：Go、Java2022、Python、Lua
    
 ![w:1100](figs/coroutine-langs.png)
@@ -753,8 +753,8 @@ read!(fd, buffer, cid); // Async call
 read!(fd, buffer); // Sync call
 ```
 
-1. 用户态系统调用接口，通过参数区分
-2. 内核协程与异步 I/O 机制结合，内核协程完成读取、复制数据操作
+* 用户态系统调用接口，通过参数区分
+* 内核协程与异步 I/O 机制结合，内核协程完成读取、复制数据操作
 ![width:900px async_syscall](figs/async_syscall.png)
 
 <!--

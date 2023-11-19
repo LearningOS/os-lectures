@@ -12,12 +12,28 @@ backgroundColor: white
 <!-- _class: lead -->
 
 # 第十二讲 同步与互斥
-
 ## 第六节 支持同步互斥的OS(SMOS)
 
+<br>
+<br>
+
+向勇 陈渝 李国良 任炬 
+
+2023年秋季
 
 ---
-### 实践：SMOS
+
+**提纲**
+
+### 1. 实验安排
+2. 全局变量累加应用
+3. 互斥锁
+4. 信号量
+5. 管程与条件变量
+
+---
+
+#### 实践：SMOS
 - **进化目标**
 - 总体思路
 - 历史背景
@@ -26,9 +42,10 @@ backgroundColor: white
 
 ![bg right:65% 100%](figs/thread-coroutine-os-detail.png)
 
-
 ---
-### 实践：SMOS -- 以往目标
+
+#### 以往目标
+
 提高性能、简化开发、加强安全、支持数据持久保存、支持应用的灵活性，支持进程间交互，支持线程和协程
 - TCOS：支持线程和协程  ； IPC OS：进程间交互
 - Filesystem OS：支持数据持久保存
@@ -39,7 +56,8 @@ backgroundColor: white
 - LibOS: 让APP与HW隔离，简化应用访问硬件的难度和复杂性
 
 ---
-### 实践：SMOS -- 进化目标
+
+#### 进化目标
 在多线程中支持对共享资源的同步互斥访问
 - 互斥锁机制
 - 信号量机制
@@ -47,8 +65,8 @@ backgroundColor: white
 
 
 ---
-### 实践：SMOS 
-### 同学的进化目标
+
+#### 同学的进化目标
 - 理解同步互斥的各种机制
 - 理解用同步互斥机制解决同步互斥问题
 - 会写支持线程间同步互斥的OS
@@ -59,7 +77,8 @@ backgroundColor: white
 ![bg right 80%](figs/maiasaura.png)
 
 ---
-### 实践：SMOS
+
+#### 实践：SMOS
 - 进化目标
 - **总体思路**
     - **同步互斥**
@@ -70,7 +89,8 @@ backgroundColor: white
 ![bg right:70% 100%](figs/syncmutex-os-key-structures.png)
 
 ---
-### 实践：SMOS
+
+#### 实践：SMOS
 - 进化目标
 - **总体思路**
     - **同步互斥**
@@ -82,13 +102,14 @@ backgroundColor: white
 
 
 ---
-### 实践：SMOS
-历史背景
+
+#### 历史背景
 - 1963年前后，当时的数学家 Edsger Dijkstra和他的团队正在为Electrologica X8计算机开发一个操作系统（THE多道程序系统）的过程中，提出了信号（Semaphore）是一种变量或抽象数据类型，用于控制多个线程对共同资源的访问。
 - Brinch Hansen(1973)和Hoare(1974)结合操作系统和Concurrent Pascal编程语言，提出了一种高级同步原语，称为管程(monitor)。一个管程是一个由过程（procedures，Pascal语言的术语，即函数）、共享变量等组成的集合。线程可调用管程中的过程。
 
 ---
-### 实践步骤
+
+#### 实践步骤
 ```
 git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 cd rCore-Tutorial-v3
@@ -105,7 +126,8 @@ user/src/bin/
 ```
 
 ---
-### 实践步骤
+
+#### 实践步骤
 内核代码的主要改进部分
 ```
 os/src/
@@ -123,7 +145,8 @@ os/src/
 ```
 
 ---
-### 实践步骤
+
+#### 实践步骤
 比如执行哲学家问题的应用程序，展示了5个哲学家用5把叉子进行思考/进餐/休息的过程。
 ```
 Rust user shell
@@ -140,8 +163,18 @@ time cost = 7271
 ```
 
 ---
-### 实践步骤
-全局变量累加问题的多线程应用 `race_adder.rs`
+
+**提纲**
+
+1. 实验安排
+### 2. 全局变量累加应用
+3. 互斥锁
+4. 信号量
+5. 管程与条件变量
+
+---
+
+#### 全局变量累加问题的多线程应用 `race_adder.rs`
 ```
 A           //全局变量 
 A=A+1       //多个线程对A进行累加 
@@ -152,8 +185,8 @@ A=A+1       //多个线程对A进行累加
 - 多个线程无序竞争不能被同时访问的资源而出现执行出错的问题，称为竞争条件（Race Condition）
 
 ---
-### 实践步骤
-全局变量累加问题的多线程应用 `race_adder.rs`
+
+#### 全局变量累加问题的多线程应用 `race_adder.rs`
 ```rust
 pub fn main() -> i32 {
     let start = get_time();
@@ -173,7 +206,8 @@ pub fn main() -> i32 {
 
 
 ---
-### 实践步骤
+
+#### 实践步骤
 全局变量累加问题的多线程应用 `race_adder.rs`
 ```rust
 unsafe fn f() -> ! {
@@ -188,7 +222,8 @@ unsafe fn f() -> ! {
 }
 ```
 ---
-### 实践步骤
+
+#### 实践步骤
 全局变量累加问题的多线程应用 `race_adder.rs`
 ```
 >> race_adder
@@ -202,7 +237,8 @@ Panicked at src/bin/race_adder.rs:40, assertion failed: `(left == right)`
 
 
 ---
-### 实践步骤
+
+#### 实践步骤
 基于原子操作的全局变量累加问题的多线程应用 `race_adder_atomic.rs`
 ```rust
 unsafe fn f() -> ! {
@@ -219,7 +255,8 @@ unsafe fn f() -> ! {
     ...
 ```
 ---
-### 实践步骤
+
+#### 实践步骤
 基于原子操作的全局变量累加问题的多线程应用 `race_adder_atomic.rs`
 
 ```
@@ -230,7 +267,8 @@ time cost is 29ms
 可以看到，执行速度快，且正确。
 
 ---
-### 实践步骤
+
+#### 实践步骤
 基于互斥锁的多线程应用 `race_adder_mutex_[spin|block]`
 ```rust
 unsafe fn f() -> ! {
@@ -247,7 +285,8 @@ unsafe fn f() -> ! {
 }
 ```
 ---
-### 实践步骤
+
+#### 实践步骤
 基于互斥锁的全局变量累加问题的多线程应用 `race_adder_mutex_spin`
 ```
 >> race_adder_mutex_spin  
@@ -263,7 +302,18 @@ time cost is 919ms
 ```
 
 ---
-###  程序设计
+
+**提纲**
+
+1. 实验安排
+2. 全局变量累加应用
+### 3. 互斥锁
+4. 信号量
+5. 管程与条件变量
+
+---
+
+####  程序设计
 spin mutex和 block mutex 的核心数据结构（**全局变量**）： `UPSafeCell`
 ```rust
 pub struct UPSafeCell<T> { //允许在单核上安全**使用可变全局变量**
@@ -281,7 +331,8 @@ impl<T> UPSafeCell<T> {
 ```
 
 ---
-###  程序设计
+
+####  程序设计
 spin mutex和 block mutex 的核心数据结构
 ```rust
 pub struct MutexSpin {
@@ -298,7 +349,8 @@ pub struct MutexBlockingInner {
 
 
  ---
-###  程序设计
+
+####  程序设计
 spin mutex的相关函数
 ```rust
 pub trait Mutex: Sync + Send { //Send表示跨线程 move，Sync表示跨线程share data
@@ -313,7 +365,8 @@ pub trait Mutex: Sync + Send { //Send表示跨线程 move，Sync表示跨线程s
 ```
 
 ---
-###  程序设计
+
+####  程序设计
 spin mutex的相关函数
 ```rust
 impl Mutex for MutexSpin {
@@ -332,7 +385,8 @@ impl Mutex for MutexSpin {
 
 
 ---
-###  程序设计
+
+####  程序设计
 block mutex的相关函数
 ```rust
 impl Mutex for MutexBlocking {
@@ -352,7 +406,8 @@ impl Mutex for MutexBlocking {
 
 
 ---
-###  程序设计
+
+####  程序设计
 block mutex的相关函数
 ```rust
     fn unlock(&self) {
@@ -367,7 +422,18 @@ block mutex的相关函数
     }
 ```
 ---
-### 实践步骤
+
+**提纲**
+
+1. 实验安排
+2. 全局变量累加应用
+3. 互斥锁
+### 4. 信号量
+5. 管程与条件变量
+
+---
+
+#### 实践步骤
 基于信号量的多线程应用 `sync_sem`
 ```rust
 pub fn main() -> i32 {
@@ -386,7 +452,8 @@ pub fn main() -> i32 {
 ```
 
 ---
-### 实践步骤
+
+#### 实践步骤
 基于信号量的多线程应用 `sync_sem`
 ```rust
 unsafe fn first() -> ! {
@@ -404,7 +471,8 @@ unsafe fn second() -> ! {
 ```
 
 ---
-### 实践步骤
+
+#### 实践步骤
 基于信号量的多线程应用 `sync_sem`
 ```
 >> sync_sem
@@ -418,7 +486,8 @@ sync_sem passed!
 - semaphore_up()：会唤醒挂起的线程
 
 ---
-###  程序设计
+
+####  程序设计
 semaphore的核心数据结构
 ```rust
 pub struct Semaphore {
@@ -432,7 +501,8 @@ pub struct SemaphoreInner {
 ```
 
 ---
-###  程序设计
+
+####  程序设计
 semaphore的相关函数
 ```rust
     pub fn down(&self) {
@@ -449,7 +519,8 @@ semaphore的相关函数
 
 
 ---
-###  程序设计
+
+####  程序设计
 semaphore的相关函数
 ```rust
     pub fn up(&self) {
@@ -467,7 +538,18 @@ semaphore的相关函数
 
 
 ---
-### 实践步骤
+
+**提纲**
+
+1. 实验安排
+2. 全局变量累加应用
+3. 互斥锁
+4. 信号量
+### 5. 管程与条件变量
+
+---
+
+#### 实践步骤
 基于互斥锁和条件变量的多线程应用 `test_condvar`
 ```rust
 pub fn main() -> i32 {
@@ -485,7 +567,8 @@ pub fn main() -> i32 {
 ```
 
 ---
-### 实践步骤
+
+#### 实践步骤
 基于互斥锁和条件变量的多线程应用 `test_condvar`
 ```rust
 unsafe fn second() -> ! {
@@ -502,7 +585,8 @@ unsafe fn second() -> ! {
 ```
 
 ---
-### 实践步骤
+
+#### 实践步骤
 基于互斥锁和条件变量的多线程应用 `test_condvar`
 ```rust
 unsafe fn first() -> ! {
@@ -517,7 +601,8 @@ unsafe fn first() -> ! {
 ```
 
 ---
-### 实践步骤
+
+#### 实践步骤
 基于互斥锁和条件变量的多线程应用 `test_condvar`
 ```
 >> test_condvar
@@ -529,7 +614,8 @@ A is 1, Second can work now
 - `first`后执行，但会先于`second`，并通过条件变量唤醒`second`
 
 ---
-###  程序设计
+
+####  程序设计
 condvar的核心数据结构
 ```rust
 pub struct Condvar {
@@ -542,7 +628,8 @@ pub struct CondvarInner {
 ```
 
 ---
-###  程序设计
+
+####  程序设计
 condvar的相关函数
 ```rust
     pub fn wait(&self, mutex: Arc<dyn Mutex>) {
@@ -557,7 +644,8 @@ condvar的相关函数
 ```
 
 ---
-###  程序设计
+
+####  程序设计
 condvar的相关函数
 ```rust
     pub fn signal(&self) {
@@ -570,7 +658,8 @@ condvar的相关函数
 ```
 
 ---
-###  程序设计
+
+####  程序设计
 sleep的设计实现
 ```rust
 pub fn sys_sleep(ms: usize) -> isize {
@@ -582,6 +671,7 @@ pub fn sys_sleep(ms: usize) -> isize {
 }
 ```
 ---
+
 ### 小结
 - 学习掌握面向多线程应用的同步互斥机制
    - 互斥锁

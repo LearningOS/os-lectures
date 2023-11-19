@@ -46,12 +46,12 @@
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="3" data-marpit-pagination-total="53"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:42%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/coroutine-3.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="58%" height="720"><section id="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:42%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h4>协程(coroutine)的提出</h4>
 
-<p>协程由Melvin Conway在1963年提出并实现</p>
+<p>协程由Melvin Conway在1963年提出并实现(<a href="http://melconway.com/Home/pdf/compiler.pdf">Ref</a>)</p>
 <ul>
 <li>作者对协程的描述是“<strong>行为与主程序相似的子例程</strong>(subroutine)”</li>
 <li>协程采用同步编程方式支持大规模并发I/O异步操作</li>
 </ul>
-<p>Donald  Knuth ：子例程是协程的特例<br />
+<p><a href="https://www.chiark.greenend.org.uk/~sgtatham/coroutines.html">Donald  Knuth</a> ：子例程是协程的特例<br />
 </p>
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="4" data-marpit-pagination-total="53"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:35%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/coroutine-3.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="65%" height="720"><section id="5" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:35%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
@@ -76,7 +76,7 @@
 <p><img src="figs/function-coroutine.png" alt="" style="width:900px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h4>协程(无栈协程)与用户线程的比较</h4>
+<h4>协程与用户线程的比较</h4>
 <ul>
 <li>协程的内存占用比线程小
 <ul>
@@ -88,7 +88,7 @@
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/coroutine2.png&quot;);background-size:80%;"></figure></div></section></foreignObject><foreignObject width="45%" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:55%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
-<h4>协程示例</h4>
+<h4>协程示例(python)</h4>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>def func()://普通函数
    print(&quot;a&quot;)
    print(&quot;b&quot;)
@@ -116,7 +116,7 @@
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="9" data-marpit-pagination-total="53"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="10" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>协程的实现方式</h4>
 
-<p>2004年Lua的作者Ana Lucia de Moura和Roberto Ierusalimschy发表论文“<a href="https://www.researchgate.net/publication/2934331_Revisiting_Coroutines">Revisiting Coroutines</a>”，提出依照三个因素来对协程进行分类：</p>
+<p>2004年Lua的作者Ana Lucia de Moura和Roberto Ierusalimschy发表论文“<a href="https://dl.acm.org/doi/pdf/10.1145/1462166.1462167">Revisiting Coroutines</a>”，提出依照三个因素来对协程进行分类：</p>
 <ul>
 <li>控制传递（Control-transfer）机制</li>
 <li>栈式（Stackful）构造</li>
@@ -155,7 +155,7 @@
 <p><strong>对称协程</strong>是指所有协程都是对等的，每个协程可以主动挂起自己，并让出处理器给其他协程执行。对称协程不需要操作系统内核的支持，可以在用户空间中实现，具有更快的上下文切换速度和更小的内存开销。</p>
 <ul>
 <li data-marpit-fragment="1">优点：简单易用，没有复杂的调度逻辑。</li>
-<li data-marpit-fragment="2">缺点：如果某个协程死循环或阻塞，会导致整个程序挂起。</li>
+<li data-marpit-fragment="2">缺点：如果某个协程死循环或阻塞，会导致整个进程挂起。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="15" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -352,7 +352,7 @@
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="29" data-marpit-pagination-total="53"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="30" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>支持协程的编程语言</h4>
 <ul>
-<li>无栈协程：Rust、C++20、C Python、Java、Javascript等</li>
+<li>无栈协程：Rust、C++20、C、Python、Java、Javascript等</li>
 <li>有栈协程（即线程）：Go、Java2022、Python、Lua</li>
 </ul>
 <p><img src="figs/coroutine-langs.png" alt="" style="width:1100px;" /></p>
@@ -621,16 +621,16 @@ URL = <span class="hljs-string">&#x27;https://httpbin.org/uuid&#x27;</span>
 </li>
 </ul>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="46" data-marpit-pagination-total="53"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="46" data-marpit-pagination-total="53"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="47" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="47" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>Asynchronous system call</h4>
 <pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>read!(fd, buffer, cid); <span class="hljs-comment">// Async call</span>
 read!(fd, buffer); <span class="hljs-comment">// Sync call</span>
 </span></span></foreignObject></svg></code></pre>
-<ol>
-<li>用户态系统调用接口，通过参数区分</li>
-<li>内核协程与异步 I/O 机制结合，内核协程完成读取、复制数据操作<br />
+<ul>
+<li data-marpit-fragment="1">用户态系统调用接口，通过参数区分</li>
+<li data-marpit-fragment="2">内核协程与异步 I/O 机制结合，内核协程完成读取、复制数据操作<br />
 <img src="figs/async_syscall.png" alt="async_syscall" style="width:900px;" /></li>
-</ol>
+</ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>Throughput and message latency</h4>
