@@ -89,7 +89,7 @@
 <img src="figs/syncinlife.png" alt="" style="width:900px;" /></li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="50" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:30%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/icebox.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="70%" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="50" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:30%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="50" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:30%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/icebox.png&quot;);background-size:95%;"></figure></div></section></foreignObject><foreignObject width="70%" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="50" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:30%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h5>现实生活中的同步互斥</h5>
 <ul>
 <li>如何保证家庭采购协调的成功和高效
@@ -180,7 +180,8 @@ remove note;
 </ul>
 </li>
 </ul>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>leave note_2;
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>// 进程A
+leave note_2;
 if (no note_1) {
    if (no bread) { 
      buy bread; 
@@ -198,7 +199,8 @@ remove note_2;
 </ul>
 </li>
 </ul>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>leave note_1;
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>// 进程B
+leave note_1;
 if (no note_2) {
    if (no bread) { 
      buy bread; 
@@ -210,14 +212,12 @@ remove note_1;
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="13" data-marpit-pagination-total="50"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="50" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/method-3.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="14" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="50" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h5>方案三</h5>
 <ul>
-<li>
-<p>为便签增加标记，以区别不同人的便签</p>
+<li>为便签增加标记，以区别不同人的便签
 <ul>
 <li>现在可在检查之前留便签</li>
 </ul>
 </li>
-<li>
-<p>会发生什么？</p>
+<li>会发生什么？
 <ul>
 <li>可能导致没有人去买面包</li>
 <li>每个人都认为另外一个去买面包</li>
@@ -331,12 +331,12 @@ exit section
 exit section
    remainder section
 </span></span></foreignObject></svg></code></pre>
-<ul>
-<li>1 空闲则入：没有线程在临界区时，任何线程可进入</li>
-<li>2 忙则等待：有线程在临界区时，其他线程均<strong>不能</strong>进入临界区</li>
-<li>3 有限等待：等待进入临界区的线程<strong>不能</strong>无限期等待</li>
-<li>4 让权等待（可选）：不能进入临界区的线程，应释放CPU（如转换到阻塞状态）</li>
-</ul>
+<ol>
+<li>空闲则入：没有线程在临界区时，任何线程可进入</li>
+<li>忙则等待：有线程在临界区时，其他线程均<strong>不能</strong>进入临界区</li>
+<li>有限等待：等待进入临界区的线程<strong>不能</strong>无限期等待</li>
+<li>让权等待（可选）：不能进入临界区的线程，应释放CPU（如转换到阻塞状态）</li>
+</ol>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="50" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <p><strong>提纲</strong></p>
@@ -619,9 +619,9 @@ flag[i] = IDLE;<span class="hljs-comment">//结束，自己变idle</span>
 </ol>
 </div>
 <div class="col">
-<p>4.1 禁用硬件中断</p>
-<h4>4.2 基于软件的解决方法</h4>
-<p>4.3 更高级的抽象方法</p>
+<p>4.1 禁用硬件中断<br />
+4.2 基于软件的解决方法</p>
+<h4>4.3 更高级的抽象方法</h4>
 </div>
 </div>
 <br />
