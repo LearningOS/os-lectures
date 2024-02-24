@@ -33,7 +33,7 @@ backgroundColor: white
   - 向勇 陈渝 李国良 任炬 
 
 ### 助教
-  - 饶淙元、田凯夫、赵方亮、刘晓义、陈张萌
+  - 饶淙元、田凯夫、闭浩扬、王拓为、苏明贤、黄旺、郝子胥
 
 ---
 
@@ -88,19 +88,19 @@ backgroundColor: white
 
 #### uCore Tutorial
 
-- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2023A/)
-- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2023A/)
-- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2023A)
+- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2024S/)
+- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2024S/)
+- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2024S)
 
 ---
 
 ### 实验指导
 
 * rCore Tutorial
-  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2023A/)
-  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2023A/#os-api-docs-of-rcore-tutorial-code-2022a) 
-  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2023A)
-  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2023A)
+  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2024S/)
+  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2024S/#os-api-docs-of-rcore-tutorial-code-2022a) 
+  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2024S)
+  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2024S)
 * [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/lt5qafszpz62hob1?singleDoc)
   - 讲解视频
   - 部分内容将逐步更新
@@ -133,7 +133,7 @@ backgroundColor: white
 * **基础实验**
   - （必做）：面向 RISC-V CPU 用 Rust/C 设计实现操作系统的功能
   - （选做）：难度和工作量比必做题目大的其它题目
- 
+
 * **课程设计（大实验）**
   - 用组件来组合操作系统内核 
 
@@ -164,7 +164,7 @@ backgroundColor: white
   - GUI、驱动、文件系统、网络
 * 往届同学的[课程设计成果](https://shimo.im/docs/QTPRT8h8jyGQCqkJ)
 
---- 
+---
 
 ## 成绩评定
 
@@ -182,7 +182,7 @@ backgroundColor: white
 
 **注：选择大实验的同学如果后续退出课程设计，需参加考试。**
 
---- 
+---
 
 ## 调查问卷
 
