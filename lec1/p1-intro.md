@@ -41,9 +41,9 @@ backgroundColor: white
 
 ### 上课时间地点
 - 时间
-  - 星期一 第2大节 上午09:50-11:25 (1-16周) 
+  - 星期一 第2大节 上午09:50-12:15 (1-16周) 
 - 地点
-   - 六教A211
+   - 六教6A209（任）六教6A211（李）六教6A213（陈）
 
 ----
 
@@ -90,7 +90,7 @@ backgroundColor: white
 
 - [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2024S/)
 - [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2024S/)
-- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2024S)
+- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2024S/)
 
 ---
 
@@ -128,7 +128,7 @@ backgroundColor: white
 ## 作业与实验
 
 * **平时作业**
-  - 课后练习：包括问答题和编程题目
+  - 课后练习：包括问答题和编程题目，要求在deadline前提交
 
 * **基础实验**
   - （必做）：面向 RISC-V CPU 用 Rust/C 设计实现操作系统的功能
@@ -136,6 +136,7 @@ backgroundColor: white
 
 * **课程设计（大实验）**
   - 用组件来组合操作系统内核 
+  - 参加全国大学生OS比赛
 
 
 ---
@@ -172,7 +173,7 @@ backgroundColor: white
   - 实验一~五必做题目： 40% ；期中考试 20% ； 期末考试 40%
     - 可选做其他实验（如果觉得实验一-实验五不能得到40分），但实验总分不超过40分
   - 加分：
-    - 平时作业：每做一次平时作业加1分，最高加5分，但总分不超过100分
+    - 平时作业：每做一次平时作业加1分，最高加5分，且课程总评成绩总分不超过100分
 
 ---
 
@@ -186,11 +187,6 @@ backgroundColor: white
 
 ## 调查问卷
 
-[2024年春季学期操作系统课选课问卷](https://www.wjx.cn/vm/es1fD1R.aspx)
-
-- 为什么要学这门课？ 
-- 你打算如何来学这门课？
-- 对自己的课程学习要求是什么？
-- 你愿意如实报告是否独立完成实验任务？
-- 你希望在操作系统课上学到什么知识和什么能力？
-- 你以前的学习情况？
+[2024年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/TdGsawl)
+访问密码：tn6m1HK
+请大家在第一节课后尽快填写问卷，以便我们更好地上好课。
