@@ -10,10 +10,15 @@
 ## 自学OS基本实验
 - OS实验指导(代码/指导/测试/测例等)：https://github.com/learningos/ 中的 u/rCore-Tutorial-*-2024S
 
-## 2023年春季OS课大实验完成项目（代码，文档，slide等）和往年OS相关开源毕设
+## 可作为大实验项目的参考和可选项
+
+### 2023年春季OS课大实验完成项目（代码，文档，slide等）和往年OS相关开源毕设等
 - https://shimo.im/docs/QTPRT8h8jyGQCqkJ/read
-- 
-## ArceOS相关
+
+### 开源实验小项目（也可作为本科或研究生毕设课题）
+- https://github.com/orgs/rcore-os/discussions/categories/ideas
+
+### ArceOS相关
 - https://github.com/rcore-os/arceos 源代码仓库
 - https://oslearning365.github.io/arceos-tutorial-book/ 还未完成，仅供参考
 - http://record-1257797626.cos.ap-beijing.myqcloud.com/cicvedu/100476113/1708953075907.mp4 该视频在第27分钟开始讲解了arceos的基本概念和编译运行等。
