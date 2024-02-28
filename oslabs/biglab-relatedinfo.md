@@ -35,7 +35,31 @@
 - https://github.com/rcore-os/arceos 源代码仓库
 - https://oslearning365.github.io/arceos-tutorial-book/ 还未完成，仅供参考
 - http://record-1257797626.cos.ap-beijing.myqcloud.com/cicvedu/100476113/1708953075907.mp4 该视频在第27分钟开始讲解了arceos的基本概念和编译运行等。
-- 基于ArceOS的其他操作系统
-  - 宏内核 https://github.com/Azure-stars/Starry
-  - 微内核 https://github.com/jhdjames37/arceos
-  - hypervisor https://github.com/arceos-hypervisor/hypercraft 
+
+
+### 参考资源
+
+#### kernel&hypervisor
+这是完整的OS&Hypervisor，要求参赛者设计的kernel components 能够支持如下的OS&Hypervisor
+- [unikernel形态的组件化ArceOS](https://github.com/rcore-os/arceos)
+- [基于ArceOS的宏内核形态的组件化Starry kernel](https://github.com/Arceos-monolithic/Starry)
+- [宏内核形态的组件化Byeos kernel]( https://www.github.com/yfblock/Byteos)
+- [基于ArceOS的微内核形态的组件化os kernel](https://github.com/jhdjames37/arceos)
+- [基于ArceOS的Hypervisor形态的组件化hypervisor](https://github.com/arceos-hypervisor/hypercraft)
+
+#### 参考：与OS无关的kernel components
+这是部分与OS无关的kernel components，有一些不一定特别完善，供参考，也可进一步改进作为比赛提交成果/
+
+- [基于C的ext4 crate](https://github.com/rcore-os/lwext4_rust)
+- [基于Rust的ext4 crate](https://github.com/yuoo655/ext4_rs)
+- [Rust-based tcpip stack: smoltcp](https://github.com/rcore-os/smoltcp)
+- [C-based tcpip stack:lwip](https://github.com/Centaurus99/arceos-lwip)
+- [virtio drivers](https://github.com/rcore-os/virtio-drivers)
+- [e1000 NIC driver](https://github.com/rcore-os/e1000-driver)
+- [Cadence Macb ethernet driver on Sifive fu740 board](https://github.com/rcore-os/cadence-macb-driver)
+- [nvme driver](https://github.com/rcore-os/nvme_driver)
+- [isomorphic_drivers](https://github.com/rcore-os/isomorphic_drivers)
+- [os scheduler](https://github.com/131131yhx/arceos)
+- [os memory malloc subsystem](https://github.com/rcore-os/mem_malloc_subsystem)
+
+

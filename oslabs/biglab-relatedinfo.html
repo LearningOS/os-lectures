@@ -47,13 +47,31 @@
 <li><a href="https://github.com/rcore-os/arceos">https://github.com/rcore-os/arceos</a> 源代码仓库</li>
 <li><a href="https://oslearning365.github.io/arceos-tutorial-book/">https://oslearning365.github.io/arceos-tutorial-book/</a> 还未完成，仅供参考</li>
 <li><a href="http://record-1257797626.cos.ap-beijing.myqcloud.com/cicvedu/100476113/1708953075907.mp4">http://record-1257797626.cos.ap-beijing.myqcloud.com/cicvedu/100476113/1708953075907.mp4</a> 该视频在第27分钟开始讲解了arceos的基本概念和编译运行等。</li>
-<li>基于ArceOS的其他操作系统
-<ul>
-<li>宏内核 <a href="https://github.com/Azure-stars/Starry">https://github.com/Azure-stars/Starry</a></li>
-<li>微内核 <a href="https://github.com/jhdjames37/arceos">https://github.com/jhdjames37/arceos</a></li>
-<li>hypervisor <a href="https://github.com/arceos-hypervisor/hypercraft">https://github.com/arceos-hypervisor/hypercraft</a></li>
 </ul>
-</li>
+<h3>参考资源</h3>
+<h4>kernel&amp;hypervisor</h4>
+<p>这是完整的OS&amp;Hypervisor，要求参赛者设计的kernel components 能够支持如下的OS&amp;Hypervisor</p>
+<ul>
+<li><a href="https://github.com/rcore-os/arceos">unikernel形态的组件化ArceOS</a></li>
+<li><a href="https://github.com/Arceos-monolithic/Starry">基于ArceOS的宏内核形态的组件化Starry kernel</a></li>
+<li><a href="https://www.github.com/yfblock/Byteos">宏内核形态的组件化Byeos kernel</a></li>
+<li><a href="https://github.com/jhdjames37/arceos">基于ArceOS的微内核形态的组件化os kernel</a></li>
+<li><a href="https://github.com/arceos-hypervisor/hypercraft">基于ArceOS的Hypervisor形态的组件化hypervisor</a></li>
+</ul>
+<h4>参考：与OS无关的kernel components</h4>
+<p>这是部分与OS无关的kernel components，有一些不一定特别完善，供参考，也可进一步改进作为比赛提交成果/</p>
+<ul>
+<li><a href="https://github.com/rcore-os/lwext4_rust">基于C的ext4 crate</a></li>
+<li><a href="https://github.com/yuoo655/ext4_rs">基于Rust的ext4 crate</a></li>
+<li><a href="https://github.com/rcore-os/smoltcp">Rust-based tcpip stack: smoltcp</a></li>
+<li><a href="https://github.com/Centaurus99/arceos-lwip">C-based tcpip stack:lwip</a></li>
+<li><a href="https://github.com/rcore-os/virtio-drivers">virtio drivers</a></li>
+<li><a href="https://github.com/rcore-os/e1000-driver">e1000 NIC driver</a></li>
+<li><a href="https://github.com/rcore-os/cadence-macb-driver">Cadence Macb ethernet driver on Sifive fu740 board</a></li>
+<li><a href="https://github.com/rcore-os/nvme_driver">nvme driver</a></li>
+<li><a href="https://github.com/rcore-os/isomorphic_drivers">isomorphic_drivers</a></li>
+<li><a href="https://github.com/131131yhx/arceos">os scheduler</a></li>
+<li><a href="https://github.com/rcore-os/mem_malloc_subsystem">os memory malloc subsystem</a></li>
 </ul>
 </section>
 <script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:u}=t.children;for(let r=0;r<u;r+=1){const o=t.children[r],a=o.getScreenCTM();if(a){const t=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,r=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.firstElementChild,{style:u}=l;u.transformOrigin||(u.transformOrigin=`${-t}px ${-r}px`),u.transform=`scale(${c}) matrix(${a.a}, ${a.b}, ${a.c}, ${a.d}, ${a.e-d.left}, ${a.f-d.top}) translateZ(0.0001px)`}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),u=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",u)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
