@@ -40,7 +40,7 @@
 #### 参考资源
 
 #### kernel&hypervisor
-这是完整的OS&Hypervisor，要求参赛者设计的kernel components 能够支持如下的OS&Hypervisor
+这是部分可供参考的OS&Hypervisor
 - [unikernel形态的组件化ArceOS](https://github.com/rcore-os/arceos)
 - [基于ArceOS的宏内核形态的组件化Starry kernel](https://github.com/Arceos-monolithic/Starry)
 - [宏内核形态的组件化Byeos kernel]( https://www.github.com/yfblock/Byteos)
