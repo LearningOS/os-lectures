@@ -348,7 +348,7 @@ SBSS：small bss，近数据，即使用短指针（near）寻址的数据
 
 #### 生成内核二进制镜像
 
-![bg w:950](figs/load-into-qemu.png)
+![bg w:1020](figs/load-into-qemu.png)
 
 ---
 
