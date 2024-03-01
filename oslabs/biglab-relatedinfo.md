@@ -61,9 +61,13 @@
 - [e1000 NIC driver](https://github.com/rcore-os/e1000-driver)
 - [Cadence Macb ethernet driver on Sifive fu740 board](https://github.com/rcore-os/cadence-macb-driver)
 - [RISC-V星光二代开发板的网卡驱动](https://github.com/yuoo655/visionfive2_net_driver)
+- [RISC-V星光二代开发板的SD卡驱动](https://github.com/os-module/visionfive2-sd) 
 - [nvme driver](https://github.com/rcore-os/nvme_driver)
 - [isomorphic_drivers](https://github.com/rcore-os/isomorphic_drivers)
 - [os scheduler](https://github.com/131131yhx/arceos)
 - [os memory malloc subsystem](https://github.com/rcore-os/mem_malloc_subsystem)
 
+其他一些与还未归类的OS无关的kernel components所在网址
+- [os-modules社区](https://github.com/os-module)
+- [rcore-os社区](https://github.com/rcore-os)
 
