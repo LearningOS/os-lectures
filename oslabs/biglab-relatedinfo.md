@@ -42,6 +42,7 @@
 #### kernel&hypervisor
 这是部分可供参考的OS&Hypervisor
 - [unikernel形态的组件化ArceOS](https://github.com/rcore-os/arceos)
+   - [可运行在RISC-V星光二代开发板上的ArceOS](https://github.com/yuoo655/arceos_net/tree/starfive2) 
 - [基于ArceOS的宏内核形态的组件化Starry kernel](https://github.com/Arceos-monolithic/Starry)
 - [宏内核形态的组件化Byeos kernel]( https://www.github.com/yfblock/Byteos)
 - [基于ArceOS的微内核形态的组件化os kernel](https://github.com/jhdjames37/arceos)
@@ -57,6 +58,7 @@
 - [virtio drivers](https://github.com/rcore-os/virtio-drivers)
 - [e1000 NIC driver](https://github.com/rcore-os/e1000-driver)
 - [Cadence Macb ethernet driver on Sifive fu740 board](https://github.com/rcore-os/cadence-macb-driver)
+- [RISC-V星光二代开发板的网卡驱动](https://github.com/yuoo655/visionfive2_net_driver)
 - [nvme driver](https://github.com/rcore-os/nvme_driver)
 - [isomorphic_drivers](https://github.com/rcore-os/isomorphic_drivers)
 - [os scheduler](https://github.com/131131yhx/arceos)
