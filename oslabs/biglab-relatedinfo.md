@@ -6,12 +6,12 @@
 **在第四周末检查5个实验的完成情况和对操作系统的掌握情况**
 
 ### 自学Rust
-- 推荐: [带在线练习的The Rust Program Language书籍](https://rust-book.cs.brown.edu/)
-- [The Rust Program Language中文版数据](https://kaisery.github.io/trpl-zh-cn/)
+- 推荐: [带在线练习的The Rust Programming Language书籍](https://rust-book.cs.brown.edu/)
+- [Rust 程序设计语言中文版书籍](https://kaisery.github.io/trpl-zh-cn/)
 
 ### 自学操作系统原理
-- 推荐：[OS教材:OSTEP](OSTEP：https://pages.cs.wisc.edu/~remzi/OSTEP/)
-- [OS教材OSTEP中文版] https://github.com/remzi-arpacidusseau/ostep-translations/tree/master/chinese
+- 推荐：[OS教材:OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+- [OS教材OSTEP中文版](https://github.com/remzi-arpacidusseau/ostep-translations/tree/master/chinese)
 
 ### 自学OS基本实验
 - OS实验指导(代码/指导/测试/测例等)：https://github.com/learningos/ 中的 u/rCore-Tutorial-*-2024S
