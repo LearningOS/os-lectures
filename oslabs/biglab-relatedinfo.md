@@ -6,12 +6,12 @@
 **在第四周末检查5个实验的完成情况和对操作系统的掌握情况**
 
 ### 自学Rust
-- 推荐: [带在线练习的The Rust Program Language书籍](https://rust-book.cs.brown.edu/)
-- [The Rust Program Language中文版数据](https://kaisery.github.io/trpl-zh-cn/)
+- 推荐: [带在线练习的The Rust Programming Language书籍](https://rust-book.cs.brown.edu/)
+- [Rust 程序设计语言中文版书籍](https://kaisery.github.io/trpl-zh-cn/)
 
 ### 自学操作系统原理
-- 推荐：[OS教材:OSTEP](OSTEP：https://pages.cs.wisc.edu/~remzi/OSTEP/)
-- [OS教材OSTEP中文版] https://github.com/remzi-arpacidusseau/ostep-translations/tree/master/chinese
+- 推荐：[OS教材:OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+- [OS教材OSTEP中文版](https://github.com/remzi-arpacidusseau/ostep-translations/tree/master/chinese)
 
 ### 自学OS基本实验
 - OS实验指导(代码/指导/测试/测例等)：https://github.com/learningos/ 中的 u/rCore-Tutorial-*-2024S
@@ -41,10 +41,13 @@
 
 #### kernel&hypervisor
 这是部分可供参考的OS&Hypervisor
-- [unikernel形态的组件化ArceOS](https://github.com/rcore-os/arceos)
-- [基于ArceOS的宏内核形态的组件化Starry kernel](https://github.com/Arceos-monolithic/Starry)
-- [宏内核形态的组件化Byeos kernel]( https://www.github.com/yfblock/Byteos)
-- [基于ArceOS的微内核形态的组件化os kernel](https://github.com/jhdjames37/arceos)
+- [unikernel形态的组件化内核ArceOS](https://github.com/rcore-os/arceos)
+   - [可运行在RISC-V星光二代开发板上的ArceOS](https://github.com/yuoo655/arceos_net/tree/starfive2)
+- [基于ArceOS的宏内核形态的组件化内核Starry kernel（支持RISC-V/x64/ARM/LoongArch）](https://github.com/Arceos-monolithic/Starry)
+- [宏内核形态的组件化内核Byeos kernel（支持RISC-V/x64) 2023OS比赛一等奖]( https://www.github.com/yfblock/Byteos) 
+- [宏内核形态的组件化内核Alien（支持RISC-V星光二代开发板） 2023OS比赛一等奖](https://github.com/Godones/Alien)
+- [宏内核形态的组件化内核UMI (支持RISC-V华山派开发板) 2023OS比赛特等奖](https://github.com/js2xxx/umi)
+- [基于ArceOS的微内核形态的组件化内核os kernel](https://github.com/jhdjames37/arceos)
 - [基于ArceOS的Hypervisor形态的组件化hypervisor](https://github.com/arceos-hypervisor/hypercraft)
 
 #### 参考：与OS无关的kernel components
@@ -57,9 +60,14 @@
 - [virtio drivers](https://github.com/rcore-os/virtio-drivers)
 - [e1000 NIC driver](https://github.com/rcore-os/e1000-driver)
 - [Cadence Macb ethernet driver on Sifive fu740 board](https://github.com/rcore-os/cadence-macb-driver)
+- [RISC-V星光二代开发板的网卡驱动](https://github.com/yuoo655/visionfive2_net_driver)
+- [RISC-V星光二代开发板的SD卡驱动](https://github.com/os-module/visionfive2-sd) 
 - [nvme driver](https://github.com/rcore-os/nvme_driver)
 - [isomorphic_drivers](https://github.com/rcore-os/isomorphic_drivers)
 - [os scheduler](https://github.com/131131yhx/arceos)
 - [os memory malloc subsystem](https://github.com/rcore-os/mem_malloc_subsystem)
 
+其他一些与还未归类的OS无关的kernel components所在网址
+- [os-modules社区](https://github.com/os-module)
+- [rcore-os社区](https://github.com/rcore-os)
 
