@@ -48,32 +48,32 @@
 
 包含每次实验必做的编程和问答作业，以及相对rCore Tutorial Book-v3较为精简的指导
 
-* [rCore-Tutorial-Guide文档源码](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S)
-*  [rCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/rCore-Tutorial-Guide-2022S/)
-* [lab1(ch3) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2022S/ch3/os/index.html)
-* [lab2(ch4) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2022S/ch4/os/index.html)
+* [rCore-Tutorial-Guide文档源码](https://github.com/LearningOS/rCore-Tutorial-Guide-2024S)
+*  [rCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/rCore-Tutorial-Guide-2024S/)
+* [lab1(ch3) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2024S/ch3/os/index.html)
+* [lab2(ch4) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2024S/ch4/os/index.html)
 #### 代码框架
 
-* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2022s)
+* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Code-2024S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2024s)
 #### 用户态测例
 
-* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2022s)
+* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Test-2024S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2024s)
 ### uCore实验
 
 #### 实验指导书
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Guide-2022S)
-* [uCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/uCore-Tutorial-Guide-2022S/)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Guide-2024S)
+* [uCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/uCore-Tutorial-Guide-2024S/)
 #### 代码框架
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Code-2022S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2022s)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Code-2024S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2024s)
 #### 用户态测例
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Test-2022S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2022s)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Test-2024S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2024s)
 ## 其它内容
 
  1. [幻灯片模板](style-marp.md)
