@@ -102,7 +102,7 @@ backgroundColor: white
 ---
 ##### RISC-V相关术语
 - 应用执行环境（Application Execution Environment, AEE)
-- 应用程序二进制接口（Application Binary Interface,ABI)
+- 应用程序二进制接口（Application Binary Interface, ABI)
 - 管理员二进制接口（Supervisor Binary Interface, SBI)
 - 管理员执行环境（Supervisor Execution Environment, SEE)
 - Hypervisor：虚拟机监视器
@@ -141,7 +141,7 @@ backgroundColor: white
 ##### RISC-V 系统模式：应用场景
 ![w:900](figs/rv-privil-arch.png)
 - M Mode：小型设备（蓝牙耳机等）
-- U+M Mode:嵌入式设备（电视遥控器、刷卡机等）
+- U+M Mode：嵌入式设备（电视遥控器、刷卡机等）
 - U+S+M Mode：手机
 - U+S+H+M Mode：数据中心服务器
 
