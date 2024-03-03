@@ -26,6 +26,8 @@
 - 兼容redox/seL4/zircon等的组件化微内核框架和kernel直接相关内核模块改进和优化
 - 支持ARM or x64的组件化hypervisor框架和hypervisor直接相关内核模块改进和优化
 - 支持Rust STD库的组件化unikernel框架和kernel直接相关内核模块改进和优化
+- 扩展Verus安全验证的lab1-5的rCore-Tutorial内核
+- 扩展Prusti安全验证的lab1-5的rCore-Tutorial微内核
 - 扩展Verus安全验证的Rust-based seL4组件化微内核
 - 扩展Prusti安全验证的Rust-based seL4组件化微内核
 - 扩展Verus安全验证的Rust-based hypervisor的信息不干扰（参考asplos24-dai.pdf）
