@@ -23,7 +23,7 @@
 ### 大实验题目列表
 - 支持Linux App(如syzkaller, ConfFuzz,DDS等)的组件化宏内核框架和kernel直接相关内核模块改进和优化
 - 支持Linux App(如syzkaller, ConfFuzz,DDS等)的基于异步协程的组件化宏内核框架和kernel直接相关内核模块改进和优化 
-- 兼容redox的组件化微内核框架和kernel直接相关内核模块改进和优化
+- 兼容redox/seL4/zircon等的组件化微内核框架和kernel直接相关内核模块改进和优化
 - 支持ARM or x64的组件化hypervisor框架和hypervisor直接相关内核模块改进和优化
 - 支持Rust STD库的组件化unikernel框架和kernel直接相关内核模块改进和优化
 - 扩展Verus安全验证的Rust-based seL4组件化微内核
@@ -108,7 +108,7 @@
 - [os scheduler](https://github.com/131131yhx/arceos)
 - [os memory malloc subsystem](https://github.com/rcore-os/mem_malloc_subsystem)
 
-其他一些与还未归类的OS无关的kernel components所在网址
+其他一些与还未归类的OS无关的kernel components，OS等所在网址
 - [os-modules社区](https://github.com/os-module)
 - [rcore-os社区](https://github.com/rcore-os)
-
+- [基于Rust的操作系统列表](https://github.com/chyyuu/aos_course_info/blob/master/rustoslist.md)
