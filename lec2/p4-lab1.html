@@ -486,7 +486,7 @@ local variables
 <li>当 ret 指令执行,下面的伪代码实现调整堆栈指针和PC:</li>
 </ul>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>pc = return address
-sp = fp + ENTRY_SIZE
+sp = sp + ENTRY_SIZE
 fp = previous fp
 </span></span></foreignObject></svg></code></pre>
 </section>
