@@ -508,7 +508,7 @@ local variables
 - 当 ret 指令执行,下面的伪代码实现调整堆栈指针和PC:
 ```
 pc = return address
-sp = fp + ENTRY_SIZE
+sp = sp + ENTRY_SIZE
 fp = previous fp
 ```
 ![bg right:50% 180%](figs/stack-frame.png)
