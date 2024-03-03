@@ -21,8 +21,8 @@
 **对大实验最终完成情况的检查内容包括：每周进展纪要，代码仓库的更新情况，代码展示，总结报告，总结slide等**
 
 ### 大实验题目列表
-- 支持Linux App(如syzkaller, ConfFuzz,DDS等)的组件化宏内核框架和kernel直接相关内核模块改进和优化
-- 支持Linux App(如syzkaller, ConfFuzz,DDS等)的基于异步协程的组件化宏内核框架和kernel直接相关内核模块改进和优化 
+- 支持Linux App(如healer, syzkaller, ConfFuzz, DDS等，不用都支持)的组件化宏内核框架和kernel直接相关内核模块改进和优化
+- 支持Linux App(如healer, syzkaller, ConfFuzz, DDS等，不用都支持)的基于异步协程的组件化宏内核框架和kernel直接相关内核模块改进和优化 
 - 兼容redox/seL4/zircon等的组件化微内核框架和kernel直接相关内核模块改进和优化
 - 支持ARM or x64的组件化hypervisor框架和hypervisor直接相关内核模块改进和优化
 - 支持Rust STD库的组件化unikernel框架和kernel直接相关内核模块改进和优化
@@ -37,6 +37,7 @@
 - 基于OS无关内核组件设计，实现并扩展对通用PC计算机的多种外设驱动支持
 - 基于OS无关内核组件设计，实现并扩展对[virtio spec](https://docs.oasis-open.org/virtio/virtio/v1.2/csd01/virtio-v1.2-csd01.html)的多种[virtio外设驱动支持](https://github.com/rcore-os/virtio-drivers)
 - 基于OS相关/无关内核组件设计，实现并协程/线程/进程/扩展调度（linux支持的各种调度算法等）/内存分配(minmalloc等)/虚存管理/文件系统（ext4等）/网络协议栈/同步互斥/中断处理 的内核组件设计/优化/完善
+- 扩展Verus（或Prusti/Kani等）安全验证的OS无关的内核组件
 - 支持用户态中断的新型操作系统内核设计（在研的学术科研项目）
  
 注：上述内容绝大部分都有前期工作可以借鉴，也有同学/工程师在做，在下面的参考资源中大部分有提及，并可在前期的基础上进一步改进完善，可进一步联系助教和老师了解相关题目的细节。学术也可提出自己的题目，并与老师交流，得到老师同意后可开展。
@@ -69,7 +70,8 @@
    - [用Prusti验证OS的论文：Leveraging Rust for Lightweight OS Correctness](https://dl.acm.org/doi/10.1145/3625275.3625398)
 - [验证Rust hypervisor论文（清华OS课题组）：Verifying Rust Implementation of Page Tables in a Software Enclave Hypervisor](https://www.cs.columbia.edu/~rgu/publications/asplos24-dai.pdf)
 - [kani:a bit-precise model checker for Rust](https://github.com/model-checking/kani)
-##### 面向操作系统的fuzzing工具
+##### 面向操作系统内核的Fuzzing工具
+- [healer：基于Rust编写的fuzzer](https://github.com/SunHao-0/healer)
 - [syzkaller](https://github.com/google/syzkaller)
   - [syzkaller相关信息](https://github.com/orgs/rcore-os/discussions/38) 
 - [ConfFuzz - Fuzzing for Interface Vulnerabilities](https://github.com/conffuzz/conffuzz)
