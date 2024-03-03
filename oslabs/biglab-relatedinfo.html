@@ -33,8 +33,8 @@
 <strong>对大实验最终完成情况的检查内容包括：每周进展纪要，代码仓库的更新情况，代码展示，总结报告，总结slide等</strong></p>
 <h3>大实验题目列表</h3>
 <ul>
-<li>支持Linux App(如syzkaller, ConfFuzz,DDS等)的组件化宏内核框架和kernel直接相关内核模块改进和优化</li>
-<li>支持Linux App(如syzkaller, ConfFuzz,DDS等)的基于异步协程的组件化宏内核框架和kernel直接相关内核模块改进和优化</li>
+<li>支持Linux App(如healer, syzkaller, ConfFuzz, DDS等，不用都支持)的组件化宏内核框架和kernel直接相关内核模块改进和优化</li>
+<li>支持Linux App(如healer, syzkaller, ConfFuzz, DDS等，不用都支持)的基于异步协程的组件化宏内核框架和kernel直接相关内核模块改进和优化</li>
 <li>兼容redox/seL4/zircon等的组件化微内核框架和kernel直接相关内核模块改进和优化</li>
 <li>支持ARM or x64的组件化hypervisor框架和hypervisor直接相关内核模块改进和优化</li>
 <li>支持Rust STD库的组件化unikernel框架和kernel直接相关内核模块改进和优化</li>
@@ -49,6 +49,7 @@
 <li>基于OS无关内核组件设计，实现并扩展对通用PC计算机的多种外设驱动支持</li>
 <li>基于OS无关内核组件设计，实现并扩展对<a href="https://docs.oasis-open.org/virtio/virtio/v1.2/csd01/virtio-v1.2-csd01.html">virtio spec</a>的多种<a href="https://github.com/rcore-os/virtio-drivers">virtio外设驱动支持</a></li>
 <li>基于OS相关/无关内核组件设计，实现并协程/线程/进程/扩展调度（linux支持的各种调度算法等）/内存分配(minmalloc等)/虚存管理/文件系统（ext4等）/网络协议栈/同步互斥/中断处理 的内核组件设计/优化/完善</li>
+<li>扩展Verus（或Prusti/Kani等）安全验证的OS无关的内核组件</li>
 <li>支持用户态中断的新型操作系统内核设计（在研的学术科研项目）</li>
 </ul>
 <p>注：上述内容绝大部分都有前期工作可以借鉴，也有同学/工程师在做，在下面的参考资源中大部分有提及，并可在前期的基础上进一步改进完善，可进一步联系助教和老师了解相关题目的细节。学术也可提出自己的题目，并与老师交流，得到老师同意后可开展。</p>
@@ -88,8 +89,9 @@
 <li><a href="https://www.cs.columbia.edu/~rgu/publications/asplos24-dai.pdf">验证Rust hypervisor论文（清华OS课题组）：Verifying Rust Implementation of Page Tables in a Software Enclave Hypervisor</a></li>
 <li><a href="https://github.com/model-checking/kani">kani:a bit-precise model checker for Rust</a></li>
 </ul>
-<h5>面向操作系统的fuzzing工具</h5>
+<h5>面向操作系统内核的Fuzzing工具</h5>
 <ul>
+<li><a href="https://github.com/SunHao-0/healer">healer：基于Rust编写的fuzzer</a></li>
 <li><a href="https://github.com/google/syzkaller">syzkaller</a>
 <ul>
 <li><a href="https://github.com/orgs/rcore-os/discussions/38">syzkaller相关信息</a></li>
