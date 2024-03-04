@@ -429,7 +429,7 @@ target/riscv64gc-unknown-none-elf/release/os \
 </tr>
 </tbody>
 </table>
-<p>函数调用核心机制</p>
+<p>函数调用核心机制：</p>
 <ul>
 <li>在函数调用时，通过 call 伪指令保存返回地址并实现跳转；</li>
 <li>在函数返回时，通过 ret 伪指令回到跳转之前的下一条指令继续执行</li>
@@ -494,8 +494,8 @@ fp = previous fp
 <h4>RISC-V函数调用约定：函数结构</h4>
 <p>函数结构组成：<code>prologue</code>,<code>body part</code> 和<code>epilogue</code></p>
 <ul>
-<li>Prologue的目的是为了保存程序的执行状态（保存返回地址寄存器和堆栈寄存器FP）</li>
-<li>Epilogue的目的是在执行函数体之后恢复到之前的执行状态（跳转到之前存储的返回地址以及恢复之前保存FP寄存器）。</li>
+<li>Prologue序言的目的是为了保存程序的执行状态（保存返回地址寄存器和堆栈寄存器FP）</li>
+<li>Epilogue尾声的目的是在执行函数体之后恢复到之前的执行状态（跳转到之前存储的返回地址以及恢复之前保存FP寄存器）。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="45" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="45" data-marpit-pagination-total="60" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
