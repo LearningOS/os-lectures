@@ -41,6 +41,9 @@
 - 基于OS相关/无关内核组件设计，实现并协程/线程/进程/扩展调度（linux支持的各种调度算法等）/内存分配(minmalloc等)/虚存管理/文件系统（ext4等）/网络协议栈/同步互斥/中断处理/驱动 的内核组件设计/优化/完善
 - 扩展带Verus（或Prusti/Kani等）安全验证属性的OSkernel相关/无关的内核组件（如上所示的各种内核组件）
 - 支持用户态中断的新型操作系统内核设计（在研的学术科研项目）
+- 使用最新的LLM/AI技术进行OS kernel相关的研究
+    - 采用智能翻译等完成rCore Tutorial <--> uCoreTutorial，即实现两种OS的相互翻译
+    - 采用MoE/Multi-Agent Collaboration或最新的LLM API/talk等自动化完成一个教学型的OS Kernel/Compiler
  
 注：上述内容绝大部分都有前期工作可以借鉴，也有同学/工程师在做，在下面的参考资源中大部分有提及，并可在前期的基础上进一步改进完善，可进一步联系助教和老师了解相关题目的细节。同学们也可提出自己的题目，并与老师交流，得到老师同意后可开展。
 
@@ -112,6 +115,13 @@
 - [isomorphic_drivers](https://github.com/rcore-os/isomorphic_drivers)
 - [os scheduler](https://github.com/131131yhx/arceos)
 - [os memory malloc subsystem](https://github.com/rcore-os/mem_malloc_subsystem)
+
+#### 参考：基于LLM/AI的软硬件开发
+- [Create Customized Software using Natural Language Idea (through LLM-powered Multi-Agent Collaboration)](https://bestofai.com/article/github-openbmbchatdev-create-customized-software-using-natural-language-idea-through-llm-powered-multi-agent-collaboration)
+   - [ChatDev仓库：清华出品](https://github.com/OpenBMB/ChatDev) 
+- [AI设计的CPU芯片:中科院计算所出品](http://www.ecas.cas.cn/xxkw/kbcd/201115_129871/ml/xxhcxyyyal/202307/t20230724_4942067.html)
+- [ChatGPT as a programming partner to design Compiler](https://github.com/byanofsky/simple-compiler)
+- [CompilerGPT：Compiler Design Teacher](https://flowgpt.com/zh-CN/p/compiler-design-teacher)
 
 其他一些与还未归类的OS无关的kernel components，OS等所在网址
 - [os-modules社区](https://github.com/os-module)
