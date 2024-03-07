@@ -121,6 +121,7 @@
    - [ChatDev仓库：清华出品](https://github.com/OpenBMB/ChatDev) 
 - [AI设计的CPU芯片:中科院计算所出品](http://www.ecas.cas.cn/xxkw/kbcd/201115_129871/ml/xxhcxyyyal/202307/t20230724_4942067.html)
 - [ChatGPT as a programming partner to design Compiler](https://github.com/byanofsky/simple-compiler)
+   - [ChatGPT Helped Me Build a Compiler](https://medium.com/@byanofsky/chatgpt-helped-me-build-a-compiler-7aebcd2a2c20) 
 - [CompilerGPT：Compiler Design Teacher](https://flowgpt.com/zh-CN/p/compiler-design-teacher)
 
 其他一些与还未归类的OS无关的kernel components，OS等所在网址
