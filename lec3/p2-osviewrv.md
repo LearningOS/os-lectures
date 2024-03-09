@@ -385,7 +385,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - 通过系统调用从操作系统中获得服务
 
 ---
-##### U-Mode编程：第一个例子”hello world”
+##### U-Mode编程：第一个例子“hello world”
 [在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src) 大致执行流
 
 ![w:1000](figs/print-app.png)
@@ -393,7 +393,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 ---
 ##### 第一个例子的启动执行
-[在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302) 启动执行流
+[在用户态打印“hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302) 启动执行流
 
 ![w:1000](figs/boot-print-app.png)
 
