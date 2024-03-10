@@ -66,7 +66,8 @@
 
 ### 参考资源
 ####  系统工具
-##### 面向Rust软件的安全验证工具
+##### 面向Rust软件的安全分析与安全验证工具
+- [Rust 语言安全研究综述-2023:对各种面向Rust语言程序的安全分析和验证研究的综述](https://csslab-ustc.github.io/publications/2022/rust-sec.pdf)
 - [Rust 代码的形式化验证工具简要综述](https://zhuanlan.zhihu.com/p/637360324)
 - [Verus:一个用于验证用 Rust 编写的代码(包括Rust操作系统)正确性的工具，验证语言也用的Rust](https://github.com/verus-lang/verus)
    - [Verus Guide&Tutorial](https://verus-lang.github.io/verus/guide/)
