@@ -83,6 +83,7 @@
 - [LEAN:新一代交互式定理证明器](https://leanprover-community.github.io)
    - [在线交互式tutorial](https://leanprover.github.io/tutorial/index.html)
    - [Lean Copilot: LLMs as Copilots for Theorem Proving in Lean](https://github.com/lean-dojo/LeanCopilot)
+   - [LeanDojo: Theorem Proving with Retrieval-Augmented Language Models](https://leandojo.org/)
 ##### 面向操作系统内核的Fuzzing工具
 - [healer：基于Rust编写的fuzzer](https://github.com/SunHao-0/healer)
 - [syzkaller](https://github.com/google/syzkaller)
