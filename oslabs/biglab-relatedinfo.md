@@ -41,6 +41,9 @@
 - 基于OS相关/无关内核组件设计，实现并协程/线程/进程/扩展调度（linux支持的各种调度算法等）/内存分配(minmalloc等)/虚存管理/文件系统（ext4等）/网络协议栈/同步互斥/中断处理/驱动 的内核组件设计/优化/完善
 - 扩展带Verus（或Prusti/Kani等）安全验证属性的OSkernel相关/无关的内核组件（如上所示的各种内核组件）
 - 支持用户态中断的新型操作系统内核设计（在研的学术科研项目）
+- 使用最新的LLM/AI技术进行设计OS kernel等（也可以是[设计CPU/Compiler等探索](https://github.com/LearningOS/os-lectures/blob/master/oslabs/biglab-relatedinfo.md#%E5%8F%82%E8%80%83%E5%9F%BA%E4%BA%8Ellmai%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91)）相关的研究
+    - 采用智能翻译等完成rCore Tutorial <--> uCoreTutorial，即实现两种OS的相互翻译
+    - 采用MoE/Multi-Agent Collaboration或最新的LLM API/talk等自动化完成一个教学型的OS Kernel/Compiler
  
 注：上述内容绝大部分都有前期工作可以借鉴，也有同学/工程师在做，在下面的参考资源中大部分有提及，并可在前期的基础上进一步改进完善，可进一步联系助教和老师了解相关题目的细节。同学们也可提出自己的题目，并与老师交流，得到老师同意后可开展。
 
@@ -63,16 +66,24 @@
 
 ### 参考资源
 ####  系统工具
-##### 面向Rust软件的安全验证工具
+##### 面向Rust软件的安全分析与安全验证工具
+- [Rust 语言安全研究综述-2023:对各种面向Rust语言程序的安全分析和验证研究的综述](https://csslab-ustc.github.io/publications/2022/rust-sec.pdf)
 - [Rust 代码的形式化验证工具简要综述](https://zhuanlan.zhihu.com/p/637360324)
 - [Verus:一个用于验证用 Rust 编写的代码(包括Rust操作系统)正确性的工具，验证语言也用的Rust](https://github.com/verus-lang/verus)
    - [Verus Guide&Tutorial](https://verus-lang.github.io/verus/guide/)
    - [用Verus验证OS的论文1 KISV23：Atmosphere: Towards Practical Verified Kernels in Rust](https://arkivm.github.io/publications/2023-kisv-atmo.pdf)
    - [用Verus验证OS的论文2 HotOS23：Beyond isolation: OS verification as a foundation for correct applications](https://research.vmware.com/files/attachments/0/0/0/0/1/7/1/hotos23-beyond-isolation.pdf))
+   - [硕士论文和实现：Verified Paging for x86-64 in Rust](https://github.com/matthias-brun/verified-paging-for-x86-64-in-rust)
 - [Prusti:基于 Viper 验证基础设施的Rust程序（包括Rust操作系统）的静态验证器](https://www.pm.inf.ethz.ch/research/prusti.html)
    - [用Prusti验证OS的论文：Leveraging Rust for Lightweight OS Correctness](https://dl.acm.org/doi/10.1145/3625275.3625398)
 - [验证Rust hypervisor论文（清华OS课题组）：Verifying Rust Implementation of Page Tables in a Software Enclave Hypervisor](https://www.cs.columbia.edu/~rgu/publications/asplos24-dai.pdf)
 - [kani:a bit-precise model checker for Rust](https://github.com/model-checking/kani)
+- [aeneas：verification toolchain for Rust programs based on a lightweight functional translation](https://arxiv.org/abs/2206.07185)
+   - [aeneas github repo，可生成F*, Coq, HOL4 and LEAN等后端](https://github.com/AeneasVerif/aeneas)
+- [LEAN:新一代交互式定理证明器](https://leanprover-community.github.io)
+   - [在线交互式tutorial](https://leanprover.github.io/tutorial/index.html)
+   - [Lean Copilot: LLMs as Copilots for Theorem Proving in Lean](https://github.com/lean-dojo/LeanCopilot)
+   - [LeanDojo: Theorem Proving with Retrieval-Augmented Language Models](https://leandojo.org/)
 ##### 面向操作系统内核的Fuzzing工具
 - [healer：基于Rust编写的fuzzer](https://github.com/SunHao-0/healer)
 - [syzkaller](https://github.com/google/syzkaller)
@@ -112,6 +123,14 @@
 - [isomorphic_drivers](https://github.com/rcore-os/isomorphic_drivers)
 - [os scheduler](https://github.com/131131yhx/arceos)
 - [os memory malloc subsystem](https://github.com/rcore-os/mem_malloc_subsystem)
+
+#### 参考：基于LLM/AI的软硬件开发
+- [Create Customized Software using Natural Language Idea (through LLM-powered Multi-Agent Collaboration)](https://bestofai.com/article/github-openbmbchatdev-create-customized-software-using-natural-language-idea-through-llm-powered-multi-agent-collaboration)
+   - [ChatDev仓库：清华出品](https://github.com/OpenBMB/ChatDev) 
+- [AI设计的CPU芯片:中科院计算所出品](http://www.ecas.cas.cn/xxkw/kbcd/201115_129871/ml/xxhcxyyyal/202307/t20230724_4942067.html)
+- [ChatGPT as a programming partner to design Compiler](https://github.com/byanofsky/simple-compiler)
+   - [ChatGPT Helped Me Build a Compiler](https://medium.com/@byanofsky/chatgpt-helped-me-build-a-compiler-7aebcd2a2c20) 
+- [CompilerGPT：Compiler Design Teacher](https://flowgpt.com/zh-CN/p/compiler-design-teacher)
 
 其他一些与还未归类的OS无关的kernel components，OS等所在网址
 - [os-modules社区](https://github.com/os-module)
