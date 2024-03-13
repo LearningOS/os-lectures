@@ -42,7 +42,7 @@
 
 在网络学堂的“课程文件”中的“往年考试题”栏中。
 
-### rCore实验
+### rCore基本实验
 
 #### 实验指导书
 
@@ -60,7 +60,7 @@
 
 * [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Test-2024S)
 * [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2024s)
-### uCore实验
+### uCore基本实验
 
 #### 实验指导书
 
@@ -74,6 +74,14 @@
 
 * [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Test-2024S)
 * [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2024s)
+
+### 大实验
+需要在规定时间内完成rCore或uCore基本实验，才能进行大实验。
+欢迎所有感兴趣的同学尝试下面的大实验内容。如有问题，可联系陈渝老师等。
+
+- [2024大实验相关信息](./oslabs/biglab-relatedinfo.md)
+
+
 ## 其它内容
 
  1. [幻灯片模板](style-marp.md)
