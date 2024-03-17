@@ -80,7 +80,7 @@ backgroundColor: white
 小型机（minicomputer）的普及和广泛使用推动了分时多任务的需求，形成了支持多用户的分时操作系统。
 
 - DEC公司的PDP、VAX小型机逐渐侵蚀大型机市场
-- DEC公司的VMX操作系统
+- DEC公司的VMS操作系统
 - MIT的CTSS操作系统
 - AT&T的UNIX操作系统
 
