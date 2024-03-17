@@ -131,6 +131,7 @@
 - [ChatGPT as a programming partner to design Compiler](https://github.com/byanofsky/simple-compiler)
    - [ChatGPT Helped Me Build a Compiler](https://medium.com/@byanofsky/chatgpt-helped-me-build-a-compiler-7aebcd2a2c20) 
 - [CompilerGPT：Compiler Design Teacher](https://flowgpt.com/zh-CN/p/compiler-design-teacher)
+- [C To Rust Using ChatGPT](https://levelup.gitconnected.com/c-to-rust-using-chatgpt-b3d2e4c04cb1)
 
 其他一些与还未归类的OS无关的kernel components，OS等所在网址
 - [os-modules社区](https://github.com/os-module)
