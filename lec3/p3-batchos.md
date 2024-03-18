@@ -687,9 +687,9 @@ unsafe fn load_app(&self, app_id: usize) {
 ---
 ##### 特权级切换后的硬件逻辑
 
-1. sstatus 的 SPP 字段会被修改为 CPU 当前的特权级（U/S）；
+1. sstatus 的 SPP 字段会被修改为 CPU 当前的特权级（U/S）； -- 用于记录和恢复trap前的状态
 2. sepc 会被修改为产生 Trap 的指令地址；
-3. scause/stval 分别会被修改成这次 Trap 的原因以及相关的附加信息；
+3. scause/stval 分别会被修改成这次 Trap 的原因以及相关的附加信息； -- scause用于存储trap种类（中断、异常）和类型（时钟、外设、page fault；如果是page fault，stval记录对应的虚拟地址）
 4. CPU 将当前特权级设为 S，跳到 stvec 所设置的 Trap 处理入口地址。
 
 
@@ -790,10 +790,11 @@ pub fn init() {
 
 1. **应用程序**通过 ecall 进入到内核状态时，**操作系统**保存被打断的应用程序的 Trap 上下文；
 2. **操作系统**根据Trap相关的CSR寄存器内容，完成系统调用服务的分发与处理；
-3. **操作系统**完成系统调用服务后，需要恢复被打断的应用程序的Trap 上下文，并通 ``sret``指令让应用程序继续执行。
+3. **操作系统**完成系统调用后，恢复被打断的应用程序的Trap 上下文，通过``sret``指令让应用程序继续执行。
 ![bg right:40% 100%](figs/kernel-stack.png)
 
 
+``Trap上下文存在哪？``
 ---
 
 ##### 用户栈到内核栈的切换
