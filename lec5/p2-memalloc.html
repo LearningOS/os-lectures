@@ -565,6 +565,12 @@
 <li>任务/进程id与页号的Hash值可能有<em>冲突</em></li>
 <li>页表项中包括保护位、修改位、访问位和存在位等标识</li>
 </ul>
+<p>优势</p>
+<ul>
+<li>所有进程共享一个反置页表，省空间</li>
+<li>不需要多级页表转换，简化管理</li>
+</ul>
+<p>劣势：需要额外的数据结构，实现复杂</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="50" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="50" data-marpit-pagination-total="61" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>反置页表的地址转换</h5>
