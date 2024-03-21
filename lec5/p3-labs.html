@@ -1098,7 +1098,7 @@ pub struct TaskControlBlock {
 <h5>访问应用空间数据的辅助函数</h5>
 <p>页表模块 page_table 提供了将应用地址空间中一个缓冲区转化为在内核空间中能够直接访问的形式的辅助函数：</p>
 <pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/mm/page_table.rs</span>
-<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">translated_byte_buffer</span></span>(
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">translated_byte_buffer</span></span>()
 </span></span></foreignObject></svg></code></pre>
 <ol>
 <li>查找应用的页表，根据应用虚地址找到物理地址</li>
