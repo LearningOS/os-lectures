@@ -1340,7 +1340,7 @@ unsafe {
 页表模块 page_table 提供了将应用地址空间中一个缓冲区转化为在内核空间中能够直接访问的形式的辅助函数：
 ```rust
 // os/src/mm/page_table.rs
-pub fn translated_byte_buffer(
+pub fn translated_byte_buffer()
 ```
 1. 查找应用的页表，根据应用虚地址找到物理地址
 2. 查找内核的页表，根据物理地址找到内核虚地址
