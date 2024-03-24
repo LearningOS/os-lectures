@@ -92,7 +92,7 @@
 - [ConfFuzz - Fuzzing for Interface Vulnerabilities](https://github.com/conffuzz/conffuzz)
   - [ConfFuzz paper- NDSS23](https://arxiv.org/abs/2212.12904)
 - [GUSTAVE - Embedded OS kernel fuzzer](https://github.com/airbus-seclab/gustave)
-  - [paper](https://airbus-seclab.github.io/GUSTAVE_SSTIC/GUSTAVE_SSTIC_paper.pdf) , [slides](https://airbus-seclab.github.io/GUSTAVE_dmu/Gustave_DMU_cyber_week_03_2021.pdf)
+  - [paper:French](https://airbus-seclab.github.io/GUSTAVE_SSTIC/GUSTAVE_SSTIC_paper.pdf) , [slides 1 eng](https://airbus-seclab.github.io/GUSTAVE_dmu/Gustave_DMU_cyber_week_03_2021.pdf) , [slide 2 eng](https://airbus-seclab.github.io/GUSTAVE_thcon/GUSTAVE_thcon.pdf) , [中文简介](https://www.freebuf.com/articles/system/259000.html)
 - [tsffs](https://github.com/intel/tsffs): A snapshotting, coverage-guided fuzzer for software (UEFI, Kernel, firmware, BIOS) built on SIMICS
   - [doc](https://intel.github.io/tsffs/)
  
