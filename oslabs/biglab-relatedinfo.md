@@ -92,7 +92,7 @@
 - [ConfFuzz - Fuzzing for Interface Vulnerabilities](https://github.com/conffuzz/conffuzz)
   - [ConfFuzz paper- NDSS23](https://arxiv.org/abs/2212.12904)
 - [GUSTAVE - Embedded OS kernel fuzzer](https://github.com/airbus-seclab/gustave)
-  - [paper](https://airbus-seclab.github.io/GUSTAVE_SSTIC/GUSTAVE_SSTIC_paper.pdf) , [slides](https://airbus-seclab.github.io/GUSTAVE_dmu/Gustave_DMU_cyber_week_03_2021.pdf)
+  - [paper:French](https://airbus-seclab.github.io/GUSTAVE_SSTIC/GUSTAVE_SSTIC_paper.pdf) , [slides 1 eng](https://airbus-seclab.github.io/GUSTAVE_dmu/Gustave_DMU_cyber_week_03_2021.pdf) , [slide 2 eng](https://airbus-seclab.github.io/GUSTAVE_thcon/GUSTAVE_thcon.pdf) , [中文简介](https://www.freebuf.com/articles/system/259000.html)
 - [tsffs](https://github.com/intel/tsffs): A snapshotting, coverage-guided fuzzer for software (UEFI, Kernel, firmware, BIOS) built on SIMICS
   - [doc](https://intel.github.io/tsffs/)
  
@@ -114,7 +114,7 @@
 - [基于ArceOS的Hypervisor形态的组件化hypervisor](https://github.com/arceos-hypervisor/hypercraft)
 - [Rust-base seL4微内核操作系统](https://github.com/rel4team/rel4_kernel)
 
-#### 参考：与OS无关的kernel components
+#### 与OS无关的kernel components
 这是部分与OS无关的kernel components，有一些不一定特别完善，供参考
 
 - [基于C的ext4 crate](https://github.com/rcore-os/lwext4_rust)
@@ -131,7 +131,7 @@
 - [os scheduler](https://github.com/131131yhx/arceos)
 - [os memory malloc subsystem](https://github.com/rcore-os/mem_malloc_subsystem)
 
-#### 参考：基于LLM/AI的软硬件开发
+#### 基于LLM/AI的软硬件开发
 - [Create Customized Software using Natural Language Idea (through LLM-powered Multi-Agent Collaboration)](https://bestofai.com/article/github-openbmbchatdev-create-customized-software-using-natural-language-idea-through-llm-powered-multi-agent-collaboration)
    - [ChatDev仓库：清华出品](https://github.com/OpenBMB/ChatDev) 
 - [AI设计的CPU芯片:中科院计算所出品](http://www.ecas.cas.cn/xxkw/kbcd/201115_129871/ml/xxhcxyyyal/202307/t20230724_4942067.html)
@@ -139,8 +139,10 @@
    - [ChatGPT Helped Me Build a Compiler](https://medium.com/@byanofsky/chatgpt-helped-me-build-a-compiler-7aebcd2a2c20) 
 - [CompilerGPT：Compiler Design Teacher](https://flowgpt.com/zh-CN/p/compiler-design-teacher)
 - [C To Rust Using ChatGPT](https://levelup.gitconnected.com/c-to-rust-using-chatgpt-b3d2e4c04cb1)
+- [MetaGPT: 多智能体框架](https://github.com/geekan/MetaGPT)
+   - [MetaGPT文档](https://docs.deepwisdom.ai/main/zh/guide/get_started/introduction.html) 
 
-其他一些与还未归类的OS无关的kernel components，OS等所在网址
+#### 其他一些与还未归类的OS无关的kernel components，OS等所在网址
 - [os-modules社区](https://github.com/os-module)
 - [rcore-os社区](https://github.com/rcore-os)
 - [基于Rust的操作系统列表](https://github.com/chyyuu/aos_course_info/blob/master/rustoslist.md)
