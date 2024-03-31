@@ -91,7 +91,7 @@
 ##### 面向系统软件的安全模型检测（Model Checking）工具
 - [Metis: File System Model Checking via Versatile Input and State Exploration](https://www.usenix.org/conference/fast24/presentation/liu-yifei)
   - [paper](https://www.usenix.org/system/files/fast24-liu-yifei.pdf), [slide](https://www.usenix.org/system/files/fast24_slides-liu_yifei.pdf), [video](https://youtu.be/2d1cqA7IPTE), [code](https://github.com/sbu-fsl/Metis)
-##### 面向操作系统内核的Fuzzing工具
+##### 面向操作系统内核/子系统的Fuzzing工具
 - [healer：基于Rust编写的fuzzer](https://github.com/SunHao-0/healer)
 - [syzkaller](https://github.com/google/syzkaller)
   - [syzkaller相关信息](https://github.com/orgs/rcore-os/discussions/38) 
@@ -101,8 +101,9 @@
   - [paper:French](https://airbus-seclab.github.io/GUSTAVE_SSTIC/GUSTAVE_SSTIC_paper.pdf) , [slides 1 eng](https://airbus-seclab.github.io/GUSTAVE_dmu/Gustave_DMU_cyber_week_03_2021.pdf) , [slide 2 eng](https://airbus-seclab.github.io/GUSTAVE_thcon/GUSTAVE_thcon.pdf) , [中文简介](https://www.freebuf.com/articles/system/259000.html)
 - [tsffs](https://github.com/intel/tsffs): A snapshotting, coverage-guided fuzzer for software (UEFI, Kernel, firmware, BIOS) built on SIMICS
   - [doc](https://intel.github.io/tsffs/)
- 
- 
+- [Hydra: An Extensible Fuzzing Framework for Finding Semantic Bugs in File Systems](https://github.com/sslab-gatech/hydra) 
+  - [paper](https://squizz617.github.io/pubs/hydra-sosp19.pdf), [journal](https://squizz617.github.io/pubs/hydra-tos20.pdf), [code](https://github.com/sslab-gatech/hydra)
+    
 #### 中间件
 - 基于Rust的DDS(用于机器人/工业控制/自动驾驶领域的中间件)
    - [RustDDS](https://github.com/jhelovuo/RustDDS)
