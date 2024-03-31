@@ -102,7 +102,7 @@
 - [tsffs](https://github.com/intel/tsffs): A snapshotting, coverage-guided fuzzer for software (UEFI, Kernel, firmware, BIOS) built on SIMICS
   - [doc](https://intel.github.io/tsffs/)
 - [Hydra: An Extensible Fuzzing Framework for Finding Semantic Bugs in File Systems](https://github.com/sslab-gatech/hydra) 
-  - [paper](https://squizz617.github.io/pubs/hydra-sosp19.pdf), [journal](https://squizz617.github.io/pubs/hydra-tos20.pdf), [video](https://sosp19.rcs.uwaterloo.ca/videos/D1-S3-P3.mp4), [code](https://github.com/sslab-gatech/hydra)
+  - [paper](https://dl.acm.org/authorize?N695014), [journal](https://dl.acm.org/doi/10.1145/3391202), [video](https://sosp19.rcs.uwaterloo.ca/videos/D1-S3-P3.mp4), [code](https://github.com/sslab-gatech/hydra)
     
 #### 中间件
 - 基于Rust的DDS(用于机器人/工业控制/自动驾驶领域的中间件)
