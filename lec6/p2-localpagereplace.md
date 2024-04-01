@@ -849,7 +849,7 @@ c, a, d, b, e, b, a, b, c, d 用字符表示
 
 #### LRU算法不存在Belady现象
 
-![w:1100](figs/belady-lru.png)
+![w:1100](figs/belady-lru2.png)
 
 时钟/改进的时钟页面置换是否有Belady现象？
 为什么LRU页面置换算法没有Belady现象？
