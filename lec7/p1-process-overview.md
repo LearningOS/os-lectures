@@ -723,8 +723,8 @@ int  main() {
 ##### Fork()的开销？
 
 - 在99%的情况里，我们在调用fork()之后调用exec()
-  - 在fork()操作中内存复制是没有作用的  --why?
-  - 子进程将可能关闭打开的文件和网络连接?  --why?
+  - 在fork()操作中内存复制是没有作用的  --why? 写时复制
+  - 子进程将可能关闭打开的文件和网络连接?  --why? 冲突
 
 ![bg right:50% 100%](figs/fork-exec.png)
 
@@ -762,10 +762,10 @@ int  main() {
 
 但是！
 -  Fork is no longer simple
-   - Fork encourages memory overcommit
-   - Fork is incompatible with a single address space
-   - Fork is incompatible with heterogeneous hardware
-   - Fork infects an entire system
+   - Fork encourages memory overcommit过度分配
+   - Fork is incompatible with a single address space不兼容单一地址空间模型
+   - Fork is incompatible with heterogeneous hardware-硬件环境错误
+   - Fork infects an entire system-感染整个系统
 
 ---
 
@@ -813,7 +813,7 @@ https://www.infoq.cn/article/BYGiWI-fxHTNvSohEUNW
 - But, let’s not pretend that it’s still a good idea today!
 
 **Please, stop teaching students that fork is good design**
-- Begin with spawn
+- Begin with spawn-高效进程创建
 - Teach fork, but include historical context
 
 ---
