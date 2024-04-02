@@ -668,8 +668,8 @@ Shell: Process 2 exited with code 0
 <ul>
 <li>在99%的情况里，我们在调用fork()之后调用exec()
 <ul>
-<li>在fork()操作中内存复制是没有作用的  --why?</li>
-<li>子进程将可能关闭打开的文件和网络连接?  --why?</li>
+<li>在fork()操作中内存复制是没有作用的  --why? 写时复制</li>
+<li>子进程将可能关闭打开的文件和网络连接?  --why? 冲突</li>
 </ul>
 </li>
 </ul>
@@ -709,10 +709,10 @@ Shell: Process 2 exited with code 0
 <ul>
 <li>Fork is no longer simple
 <ul>
-<li>Fork encourages memory overcommit</li>
-<li>Fork is incompatible with a single address space</li>
-<li>Fork is incompatible with heterogeneous hardware</li>
-<li>Fork infects an entire system</li>
+<li>Fork encourages memory overcommit过度分配</li>
+<li>Fork is incompatible with a single address space不兼容单一地址空间模型</li>
+<li>Fork is incompatible with heterogeneous hardware-硬件环境错误</li>
+<li>Fork infects an entire system-感染整个系统</li>
 </ul>
 </li>
 </ul>
@@ -759,7 +759,7 @@ Shell: Process 2 exited with code 0
 </ul>
 <p><strong>Please, stop teaching students that fork is good design</strong></p>
 <ul>
-<li>Begin with spawn</li>
+<li>Begin with spawn-高效进程创建</li>
 <li>Teach fork, but include historical context</li>
 </ul>
 </section>
