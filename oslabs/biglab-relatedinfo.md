@@ -34,6 +34,7 @@
 - 扩展Prusti安全验证的Rust-based hypervisor的信息不干扰（参考asplos24-dai.pdf）
 - 基于OS无关内核组件设计，实现对[AI加速单元：如Intel NPU](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/accel/ivpu)、瑞芯微RK3588 NPU，k230 NPU等)的内核驱动支持
 - 基于OS无关内核组件设计，实现并扩展 x64/arm/rv64/loongarch的HAL（硬件抽象层）
+- 基于OS无关内核组件设计，实现并扩展实现支持OS在用户态运行的HAL（[zCore](https://github.com/rcore-os/zCore)有这样的libos HAL实现）
 - 基于OS无关内核组件设计，实现并扩展对starfive星光二代开发板的多种外设驱动支持
 - 基于OS无关内核组件设计，实现并扩展对树莓派4开发板的多种外设驱动支持
 - 基于OS无关内核组件设计，实现并扩展对通用PC计算机的多种外设驱动支持
