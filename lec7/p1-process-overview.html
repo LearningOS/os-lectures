@@ -217,7 +217,7 @@
 </tr>
 <tr>
 <td><code>int exit(int status)</code></td>
-<td><strong>终止</strong>自身；报告<code>status</code>给执行waitpid()系统调用的父进程。</td>
+<td><strong>终止</strong>自身；报告<code>status</code>给<strong>执行waitpid()系统调用</strong>的父进程。</td>
 </tr>
 <tr>
 <td><code>int waitpid(int pid, int *status)</code></td>
@@ -409,7 +409,11 @@ Shell: Process 2 exited with code 0
 <li>fork() 创建一个继承的子进程
 <ul>
 <li><strong>复制</strong>父进程的所有变量和内存</li>
-<li><strong>复制</strong>父进程的所有CPU寄存器(有一个寄存器<strong>例外</strong>)</li>
+<li><strong>复制</strong>父进程的所有CPU寄存器(有一个寄存器<strong>例外</strong>)
+<ul>
+<li>程序计数器（Program Counter）</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
