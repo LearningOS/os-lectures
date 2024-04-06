@@ -217,7 +217,7 @@ backgroundColor: white
 | -------------------------- | ------ |
 | ``int fork()``           |  **创建**一个进程，返回子进程的PID。    |
 | ``int exec(char *file)``   |  **加载**文件并执行；仅当出错时返回。    |
-| ``int exit(int status)`` | **终止**自身；报告`status`给执行waitpid()系统调用的父进程。     |
+| ``int exit(int status)`` | **终止**自身；报告`status`给**执行waitpid()系统调用**的父进程。     |
 | ``int waitpid(int pid, int *status)``  |  **等待**`pid`子进程退出，得到其 ``*status``退出状态。    |
 | ``int getpid()``           |  **获得**当前进程的PID。    |
 
@@ -423,6 +423,8 @@ if(pid == 0) {			// 子进程在这里继续
 - fork() 创建一个继承的子进程
   - **复制**父进程的所有变量和内存
   - **复制**父进程的所有CPU寄存器(有一个寄存器**例外**)
+    - 程序计数器（Program Counter） 
+
    
  
 ---
