@@ -93,7 +93,7 @@ backgroundColor: white
   - 执行时间e = 最大执行时间(0 < e < p)
   - 使用率U = e/p
 ![w:900](figs/rt-task-2.png)
-- 可调度：if $\sum_{p_i} \frac{e_i}{p_i}\leq 1$; otherwise 不可调度
+- 可调度：if $\sum_{i} \frac{e_i}{p_i}\leq 1$; otherwise 不可调度
 
 ---
 #### 软时限和硬时限
