@@ -338,5 +338,5 @@ signed char d = b - 250;
 * 实验任务描述
     * [rCore](https://learningos.github.io/rCore-Tutorial-Guide-2023A/chapter5/4exercise.html)
     * [uCore](https://learningos.github.io/uCore-Tutorial-Guide-2023A/chapter5/4exercise.html)
-* 实验提交要求
-    * 布置实验任务后的第13天（11月12日24点）；
+<!--* 实验提交要求
+    * 布置实验任务后的第13天（11月12日24点）；-->
