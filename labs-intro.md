@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 操作系统课程-2002春
+# 操作系统课程-2024春
 ## 实践与实验介绍
 
 <br>
@@ -20,7 +20,7 @@ backgroundColor: white
 
 <br>
 
-2022年春季
+2024年春季
 
 ---
 ### 目标

@@ -13,7 +13,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 操作系统课程-2023春
+# 操作系统课程-2024春
 ## 实践与实验介绍
 
 <br>
@@ -22,7 +22,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 
 <br>
 
-2023年春季
+2024年春季
 
 ---
 ### 目标
