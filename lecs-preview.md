@@ -6,11 +6,11 @@ _paginate: false
 header: ''
 footer: ''
 backgroundColor: white
----
 
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
+---
 ### lec1 课前准备建议
 
 1.  配置好OS实验环境
