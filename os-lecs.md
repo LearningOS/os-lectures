@@ -21,9 +21,9 @@ backgroundColor: white
 <br>
 <br>
 
-## 2023 春季
+## 2024 春季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?) -- [课程总体简介](./course-intro.html) -- [大实验简介](./oslabs/biglabs.html)
+[幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?) -- [简介](./course-intro.html) -- [课前准备](./lecs-preview.html) -- [思维导图](https://chyyuu.github.io/test2/oscourse.html) -- [实验](./labs-intro.html) 
 
 ---
 

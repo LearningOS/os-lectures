@@ -13,7 +13,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 操作系统课程-2023春
+# 操作系统课程-2024春
 ## 实践与实验介绍
 
 <br>
@@ -22,7 +22,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 
 <br>
 
-2023年春季
+2024年春季
 
 ---
 ### 目标
@@ -138,8 +138,8 @@ const SYSCALL_CONDVAR_WAIT: usize = 1032;
 #### 课程实践内容 -- rCore Tutorial Book v3
 -  [课程实践参考书](https://learningos.github.io/rCore-Tutorial-Book-v3/)，[课程实践代码](https://github.com/rcore-os/rCore-Tutorial-v3)，[课程实践代码的API文档](https://learningos.github.io/rCore-Tutorial-v3/)
 
-#### 课程实验内容 -- rCore Tutorial Guide 2022 Spring
-- [实验文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/)  , [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S/) , [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)，[测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2022S) 
+#### 课程实验内容 -- rCore Tutorial Guide 2024 Spring
+- [实验文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2024S/)  , [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2024S/) , [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2024S)，[测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2024S) 
 
 #### 课程参考文档 --教材/课件
 - [课程在线Slides](http://learningos.github.io/os-lectures/)，[Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
