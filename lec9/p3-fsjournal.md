@@ -70,7 +70,7 @@ backgroundColor: white
 
 **崩溃一致性**问题（crash-consistency problem）也称**一致性更新**问题（consistent-update problem）
 - 特定操作需要更新磁盘上的**两个结构**A和B。
-- 磁盘一次只为一个请求提供服务，因此其中一个请求将首先到达磁盘（A或B）。
+- 磁盘一次只为一个请求提供服务，因此其中一个请求将首先到达磁盘（A或B），而另一个没写到磁盘。
 - 如果在一次写入完成后系统崩溃或断电，则磁盘上的结构将处于不一致（inconsistent）的状态。
 
 ---
