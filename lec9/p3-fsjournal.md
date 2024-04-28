@@ -601,7 +601,7 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 
 - Journal Mode: 操作的metadata和file data都会写入到日志中然后提交，这是最慢的。
 - Ordered Mode: 只有metadata操作会写入到日志中，但是确保数据在日志提交前写入到磁盘中，速度较快
-- Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入，速度最快
+- Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入(数据可能丢失)，速度最快
 
 ---
 
