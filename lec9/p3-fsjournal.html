@@ -492,7 +492,7 @@
 <ul>
 <li>Journal Mode: 操作的metadata和file data都会写入到日志中然后提交，这是最慢的。</li>
 <li>Ordered Mode: 只有metadata操作会写入到日志中，但是确保数据在日志提交前写入到磁盘中，速度较快</li>
-<li>Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入，速度最快</li>
+<li>Writeback Mode: 只有metadata操作会写入到日志中，且不确保数据在日志提交前写入(数据可能丢失)，速度最快</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
