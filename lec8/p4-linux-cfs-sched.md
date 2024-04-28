@@ -93,6 +93,15 @@ backgroundColor: white
     - **按照权重来分配 CPU 资源**
 ![bg right:47% 90%](figs/prio-to-weight.png) 
 
+
+---
+
+#### CFS 调度思想
+
+- 虚拟运行时间（vruntime）：CFS 为每个进程维护一个 vruntime 值，该值表示进程应该获得的 CPU 时间量。vruntime 较小的进程会被认为更需要 CPU 时间。
+- vruntime增长速度：进程的 nice 值（反映进程的相对优先级）会影响其 vruntime 的增长速率。低优先级（高权重）的进程其vruntime增加得更慢。
+- 时间片管理：CFS 为每个进程分配一个时间片，当进程用完其时间片时，会被放回就绪队列的末尾。时间片的大小会根据系统的负载和进程的权重动态调整。
+
 ---
 
 #### CFS 的进程运行时间动态分配
@@ -156,7 +165,6 @@ Virtual runtime ＝ （physical runtime） X （nice value 0的权重）/进程�
 
 * 进程的vruntime值较小说明它以前占用cpu的时间较短，受到了“不公平”对待，因此下一个运行进程就选择它。
 * 这样既能公平选择进程，又能保证高优先级进程获得较多的运行时间。
-
 
 
 
