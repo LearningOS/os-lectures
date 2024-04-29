@@ -99,8 +99,8 @@ backgroundColor: white
 #### CFS 调度思想
 
 - 虚拟运行时间（vruntime）：CFS 为每个进程维护一个 vruntime 值，该值表示进程应该获得的 CPU 时间量。
-- 进程调度：每次调度vruntime 较小的进程，使得每个进程根据vruntime相互追赶，期望每个进程vruntime接近，保证公平。
-<!--- vruntime增长：进程的 nice 值（反映进程的相对优先级）会影响其 vruntime 的增长速率。nice值越低，权重越高，其vruntime增加得越慢。-->
+- 进程调度：每次调度vruntime最小的进程，使得每个进程根据vruntime相互追赶，期望每个进程vruntime接近，保证公平。
+- vruntime增长速度：进程的 nice 值（反映进程的相对优先级）会影响其 vruntime 的增长速率。nice值越低，权重越高，其vruntime增加得越慢。
 - 时间片管理：CFS 为每个进程分配一个时间片，当进程用完其时间片时，会被放回就绪队列的末尾。时间片的大小会根据系统的负载和进程的权重动态调整。
 
 ---
