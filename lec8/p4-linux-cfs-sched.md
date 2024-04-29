@@ -56,7 +56,7 @@ backgroundColor: white
 #### CFS的背景
 <!-- 万字长文，锤它！揭秘Linux进程调度器 https://www.eet-china.com/mp/a111242.html -->
 - O(1)和O(n)都将CPU资源划分为时间片
-    - 采用固定额度分配机制，每个调度周期的进程可用时间片是确定的
+    - 采用**固定额度**分配机制，每个调度周期的进程可用时间片是确定的
     - 调度周期结束被重新分配
 - O(1)调度器本质上是MLFQ（multi-level feedback queue）算法思想
     - 不足：O(1)调度器对进程交互性的响应不及时
@@ -98,8 +98,9 @@ backgroundColor: white
 
 #### CFS 调度思想
 
-- 虚拟运行时间（vruntime）：CFS 为每个进程维护一个 vruntime 值，该值表示进程应该获得的 CPU 时间量。vruntime 较小的进程会被认为更需要 CPU 时间。
-- vruntime增长速度：进程的 nice 值（反映进程的相对优先级）会影响其 vruntime 的增长速率。低优先级（高权重）的进程其vruntime增加得更慢。
+- 虚拟运行时间（vruntime）：CFS 为每个进程维护一个 vruntime 值，该值表示进程应该获得的 CPU 时间量。
+- 进程调度：每次调度vruntime 较小的进程，使得每个进程根据vruntime相互追赶，期望每个进程vruntime接近，保证公平。
+<!--- vruntime增长：进程的 nice 值（反映进程的相对优先级）会影响其 vruntime 的增长速率。nice值越低，权重越高，其vruntime增加得越慢。-->
 - 时间片管理：CFS 为每个进程分配一个时间片，当进程用完其时间片时，会被放回就绪队列的末尾。时间片的大小会根据系统的负载和进程的权重动态调整。
 
 ---
@@ -147,7 +148,7 @@ backgroundColor: white
 vruntime = (调度周期 * 进程权重 / 所有进程总权重) * 1024 / 进程权重
          = 调度周期 * 1024 / 所有进程总权重
 ```
-虽然进程的权重不同，但是它们的 vruntime增长速度应该是一样的 ，与权重无关。
+虽然进程的权重不同，但它们期望的vruntime应该是一样的 ，与权重无关。
 
 <!-- O(n)、O(1)和CFS调度器  http://www.wowotech.net/process_management/scheduler-history.html 
 
