@@ -470,7 +470,35 @@
 </ol>
 </section>
 <script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:u}=t.children;for(let r=0;r<u;r+=1){const o=t.children[r],a=o.getScreenCTM();if(a){const t=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,r=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.firstElementChild,{style:u}=l;u.transformOrigin||(u.transformOrigin=`${-t}px ${-r}px`),u.transform=`scale(${c}) matrix(${a.a}, ${a.b}, ${a.c}, ${a.d}, ${a.e-d.left}, ${a.f-d.top}) translateZ(0.0001px)`}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),u=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",u)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
-</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>![bg right 10% 50%](figs/efs-inode.png)</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>--- 
+</script></foreignObject></svg></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>在UNIX及类UNIX系统中，`inode`和`vnode`是两种重要的数据结构，用于表示文件系统中的文件和其他对象。这两个术语都是文件系统实现中的核心概念。
+
+### Inode
+**全称：** Index Node
+
+**定义：**
+`inode`是UNIX文件系统的一个基本概念，它包含了关于文件系统中某个文件的几乎所有信息，除了文件名。每个文件或目录都有一个唯一对应的`inode`，其中存储了文件的元数据，比如：
+- 文件的权限（读、写、执行）
+- 文件的所有者和组
+- 文件大小
+- 文件创建、访问和修改时间
+- 指向文件实际数据块的指针
+- 链接数（即有多少文件名指向这个inode）
+
+`inode`通过编号进行索引，而不是通过文件名。文件名存储在目录中，与`inode`号相关联，这样设计可以允许硬链接等功能的实现。
+
+### Vnode
+**全称：** Virtual Node
+
+**定义：**
+`vnode`是一个更高级的抽象，最初由Sun Microsystems为其网络文件系统（NFS）开发。`vnode`为操作系统内核提供了一个统一的文件接口，使得不同类型的文件系统（如本地磁盘文件系统、网络文件系统等）之间的交互变得透明化。每个`vnode`对象代表一个具体的文件系统对象，可以是文件、目录或者其他任何类型的文件系统对象。
+
+`vnode`的主要任务是抽象出文件操作和文件类型的细节，从而允许操作系统通过相同的接口与不同的底层文件系统进行交互。它包含了指向具体文件操作函数的指针，这些操作函数依赖于文件所在的具体文件系统。
+
+### 关系和区别
+- **关系：** 在许多UNIX实现中，每个`vnode`结构通常包含一个指向`inode`的指针（如果底层文件系统使用`inode`机制的话）。这样，`vnode`可以被看作是`inode`的一个扩展或者包装，提供了更广泛的文件系统支持。
+- **区别：** `inode`直接关联于UNIX传统文件系统（如UFS），而`vnode`为操作系统提供了一个抽象层，使得文件系统的具体实现对上层透明，支持多种类型的文件系统共存。
+
+总之，`inode`和`vnode`都是处理文件系统对象的关键数据结构，但它们服务于不同层面的需要：`inode`更多关注于文件的物理属性和存储，而`vnode`则关注于提供一个统一的、文件系统无关的操作接口。</p></div><div class="bespoke-marp-note" data-index="15" tabindex="0"><p>![bg right 10% 50%](figs/efs-inode.png)</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>--- 
 #### 文件系统的设计与实现 -- 缓存
 虚拟页式存储 -- 页缓存
 - 在虚拟地址空间中虚拟页面可映射到本地外存文件中
