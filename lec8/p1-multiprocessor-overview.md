@@ -78,6 +78,11 @@ backgroundColor: white
 
 ---
 
+#### 对称多处理器(SMP)与非一致内存访问系统(NUMA)
+![w:1000](figs/smp-numa.png) 
+
+---
+
 **提纲**
 <style>
 .container{
@@ -103,10 +108,6 @@ backgroundColor: white
 
 </div>
 
----
-
-#### 对称多处理器(SMP)与非一致内存访问系统(NUMA)
-![w:1000](figs/smp-numa.png) 
 
 ---
 
