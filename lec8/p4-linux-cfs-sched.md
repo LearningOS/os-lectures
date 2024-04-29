@@ -56,7 +56,7 @@ backgroundColor: white
 #### CFS的背景
 <!-- 万字长文，锤它！揭秘Linux进程调度器 https://www.eet-china.com/mp/a111242.html -->
 - O(1)和O(n)都将CPU资源划分为时间片
-    - 采用固定额度分配机制，每个调度周期的进程可用时间片是确定的
+    - 采用**固定额度**分配机制，每个调度周期的进程可用时间片是确定的
     - 调度周期结束被重新分配
 - O(1)调度器本质上是MLFQ（multi-level feedback queue）算法思想
     - 不足：O(1)调度器对进程交互性的响应不及时
