@@ -1,3 +1,15 @@
+---
+marp: true
+theme: default
+paginate: true
+_paginate: false
+header: ''
+footer: ''
+backgroundColor: white
+style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
+
+---
+
 # 本科毕设项目
 - [monoRCore 模块化操作系统的设计与完善:2023](https://github.com/LearningOS/rCore-Tutorial-v3-with-page-replacement-and-sched-algorithms)
     - [毕设论文和答辩报告等](https://github.com/LearningOS/rCore-Tutorial-v3-with-page-replacement-and-sched-algorithms/tree/main/thesis-docs)
