@@ -533,12 +533,12 @@ pub fn main() -&gt; i32 {
 
 <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">OSInode</span></span> {<span class="hljs-comment">//进程管理的inode</span>
     readable: <span class="hljs-built_in">bool</span>,  writable: <span class="hljs-built_in">bool</span>,
-    inner: UPSafeCell&lt;OSInodeInner&gt;,
+    inner: UPSafeCell&lt;OSInodeInner&gt;,<span class="hljs-comment">//多线程并发安全</span>
 }
 
 <span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">OSInodeInner</span></span> {
     offset: <span class="hljs-built_in">usize</span>, <span class="hljs-comment">//文件读写的偏移位置</span>
-    inode: Arc&lt;Inode&gt;,<span class="hljs-comment">//存储设备inode</span>
+    inode: Arc&lt;Inode&gt;,<span class="hljs-comment">//存储设备inode，线程安全的引用计数指针</span>
 }
 </span></span></foreignObject></svg></code></pre>
 </section>

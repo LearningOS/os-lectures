@@ -713,12 +713,12 @@ pub struct TaskControlBlockInner {
 
 pub struct OSInode {//进程管理的inode
     readable: bool,  writable: bool,
-    inner: UPSafeCell<OSInodeInner>,
+    inner: UPSafeCell<OSInodeInner>,//多线程并发安全
 }
 
 pub struct OSInodeInner {
     offset: usize, //文件读写的偏移位置
-    inode: Arc<Inode>,//存储设备inode
+    inode: Arc<Inode>,//存储设备inode，线程安全的引用计数指针
 }
 ```
 ![bg right:42% 95%](figs/fs-fsdisk.png)
