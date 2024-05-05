@@ -157,7 +157,7 @@
 <p><strong>inode（I[v2]）和位图（B[v2]）写入了磁盘</strong>，但没有写入数据（Db）</p>
 <ul>
 <li data-marpit-fragment="1">inode有一个指向块5的指针，位图指示5正在使用，因此从文件系统的元数据的角度来看，一切<strong>看起来很正常</strong></li>
-<li data-marpit-fragment="2">但<strong>磁盘块5中又是垃圾</strong>。</li>
+<li data-marpit-fragment="2">但<strong>磁盘块5中又是垃圾数据</strong>。</li>
 </ul>
 
 <p><img src="figs/crash-ex-normal.jpg" alt="" style="width:1100px;" /></p>
@@ -227,7 +227,7 @@
 <p>扫描inode、间接块、双重间接块等，以了解当前在文件系统中分配的块，生成正确版本的分配位图</p>
 <ul>
 <li data-marpit-fragment="1">如果位图和inode之间存在任何不一致，则通过信任inode内的信息来解决它</li>
-<li data-marpit-fragment="2">对所有inode执行相同类型的检查，确保所有看起来像在用的inode，都在inode位图中有标记</li>
+<li data-marpit-fragment="2">对所有inode执行相同类型的检查，确保所有看起来像在使用的inode，都在inode位图中有标记</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -313,7 +313,11 @@
 <h5>预写日志的思路</h5>
 <ul>
 <li data-marpit-fragment="1">更新磁盘时，在覆写结构之前，首先写下一点小注记（在磁盘上的其他地方，在一个众所周知的位置），描述你将要做的事情</li>
-<li data-marpit-fragment="2">写下这个注记就是“预写”部分，把它写入一个结构，并组织成“日志”</li>
+<li data-marpit-fragment="2">写下这个注记就是“预写”部分，把它写入一个结构，并组织成“日志”
+<ul>
+<li>日志是连续追加写</li>
+</ul>
+</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="31" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -427,7 +431,7 @@
 <li>如果崩溃是在事务提交到日志之后，但在检查点完成之前发生</li>
 </ul>
 <p>太多写，慢！</p>
-<p><strong>数据+元数据日志 -&gt; 元数据日志</strong></p>
+<p><strong>数据+元数据日志 --&gt; 元数据日志</strong></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="41" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="41" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <p><strong>提纲</strong></p>
