@@ -689,10 +689,10 @@ fn main() { //Asynchronous multi-threaded concurrent webserver
 
 #### Architecture of SharedScheduler
 
-![bg right:60% 95% arch](figs/arch.png)
+![bg right:50% 95% arch](figs/arch.png)
 
 1. 操作系统与用户程序各自的 Executor 维护协程
-2. SharedScheduler 通过 vDSO 共享给用户进程
+2. SharedScheduler 通过 vDSO (virtual Dynamic Shared Object) 共享给用户进程
 3. 通过 Global Bitmap 进行操作系统与用户进程之间协调调度
 
 <!--
