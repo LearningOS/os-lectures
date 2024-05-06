@@ -363,10 +363,12 @@ bitmap块( `bitmap inode/dnode`)
 #### 链式分配
 
   - 显式连接
+     - 链接信息显式放啊到文件分配表(FAT)
   - 隐式连接
-![bg right:35% 80%](figs/fs-explicit.png)
+     - 每个块保存了指向下一块的指针 
+![bg right:35% 70%](figs/fs-explicit.png)
 
-![bg right:70% 100%](figs/fs-implicit.png)
+![bg right:60% 100%](figs/fs-implicit.png)
 
 
 --- 
