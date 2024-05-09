@@ -276,7 +276,13 @@ $ cat name.fifo
 
 ---
 #### 消息队列实现机制
-![w:900](figs/signal-imp2.jpg)
+
+- 不同消息类型
+  - 优先级排序
+  - 选择性接收
+  - 安全和隔离
+
+![bg right:62% 90%](figs/signal-imp2.jpg)
 
 
 ---
@@ -450,7 +456,7 @@ Child: read msg:test
 ```
 #include <sys/ipc.h>
 #include <sys/shm.h>
-int shmget(key_t key, size_t size,int shmflg);
+int shmget(key_t key, size_t size, int shmflg);
 ```
 - key：进程间通信键值，ftok() 的返回值。
 - size：该共享存储段的长度(字节)。
@@ -480,7 +486,7 @@ void *shmat(int shmid, const void *shmaddr, int shmflg);
 void *shmat(int shmid, const void *shmaddr, int shmflg);
 ```
 - shmid：共享内存标识符，shmget() 的返回值。
-- shmaddr：共享内存映射地址，若为 NULL 则由系统自动指定
+- shmaddr：共享内存映射地址，若为 NULL 则由系统自动指定 
 - shmflg：共享内存段的访问权限和映射条件，取值如下：
   - 0：共享内存具有可读可写权限。
   - SHM_RDONLY：只读。
@@ -611,7 +617,8 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
   - 模拟用户代码调用sig_handler函数
 -  内核在陷入上下文中修改用户态返回地址；
 - 内核返回用户态，直接跳到sig_handler;
-- sig_handler函数返回到旧代码位置继续执行
+- 执行sig_handler函数结束后，自动通过系统调用sigreturn陷入内核态
+- sigreturn恢复进程正常执行的上下文，返回用户态继续执行
 ![bg right:31% 95%](figs/CatchingSignal.png)
 
 ---

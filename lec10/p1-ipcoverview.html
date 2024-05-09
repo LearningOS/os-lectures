@@ -302,11 +302,19 @@ $ echo README &gt; name.fifo  #文件类型为p，写命名管道阻塞
 <h4>消息队列实现机制</h4>
 <p><img src="figs/signal-imp.jpg" alt="" style="width:1000px;" /></p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="58" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="58" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:62%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/signal-imp2.jpg&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="38%" height="720"><section id="24" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="58" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:62%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h4>消息队列实现机制</h4>
-<p><img src="figs/signal-imp2.jpg" alt="" style="width:900px;" /></p>
+<ul>
+<li>不同消息类型
+<ul>
+<li>优先级排序</li>
+<li>选择性接收</li>
+<li>安全和隔离</li>
+</ul>
+</li>
+</ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="58" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="24" data-marpit-pagination-total="58"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="58" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>消息队列的系统调用</h4>
 
 <ul>
@@ -480,7 +488,7 @@ Child: read msg:test
 <h4>创建共享内存</h4>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>#include &lt;sys/ipc.h&gt;
 #include &lt;sys/shm.h&gt;
-int shmget(key_t key, size_t size,int shmflg);
+int shmget(key_t key, size_t size, int shmflg);
 </span></span></foreignObject></svg></code></pre>
 <ul>
 <li>key：进程间通信键值，ftok() 的返回值。</li>
@@ -660,7 +668,8 @@ deleted shared-memory
 </li>
 <li>内核在陷入上下文中修改用户态返回地址；</li>
 <li>内核返回用户态，直接跳到sig_handler;</li>
-<li>sig_handler函数返回到旧代码位置继续执行<br />
+<li>执行sig_handler函数结束后，自动通过系统调用sigreturn陷入内核态</li>
+<li>sigreturn恢复进程正常执行的上下文，返回用户态继续执行<br />
 </li>
 </ul>
 </section>
