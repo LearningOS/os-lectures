@@ -677,7 +677,7 @@ fn main() { //Asynchronous multi-threaded concurrent webserver
 
 ---
 
-#### 共享调度器：[一种支持优先级的协程调度框架](https://github.com/zflcs/SharedScheduler)（赵方亮、廖东海）
+#### 共享调度器：[一种支持优先级的协程调度框架](https://github.com/zflcs/SharedScheduler)（本科生毕设：赵方亮、廖东海；选学，不考核）
 
 * 将协程作为操作系统和应用程序的最小任务单元
 * 引入协程的优先级属性，基于优先级位图，操作系统和应用程序实现协程调度
@@ -764,9 +764,10 @@ read!(fd, buffer); // Sync call
 
 ---
 
-#### Throughput and message latency
+#### Message throughput
 
-![width:750px throughput](figs/throughput.png)
+<!--![width:750px throughput]-->
+![bg right:51% 100%](figs/throughput.png)
 
 1. kcuc: 内核协程 + 用户协程
 2. kcut：内核协程 + 用户线程
@@ -778,9 +779,9 @@ read!(fd, buffer); // Sync call
 
 ---
 
-#### Throughput and message latency
+#### Message latency
 
-![width:750px latency](figs/latency.png)
+![bg right:51% 100%](figs/latency.png)
 
 1. SharedScheduler 同步互斥开销，不适用于低并发或低响应要求的场景
 2. 协程切换开销小
@@ -791,17 +792,18 @@ read!(fd, buffer); // Sync call
 
 ---
 
-#### Throughput and message latency of different priority connections
+#### Throughput of different priority connections
 
-![width:700px prio-throughput](figs/prio-throughput.png)
+![width:600px prio-throughput](figs/prio-throughput.png)
 
+结论：在资源有限的条件下，高优先级协程能够得到保证
 
 <!--
 -->
 
 ---
 
-#### Throughput and message latency of different priority connections
+#### Message latency of different priority connections
 
 ![width:550px prio-latency](figs/prio-latency.png)
 结论：在资源有限的条件下，高优先级协程能够得到保证
