@@ -766,7 +766,8 @@ read!(fd, buffer); // Sync call
 
 #### Throughput and message latency
 
-![width:750px throughput](figs/throughput.png)
+<!--![width:750px throughput]-->
+![bg right:51% 100%](figs/throughput.png)
 
 1. kcuc: 内核协程 + 用户协程
 2. kcut：内核协程 + 用户线程
