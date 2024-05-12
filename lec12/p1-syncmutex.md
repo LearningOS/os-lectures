@@ -775,7 +775,7 @@ https://www.zhihu.com/question/23281499/answer/24112589
   - value= 100；
   - Thread1: value - 50; //成功 value=50
   - Thread2: value - 50; //阻塞
-  - Thread3: value + 50; //成功 value=50
+  - Thread3: value + 50; //成功 value=100
   - Thread2: 重试成功
 - 解决思路：加上版本号（时间戳）
   - (100,1); (50,2); (100,3) 
