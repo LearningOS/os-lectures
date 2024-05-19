@@ -419,7 +419,24 @@ exit section
 
 ---  
 
-##### 尝试一
+##### 尝试一 根据turn值进入临界区
+![bg right:50% 100%](figs/soft-1.png)
+- 满足“忙则等待”，但是有时不满足“空闲则入”
+```c
+// 线程 Tj
+do {
+   while (turn != j) ;
+   critical section
+   turn = i;
+   remainder section
+} while(1)
+```
+
+
+
+---  
+
+##### 尝试一 根据turn值进入临界区
 ![bg right:50% 100%](figs/soft-1.png)
 - 满足“忙则等待”，但是有时不满足“空闲则入”
    - Ti不在临界区，Tj想要继续运行，但是必须等待Ti进入过临界区后
@@ -430,7 +447,7 @@ exit section
 
 ---  
 
-##### 尝试二
+##### 尝试二 根据flag进入临界区
 ![bg right:50% 100%](figs/soft-2.png)
 - 互相依赖（线程忙等）
 - 不满足“忙则等待”
@@ -449,7 +466,7 @@ do {
 
 ---  
 
-##### 尝试三
+##### 尝试三 根据flag进入临界区
 ![bg right:50% 100%](figs/soft-3.png)
 - 满足“忙则等待”，但是不满足“空闲则入”
   - flag[i]=flag[j]=1
@@ -466,7 +483,7 @@ do {
 
 ---  
 
-##### Peterson算法
+##### Peterson算法 turn+flag
 
 ![bg right:50% 100%](figs/soft-peterson.png)
 - 满足线程Ti和Tj之间互斥的经典的基于软件的解决方法（1981年）
@@ -474,7 +491,7 @@ do {
 
 ---  
 
-##### Peterson算法
+##### Peterson算法 turn+flag
 ```
 // 共享变量
 let mut flag = [false; N]; // 标识进程是否请求进入临界区
@@ -501,7 +518,7 @@ while (true) {
 
 ---  
 
-##### Peterson算法
+##### Peterson算法 turn+flag
 ![bg right:50% 100%](figs/soft-peterson-2.png)
 ```
 //进程Pi
@@ -565,7 +582,7 @@ Eisenberg和McGuire
 
 ---  
 
-##### N线程
+##### N线程 - 初始化
 ```c 
 INITIALIZATION:
 
@@ -578,7 +595,7 @@ for (index=0; index<n; index++) {
 
 ---  
 
-##### N线程
+##### N线程 - 进入临界区
 ```c 
 ENTRY PROTOCOL (for Process i ):
 repeat {//从turn到i是否存在请求进程:若存在，则不断循环，直至不存在这样的进程，将当前进程标记为ACTIVE
@@ -600,7 +617,7 @@ turn = i;//获得turn并处理
 
 ---  
 
-##### N线程
+##### N线程 - 离开临界区
 ```c 
 EXIT PROTOCOL (for Process i ):
 
