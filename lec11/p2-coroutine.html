@@ -131,13 +131,13 @@
 <li>对称协程：
 <ul>
 <li>只提供一种传递操作，用于<strong>在协程间直接传递控制</strong></li>
-<li>对称协程都是平等的，控制权直接在对称协程之间进行传递</li>
-<li>对称协程在挂起时主动指明另外一个对称协程来接收控制权</li>
+<li>对称协程都是<strong>平等的</strong>，控制权直接在对称协程之间进行传递</li>
+<li>对称协程在挂起时主动指明另外一个<strong>对称协程</strong>来接收控制权</li>
 </ul>
 </li>
 <li>非对称协程（半对称(Semi-symmetric)协程）：
 <ul>
-<li>提供调用和挂起两种操作，非对称协程挂起时将<strong>控制返回给调用者</strong></li>
+<li>提供<strong>调用和挂起</strong>两种操作，非对称协程挂起时将<strong>控制返回给调用者</strong></li>
 <li>调用者或上层管理者根据某调度策略调用其他非对称协程</li>
 </ul>
 </li>
@@ -242,7 +242,7 @@
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h4>第二类（Second-class）语言对象</h4>
+<h4>第二类（Second-class）语言对象：不能将其作为参数传递</h4>
 <ul>
 <li data-marpit-fragment="1">Second-class 对象优势：
 <ul>
