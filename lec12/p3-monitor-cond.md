@@ -398,3 +398,23 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 #### 生产者-消费者问题的管程实现
 
 ![w:1000](figs/monitor-pc-4.png)
+
+
+---
+#### 如何使用管程？
+
+Java支持管程；C++支持条件变量
+
+```
+public class CounterMonitor {
+    private int count = 0; // 共享资源
+    // 增加count的方法，这里用synchronized关键字确保互斥访问
+    public synchronized void increment() {
+        count++; // 可以添加其他逻辑，比如通知等待的线程等
+    }
+    // 获取count值的方法，也需要同步
+    public synchronized int getCount() {
+        return count;
+    }
+}
+'''
