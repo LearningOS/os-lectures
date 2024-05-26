@@ -307,7 +307,7 @@ DMA 传输方式
 ### I/O子系统 -- I/O执行模型 -- 多路复用 I/O
 多路复用 I/O（I/O multiplexing）的文件读系统调用–read 的执行过程：
 1. 对应的 I/O 系统调用是 select 和 epoll 等
-2. 通过 select 或 epoll 系统调用来不断的轮询用户进程关注的所有文件句柄或socket，当某个文件句柄或 socket 有数据到达了，select 或 epoll 系统调用就会返回到用户进程，用户进程再调用 read 系统调用，让内核将数据从内核的I/O 缓冲区拷贝到用户进程的 buffer 中。
+2. 通过 select 或 epoll 系统调用，用户进程会被阻塞，内核会不断的轮询用户进程关注的所有文件句柄或socket，当某个文件句柄或 socket 有数据到达了，select 或 epoll 系统调用就会返回到用户进程，用户进程再调用 read 系统调用，让内核将数据从内核的I/O 缓冲区拷贝到用户进程的 buffer 中。
 
 ---
 ### I/O子系统 -- I/O执行模型 -- 信号驱动 I/O
