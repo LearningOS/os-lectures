@@ -303,7 +303,7 @@ UART 串口通信</p>
 <p>多路复用 I/O（I/O multiplexing）的文件读系统调用–read 的执行过程：</p>
 <ol>
 <li>对应的 I/O 系统调用是 select 和 epoll 等</li>
-<li>通过 select 或 epoll 系统调用来不断的轮询用户进程关注的所有文件句柄或socket，当某个文件句柄或 socket 有数据到达了，select 或 epoll 系统调用就会返回到用户进程，用户进程再调用 read 系统调用，让内核将数据从内核的I/O 缓冲区拷贝到用户进程的 buffer 中。</li>
+<li>通过 select 或 epoll 系统调用，用户进程会被阻塞，内核会不断的轮询用户进程关注的所有文件句柄或socket，当某个文件句柄或 socket 有数据到达了，select 或 epoll 系统调用就会返回到用户进程，用户进程再调用 read 系统调用，让内核将数据从内核的I/O 缓冲区拷贝到用户进程的 buffer 中。</li>
 </ol>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="37" data-marpit-pagination-total="42" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
