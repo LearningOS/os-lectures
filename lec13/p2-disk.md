@@ -14,6 +14,14 @@ backgroundColor: white
 # 第十三讲 设备管理
 ## 第二节 磁盘子系统
 
+向勇 陈渝 李国良 任炬
+
+
+2024年春季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/ewvhdy3epbwbkn3n)
+
+
 ---
 ### 磁盘 -- 概述
 磁盘工作机制和性能参数

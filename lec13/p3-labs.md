@@ -14,6 +14,15 @@ backgroundColor: white
 # 第十三讲 设备管理
 ## 第三节 支持device的OS（DOS）
 
+向勇 陈渝 李国良 任炬
+
+
+2024年春季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/ewvhdy3epbwbkn3n)
+
+
+
 ---
 ### 内容
 - **进化目标**
