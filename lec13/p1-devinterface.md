@@ -26,7 +26,6 @@ backgroundColor: white
 <br>
 <br>
 
-2023年春季
 
 ---
 ### 内容
