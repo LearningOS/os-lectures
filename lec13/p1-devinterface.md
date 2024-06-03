@@ -72,7 +72,7 @@ backgroundColor: white
 
 ---
 ### I/O子系统 -- 常见设备接口类型
-字符设备：如GPIO, 键盘/鼠标, 串口等
+字符设备：如GPIO（General Purpose Input/Output）, 键盘/鼠标, 串口等
 
 ![w:700](figs/char-led.png)
 GPIO LED light
@@ -90,7 +90,7 @@ GPIO LED light
 ### I/O子系统 -- 常见设备接口类型
 字符设备：如GPIO, 键盘/鼠标, 串口等
 ![w:900](figs/char-uart.png)
-UART 串口通信
+UART（Universal Asynchronous Receiver/Transmitter） 串口通信
 
 
 ---
@@ -221,6 +221,7 @@ DMA 传输方式
 - 访问接口：open/close/read/write
 - 特别的系统调用：ioctl ：input/output control
 - ioctl 系统调用很灵活，但太灵活了，请求码的定义无规律可循
+- ioctl 提供了一种强大但复杂的机制，用于执行特定于设备的操作，允许用户空间程序执行那些标准读写操作无法完成的任务。
 - 文件的接口太面向用户应用，不足覆盖到OS对设备进行管理的过程
 
 
@@ -296,8 +297,7 @@ DMA 传输方式
 ---
 ### I/O子系统 -- I/O执行模型 -- 非阻塞 I/O
 
-4. 磁盘驱动程序把数据从磁盘传到 I/O 缓冲区后，通知内核（一般通过中断机制），内核在收到通知且再次收到了用户进程的 system call 后，会马上把数据
-从 I/O 缓冲区拷贝到用户进程的 buffer 中；
+4. 磁盘驱动程序把数据从磁盘传到 I/O 缓冲区后，通知内核（一般通过中断机制），内核在收到通知且再次收到了用户进程的 system call 后，会马上把数据从 I/O 缓冲区拷贝到用户进程的 buffer 中；
 5. 内核从内核态返回到用户态的用户态进程，此时 read 系统调用完成。
 
 所以，在非阻塞式 I/O 的特点是用户进程不会被内核阻塞，而是需要不断的主动询问内核所需数据准备好了没有。

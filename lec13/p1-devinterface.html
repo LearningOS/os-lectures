@@ -71,7 +71,7 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="42" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h3>I/O子系统 -- 常见设备接口类型</h3>
-<p>字符设备：如GPIO, 键盘/鼠标, 串口等</p>
+<p>字符设备：如GPIO（General Purpose Input/Output）, 键盘/鼠标, 串口等</p>
 <p><img src="figs/char-led.png" alt="" style="width:700px;" /><br />
 GPIO LED light</p>
 </section>
@@ -85,7 +85,7 @@ GPIO LED light</p>
 <h3>I/O子系统 -- 常见设备接口类型</h3>
 <p>字符设备：如GPIO, 键盘/鼠标, 串口等<br />
 <img src="figs/char-uart.png" alt="" style="width:900px;" /><br />
-UART 串口通信</p>
+UART（Universal Asynchronous Receiver/Transmitter） 串口通信</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="10" data-marpit-pagination-total="42" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h3>I/O子系统 -- 常见设备接口类型</h3>
@@ -208,6 +208,7 @@ UART 串口通信</p>
 <li>访问接口：open/close/read/write</li>
 <li>特别的系统调用：ioctl ：input/output control</li>
 <li>ioctl 系统调用很灵活，但太灵活了，请求码的定义无规律可循</li>
+<li>ioctl 提供了一种强大但复杂的机制，用于执行特定于设备的操作，允许用户空间程序执行那些标准读写操作无法完成的任务。</li>
 <li>文件的接口太面向用户应用，不足覆盖到OS对设备进行管理的过程</li>
 </ul>
 </section>
@@ -289,8 +290,7 @@ UART 串口通信</p>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="34" data-marpit-pagination-total="42" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h3>I/O子系统 -- I/O执行模型 -- 非阻塞 I/O</h3>
 <ol start="4">
-<li>磁盘驱动程序把数据从磁盘传到 I/O 缓冲区后，通知内核（一般通过中断机制），内核在收到通知且再次收到了用户进程的 system call 后，会马上把数据<br />
-从 I/O 缓冲区拷贝到用户进程的 buffer 中；</li>
+<li>磁盘驱动程序把数据从磁盘传到 I/O 缓冲区后，通知内核（一般通过中断机制），内核在收到通知且再次收到了用户进程的 system call 后，会马上把数据从 I/O 缓冲区拷贝到用户进程的 buffer 中；</li>
 <li>内核从内核态返回到用户态的用户态进程，此时 read 系统调用完成。</li>
 </ol>
 <p>所以，在非阻塞式 I/O 的特点是用户进程不会被内核阻塞，而是需要不断的主动询问内核所需数据准备好了没有。</p>
