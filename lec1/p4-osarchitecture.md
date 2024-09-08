@@ -24,7 +24,7 @@ backgroundColor: white
 <br>
 <br>
 
-2024年春季
+2024年秋季
 
 ---
 ## 简单结构
@@ -37,14 +37,15 @@ MS-DOS：应用和OS混在一起 (1981–1994)
 
 
 ---
-## 单体分层结构
-将单体操作系统 (Monolithic OS) 划分为**多层** (levels)
+## 宏内核结构
+
+宏内核结构操作系统(Monolithic OS) 划分为**多层** (levels)
 - 每层建立在低层之上
 - 最底层 (layer 0), 是硬件驱动
 - 最高层 (layer N) 是用户界面
 - 每一层仅使用更低一层的功能和服务
 
-![bg right 100%](./figs/multi-level-os-arch.png)
+![bg right:50% 100%](./figs/multi-level-os-arch.png)
 
 
 ---
