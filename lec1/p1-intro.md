@@ -21,7 +21,7 @@ backgroundColor: white
 
 <br>
 
-2024年春季
+2024年秋季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/ewvhdy3epbwbkn3n)
 
@@ -33,7 +33,7 @@ backgroundColor: white
   - 向勇 陈渝 李国良 任炬 
 
 ### 助教
-  - 饶淙元、田凯夫、闭浩扬、王拓为、苏明贤、黄旺、郝子胥
+  - 赵方亮、朱懿、郑友捷
 
 ---
 
@@ -41,9 +41,10 @@ backgroundColor: white
 
 ### 上课时间地点
 - 时间
-  - 星期一 第2大节 上午09:50-12:15 (1-16周) 
+  - 周一下午第4节(15:20-16:55) (1-12周)
+  - 周四上午第2节(09:50-12:15) (1-12周)
 - 地点
-   - 六教6A209（任）六教6A211（李）六教6A213（陈）
+   - 六教6A209（任）
 
 ----
 
@@ -88,20 +89,20 @@ backgroundColor: white
 
 #### uCore Tutorial
 
-- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2024S/)
-- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2024S/)
-- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2024S/)
+- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2024A/)
+- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2024A/)
+- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2024A/)
 
 ---
 
 ### 实验指导
 
 * rCore Tutorial
-  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2024S/)
-  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2024S/#os-api-docs-of-rcore-tutorial-code-2022a) 
-  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2024S)
-  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2024S)
-* [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/lt5qafszpz62hob1?singleDoc)
+  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2024A/)
+  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2024A/#os-api-docs-of-rcore-tutorial-code-2022a) 
+  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2024A)
+  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2024A)
+* [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/ztzg6v1h3v2g4zcx)
   - 讲解视频
   - 部分内容将逐步更新
 
@@ -171,9 +172,7 @@ backgroundColor: white
 
 ### 选择1：（总分不超过100） 
   - 实验一~五必做题目： 40% ；期中考试 20% ； 期末考试 40%
-    - 可选做其他实验（如果觉得实验一-实验五不能得到40分），但实验总分不超过40分
-  - 加分：
-    - 平时作业：每做一次平时作业加1分，最高加5分，且课程总评成绩总分不超过100分
+  - 平时作业加分：每做一次平时作业加0.5分，最高加5分，且课程总评成绩总分不超过100分
 
 ---
 
@@ -187,6 +186,6 @@ backgroundColor: white
 
 ## 调查问卷
 
-[2024年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/TdGsawl)
-访问密码：tn6m1HK
+[2024年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/3xyV182)
+访问密码：2i6+CYo3B
 请大家在第一节课后尽快填写问卷，以便我们更好地上好课。
