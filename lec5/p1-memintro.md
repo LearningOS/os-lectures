@@ -21,7 +21,7 @@ backgroundColor: white
 <br>
 <br>
 
-2024年春季
+2024年秋季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/ewvhdy3epbwbkn3n)
 
