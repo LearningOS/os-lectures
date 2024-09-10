@@ -186,6 +186,6 @@ backgroundColor: white
 
 ## 调查问卷
 
-[2024年春季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/3xyV182)
+[2024年秋季学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/3xyV182)
 访问密码：2i6+CYo3B
 请大家在第一节课后尽快填写问卷，以便我们更好地上好课。

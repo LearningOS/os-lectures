@@ -31,7 +31,7 @@ C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concuren
 
 向勇 陈渝 李国良 任炬 
 
-2024年春季
+2024年秋季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/ewvhdy3epbwbkn3n)
 
