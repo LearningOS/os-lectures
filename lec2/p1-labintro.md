@@ -290,7 +290,7 @@ backgroundColor: white
 ---
 
 #### 扩展实验（即大实验，课程设计）
-- [大实验相关资源信息](https://github.com/LearningOS/os-lectures/blob/master/oslabs/biglab-relatedinfo.md)
+- [大实验相关资源信息](https://shimo.im/docs/m4kMMQjy7BHdEwkD)
 
 **4周内**完成基础实验1~5后，与老师协商：选择完成扩展实验来代替考试。
 
