@@ -64,7 +64,7 @@ backgroundColor: white
 #### LibOS历史背景 -- 子程序
 
 - 参与 EDSAC 项目的 David Wheeler 发明了**子程序**的概念 – Wheeler Jump 
-- 基于便捷有效的子程序概念和子程序调用机制，软件开发人员在EDSAC和后续的LEO计算机上开发了大量的系统**子程序库**，形成了最早的操作系统原型。
+- 基于便捷有效的子程序概念和**子程序调用**机制，软件开发人员在EDSAC和后续的LEO计算机上开发了大量的系统**子程序库**，形成了最早的操作系统原型。
 
 ![bg right:50% 70%](figs/LEO_III_computer_circuit_board.jpg)
 
