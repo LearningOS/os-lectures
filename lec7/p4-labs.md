@@ -23,7 +23,7 @@ Process OS(POS)
 
 2024年秋季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/ewvhdy3epbwbkn3n)
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 年秋季
 
 ---
