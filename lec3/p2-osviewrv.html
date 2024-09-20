@@ -73,25 +73,24 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>RISC-V 系统模式</h5>
-<p><img src="figs/rv-privil-arch.png" alt="" style="width:800px;" /></p>
+<p>与系统编程相关的RISC-V模式<br />
+<img src="figs/rv-privil-arch.png" alt="" style="width:800px;" /></p>
 <ul>
 <li>ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface</li>
 <li>AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment</li>
 <li>HAL：Hardware Abstraction Layer</li>
 <li>Hypervisor，虚拟机监视器（virtual machine monitor，VMM）</li>
-<li>RISC-V 系统模式 即 与系统编程相关的RISC-V模式</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>RISC-V相关术语</h5>
 <ul>
-<li>应用执行环境（Application Execution Environment, AEE)</li>
-<li>应用程序二进制接口（Application Binary Interface, ABI)</li>
-<li>管理员二进制接口（Supervisor Binary Interface, SBI)</li>
-<li>管理员执行环境（Supervisor Execution Environment, SEE)</li>
-<li>Hypervisor：虚拟机监视器</li>
-<li>Hypervisor二进制接口（Hypervisor Binary interface，HBI）</li>
-<li>Hypervisor执行环境（Hypervisor Execution Environment, HEE)</li>
+<li>应用执行环境 (Application Execution Environment, AEE)</li>
+<li>应用程序二进制接口 (Application Binary Interface, ABI)</li>
+<li>管理员二进制接口 (Supervisor Binary Interface, SBI)</li>
+<li>管理员执行环境 (Supervisor Execution Environment, SEE)</li>
+<li>Hypervisor二进制接口 (Hypervisor Binary interface，HBI)</li>
+<li>Hypervisor执行环境 (Hypervisor Execution Environment, HEE)</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="9" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -132,11 +131,10 @@
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
-<h5>RISC-V 系统模式：硬件线程</h5>
+<h5>RISC-V 系统模式：控制权接管</h5>
 <p><img src="figs/rv-privil-arch.png" alt="" style="width:900px;" /></p>
 <ul>
 <li>特权级是为不同的软件栈部件提供的一种保护机制</li>
-<li><strong>硬件线程</strong>（hart，即CPU core）是运行在某个特权级上（CSR配置）</li>
 <li>当处理器执行当前特权模式不允许的操作时将产生一个<strong>异常</strong>，这些异常通常会产生自陷（trap）导致<strong>下层执行环境接管控制权</strong></li>
 </ul>
 </section>
@@ -224,8 +222,8 @@
 <ul>
 <li>U-Mode （User Mode，用户模式、用户态）
 <ul>
+<li><strong>应用程序运行</strong>的用户态CPU执行模式</li>
 <li><strong>非特权</strong>级模式（Unprivileged Mode）：基本计算</li>
-<li>是<strong>应用程序运行</strong>的用户态CPU执行模式</li>
 <li>不能执行特权指令，不能直接影响其他应用程序执行</li>
 </ul>
 </li>
@@ -237,9 +235,9 @@
 <ul>
 <li>S-Mode（Supervisor Mode, Kernel Mode，内核态，内核模式）
 <ul>
+<li><strong>操作系统运行</strong>的内核态CPU执行模式</li>
 <li>在内核态的操作系统具有足够强大的<strong>硬件控制能力</strong></li>
 <li>特权级模式（Privileged Mode）：<strong>限制APP</strong>的执行与内存访问</li>
-<li>是<strong>操作系统运行</strong>的内核态CPU执行模式</li>
 <li>能执行内核态特权指令，能直接<strong>影响应用程序执行</strong></li>
 </ul>
 </li>
@@ -251,8 +249,9 @@
 <ul>
 <li>H-Mode(Hypervisor Mode, Virtual Machine Mode，虚拟机监控器)
 <ul>
-<li>特权级模式：<strong>限制OS</strong>访问的内存空间</li>
-<li>是<strong>虚拟机监控器运行</strong>的Hypervisor Mode CPU执行模式，能执行H-Mode特权指令，能直接<strong>影响OS执行</strong></li>
+<li><strong>虚拟机监控器运行</strong>的Hypervisor Mode CPU执行模式</li>
+<li>特权级模式：<strong>限制OS</strong>访问的内存空间的<strong>访问范围</strong>和<strong>访问方式</strong></li>
+<li>可执行H-Mode特权指令，能直接<strong>影响OS执行</strong></li>
 </ul>
 </li>
 </ul>
@@ -263,8 +262,8 @@
 <ul>
 <li>M-Mode（Machine Mode, Physical Machine Mode）
 <ul>
+<li><strong>Bootloader/BIOS运行</strong>的Machine Mode CPU执行模式</li>
 <li>特权级模式：<strong>控制物理内存</strong>，直接关机</li>
-<li>是<strong>Bootloader/BIOS运行</strong>的Machine Mode CPU执行模式</li>
 <li>能执行M-Mode特权指令，能直接影响上述其他软件的执行</li>
 </ul>
 </li>
@@ -315,7 +314,7 @@
 <ul>
 <li>权力：防止应用访问系统管控相关寄存器
 <ul>
-<li><strong>地址空间配置</strong>寄存器：mstatus/sstatus CSR(中断及状态)</li>
+<li><strong>地址空间控制</strong>寄存器：mstatus/sstatus CSR(中断及状态)</li>
 </ul>
 </li>
 <li>时间：防止应用长期使用 100％的 CPU
@@ -325,7 +324,7 @@
 </li>
 <li>数据：防止应用破坏窃取数据
 <ul>
-<li><strong>地址空间相关</strong>寄存器：sstatus/stvec/satp CSR （分页系统）</li>
+<li><strong>地址空间配置</strong>寄存器：sstatus/stvec/satp CSR （分页系统）</li>
 </ul>
 </li>
 </ul>

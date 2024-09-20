@@ -91,28 +91,22 @@ backgroundColor: white
 
 ---
 ##### RISC-V 系统模式
+
+与系统编程相关的RISC-V模式
 ![w:800](figs/rv-privil-arch.png)
 - ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface
 - AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment
 - HAL：Hardware Abstraction Layer
 - Hypervisor，虚拟机监视器（virtual machine monitor，VMM）
-- RISC-V 系统模式 即 与系统编程相关的RISC-V模式 
-
 
 ---
 ##### RISC-V相关术语
-- 应用执行环境（Application Execution Environment, AEE)
-- 应用程序二进制接口（Application Binary Interface, ABI)
-- 管理员二进制接口（Supervisor Binary Interface, SBI)
-- 管理员执行环境（Supervisor Execution Environment, SEE)
-- Hypervisor：虚拟机监视器
-- Hypervisor二进制接口（Hypervisor Binary interface，HBI）
-- Hypervisor执行环境（Hypervisor Execution Environment, HEE)
-
-
-
-
-
+- 应用执行环境 (Application Execution Environment, AEE)
+- 应用程序二进制接口 (Application Binary Interface, ABI)
+- 管理员二进制接口 (Supervisor Binary Interface, SBI)
+- 管理员执行环境 (Supervisor Execution Environment, SEE)
+- Hypervisor二进制接口 (Hypervisor Binary interface，HBI)
+- Hypervisor执行环境 (Hypervisor Execution Environment, HEE)
 
 ---
 ##### RISC-V 系统模式：单应用场景
@@ -135,8 +129,6 @@ backgroundColor: white
 ![w:900](figs/rv-privil-arch.png)
 - 右侧是虚拟机场景，可支持**多个操作系统**
 
-
-
 ---
 ##### RISC-V 系统模式：应用场景
 ![w:900](figs/rv-privil-arch.png)
@@ -146,10 +138,9 @@ backgroundColor: white
 - U+S+H+M Mode：数据中心服务器
 
 ---
-##### RISC-V 系统模式：硬件线程
+##### RISC-V 系统模式：控制权接管
 ![w:900](figs/rv-privil-arch.png)
 - 特权级是为不同的软件栈部件提供的一种保护机制
-- **硬件线程**（hart，即CPU core）是运行在某个特权级上（CSR配置）
 - 当处理器执行当前特权模式不允许的操作时将产生一个**异常**，这些异常通常会产生自陷（trap）导致**下层执行环境接管控制权**
 
 ---
@@ -195,9 +186,6 @@ backgroundColor: white
 
 为何有这**4种模式**? 它们的**区别和联系**是啥？
 
-
-
-
 ---
 ##### RISC-V 系统模式：执行环境
 | 执行环境  |  编码 | 含义  |  跨越特权级 |
@@ -220,8 +208,8 @@ backgroundColor: white
 ##### RISC-V 系统模式：用户态
 ![w:900](figs/rv-privil-arch.png)
 - U-Mode （User Mode，用户模式、用户态）
+  - **应用程序运行**的用户态CPU执行模式
   - **非特权**级模式（Unprivileged Mode）：基本计算 
-  - 是**应用程序运行**的用户态CPU执行模式
   - 不能执行特权指令，不能直接影响其他应用程序执行
 
 
@@ -229,25 +217,25 @@ backgroundColor: white
 ##### RISC-V 系统模式：内核态
 ![w:800](figs/rv-privil-arch.png)
 - S-Mode（Supervisor Mode, Kernel Mode，内核态，内核模式）
+  - **操作系统运行**的内核态CPU执行模式
   - 在内核态的操作系统具有足够强大的**硬件控制能力**
   - 特权级模式（Privileged Mode）：**限制APP**的执行与内存访问 
-  - 是**操作系统运行**的内核态CPU执行模式
   - 能执行内核态特权指令，能直接**影响应用程序执行**
 
 ---
 ##### RISC-V 系统模式：H-Mode
 ![w:900](figs/rv-privil-arch.png)
 - H-Mode(Hypervisor Mode, Virtual Machine Mode，虚拟机监控器)
-  - 特权级模式：**限制OS**访问的内存空间 
-  - 是**虚拟机监控器运行**的Hypervisor Mode CPU执行模式，能执行H-Mode特权指令，能直接**影响OS执行**
-
+  - **虚拟机监控器运行**的Hypervisor Mode CPU执行模式
+  - 特权级模式：**限制OS**访问的内存空间的**访问范围**和**访问方式**
+  - 可执行H-Mode特权指令，能直接**影响OS执行**
 
 ---
 ##### RISC-V 系统模式：M-Mode
 ![w:900](figs/rv-privil-arch.png)
 - M-Mode（Machine Mode, Physical Machine Mode）
+  - **Bootloader/BIOS运行**的Machine Mode CPU执行模式
   - 特权级模式：**控制物理内存**，直接关机 
-  - 是**Bootloader/BIOS运行**的Machine Mode CPU执行模式
   - 能执行M-Mode特权指令，能直接影响上述其他软件的执行
 
 ---
@@ -305,12 +293,11 @@ backgroundColor: white
 OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - 设置 CSR(控制状态寄存器) 实现隔离
   - 权力：防止应用访问系统管控相关寄存器
-    - **地址空间配置**寄存器：mstatus/sstatus CSR(中断及状态)
+    - **地址空间控制**寄存器：mstatus/sstatus CSR(中断及状态)
   - 时间：防止应用长期使用 100％的 CPU
     - **中断配置**寄存器：sstatus/stvec CSR（中断跳转地址）
   - 数据：防止应用破坏窃取数据
-    - **地址空间相关**寄存器：sstatus/stvec/satp CSR （分页系统）
-
+    - **地址空间配置**寄存器：sstatus/stvec/satp CSR （分页系统）
 
 ---
 ##### CSR寄存器功能
