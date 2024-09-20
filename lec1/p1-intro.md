@@ -72,7 +72,7 @@ backgroundColor: white
 ---
 
 #### 课程参考
-- [课程幻灯片](https://www.yuque.com/xyong-9fuoz/qczol5/ewvhdy3epbwbkn3n)
+- [课程幻灯片](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 - 参考书
   - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
   - [深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
