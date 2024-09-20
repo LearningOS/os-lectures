@@ -59,6 +59,10 @@ backgroundColor: white
 **硬件** 与 **OS** 的 **边界** ：指令集+寄存器
 ![w:1150](figs/hardware-software-interface.png)
 
+<!--
+Great Ideas in Computer Architecture (Machine Structures)
+[CS61C](https://cs61c.org/fa24/) at UC Berkeley with Dan Garcia, Peyrin Kao - Fall 2024
+-->
 ---
 #### OS是对硬件的虚拟与抽象
 
@@ -84,8 +88,8 @@ u/rCore的框架结构
 ---
 #### OS对应用程序执行的支持
 - 提供服务
-- 系统调用
-- 地址空间布局
+  - 系统调用
+  - 地址空间布局
 ---
 #### OS为应用程序提供服务
 * 通过**系统调用**来提供服务 
