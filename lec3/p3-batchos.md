@@ -108,9 +108,6 @@ Ref: [What was the first operating system to be called an "operating system"?](h
 
 ![bg right:54% 100%](figs/batch-os.png)
 
-
-
-
 ---
 ##### 编译步骤
 ```
@@ -615,7 +612,6 @@ unsafe fn load_app(&self, app_id: usize) {
 }
 ```
 
-
 ---
 ##### 加载应用程序二进制码
 
@@ -633,8 +629,6 @@ unsafe fn load_app(&self, app_id: usize) {
 - CPU 对物理内存所做的缓存又分成d-cache和i-cache
 - OS将修改会被 CPU 取指的内存区域，这会使得 i-cache 中含有与内存中不一致的内容
 - OS在这里必须使用 fence.i 指令手动清空 i-cache ，让里面所有的内容全部失效，才能够**保证CPU访问内存数据和代码的正确性**。
-
-
 
 ---
 
