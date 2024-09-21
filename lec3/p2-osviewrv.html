@@ -385,17 +385,17 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>U-Mode编程：第一个例子“hello world”</h5>
-<p><a href="https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src">在用户态打印”hello world”的小例子</a> 大致执行流</p>
+<p>在用户态打印”hello world”的<a href="https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src">小例子</a> 大致执行流</p>
 <p><img src="figs/print-app.png" alt="" style="width:1000px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="30" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>第一个例子的启动执行</h5>
-<p><a href="https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302">在用户态打印“hello world”的小例子</a> 启动执行流</p>
+<p>在用户态打印“hello world”的<a href="https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302">小例子</a> 启动执行流</p>
 <p><img src="figs/boot-print-app.png" alt="" style="width:1000px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="31" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>第二个例子：在用户态执行特权指令</h5>
-<p><a href="https://github.com/chyyuu/os_kernel_lab/blob/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src/main.rs#L306">在用户态执行特权指令的小例子</a> 启动与执行流程</p>
+<p>在用户态执行特权指令的<a href="https://github.com/chyyuu/os_kernel_lab/blob/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src/main.rs#L306">小例子</a> 启动与执行流程</p>
 <p><img src="figs/boot-priv-code-app.png" alt="" style="width:1000px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -492,13 +492,13 @@
 <h5>M-Mode的中断控制和状态寄存器</h5>
 <ul>
 <li>mtvec(MachineTrapVector)保存发生中断/异常时要跳转到的<strong>中断处理例程入口地址</strong></li>
-<li>mepc(Machine Exception PC)指向<strong>发生中断/异常时的指令</strong></li>
-<li>mcause(Machine Exception Cause)指示发生<strong>中断/异常的种类</strong></li>
 <li>mie(Machine Interrupt Enable)中断<strong>使能</strong>寄存器</li>
 <li>mip(Machine Interrupt Pending)中断<strong>请求</strong>寄存器</li>
+<li>mstatus(Machine Status)保存全局中断以及其他的<strong>状态</strong></li>
+<li>mepc(Machine Exception PC)指向<strong>发生中断/异常时的指令</strong></li>
+<li>mcause(Machine Exception Cause)指示发生<strong>中断/异常的种类</strong></li>
 <li>mtval(Machine Trap Value)保存陷入(trap)<strong>附加信息</strong></li>
 <li>mscratch(Machine Scratch)它暂时存放一个字大小的<strong>数据</strong></li>
-<li>mstatus(Machine Status)保存全局中断以及其他的<strong>状态</strong></li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="38" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -739,13 +739,13 @@ PP：Previous Privilege</li>
 <h5>S-Mode的中断控制和状态寄存器</h5>
 <ul>
 <li>stvec(SupervisorTrapVector)保存发生中断/异常时<strong>要跳转到的地址</strong></li>
-<li>sepc(Supervisor Exception PC)指向<strong>发生中断/异常时的指令</strong></li>
-<li>scause(Supervisor Exception Cause)指示发生中断/异常的<strong>种类</strong></li>
 <li>sie(Supervisor Interrupt Enable)中断<strong>使能</strong>寄存器</li>
 <li>sip(Supervisor Interrupt Pending)中断<strong>请求</strong>寄存器</li>
+<li>sstatus(Supervisor Status)保存全局中断以及其他的<strong>状态</strong></li>
+<li>sepc(Supervisor Exception PC)指向<strong>发生中断/异常时的指令</strong></li>
+<li>scause(Supervisor Exception Cause)指示发生中断/异常的<strong>种类</strong></li>
 <li>stval(Supervisor Trap Value)保存陷入(trap)<strong>附加信息</strong></li>
 <li>sscratch(Supervisor Scratch)不同mode交换<strong>数据中转站</strong></li>
-<li>sstatus(Supervisor Status)保存全局中断以及其他的<strong>状态</strong></li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="58" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="58" data-marpit-pagination-total="71" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
