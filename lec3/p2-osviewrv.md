@@ -373,22 +373,19 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 ---
 ##### U-Mode编程：第一个例子“hello world”
-[在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src) 大致执行流
+在用户态打印”hello world”的[小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src) 大致执行流
 
 ![w:1000](figs/print-app.png)
 
-
 ---
 ##### 第一个例子的启动执行
-[在用户态打印“hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302) 启动执行流
+在用户态打印“hello world”的[小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302) 启动执行流
 
 ![w:1000](figs/boot-print-app.png)
 
-
-
 ---
 ##### 第二个例子：在用户态执行特权指令
-[在用户态执行特权指令的小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src/main.rs#L306) 启动与执行流程
+在用户态执行特权指令的[小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src/main.rs#L306) 启动与执行流程
 
 ![w:1000](figs/boot-priv-code-app.png)
 
@@ -408,7 +405,6 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 注:``fence.i``是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范，用于i-cache和d-cache一致性
 
 <!-- 在执行 fence.i 指令之前，对于同一个硬件线程(hart)， RISC-V 不保证用存储指令写到内存指令区的数据可以被取指令取到。使用fence.i指令后，对同一hart，可以确保指令读取是最近写到内存指令区域的数据。但是，fence.i将不保证别的riscv hart的指令读取也能够满足读写一致性。如果要使写指令内存空间对所有的hart都满足一致性要求，需要执行fence指令。 -->
-
 
 ---
 
@@ -465,7 +461,6 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 5. **跳转**到stvec CSR设置的地址继续执行
 -->
 
-
 ---
 ##### 中断/异常的硬件响应
 - 硬件
@@ -479,7 +474,6 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 - 中断向量表：中断--中断服务，异常--异常服务，系统调用
 
-
 ---
 ##### 中断/异常开销
 1. 建立中断/异常/系统调用号与对应服务的开销；
@@ -492,13 +486,13 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 ##### M-Mode的中断控制和状态寄存器
 
 - mtvec(MachineTrapVector)保存发生中断/异常时要跳转到的**中断处理例程入口地址**
-- mepc(Machine Exception PC)指向**发生中断/异常时的指令**
-- mcause(Machine Exception Cause)指示发生**中断/异常的种类**
 - mie(Machine Interrupt Enable)中断**使能**寄存器
 - mip(Machine Interrupt Pending)中断**请求**寄存器
+- mstatus(Machine Status)保存全局中断以及其他的**状态**
+- mepc(Machine Exception PC)指向**发生中断/异常时的指令**
+- mcause(Machine Exception Cause)指示发生**中断/异常的种类**
 - mtval(Machine Trap Value)保存陷入(trap)**附加信息**
 - mscratch(Machine Scratch)它暂时存放一个字大小的**数据**
-- mstatus(Machine Status)保存全局中断以及其他的**状态**
 
 <!-- mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身；对于其他异常，值为0。 -->
 ---
@@ -511,9 +505,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
   - MPP表示变化之前是S-Mode还是U-Mode还是M-Mode
   PP：Previous Privilege
 
-
 ![w:1000](figs/mstatus.png)
-
 
 ---
 ##### mcause CSR寄存器
@@ -763,13 +755,13 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 ##### S-Mode的中断控制和状态寄存器
 
 - stvec(SupervisorTrapVector)保存发生中断/异常时**要跳转到的地址**
-- sepc(Supervisor Exception PC)指向**发生中断/异常时的指令**
-- scause(Supervisor Exception Cause)指示发生中断/异常的**种类**
 - sie(Supervisor Interrupt Enable)中断**使能**寄存器
 - sip(Supervisor Interrupt Pending)中断**请求**寄存器
+- sstatus(Supervisor Status)保存全局中断以及其他的**状态**
+- sepc(Supervisor Exception PC)指向**发生中断/异常时的指令**
+- scause(Supervisor Exception Cause)指示发生中断/异常的**种类**
 - stval(Supervisor Trap Value)保存陷入(trap)**附加信息**
 - sscratch(Supervisor Scratch)不同mode交换**数据中转站**
-- sstatus(Supervisor Status)保存全局中断以及其他的**状态**
 
 ---
 ##### sstatus寄存器
