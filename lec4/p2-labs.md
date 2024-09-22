@@ -672,7 +672,7 @@ pub struct TrapContext {
 
 a Möbius strip has only one surface.
 
-![bg right 95%](figs/mobius-strip.png)
+![bg right 100%](figs/mobius-strip.png)
 <!--
 -->
 ---
@@ -964,8 +964,8 @@ match scause.cause() {
 ### 课程实验一
 
 * 实验任务：增加一个系统调用`sys_task_info()`
-    * [uCore实验一任务描述](https://learningos.github.io/uCore-Tutorial-Guide-2023A/chapter3/5exercise.html#id1)
-    * [rCore实验一任务描述](https://learningos.github.io/rCore-Tutorial-Guide-2023A/chapter3/5exercise.html#chapter3)
+    * [uCore实验一任务描述](https://learningos.github.io/uCore-Tutorial-Guide-2024A/chapter3/5exercise.html#id1)
+    * [rCore实验一任务描述](https://learningos.github.io/rCore-Tutorial-Guide-2024A/chapter3/5exercise.html#chapter3)
 * 实验提交要求
     * 在自己的已创建实验仓库中提交完整的代码和文档；
     * 在荷塘雨课中提交实验一报告链接和commit ID；
