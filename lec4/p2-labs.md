@@ -567,9 +567,9 @@ pub struct TrapContext {
 
 ---
 #### 控制流
-- 程序的控制流 (Flow of Control or Control Flow) --编译原理
+- **程序的控制流** (Flow of Control or Control Flow) --编译原理
     - 以一个程序的指令、语句或基本块为单位的**执行序列**。
-- 处理器的控制流 --计算机组成原理
+- **处理器的控制流** --计算机组成原理
     - 处理器中程序计数器的**控制转移序列**。
 ---
 #### 普通控制流：从应用程序员的角度来看控制流
@@ -667,7 +667,14 @@ pub struct TrapContext {
 - 调用 `__switch()` 之后直到它返回前的这段时间，原 Trap 控制流 A 会先被**暂停**并被切换出去， CPU 转而**运行**另一个应用在内核中的 Trap 控制流 B 。
 ![bg right 95%](figs/task-context.png)
 
+---
+#### [Möbius strip](https://www.snexplores.org/article/scientists-say-mobius-strip-definition-pronunciation)
 
+a Möbius strip has only one surface.
+
+![bg right 95%](figs/mobius-strip.png)
+<!--
+-->
 ---
 ####  Trap控制流切换：恢复运行
 - 一个特殊的函数` __switch()`
@@ -675,7 +682,6 @@ pub struct TrapContext {
 
 从实现的角度讲， `__switch()` 函数和一个普通的函数之间的核心差别仅仅是它会**换栈** 。
 ![bg right 95%](figs/task-context.png)
-
 
 ---
 #### Trap控制流切换函数`__switch()`
