@@ -62,7 +62,10 @@ backgroundColor: white
 ---
 
 ##### 计算机的存储多层结构
-![w:950](figs/mem-layers.png)
+![w:700](figs/mem-layers.png)
+
+比较新的各种存储介质的访问速度参数：
+* [金字塔层次结构](https://www.cnblogs.com/binarylei/p/12588928.html)：越靠近CPU速度越快，容量越小，价格越贵
 
 ---
 
