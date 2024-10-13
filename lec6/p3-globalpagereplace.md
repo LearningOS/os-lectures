@@ -340,14 +340,15 @@ $\tau=4$
 ### 课程实验二
 
 * 第四章：地址空间 -> chapter4练习 -> 
-    * [rCore](http://learningos.cn/rCore-Tutorial-Guide-2023A/chapter4/7exercise.html#chapter4)
-    * [uCore](http://learningos.cn/uCore-Tutorial-Guide-2023A/chapter4/7exercise.html#id1)
+    * [rCore](http://learningos.cn/rCore-Tutorial-Guide-2024A/chapter4/7exercise.html#chapter4)
+    * [uCore](http://learningos.cn/uCore-Tutorial-Guide-2024A/chapter4/7exercise.html#id1)
 * 实验任务
     * 重写获取系统时间和进程控制块信息的内核函数
     * 实现申请和取消虚存映射的系统调用
 * 实验提交要求
-<!--    * 2023年11月01日；-->
-
+    * 布置实验任务后的第13天（2024年10月27日24点）；
+<!--
+-->
 ---
 
 ### 第五讲虚拟存储管理小结
