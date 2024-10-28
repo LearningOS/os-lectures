@@ -84,7 +84,7 @@ BFS全称：Brain Fuck Scheduler，脑残调度器
 #### BFS 的虚拟截止时间计算
 - 依据当前时间、进程优先级和时间片设置计算；
 ```
-offset = niffies + (prioratio ∗ rr_interval)
+offset = niffies + (prio_ratio ∗ rr_interval)
 prioratio increases by 10% for every nice level
 ```
 - niffies是当前时间；prio_ratios[priority]是一个常量数组，不同的priority对应不同的prio_ratios[priority]；rr_interval是timeslice，是CPU分配给每个任务的时间片，是一个常数
@@ -103,7 +103,7 @@ prioratio increases by 10% for every nice level
 ---
 
 #### BFS 的调度思路
-按照O(1)调度器的方式首先查找位图中不为0的那个queue，然后在该queue中执行O(n)查找，查找到virtual deadline最小的那个进程投入执行。
+按照O(1)调度器的方式首先查找位图中不为0的那个queue，然后在该queue中执行$O(n)$查找，查找到virtual deadline最小的那个进程投入执行。
 
 ![bg right 100%](figs/bfs.png)
 
@@ -154,6 +154,18 @@ Ref: [Analysis of the BFS Scheduler in FreeBSD](http://vellvisher.github.io/pape
 
 #### BFS 与 CFS 的性能对比: 视频编码测试
 ![w:1000](figs/video-test.png)
+
+---
+
+#### 最早可执行虚拟截止时间优先调度算法EEVDF
+
+![w:600](figs/EEVDF.jpg)
+
+延迟敏感进程较多时，EEVDF(Earliest Eligible Virtual Deadline First)可显著降低调度延迟，提高响应速度，而不会牺牲吞吐量和能耗。
+
+<!--
+https://zhuanlan.zhihu.com/p/683775984
+-->
 
 ---
 
