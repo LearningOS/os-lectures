@@ -31,14 +31,15 @@
 </div>
 </div>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-marpit-fragments="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="3" data-marpit-pagination-total="27" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="3" data-marpit-pagination-total="27" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>Linux调度器的<a href="https://www.eet-china.com/mp/a111242.html">演进</a></h4>
 <ul>
 <li data-marpit-fragment="1">O(n) 调度器：内核版本 2.4-2.6</li>
 <li data-marpit-fragment="2">O(1) 调度器：内核版本 2.6.0-2.6.22</li>
-<li data-marpit-fragment="3">CFS 调度器：内核版本 2.6.23-至今</li>
+<li data-marpit-fragment="3">CFS 调度器：内核版本 2.6.23（2007）-6.5</li>
+<li data-marpit-fragment="4">EEVDF 调度器：内核版本 6.6（2023）-现在</li>
 </ul>
-<p><img src="figs/linux-schedulers.png" alt="" style="width:650px;" /></p>
+<p><img src="figs/linux-schedulers.png" alt="" style="width:500px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="27" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>调度器需要考虑的关键问题</h4>
@@ -115,13 +116,13 @@
 <li>把时间分成大量的微小时间片（Epoch）</li>
 <li>每个时间片开始时
 <ul>
-<li>计算进程的动态优先级</li>
-<li>将进程优先级映射成缺省时间片</li>
-<li>然后选择优先级最高的进程来执行</li>
+<li>计算进程的<strong>动态优先级</strong></li>
+<li>将进程优先级映射成<strong>缺省时间片</strong></li>
+<li>然后选择<strong>优先级最高</strong>的进程来执行</li>
 </ul>
 </li>
-<li>进程被调度器切换执行后，可不被打扰地用尽这个时间片</li>
-<li>如进程没有用尽时间片，则剩余时间增加到进程的下一个时间片中</li>
+<li>进程被调度器切换执行后，可不被打扰地<strong>用尽这个时间片</strong></li>
+<li>如进程没有用尽时间片，则<strong>剩余时间</strong>增加到进程的下一个时间片中</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="10" data-marpit-pagination-total="27" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">

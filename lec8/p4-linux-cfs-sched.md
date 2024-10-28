@@ -58,10 +58,10 @@ backgroundColor: white
 - O(1)和O(n)都将CPU资源划分为时间片
     - 采用**固定额度**分配机制，每个调度周期的进程可用时间片是确定的
     - 调度周期结束被重新分配
-- O(1)调度器本质上是MLFQ（multi-level feedback queue）算法思想
-    - 不足：O(1)调度器对进程交互性的响应不及时
+- O(1)调度器本质上是**MLFQ**（multi-level feedback queue）算法思想
+    - 不足：O(1)调度器对进程交互性的**响应不及时**
 - 需求
-    - 根据进程的运行状况判断它属于IO密集型还是CPU密集型，再做优先级奖励和惩罚
+    - 根据**进程的运行状况**判断它属于IO密集型还是CPU密集型，再做优先级奖励和惩罚
     - 这种推测本身存在误差，场景越复杂判断难度越大
 
 
@@ -88,9 +88,9 @@ backgroundColor: white
 
 #### CFS 的思路
 - **把 CPU 视为资源**，并记录下每一个进程对该资源使用的情况
-    - 在调度时，调度器总是选择消耗资源最少的进程来运行（**公平分配**）
+    - 在调度时，调度器总是选择**消耗资源最少**的进程来运行（公平分配）
 - 由于一些进程的工作会比其他进程更重要，这种绝对的公平有时也是一种不公平
-    - **按照权重来分配 CPU 资源**
+    - 按照**权重**来分配 CPU 资源
 ![bg right:47% 90%](figs/prio-to-weight.png) 
 
 
@@ -98,10 +98,10 @@ backgroundColor: white
 
 #### CFS 调度思想
 
-- 虚拟运行时间（vruntime）：CFS 为每个进程维护一个 vruntime 值，该值表示进程应该获得的 CPU 时间量。
-- 进程调度：每次调度vruntime最小的进程，使得每个进程根据vruntime相互追赶，期望每个进程vruntime接近，保证公平。
-- vruntime增长速度：进程的 nice 值（反映进程的相对优先级）会影响其 vruntime 的增长速率。nice值越低，权重越高，其vruntime增加得越慢。
-- 时间片管理：CFS 为每个进程分配一个时间片，当进程用完其时间片时，会被放回就绪队列的末尾。时间片的大小会根据系统的负载和进程的权重动态调整。
+- 虚拟运行时间（vruntime）：CFS 为每个进程维护一个 vruntime 值，该值表示**进程应该获得的 CPU 时间量**。
+- 进程调度：每次**调度vruntime最小的进程**，使得每个进程根据vruntime相互追赶，期望每个进程vruntime接近，保证公平。
+- **vruntime增长速度**：进程的 nice 值（反映进程的相对优先级）会影响其 vruntime 的增长速率。nice值越低，权重越高，其vruntime增加得越慢。
+- 时间片管理：CFS 为每个进程分配一个时间片，当进程用完其时间片时，会被放回就绪队列的末尾。**时间片大小**会根据系统的**负载**和进程的**权重**动态调整。
 
 ---
 
@@ -165,10 +165,7 @@ Virtual runtime ＝ （physical runtime） X （nice value 0的权重）/进程�
 所有进程的vruntime增长速度宏观上看应该是同时推进的，就可以用这个vruntime来选择运行的进程。
 
 * 进程的vruntime值较小说明它以前占用cpu的时间较短，受到了“不公平”对待，因此下一个运行进程就选择它。
-* 这样既能公平选择进程，又能保证高优先级进程获得较多的运行时间。
-
-
-
+* 这样既能**公平**选择进程，又能保证高**优先级**进程获得较多的运行时间。
 
 ---
 
@@ -222,6 +219,8 @@ CFS让每个调度实体（进程或进程组）的vruntime互相追赶，而每
     - 调度时，从红黑树中选取vruntime最小的进程出来运行
 ![bg right:53% 90%](figs/rbtree.png) 
 
+参考：[红黑树插入/删除操作](https://zhuanlan.zhihu.com/p/91960960)
+
 ---
 
 #### CFS 的进程权重
@@ -260,7 +259,7 @@ CFS让每个调度实体（进程或进程组）的vruntime互相追赶，而每
 
 #### CFS中休眠进程的vruntime
 
-- 在休眠进程被唤醒时重新设置 vruntime 值，以 min_vruntime 值为基础，给予一定的补偿，但不能补偿太多。
+- 在休眠进程被唤醒时重新设置 vruntime 值，以 min_vruntime 值为基础，给予**一定的补偿**，但不能补偿太多。
 ![bg right:45% 90%](figs/rbtree.png) 
 
 
@@ -322,7 +321,9 @@ signed char c = a - 250,
 signed char d = b - 250;
 //到此判断 c 和 d 的大小
 ```
-![bg right:54% 90%](figs/rbtree.png) 
+![bg right:52% 90%](figs/rbtree.png) 
+
+参考：[无符号数的有符号比较](https://piazza.com/class/i5j09fnsl7k5x0/post/357)
 
 ---
 
@@ -339,7 +340,7 @@ signed char d = b - 250;
 
 ---
 
-### 课程实验三 进程及进程管理
+### 实验三 进程及进程管理
 
 * 实验目标
     * spawn 系统调用
@@ -347,5 +348,5 @@ signed char d = b - 250;
 * 实验任务描述
     * [rCore](https://learningos.github.io/rCore-Tutorial-Guide-2023A/chapter5/4exercise.html)
     * [uCore](https://learningos.github.io/uCore-Tutorial-Guide-2023A/chapter5/4exercise.html)
-<!--* 实验提交要求
-    * 布置实验任务后的第13天（11月12日24点）；-->
+* 实验提交要求
+    * 布置实验任务后的第13天（11月10日24点）；
