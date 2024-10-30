@@ -39,11 +39,10 @@
 <li data-marpit-fragment="1"><a href="https://blog.csdn.net/wsmzyzdw/article/details/82908736">文件系统</a>是存储设备上组织文件的<strong>方法</strong>和<strong>数据结构</strong>。</li>
 </ul>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="3" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:60%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/fs1.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="40%" height="720"><section id="4" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:60%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="3" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="1" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:60%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/fs1.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="40%" height="720"><section id="4" data-marpit-fragments="1" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:60%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h5>什么是文件系统？</h5>
 <ul>
-<li data-marpit-fragment="1"><a href="https://blog.csdn.net/wsmzyzdw/article/details/82908736">文件系统</a>是存储设备上组织文件的<strong>方法</strong>和<strong>数据结构</strong>。</li>
-<li data-marpit-fragment="2"><a href="https://chinese.freecodecamp.org/news/file-systems-architecture-explained/">文件系统</a>是操作系统中负责文件命名、存储和检索的<strong>子系统</strong>。</li>
+<li data-marpit-fragment="1"><a href="https://chinese.freecodecamp.org/news/file-systems-architecture-explained/">文件系统</a>是操作系统中负责文件命名、存储和检索的<strong>子系统</strong>。</li>
 </ul>
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="4" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="5" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -52,12 +51,14 @@
 <li>
 <p>文件是具有符号名，由字节序列构成的<strong>数据项集合</strong></p>
 <ul>
-<li>文件是文件系统的基本数据单位</li>
-<li>文件名是文件的标识符号</li>
+<li>文件是文件系统的基本<strong>数据单位</strong></li>
 </ul>
 </li>
 <li>
-<p>文件头：文件系统元数据中的<strong>文件信息</strong></p>
+<p><strong>文件名</strong>是文件的标识符号</p>
+</li>
+<li>
+<p><strong>文件头</strong>：文件系统元数据中的<strong>文件信息</strong></p>
 <ul>
 <li>文件属性：名称、类型、位置、创建时间、…</li>
 <li>文件存储位置和顺序</li>
@@ -68,7 +69,7 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="6" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>一切都是文件</h5>
 <ul>
-<li>UNIX类操作系统的一个设计哲学：<strong>一切都是文件</strong>
+<li>UNIX类操作系统的设计哲学：<strong>一切皆文件</strong>
 <ul>
 <li>普通文件，目录文件</li>
 <li>字符设备文件（如键盘，鼠标...）</li>
@@ -84,14 +85,14 @@
 <ul>
 <li><strong>用户的文件视图</strong>
 <ul>
-<li>持久的数据结构</li>
+<li>持久存储的数据结构</li>
 <li>系统调用接口：<strong>字节序列</strong>的集合(UNIX)</li>
 </ul>
 </li>
 <li><strong>操作系统的文件视图</strong>
 <ul>
 <li><strong>数据块</strong>的集合</li>
-<li>数据块是逻辑存储单元，而扇区是物理存储单元</li>
+<li>数据块是逻辑存储单元，而<strong>扇区</strong>是物理存储单元</li>
 </ul>
 </li>
 </ul>
@@ -175,7 +176,7 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>文件访问控制</h5>
 <ul>
-<li>多用户操作系统中的文件共享是很必要的</li>
+<li>多用户操作系统中的<strong>文件共享</strong>是很必要的</li>
 <li>访问控制
 <ul>
 <li>用户对文件的访问权限</li>
@@ -207,7 +208,7 @@
 <li>文件是一类共享资源
 <ul>
 <li>需要互斥访问</li>
-<li>采用类似的同步互斥技术(后续)
+<li>采用类似的同步互斥技术
 <ul>
 <li>读写锁</li>
 </ul>
@@ -256,8 +257,8 @@ close(fd);
 <ul>
 <li>内核<strong>跟踪</strong>进程打开的所有文件
 <ul>
-<li>操作系统为每个进程维护一个打开的文件描述符表</li>
-<li>一个系统级的打开文件表</li>
+<li>操作系统为<strong>每个进程</strong>维护一个打开的文件描述符表</li>
+<li>一个<strong>系统级</strong>的打开文件表</li>
 <li>i-node表指中向具体的文件内容<br />
 </li>
 </ul>
@@ -267,7 +268,7 @@ close(fd);
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="19" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:48%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/file-descriptor.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="52%" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:48%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h5>打开文件表</h5>
 <ul>
-<li>内核在打开文件表中<strong>维护</strong>的打开文件状态和信息
+<li>内核在打开文件表中<strong>维护</strong>打开文件状态和信息
 <ul>
 <li><strong>文件指针</strong>
 <ul>
@@ -282,7 +283,7 @@ close(fd);
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="20" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="21" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:52%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/file-descriptor.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="48%" height="720"><section id="21" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="21" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:52%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h5>打开文件表</h5>
 <ul>
-<li>内核在打开文件表中<strong>维护</strong>的打开文件状态和信息
+<li>内核在打开文件表中<strong>维护</strong>的打开文件<strong>状态和信息</strong>
 <ul>
 <li><strong>文件打开计数</strong>
 <ul>
@@ -297,7 +298,7 @@ close(fd);
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="21" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/file-descriptor.png&quot;);background-size:90%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="22" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="22" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h5>打开文件表</h5>
 <ul>
-<li>操作系统在打开文件表中维护的打开文件状态和信息
+<li>操作系统在打开文件表中维护的打开文件<strong>状态和信息</strong>
 <ul>
 <li><strong>文件的磁盘位置</strong>
 <ul>
@@ -397,7 +398,7 @@ close(fd);
 <p><strong>分层文件系统</strong></p>
 <ul>
 <li>文件以目录的方式组织起来</li>
-<li>目录是一类特殊的文件</li>
+<li><strong>目录</strong>是一类特殊的文件</li>
 <li>目录的内容是文件索引表&lt;文件名, 指向文件的指针&gt;</li>
 </ul>
 </section>
@@ -420,15 +421,18 @@ close(fd);
 <h5>目录操作</h5>
 <p>应用程序通过系统调用对目录进行操作</p>
 <ul>
-<li>搜索文件 创建文件</li>
-<li>删除文件 列目录</li>
-<li>重命名文件 重命名文件</li>
+<li>搜索文件</li>
+<li>创建文件</li>
+<li>删除文件</li>
+<li>列目录</li>
+<li>重命名文件</li>
+<li>重命名文件</li>
 </ul>
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="32" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>目录实现</h5>
 <ul>
-<li>文件名的线性列表，包涵了指向数据块的指针
+<li>文件名的<strong>线性列表</strong>，包涵了指向数据块的指针
 <ul>
 <li>编程简单、执行耗时</li>
 </ul>
@@ -450,7 +454,7 @@ close(fd);
 <li>找到<code>inode.rs</code>项，读取一般文件<code>inode.rs</code>的数据内容</li>
 </ul>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="34" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:51%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/hardlink-softlink.jpeg&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="49%" height="720"><section id="35" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:51%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="34" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:47%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/hardlink-softlink.jpeg&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="53%" height="720"><section id="35" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="35" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:47%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h5>文件别名</h5>
 <p>多个文件名关联同一个文件</p>
 <ul>
@@ -464,8 +468,8 @@ close(fd);
 <li>新建文件，以存储文件名称的方式来指向其他文件</li>
 </ul>
 </li>
+<li><strong>inode</strong>：管理文件数据的结构</li>
 </ul>
-<p>inode：管理文件数据的结构</p>
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="35" data-marpit-pagination-total="39"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="36" data-marpit-pagination-total="39" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>文件别名</h5>

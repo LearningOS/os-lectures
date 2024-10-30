@@ -35,8 +35,8 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="3" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>文件系统的持久数据更新挑战</h5>
-<p>如何在出现断电（power loss）或系统崩溃（system crash）的情况下，更新持久数据结构。</p>
-<p>崩溃可能导致磁盘文件系统映像中的文件系统数据结构出现<strong>不一致</strong>性。如，有空间泄露、将垃圾数据返回给用户等。</p>
+<p>如何在出现断电（power loss）或系统崩溃（system crash）的情况下，更新持久数据结构？</p>
+<p>崩溃可能导致磁盘文件系统映像中的文件系统数据结构出现<strong>不一致</strong>性。如，有空间泄露、将垃圾数据返回给用户等</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="4" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>崩溃一致性问题</h5>
@@ -52,7 +52,7 @@
 <ul>
 <li data-marpit-fragment="1">目标
 <ul>
-<li data-marpit-fragment="2">将文件系统从一个一致状态（在文件被追加之前），原子地（atomically）变迁到另一个一致状态（在inode、位图和新数据块被写入磁盘之后）。</li>
+<li data-marpit-fragment="2">将文件系统从一个一致状态（在文件被追加之前），原子地（atomically）<strong>变迁</strong>到另一个一致状态（在inode、位图和新数据块被写入磁盘之后）。</li>
 </ul>
 </li>
 <li data-marpit-fragment="3">困难

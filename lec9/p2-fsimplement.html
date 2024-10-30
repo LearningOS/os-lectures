@@ -49,11 +49,19 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="49" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/fsarchi.png&quot;);background-size:80%;"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="8" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="8" data-marpit-pagination-total="49" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h4>虚拟文件系统</h4>
-<p>（Virtual File System，VFS）</p>
+<p>VFS, Virtual File System</p>
 <ul>
-<li>定义了一组所有文件系统都支持的数据结构和标准接口。</li>
-<li>磁盘的文件系统：直接把数据存储在磁盘中，比如 Ext 2/3/4、XFS。</li>
-<li>内存的文件系统：内存辅助数据结构 - 例如目录项。<br />
+<li>一组所有文件系统都支持的数据结构和标准接口</li>
+<li>磁盘的文件系统：直接把数据存储在磁盘中
+<ul>
+<li>比如 Ext 2/3/4、XFS</li>
+</ul>
+</li>
+<li>内存的文件系统：内存辅助数据结构
+<ul>
+<li>例如目录项<br />
+</li>
+</ul>
 </li>
 </ul>
 </section>
@@ -63,9 +71,9 @@
 <li>目的：对所有不同文件系统的抽象</li>
 <li>功能
 <ul>
-<li>提供相同的文件和文件系统接口</li>
-<li>管理所有文件和文件系统关联的数据结构</li>
-<li>高效查询例程, 遍历文件系统</li>
+<li>提供相同的文件和文件系统<strong>接口</strong></li>
+<li>管理所有文件和文件系统关联的<strong>数据结构</strong></li>
+<li>高效<strong>查询</strong>例程：遍历文件系统</li>
 <li>与特定文件系统模块的交互</li>
 </ul>
 </li>
@@ -108,7 +116,6 @@
 <h4>文件卷控制块 (<code>superblock</code>)</h4>
 <p>每个文件系统一个文件卷控制块</p>
 <ul>
-<li>文件系统详细信息</li>
 <li>块大小、空余块数量等</li>
 <li>block 与inode 的总量，未使用与已使用的数量</li>
 <li>filesystem的挂载时间、最近一次写入时间、最近一次检验磁盘(fsck) 时间<br />
@@ -130,10 +137,10 @@
 <h4>文件控制块inode</h4>
 <p>每个文件有一个文件控制块inode (<code>inode</code>/<code>vnode</code>)</p>
 <ul>
-<li>文件的字节数。</li>
-<li>文件拥有者的 User ID。</li>
-<li>文件的 Group ID。</li>
-<li>链接数，即有多少文件名指向这个 inode。</li>
+<li>文件的字节数</li>
+<li>文件拥有者的 User ID</li>
+<li>文件的 Group ID</li>
+<li>链接数：有多少文件名指向这个 inode</li>
 <li>文件数据 block 的位置（直接、间接）</li>
 </ul>
 </section>
@@ -235,8 +242,8 @@
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="27" data-marpit-pagination-total="49" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>文件描述符</h4>
 <ul>
-<li>每个被打开的文件都有一个文件描述符</li>
-<li>作为index，指向对应文件状态信息</li>
+<li>每个<strong>被打开的文件</strong>都有一个文件描述符</li>
+<li>作为index，指向对应文件<strong>状态信息</strong></li>
 </ul>
 <p><img src="figs/fd-openfiletable.png" alt="" style="width:750px;" /></p>
 </section>
@@ -250,7 +257,7 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="29" data-marpit-pagination-total="49" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>文件锁</h4>
-<p>一些文件系统提供文件锁，用于协调多进程的文件访问</p>
+<p>一些文件系统提供文件锁，用于<strong>协调多进程</strong>的文件访问</p>
 <ul>
 <li>强制 – 根据锁保持情况和访问需求确定是否拒绝访问</li>
 <li>劝告 – 进程可以查找锁的状态来决定怎么做</li>
@@ -356,7 +363,7 @@
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="35" data-marpit-pagination-total="49"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="36" data-marpit-pagination-total="49" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>索引分配</h4>
 <ul>
-<li>文件头包含了索引数据块指针</li>
+<li>文件头包含了<strong>索引数据块指针</strong></li>
 <li>索引数据块中的索引是文件数据块的指针<br />
 <img src="figs/indexalloc.png" alt="" style="width:800px;" /></li>
 <li>优点
