@@ -183,8 +183,6 @@ backgroundColor: white
 <!-- ![w:900](figs/crash-ex.png) -->
 ![w:1100](figs/crash-ex-normal.jpg)
 
-
-
 ---
 
 ##### 崩溃场景三
@@ -290,7 +288,7 @@ backgroundColor: white
 ##### 位图与inode间的一致性检查
 
 扫描inode、间接块、双重间接块等，以了解当前在文件系统中分配的块，生成正确版本的分配位图
-* 如果位图和inode之间存在任何不一致，则通过信任inode内的信息来解决它
+* 如果位图和inode之间存在任何不一致，则通过**信任inode内的信息**来解决它
 * 对所有inode执行相同类型的检查，确保所有看起来像在使用的inode，都在inode位图中有标记
 
 
@@ -308,8 +306,8 @@ backgroundColor: white
 
 inode链接计数表示包含此特定文件的引用（即链接）的不同目录的数量。
 * 从根目录开始扫描整个目录树，并为文件系统中的每个文件和目录构建自己的链接计数
-* 如果新计算的计数与inode中找到的计数不匹配，则通常是修复inode中的计数
-* 如果发现已分配的inode但没有目录引用它，则会将其移动到lost + found目录。
+* 如果**新计算的计数**与inode中找到的计数不匹配，则通常是修复inode中的计数
+* 如果发现已分配的inode但**没有目录引用**它，则会将其移动到lost + found目录。
 
 ---
 
@@ -324,7 +322,7 @@ inode链接计数表示包含此特定文件的引用（即链接）的不同目
 
 ##### 坏块检查
 
-在扫描所有指针列表时，检查坏块指针。如果指针显然指向超出其有效范围的某个指针，则该指针被认为是“坏的”。
+在扫描所有指针列表时，检查坏块指针。如果指针显然**指向超出其有效范围的某个指针**，则该指针被认为是“坏的”。
 * 地址指向大于分区大小的块
 * 从inode或间接块中删除（清除）该指针
 
@@ -381,9 +379,9 @@ fsck不了解用户文件的内容，但目录包含由文件系统本身创建�
 ##### 日志（或预写日志）
 
 预写日志（write-ahead logging）
-- 从数据库管理系统的世界中借鉴的想法
+- 借鉴数据库管理系统的想法
 - 在文件系统中，出于历史原因，通常将预写日志称为日志（journaling）
-- 第一个实现它的文件系统是[Cedar](https://www.microsoft.com/en-us/research/publication/the-cedar-file-system/)
+- 第一个实现它的文件系统是[Cedar](https://www.microsoft.com/en-us/research/publication/the-cedar-file-system/)（1988年）
 - 许多现代文件系统都使用这个想法，包括Linux ext3和ext4、reiserfs、IBM的JFS、SGI的XFS和Windows NTFS。
 
 ---
