@@ -226,7 +226,7 @@
 <h5>位图与inode间的一致性检查</h5>
 <p>扫描inode、间接块、双重间接块等，以了解当前在文件系统中分配的块，生成正确版本的分配位图</p>
 <ul>
-<li data-marpit-fragment="1">如果位图和inode之间存在任何不一致，则通过信任inode内的信息来解决它</li>
+<li data-marpit-fragment="1">如果位图和inode之间存在任何不一致，则通过<strong>信任inode内的信息</strong>来解决它</li>
 <li data-marpit-fragment="2">对所有inode执行相同类型的检查，确保所有看起来像在使用的inode，都在inode位图中有标记</li>
 </ul>
 </section>
@@ -243,8 +243,8 @@
 <p>inode链接计数表示包含此特定文件的引用（即链接）的不同目录的数量。</p>
 <ul>
 <li data-marpit-fragment="1">从根目录开始扫描整个目录树，并为文件系统中的每个文件和目录构建自己的链接计数</li>
-<li data-marpit-fragment="2">如果新计算的计数与inode中找到的计数不匹配，则通常是修复inode中的计数</li>
-<li data-marpit-fragment="3">如果发现已分配的inode但没有目录引用它，则会将其移动到lost + found目录。</li>
+<li data-marpit-fragment="2">如果<strong>新计算的计数</strong>与inode中找到的计数不匹配，则通常是修复inode中的计数</li>
+<li data-marpit-fragment="3">如果发现已分配的inode但<strong>没有目录引用</strong>它，则会将其移动到lost + found目录。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-marpit-fragments="3" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="24" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -261,7 +261,7 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>坏块检查</h5>
-<p>在扫描所有指针列表时，检查坏块指针。如果指针显然指向超出其有效范围的某个指针，则该指针被认为是“坏的”。</p>
+<p>在扫描所有指针列表时，检查坏块指针。如果指针显然<strong>指向超出其有效范围的某个指针</strong>，则该指针被认为是“坏的”。</p>
 <ul>
 <li data-marpit-fragment="1">地址指向大于分区大小的块</li>
 <li data-marpit-fragment="2">从inode或间接块中删除（清除）该指针</li>
@@ -303,9 +303,9 @@
 <h5>日志（或预写日志）</h5>
 <p>预写日志（write-ahead logging）</p>
 <ul>
-<li>从数据库管理系统的世界中借鉴的想法</li>
+<li>借鉴数据库管理系统的想法</li>
 <li>在文件系统中，出于历史原因，通常将预写日志称为日志（journaling）</li>
-<li>第一个实现它的文件系统是<a href="https://www.microsoft.com/en-us/research/publication/the-cedar-file-system/">Cedar</a></li>
+<li>第一个实现它的文件系统是<a href="https://www.microsoft.com/en-us/research/publication/the-cedar-file-system/">Cedar</a>（1988年）</li>
 <li>许多现代文件系统都使用这个想法，包括Linux ext3和ext4、reiserfs、IBM的JFS、SGI的XFS和Windows NTFS。</li>
 </ul>
 </section>
