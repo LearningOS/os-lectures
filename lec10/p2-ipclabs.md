@@ -913,6 +913,7 @@ fn sys_sigprocmask(mask: u32) -> isize {
 
 ![bg right 80%](figs/velociraptor.png)
 
+<!--
 ---
 
 ### 课程实验四 文件系统与进程间通信
@@ -922,5 +923,5 @@ fn sys_sigprocmask(mask: u32) -> isize {
 * 实验任务描述 
     * [rCore](https://learningos.github.io/rCore-Tutorial-Guide-2023A/chapter6/4exercise.html#id1)
     * [uCore](https://learningos.github.io/uCore-Tutorial-Guide-2023A/chapter6/5exercise.html#id3)
-<!--* 实验提交要求
+* 实验提交要求
     * 2023年11月26日；-->
