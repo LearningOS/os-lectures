@@ -81,7 +81,7 @@
 <ul>
 <li data-marpit-fragment="1">条件变量是多线程编程中的一种<strong>同步机制</strong>，用于线程间通信和协调
 <ul>
-<li data-marpit-fragment="2">它是一个结构体，包含了一个等待队列和一些基本操作函数</li>
+<li data-marpit-fragment="2">它是一个结构体，包含了一个等待队列、等待和唤醒等操作函数</li>
 <li data-marpit-fragment="3">通过条件变量实现线程的阻塞、唤醒和通讯等功能</li>
 </ul>
 </li>
@@ -137,24 +137,29 @@
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="11" data-marpit-pagination-total="38"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="12" data-marpit-pagination-total="38" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>管程操作</h4>
+<font size=5>
 <ul>
 <li>T.enter过程：线程T在进入管程之前要获得互斥访问权(lock)</li>
 <li>T.leave过程：当线程T离开管程时，如果紧急队列<strong>不为空</strong>，唤醒紧急队列中的线程，并将T所持锁赋予唤醒的线程；如果<strong>紧急队列为空</strong>，释放lock，唤醒入口等待队列某个线程</li>
-<li>T.wait(c)：1)阻塞线程T自己，将T自己挂到条件变量c的等待队列；
+<li>T.wait(c)：
 <ul>
-<li>2)释放所持锁； 3)唤醒入口等待队列的一个或者多个线程；</li>
+<li>1)阻塞线程T自己，将T自己挂到条件变量c的等待队列；</li>
+<li>2)释放所持锁；</li>
+<li>3)唤醒入口等待队列的一个或者多个线程；</li>
 </ul>
 </li>
 </ul>
 
 <ul>
-<li>T.signal(c)：1)把条件变量c的等待队列某个线程唤醒；
+<li>T.signal(c)：
 <ul>
+<li>1)把条件变量c的等待队列某个线程唤醒；</li>
 <li>2)把线程T所持lock给被唤醒的线程；</li>
 <li>3)把线程T自己挂在紧急等待队列</li>
 </ul>
 </li>
 </ul>
+</font>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="38" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>管程操作</h4>
@@ -191,8 +196,8 @@
 <li>线程 T2 的signal，使线程 T1 等待的条件满足时
 <ul>
 <li>Hoare：T2 通知完 T1后，T2 阻塞，T1 马上执行；等 T1 执行完，再唤醒 T2 执行</li>
-<li>Hansen： T2 通知完 T1 后，T2 还会接着执行，T2 执行结束后（规定：最后操作是signal），然后 T1 再执行（将锁直接给T1）</li>
-<li>MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是重新竞争访问权限</li>
+<li>Hansen： T2 通知完 T1 后，T2 还会接着执行，T2 执行结束后（规定：最后操作是signal），然后 <strong>T1 再执行</strong>（将锁直接给T1）</li>
+<li>MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是<strong>重新竞争</strong>访问权限</li>
 </ul>
 </li>
 </ul>
@@ -366,6 +371,7 @@ https://www.cnblogs.com/uestcliming666/p/13224545.html  《现代操作系统》
 https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors)</p></div><div class="bespoke-marp-note" data-index="11" tabindex="0"><p>释放管程权力，进入c的条件等待队列；唤醒紧急等待队列的第一个线程// 为进入管程的进程分配某种类型的资源，如果此时这种资源可用，那么进程使用，否则进程被阻塞，进入条件等待队列</p><p>唤醒由于等待这种资源而进入条件等待队列的(c的条件等待队列)第一个线程进入管程的进程某种资源释放，此时进程会唤醒由于等待这种资源而进入条件等待队列的第一个进程</p><p>---  
 
 #### 管程 -- 条件变量
+
 - 同步：条件变量（Condition Variables)以及相关的两个操作：wait和signal，处理等待机制。
 - Wait()操作
    - 将自己阻塞在等待队列中
