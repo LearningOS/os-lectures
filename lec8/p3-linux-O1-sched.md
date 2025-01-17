@@ -19,7 +19,9 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 
 ---
 
@@ -55,9 +57,10 @@ backgroundColor: white
 
 * O(n) 调度器：内核版本 2.4-2.6
 * O(1) 调度器：内核版本 2.6.0-2.6.22
-* CFS 调度器：内核版本 2.6.23-至今
+* CFS 调度器：内核版本 2.6.23（2007）-6.5
+* EEVDF 调度器：内核版本 6.6（2023）-现在
 
-![w:650](figs/linux-schedulers.png)
+![w:500px](figs/linux-schedulers.png)
 
 <!--
 https://www.scaler.com/topics/operating-system/process-scheduling/
@@ -147,11 +150,11 @@ Linux历史 -->
 
 - 把时间分成大量的微小时间片（Epoch）
 - 每个时间片开始时
-  - 计算进程的动态优先级
-  - 将进程优先级映射成缺省时间片
-  - 然后选择优先级最高的进程来执行
-- 进程被调度器切换执行后，可不被打扰地用尽这个时间片
-- 如进程没有用尽时间片，则剩余时间增加到进程的下一个时间片中
+  - 计算进程的**动态优先级**
+  - 将进程优先级映射成**缺省时间片**
+  - 然后选择**优先级最高**的进程来执行
+- 进程被调度器切换执行后，可不被打扰地**用尽这个时间片**
+- 如进程没有用尽时间片，则**剩余时间**增加到进程的下一个时间片中
 
 
 <!-- 谈谈调度 - Linux O(1) https://cloud.tencent.com/developer/article/1077507 

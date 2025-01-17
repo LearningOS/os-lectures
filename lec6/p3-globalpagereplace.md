@@ -19,7 +19,10 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+
 
 ---
 
@@ -76,11 +79,11 @@ FIFO 页面置换算法: 假设初始顺序 a->b->c
 一个进程当前正在使用的逻辑页面集合，可表示为二元函数W(t, $\Delta$)
 - 当前执行时刻$t$
 - 工作集窗口(working-set window)$\Delta$：一个定长的页面访问时间窗口
-- 工作集窗口$\Delta$大小$\tau$
+- 工作集窗口$\Delta$的大小$\tau$
   - 时间段长度，用当前时刻 $t$ 前的**内存访问次数**来表示
 - 工作集W(t, $\Delta$)
   - 在当前时刻 $t$ 前的$\Delta$时间窗口中的所有访问页面所组成的集合
-- 工作集大小 | W(t, $\Delta$) |：页面数目
+- 工作集大小 | W(t, $\Delta$) |：W(t, $\Delta$)中页面数目
 
 ---
 
@@ -337,14 +340,15 @@ $\tau=4$
 ### 课程实验二
 
 * 第四章：地址空间 -> chapter4练习 -> 
-    * [rCore](http://learningos.cn/rCore-Tutorial-Guide-2023A/chapter4/7exercise.html#chapter4)
-    * [uCore](http://learningos.cn/uCore-Tutorial-Guide-2023A/chapter4/7exercise.html#id1)
+    * [rCore](http://learningos.cn/rCore-Tutorial-Guide-2024A/chapter4/7exercise.html#chapter4)
+    * [uCore](http://learningos.cn/uCore-Tutorial-Guide-2024A/chapter4/7exercise.html#id1)
 * 实验任务
     * 重写获取系统时间和进程控制块信息的内核函数
     * 实现申请和取消虚存映射的系统调用
 * 实验提交要求
-    * 2023年11月01日；
-
+    * 布置实验任务后的第13天（2024年10月27日24点）；
+<!--
+-->
 ---
 
 ### 第五讲虚拟存储管理小结

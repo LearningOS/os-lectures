@@ -19,7 +19,10 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+
 
 ---
 
@@ -90,7 +93,7 @@ backgroundColor: white
   - 执行时间e = 最大执行时间(0 < e < p)
   - 使用率U = e/p
 ![w:900](figs/rt-task-2.png)
-- 可调度：if $\sum_{p_i} \frac{e_i}{p_i}\leq 1$; otherwise 不可调度
+- 可调度：if $\sum_{i} \frac{e_i}{p_i}\leq 1$; otherwise 不可调度
 
 ---
 #### 软时限和硬时限
@@ -211,7 +214,7 @@ backgroundColor: white
 
 #### 最早截止时间优先算法 (EDF, Earliest Deadline First) 
 
-- 任务的优先级根据任务的截止时间动态分配。截止时间越短，优先级越高。
+- 任务的优先级根据任务的**截止时间动态分配**。截止时间越短，优先级越高。
   - 进程P1：e=10 p=20
   - 进程P2：e=25 p=50
 
@@ -302,7 +305,7 @@ backgroundColor: white
 ---
 
 ####  优先级继承(Priority Inheritance)
-- 占用资源的低优先级进程继**申请资源的高优先级进程的优先级**
+- 占用资源的低优先级进程继承**申请资源的高优先级进程的优先级**
 - 只在想占有资源的高优先级进程被阻塞时,才提高占有资源的低优先级进程的优先级。注：临界区：互斥访问共享资源的代码片段
 ![w:600](figs/rt-pi-2.png)
 
@@ -341,7 +344,7 @@ backgroundColor: white
 
 ---
 #### 优先级天花板协议（priority ceiling protocol）
-- 占用资源进程的优先级与所有可能申请该资源的进程的最高优先级相同
+- 占用资源进程的优先级与所有可能申请该资源进程的最高优先级相同
   - 不管是否发生等待,都提升占用资源进程的优先级
   - 优先级高于系统中所有被锁定的资源的优先级上限，任务执行临界区时就不会被阻塞
 

@@ -14,6 +14,15 @@ backgroundColor: white
 # 第十三讲 设备管理
 ## 第三节 支持device的OS（DOS）
 
+向勇 陈渝 李国良 任炬
+
+
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+
+
+
 ---
 ### 内容
 - **进化目标**
@@ -198,7 +207,7 @@ virtio-gpu 显示设备
 <!-- https://blog.csdn.net/weixin_40604731/article/details/109279426 2020.10.25 RISC-V --PLIC平台级中断控制器 -->
 <!-- https://blog.csdn.net/qq_42866646/article/details/120845750 PLIC简介&&cva6之PLIC模块阅读笔记 -->
 **PLIC中断源**
-PLIC支持多个中断源，每个中断源可以是不同触发类型，电平触发或者边沿触发、PLIC为每个中断源分配
+PLIC支持多个中断源，每个中断源可以是不同触发类型，电平触发或者边沿触发、PLIC为每个中断源分配一个不同的编号。
 
 
 ![bg right:65% 100%](figs/plicarch.jpg)

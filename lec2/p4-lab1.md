@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年秋季
+2024年秋季
 
 ---
 提纲
@@ -64,7 +64,7 @@ backgroundColor: white
 #### LibOS历史背景 -- 子程序
 
 - 参与 EDSAC 项目的 David Wheeler 发明了**子程序**的概念 – Wheeler Jump 
-- 基于便捷有效的子程序概念和子程序调用机制，软件开发人员在EDSAC和后续的LEO计算机上开发了大量的系统**子程序库**，形成了最早的操作系统原型。
+- 基于便捷有效的子程序概念和**子程序调用**机制，软件开发人员在EDSAC和后续的LEO计算机上开发了大量的系统**子程序库**，形成了最早的操作系统原型。
 
 ![bg right:50% 70%](figs/LEO_III_computer_circuit_board.jpg)
 
@@ -348,7 +348,7 @@ SBSS：small bss，近数据，即使用短指针（near）寻址的数据
 
 #### 生成内核二进制镜像
 
-![bg w:950](figs/load-into-qemu.png)
+![bg w:1020](figs/load-into-qemu.png)
 
 ---
 
@@ -443,7 +443,7 @@ auipc(add upper immediate to pc)被用来构建 PC 相对的地址，使用的�
 ret      | jalr x0, x1, 0       | 函数返回
 call offset   | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]     | 函数调用
 
-函数调用核心机制
+函数调用核心机制：
 - 在函数调用时，通过 call 伪指令保存返回地址并实现跳转；
 - 在函数返回时，通过 ret 伪指令回到跳转之前的下一条指令继续执行
 
@@ -508,7 +508,7 @@ local variables
 - 当 ret 指令执行,下面的伪代码实现调整堆栈指针和PC:
 ```
 pc = return address
-sp = fp + ENTRY_SIZE
+sp = sp + ENTRY_SIZE
 fp = previous fp
 ```
 ![bg right:50% 180%](figs/stack-frame.png)
@@ -517,8 +517,8 @@ fp = previous fp
 
 #### RISC-V函数调用约定：函数结构
 函数结构组成：``prologue``,``body part`` 和``epilogue``
-- Prologue的目的是为了保存程序的执行状态（保存返回地址寄存器和堆栈寄存器FP）
-- Epilogue的目的是在执行函数体之后恢复到之前的执行状态（跳转到之前存储的返回地址以及恢复之前保存FP寄存器）。
+- Prologue序言的目的是为了保存程序的执行状态（保存返回地址寄存器和堆栈寄存器FP）
+- Epilogue尾声的目的是在执行函数体之后恢复到之前的执行状态（跳转到之前存储的返回地址以及恢复之前保存FP寄存器）。
 
 
 ---

@@ -21,7 +21,10 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+
 
 ---
 
@@ -338,7 +341,7 @@ backgroundColor: white
 - EAT = 内存访问时间 $*$ (1-p)  + 缺页异常处理时间 
 - 缺页异常处理时间 = 磁盘访问时间*p(1+q)
   - p: 缺页率；
-  - q: 写回概率
+  - q: 写回概率（淘汰一个页面到磁盘）
 * 例子
   - 内存访问时间: 10 ns ；磁盘访问时间: 5 ms
   - EAT = 10(1–p) + 5,000,000p(1+q) 

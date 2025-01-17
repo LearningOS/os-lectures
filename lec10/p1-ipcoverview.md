@@ -20,7 +20,9 @@ Inter Process Communication, IPC
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 
 ---
 
@@ -173,8 +175,8 @@ Remote Procedure Call, RPC = send + recv
 #### 管道(pipe)的应用场景
 
 - 通常管道两端的进程会各自关闭管道的一个文件描述符，如
-  - 父进程关闭读描述符，只能向管道**写数据**
-  - 子进程关闭写描述符，只能从管道**读数据**。
+  - 父进程关闭写描述符，只能向管道**读数据**
+  - 子进程关闭读描述符，只能从管道**写数据**。
 
 ![bg right:54% 95%](figs/pipe-fds-close.png)
 
@@ -262,7 +264,7 @@ $ cat name.fifo
 ---
 
 #### 消息队列(Message Queue)
-消息队列是由操作系统维护的以结构数据为基本单位的间接通信机制
+消息队列是由**操作系统维护**的以**结构数据**为基本单位的间接通信机制
 - 每个消息(Message)是一个字节序列，有自己的**类型标识**
 - 相同类型标识的消息组成按**先进先出**顺序组成一个消息队列
 
@@ -274,7 +276,13 @@ $ cat name.fifo
 
 ---
 #### 消息队列实现机制
-![w:900](figs/signal-imp2.jpg)
+
+- 不同消息类型
+  - 优先级排序
+  - 选择性接收
+  - 安全和隔离
+
+![bg right:62% 90%](figs/signal-imp2.jpg)
 
 
 ---
@@ -448,7 +456,7 @@ Child: read msg:test
 ```
 #include <sys/ipc.h>
 #include <sys/shm.h>
-int shmget(key_t key, size_t size,int shmflg);
+int shmget(key_t key, size_t size, int shmflg);
 ```
 - key：进程间通信键值，ftok() 的返回值。
 - size：该共享存储段的长度(字节)。
@@ -478,7 +486,7 @@ void *shmat(int shmid, const void *shmaddr, int shmflg);
 void *shmat(int shmid, const void *shmaddr, int shmflg);
 ```
 - shmid：共享内存标识符，shmget() 的返回值。
-- shmaddr：共享内存映射地址，若为 NULL 则由系统自动指定
+- shmaddr：共享内存映射地址，若为 NULL 则由系统自动指定 
 - shmflg：共享内存段的访问权限和映射条件，取值如下：
   - 0：共享内存具有可读可写权限。
   - SHM_RDONLY：只读。
@@ -609,7 +617,8 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
   - 模拟用户代码调用sig_handler函数
 -  内核在陷入上下文中修改用户态返回地址；
 - 内核返回用户态，直接跳到sig_handler;
-- sig_handler函数返回到旧代码位置继续执行
+- 执行sig_handler函数结束后，自动通过系统调用sigreturn陷入内核态
+- sigreturn恢复进程正常执行的上下文，返回用户态继续执行
 ![bg right:31% 95%](figs/CatchingSignal.png)
 
 ---

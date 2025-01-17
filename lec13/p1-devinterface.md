@@ -17,12 +17,15 @@ backgroundColor: white
 <br>
 <br>
 
-向勇 陈渝 李国良 任炬 任炬
+向勇 陈渝 李国良 任炬
+
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 
 <br>
 <br>
 
-2023年春季
 
 ---
 ### 内容
@@ -41,7 +44,7 @@ backgroundColor: white
 - 为何要对设备建立抽象？
 - 如何感知设备的状态并管理设备？
 - 如何提高 CPU 与设备的访问性能？
-- 如果保证 I/O 操作的可靠性？
+- 如何保证 I/O 操作的可靠性？
 
 ---
 ### I/O子系统 -- 内核 I/O 结构
@@ -69,7 +72,7 @@ backgroundColor: white
 
 ---
 ### I/O子系统 -- 常见设备接口类型
-字符设备：如GPIO, 键盘/鼠标, 串口等
+字符设备：如GPIO（General Purpose Input/Output）, 键盘/鼠标, 串口等
 
 ![w:700](figs/char-led.png)
 GPIO LED light
@@ -87,7 +90,7 @@ GPIO LED light
 ### I/O子系统 -- 常见设备接口类型
 字符设备：如GPIO, 键盘/鼠标, 串口等
 ![w:900](figs/char-uart.png)
-UART 串口通信
+UART（Universal Asynchronous Receiver/Transmitter） 串口通信
 
 
 ---
@@ -218,6 +221,7 @@ DMA 传输方式
 - 访问接口：open/close/read/write
 - 特别的系统调用：ioctl ：input/output control
 - ioctl 系统调用很灵活，但太灵活了，请求码的定义无规律可循
+- ioctl 提供了一种强大但复杂的机制，用于执行特定于设备的操作，允许用户空间程序执行那些标准读写操作无法完成的任务。
 - 文件的接口太面向用户应用，不足覆盖到OS对设备进行管理的过程
 
 
@@ -293,8 +297,7 @@ DMA 传输方式
 ---
 ### I/O子系统 -- I/O执行模型 -- 非阻塞 I/O
 
-4. 磁盘驱动程序把数据从磁盘传到 I/O 缓冲区后，通知内核（一般通过中断机制），内核在收到通知且再次收到了用户进程的 system call 后，会马上把数据
-从 I/O 缓冲区拷贝到用户进程的 buffer 中；
+4. 磁盘驱动程序把数据从磁盘传到 I/O 缓冲区后，通知内核（一般通过中断机制），内核在收到通知且再次收到了用户进程的 system call 后，会马上把数据从 I/O 缓冲区拷贝到用户进程的 buffer 中；
 5. 内核从内核态返回到用户态的用户态进程，此时 read 系统调用完成。
 
 所以，在非阻塞式 I/O 的特点是用户进程不会被内核阻塞，而是需要不断的主动询问内核所需数据准备好了没有。
@@ -306,8 +309,9 @@ DMA 传输方式
 ---
 ### I/O子系统 -- I/O执行模型 -- 多路复用 I/O
 多路复用 I/O（I/O multiplexing）的文件读系统调用–read 的执行过程：
-1. 对应的 I/O 系统调用是 select 和 epoll 等
-2. 通过 select 或 epoll 系统调用来不断的轮询用户进程关注的所有文件句柄或socket，当某个文件句柄或 socket 有数据到达了，select 或 epoll 系统调用就会返回到用户进程，用户进程再调用 read 系统调用，让内核将数据从内核的I/O 缓冲区拷贝到用户进程的 buffer 中。
+1. 对应的 I/O 系统调用是 select 和 epoll 等，可有效处理大量并发的I/O操作；
+
+2. 通过 select 或 epoll 系统调用，用户进程会被阻塞；当某个文件句柄或 socket 有数据到达了，select 或 epoll 系统调用就会返回到用户进程，用户进程再调用 read 系统调用，让内核将数据从内核的I/O 缓冲区拷贝到用户进程的 buffer 中。
 
 ---
 ### I/O子系统 -- I/O执行模型 -- 信号驱动 I/O

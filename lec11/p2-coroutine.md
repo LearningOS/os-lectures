@@ -20,7 +20,9 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 
 ---
 
@@ -140,10 +142,10 @@ def func()://协程函数
 控制传递机制：对称（Symmetric） v.s. 非对称（Asymmetric）协程
 - 对称协程：
    - 只提供一种传递操作，用于**在协程间直接传递控制**
-   - 对称协程都是等价的，控制权直接在对称协程之间进行传递
-   - 对称协程在挂起时主动指明另外一个对称协程来接收控制权
+   - 对称协程都是**平等的**，控制权直接在对称协程之间进行传递
+   - 对称协程在挂起时主动指明另外一个**对称协程**来接收控制权
 - 非对称协程（半对称(Semi-symmetric)协程）：
-  - 提供调用和挂起两种操作，非对称协程挂起时将**控制返回给调用者**
+  - 提供**调用和挂起**两种操作，非对称协程挂起时将**控制返回给调用者**
   - 调用者或上层管理者根据某调度策略调用其他非对称协程
 
 <!-- 出于支持并发而提供的协程通常是对称协程，用于表示独立的执行单元，如golang中的协程。用于产生值序列的协程则为非对称协程，如迭代器和生成器。
@@ -151,13 +153,13 @@ def func()://协程函数
 
 ---
 
-#### 对称协程的控制传递
+#### 对称协程的控制传递：每个协程可直接转移到其他任何一个协程
 
 ![w:900](figs/coroutine-sym.png)
 
 ---
 
-#### 非对称协程的控制传递
+#### 非对称协程的控制传递：只能将控制权“yield”回给启动它的协程
 
 ![w:850](figs/coroutine-asym.png)
 
@@ -179,7 +181,7 @@ def func()://协程函数
   - 支持并发执行，可以通过多线程实现更高的并发性。
   - 协程之间不会相互阻塞，可处理一些长时间任务。
 * 缺点：
-  - 实现较为复杂，需要操作系统内核的支持。
+  - 实现较为复杂。<!-- 可通过操作系统内核获得支持。-->
   - 需要通过锁等机制来保证协程之间的同步和互斥。
 
 ---
@@ -239,7 +241,7 @@ Coroutine从入门到劝退
   - 可能会导致内存泄漏和性能问题。
 
 ---
-#### 第二类（Second-class）语言对象 
+#### 第二类（Second-class）语言对象：不能将其作为参数传递
 * Second-class 对象优势：
   - 可以通过类型系统来保证程序的正确性
   - 可以减少程序的复杂度和开销
@@ -675,7 +677,7 @@ fn main() { //Asynchronous multi-threaded concurrent webserver
 
 ---
 
-#### 共享调度器：[一种支持优先级的协程调度框架](https://github.com/zflcs/SharedScheduler)（赵方亮、廖东海）
+#### 共享调度器：[一种支持优先级的协程调度框架](https://github.com/zflcs/SharedScheduler)（本科生毕设：赵方亮、廖东海；选学，不考核）
 
 * 将协程作为操作系统和应用程序的最小任务单元
 * 引入协程的优先级属性，基于优先级位图，操作系统和应用程序实现协程调度
@@ -687,10 +689,10 @@ fn main() { //Asynchronous multi-threaded concurrent webserver
 
 #### Architecture of SharedScheduler
 
-![bg right:60% 95% arch](figs/arch.png)
+![bg right:50% 95% arch](figs/arch.png)
 
 1. 操作系统与用户程序各自的 Executor 维护协程
-2. SharedScheduler 通过 vDSO 共享给用户进程
+2. SharedScheduler 通过 vDSO (virtual Dynamic Shared Object) 共享给用户进程
 3. 通过 Global Bitmap 进行操作系统与用户进程之间协调调度
 
 <!--
@@ -762,9 +764,10 @@ read!(fd, buffer); // Sync call
 
 ---
 
-#### Throughput and message latency
+#### Message throughput
 
-![width:750px throughput](figs/throughput.png)
+<!--![width:750px throughput]-->
+![bg right:51% 100%](figs/throughput.png)
 
 1. kcuc: 内核协程 + 用户协程
 2. kcut：内核协程 + 用户线程
@@ -776,9 +779,9 @@ read!(fd, buffer); // Sync call
 
 ---
 
-#### Throughput and message latency
+#### Message latency
 
-![width:750px latency](figs/latency.png)
+![bg right:51% 100%](figs/latency.png)
 
 1. SharedScheduler 同步互斥开销，不适用于低并发或低响应要求的场景
 2. 协程切换开销小
@@ -789,17 +792,18 @@ read!(fd, buffer); // Sync call
 
 ---
 
-#### Throughput and message latency of different priority connections
+#### Throughput of different priority connections
 
-![width:700px prio-throughput](figs/prio-throughput.png)
+![width:600px prio-throughput](figs/prio-throughput.png)
 
+结论：在资源有限的条件下，高优先级协程能够得到保证
 
 <!--
 -->
 
 ---
 
-#### Throughput and message latency of different priority connections
+#### Message latency of different priority connections
 
 ![width:550px prio-latency](figs/prio-latency.png)
 结论：在资源有限的条件下，高优先级协程能够得到保证

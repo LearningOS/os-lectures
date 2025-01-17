@@ -1,17 +1,15 @@
-# 操作系统课程，2023春季，清华大学计算机系
+# 操作系统课程，2024春季，清华大学计算机系
 
 ## 老师与助教
 
 ### 主讲教师：
   - 向勇 陈渝 李国良 任炬
 ### 助教
-  -  卢军 黄旺 饶淙元 田凯夫 闭浩扬
+  -  饶淙元、田凯夫、闭浩扬、王拓为、苏明贤、黄旺、郝子胥
 ## 上课时间/地点
 - 星期一 上午第二大节 09:50-12:15 (1-16周) 
 - 地点
-   - 六教 6A200  任炬
-   - 六教 6A201  陈渝
-   - 六教 6A202  李国良
+   六教6A209（任）六教6A211（李）六教6A213（陈）
   
 ## 课程资源
 ### 课程大纲
@@ -44,38 +42,46 @@
 
 在网络学堂的“课程文件”中的“往年考试题”栏中。
 
-### rCore实验
+### rCore基本实验
 
 #### 实验指导书
 
 包含每次实验必做的编程和问答作业，以及相对rCore Tutorial Book-v3较为精简的指导
 
-* [rCore-Tutorial-Guide文档源码](https://github.com/LearningOS/rCore-Tutorial-Guide-2022S)
-*  [rCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/rCore-Tutorial-Guide-2022S/)
-* [lab1(ch3) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2022S/ch3/os/index.html)
-* [lab2(ch4) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2022S/ch4/os/index.html)
+* [rCore-Tutorial-Guide文档源码](https://github.com/LearningOS/rCore-Tutorial-Guide-2024S)
+*  [rCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/rCore-Tutorial-Guide-2024S/)
+* [lab1(ch3) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2024S/ch3/os/index.html)
+* [lab2(ch4) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2024S/ch4/os/index.html)
 #### 代码框架
 
-* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Code-2022S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2022s)
+* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Code-2024S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2024s)
 #### 用户态测例
 
-* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Test-2022S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2022s)
-### uCore实验
+* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Test-2024S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2024s)
+### uCore基本实验
 
 #### 实验指导书
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Guide-2022S)
-* [uCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/uCore-Tutorial-Guide-2022S/)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Guide-2024S)
+* [uCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/uCore-Tutorial-Guide-2024S/)
 #### 代码框架
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Code-2022S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2022s)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Code-2024S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2024s)
 #### 用户态测例
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Test-2022S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2022s)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Test-2024S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2024s)
+
+### 大实验
+需要在规定时间内完成rCore或uCore基本实验，才能进行大实验。
+欢迎所有感兴趣的同学尝试下面的大实验内容。如有问题，可联系陈渝老师等。
+
+- [2024大实验相关信息](./oslabs/biglab-relatedinfo.md)
+
+
 ## 其它内容
 
  1. [幻灯片模板](style-marp.md)
@@ -84,5 +90,6 @@
       - [ubuntu 用 markdown + vscode + marp 编写 slides 并输出为 pdf](https://www.cnblogs.com/luyi07/p/14736322.html)
 
         ```
-        marp --pdf --html --allow-local-files lec[1-9]*/*.md
+        marp --pdf --html --allow-local-files lec[1-9]*/*.md # for building PDF slides
+        marp --pptx --html --allow-local-files lec[1-9]*/*.md # for building pptx slides
         ```

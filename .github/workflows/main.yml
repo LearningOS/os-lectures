@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup Source
-        run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs && cp course-intro.md docs/course-intro.md && cp -r oslabs docs
+        run: mkdir docs && cp os-lecs.md docs/index.md && cp -r lec[1-9]* docs && cp course-intro.md docs/course-intro.md && cp lecs-preview.md docs/lecs-preview.md &&  cp labs-intro.md docs/labs-intro.md && cp oslabs/bachelor-projects.md docs && cp -r oslabs docs
       # && mkdir build && cp -r lec[1-9]*/figs build/
 
       - name: Marp Build (docs folder)

@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年秋季
+2024年秋季
 
 ---
 **提纲**
@@ -107,9 +107,6 @@ Ref: [What was the first operating system to be called an "operating system"?](h
 - 实现特权级的**切换**
 
 ![bg right:54% 100%](figs/batch-os.png)
-
-
-
 
 ---
 ##### 编译步骤
@@ -615,7 +612,6 @@ unsafe fn load_app(&self, app_id: usize) {
 }
 ```
 
-
 ---
 ##### 加载应用程序二进制码
 
@@ -633,8 +629,6 @@ unsafe fn load_app(&self, app_id: usize) {
 - CPU 对物理内存所做的缓存又分成d-cache和i-cache
 - OS将修改会被 CPU 取指的内存区域，这会使得 i-cache 中含有与内存中不一致的内容
 - OS在这里必须使用 fence.i 指令手动清空 i-cache ，让里面所有的内容全部失效，才能够**保证CPU访问内存数据和代码的正确性**。
-
-
 
 ---
 
@@ -687,9 +681,9 @@ unsafe fn load_app(&self, app_id: usize) {
 ---
 ##### 特权级切换后的硬件逻辑
 
-1. sstatus 的 SPP 字段会被修改为 CPU 当前的特权级（U/S）；
+1. sstatus 的 SPP 字段会被修改为 CPU 当前的特权级（U/S）； -- 用于记录和恢复trap前的状态
 2. sepc 会被修改为产生 Trap 的指令地址；
-3. scause/stval 分别会被修改成这次 Trap 的原因以及相关的附加信息；
+3. scause/stval 分别会被修改成这次 Trap 的原因以及相关的附加信息； -- scause用于存储trap种类（中断、异常）和类型（时钟、外设、page fault；如果是page fault，stval记录对应的虚拟地址）
 4. CPU 将当前特权级设为 S，跳到 stvec 所设置的 Trap 处理入口地址。
 
 
@@ -790,10 +784,11 @@ pub fn init() {
 
 1. **应用程序**通过 ecall 进入到内核状态时，**操作系统**保存被打断的应用程序的 Trap 上下文；
 2. **操作系统**根据Trap相关的CSR寄存器内容，完成系统调用服务的分发与处理；
-3. **操作系统**完成系统调用服务后，需要恢复被打断的应用程序的Trap 上下文，并通 ``sret``指令让应用程序继续执行。
+3. **操作系统**完成系统调用后，恢复被打断的应用程序的Trap 上下文，通过``sret``指令让应用程序继续执行。
 ![bg right:40% 100%](figs/kernel-stack.png)
 
 
+``Trap上下文存在哪？``
 ---
 
 ##### 用户栈到内核栈的切换

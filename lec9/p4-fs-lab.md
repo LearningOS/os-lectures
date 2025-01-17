@@ -21,7 +21,9 @@ Filesystem OS(FOS)
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 
 ---
 
@@ -113,12 +115,12 @@ Filesystem OS(FOS)
 
 ##### 需要考虑的问题
 
-- 硬盘上的文件系统如何组织？硬盘布局？
-- 如何管理空闲磁盘块？
-- 如何表示一个文件/目录？
+- 硬盘上的文件系统如何组织？**硬盘布局**？
+- 如何管理**空闲磁盘块**？
+- 如何表示一个**文件/目录**？
   - 文件是啥？目录是啥？
-- 如何表示文件/目录数据内容？
-- 如何访问一个文件？
+- 如何表示文件/目录**数据内容**？
+- 如何**访问**一个文件？
 
 ![bg right:48% 95%](figs/fs-intro.png)
 
@@ -182,7 +184,6 @@ Filesystem OS(FOS)
 ##### 文件访问流程
 
 ![bg 90%](figs/fs-prog-intro.png)
-
 
 ---
 
@@ -711,12 +712,12 @@ pub struct TaskControlBlockInner {
 
 pub struct OSInode {//进程管理的inode
     readable: bool,  writable: bool,
-    inner: UPSafeCell<OSInodeInner>,
+    inner: UPSafeCell<OSInodeInner>,//多线程并发安全
 }
 
 pub struct OSInodeInner {
     offset: usize, //文件读写的偏移位置
-    inode: Arc<Inode>,//存储设备inode
+    inode: Arc<Inode>,//存储设备inode，线程安全的引用计数指针
 }
 ```
 ![bg right:42% 95%](figs/fs-fsdisk.png)

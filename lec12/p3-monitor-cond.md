@@ -31,7 +31,9 @@ C++并发型模式#6: 管程 - monitor http://dengzuoheng.github.io/cpp-concuren
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 
 ---
 
@@ -105,7 +107,7 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 #### 条件变量
 * 条件变量是多线程编程中的一种**同步机制**，用于线程间通信和协调
-  * 它是一个结构体，包含了一个等待队列和一些基本操作函数
+  * 它是一个结构体，包含了一个等待队列、等待和唤醒等操作函数
   * 通过条件变量实现线程的阻塞、唤醒和通讯等功能
 * 条件变量与互斥锁（mutex）配合，可实现线程间的同步和互斥
   * 共享资源被占用时，线程可通过条件变量挂起自己
@@ -158,20 +160,28 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 
 #### 管程操作
 
+<font size=5>
+
 - T.enter过程：线程T在进入管程之前要获得互斥访问权(lock)
 - T.leave过程：当线程T离开管程时，如果紧急队列**不为空**，唤醒紧急队列中的线程，并将T所持锁赋予唤醒的线程；如果**紧急队列为空**，释放lock，唤醒入口等待队列某个线程
-- T.wait(c)：1)阻塞线程T自己，将T自己挂到条件变量c的等待队列；
-  - 2)释放所持锁； 3)唤醒入口等待队列的一个或者多个线程；
+- T.wait(c)：
+  - 1)阻塞线程T自己，将T自己挂到条件变量c的等待队列；
+  - 2)释放所持锁；
+  - 3)唤醒入口等待队列的一个或者多个线程；
 <!--释放管程权力，进入c的条件等待队列；唤醒紧急等待队列的第一个线程// 为进入管程的进程分配某种类型的资源，如果此时这种资源可用，那么进程使用，否则进程被阻塞，进入条件等待队列-->
-- T.signal(c)：1)把条件变量c的等待队列某个线程唤醒；
+- T.signal(c)：
+  - 1)把条件变量c的等待队列某个线程唤醒；
   - 2)把线程T所持lock给被唤醒的线程； 
   - 3)把线程T自己挂在紧急等待队列
 <!--唤醒由于等待这种资源而进入条件等待队列的(c的条件等待队列)第一个线程进入管程的进程某种资源释放，此时进程会唤醒由于等待这种资源而进入条件等待队列的第一个进程-->
+
+</font>
 
 <!--
 ---  
 
 #### 管程 -- 条件变量
+
 - 同步：条件变量（Condition Variables)以及相关的两个操作：wait和signal，处理等待机制。
 - Wait()操作
    - 将自己阻塞在等待队列中
@@ -200,25 +210,28 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 3. 条件变量的实现
 4. 生产者-消费者问题的管程实现
 
----  
+---
 
 #### 管程实现方式
-<!-- https://blog.csdn.net/qq_34666857/article/details/103189107 Java并发编程模拟管程（霍尔Hoare管程、汉森Hansan管程、MESA管程) -->
+
+<!--
+https://blog.csdn.net/qq_34666857/article/details/103189107 Java并发编程模拟管程（霍尔Hoare管程、汉森Hansan管程、MESA管程)
+-->
 
 如果线程T1因条件A未满足处于阻塞状态，那么当**线程T2让条件A满足并执行signal操作唤醒T1**后，不允许线程T1和T2同时处于管程中，那么如何确定哪个执行/哪个等待？
 - 管程中条件变量的释放处理方式：
   - Hoare管程：**T1执行**/T2等待，直至T1离开管程，然后T2继续执行
-  - MESA/Hansen管程：**T2执行**/T1等待，直至T2离开管程，然后T1可能继续执行
+  - MESA/Hansen管程：**T2执行**/T1等待，直至T2离开管程，然后T1可能继续执行（重新竞争/直接执行）
 
----  
+---
 
 #### 管程中条件变量的释放处理方式
 
 <!-- https://blog.csdn.net/qq_34666857/article/details/103189107 Java并发编程模拟管程（霍尔Hoare管程、汉森Hansan管程、MESA管程) -->
 - 线程 T2 的signal，使线程 T1 等待的条件满足时
   - Hoare：T2 通知完 T1后，T2 阻塞，T1 马上执行；等 T1 执行完，再唤醒 T2 执行
-  - Hansen： T2 通知完 T1 后，T2 还会接着执行，T2 执行结束后（规定：最后操作是signal），然后 T1 再执行（将锁直接给T1）
-  - MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是重新竞争访问权限
+  - Hansen： T2 通知完 T1 后，T2 还会接着执行，T2 执行结束后（规定：最后操作是signal），然后 **T1 再执行**（将锁直接给T1）
+  - MESA：T2 通知完 T1 后，T2 还会接着执行，T1 并不会立即执行，而是**重新竞争**访问权限
 
 ---  
 
@@ -396,3 +409,23 @@ https://yangzhaoyunfei.github.io/monitors/ 管程(Monitors) -->
 #### 生产者-消费者问题的管程实现
 
 ![w:1000](figs/monitor-pc-4.png)
+
+
+---
+#### 如何使用管程？
+
+Java支持管程；C++支持条件变量
+
+```
+public class CounterMonitor {
+    private int count = 0; // 共享资源
+    // 增加count的方法，这里用synchronized关键字确保互斥访问
+    public synchronized void increment() {
+        count++; // 可以添加其他逻辑，比如通知等待的线程等
+    }
+    // 获取count值的方法，也需要同步
+    public synchronized int getCount() {
+        return count;
+    }
+}
+'''

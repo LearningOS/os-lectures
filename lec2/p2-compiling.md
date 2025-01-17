@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年秋季
+2024年秋季
 
 ---
 ### 提纲
@@ -191,7 +191,7 @@ rust-objdump -S target/riscv64gc-unknown-none-elf/debug/os
 - .text: 代码段
 - .rodata：已初始化数据段，只读的全局数据（常数或者是常量字符串）
 - .data：可修改的全局数据
-- .bss：未初始化数据段
+- .bss：未初始化数据段（Block Started by Symbol）
 - 堆 （heap）向高地址增长
 - 栈 （stack）向低地址增长
-![bg right:52% 140%](figs/memlayout.png)
+![bg right:50% 140%](figs/memlayout.png)

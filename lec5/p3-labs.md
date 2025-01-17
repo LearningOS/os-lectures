@@ -19,7 +19,10 @@ Address Space OS(ASOS)
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+
 
 ---
 
@@ -581,7 +584,7 @@ ASID域（Address Space IDentifier）为地址空间标识符，标记该项地�
 ---
 
 ##### 方案3：``sscratch`` - 应用的陷入上下文地址
-- 通过``sscratch``进行应用的用户态栈指针<->陷入上下文地址切换;
+- 通过``sscratch``进行应用的用户态栈指针<->陷入上下文地址切换（中转）;
 - 保存用户态寄存器到陷入上下文;
 - 读出陷入上下文中的页表基址/应用的内核栈指针/**trap_handler**地址；
 - 切换页表，跳转**trap_handler**
@@ -1337,7 +1340,7 @@ unsafe {
 页表模块 page_table 提供了将应用地址空间中一个缓冲区转化为在内核空间中能够直接访问的形式的辅助函数：
 ```rust
 // os/src/mm/page_table.rs
-pub fn translated_byte_buffer(
+pub fn translated_byte_buffer()
 ```
 1. 查找应用的页表，根据应用虚地址找到物理地址
 2. 查找内核的页表，根据物理地址找到内核虚地址

@@ -24,7 +24,7 @@ backgroundColor: white
 <br>
 <br>
 
-2023年秋季
+2024年秋季
 
 ---
 
@@ -101,7 +101,7 @@ backgroundColor: white
 ![](./figs/multics-intro.png)
 
 ---
-## 开放的UNIX
+## 开放的UNIX（Ken Thompson 与 Dennis Ritchie）
 
 ![bg 50%](./figs/unix-family.png)
 
@@ -171,7 +171,10 @@ AIoT 系统 (2000- )
 
 ![bg right:40% 100%](./figs/history-aiot.png)
 
+
+<!--
 ---
 ## Fuchsia操作系统
 
 ![bg 75%](./figs/fuchsia-os-intro.png)
+-->

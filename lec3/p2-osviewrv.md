@@ -22,7 +22,8 @@ backgroundColor: white
 <br>
 <br>
 
-2023年秋季
+2024年秋季
+
 
 ---
 **提纲**
@@ -90,28 +91,22 @@ backgroundColor: white
 
 ---
 ##### RISC-V 系统模式
+
+与系统编程相关的RISC-V模式
 ![w:800](figs/rv-privil-arch.png)
 - ABI/SBI/HBI:Application/Supervisor/Hypervisor Bianry Interface
 - AEE/SEE/HEE:Application/Superv/Hyperv Execution Environment
 - HAL：Hardware Abstraction Layer
 - Hypervisor，虚拟机监视器（virtual machine monitor，VMM）
-- RISC-V 系统模式 即 与系统编程相关的RISC-V模式 
-
 
 ---
 ##### RISC-V相关术语
-- 应用执行环境（Application Execution Environment, AEE)
-- 应用程序二进制接口（Application Binary Interface,ABI)
-- 管理员二进制接口（Supervisor Binary Interface, SBI)
-- 管理员执行环境（Supervisor Execution Environment, SEE)
-- Hypervisor：虚拟机监视器
-- Hypervisor二进制接口（Hypervisor Binary interface，HBI）
-- Hypervisor执行环境（Hypervisor Execution Environment, HEE)
-
-
-
-
-
+- 应用执行环境 (Application Execution Environment, AEE)
+- 应用程序二进制接口 (Application Binary Interface, ABI)
+- 管理员二进制接口 (Supervisor Binary Interface, SBI)
+- 管理员执行环境 (Supervisor Execution Environment, SEE)
+- Hypervisor二进制接口 (Hypervisor Binary interface，HBI)
+- Hypervisor执行环境 (Hypervisor Execution Environment, HEE)
 
 ---
 ##### RISC-V 系统模式：单应用场景
@@ -134,21 +129,18 @@ backgroundColor: white
 ![w:900](figs/rv-privil-arch.png)
 - 右侧是虚拟机场景，可支持**多个操作系统**
 
-
-
 ---
 ##### RISC-V 系统模式：应用场景
 ![w:900](figs/rv-privil-arch.png)
 - M Mode：小型设备（蓝牙耳机等）
-- U+M Mode:嵌入式设备（电视遥控器、刷卡机等）
+- U+M Mode：嵌入式设备（电视遥控器、刷卡机等）
 - U+S+M Mode：手机
 - U+S+H+M Mode：数据中心服务器
 
 ---
-##### RISC-V 系统模式：硬件线程
+##### RISC-V 系统模式：控制权接管
 ![w:900](figs/rv-privil-arch.png)
 - 特权级是为不同的软件栈部件提供的一种保护机制
-- **硬件线程**（hart，即CPU core）是运行在某个特权级上（CSR配置）
 - 当处理器执行当前特权模式不允许的操作时将产生一个**异常**，这些异常通常会产生自陷（trap）导致**下层执行环境接管控制权**
 
 ---
@@ -194,9 +186,6 @@ backgroundColor: white
 
 为何有这**4种模式**? 它们的**区别和联系**是啥？
 
-
-
-
 ---
 ##### RISC-V 系统模式：执行环境
 | 执行环境  |  编码 | 含义  |  跨越特权级 |
@@ -219,8 +208,8 @@ backgroundColor: white
 ##### RISC-V 系统模式：用户态
 ![w:900](figs/rv-privil-arch.png)
 - U-Mode （User Mode，用户模式、用户态）
+  - **应用程序运行**的用户态CPU执行模式
   - **非特权**级模式（Unprivileged Mode）：基本计算 
-  - 是**应用程序运行**的用户态CPU执行模式
   - 不能执行特权指令，不能直接影响其他应用程序执行
 
 
@@ -228,25 +217,25 @@ backgroundColor: white
 ##### RISC-V 系统模式：内核态
 ![w:800](figs/rv-privil-arch.png)
 - S-Mode（Supervisor Mode, Kernel Mode，内核态，内核模式）
+  - **操作系统运行**的内核态CPU执行模式
   - 在内核态的操作系统具有足够强大的**硬件控制能力**
   - 特权级模式（Privileged Mode）：**限制APP**的执行与内存访问 
-  - 是**操作系统运行**的内核态CPU执行模式
   - 能执行内核态特权指令，能直接**影响应用程序执行**
 
 ---
 ##### RISC-V 系统模式：H-Mode
 ![w:900](figs/rv-privil-arch.png)
 - H-Mode(Hypervisor Mode, Virtual Machine Mode，虚拟机监控器)
-  - 特权级模式：**限制OS**访问的内存空间 
-  - 是**虚拟机监控器运行**的Hypervisor Mode CPU执行模式，能执行H-Mode特权指令，能直接**影响OS执行**
-
+  - **虚拟机监控器运行**的Hypervisor Mode CPU执行模式
+  - 特权级模式：**限制OS**访问的内存空间的**访问范围**和**访问方式**
+  - 可执行H-Mode特权指令，能直接**影响OS执行**
 
 ---
 ##### RISC-V 系统模式：M-Mode
 ![w:900](figs/rv-privil-arch.png)
 - M-Mode（Machine Mode, Physical Machine Mode）
+  - **Bootloader/BIOS运行**的Machine Mode CPU执行模式
   - 特权级模式：**控制物理内存**，直接关机 
-  - 是**Bootloader/BIOS运行**的Machine Mode CPU执行模式
   - 能执行M-Mode特权指令，能直接影响上述其他软件的执行
 
 ---
@@ -304,12 +293,11 @@ backgroundColor: white
 OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - 设置 CSR(控制状态寄存器) 实现隔离
   - 权力：防止应用访问系统管控相关寄存器
-    - **地址空间配置**寄存器：mstatus/sstatus CSR(中断及状态)
+    - **地址空间控制**寄存器：mstatus/sstatus CSR(中断及状态)
   - 时间：防止应用长期使用 100％的 CPU
     - **中断配置**寄存器：sstatus/stvec CSR（中断跳转地址）
   - 数据：防止应用破坏窃取数据
-    - **地址空间相关**寄存器：sstatus/stvec/satp CSR （分页系统）
-
+    - **地址空间配置**寄存器：sstatus/stvec/satp CSR （分页系统）
 
 ---
 ##### CSR寄存器功能
@@ -384,23 +372,20 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 - 通过系统调用从操作系统中获得服务
 
 ---
-##### U-Mode编程：第一个例子”hello world”
-[在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src) 大致执行流
+##### U-Mode编程：第一个例子“hello world”
+在用户态打印”hello world”的[小例子](https://github.com/chyyuu/os_kernel_lab/tree/v4-kernel-sret-app-ecall-kernel/os/src) 大致执行流
 
 ![w:1000](figs/print-app.png)
 
-
 ---
 ##### 第一个例子的启动执行
-[在用户态打印”hello world”的小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302) 启动执行流
+在用户态打印“hello world”的[小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-kernel-sret-app-ecall-kernel/os/src/main.rs#L302) 启动执行流
 
 ![w:1000](figs/boot-print-app.png)
 
-
-
 ---
 ##### 第二个例子：在用户态执行特权指令
-[在用户态执行特权指令的小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src/main.rs#L306) 启动与执行流程
+在用户态执行特权指令的[小例子](https://github.com/chyyuu/os_kernel_lab/blob/v4-illegal-priv-code-csr-in-u-mode-app-v2/os/src/main.rs#L306) 启动与执行流程
 
 ![w:1000](figs/boot-priv-code-app.png)
 
@@ -420,7 +405,6 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 注:``fence.i``是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范，用于i-cache和d-cache一致性
 
 <!-- 在执行 fence.i 指令之前，对于同一个硬件线程(hart)， RISC-V 不保证用存储指令写到内存指令区的数据可以被取指令取到。使用fence.i指令后，对同一hart，可以确保指令读取是最近写到内存指令区域的数据。但是，fence.i将不保证别的riscv hart的指令读取也能够满足读写一致性。如果要使写指令内存空间对所有的hart都满足一致性要求，需要执行fence指令。 -->
-
 
 ---
 
@@ -477,7 +461,6 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 5. **跳转**到stvec CSR设置的地址继续执行
 -->
 
-
 ---
 ##### 中断/异常的硬件响应
 - 硬件
@@ -491,7 +474,6 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 
 - 中断向量表：中断--中断服务，异常--异常服务，系统调用
 
-
 ---
 ##### 中断/异常开销
 1. 建立中断/异常/系统调用号与对应服务的开销；
@@ -504,13 +486,13 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 ##### M-Mode的中断控制和状态寄存器
 
 - mtvec(MachineTrapVector)保存发生中断/异常时要跳转到的**中断处理例程入口地址**
-- mepc(Machine Exception PC)指向**发生中断/异常时的指令**
-- mcause(Machine Exception Cause)指示发生**中断/异常的种类**
 - mie(Machine Interrupt Enable)中断**使能**寄存器
 - mip(Machine Interrupt Pending)中断**请求**寄存器
+- mstatus(Machine Status)保存全局中断以及其他的**状态**
+- mepc(Machine Exception PC)指向**发生中断/异常时的指令**
+- mcause(Machine Exception Cause)指示发生**中断/异常的种类**
 - mtval(Machine Trap Value)保存陷入(trap)**附加信息**
 - mscratch(Machine Scratch)它暂时存放一个字大小的**数据**
-- mstatus(Machine Status)保存全局中断以及其他的**状态**
 
 <!-- mtval(Machine Trap Value)保存陷入(trap)附加信息:地址例外中出错的地址、发生非法指令例外的指令本身；对于其他异常，值为0。 -->
 ---
@@ -523,9 +505,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
   - MPP表示变化之前是S-Mode还是U-Mode还是M-Mode
   PP：Previous Privilege
 
-
 ![w:1000](figs/mstatus.png)
-
 
 ---
 ##### mcause CSR寄存器
@@ -775,13 +755,13 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 ##### S-Mode的中断控制和状态寄存器
 
 - stvec(SupervisorTrapVector)保存发生中断/异常时**要跳转到的地址**
-- sepc(Supervisor Exception PC)指向**发生中断/异常时的指令**
-- scause(Supervisor Exception Cause)指示发生中断/异常的**种类**
 - sie(Supervisor Interrupt Enable)中断**使能**寄存器
 - sip(Supervisor Interrupt Pending)中断**请求**寄存器
+- sstatus(Supervisor Status)保存全局中断以及其他的**状态**
+- sepc(Supervisor Exception PC)指向**发生中断/异常时的指令**
+- scause(Supervisor Exception Cause)指示发生中断/异常的**种类**
 - stval(Supervisor Trap Value)保存陷入(trap)**附加信息**
 - sscratch(Supervisor Scratch)不同mode交换**数据中转站**
-- sstatus(Supervisor Status)保存全局中断以及其他的**状态**
 
 ---
 ##### sstatus寄存器

@@ -20,7 +20,9 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 
 ---
 
@@ -31,6 +33,11 @@ backgroundColor: white
 - 早期的操作系统的主要同步机制
 ![w:700](figs/basic-syncmutex.png)
 
+<!--
+Dijkstra 应译作“戴克斯特拉”
+https://zhuanlan.zhihu.com/p/73390180
+维基百科 Edsger Wybe Dijkstra 页面（https://en.wikipedia.org/wiki/Edsger_W._Dijkstra），Dijkstra 可读作 /ˈdaɪkstrə/ 或 [ˈdɛikstra]
+-->
 ---
 
 ### 信号量(semaphore)
@@ -54,16 +61,128 @@ backgroundColor: white
    - 线程不会被无限期阻塞在P()操作
    - 假定信号量等待按先进先出排队
 
-自旋锁能否实现先进先出?
+**问题**：自旋锁能否实现先进先出?
 
 ![bg right:30% 100%](figs/sema-train.png)
-
 
 ---
 
 ### 信号量在概念上的实现
-![w:1200](figs/semaphore-impl.png)
 
+<!--
+![w:1200](figs/semaphore-impl.png)
+-->
+
+<font size=6>
+
+```
+Class Semaphore {
+  int sem;
+  WaitQueue q; 
+}
+```
+
+<style>
+.container{
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
+
+```c++
+Semaphore::P() {
+    sem--；
+    if (sem < 0) {
+      Add this thread t to q;
+      block(t)
+    }
+}
+```
+
+</div>
+
+<div class="col">
+
+```c++
+Semaphore::V() {
+    sem++；
+    if (sem <= 0) {
+      Remove a thread t from q;
+      wakeup(t)
+    }
+}
+```
+
+</div>
+
+</div>
+
+</font>
+
+---
+
+
+### 信号量在概念上的实现
+
+<font size=6>
+
+```
+Class Semaphore {
+  int sem;
+  WaitQueue q; 
+}
+```
+
+<style>
+.container{
+  display: flex;
+}
+.col {
+  flex: 1;
+}
+</style>
+
+<div class="container">
+
+<div class="col">
+
+```c++
+Semaphore::P() {
+    while (sem <= 0) {
+      Add this thread t to q;
+      block(t)
+    }
+    sem--；
+}
+```
+
+</div>
+
+<div class="col">
+
+```c++
+Semaphore::V() {
+    sem++；
+    if (sem <= 0) {
+      Remove a thread t from q;
+      wakeup(t)
+    }
+}
+```
+
+</div>
+
+</div>
+
+问题：这个实现与上一个有什么不同？
+
+</font>
 
 ---
 

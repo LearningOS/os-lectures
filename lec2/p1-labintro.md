@@ -22,7 +22,10 @@ backgroundColor: white
 <br>
 <br>
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+
 
 ---
 ### 提纲
@@ -70,7 +73,6 @@ backgroundColor: white
 - 函数调用: 编译器与操作系统的配合
 - 硬件启动和软件启动
 - 编写/调试裸机程序
-
 裸机程序(Bare Metal Program)：与操作系统无关的OS类型的程序
 
 ![bg right:40% 100%](figs/os-as-lib.png)
@@ -288,8 +290,9 @@ backgroundColor: white
 ---
 
 #### 扩展实验（即大实验，课程设计）
+- [大实验相关资源信息](https://shimo.im/docs/m4kMMQjy7BHdEwkD)
 
-5周内完成基础实验1~5后，与老师协商：选择完成扩展实验来代替考试
+**4周内**完成基础实验1~5后，与老师协商：选择完成扩展实验来代替考试。
 
 **早完成基础实验，可早开展扩展实验**
 

@@ -22,7 +22,10 @@ backgroundColor: white
 <br>
 <br>
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+
 
 ---
 **提纲**
@@ -56,6 +59,10 @@ backgroundColor: white
 **硬件** 与 **OS** 的 **边界** ：指令集+寄存器
 ![w:1150](figs/hardware-software-interface.png)
 
+<!--
+Great Ideas in Computer Architecture (Machine Structures)
+[CS61C](https://cs61c.org/fa24/) at UC Berkeley with Dan Garcia, Peyrin Kao - Fall 2024
+-->
 ---
 #### OS是对硬件的虚拟与抽象
 
@@ -81,8 +88,8 @@ u/rCore的框架结构
 ---
 #### OS对应用程序执行的支持
 - 提供服务
-- 系统调用
-- 地址空间布局
+  - 系统调用
+  - 地址空间布局
 ---
 #### OS为应用程序提供服务
 * 通过**系统调用**来提供服务 
@@ -137,8 +144,8 @@ u/rCore的框架结构
 1. OS与硬件的关系
 2. OS与应用程序的关系
 ### 3. 隔离机制
-* 为什么隔离
 * 隔离要解决的问题
+* 隔离的概念
 * 隔离的方法 
 
 ---

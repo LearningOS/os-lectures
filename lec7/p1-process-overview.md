@@ -19,7 +19,9 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2023年秋季
+2024年秋季
+
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 
 ---
 
@@ -150,7 +152,7 @@ backgroundColor: white
 
 不同点：
 - 任务 是这里提到的进程的**初级阶段**，不具有如下功能：
-  - 进程可以在运行的过程中，创建子进程 、 用新的程序内容覆盖已有的程序内容
+  - 进程可以在运行的过程中，创建子进程、用新的程序内容覆盖已有的程序内容
   - 进程成为程序执行过程中动态申请/使用/释放各种资源的载体
 
 进程的动态功能可让程序的运行更加灵活。
@@ -215,7 +217,7 @@ backgroundColor: white
 | -------------------------- | ------ |
 | ``int fork()``           |  **创建**一个进程，返回子进程的PID。    |
 | ``int exec(char *file)``   |  **加载**文件并执行；仅当出错时返回。    |
-| ``int exit(int status)`` | **终止**自身；报告`status`给执行waitpid()系统调用的父进程。     |
+| ``int exit(int status)`` | **终止**自身；报告`status`给**执行waitpid()系统调用**的父进程。     |
 | ``int waitpid(int pid, int *status)``  |  **等待**`pid`子进程退出，得到其 ``*status``退出状态。    |
 | ``int getpid()``           |  **获得**当前进程的PID。    |
 
@@ -421,6 +423,8 @@ if(pid == 0) {			// 子进程在这里继续
 - fork() 创建一个继承的子进程
   - **复制**父进程的所有变量和内存
   - **复制**父进程的所有CPU寄存器(有一个寄存器**例外**)
+    - 系统调用的返回值a0
+
    
  
 ---
@@ -721,8 +725,8 @@ int  main() {
 ##### Fork()的开销？
 
 - 在99%的情况里，我们在调用fork()之后调用exec()
-  - 在fork()操作中内存复制是没有作用的  --why?
-  - 子进程将可能关闭打开的文件和网络连接?  --why?
+  - 在fork()操作中内存复制是没有作用的  --why? 写时复制
+  - 子进程将可能关闭打开的文件和网络连接?  --why? 冲突
 
 ![bg right:50% 100%](figs/fork-exec.png)
 
@@ -760,10 +764,10 @@ int  main() {
 
 但是！
 -  Fork is no longer simple
-   - Fork encourages memory overcommit
-   - Fork is incompatible with a single address space
-   - Fork is incompatible with heterogeneous hardware
-   - Fork infects an entire system
+   - Fork encourages memory overcommit过度分配
+   - Fork is incompatible with a single address space不兼容单一地址空间模型
+   - Fork is incompatible with heterogeneous hardware-硬件环境错误
+   - Fork infects an entire system-感染整个系统
 
 ---
 
@@ -811,7 +815,7 @@ https://www.infoq.cn/article/BYGiWI-fxHTNvSohEUNW
 - But, let’s not pretend that it’s still a good idea today!
 
 **Please, stop teaching students that fork is good design**
-- Begin with spawn
+- Begin with spawn-高效进程创建
 - Teach fork, but include historical context
 
 ---
