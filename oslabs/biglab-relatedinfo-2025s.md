@@ -22,43 +22,38 @@
 
 ### 大实验题目列表
 
-- OS 架构相关
-   - 宏内核: 支持Linux App(如healer, syzkaller, ConfFuzz, DDS等，不用都支持)
+- 组件化OS的组件和架构设计
+   - 宏内核: 支持Linux App
       - 组件化宏内核框架和kernel直接相关内核模块改进和优化
-      - 基于异步协程的组件化宏内核框架和kernel直接相关内核模块改进和优化
    - 微内核
-      - 兼容redox/seL4/zircon等的组件化微内核框架和kernel直接相关内核模块改进和优化
+      - 兼容seL4等的组件化微内核框架和kernel直接相关内核模块改进和优化
    - 虚拟机监控器 (Hypervisor)
-      - 支持 ARM/x86_64/RISC-V的组件化 hypervisor 框架和 hypervisor 直接相关内核模块改进和优化
-      - Hypervisor 与 宏内核/微内核架构 的结合
+      - 支持件化 hypervisor 框架和 hypervisor 直接相关内核模块改进和优化
+      - Hypervisor 与 宏内核/微内核架构的结合
    - OS相关/无关内核组件优化 
       - 支持用户态中断的新型操作系统内核设计（在研的学术科研项目）
       - 实现并协程/线程/进程/扩展调度（linux支持的各种调度算法等）/内存分配(minmalloc等)/虚存管理/文件系统（ext4等）/网络协议栈/同步互斥/中断处理/驱动 的内核组件设计/优化/完善
       - 支持Rust STD库的组件化unikernel框架和kernel直接相关内核模块改进和优化
 
-- 硬件支持/驱动实现相关 （ 基于OS无关内核组件设计）
-   - 实现对[AI加速单元：如Intel NPU](https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/accel/ivpu)、瑞芯微RK3588 NPU，k230 NPU等)的内核驱动支持
+- 智能设备和驱动实现相关 （ 基于OS无关内核组件设计）
+   - 支持基于飞腾派的智能微小机器人/智能无人微小车等
    - 实现并扩展 x64/arm/rv64/loongarch的HAL（硬件抽象层）
    - 实现并扩展实现支持OS在用户态运行的HAL（[zCore](https://github.com/rcore-os/zCore)有这样的libos HAL实现）
-   - 实现并扩展对starfive星光二代开发板的多种外设驱动支持
-   - 实现并扩展对树莓派4开发板的多种外设驱动支持
-   - 实现并扩展对通用PC计算机的多种外设驱动支持
+   - 实现并扩展外设驱动支持
    - 实现并扩展对[virtio spec](https://docs.oasis-open.org/virtio/virtio/v1.2/csd01/virtio-v1.2-csd01.html)的多种[virtio外设驱动支持](https://github.com/rcore-os/virtio-drivers)
 
 - 内核正确性研究 
    - 形式化验证相关
       - 扩展带Verus（或Prusti/Kani等）安全验证属性的OSkernel相关/无关的内核组件（如上所示的各种内核组件）
       - 扩展Verus安全验证的lab1-5的rCore-Tutorial内核
-      - 扩展Prusti安全验证的lab1-5的rCore-Tutorial微内核
       - 扩展Verus安全验证的Rust-based seL4组件化微内核
-      - 扩展Prusti安全验证的Rust-based seL4组件化微内核
       - 扩展Verus安全验证的Rust-based hypervisor的信息不干扰（参考asplos24-dai.pdf）
-      - 扩展Prusti安全验证的Rust-based hypervisor的信息不干扰（参考asplos24-dai.pdf）
    - Fuzzing 相关
       - 使用和扩展模糊测试（Fuzzing）/符号执行（symbolic execution）框架或工具，通过模糊测试/符号执行的方法，查找课程测试用例 r/ucore tuturial os kernel, 全国OS比赛内核赛道二等奖以上的os kernel的bug（让系统崩溃，异常退出等）
       - 不同架构系统（宏内核、微内核、Hypervisor 等）的整体/部分功能模块的 fuzzing 
 
 - AI for Sys 相关
+   - 与字节跳动等合作，采用LLM+程序分析等技术支持C OS kernel自动翻译为 Rust OS Kernel。
    - 使用最新的LLM/AI技术进行设计OS kernel等（也可以是[设计CPU/Compiler等探索](https://github.com/LearningOS/os-lectures/blob/master/oslabs/biglab-relatedinfo.md#%E5%8F%82%E8%80%83%E5%9F%BA%E4%BA%8Ellmai%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91)）相关的研究
       - 采用MoE/Multi-Agent Collaboration或最新的LLM API/talk等自动化完成一个教学型的OS Kernel/Compiler
    - C-based OS to Rust-based OS
@@ -67,7 +62,11 @@
 注：上述内容绝大部分都有前期工作可以借鉴，也有同学/工程师在做，在下面的参考资源中大部分有提及，并可在前期的基础上进一步改进完善，可进一步联系助教和老师了解相关题目的细节。同学们也可提出自己的题目，并与老师交流，得到老师同意后可开展。
 
 ### 可作为大实验项目的参考和可选项
-
+#### 2024年春季OS课大实验完成项目（代码，文档，slide等）和
+- https://github.com/LearningOS/osbiglab-2024s-verifyingkernel
+- https://github.com/LearningOS/osbiglab-2024s-fuzzingkernel
+- https://github.com/LearningOS/osbiglab-2024s-fuzzingfilesystem
+- 
 #### 2023年春季OS课大实验完成项目（代码，文档，slide等）和往年OS相关开源毕设等
 - https://shimo.im/docs/QTPRT8h8jyGQCqkJ/read
 

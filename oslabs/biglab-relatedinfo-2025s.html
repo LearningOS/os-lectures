@@ -34,23 +34,22 @@
 <h3>大实验题目列表</h3>
 <ul>
 <li>
-<p>OS 架构相关</p>
+<p>组件化OS的组件和架构设计</p>
 <ul>
-<li>宏内核: 支持Linux App(如healer, syzkaller, ConfFuzz, DDS等，不用都支持)
+<li>宏内核: 支持Linux App
 <ul>
 <li>组件化宏内核框架和kernel直接相关内核模块改进和优化</li>
-<li>基于异步协程的组件化宏内核框架和kernel直接相关内核模块改进和优化</li>
 </ul>
 </li>
 <li>微内核
 <ul>
-<li>兼容redox/seL4/zircon等的组件化微内核框架和kernel直接相关内核模块改进和优化</li>
+<li>兼容seL4等的组件化微内核框架和kernel直接相关内核模块改进和优化</li>
 </ul>
 </li>
 <li>虚拟机监控器 (Hypervisor)
 <ul>
-<li>支持 ARM/x86_64/RISC-V的组件化 hypervisor 框架和 hypervisor 直接相关内核模块改进和优化</li>
-<li>Hypervisor 与 宏内核/微内核架构 的结合</li>
+<li>支持件化 hypervisor 框架和 hypervisor 直接相关内核模块改进和优化</li>
+<li>Hypervisor 与 宏内核/微内核架构的结合</li>
 </ul>
 </li>
 <li>OS相关/无关内核组件优化
@@ -63,14 +62,12 @@
 </ul>
 </li>
 <li>
-<p>硬件支持/驱动实现相关 （ 基于OS无关内核组件设计）</p>
+<p>智能设备和驱动实现相关 （ 基于OS无关内核组件设计）</p>
 <ul>
-<li>实现对<a href="https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/drivers/accel/ivpu">AI加速单元：如Intel NPU</a>、瑞芯微RK3588 NPU，k230 NPU等)的内核驱动支持</li>
+<li>支持基于飞腾派的智能微小机器人/智能无人微小车等</li>
 <li>实现并扩展 x64/arm/rv64/loongarch的HAL（硬件抽象层）</li>
 <li>实现并扩展实现支持OS在用户态运行的HAL（<a href="https://github.com/rcore-os/zCore">zCore</a>有这样的libos HAL实现）</li>
-<li>实现并扩展对starfive星光二代开发板的多种外设驱动支持</li>
-<li>实现并扩展对树莓派4开发板的多种外设驱动支持</li>
-<li>实现并扩展对通用PC计算机的多种外设驱动支持</li>
+<li>实现并扩展外设驱动支持</li>
 <li>实现并扩展对<a href="https://docs.oasis-open.org/virtio/virtio/v1.2/csd01/virtio-v1.2-csd01.html">virtio spec</a>的多种<a href="https://github.com/rcore-os/virtio-drivers">virtio外设驱动支持</a></li>
 </ul>
 </li>
@@ -81,11 +78,8 @@
 <ul>
 <li>扩展带Verus（或Prusti/Kani等）安全验证属性的OSkernel相关/无关的内核组件（如上所示的各种内核组件）</li>
 <li>扩展Verus安全验证的lab1-5的rCore-Tutorial内核</li>
-<li>扩展Prusti安全验证的lab1-5的rCore-Tutorial微内核</li>
 <li>扩展Verus安全验证的Rust-based seL4组件化微内核</li>
-<li>扩展Prusti安全验证的Rust-based seL4组件化微内核</li>
 <li>扩展Verus安全验证的Rust-based hypervisor的信息不干扰（参考asplos24-dai.pdf）</li>
-<li>扩展Prusti安全验证的Rust-based hypervisor的信息不干扰（参考asplos24-dai.pdf）</li>
 </ul>
 </li>
 <li>Fuzzing 相关
@@ -99,6 +93,7 @@
 <li>
 <p>AI for Sys 相关</p>
 <ul>
+<li>与字节跳动等合作，采用LLM+程序分析等技术支持C OS kernel自动翻译为 Rust OS Kernel。</li>
 <li>使用最新的LLM/AI技术进行设计OS kernel等（也可以是<a href="https://github.com/LearningOS/os-lectures/blob/master/oslabs/biglab-relatedinfo.md#%E5%8F%82%E8%80%83%E5%9F%BA%E4%BA%8Ellmai%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91">设计CPU/Compiler等探索</a>）相关的研究
 <ul>
 <li>采用MoE/Multi-Agent Collaboration或最新的LLM API/talk等自动化完成一个教学型的OS Kernel/Compiler</li>
@@ -114,6 +109,13 @@
 </ul>
 <p>注：上述内容绝大部分都有前期工作可以借鉴，也有同学/工程师在做，在下面的参考资源中大部分有提及，并可在前期的基础上进一步改进完善，可进一步联系助教和老师了解相关题目的细节。同学们也可提出自己的题目，并与老师交流，得到老师同意后可开展。</p>
 <h3>可作为大实验项目的参考和可选项</h3>
+<h4>2024年春季OS课大实验完成项目（代码，文档，slide等）和</h4>
+<ul>
+<li><a href="https://github.com/LearningOS/osbiglab-2024s-verifyingkernel">https://github.com/LearningOS/osbiglab-2024s-verifyingkernel</a></li>
+<li><a href="https://github.com/LearningOS/osbiglab-2024s-fuzzingkernel">https://github.com/LearningOS/osbiglab-2024s-fuzzingkernel</a></li>
+<li><a href="https://github.com/LearningOS/osbiglab-2024s-fuzzingfilesystem">https://github.com/LearningOS/osbiglab-2024s-fuzzingfilesystem</a></li>
+<li></li>
+</ul>
 <h4>2023年春季OS课大实验完成项目（代码，文档，slide等）和往年OS相关开源毕设等</h4>
 <ul>
 <li><a href="https://shimo.im/docs/QTPRT8h8jyGQCqkJ/read">https://shimo.im/docs/QTPRT8h8jyGQCqkJ/read</a></li>
