@@ -33,7 +33,7 @@ backgroundColor: white
   - 向勇 陈渝 李国良 任炬 
 
 ### 助教
-  - 赵方亮、朱懿、郑友捷
+  - 饶淙元、赵方亮、朱懿、郑友捷
 
 ---
 
@@ -185,6 +185,6 @@ backgroundColor: white
 
 ## 调查问卷
 
-[2025年春学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/3xyV182)
-访问密码：2i6+CYo3B
+[2025年春学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/kwIY4Ti)
+访问密码：D7t1y5w4r
 请大家在第一节课后尽快填写问卷，以便我们更好地上好课。
