@@ -61,7 +61,7 @@
 
 注：上述内容绝大部分都有前期工作可以借鉴，都可以是2025全国大学生OS比赛的内容，也有同学/工程师在做，在下面的参考资源中大部分有提及，并可在前期的基础上进一步改进完善，可进一步联系助教和老师了解相关题目的细节。同学们也可提出自己的题目，并与老师交流，得到老师同意后可开展。
 
-### 可作为大实验项目的参考和可选项
+### 可作为大实验项目的参考
 #### 2024年春季OS课大实验完成项目（代码，文档，slide等）和
 - https://github.com/LearningOS/osbiglab-2024s-verifyingkernel
 - https://github.com/LearningOS/osbiglab-2024s-fuzzingkernel
