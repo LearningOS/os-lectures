@@ -31,7 +31,7 @@
         * [各章OS的API 在线文档](https://learningos.github.io/rCore-Tutorial-v3/)
         * [可显示内核动态执行信息的内核分支](https://github.com/rcore-os/rCore-Tutorial-v3/tree/ch9-log)
 ### 课程答疑
-
+* [AI助教](https://www.coze.com/store/agent/7466038346734387217?bot_id=true)
 * [QA仓库](https://git.tsinghua.edu.cn/os-lab/q-and-a/)
 * [助教的实验讲解视频](https://cloud.tsinghua.edu.cn/d/ce9eced17e89471c8c30/)
 ### 课后习题
@@ -48,38 +48,38 @@
 
 包含每次实验必做的编程和问答作业，以及相对rCore Tutorial Book-v3较为精简的指导
 
-* [rCore-Tutorial-Guide文档源码](https://github.com/LearningOS/rCore-Tutorial-Guide-2024S)
-*  [rCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/rCore-Tutorial-Guide-2024S/)
-* [lab1(ch3) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2024S/ch3/os/index.html)
-* [lab2(ch4) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2024S/ch4/os/index.html)
+* [rCore-Tutorial-Guide文档源码](https://github.com/LearningOS/rCore-Tutorial-Guide-2025S)
+*  [rCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/rCore-Tutorial-Guide-2025S/)
+* [lab1(ch3) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2025S/ch3/os/index.html)
+* [lab2(ch4) OS框架API在线文档](https://learningos.github.io/rCore-Tutorial-Code-2025S/ch4/os/index.html)
 #### 代码框架
 
-* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Code-2024S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2024s)
+* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Code-2025S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-code-2025s)
 #### 用户态测例
 
-* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Test-2024S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2024s)
+* [Github仓库](https://github.com/LearningOS/rCore-Tutorial-Test-2025S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/rcore-tutorial-test-2025s)
 ### uCore基本实验
 
 #### 实验指导书
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Guide-2024S)
-* [uCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/uCore-Tutorial-Guide-2024S/)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Guide-2025S)
+* [uCore-Tutorial-Guide文档在线阅读](https://learningos.github.io/uCore-Tutorial-Guide-2025S/)
 #### 代码框架
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Code-2024S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2024s)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Code-2025S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-code-2025s)
 #### 用户态测例
 
-* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Test-2024S)
-* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2024s)
+* [Github仓库](https://github.com/LearningOS/uCore-Tutorial-Test-2025S)
+* [git.tsinghua仓库](https://git.tsinghua.edu.cn/os-lab/public/ucore-tutorial-test-2025s)
 
 ### 大实验
 需要在规定时间内完成rCore或uCore基本实验，才能进行大实验。
 欢迎所有感兴趣的同学尝试下面的大实验内容。如有问题，可联系陈渝老师等。
 
-- [2024大实验相关信息](./oslabs/biglab-relatedinfo.md)
+- [2025大实验相关信息](./oslabs/biglab-relatedinfo-2025s.md)
 
 
 ## 其它内容
