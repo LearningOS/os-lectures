@@ -13,7 +13,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 操作系统课程-2024春
+# 操作系统课程-2025春
 ## 实践与实验介绍
 
 <br>
