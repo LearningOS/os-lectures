@@ -90,19 +90,19 @@ backgroundColor: white
 
 #### uCore Tutorial
 
-- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2024A/)
-- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2024A/)
-- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2024A/)
+- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2025S/)
+- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2025S/)
+- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2025S/)
 
 ---
 
 ### 实验指导
 
 * rCore Tutorial
-  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2024A/)
-  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2024A/#os-api-docs-of-rcore-tutorial-code-2022a) 
-  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2024A)
-  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2024A)
+  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2025S/)
+  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2025S/#os-api-docs-of-rcore-tutorial-code-2022a) 
+  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2025S)
+  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2025S)
 * [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/ztzg6v1h3v2g4zcx)
   - 讲解视频
   - 部分内容将逐步更新
@@ -178,7 +178,7 @@ backgroundColor: white
 ---
 
 ### 选择2： 
-  - 四周内完成实验一~五(2023秋季实验)：40% 
+  - 四周内完成实验一~五(2025春实验)：40% 
   - 课程设计（即大实验）：60%
 
 **注：选择大实验的同学如果后续退出课程设计，需参加考试。**
