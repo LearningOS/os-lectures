@@ -18,11 +18,11 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 
 <br>
 
-向勇 陈渝 李国良 任炬 任炬
+向勇 陈渝 李国良 任炬
 
 <br>
 
-2024年春季
+2025年春季
 
 ---
 ### 目标
