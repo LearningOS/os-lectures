@@ -21,7 +21,7 @@ IPC OS (IOS)
 
 向勇 陈渝 李国良 任炬 
 
-2024年秋季
+2025年春季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
 

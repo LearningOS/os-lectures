@@ -35,12 +35,15 @@
       - 实现并协程/线程/进程/扩展调度（linux支持的各种调度算法等）/内存分配(minmalloc等)/虚存管理/文件系统（ext4等）/网络协议栈/同步互斥/中断处理/驱动 的内核组件设计/优化/完善
       - 支持Rust STD库的组件化unikernel框架和kernel直接相关内核模块改进和优化
 
-- 智能设备和驱动实现相关 （ 基于OS无关内核组件设计）
-   - 支持基于飞腾派的智能微小机器人/智能无人微小车等
+- 智能设备和驱动实现相关 （ 基于OS内核组件设计）
+   - 用starry组件化宏内核和Hypervisor代替Linux,支持基于飞腾派的智能微小机器人/智能无人微小车等
    - 实现并扩展 x64/arm/rv64/loongarch的HAL（硬件抽象层）
    - 实现并扩展实现支持OS在用户态运行的HAL（[zCore](https://github.com/rcore-os/zCore)有这样的libos HAL实现）
    - 实现并扩展外设驱动支持
    - 实现并扩展对[virtio spec](https://docs.oasis-open.org/virtio/virtio/v1.2/csd01/virtio-v1.2-csd01.html)的多种[virtio外设驱动支持](https://github.com/rcore-os/virtio-drivers)
+
+   - 注：基于树莓派5的ArmPi Pro麦轮智能小车资料 链接: https://pan.baidu.com/s/1U3p5a0DNoDlw3jEr1MgmeA?pwd=xk78  提取码:xk78
+   - 注：基于树莓派5的ArmPi Pro麦轮智能小车视频 链接: https://cloud.tsinghua.edu.cn/f/e30f90abd1a04594ae44/
 
 - 内核正确性研究 
    - 形式化验证相关
