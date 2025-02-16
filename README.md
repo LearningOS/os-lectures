@@ -86,10 +86,19 @@
 
  1. [幻灯片模板](style-marp.md)
  2. [RISC-V与X86 CPU硬件特征的对比介绍](rv-x86-hardware-info-video.md)
- 3. 如何生成PDF slides
+ 3. 如何生成PDF/pptx slides
       - [ubuntu 用 markdown + vscode + marp 编写 slides 并输出为 pdf](https://www.cnblogs.com/luyi07/p/14736322.html)
 
         ```
         marp --pdf --html --allow-local-files lec[1-9]*/*.md # for building PDF slides
         marp --pptx --html --allow-local-files lec[1-9]*/*.md # for building pptx slides
         ```
+ 
+ 4. 如何合并pdf files
+ 
+```
+# Debian/Ubuntu 安装 poppler组件，包括 pdfunite工具
+sudo apt install poppler-utils
+# 合并pdf files
+pdfunite input1.pdf input2.pdf input3.pdf output.pdf
+```       
