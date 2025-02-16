@@ -34,7 +34,7 @@ backgroundColor: white
 
 ### 助教
   - 饶淙元、胡柯洋、闭浩扬、王拓为、苏明贤、黄旺、郝子胥
-
+  - [AI助教](https://www.coze.com/store/agent/7466038346734387217?bot_id=true)
 ---
 
 ## 上课信息
