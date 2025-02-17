@@ -5,7 +5,8 @@
 ### 主讲教师：
   - 向勇 陈渝 李国良 任炬
 ### 助教
-  -  饶淙元、胡柯洋、闭浩扬、王拓为、苏明贤、黄旺、郝子胥
+  - 饶淙元、胡柯洋、闭浩扬、王拓为、苏明贤、黄旺、郝子胥
+  - [AI助教](https://www.coze.com/store/agent/7466038346734387217?bot_id=true)
 ## 上课时间/地点
 - 星期一 上午第二大节 09:50-12:15 (1-16周) 
 - 地点
@@ -31,7 +32,6 @@
         * [各章OS的API 在线文档](https://learningos.github.io/rCore-Tutorial-v3/)
         * [可显示内核动态执行信息的内核分支](https://github.com/rcore-os/rCore-Tutorial-v3/tree/ch9-log)
 ### 课程答疑
-* [AI助教](https://www.coze.com/store/agent/7466038346734387217?bot_id=true)
 * [QA仓库](https://git.tsinghua.edu.cn/os-lab/q-and-a/)
 * [助教的实验讲解视频](https://cloud.tsinghua.edu.cn/d/ce9eced17e89471c8c30/)
 ### 课后习题
@@ -86,10 +86,19 @@
 
  1. [幻灯片模板](style-marp.md)
  2. [RISC-V与X86 CPU硬件特征的对比介绍](rv-x86-hardware-info-video.md)
- 3. 如何生成PDF slides
+ 3. 如何生成PDF/pptx slides
       - [ubuntu 用 markdown + vscode + marp 编写 slides 并输出为 pdf](https://www.cnblogs.com/luyi07/p/14736322.html)
 
         ```
         marp --pdf --html --allow-local-files lec[1-9]*/*.md # for building PDF slides
         marp --pptx --html --allow-local-files lec[1-9]*/*.md # for building pptx slides
         ```
+ 
+ 4. 如何合并pdf files
+ 
+```
+# Debian/Ubuntu 安装 poppler组件，包括 pdfunite工具
+sudo apt install poppler-utils
+# 合并pdf files
+pdfunite input1.pdf input2.pdf input3.pdf output.pdf
+```       
