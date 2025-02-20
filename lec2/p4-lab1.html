@@ -388,7 +388,7 @@ target/riscv64gc-unknown-none-elf/release/os \
 <tbody>
 <tr>
 <td style="text-align:left">ret</td>
-<td style="text-align:left">jalr x0, x1, 0</td>
+<td style="text-align:left">jalr x0, x1, 0 (jalr rd, rs1, imm)</td>
 <td style="text-align:left">函数返回</td>
 </tr>
 <tr>
@@ -437,7 +437,8 @@ target/riscv64gc-unknown-none-elf/release/os \
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="38" data-marpit-pagination-total="60" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>函数调用约定</h4>
-<p>函数调用约定 (Calling Convention) 约定在某个指令集架构上，某种编程语言的函数调用如何实现。它包括了以下内容：</p>
+<p>函数调用约定 (Calling Convention) 约定在某个指令集架构上，某种编程语言的函数调用如何实现。</p>
+<p>它包括了以下内容：</p>
 <ul>
 <li>函数的输入参数和返回值如何传递；</li>
 <li>函数调用上下文中调用者/被调用者保存寄存器的划分；</li>
