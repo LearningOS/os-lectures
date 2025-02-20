@@ -422,7 +422,7 @@ riscv64-unknown-elf-gdb \
 
 伪指令            | 基本指令    | 含义   | 
 :----------------|:-----------|:----------|
-ret      | jalr x0, x1, 0       | 函数返回
+ret      | jalr x0, x1, 0 (jalr rd, rs1, imm)   | 函数返回
 call offset   | auipc x6, offset[31:12];  jalr x1, x6, offset[11:0]     | 函数调用
 
 auipc(add upper immediate to pc)被用来构建 PC 相对的地址，使用的是 U 型立即数。 auipc 以低 12 位补 0，高 20 位是 U 型立即数的方式形成 32 位偏移量，然后和 PC 相加，最后把结果保存在寄存器 x1。
@@ -451,7 +451,9 @@ call offset   | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]     | 函数�
 ---
 #### 函数调用约定
 
-函数调用约定 (Calling Convention) 约定在某个指令集架构上，某种编程语言的函数调用如何实现。它包括了以下内容：
+函数调用约定 (Calling Convention) 约定在某个指令集架构上，某种编程语言的函数调用如何实现。
+
+它包括了以下内容：
 
 - 函数的输入参数和返回值如何传递；
 - 函数调用上下文中调用者/被调用者保存寄存器的划分；
