@@ -33,7 +33,7 @@ backgroundColor: white
   - 向勇 陈渝 李国良 任炬 
 
 ### 助教
-  - 饶淙元、胡柯洋、闭浩扬、王拓为、苏明贤、黄旺、郝子胥
+  - 饶淙元、胡柯洋、闭浩扬、王拓为、苏明贤、黄旺、郝子胥、朱懿
   - [AI助教](https://www.coze.com/store/agent/7466038346734387217?bot_id=true)
 ---
 
