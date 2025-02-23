@@ -21,7 +21,7 @@ Address Space OS(ASOS)
 
 2025年春季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
 
 
 ---

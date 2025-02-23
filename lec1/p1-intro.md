@@ -23,7 +23,7 @@ backgroundColor: white
 
 2025年春季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
 
 ---
 
@@ -73,7 +73,7 @@ backgroundColor: white
 ---
 
 #### 课程参考
-- [课程幻灯片](https://www.yuque.com/xyong-9fuoz/qczol5/oqo14u60786offgg)
+- [课程幻灯片](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
 - 参考书
   - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
   - [深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
