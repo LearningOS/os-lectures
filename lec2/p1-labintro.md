@@ -290,12 +290,12 @@ backgroundColor: white
 ---
 
 #### 扩展实验（即大实验，课程设计）
-- [大实验相关资源信息](https://shimo.im/docs/m4kMMQjy7BHdEwkD)
+- [大实验相关资源信息](https://github.com/LearningOS/os-lectures/blob/master/oslabs/biglab-relatedinfo-2025s.md)
+  - 内核实现赛道：在轻量组件化OS kernel中已有120个左右的syscall实现的基础上，实现新的syscall，通过新测例。
+  - 功能挑战赛道：扩展轻量组件化OS kernel的功能，支持机器人、嵌入式只能设备等。
+  - 功能挑战赛道：基于LLM+静态分析实现C OS --> Rust OS
+  - 功能挑战赛道：基于LLM推理的资源管理与调度优化
+  - 参加全国大学生OS比赛（顺便旅游）
 
-**4周内**完成基础实验1~5后，与老师协商：选择完成扩展实验来代替考试。
+前提：**4周内**完成基础实验1~5。
 
-**早完成基础实验，可早开展扩展实验**
-
-- **扩展组件化操作操作系统的crates/modules/framworks** 
-  - 实现新feature（多核、新外设、新处理器、新功能）的支持
-  - 参加全国大学生OS比赛
