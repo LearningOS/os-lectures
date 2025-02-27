@@ -413,6 +413,7 @@
 <li><code>sfence.vma</code> 虚拟地址屏障(barrier)指令，用于虚拟内存无效和同步</li>
 </ul>
 </li>
+<li></li>
 <li>
 <p>很多其他的系统管理功能通过读写控制状态寄存器来实现</p>
 </li>
@@ -429,7 +430,7 @@
 <li>RISC-V系统编程：用户态编程</li>
 </ol>
 <h3>4. RISC-V系统编程：M-Mode编程</h3>
-<ol start="5">
+<ol>
 <li>RISC-V系统编程：内核编程</li>
 </ol>
 </div>
@@ -928,7 +929,7 @@ scause 寄存器</p>
 - stvec(supervisor trap vector)保存s模式的trap向量基址。stvec总是4字节对齐
 - satp(supervisor Address Translation and Protection) S-Mode控制状态寄存器控制了分页系统。
 - sscratch (supervisor Scratch Register) 保存指向hart-local supervisor上下文的指针. 在trap处理程序的开头，sscratch与用户寄存器交换，以提供初始工作寄存器。
-- sepc(supervisor Exception PC)它指向发生异常的指令。</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>Zifencei扩展 https://www.cnblogs.com/mikewolf2002/p/11191254.html</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>在执行 fence.i 指令之前，对于同一个硬件线程(hart)， RISC-V 不保证用存储指令写到内存指令区的数据可以被取指令取到。使用fence.i指令后，对同一hart，可以确保指令读取是最近写到内存指令区域的数据。但是，fence.i将不保证别的riscv hart的指令读取也能够满足读写一致性。如果要使写指令内存空间对所有的hart都满足一致性要求，需要执行fence指令。</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>- 堆栈：保存上下文；切换页表</p><p>--- 是smode的硬件处理流程 有误，应该是m-mode的才对
+- sepc(supervisor Exception PC)它指向发生异常的指令。</p></div><div class="bespoke-marp-note" data-index="30" tabindex="0"><p>Zifencei扩展 https://www.cnblogs.com/mikewolf2002/p/11191254.html</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>修改页表时，修改上下文时，刷新同步</p><p>指令缓存一致性</p><p>在执行 fence.i 指令之前，对于同一个硬件线程(hart)， RISC-V 不保证用存储指令写到内存指令区的数据可以被取指令取到。使用fence.i指令后，对同一hart，可以确保指令读取是最近写到内存指令区域的数据。但是，fence.i将不保证别的riscv hart的指令读取也能够满足读写一致性。如果要使写指令内存空间对所有的hart都满足一致性要求，需要执行fence指令。</p></div><div class="bespoke-marp-note" data-index="33" tabindex="0"><p>- 堆栈：保存上下文；切换页表</p><p>--- 是smode的硬件处理流程 有误，应该是m-mode的才对
 ##### 中断/异常的硬件响应
 1. **发生中断/异常的指令PC**被存入 mepc, 且 PC 被设置为 mtvec
 2. mcause 设置中断/异常**类型**,mtval被设置为出错的地址/异常**相关信息**
