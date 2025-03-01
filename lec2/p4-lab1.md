@@ -508,6 +508,8 @@ ret| jalr x0, x1, 0 (jalr rd, rs1, imm)|返回
 #### RISC-V函数调用约定：栈帧
 
 **栈帧（Stack Frames）**
+*sp(stack pointer) 栈指针：指向栈顶
+*fp(frame pointer) 帧指针：指向基址
 ```
 return address *
 previous fp
@@ -520,7 +522,7 @@ saved registers
 local variables
 … sp register
 ```
-![bg right:50% 180%](figs/stack-frame.png)
+![bg right:42% 180%](figs/stack-frame.png)
 
 
 
