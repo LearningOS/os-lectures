@@ -621,7 +621,7 @@ https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md
     .section .text.entry
     .globl _start
 _start:
-    la sp, boot_stack_top
+    la sp, boot_stack_top 
     call rust_main
 
     .section .bss.stack
@@ -631,6 +631,16 @@ boot_stack:
     .globl boot_stack_top
 boot_stack_top:
 ```
+<!--la sp, boot_stack_top  将栈顶地址 boot_stack_top 加载到栈指针寄存器 sp 中，这个操作初始化了栈。
+
+.globl boot_stack 栈的起始地址。
+
+.space 4096 * 16分配 4096 * 16 字节（即 64 KB）的栈空间。这种分配方式常用于规定栈的最大尺寸。
+
+globl boot_stack_top 和 boot_stack_top:：
+
+声明并定义一个全局标签 boot_stack_top，表示栈的顶部。
+-->
 
 ---
 #### 分配并使用启动栈
