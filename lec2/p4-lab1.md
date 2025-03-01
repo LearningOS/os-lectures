@@ -384,6 +384,9 @@ qemu-system-riscv64 \
     -device loader,file=target/riscv64gc-unknown-none-elf/release/os.bin,addr=0x80200000 \
     -s -S
 ```
+<!---s：启动GDB服务器在默认端口上进行监听。这允许开发者使用GNU调试器（GDB）连接到虚拟机以进行调试。
+-S：在CPU执行第一条指令前暂停虚拟机。这对于调试非常有用，因为它允许开发人员在任何代码执行之前先连接GDB，并设置断点或检查初始状态。
+-->
 
 ```
 riscv64-unknown-elf-gdb \
@@ -393,7 +396,10 @@ riscv64-unknown-elf-gdb \
 [GDB output]
 0x0000000000001000 in ?? ()
 ```
-
+<!---加载指定的可执行文件。
+设置GDB的架构为RISC-V 64位
+指定GDB连接到一个远程目标，
+-->
 
 ---
 提纲
@@ -417,35 +423,61 @@ riscv64-unknown-elf-gdb \
 ![bg right:60% 90%](figs/function-call.png)
 
 
+
+---
+#### call/return伪指令
+伪指令            | 基本指令    | 含义   | 
+:----------------|:-----------|:----------|
+call offset   | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]     | 调用
+ret      | jalr x0, x1, 0       | 返回
+
+
+函数调用核心机制：
+- 在函数调用时，通过 call 伪指令保存返回地址并实现跳转；
+- 在函数返回时，通过 ret 伪指令回到跳转之前的下一条指令继续执行
+
+
 ---
 #### call/return伪指令
 
-伪指令            | 基本指令    | 含义   | 
-:----------------|:-----------|:----------|
-ret      | jalr x0, x1, 0 (jalr rd, rs1, imm)   | 函数返回
-call offset   | auipc x6, offset[31:12];  jalr x1, x6, offset[11:0]     | 函数调用
+伪指令      | 基本指令    | 含义     | 
+:----------|:-----------|:----------|
+call offset  | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]| 调用
+ret| jalr x0, x1, 0 (jalr rd, rs1, imm)|返回
 
-auipc(add upper immediate to pc)被用来构建 PC 相对的地址，使用的是 U 型立即数。 auipc 以低 12 位补 0，高 20 位是 U 型立即数的方式形成 32 位偏移量，然后和 PC 相加，最后把结果保存在寄存器 x1。
+
+* auipc(add upper immediate to pc)被用来构建 PC 相对的地址，使用的是 U 型立即数。 auipc将 offset 的高 20 位（即 offset[31:12]）与当前 PC 相加，并将结果存储到寄存器 x6 中。
+* jalr x1, x6, offset[11:0] 将 x6 中的基址与 offset 的低 12 位（即 offset[11:0]）相加，得到完整的跳转地址。
+* 同时，把下一条指令的地址（即 PC + 4）存入 x1 寄存器。
+
+<!--auipc 以低 12 位补 0，高 20 位是 U 型立即数的方式形成 32 位偏移量，然后和 PC 相加，最后把结果保存在寄存器 x6。
+
+
+jalr 跳转到rs1+imm地址，并在rd寄存器中存储返回地址
+-->
+
+
+---
+#### call/return伪指令
+
+伪指令      | 基本指令    | 含义     | 
+:----------|:-----------|:----------|
+call offset  | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]| 调用
+ret| jalr x0, x1, 0 (jalr rd, rs1, imm)|返回
+
+
+* 伪指令 ret （jalr x0, x1, 0） 翻译为 jalr x0, 0(x1)，含义为跳转到寄存器 ra(即x1)保存的返回地址。
 
 ---
 
 #### 函数调用跳转指令
 ![w:1000](figs/fun-call-in-rv.png)
 
-伪指令 ret 翻译为 jalr x0, 0(x1)，含义为跳转到寄存器 ra(即x1)保存的地址。
+<!--伪指令 ret 翻译为 jalr x0, 0(x1)，含义为跳转到寄存器 ra(即x1)保存的地址。-->
 *[快速入门RISC-V汇编的文档](https://github.com/riscv-non-isa/riscv-asm-manual/blob/master/riscv-asm.md)*
 
 
----
-#### call/return伪指令
-伪指令            | 基本指令    | 含义   | 
-:----------------|:-----------|:----------|
-ret      | jalr x0, x1, 0       | 函数返回
-call offset   | auipc x6, offset[31:12]; jalr x1, x6, offset[11:0]     | 函数调用
 
-函数调用核心机制：
-- 在函数调用时，通过 call 伪指令保存返回地址并实现跳转；
-- 在函数返回时，通过 ret 伪指令回到跳转之前的下一条指令继续执行
 
 
 ---
