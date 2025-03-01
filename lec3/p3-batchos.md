@@ -617,7 +617,11 @@ unsafe fn load_app(&self, app_id: usize) {
 
 - fence.i ：用来清理 i-cache
 
-注:``fence.i``是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范
+- fence.i 是一条专门用于保持指令缓存一致性的指令，它通常用于程序需要在运行时修改代码或者生成新的代码片段的情境下，确保修改后的代码能够被正确地从内存中取出并执行。
+
+- 对于大多数普通应用程序，不涉及自修改代码或 JIT 编译的场景，fence.i 不会经常被使用。
+
+* 注:``fence.i``是i-cache屏障(barrier)指令，非特权指令，属于 “Zifencei”扩展规范
 
 **WHY？**
 
@@ -1057,6 +1061,34 @@ impl TrapContext {
         cx.set_sp(sp);
         cx
 ```
+
+<!--1. set_sp 方法
+
+功能：这个方法用于设置栈指针（stack pointer, SP）。
+实现：它直接将传入的 sp 值赋给 self.x[2]，假设在这个上下文中，寄存器数组 x 的第 2 个元素是用来存储栈指针的。
+2. app_init_context 函数
+
+目标：初始化一个应用程序的陷阱上下文。
+
+步骤：
+
+let mut sstatus = sstatus::read();
+
+读取当前的状态寄存器 sstatus，这通常涉及到 CPU 特权级别、全局中断使能等状态。
+sstatus.set_spp(SPP::User);
+
+设置陷阱返回时的特权级别为用户模式 (SPP::User)。这意味着当从陷阱返回时，CPU 将进入用户模式。
+let mut cx = Self { ... };
+
+创建一个新的 TrapContext 实例，初始化其内部的寄存器数组 x 为 [0; 32] （表示32个通用寄存器，初始值为0）。同时，将 sstatus 和 sepc 初始化为 sstatus 和 entry 参数。
+sepc 是保存异常发生时的程序计数器地址，通常用于返回处理完异常后继续执行的位置。
+cx.set_sp(sp);
+
+调用方法 set_sp 设置栈指针，确保程序在陷阱返回后有正确的栈环境。
+cx
+
+返回初始化好的 TrapContext 实例。
+-->
 
 
 ---
