@@ -783,7 +783,11 @@ Panicked at src/main.rs:26 Shutdown machine!
 (深入理解计算机系统) bss段，data段、text段、堆(heap)和栈(stack)</p></div><div class="bespoke-marp-note" data-index="31" tabindex="0"><p>s：启动GDB服务器在默认端口上进行监听。这允许开发者使用GNU调试器（GDB）连接到虚拟机以进行调试。
 -S：在CPU执行第一条指令前暂停虚拟机。这对于调试非常有用，因为它允许开发人员在任何代码执行之前先连接GDB，并设置断点或检查初始状态。</p><p>加载指定的可执行文件。
 设置GDB的架构为RISC-V 64位
-指定GDB连接到一个远程目标，</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>auipc 以低 12 位补 0，高 20 位是 U 型立即数的方式形成 32 位偏移量，然后和 PC 相加，最后把结果保存在寄存器 x6。
+指定GDB连接到一个远程目标，
+
+协同工作：这两者一起工作来实现对 RISC-V 操作系统的调试。QEMU 提供了一个模拟的硬件环境并通过 GDB 服务器允许外部调试器访问，而 GDB 则充当调试工具，通过连接到 QEMU 的 GDB 服务器来控制和检查正在运行的代码。
+
+典型用途：这种设置特别适用于低级别操作系统开发和嵌入式系统开发，因为它提供了强大的调试功能，包括设置断点、单步执行、查看寄存器状态和内存内容等。</p></div><div class="bespoke-marp-note" data-index="35" tabindex="0"><p>auipc 以低 12 位补 0，高 20 位是 U 型立即数的方式形成 32 位偏移量，然后和 PC 相加，最后把结果保存在寄存器 x6。
 
 
 jalr 跳转到rs1+imm地址，并在rd寄存器中存储返回地址</p></div><div class="bespoke-marp-note" data-index="37" tabindex="0"><p>伪指令 ret 翻译为 jalr x0, 0(x1)，含义为跳转到寄存器 ra(即x1)保存的地址。</p></div><div class="bespoke-marp-note" data-index="46" tabindex="0"><p>https://blog.csdn.net/zoomdy/article/details/79354502 RISC-V Assembly Programmer's Manual 
