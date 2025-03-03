@@ -190,19 +190,19 @@ u/rCore的框架结构
 
 | **属性** | **描述** |
 | --- | --- |
-| **地址空间隔离（Address Space Isolation）** | 进程只能访问自己的内存空间，不能直接访问其他进程的地址空间。例如，使用虚拟内存实现隔离。 |
-| **文件系统隔离（File System Isolation）** | 进程或容器只能访问自己的文件系统，不能访问其他进程的文件。例如，Linux 的 chroot 机制或容器的 OverlayFS。 |
-| **用户身份隔离（User Isolation）** | 操作系统通过用户权限控制（如 UNIX 的 UID/GID）确保不同用户之间的资源访问受到限制。 |
-| **进程隔离（Process Isolation）** | 进程之间通过进程表和内存管理保持独立，防止数据泄露和未授权访问。 |
+| 地址空间隔离（Address Space Isolation） | 进程只能访问自己的内存空间，不能直接访问其他进程的地址空间。如使用虚拟内存实现隔离。 |
+| 文件系统隔离（File System Isolation） | 进程或容器只能访问自己的文件系统，不能访问其他进程的文件。例如，Linux 的 chroot 机制或容器的 OverlayFS。 |
+| 用户身份隔离(User Isolation)| 通过用户权限控制（如 UNIX 的 UID/GID）确保不同用户之间的资源访问受到限制。 |
+| 进程隔离（Process Isolation）| 进程之间通过进程表和内存管理保持独立，防止数据泄露和未授权访问。 |
 
 ---
 
 
 | **属性** | **描述** |
 | --- | --- |
-| **网络隔离（Network Isolation）** | 通过防火墙、虚拟局域网（VLAN）或网络命名空间（Linux Namespace）限制不同进程、容器或 VM 之间的网络访问。 |
-| **计算资源隔离（Compute Resource Isolation）** | 通过 CPU 亲和性（CPU Affinity）、cgroups（Control Groups）等技术限制进程或容器的 CPU、内存、磁盘 I/O 使用。 |
-| **时间隔离（Temporal Isolation）** | 在实时系统或云计算环境中，确保任务获得预期的 CPU 时间片，避免一个任务长期占用 CPU 而影响其他任务。 |
+| 网络隔离（Network Isolation）| 通过防火墙、虚拟局域网（VLAN）或网络命名空间（Linux Namespace）限制不同进程、容器或 VM 之间的网络访问。 |
+| 计算资源隔离（Compute Resource Isolation） | 通过 CPU 亲和性（CPU Affinity）、cgroups（Control Groups）等技术限制进程或容器的 CPU、内存、磁盘 I/O 使用。 |
+| 时间隔离（Temporal Isolation） | 在实时系统或云计算环境中，确保任务获得预期的 CPU 时间片，避免一个任务长期占用 CPU 而影响其他任务。 |
 
 ---
 
