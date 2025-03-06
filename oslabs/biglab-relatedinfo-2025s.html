@@ -34,9 +34,9 @@
 <h3>大实验题目(也是全国大学生OS比赛题目)列表</h3>
 <ul>
 <li>
-<p>组件化OS的组件和架构设计</p>
+<p>组件化OS的组件和架构设计 （联系人：陈渝）</p>
 <ul>
-<li>宏内核: 支持Linux App
+<li>宏内核: 支持Linux App （联系人：郑友捷）
 <ul>
 <li>组件化宏内核框架和kernel直接相关内核模块改进和优化</li>
 </ul>
@@ -46,13 +46,13 @@
 <li>兼容seL4等的组件化微内核框架和kernel直接相关内核模块改进和优化</li>
 </ul>
 </li>
-<li>虚拟机监控器 (Hypervisor)
+<li>虚拟机监控器 (Hypervisor)（联系人：胡柯洋）
 <ul>
 <li>支持件化 hypervisor 框架和 hypervisor 直接相关内核模块改进和优化</li>
 <li>Hypervisor 与 宏内核/微内核架构的结合</li>
 </ul>
 </li>
-<li>OS相关/无关内核组件优化
+<li>OS相关/无关内核组件优化（联系人：胡柯洋）
 <ul>
 <li>支持用户态中断的新型操作系统内核设计（在研的学术科研项目）</li>
 <li>实现并协程/线程/进程/扩展调度（linux支持的各种调度算法等）/内存分配(minmalloc等)/虚存管理/文件系统（ext4等）/网络协议栈/同步互斥/中断处理/驱动 的内核组件设计/优化/完善</li>
@@ -62,19 +62,19 @@
 </ul>
 </li>
 <li>
-<p>智能设备和驱动实现相关 （ 基于OS内核组件设计）</p>
+<p>智能设备和驱动实现相关 （ 基于OS内核组件设计）（联系人：陈渝）</p>
 <ul>
 <li>
-<p>用starry组件化宏内核和Hypervisor代替Linux,支持基于飞腾派的智能微小机器人/智能无人微小车等</p>
+<p>用starry组件化宏内核和Hypervisor代替Linux,支持基于飞腾派的智能微小机器人/智能无人微小车等（联系人：郑友捷）</p>
 </li>
 <li>
-<p>实现并扩展 x64/arm/rv64/loongarch的HAL（硬件抽象层）</p>
+<p>实现并扩展 x64/arm/rv64/loongarch的HAL（硬件抽象层）（联系人：杨金博）</p>
 </li>
 <li>
-<p>实现并扩展实现支持OS在用户态运行的HAL（<a href="https://github.com/rcore-os/zCore">zCore</a>有这样的libos HAL实现）</p>
+<p>实现并扩展实现支持OS在用户态运行的HAL（<a href="https://github.com/rcore-os/zCore">zCore</a>有这样的libos HAL实现）（联系人：杨金博）</p>
 </li>
 <li>
-<p>实现并扩展外设驱动支持</p>
+<p>实现并扩展外设驱动支持（联系人：郑友捷）</p>
 </li>
 <li>
 <p>实现并扩展对<a href="https://docs.oasis-open.org/virtio/virtio/v1.2/csd01/virtio-v1.2-csd01.html">virtio spec</a>的多种<a href="https://github.com/rcore-os/virtio-drivers">virtio外设驱动支持</a></p>
@@ -88,9 +88,9 @@
 </ul>
 </li>
 <li>
-<p>内核正确性研究</p>
+<p>内核正确性研究 （联系人：陈渝）</p>
 <ul>
-<li>形式化验证相关
+<li>形式化验证相关（联系人：陈渝）
 <ul>
 <li>扩展带Verus（或Prusti/Kani等）安全验证属性的OSkernel相关/无关的内核组件（如上所示的各种内核组件）</li>
 <li>扩展Verus安全验证的lab1-5的rCore-Tutorial内核</li>
@@ -98,7 +98,7 @@
 <li>扩展Verus安全验证的Rust-based hypervisor的信息不干扰（参考asplos24-dai.pdf）</li>
 </ul>
 </li>
-<li>Fuzzing 相关
+<li>Fuzzing 相关（联系人：陈渝）
 <ul>
 <li>使用和扩展模糊测试（Fuzzing）/符号执行（symbolic execution）框架或工具，通过模糊测试/符号执行的方法，查找课程测试用例 r/ucore tuturial os kernel, 全国OS比赛内核赛道二等奖以上的os kernel的bug（让系统崩溃，异常退出等）</li>
 <li>不同架构系统（宏内核、微内核、Hypervisor 等）的整体/部分功能模块的 fuzzing</li>
@@ -107,15 +107,15 @@
 </ul>
 </li>
 <li>
-<p>AI for Sys 相关</p>
+<p>AI for Sys 相关 （联系人：陈渝）</p>
 <ul>
-<li>与字节跳动等合作，采用LLM+程序分析等技术支持C OS kernel自动翻译为 Rust OS Kernel。</li>
-<li>使用最新的LLM/AI技术进行设计OS kernel等（也可以是<a href="https://github.com/LearningOS/os-lectures/blob/master/oslabs/biglab-relatedinfo.md#%E5%8F%82%E8%80%83%E5%9F%BA%E4%BA%8Ellmai%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91">设计CPU/Compiler等探索</a>）相关的研究
+<li>与字节跳动等合作，采用LLM+程序分析等技术支持C OS kernel自动翻译为 Rust OS Kernel。 （联系人：郑友捷）</li>
+<li>使用最新的LLM/AI技术进行设计OS kernel等（也可以是<a href="https://github.com/LearningOS/os-lectures/blob/master/oslabs/biglab-relatedinfo.md#%E5%8F%82%E8%80%83%E5%9F%BA%E4%BA%8Ellmai%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91">设计CPU/Compiler等探索</a>）相关的研究 （联系人：陈渝）
 <ul>
 <li>采用MoE/Multi-Agent Collaboration或最新的LLM API/talk等自动化完成一个教学型的OS Kernel/Compiler</li>
 </ul>
 </li>
-<li>C-based OS to Rust-based OS
+<li>C-based OS to Rust-based OS （联系人：郑友捷）
 <ul>
 <li>通过大模型、静态源代码分析，语义解析，代码生成等，完成rCore Tutorial &lt;--&gt; uCoreTutorial，即实现两种OS的相互翻译</li>
 </ul>
@@ -123,27 +123,27 @@
 </ul>
 </li>
 <li>
-<p>内存/存储相关：端侧（电脑、手机等）LLM推理的内存/存储管理优化（在研的学术科研项目）</p>
+<p>内存/存储相关：端侧（电脑、手机等）LLM推理的内存/存储管理优化（在研的学术科研项目） （联系人：任炬）</p>
 <ul>
-<li>端侧设备的内存分配与释放优化
+<li>端侧设备的内存分配与释放优化（联系人：王拓为）
 <ul>
 <li>针对端侧设备的计算能力和内存限制，研究页表级的内存管理策略，以优化 LLM 推理时的内存占用和访问效率。</li>
 <li>探索按需页调度、TLB（转换后备缓冲区）优化、动态大页管理等技术，以减少内存碎片、降低页表遍历开销，并提升推理任务的整体性能。</li>
 </ul>
 </li>
-<li>端侧设备的内存带宽优化与管理
+<li>端侧设备的内存带宽优化与管理（联系人：王拓为）
 <ul>
 <li>端侧设备的内存带宽通常受限，尤其在多个任务并行处理时，带宽瓶颈尤为突出。</li>
 <li>研究如何通过硬件优化（如多通道内存管理）和操作系统层面的调度策略（如带宽感知的任务调度）来优化内存带宽利用，提高推理任务在端侧设备上的性能。</li>
 </ul>
 </li>
-<li>端侧设备的跨层存储管理与优化
+<li>端侧设备的跨层存储管理与优化（联系人：王拓为）
 <ul>
 <li>端侧设备通常依赖多种存储介质（如内存、闪存等）来处理数据。</li>
 <li>针对边缘计算环境中存储层次结构的特性，设计并优化跨层存储管理策略，使得内存、存储介质（如NVM、SSD等）和计算资源能够高效协同工作，从而提高推理过程中的数据存取速度和整体性能。</li>
 </ul>
 </li>
-<li>多任务推理在端侧设备中的内存隔离与共享
+<li>多任务推理在端侧设备中的内存隔离与共享（联系人：王拓为）
 <ul>
 <li>端侧设备在未来将会运行多个AI推理任务，内存隔离与共享成为关键问题。</li>
 <li>设计适用于端侧设备的内存管理方案，以确保多个推理任务间的内存隔离，避免相互干扰。</li>
@@ -153,29 +153,29 @@
 </ul>
 </li>
 <li>
-<p>资源调度相关：LLM推理中的资源调度优化（在研的学术科研项目）</p>
+<p>资源调度相关：LLM推理中的资源调度优化（在研的学术科研项目） （联系人：任炬）</p>
 <ul>
-<li>推理任务的多级调度系统设计
+<li>推理任务的多级调度系统设计（联系人：郝子胥）
 <ul>
 <li>设计一个多级调度系统，将推理任务分为不同的优先级，并根据资源的可用性动态调度任务。</li>
 <li>优先级可以基于推理任务的计算密集度、内存需求、带宽需求等因素进行设定。</li>
 <li>系统应支持动态调整优先级，确保高优先级任务能够获得必要的资源，以提高推理效率和响应速度。</li>
 </ul>
 </li>
-<li>基于计算和内存需求的联合调度策略
+<li>基于计算和内存需求的联合调度策略（联系人：郝子胥）
 <ul>
 <li>研究如何在AI推理过程中实现计算资源和内存资源的联合调度。</li>
 <li>考虑到推理任务通常涉及大量的计算和内存访问，设计一个协调机制，使得计算任务和内存任务能够高效配合，以避免因资源竞争导致的性能下降。</li>
 <li>可以结合计算密集型和内存密集型任务的特点，合理分配资源。</li>
 </ul>
 </li>
-<li>基于异构硬件的资源调度策略
+<li>基于异构硬件的资源调度策略（联系人：郝子胥）
 <ul>
 <li>针对不同类型的AI推理任务，设计一个针对异构计算资源（如CPU和GPU等）的动态调度框架。</li>
 <li>系统需要根据推理任务的特点（如是否需要高并行计算、对低延迟的需求等）选择最合适的计算单元执行任务，最大化硬件资源的利用率并减少计算瓶颈。</li>
 </ul>
 </li>
-<li>内存带宽敏感的任务调度与资源分配
+<li>内存带宽敏感的任务调度与资源分配（联系人：郝子胥）
 <ul>
 <li>在AI推理过程中，尤其是涉及大规模数据交换时，带宽限制可能成为性能瓶颈。</li>
 <li>研究内存带宽敏感的调度算法，在内存带宽受限时，通过调度机制合理分配内存带宽资源。</li>
