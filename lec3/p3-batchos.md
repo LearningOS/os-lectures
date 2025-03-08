@@ -81,7 +81,7 @@ LibOS目标
 - [GM-NAA I/O System](http://en.wikipedia.org/wiki/GM-NAA_I/O)(1956)
   - 启发：汽车生产线 
 - MULTICS OS(1969,MIT/GE/AT&T)
-  - GE 645 具有 8 级硬件支持的保护环
+  - GE 645 具有8级硬件支持的保护环
  GM-NAA: General Motors and North American Aviation;
  GE： General Electric
 ![bg right:38% 95%](figs/deng-fish.png)
@@ -379,7 +379,7 @@ pub extern "C" fn _start() -> ! {
 `user/src/linker.ld`
 
 - 将**程序的起始物理地址**调整为 0x80400000 ，应用程序都会被加载到这个物理地址上运行；
-- 将 _start 所在的 .text.entry 放在整个程序的开头，也就是说批处理系统只要在加载之后**跳转到 0x80400000** 就已经进入了 用户库的入口点，并会在初始化之后跳转到应用程序主逻辑；
+- 将 _start 所在的 .text.entry 放在整个程序的开头，也就是说批处理系统只要在加载之后**跳转到 0x80400000** 就已经进入了用户库的入口点，并会在初始化之后跳转到应用程序主逻辑；
 - 提供了最终生成可执行文件的 .bss 段的起始和终止地址，方便 clear_bss 函数使用。
 
 其余的部分与之前相同
@@ -429,7 +429,7 @@ pub extern "C" fn _start() -> ! {
 ---
 ##### 应用程序的系统调用执行流
 
-- 在子模块 syscall 中，应用程序通过 ecall 调用批处理系统提供的接口
+- 在子模块 syscall 中，应用程序通过ecall调用批处理系统提供的接口
 - ``ecall`` 指令会触发 名为 Environment call from U-mode 的异常
 - Trap 进入 S 模式执行批处理系统针对这个异常特别提供的服务代码
 - a0~a6 保存系统调用的参数， a0 保存返回值, a7 用来传递 syscall ID
@@ -679,7 +679,7 @@ unsafe fn load_app(&self, app_id: usize) {
 | sstatus | `SPP` 等字段给出 Trap 发生之前 CPU 的特权级（S/U）等 |
 | sepc    | 记录 Trap 发生之前执行的最后一条指令的地址 |
 | scause  | 描述 Trap 的原因      |
-| stval   | 给出 Trap 附加信息      |
+| stval   | 给出 Trap 附加信息（例如出错地址）      |
 | stvec   | 控制 Trap 处理代码的入口地址     |
 
 ---

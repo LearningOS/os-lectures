@@ -608,16 +608,18 @@ PP：Previous Privilege</li>
 <li>对于中断，mepc指向中断处理后应该恢复执行的位置</li>
 </ul>
 </li>
-<li>根据<strong>中断/异常来源</strong>设置 mcause，并将 mtval 设置为出错的地址或者其它适用于特定异常的信息字。</li>
+<li>根据<strong>中断/异常来源</strong>设置 mcause（用于标识中断和异常的原因）</li>
+<li>并将 mtval 设置为出错的地址或者其它适用于特定异常的信息字（提供了关于出错的具体信息）。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="48" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="48" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>M-Mode中断/异常的硬件响应</h5>
 <ul>
+<li>mstatus负责控制特权级别、全局中断使能和其他关键系统功能</li>
 <li>把控制状态寄存器 mstatus[MIE位]置零以<strong>禁用中断</strong>，并<strong>保留先前的 MIE 值</strong>到 MPIE 中。
 <ul>
 <li>SIE控制S-Mode下全局中断，MIE控制M-Mode下全局中断；</li>
-<li>SPIE记录的是SIE中断之前的值，MPIE记录的是MIE中断之前的值）</li>
+<li>SPIE记录SIE中断之前的值，MPIE记录MIE中断之前的值）</li>
 </ul>
 </li>
 <li><strong>发生异常之前的权限模式</strong>保留在 mstatus 的 MPP 域中，再把权限模式更改为M
@@ -651,7 +653,8 @@ PP：Previous Privilege</li>
 <h5>M-Mode中断/异常处理的控制权移交</h5>
 <ul>
 <li>默认情况下，所有的中断/异常都使得控制权移交到 M-Mode的中断/异常处理例程</li>
-<li>M-Mode的<strong>中断/异常处理例程</strong>可以将中断/异常重新<strong>导向 S-Mode</strong>，但是这些额外的操作会减慢中断/异常的处理速度</li>
+<li>M-Mode的<strong>中断/异常处理例程</strong>可以将中断/异常重新<strong>导向 S-Mode</strong></li>
+<li>但是这些额外的操作会<strong>减慢中断/异常的处理速度</strong></li>
 <li>RISC-V 提供一种<strong>中断/异常委托机制</strong>，通过该机制可以选择性地将中断/异常交给 S-Mode处理，而<strong>完全绕过 M-Mode</strong></li>
 </ul>
 </section>
@@ -921,6 +924,7 @@ scause 寄存器</p>
 <ul>
 <li>VPN[2], VPN[1], VPN[0]（共 27 位）：L2/1/0三级页表索引。</li>
 <li>Page Offset（12 位）：页内偏移（4 KiB 页大小）。</li>
+<li>页表项（Page Table Entry, PTE）8 bytes</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="70" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="70" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -942,10 +946,10 @@ scause 寄存器</p>
   +---------------+-----+---+------------ +
   | PPN (44 bits) | RSW | D | A | X W R V |
   +---------------+-----+---+------------ +
-
 </span></span></foreignObject></svg></code></pre>
 <ul>
-<li>PPN（物理页号）：映射到下一级页表或最终物理页。V（Valid）：有效位，1 表示 PTE 有效。R/W/X（读/写/执行）：页的权限。A/D（Access/Dirty）：访问和修改位。</li>
+<li>PPN（物理页号）：映射到下一级页表或最终物理页。</li>
+<li>V（Valid）：有效位，1 表示有效。R/W/X（读/写/执行）：页权限。A/D（Access/Dirty）：访问和修改位。RSW（Reserved for Software） 为软件保留</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="72" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="72" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -961,7 +965,6 @@ scause 寄存器</p>
   +---------------+-----+---+------------ +
   | PPN (44 bits) | RSW | D | A | X W R V |
   +---------------+-----+---+------------ +
-  
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="73" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="73" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -975,7 +978,6 @@ scause 寄存器</p>
   +---------------+-----+---+------------ +
   | PPN (44 bits) | RSW | D | A | X W R V |
   +---------------+-----+---+------------ +
-  
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="74" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="74" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -989,7 +991,6 @@ scause 寄存器</p>
   +---------------+-----+---+------------ +
   | PPN (44 bits) | RSW | D | A | X W R V |
   +---------------+-----+---+------------ +
-  
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="75" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="75" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -1000,12 +1001,12 @@ scause 寄存器</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>虚地址对应的最终物理地址 = (L0 PTE.PPN × 4 KiB) + Page Offset
 </span></span></foreignObject></svg></code></pre>
 <p>假设： satp.PPN = 0x12345，<br />
-即L2页表基地址 = 0x12345 × 4 KiB = 0x12345000。</p>
-<p>虚拟地址： 0x1234_5678<br />
-VPN[2] = 0x091（9 bits）<br />
-VPN[1] = 0x234（9 bits）<br />
-VPN[0] = 0x567（9 bits）<br />
-Page Offset = 0x078</p>
+即L2页表基地址 = 0x12345 × 4 KiB = 0x12345000。<br />
+虚拟地址： 0x0987654321<br />
+000 1001 1000 0111 0110 1001 0100 0011 0010 0001<br />
+000100110  000111011  010010100          0011 0010 0001<br />
+VPN[2]=0x026(9 bits) VPN[1]=0x03B(9 bits) VPN[0]=0x094(9 bits)<br />
+Page Offset = 0x321</p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="76" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="76" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>S-Mode虚存的地址转换</h5>
@@ -1013,18 +1014,19 @@ Page Offset = 0x078</p>
 <li>计算物理地址</li>
 </ol>
 <ul>
+<li>VPN[2]=0x026 VPN[1]=0x03B VPN[0]=0x094</li>
 <li>经过三级页表查询：
 <ul>
-<li>L2 PTE 指向 L1 页表（PPN = 0x20000）。</li>
-<li>L1 PTE 指向 L0 页表（PPN = 0x30000）。</li>
-<li>L0 PTE 指向物理页（PPN = 0x40000）。</li>
+<li>L2中0x026号PTE 指向 L1 页表（PPN = 0x20000，L1基址）</li>
+<li>L1中0x03B号PTE 指向 L0 页表（PPN = 0x30000，L0基址）</li>
+<li>L0中0x094号PTE 指向物理页（PPN = 0x40000）</li>
 </ul>
 </li>
+<li>最终 物理地址计算：</li>
 </ul>
-<p>最终 物理地址计算：</p>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>物理地址  = (0x40000 × 4 KiB) + 0x078
-         = 0x40000000 + 0x078
-         = 0x40000078
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>物理地址  = (0x40000 × 4 KiB) + 0x321
+         = 0x40000000 + 0x321
+         = 0x40000321
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="77" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="77" data-marpit-pagination-total="77" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -1101,7 +1103,11 @@ ASID 减少了 TLB 刷新需求
 
 如果没有 ASID，每次进程上下文切换后，必须完全刷新 TLB，因为同一虚拟地址可能指向不同的物理地址。这是因为 TLB 缓存的是虚拟到物理地址的映射，没有额外的信息来区分不同进程的映射。
 
-频繁的 TLB 刷新会导致显著的性能开销。这是因为新的内存访问将无法命中已缓存的 TLB 条目，导致更多时间花费在查找和加载新的映射上。</p></div><div class="bespoke-marp-note" data-index="75" tabindex="0"><p>---
+频繁的 TLB 刷新会导致显著的性能开销。这是因为新的内存访问将无法命中已缓存的 TLB 条目，导致更多时间花费在查找和加载新的映射上。</p></div><div class="bespoke-marp-note" data-index="74" tabindex="0"><p>虚拟地址： 0x1234_5678
+VPN[2] = 0x091（9 bits）
+VPN[1] = 0x234（9 bits）
+VPN[0] = 0x567（9 bits）
+Page Offset = 0x078</p></div><div class="bespoke-marp-note" data-index="75" tabindex="0"><p>---
 ![w:650](figs/satp2.png)
 
 
