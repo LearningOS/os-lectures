@@ -667,14 +667,17 @@ pub struct TrapContext {
 - 调用 `__switch()` 之后直到它返回前的这段时间，原 Trap 控制流 A 会先被**暂停**并被切换出去， CPU 转而**运行**另一个应用在内核中的 Trap 控制流 B 。
 ![bg right 95%](figs/task-context.png)
 
+
+<!--
 ---
 #### [Möbius strip](https://www.snexplores.org/article/scientists-say-mobius-strip-definition-pronunciation)
 
 a Möbius strip has only one surface.
 
 ![bg right 100%](figs/mobius-strip.png)
-<!--
+
 -->
+
 ---
 ####  Trap控制流切换：恢复运行
 - 一个特殊的函数` __switch()`
@@ -685,7 +688,7 @@ a Möbius strip has only one surface.
 
 ---
 #### Trap控制流切换函数`__switch()`
-![w:800](figs/switch.png)
+![w:820](figs/switch.png)
 
 
 ---
