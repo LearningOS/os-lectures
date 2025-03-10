@@ -984,7 +984,7 @@ scause 寄存器</p>
 <h5>S-Mode虚存的地址转换</h5>
 <p>三级地址翻译步骤：<br />
 3.  VPN[0] = VA [20:12], 给出了L0页表的索引号</p>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap> L0页表的页表项(L0-PTE)地址= (L1-PTE.PPN × 4 KiB) + (VPN[1] × 8)
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap> L0页表的页表项(L0-PTE)地址= (L1-PTE.PPN × 4 KiB) + (VPN[0] × 8)
  L0-PTE.PPN = 最终物理地址的物理页号
 
   63            10 9   8 7  6 5 4 3 2 1 0
