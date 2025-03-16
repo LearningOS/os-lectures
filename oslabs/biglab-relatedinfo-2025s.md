@@ -54,7 +54,10 @@
    - Fuzzing 相关（联系人：陈渝）
       - 使用和扩展模糊测试（Fuzzing）/符号执行（symbolic execution）框架或工具，通过模糊测试/符号执行的方法，查找课程测试用例 r/ucore tuturial os kernel, 全国OS比赛内核赛道二等奖以上的os kernel的bug（让系统崩溃，异常退出等）
       - 不同架构系统（宏内核、微内核、Hypervisor 等）的整体/部分功能模块的 fuzzing 
-
+   - Model Checking相关（联系人：陈渝）
+      - [The Hitchhiker's Guide to Operating Systems, USENIX ATC23](https://www.usenix.org/conference/atc23/presentation/jiang-yanyan)
+         - [mosaic project for paper"The Hitchhiker's Guide to Operating Systems"](https://github.com/jiangyy/mosaic)
+   
 - AI for Sys 相关 （联系人：陈渝）
    - 与字节跳动等合作，采用LLM+程序分析等技术支持C OS kernel自动翻译为 Rust OS Kernel。 （联系人：郑友捷）
    - 使用最新的LLM/AI技术进行设计OS kernel等（也可以是[设计CPU/Compiler等探索](https://github.com/LearningOS/os-lectures/blob/master/oslabs/biglab-relatedinfo.md#%E5%8F%82%E8%80%83%E5%9F%BA%E4%BA%8Ellmai%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E5%BC%80%E5%8F%91)）相关的研究 （联系人：陈渝）
