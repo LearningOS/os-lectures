@@ -166,6 +166,8 @@
   - [paper](https://dl.acm.org/authorize?N695014), [journal](https://dl.acm.org/doi/10.1145/3391202), [video](https://sosp19.rcs.uwaterloo.ca/videos/D1-S3-P3.mp4), [code](https://github.com/sslab-gatech/hydra)
     
 #### 中间件
+- 基于Rust的新一代中间件Dora(用于机器人/工业控制/自动驾驶领域的中间件)
+   - [dora](https://github.com/dora-rs/dora)
 - 基于Rust的DDS(用于机器人/工业控制/自动驾驶领域的中间件)
    - [RustDDS](https://github.com/jhelovuo/RustDDS)
    - [LixDDS](https://gitee.com/mrunix/lix-dds)
