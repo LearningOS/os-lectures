@@ -395,8 +395,10 @@ Shell: Process 2 exited with code 0
 
   - 创建时关闭所有在子进程里的文件描述符                
      -  ``CreateProcess(filename, CLOSE_FD)``
+     -  避免冲突、保护资源
   - 创建时改变子进程的环境
      - ``CreateProcess(filename, CLOSE_FD, new_envp)``
+     - 创建运行环境、隔离
  
 ---
 
