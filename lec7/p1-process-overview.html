@@ -368,11 +368,13 @@ Shell: Process 2 exited with code 0
 <li>创建时关闭所有在子进程里的文件描述符
 <ul>
 <li><code>CreateProcess(filename, CLOSE_FD)</code></li>
+<li>避免冲突、保护资源</li>
 </ul>
 </li>
 <li>创建时改变子进程的环境
 <ul>
 <li><code>CreateProcess(filename, CLOSE_FD, new_envp)</code></li>
+<li>创建运行环境、隔离</li>
 </ul>
 </li>
 </ul>
@@ -473,12 +475,12 @@ Shell: Process 2 exited with code 0
 <span class="hljs-keyword">if</span> (pid == <span class="hljs-number">0</span>) {			        <span class="hljs-comment">// 子进程在这里继续</span>
     exec_status = exec(“calc”, argc, argv0, argv1, …);
     <span class="hljs-built_in">printf</span>(“Why would I execute?”);
-}  <span class="hljs-keyword">else</span> {				<span class="hljs-comment">// 父进程在这里继续</span>
+}  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (pid &gt; <span class="hljs-number">0</span>) {				<span class="hljs-comment">// 父进程在这里继续</span>
     <span class="hljs-built_in">printf</span>(“Whose your daddy?”);
     …
     child_status = wait(pid);
-}
-<span class="hljs-keyword">if</span> (pid &lt; <span class="hljs-number">0</span>) { <span class="hljs-comment">/* error occurred */</span>
+} <span class="hljs-keyword">else</span> {
+{ <span class="hljs-comment">/* error occurred */</span> <span class="hljs-comment">// (pid &lt; 0) </span>
 </span></span></foreignObject></svg></code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="33" data-marpit-pagination-total="60" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
