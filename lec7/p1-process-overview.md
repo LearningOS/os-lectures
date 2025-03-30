@@ -485,12 +485,12 @@ int pid = fork();			// 创建子进程
 if (pid == 0) {			        // 子进程在这里继续
     exec_status = exec(“calc”, argc, argv0, argv1, …);
     printf(“Why would I execute?”);
-}  else {				// 父进程在这里继续
+}  else if (pid > 0) {				// 父进程在这里继续
     printf(“Whose your daddy?”);
     …
     child_status = wait(pid);
-}
-if (pid < 0) { /* error occurred */
+} else {
+{ /* error occurred */ // (pid < 0) 
 ```
 
 
