@@ -57,9 +57,9 @@ backgroundColor: white
 
 * O(n) 调度器：内核版本 2.4-2.6
 * O(1) 调度器：内核版本 2.6.0-2.6.22
-* CFS 调度器：内核版本 2.6.23（2007）-6.5
-* EEVDF（Earliest Eligible Virtual Deadline First） 调度器：内核版本 6.6（2023）-现在
-
+* CFS 调度器：内核版本 2.6.23（2007）-6.5（2023）
+* EEVDF调度器：内核版本 6.6（2023）-现在 
+EEVDF（Earliest Eligible Virtual Deadline First） 
 ![w:500px](figs/linux-schedulers.png)
 
 <!--
