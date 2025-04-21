@@ -412,7 +412,7 @@ close(fd);
 }
 </style>
 
-<div class="container">g
+<div class="container">
 
 <div class="col">
 
@@ -440,7 +440,7 @@ close(fd);
 - 删除文件
 - 列目录
 - 重命名文件
-- 重命名文件
+
 
 ![bg right 90%](figs/fs-tree.png) 
 
