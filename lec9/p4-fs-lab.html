@@ -659,7 +659,7 @@ pub fn main() -&gt; i32 {
 <li>从块设备 BLOCK_DEVICE 上打开文件系统；</li>
 <li>从文件系统中获取根目录的 inode 。</li>
 </ol>
-<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>lazy_static! {
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>lazy_static! {<span class="hljs-comment">//宏定义静态变量</span>
     <span class="hljs-keyword">pub</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">ref</span> BLOCK_DEVICE = Arc::new(BlockDeviceImpl::new());
 ......
 lazy_static! {
