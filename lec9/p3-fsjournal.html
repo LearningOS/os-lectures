@@ -466,7 +466,7 @@
 <li>Journal write：将TxB以及对应的文件操作写入到事务中</li>
 <li>Journal commit：写入TxE，并等待完成。完成后，这个事务是committed。</li>
 <li>Checkpoint：将事务中的数据，分别各自回写到各自的磁盘位置中。</li>
-<li>Free: 一段时间后，通过更新日记帐，超级块将交易记录标记为空闲</li>
+<li>Free: 一段时间后，通过更新日志记录，超级块将交易记录标记为空闲（释放掉）</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="44" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="44" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
