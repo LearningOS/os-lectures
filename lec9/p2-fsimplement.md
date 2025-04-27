@@ -466,11 +466,12 @@ bitmap块( `bitmap inode/dnode`)
 --- 
 #### 文件读操作过程
 ![w:650](figs/fsread.jpg)
+![bg right:40% 90%](figs/fsall.png)
 
 --- 
 #### 文件写操作过程
-![w:800](figs/fswrite.jpg)
-
+![w:700](figs/fswrite.jpg)
+![bg right:40% 90%](figs/fsall.png)
 
 
 --- 
