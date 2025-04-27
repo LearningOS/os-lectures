@@ -67,6 +67,7 @@
 <p>考虑一个应用以某种方式更新磁盘结构：将单个数据块附加到原有文件。</p>
 <ul>
 <li>通过打开文件，调用<code>lseek()</code>将文件偏移量移动到文件末尾，然后在关闭文件之前，向文件发出单个4KB写入来完成追加。</li>
+<li>lseek + write 并非原子操作。多个进程可能在 lseek 和 write 之间修改文件，导致偏移量失效。</li>
 </ul>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-marpit-fragments="4" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="7" data-marpit-pagination-total="48" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
