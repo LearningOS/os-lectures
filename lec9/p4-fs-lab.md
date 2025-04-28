@@ -888,7 +888,7 @@ pub struct BlockCache {
 3. 从文件系统中获取根目录的 inode 。
 
 ```rust
-lazy_static! {
+lazy_static! {//宏定义静态变量
     pub static ref BLOCK_DEVICE = Arc::new(BlockDeviceImpl::new());
 ......
 lazy_static! {

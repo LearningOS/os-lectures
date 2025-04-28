@@ -148,7 +148,7 @@ VFS, Virtual File System
 
 #### 文件系统基本数据结构 
 ![w:700](figs/fsoverall.png)
-
+![bg right:40% 90%](figs/fsall.png)
 
 --- 
 #### 文件卷控制块 (`superblock`)
@@ -181,6 +181,7 @@ VFS, Virtual File System
 - 文件的 Group ID
 - 链接数：有多少文件名指向这个 inode
 - 文件数据 block 的位置（直接、间接）
+![bg right:40% 90%](figs/fsall.png)
 
 --- 
 #### bitmap块
@@ -188,6 +189,8 @@ bitmap块( `bitmap inode/dnode`)
 - inode使用或者未使用标志位
 - dnode使用或者未使用标志位
 - 用于空间分配
+
+![bg right:40% 90%](figs/fsall.png)
 
 --- 
 #### 数据块dnode( `data node`)
@@ -197,7 +200,7 @@ bitmap块( `bitmap inode/dnode`)
     - 每个block都有编号，以方便inode记录
     - inode一般为128B
     - data block一般为4KB
-
+![bg right:40% 90%](figs/fsall.png)
 --- 
 #### 目录的数据块
 ![w:850](figs/fsdir.png)
@@ -463,11 +466,12 @@ bitmap块( `bitmap inode/dnode`)
 --- 
 #### 文件读操作过程
 ![w:650](figs/fsread.jpg)
+![bg right:40% 90%](figs/fsall.png)
 
 --- 
 #### 文件写操作过程
-![w:800](figs/fswrite.jpg)
-
+![w:700](figs/fswrite.jpg)
+![bg right:40% 90%](figs/fsall.png)
 
 
 --- 
