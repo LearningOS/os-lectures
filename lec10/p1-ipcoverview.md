@@ -456,7 +456,13 @@ Child: read msg:test
 - 不足：需要同步机制协调数据访问
 
 ![w:550](figs/shmem.png)
- 
+
+
+---
+#### 共享内存实现机制
+
+![w:900](figs/shm-imp.jpg)
+
 
 ---
 #### 共享内存的系统调用
@@ -468,10 +474,7 @@ Child: read msg:test
 
 注：需要信号量等同步机制协调共享内存的访问冲突
 
----
-#### 共享内存实现机制
 
-![w:900](figs/shm-imp.jpg)
 
 
 
@@ -668,7 +671,21 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
 ---
 #### 信号实现机制
 
+为什么需要通过sigreturn切换到用户态正常执行流程？
+
 ![bg right:70% 60%](figs/signal-2.png)
+
+
+---
+#### 信号实现机制
+
+为什么需要通过sigreturn切换到用户态正常执行流程？
+
+ - 权限需求：只有内核能安全操作硬件上下文。
+ - 安全校验：防止用户态篡改攻击。
+
+![bg right:70% 60%](figs/signal-2.png)
+
 
 ---
 
