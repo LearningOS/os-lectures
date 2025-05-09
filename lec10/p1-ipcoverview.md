@@ -294,6 +294,13 @@ key_t ftok(const char *pathname, int proj_id);
   - 选择性接收
   - 安全和隔离
 
+-消息的结构
+```
+struct msgbuf {
+	long mtype;   /* 消息的类型 */
+	char mtext[1];/* 消息正文 */
+};
+```
 ![bg right:62% 90%](figs/signal-imp2.jpg)
 
 
@@ -386,7 +393,6 @@ int  msgsnd(int msgid, const void *msg_ptr, size_t msg_sz, int msgflg);
 ```
 int  msgrcv(int msgid, void *msg_ptr, size_t msgsz,long int msgtype, int msgflg);
 ```
-
 - msgid: 由msgget函数返回的消息队列标识码
 - msg_ptr:是指向准备接收的消息的指针
 - msgsz:是msg_ptr指向的消息长度
@@ -394,7 +400,6 @@ int  msgrcv(int msgid, void *msg_ptr, size_t msgsz,long int msgtype, int msgflg)
     - msgtype=0返回队列第一条信息
     - msgtype>0返回队列第一条类型等于msgtype的消息　
     - msgtype<0返回队列第一条类型小于等于msgtype绝对值的消息
-
 
 
 ---
@@ -405,22 +410,42 @@ int  msgrcv(int msgid, void *msg_ptr, size_t msgsz,long int msgtype, int msgflg)
 - msgflg:控制着队列中没有相应类型的消息可供接收时的行为
   - IPC_NOWAIT，队列没有可读消息不等待，返回ENOMSG错误
   - MSG_NOERROR，消息大小超过msgsz时被截断
-
 返回值：
 - 成功：返回实际放到接收缓冲区里去的字符个数
 - 失败：则返回-1
 
+消息会被第一个调用 msgrcv() 且匹配 mtype 的进程接收。若多个进程监听同一mtype，则操作系统调度随机选择一个进程（存在竞争）。
+
+
 ---
-#### 消息队列控制
+#### 消息队列控制：查询队列状态、修改权限、删除队列等
 ```
 int msgctl(int msqid, int cmd, struct msqid_ds *buf);
 ```
 - 消息队列的属性保存在系统维护的数据结构msqid_ds中，可以通过函数msgctl获取或设置消息队列的属性。
 - msgctl：对msgqid标识的消息队列执行cmd操作，3种cmd操作：
   - IPC_STAT：获取消息队列对应的msqid_ds数据结构（保存到buf）
-  - IPC_SET：设置消息队列的属性，存储在buf中，包括：msg_perm.uid、 msg_perm.gid、msg_perm.mode、msg_qbytes
+  - IPC_SET：修改消息队列的属性（存储在buf中），包括：msg_perm.uid、 msg_perm.gid、msg_perm.mode、msg_qbytes
   - IPC_RMID：从内核中删除msgqid标识的消息队列
 - buf是指向msgid_ds结构的指针，指向消息队列模式和访问权限
+
+
+---
+#### 消息队列
+```
+struct msqid_ds {
+    struct ipc_perm msg_perm;  // 权限信息
+    time_t          msg_stime; // 最后发送消息的时间（单位：秒，从 1970-01-01 起）
+    time_t          msg_rtime; // 最后接收消息的时间
+    time_t          msg_ctime; // 最后修改队列的时间（如 IPC_SET、IPC_RMID）
+    unsigned long   msg_cbytes;// 当前队列中的字节数
+    msgqnum_t       msg_qnum;  // 当前队列中的消息数量
+    msglen_t        msg_qbytes; // 队列允许的最大字节数
+    pid_t           msg_lspid; // 最后发送消息的进程 PID
+    pid_t           msg_lrpid; // 最后接收消息的进程 PID
+};
+```
+
 ---
 #### 消息队列[示例程序](https://gitee.com/chyyuu/os-usrapp-lab/blob/main/c/ipc/message-queues/ex1.c)
 ```
@@ -470,7 +495,7 @@ Child: read msg:test
 - shmget( key, size, flags） //创建共享段
 - shmat( shmid, *shmaddr, flags） //把共享段映射到进程地址空间
 - shmdt( *shmaddr）//取消共享段到进程地址空间的映射
-- shmctl(shmid, cmd, shmid_ds *buf） //共享段控制
+- shmctl(shmid, cmd, shmid_ds *buf） //控制共享段
 
 注：需要信号量等同步机制协调共享内存的访问冲突
 
