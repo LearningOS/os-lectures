@@ -268,11 +268,11 @@ $ git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="20" data-marpit-pagination-total="63" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>命名管道</h4>
 <p>shell A</p>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ mkfifo name.fifo
-$ echo README &gt; name.fifo  #文件类型为p，写命名管道阻塞
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ mkfifo name.fifo #创建一个名为 name.fifo 的命名管道（文件类型为 p）
+$ echo README &gt; name.fifo  #文件类型为p（ls -l，第一个字母p表示命名管道），写命名管道阻塞
 </span></span></foreignObject></svg></code></pre>
 <p>shell B</p>
-<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ cat name.fifo
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>$ cat name.fifo #解除 Shell A 的阻塞
 </span></span></foreignObject></svg></code></pre>
 <p>但：字节流形态，不支持任意两个进程间的双向通信<br />
 命名管道<a href="https://www.cnblogs.com/52php/p/5840229.html">示例</a></p>

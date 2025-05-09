@@ -240,12 +240,12 @@ $ git clone https://github.com/rcore-os/rCore-Tutorial-v3.git
 
 shell A
 ```
-$ mkfifo name.fifo
-$ echo README > name.fifo  #文件类型为p，写命名管道阻塞
+$ mkfifo name.fifo #创建一个名为 name.fifo 的命名管道（文件类型为 p）
+$ echo README > name.fifo  #文件类型为p（ls -l，第一个字母p表示命名管道），写命名管道阻塞
 ```
 shell B
 ```
-$ cat name.fifo
+$ cat name.fifo #解除 Shell A 的阻塞
 ```
 
 但：字节流形态，不支持任意两个进程间的双向通信
