@@ -274,6 +274,18 @@ $ cat name.fifo
 #### 消息队列实现机制
 ![w:1000](figs/signal-imp.jpg)
 
+
+---
+#### ftok
+ftok 会基于文件的 inode 信息和 proj_id 生成一个唯一的键值。
+两个进程必须使用相同的 pathname 和 proj_id，才能生成相同的键值，从而访问同一个 IPC 资源。
+```
+key_t ftok(const char *pathname, int proj_id);
+```
+- pathname：一个已存在的文件路径（如进程A和B都能访问的文件）
+- proj_id：一个用户自定义的整型值（通常是一个字符的 ASCII 码，如 'A'）。
+
+
 ---
 #### 消息队列实现机制
 
@@ -289,10 +301,10 @@ $ cat name.fifo
 #### 消息队列的系统调用
 <!-- https://zhuanlan.zhihu.com/p/268389190  Linux进程间通信——消息队列 -->
 - 消息队列的系统调用
-  - msgget ( key, flags） //获取消息队列标识
-  - msgsnd ( QID, buf, size, flags ） //发送消息
-  - msgrcv ( QID, buf, size, type, flags ） //接收消息
-  - msgctl( … ） // 消息队列控制
+  - msgget ( key, flags） //创建息队列
+  - msgsnd ( msgid, buf, size, flags ） //发送消息
+  - msgrcv ( msgid, buf, size, type, flags ） //接收消息
+  - msgctl(msqid, cmd, msqid_ds *buf） // 消息队列控制
 
 消息的结构
 ```
@@ -398,7 +410,17 @@ int  msgrcv(int msgid, void *msg_ptr, size_t msgsz,long int msgtype, int msgflg)
 - 成功：返回实际放到接收缓冲区里去的字符个数
 - 失败：则返回-1
 
-
+---
+#### 消息队列控制
+```
+int msgctl(int msqid, int cmd, struct msqid_ds *buf);
+```
+- 消息队列的属性保存在系统维护的数据结构msqid_ds中，可以通过函数msgctl获取或设置消息队列的属性。
+- msgctl：对msgqid标识的消息队列执行cmd操作，3种cmd操作：
+  - IPC_STAT：获取消息队列对应的msqid_ds数据结构（保存到buf）
+  - IPC_SET：设置消息队列的属性，存储在buf中，包括：msg_perm.uid、 msg_perm.gid、msg_perm.mode、msg_qbytes
+  - IPC_RMID：从内核中删除msgqid标识的消息队列
+- buf是指向msgid_ds结构的指针，指向消息队列模式和访问权限
 ---
 #### 消息队列[示例程序](https://gitee.com/chyyuu/os-usrapp-lab/blob/main/c/ipc/message-queues/ex1.c)
 ```
@@ -434,7 +456,13 @@ Child: read msg:test
 - 不足：需要同步机制协调数据访问
 
 ![w:550](figs/shmem.png)
- 
+
+
+---
+#### 共享内存实现机制
+
+![w:900](figs/shm-imp.jpg)
+
 
 ---
 #### 共享内存的系统调用
@@ -442,14 +470,14 @@ Child: read msg:test
 - shmget( key, size, flags） //创建共享段
 - shmat( shmid, *shmaddr, flags） //把共享段映射到进程地址空间
 - shmdt( *shmaddr）//取消共享段到进程地址空间的映射
-- shmctl( …） //共享段控制
+- shmctl(shmid, cmd, shmid_ds *buf） //共享段控制
 
 注：需要信号量等同步机制协调共享内存的访问冲突
 
----
-#### 共享内存实现机制
 
-![w:900](figs/shm-imp.jpg)
+
+
+
 
 ---
 #### 创建共享内存
@@ -492,6 +520,25 @@ void *shmat(int shmid, const void *shmaddr, int shmflg);
   - SHM_RDONLY：只读。
   - SHM_RND：（shmaddr 非空时才有效）
 
+---
+#### 删除共享内存
+```
+int shmdt(const void *shmaddr);
+```
+- shmaddr是shmat()函数返回的地址指针
+- 调用成功时返回0，失败时返回-1.
+
+---
+#### 共享内存控制
+```
+int shmctl(int shmid, int cmd, struct shmid_ds *buf);
+```
+- shm_id是shmget()函数返回的共享内存标识符。
+- cmd是要采取的操作，它可以取下面的三个值 ：
+  - IPC_STAT：把shmid_ds结构中的数据设置为共享内存的当前关联值，即用共享内存的当前关联值覆盖shmid_ds的值。
+  - IPC_SET：如果进程有足够的权限，就把共享内存的当前关联值设置为shmid_ds结构中给出的值
+  - IPC_RMID：删除共享内存段
+- buf是一个结构指针，它指向共享内存模式和访问权限的结构。
 
 ---
 #### 共享内存[示例程序](https://gitee.com/chyyuu/os-usrapp-lab/blob/main/c/ipc/shared-memory/)
@@ -624,7 +671,21 @@ Signals and Inter-Process Communication  https://compas.cs.stonybrook.edu/~nhona
 ---
 #### 信号实现机制
 
+为什么需要通过sigreturn切换到用户态正常执行流程？
+
 ![bg right:70% 60%](figs/signal-2.png)
+
+
+---
+#### 信号实现机制
+
+为什么需要通过sigreturn切换到用户态正常执行流程？
+
+ - 权限需求：只有内核能安全操作硬件上下文。
+ - 安全校验：防止用户态篡改攻击。
+
+![bg right:70% 60%](figs/signal-2.png)
+
 
 ---
 
