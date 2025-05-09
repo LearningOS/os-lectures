@@ -294,6 +294,13 @@ key_t ftok(const char *pathname, int proj_id);
   - 选择性接收
   - 安全和隔离
 
+-消息的结构
+```
+struct msgbuf {
+	long mtype;   /* 消息的类型 */
+	char mtext[1];/* 消息正文 */
+};
+```
 ![bg right:62% 90%](figs/signal-imp2.jpg)
 
 
@@ -386,7 +393,6 @@ int  msgsnd(int msgid, const void *msg_ptr, size_t msg_sz, int msgflg);
 ```
 int  msgrcv(int msgid, void *msg_ptr, size_t msgsz,long int msgtype, int msgflg);
 ```
-
 - msgid: 由msgget函数返回的消息队列标识码
 - msg_ptr:是指向准备接收的消息的指针
 - msgsz:是msg_ptr指向的消息长度
@@ -394,7 +400,6 @@ int  msgrcv(int msgid, void *msg_ptr, size_t msgsz,long int msgtype, int msgflg)
     - msgtype=0返回队列第一条信息
     - msgtype>0返回队列第一条类型等于msgtype的消息　
     - msgtype<0返回队列第一条类型小于等于msgtype绝对值的消息
-
 
 
 ---
@@ -405,10 +410,12 @@ int  msgrcv(int msgid, void *msg_ptr, size_t msgsz,long int msgtype, int msgflg)
 - msgflg:控制着队列中没有相应类型的消息可供接收时的行为
   - IPC_NOWAIT，队列没有可读消息不等待，返回ENOMSG错误
   - MSG_NOERROR，消息大小超过msgsz时被截断
-
 返回值：
 - 成功：返回实际放到接收缓冲区里去的字符个数
 - 失败：则返回-1
+
+消息会被第一个调用 msgrcv() 且匹配 mtype 的进程接收。若多个进程监听同一mtype，则操作系统调度随机选择一个进程（存在竞争）。
+
 
 ---
 #### 消息队列控制
