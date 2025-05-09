@@ -264,6 +264,8 @@ int pthread_join(pthread_t thread, void **retval);
 - thread指向pthread_t结构类型的指针
 - retval是指向返回值的指针
 
+调用 pthread_join 的线程会阻塞，直到目标线程终止。
+
 ---
 
 **提纲**
@@ -271,7 +273,7 @@ int pthread_join(pthread_t thread, void **retval);
 1. 为何需要线程？
 2. 线程的概念
 ### 3. 使用线程
-4. 线程的设计实现
+1. 线程的设计实现
 
 ---
 
