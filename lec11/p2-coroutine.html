@@ -128,14 +128,14 @@
 <h4>基于控制传递的协程</h4>
 <p>控制传递机制：对称（Symmetric） v.s. 非对称（Asymmetric）协程</p>
 <ul>
-<li>对称协程：控制流是双向的，没有固定的主-子关系
+<li>对称协程：控制流是双向的，没有固定的主-从关系
 <ul>
 <li>只提供一种传递操作，用于<strong>在协程间直接传递控制</strong></li>
 <li>对称协程都是<strong>平等的</strong>，控制权直接在对称协程之间进行传递</li>
 <li>对称协程在挂起时主动指明另外一个<strong>对称协程</strong>来接收控制权</li>
 </ul>
 </li>
-<li>非对称协程（半对称(Semi-symmetric)协程）：主-子协程
+<li>非对称协程（半对称(Semi-symmetric)协程）：主-从协程
 <ul>
 <li>提供<strong>调用和挂起</strong>两种操作，非对称协程挂起时将<strong>控制返回给调用者</strong></li>
 <li>调用者或上层管理者根据某调度策略调用其他非对称协程</li>
@@ -145,11 +145,11 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="12" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>对称协程的控制传递：每个协程可直接转移到其他任何一个协程</h4>
-<p><img src="figs/coroutine-sym.png" alt="" style="width:900px;" /></p>
+<p><img src="figs/coroutine-asym.png" alt="" style="width:850px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="13" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>非对称协程的控制传递：只能将控制权“yield”回给启动它的协程</h4>
-<p><img src="figs/coroutine-asym.png" alt="" style="width:850px;" /></p>
+<p><img src="figs/coroutine-sym.png" alt="" style="width:900px;" /></p>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-marpit-fragments="2" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="14" data-marpit-pagination-total="53" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>对称协程</h4>
