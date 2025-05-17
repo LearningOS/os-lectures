@@ -488,6 +488,9 @@ do {
 ![bg right:50% 100%](figs/soft-peterson.png)
 - 满足线程Ti和Tj之间互斥的经典的基于软件的解决方法（1981年）
 - 孔融让梨
+- 主动声明意图（flag变量） 
+- 礼貌谦让（turn变量） 
+- 安全检查（循环验证）
 
 ---  
 
@@ -542,6 +545,9 @@ remainder section;
 
 ##### Dekkers算法
 
+声明阶段：举起flag标志牌表明需求
+竞争阶段：若对方在竞争，根据turn退让
+释放阶段：使用完资源后切换turn，保公平
 ![bg right:35% 100%](figs/soft-dekkers.png)
 ```
 do{
