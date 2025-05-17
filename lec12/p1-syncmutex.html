@@ -503,6 +503,9 @@ exit section
 <ul>
 <li>满足线程Ti和Tj之间互斥的经典的基于软件的解决方法（1981年）</li>
 <li>孔融让梨</li>
+<li>主动声明意图（flag变量）</li>
+<li>礼貌谦让（turn变量）</li>
+<li>安全检查（循环验证）</li>
 </ul>
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="31" data-marpit-pagination-total="51"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="32" data-marpit-pagination-total="51" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
@@ -550,6 +553,10 @@ remainder section;
 </section>
 </foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section style="" data-marpit-advanced-background="pseudo" data-marpit-pagination="33" data-marpit-pagination-total="51"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="34" data-marpit-pagination-total="51" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:35%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;figs/soft-dekkers.png&quot;);background-size:100%;"></figure></div></section></foreignObject><foreignObject width="65%" height="720"><section id="34" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="34" data-marpit-pagination-total="51" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;--marpit-advanced-background-split:35%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h5>Dekkers算法</h5>
+<p>声明阶段：举起flag标志牌表明需求<br />
+竞争阶段：若对方在竞争，根据turn退让<br />
+释放阶段：使用完资源后切换turn，保公平<br />
+</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>do{
   flag[0] = true;// 首先P0举手示意我要访问
   while(flag[1]) {// 看看P1是否也举手了
