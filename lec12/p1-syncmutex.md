@@ -545,7 +545,7 @@ remainder section;
 
 ##### Dekkers算法
 
-声明阶段：举起flag标志牌表明需求
+声明阶段：举起flag标志牌声明意图
 竞争阶段：若对方在竞争，根据turn退让
 释放阶段：使用完资源后切换turn，保公平
 ![bg right:35% 100%](figs/soft-dekkers.png)
