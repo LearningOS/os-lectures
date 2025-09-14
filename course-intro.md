@@ -22,7 +22,7 @@ style: @import url('https://unpkg.com/tailwindcss@^2/dist/utilities.min.css');
 
 <br>
 
-2025年春季
+2025年秋季
 
 ---
 ### 目标

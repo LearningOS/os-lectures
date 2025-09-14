@@ -20,7 +20,7 @@ backgroundColor: white
 
 <br>
 
-2025年春季
+2025年秋季
 
 ---
 ### 目标

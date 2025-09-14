@@ -21,9 +21,17 @@ backgroundColor: white
 
 <br>
 
-2025年春季
+2025年秋季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/xpvcf129pvf3fuxb)
+
+---
+
+## 问题
+
+- 我要学操作系统课吗？
+- 秋季学期的操作系统课是如何安排的？
+- 我打算如何学操作系统课？
 
 ---
 
@@ -33,19 +41,18 @@ backgroundColor: white
   - 向勇 陈渝 李国良 任炬 
 
 ### 助教
-  - 饶淙元、胡柯洋、闭浩扬、王拓为、苏明贤、黄旺、郝子胥、朱懿
-  - [AI助教](https://www.coze.com/store/agent/7466038346734387217?bot_id=true)
+  - 郑友捷、苏明贤、岳凯
+
 ---
 
 ## 上课信息
 
 ### 上课时间地点
 - 时间
-  - 周一上午第2节(09:50-12:15) 
+  - 周一下午第4节(15:20-16:55) 
+  - 周四上午第2节(09:50-11:25) 
 - 地点
-   - 李国良课堂：舜德/经管西楼302
-   - 任  炬课堂：舜德/经管西楼301
-   - 陈  渝课堂：三教1103
+   - 六教6A213
 
 ----
 
@@ -73,7 +80,7 @@ backgroundColor: white
 ---
 
 #### 课程参考
-- [课程幻灯片](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
+- [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/xpvcf129pvf3fuxb)
 - 参考书
   - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
   - [深入了解计算机系统](https://hansimov.gitbook.io/csapp/)
@@ -90,20 +97,20 @@ backgroundColor: white
 
 #### uCore Tutorial
 
-- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2025S/)
-- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2025S/)
-- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2025S/)
+- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2025A/)
+- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2025A/)
+- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2025A/)
 
 ---
 
 ### 实验指导
 
 * rCore Tutorial
-  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2025S/)
-  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2025S/#os-api-docs-of-rcore-tutorial-code-2022a) 
-  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2025S)
-  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2025S)
-* [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/ztzg6v1h3v2g4zcx)
+  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2025A/)
+  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2025A/#os-api-docs-of-rcore-tutorial-code-2022a) 
+  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2025A)
+  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2025A)
+* [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/miqaip1ig4005ogm)
   - 讲解视频
   - 部分内容将逐步更新
 
@@ -136,10 +143,22 @@ backgroundColor: white
   - （必做）：面向 RISC-V CPU 用 Rust/C 设计实现操作系统的功能
   - （选做）：难度和工作量比必做题目大的其它题目
 
-* **课程设计（大实验）**
+* **课程设计（Rust）**
   - 用组件来组合操作系统内核 
   - 参加全国大学生OS比赛
 
+---
+
+### 操作系统课关于AI工具的使用约定
+
+- 操作系统课鼓励使用各种AI工具来帮助OS
+  - AI助教可以同学们及时获取可能的帮助
+  - AI助教可以减少助教老师的工作量
+- 工具使用者需要对使用工具的后果负责
+  - AI工具给出的建议可以能幻觉
+  - 许多复杂问题无法完全靠工具来完成
+  - 考试时不允许使用AI工具
+  - “老师用AI工具出题，同学用AI工具回答”应该不是大家希望的状态
 
 ---
 ## 基础实验
@@ -153,18 +172,23 @@ backgroundColor: white
 
 
 ---
-
-## 课程设计（大实验）
+## 课程设计(Rust语言)
 
 * **用组件来组合操作系统内核**
+  * unikernel: ArceOS
+    * [arceos-tutorial-v2](https://github.com/scPointer/arceos-tutorial-v2/)
+  * 宏内核: StarryOS
+  * hypervisor: AxVisor
+  * 微内核: ReL4
+  * 异步操作系统: AsyncOS
+* 开源操作系统社区项目
 
-  - 组件化操作系统[ArceOS](http://arceos.org/overview.html)
-* **操作系统功能和扩展**
-  - 内核模块的完善和改进
-  - 内核可加载模块、微内核、在内核中引入异步编程
-  - RISC-V、x86-64、MIPS、ARM支持
-  - RaspBerry PI、U740、D1等
-  - GUI、驱动、文件系统、网络
+![bg right:51% 90% 内核模式](figs/kernel-arch.png)
+
+<!--
+出处： https://www.zhihu.com/question/667354659
+-->
+
 * 往届同学的[课程设计成果](https://shimo.im/docs/QTPRT8h8jyGQCqkJ)
 
 ---
@@ -172,22 +196,33 @@ backgroundColor: white
 ## 成绩评定
 
 ### 选择1：（总分不超过100） 
-  - 实验一~五必做题目： 40% ；期中考试 20% ； 期末考试 40%
+  - 实验一~五必做题目： 30% ；期中考试 30% ； 期末考试 40%
   - 平时作业加分：每做一次平时作业加0.5分，最高加5分，且课程总评成绩总分不超过100分
-  - 选做实验题加分：每做一个选做实验题，可得到相应分值，但是选做+必做实验题的总分不超过40分
+  - 选做实验题加分：每做一个选做实验题，可得到相应分值，但是选做+必做实验题的总分不超过30分
 
 ---
 
 ### 选择2： 
-  - 四周内完成实验一~五(2025春实验)：40% 
-  - 课程设计（即大实验）：60%
+  - 四周内完成实验一~五(2025秋实验)：30% 
+  - 课程设计（即大实验）：70%
 
 **注：选择大实验的同学如果后续退出课程设计，需参加考试。**
 
 ---
 
-## 调查问卷
+## 选课问卷
 
-[2025年春学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/kwIY4Ti)
-访问密码：D7t1y5w4r
-请大家在第一节课后尽快填写问卷，以便我们更好地上好课。
+[2025年秋学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/uNEDRhh)
+- 访问密码：PkmG1kd1h
+- 请大家在第二节课前及时填写问卷，以便我们更好地上课。
+
+---
+
+## 总结
+
+- 操作系统课是计算机系的核心基础课，讲解操作系统的基本原理（资源管理和运行环境），通过实验来学习和运用基本原理
+- 秋季学期的操作系统课持续12周，主要要求是实验和期中和期末考试
+  - 大实验可以替代考试
+- 基于选课目标确定用多少精力来学操作系统课
+  - 从事计算机专业的工作，多少都需要了解操作系统的原理的
+  - 对计算机底层技术有兴趣的同学，通过做好实验来比较透彻地掌握和运行操作系统的原理

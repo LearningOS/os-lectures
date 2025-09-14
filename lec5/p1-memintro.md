@@ -21,7 +21,7 @@ backgroundColor: white
 <br>
 <br>
 
-2025年春季
+2025年秋季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
 
