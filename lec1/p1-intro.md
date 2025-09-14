@@ -59,22 +59,22 @@ backgroundColor: white
 ## 预备知识
 
 ### 程序设计语言（汇编、C 和 Rust）
- - :confounded: 不是开发应用程序
- - :smile: 而是开发系统程序
+ - 不是开发应用程序
+ - 而是开发系统程序
 
 ### 数据结构
- - :smile: 理解基本数据结构即可
+ - 理解基本数据结构即可
 
 ---
 
 ## 预备知识
 ### 计算机组成原理
- - :smile: :smile: :smile: 刘总/康总/陆总的 RISC-V 原理 
- - :smile: Patterson 的 RISC-V 原理
+ - 刘总/康总/陆总的 RISC-V 原理 
+ - Patterson 的 RISC-V 原理
 
 ### 编译原理
- - :smile: 没学过影响不大 
- - :smile: 但还是要了解高级语言 <–>RISC-V 汇编语言
+ - 没学过影响不大 
+ - 但还是要了解高级语言 <–>RISC-V 汇编语言
 
 
 ---
