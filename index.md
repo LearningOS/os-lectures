@@ -21,7 +21,7 @@ backgroundColor: white
 <br>
 <br>
 
-## 2025年春季
+## 2025年秋季
 
 [讲义列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?) -- [简介](./course-intro.html) -- [准备](./lecs-preview.html) -- [AI助教](https://www.coze.com/store/agent/7466038346734387217?bot_id=true) -- [导图](https://chyyuu.github.io/test2/oscourse.html) -- [实验](./labs-intro.html) -- [毕设](./bachelor-projects.html)
 
