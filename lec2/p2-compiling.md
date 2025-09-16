@@ -25,6 +25,14 @@ backgroundColor: white
 2025年秋季
 
 ---
+
+### 问题
+
+- 如何把高级语言程序转换成CPU能理解和执行的二进制可执行代码？
+- 如何存储可执行代码？
+- 如何加载可执行代码？
+
+---
 ### 提纲
 
 ### 1. 硬件环境
@@ -195,3 +203,17 @@ rust-objdump -S target/riscv64gc-unknown-none-elf/debug/os
 - 堆 （heap）向高地址增长
 - 栈 （stack）向低地址增长
 ![bg right:50% 140%](figs/memlayout.png)
+
+---
+
+### 小结
+
+- 编译过程
+  - 编译器、汇编器、链接器
+- 程序加载
+  - 应用程序加载
+  - 祼机程序加载
+- 可执行文件格式ELF
+  - ELF文件头
+  - 段表（Program Header Table）
+  - 节表（Section Header Table）
