@@ -26,6 +26,15 @@ backgroundColor: white
 
 
 ---
+
+### 问题
+
+- RISC-V的各特权级的特征有什么异同？
+- 如何跨越特权级？
+- 各特权级的特有软件功能有哪些？
+
+---
+
 **提纲**
 
 ### 1. 主流CPU比较
@@ -105,10 +114,10 @@ backgroundColor: white
 ##### RISC-V相关术语
 - 应用执行环境 (Application Execution Environment, AEE)
 - 应用程序二进制接口 (Application Binary Interface, ABI)
-- 管理员二进制接口 (Supervisor Binary Interface, SBI)
-- 管理员执行环境 (Supervisor Execution Environment, SEE)
-- Hypervisor二进制接口 (Hypervisor Binary interface，HBI)
-- Hypervisor执行环境 (Hypervisor Execution Environment, HEE)
+- 内核二进制接口 (Supervisor Binary Interface, SBI)
+- 内核执行环境 (Supervisor Execution Environment, SEE)
+- 虚拟机监控器二进制接口 (Hypervisor Binary interface，HBI)
+- 虚拟机监控器执行环境 (Hypervisor Execution Environment, HEE)
 
 ---
 ##### RISC-V 系统模式：单应用场景
@@ -163,7 +172,7 @@ backgroundColor: white
 <div class="col">
 
 1. 主流CPU比较
-2. RISC-V系统模式
+2. **RISC-V系统模式**
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
@@ -258,7 +267,7 @@ backgroundColor: white
 <div class="col">
 
 1. 主流CPU比较
-2. RISC-V系统模式
+2. **RISC-V系统模式**
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
 5. RISC-V系统编程：内核编程
@@ -432,7 +441,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 ### 4. RISC-V系统编程：M-Mode编程
-1. RISC-V系统编程：内核编程
+5. RISC-V系统编程：内核编程
 
 </div>
 
@@ -552,7 +561,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 1. 主流CPU比较
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
-4. RISC-V系统编程：M-Mode编程
+4. **RISC-V系统编程：M-Mode编程**
 5. RISC-V系统编程：内核编程
 
 </div>
@@ -657,7 +666,7 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 1. 主流CPU比较
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
-4. RISC-V系统编程：M-Mode编程
+4. **RISC-V系统编程：M-Mode编程**
 5. RISC-V系统编程：内核编程
 
 </div>
@@ -828,7 +837,7 @@ scause 寄存器
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
-5. RISC-V系统编程：内核编程
+5. **RISC-V系统编程：内核编程**
 
 </div>
 
@@ -888,7 +897,7 @@ scause 寄存器
 2. RISC-V系统模式
 3. RISC-V系统编程：用户态编程
 4. RISC-V系统编程：M-Mode编程
-5. RISC-V系统编程：内核编程
+5. **RISC-V系统编程：内核编程**
 
 </div>
 
@@ -1072,9 +1081,12 @@ Page Offset = 0x078-->
 ---
 ### 小结
 
-- 了解 RISC-V 特权级和硬件隔离方式
-- 了解 RISC-V 的 M-Mode 和 S-Mode 的基本特征
-- 了解OS在 M-Mode 和 S-Mode 下如何访问控制计算机系统
-- 了解不同软件如何在 M-Mode<–>S-Mode<–>U-Mode 之间进行切换
-- 了解虚实地址转换
-
+- RISC-V 特权级
+  - M-Mode, (H-Mode) S-Mode, U-Mode
+- RISC-V 的 M-Mode 和 S-Mode 的基本特征
+  - 中断使能、委托和配置；页表使能和配置
+- 不同软件如何在 M-Mode<–>S-Mode<–>U-Mode 之间进行切换
+  - ecall, mret, sret
+- 中断响应过程
+- 虚实地址转换过程
+  - 手工计算地址转换
