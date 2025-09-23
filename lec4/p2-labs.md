@@ -40,12 +40,12 @@ backgroundColor: white
 <div class="col">
 
 
-### 1. <font size=6>实验目标和步骤</font>
-2. <font size=6>多道批处理操作系统设计</font>
-2. <font size=6>应用程序设计</font>
-3. <font size=6>LibOS：支持应用程序加载</font>
-4. <font size=6>BatchOS：支持多道程序协作调度</font>
-5. <font size=6>MultiprogOS：分时多任务OS</font>
+### 1. 实验目标和步骤
+2. 多道批处理操作系统设计
+2. 应用程序设计
+3. LibOS：支持应用程序加载
+4. BatchOS：支持多道程序协作调度
+5. MultiprogOS：分时多任务OS
 
 </div>
 
@@ -133,12 +133,12 @@ J. Lyons & Co.是一家成立于1884年的英国连锁餐厅，食品制造业�
 <div class="col">
 
 
-1. <font size=6>**实验目标和步骤**</font>
-2. <font size=6>多道批处理操作系统设计</font>
-3. <font size=6>应用程序设计</font>
-4. <font size=6>LibOS：支持应用程序加载</font>
-5. <font size=6>BatchOS：支持多道程序协作调度</font>
-6. <font size=6>MultiprogOS：分时多任务OS</font>
+1. **实验目标和步骤**
+2. 多道批处理操作系统设计
+3. 应用程序设计
+4. LibOS：支持应用程序加载
+5. BatchOS：支持多道程序协作调度
+6. MultiprogOS：分时多任务OS
 
 </div>
 
@@ -202,12 +202,12 @@ CCCCCCCCCC [3/3]
 
 **提纲**
 
-1. <font size=6>实验目标和步骤</font>
-### 2. <font size=6>多道批处理操作系统设计</font>
-3. <font size=6>应用程序设计</font>
-4. <font size=6>LibOS：支持应用程序加载</font>
-5. <font size=6>BatchOS：支持多道程序协作调度</font>
-6. <font size=6>MultiprogOS：分时多任务OS</font>
+1. 实验目标和步骤
+### 2. 多道批处理操作系统设计
+3. 应用程序设计
+4. LibOS：支持应用程序加载
+5. BatchOS：支持多道程序协作调度
+6. MultiprogOS：分时多任务OS
 
 ---
 
@@ -261,12 +261,12 @@ CCCCCCCCCC [3/3]
 
 **提纲**
 
-1. <font size=6>实验目标和步骤</font>
-2. <font size=6>多道批处理操作系统设计</font>
-### 3. <font size=6>应用程序设计</font>
-4. <font size=6>LibOS：支持应用程序加载</font>
-5. <font size=6>BatchOS：支持多道程序协作调度</font>
-6. <font size=6>MultiprogOS：分时多任务OS</font>
+1. 实验目标和步骤
+2. 多道批处理操作系统设计
+### 3. 应用程序设计
+4. LibOS：支持应用程序加载
+5. BatchOS：支持多道程序协作调度
+6. MultiprogOS：分时多任务OS
 
 ---
 
@@ -335,12 +335,12 @@ pub fn yield_() -> isize {
 
 **提纲**
 
-1. <font size=6>实验目标和步骤</font>
-2. <font size=6>多道批处理操作系统设计</font>
-3. <font size=6>应用程序设计</font>
-### 4. <font size=6>LibOS：支持应用程序加载</font>
-5. <font size=6>BatchOS：支持多道程序协作调度</font>
-6. <font size=6>MultiprogOS：分时多任务OS</font>
+1. 实验目标和步骤
+2. 多道批处理操作系统设计
+3. 应用程序设计
+### 4. LibOS：支持应用程序加载
+5. BatchOS：支持多道程序协作调度
+6. MultiprogOS：分时多任务OS
 
 ---
 
@@ -428,12 +428,12 @@ dst.copy_from_slice(src);
 <div class="col">
 
 
-1. <font size=6>实验目标和步骤</font>
-2. <font size=6>多道批处理操作系统设计</font>
-3. <font size=6>应用程序设计</font>
-4. <font size=6>LibOS：支持应用程序加载</font>
-### 5. <font size=6>BatchOS：支持多道程序协作调度</font>
-6. <font size=6>MultiprogOS：分时多任务OS</font>
+1. 实验目标和步骤
+2. 多道批处理操作系统设计
+3. 应用程序设计
+4. LibOS：支持应用程序加载
+### 5. BatchOS：支持多道程序协作调度
+6. MultiprogOS：分时多任务OS
 
 </div>
 
@@ -626,12 +626,12 @@ pub struct TrapContext {
 
 <div class="col">
 
-1. <font size=6>实验目标和步骤</font>
-2. <font size=6>多道批处理操作系统设计</font>
-3. <font size=6>应用程序设计</font>
-4. <font size=6>LibOS：支持应用程序加载</font>
-5. <font size=6>**BatchOS：支持多道程序协作调度**</font>
-6. <font size=6>MultiprogOS：分时多任务OS</font>
+1. 实验目标和步骤
+2. 多道批处理操作系统设计
+3. 应用程序设计
+4. LibOS：支持应用程序加载
+5. **BatchOS：支持多道程序协作调度**
+6. MultiprogOS：分时多任务OS
 
 </div>
 
@@ -796,12 +796,12 @@ a Möbius strip has only one surface.
 
 <div class="col">
 
-1. <font size=6>实验目标和步骤</font>
-2. <font size=6>多道批处理操作系统设计</font>
-3. <font size=6>应用程序设计</font>
-4. <font size=6>LibOS：支持应用程序加载</font>
-5. <font size=6>**BatchOS：支持多道程序协作调度**</font>
-6. <font size=6>MultiprogOS：分时多任务OS</font>
+1. 实验目标和步骤
+2. 多道批处理操作系统设计
+3. 应用程序设计
+4. LibOS：支持应用程序加载
+5. **BatchOS：支持多道程序协作调度**
+6. MultiprogOS：分时多任务OS
 
 </div>
 
@@ -898,12 +898,12 @@ pub fn exit_current_and_run_next() {
 
 **提纲**
 
-1. <font size=6>实验目标和步骤</font>
-2. <font size=6>多道批处理操作系统设计</font>
-3. <font size=6>应用程序设计</font>
-4. <font size=6>LibOS：支持应用程序加载</font>
-5. <font size=6>BatchOS：支持多道程序协作调度</font>
-### 6. <font size=6>MultiprogOS：分时多任务OS</font>
+1. 实验目标和步骤
+2. 多道批处理操作系统设计
+3. 应用程序设计
+4. LibOS：支持应用程序加载
+5. BatchOS：支持多道程序协作调度
+### 6. MultiprogOS：分时多任务OS
 
 ---
 
