@@ -25,6 +25,13 @@ backgroundColor: white
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 34px;
+}
+</style>
+
 **提纲**
 <style>
 .container{
@@ -118,7 +125,16 @@ J. Lyons & Co.是一家成立于1884年的英国连锁餐厅，食品制造业�
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
+
 **提纲**
+
 <style>
 .container{
     display: flex;    
@@ -200,7 +216,16 @@ CCCCCCCCCC [3/3]
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
+
 **提纲**
+
 
 1. 实验目标和步骤
 ### 2. 多道批处理操作系统设计
@@ -259,7 +284,16 @@ CCCCCCCCCC [3/3]
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
+
 **提纲**
+
 
 1. 实验目标和步骤
 2. 多道批处理操作系统设计
@@ -333,7 +367,16 @@ pub fn yield_() -> isize {
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
+
 **提纲**
+
 
 1. 实验目标和步骤
 2. 多道批处理操作系统设计
@@ -413,7 +456,16 @@ dst.copy_from_slice(src);
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
+
 **提纲**
+
 <style>
 .container{
     display: flex;    
@@ -612,7 +664,16 @@ pub struct TrapContext {
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
+
 **提纲**
+
 <style>
 .container{
     display: flex;    
@@ -782,6 +843,14 @@ a Möbius strip has only one surface.
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
+
 **提纲**
 <style>
 .container{
@@ -896,7 +965,16 @@ pub fn exit_current_and_run_next() {
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
+
 **提纲**
+
 
 1. 实验目标和步骤
 2. 多道批处理操作系统设计
