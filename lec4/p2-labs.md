@@ -25,6 +25,15 @@ backgroundColor: white
 
 ---
 
+### 问题
+
+- 如何用代码实现对进程的管理？
+  - 内核为每个进程维护一个什么样的数据结构来描述其状态？
+  - 进程切换的过程如何用做对表达出来？
+  - 进程调度中主动让权和抢占如何用代码来实现？
+
+---
+
 <style scoped>
 /* 当前幻灯片的字体变大 */
 section {
@@ -1035,18 +1044,18 @@ match scause.cause() {
 
 ---
 ### 小结
-- 多道程序&分时共享多任务
-- 协作式调度&抢占式调度
-- 任务与任务切换
-- 中断机制
+- 进程概念与进程控制块PCB数据结构相对应
+- 协作式调度：yield()系统调用
+- 抢占式调度：时钟中断触发进程切换
+- 任务与任务切换：taskContext & switch_to()
 
 ---
 
 ### 课程实验一
 
 * 实验任务：增加一个系统调用`sys_task_info()`
-    * [uCore实验一任务描述](https://learningos.github.io/uCore-Tutorial-Guide-2024A/chapter3/5exercise.html#id1)
-    * [rCore实验一任务描述](https://learningos.github.io/rCore-Tutorial-Guide-2024A/chapter3/5exercise.html#chapter3)
+    * [uCore实验一任务描述](https://learningos.github.io/uCore-Tutorial-Guide/chapter3/5exercise.html#id1)
+    * [rCore实验一任务描述](https://learningos.github.io/rCore-Tutorial-Guide/chapter3/5exercise.html#chapter3)
 * 实验提交要求
     * 在自己的已创建实验仓库中提交完整的代码和文档；
     * 在荷塘雨课中提交实验一报告链接和commit ID；
