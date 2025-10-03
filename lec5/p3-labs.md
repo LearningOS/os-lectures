@@ -15,7 +15,6 @@ backgroundColor: white
 ## 第三节 实践：建立地址空间的OS
 Address Space OS(ASOS)
 <br>
-<br>
 
 向勇 陈渝 李国良 任炬 
 
@@ -23,6 +22,15 @@ Address Space OS(ASOS)
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
 
+
+---
+
+### 问题
+
+- 如何让应用程序编程不再考虑其运行时的起始执行地址问题？
+  - 用代码把MMU用起来，以实现页表机制
+    - RISC-V的地址转换过程
+    - rCore和uCore维护的内存管理数据结构
 
 ---
 
