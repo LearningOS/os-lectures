@@ -47,11 +47,11 @@ backgroundColor: white
 
 ##### 虚拟地址转换为物理地址
 - **段式管理**:
-   - **有**段式内存管理：虚拟地址通过**分段**转换为物理地址
-   - 有段式内存管理时，虚拟地址也称为**线性地址**(LA，Linear Address)
+   - 虚拟地址通过**分段**转换为物理地址
+   - 虚拟地址也称为**线性地址**(LA，Linear Address)
 
 - **页式管理**:
-   - **有**页式内存管理：虚拟地址通过**分页**转换为物理地址
+   - 虚拟地址通过**分页**转换为物理地址
 
 - **段页式管理**:
     - 虚拟地址先通过**分段**，再通过**分页**转换为物理地址
@@ -94,11 +94,9 @@ backgroundColor: white
 ---
 
 ##### 操作系统对内存资源的抽象
-![w:950](figs/os-mem-mgr.png)
+![w:850](figs/os-mem-mgr.png)
 
-<!--
-[操作系统内核的特征](https://learningos.github.io/os-lectures/lec1/p2-whatisos.html#9)：并发、共享、虚拟、异步
--->
+回顾：[操作系统内核的特征](https://learningos.github.io/os-lectures/lec1/p2-whatisos.html#9)（并发、共享、虚拟、异步）
 
 ---
 
