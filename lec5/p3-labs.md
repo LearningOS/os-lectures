@@ -28,7 +28,7 @@ Address Space OS(ASOS)
 ### 问题
 
 - 如何让应用程序编程不再考虑其运行时的起始执行地址问题？
-  - 用代码把MMU用起来，以实现页表机制
+  - 把CPU的MMU使能，以实现页表机制
     - RISC-V的地址转换过程
     - rCore和uCore维护的内存管理数据结构
 
@@ -432,6 +432,20 @@ ASID域（Address Space IDentifier）为地址空间标识符，标记该项地�
 
 ![bg right:55% 100%](figs/sv39-full.png)
 
+<!--
+The RISC-V Instruction Set
+Manual: Volume II
+Privileged Architecture
+https://mirror.iscas.ac.cn/riscv-toolchains/release/riscv/riscv-isa-manual/Release%20riscv-isa-release-5b22cc2-2025-05-11/riscv-privileged.pdf
+
+https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-1.pdf
+Design of the RISC-V Instruction Set Architecture
+
+12.2.1. Supervisor Memory-Management Fence Instruction
+G, global mappings
+表示在所有地址空间都是有效的。这个页表项在执行fence指令时是不刷新的。
+-->
+
 ---
 
 **提纲**
@@ -451,8 +465,8 @@ ASID域（Address Space IDentifier）为地址空间标识符，标记该项地�
 1. 实验目标和步骤
 2. 系统架构
 ### 3. 用户视角的地址空间
-4. 内核管理地址空间
-5. 实现ASOS
+1. 内核管理地址空间
+2. 实现ASOS
 
 </div>
 
