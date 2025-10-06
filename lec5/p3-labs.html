@@ -22,7 +22,7 @@
 <ul>
 <li>如何让应用程序编程不再考虑其运行时的起始执行地址问题？
 <ul>
-<li>用代码把MMU用起来，以实现页表机制
+<li>把CPU的MMU使能，以实现页表机制
 <ul>
 <li>RISC-V的地址转换过程</li>
 <li>rCore和uCore维护的内存管理数据结构</li>
@@ -353,7 +353,7 @@ Supervisor Address Translation and Protection，监管者地址转换和保护</
 <li>系统架构</li>
 </ol>
 <h3>3. 用户视角的地址空间</h3>
-<ol start="4">
+<ol>
 <li>内核管理地址空间</li>
 <li>实现ASOS</li>
 </ol>
@@ -1163,7 +1163,17 @@ ASID域（Address Space IDentifier）为地址空间标识符，标记该项地�
 ---
 ##  S-Mode编程 -- 虚存机制
 - S、U-Mode中虚拟地址会以从根部遍历页表的方式转换为物理地址：
-![w:500](figs/satp2.png)</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>- 但用户态无法访问此内存区域
+![w:500](figs/satp2.png)</p></div><div class="bespoke-marp-note" data-index="24" tabindex="0"><p>The RISC-V Instruction Set
+Manual: Volume II
+Privileged Architecture
+https://mirror.iscas.ac.cn/riscv-toolchains/release/riscv/riscv-isa-manual/Release%20riscv-isa-release-5b22cc2-2025-05-11/riscv-privileged.pdf
+
+https://people.eecs.berkeley.edu/~krste/papers/EECS-2016-1.pdf
+Design of the RISC-V Instruction Set Architecture
+
+12.2.1. Supervisor Memory-Management Fence Instruction
+G, global mappings
+表示在所有地址空间都是有效的。这个页表项在执行fence指令时是不刷新的。</p></div><div class="bespoke-marp-note" data-index="29" tabindex="0"><p>- 但用户态无法访问此内存区域
 - 产生异常/中断时，会跳到跳板页的``_all_traps``入口
 - 并在切换页表后，平滑地继续执行</p></div><div class="bespoke-marp-note" data-index="32" tabindex="0"><p>![bg right:50% 100%](figs/trampoline.png)</p></div><div class="bespoke-marp-note" data-index="72" tabindex="0"><p>---
 RISC-V只提供一个 sscratch 寄存器可用来进行临时周转
