@@ -26,6 +26,15 @@ backgroundColor: white
 
 ---
 
+### 问题
+
+- 在进程执行的过程中，如何确实进程地址空间中哪些放到外存？
+  - 选择置换页面条件是什么？
+    - 在什么范围内进行页面置换？
+    - 置换条件的计算精度和开销如何取舍？
+
+---
+
 **提纲**
 
 ### 1. 页面置换算法的基本概念
@@ -69,7 +78,7 @@ backgroundColor: white
   - 要求响应速度的代码和数据
   - 页表中的锁定标志位(lock bit)
 
-![bg right:53% 100%](figs/page-fault-handler.png)
+![bg right:51% 100%](figs/page-fault-handler.png)
 
 --- 
 
