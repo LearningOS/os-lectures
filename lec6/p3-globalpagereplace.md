@@ -26,6 +26,13 @@ backgroundColor: white
 
 ---
 
+### 问题
+
+- 如何确定虚拟存储系统中每个进程需要多少物理内存，何时分配？
+  - 从计算机系统整体利用率的角度看，并发运行多少进程最合适？
+
+---
+
 **提纲**
 
 ### 1. 全局页面置换算法的定义
@@ -340,8 +347,8 @@ $\tau=4$
 ### 课程实验二
 
 * 第四章：地址空间 -> chapter4练习 -> 
-    * [rCore](http://learningos.cn/rCore-Tutorial-Guide-2024A/chapter4/7exercise.html#chapter4)
-    * [uCore](http://learningos.cn/uCore-Tutorial-Guide-2024A/chapter4/7exercise.html#id1)
+    * [rCore](http://learningos.cn/rCore-Tutorial-Guide/chapter4/7exercise.html#chapter4)
+    * [uCore](http://learningos.cn/uCore-Tutorial-Guide/chapter4/7exercise.html#id1)
 * 实验任务
     * 重写获取系统时间和进程控制块信息的内核函数
     * 实现申请和取消虚存映射的系统调用
@@ -349,6 +356,14 @@ $\tau=4$
     * 布置实验任务后的第13天；
 <!--（2024年10月27日24点）
 -->
+---
+
+### 小结
+
+- 全局页面置换算法**把所有进程视为整体**来设置页面置换算法
+  - 工作集置换算法、缺页率置换算法
+- 各层次存储介质均衡繁忙时，存储系统整体利用率最高
+
 ---
 
 ### 第五讲虚拟存储管理小结
