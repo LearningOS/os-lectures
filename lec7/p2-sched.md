@@ -26,6 +26,15 @@ backgroundColor: white
 
 ---
 
+### 问题
+
+- 如何设计处理机调度算法？
+  - 调度目标？
+  - 如何排队？
+  - 进程切换时机？
+
+---
+
 **提纲**
 <style>
 .container{
@@ -594,10 +603,11 @@ FSS, Fair Share Scheduling
 
 ### 小结
 
-1. 处理机调度概念
-   - 处理机调度的时机和策略
-   - 比较调度算法的准则
-2. 调度算法
-   - FCFS、SJF、SRT、HRRN
-   - RR
-   - MQ、MLFQ、FSS
+- 处理机调度目标
+  - 效率：CPU利用率、吞吐量
+  - 延时：响应时间、周转时间、等待时间
+  - 公平性
+- 调度算法
+  - 就绪队列顺序：FCFS、SJF、SRT、HRRN
+  - 进程切换时机：RR
+  - 公平：MQ、MLFQ、FSS
