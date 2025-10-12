@@ -25,6 +25,13 @@ backgroundColor: white
 
 ---
 
+### 问题
+
+- 如何定义进程管理的系统调用接口？
+  - 功能需求、开发效率和执行效率
+
+---
+
 **提纲**
 <style>
 .container{
@@ -138,11 +145,11 @@ backgroundColor: white
   - 一个程序的执行**过程**
   - 一个执行中程序的**实例**
 - 详细定义：一个具有一定**独立功能**的程序在某**数据集合**上的一次**执行和资源使用的动态过程**
-   - 执行程序逻辑并读写数据
+   - 通过读写数据来执行程序逻辑
    - 创建并执行新进程
    - 使用共享资源：文件等
 
-![bg right:46% 90%](figs/cli-gui.png) 
+![bg right:45% 90%](figs/cli-gui.png) 
 
 ---
 
@@ -319,7 +326,7 @@ Shell: Process 2 exited with code 0
 
 ---
 
-##### shell执行用户输入命令
+##### shell执行用户输入命令的过程
 
 ![w:1200](figs/forkexec-app.png) 
 
@@ -824,8 +831,10 @@ https://www.infoq.cn/article/BYGiWI-fxHTNvSohEUNW
 
 ### 小结
 
-1. 进程的基本概念
-2. 进程管理
-3. 关于Fork()的思考
-- Fork()的开销？
-- 重新思考fork
+- 进程管理的系统调用接口
+  - 功能：创建、退出、等待
+  - 开发效率：fork()实现简单、spawn()逻辑清晰
+  - 执行效率：
+    - fork()在早期很高效，不适合多线程场景
+    - spawn()目前看起来逻辑仍然清晰
+
