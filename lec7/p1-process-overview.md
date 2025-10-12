@@ -833,8 +833,10 @@ https://www.infoq.cn/article/BYGiWI-fxHTNvSohEUNW
 
 - 进程管理的系统调用接口
   - 功能：创建、退出、等待
-  - 开发效率：fork()实现简单、spawn()逻辑清晰
-  - 执行效率：
-    - fork()在早期很高效，不适合多线程场景
+  - 开发效率
+    - fork()实现简单、
+    - spawn()逻辑清晰
+  - 执行效率
+    - fork()在早期很高效，现在不适合多线程场景
     - spawn()目前看起来逻辑仍然清晰
 
