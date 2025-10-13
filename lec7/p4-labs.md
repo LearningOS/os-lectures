@@ -27,6 +27,14 @@ Process OS(POS)
 
 ---
 
+### 问题
+
+- 如何实现进程管理的系统调用服务？
+  - 完善和扩展进程控制块数据结构
+  - 实现对应的系统调用服务
+
+---
+
 **提纲**
 <style>
 .container{
@@ -584,9 +592,9 @@ pub fn exec(&self, elf_data: &[u8]) {...}
 
 等待子进程退出`sys_waitpid`
 
-- 不存在进程 ID 为 pid（pid==-1 或 > 0）的子进程时，返回 -1
-- 存在进程 ID 为 pid 的僵尸子进程时，正常回收子进程，返回子进程pid，更新退出码参数为 exit_code 
-- 子进程还没退出时，返回 -2，用户库看到是 -2 后，就进一步调用 sys_yield 系统调用，让父进程进入等待状态
+- **不存在**进程 ID 为 pid（pid==-1 或 > 0）的子进程时，返回 -1
+- 存在进程 ID 为 pid 的**僵尸子进程**时，正常回收子进程，返回子进程pid，更新退出码参数为 exit_code 
+- 子进程**还没退出**时，返回 -2，用户库看到是 -2 后，就进一步调用 sys_yield 系统调用，让父进程进入等待状态
 - 返回前，释放子进程的进程控制块
 
 ---
@@ -615,15 +623,13 @@ pub fn sys_read(fd: usize, buf: *const u8, len: usize) -> isize {
 
 ### 小结
 
-**提纲**
+- 进程管理数据结构
+    - TCB
+    - TaskManager
+    - Processor
+- 进程管理服务
+    - TCB初始化：initproc、exec()中的TCB修改
+    - 新进程资源分配和回收
 
-1. 实验目标和步骤
-2. 代码结构
-3. 应用程序设计
-4. 内核程序设计
-- 应用的链接与加载支持
-- 核心数据结构
-- 进程管理机制实现
-
-![bg right:57% 100%](figs/process-os-detail.png)
+![bg right:53% 100%](figs/process-os-detail.png)
 
