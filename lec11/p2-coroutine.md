@@ -39,7 +39,6 @@ backgroundColor: white
 ### 1. 协程的概念
 2. 协程的实现
 3. 协程示例
-4. 协程与操作系统内核
 
 ![bg right:60% 70%](figs/coroutine-2.png)
 
@@ -71,10 +70,12 @@ backgroundColor: white
 
 ---
 
-#### 协程的定义
+#### 协程（Stackless Coroutine）的定义
+
+**本课程**中的协程限指无栈协程。
 
 <!-- 并发编程漫谈之 协程详解--以python协程入手（三） https://blog.csdn.net/u013597671/article/details/89762233 -->
-- Wiki的定义：协程是一种程序组件，是由子例程（过程、函数、例程、方法、子程序）的概念泛化而来的，子例程只有一个入口点且只返回一次，协程允许**多个入口点**，可在**指定位置挂起和恢复**执行。
+- 协程是一种通过**状态机**来管理执行流上下文，以支持在**指定位置挂起和恢复**执行流的轻量级并发编程结构。
 
 协程的核心思想：控制流的主动让出与恢复
 
@@ -88,7 +89,6 @@ backgroundColor: white
 <!-- C++20协程原理和应用 https://zhuanlan.zhihu.com/p/498253158 -->
 - 相比普通函数，协程的函数体可以挂起并在任意时刻恢复执行
   - **无栈协程是普通函数的泛化**
-  - **本课程**中的协程限指无栈协程(Stackless Coroutine)
 
 ![w:900](figs/function-coroutine.png)
 
@@ -129,7 +129,6 @@ def func()://协程函数
 1. 协程的概念
 ### 2. 协程的实现
 3. 协程示例
-4. 协程与操作系统内核
 
 ![bg right:60% 70%](figs/coroutine-2.png)
 
@@ -382,7 +381,6 @@ async fn example(min_len: usize) -> String {
 1. 协程的概念
 2. 协程的实现
 ### 3. 协程示例
-4. 协程与操作系统内核
 
 ![bg right:60% 70%](figs/coroutine-2.png)
 
@@ -676,159 +674,11 @@ fn main() { //Asynchronous multi-threaded concurrent webserver
 
 ---
 
-**提纲**
-
-1. 协程的概念
-2. 协程的实现
-3. 协程示例
-### 4. 协程与操作系统内核
-
-![bg right:52% 95%](figs/coroutine-2.png)
-
----
-
-#### 共享调度器：[一种支持优先级的协程调度框架](https://github.com/zflcs/SharedScheduler)（本科生毕设：赵方亮、廖东海；选学，不考核）
-
-* 将协程作为操作系统和应用程序的最小任务单元
-* 引入协程的优先级属性，基于优先级位图，操作系统和应用程序实现协程调度
-
-<!--
--->
-
----
-
-#### Architecture of SharedScheduler
-
-![bg right:50% 95% arch](figs/arch.png)
-
-1. 操作系统与用户程序各自的 Executor 维护协程
-2. SharedScheduler 通过 vDSO (virtual Dynamic Shared Object) 共享给用户进程
-3. 通过 Global Bitmap 进行操作系统与用户进程之间协调调度
-
-<!--
--->
-
----
-
-#### Coroutine Control Block
-
-```rust
-pub struct Coroutine{
- /// Immutable fields
- pub cid: CoroutineId,
- pub kind: CoroutineKind,
- /// Mutable fields
- pub priority: usize,
- pub future: Pin<Box<dyn Future<Output=()> + 'static + Send + Sync>>, 
- pub waker: Arc<Waker>,
-}
-```
-
-<font size=5>
-
-1. future、waker 字段由 Rust 协程特性决定
-
-2. cid 字段用于标识协程
-
-3. kind 字段标识协程任务类型，根据类型进行不同处理
-
-4. priority 字段表示优先级，实现优先级调度的关键
-
-</font>
-
-<!--
--->
-
----
-
-#### Coroutine state transition model
-
-![bg right:55% 90% cstate](figs/cstate.png)
-
-根据 CPU 和 stack 占用的情况划分为三类
-* 状态转换
-   1. 就绪 <==> 运行
-   2. 运行 <==> 运行挂起
-   3. 运行 <==> 阻塞
-   4. 阻塞  ==> 就绪
-
-<!--
-根据 CPU 和 stack 占用的情况划分为三类（创建、退出、就绪、阻塞 | 运行 | 运行挂起）
--->
-
----
-
-#### Asynchronous system call
-
-```rust
-read!(fd, buffer, cid); // Async call
-read!(fd, buffer); // Sync call
-```
-
-* 用户态系统调用接口，通过参数区分
-* 内核协程与异步 I/O 机制结合，内核协程完成读取、复制数据操作
-![width:900px async_syscall](figs/async_syscall.png)
-
-<!--
--->
-
----
-
-#### Message throughput
-
-<!--![width:750px throughput]-->
-![bg right:51% 100%](figs/throughput.png)
-
-1. kcuc: 内核协程 + 用户协程
-2. kcut：内核协程 + 用户线程
-3. ktut：内核线程 + 用户线程
-4. ktuc：内核线程 + 用户协程
-
-<!--
--->
-
----
-
-#### Message latency
-
-![bg right:51% 100%](figs/latency.png)
-
-1. SharedScheduler 同步互斥开销，不适用于低并发或低响应要求的场景
-2. 协程切换开销小
-3. SharedScheduler 适用于高并发场景
-
-<!--
--->
-
----
-
-#### Throughput of different priority connections
-
-![width:600px prio-throughput](figs/prio-throughput.png)
-
-结论：在资源有限的条件下，高优先级协程能够得到保证
-
-<!--
--->
-
----
-
-#### Message latency of different priority connections
-
-![width:550px prio-latency](figs/prio-latency.png)
-结论：在资源有限的条件下，高优先级协程能够得到保证
-
-<!--
--->
-
----
-
 ### 小结
 
 1. 协程的概念
 2. 协程的实现
 3. 协程示例
-4. 协程与操作系统内核
 
 ![bg right:40% 100%](figs/coroutine-2.png)
 
