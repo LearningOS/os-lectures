@@ -226,6 +226,13 @@ task: 4 counter: 0
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 33px;
+}
+</style>
+
 ##### 简单的用户态管理多线程应用
 
 简单的用户态管理多线程应用 `stackful_coroutine.rs`
@@ -645,6 +652,13 @@ pub fn sys_thread_create(entry: usize, arg: usize) -> isize
 
 ---
 
+<style scoped>
+/* 当前幻灯片的字体变大 */
+section {
+  font-size: 32px;
+}
+</style>
+
 ##### 线程退出系统调用
 
 线程执行完代表它的功能后，会通过 `exit` 系统调用退出。进程/主线程调用 `waittid` 来回收其资源，来彻底销毁整个线程。
@@ -718,7 +732,7 @@ pub fn sys_waittid(tid: usize) -> i32
 * 选择B：不复制，只复制当前执行fork的这个线程；
 * 选择C：不支持多线程进程执行fork这种情况
 
-目前的rcore tutorial ，选择了C，简化了应用的使用场景，即在使用fork和create_thread（以及基于线程的信号量，条件变量等）是不会同时出现的。如果有fork，假定是这个应用是单线程的进程，所以只拷贝了这个单线程的结构。这种简化设计虽然是一种鸵鸟做法，但也避免了一些允许fork和create_thread共存而导致的比较复杂的情况：...
+目前的rcore tutorial ，选择了C，简化了应用的使用场景，即在使用fork和create_thread（以及基于线程的信号量，条件变量等）是**不会同时出现**的。如果有fork，假定是这个应用是单线程的进程，所以只拷贝了这个单线程的结构。这种简化设计虽然是一种鸵鸟做法，但也避免了一些允许fork和create_thread共存而导致的比较复杂的情况：...
 
 ---
 
