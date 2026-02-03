@@ -21,7 +21,7 @@ backgroundColor: white
 
 <br>
 
-2025年秋季
+2026年春季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/xpvcf129pvf3fuxb)
 
@@ -49,10 +49,9 @@ backgroundColor: white
 
 ### 上课时间地点
 - 时间
-  - 周一下午第4节(15:20-16:55) 
-  - 周四上午第2节(09:50-11:25) 
+  - 待定
 - 地点
-   - 六教6A213
+   - 待定
 
 ----
 
@@ -97,19 +96,18 @@ backgroundColor: white
 
 #### uCore Tutorial
 
-- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code-2025A/)
-- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide-2025A/)
-- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test-2025A/)
+- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code/)
+- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide/)
+- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test/)
 
 ---
 
 ### 实验指导
 
 * rCore Tutorial
-  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide-2025A/)
-  - [API文档](https://github.com/LearningOS/rCore-Tutorial-Guide-2025A/#os-api-docs-of-rcore-tutorial-code-2022a) 
-  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code-2025A)
-  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test-2025A)
+  - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code/)
+  - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide/)
+  - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test/)
 * [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/miqaip1ig4005ogm)
   - 讲解视频
   - 部分内容将逐步更新
@@ -141,22 +139,20 @@ backgroundColor: white
 
 * **基础实验**
   - （必做）：面向 RISC-V CPU 用 Rust/C 设计实现操作系统的功能
-  - （选做）：难度和工作量比必做题目大的其它题目
 
-* **课程设计（Rust）**
-  - 用组件来组合操作系统内核 
-  - 参加全国大学生OS比赛
+* **课程设计A/B**
+  - 与AI合作开展操作系统内核相关的设计、实现与探索 
 
 ---
 
 ### 操作系统课关于AI工具的使用约定
 
-- 操作系统课鼓励使用各种AI工具来帮助OS
+- 操作系统课鼓励使用各种AI工具来帮助学习OS
   - AI助教可以同学们及时获取可能的帮助
   - AI助教可以减少助教老师的工作量
 - 工具使用者需要对使用工具的后果负责
   - AI工具给出的建议可以能幻觉
-  - 许多复杂问题无法完全靠工具来完成
+  - 许多复杂问题无法完全靠AI工具来完成
   - 考试时不允许使用AI工具
   - “老师用AI工具出题，同学用AI工具回答”应该不是大家希望的状态
 
@@ -196,25 +192,18 @@ backgroundColor: white
 ## 成绩评定
 
 ### 选择1：（总分不超过100） 
-  - 实验一~五必做题目： 30% ；期中考试 30% ； 期末考试 40%
+  - 实验一~五必做题目： 25% ；期中考试 15% ； 期末考试 60%
   - 平时作业加分：每做一次平时作业加0.5分，最高加5分，且课程总评成绩总分不超过100分
-  - 选做实验题加分：每做一个选做实验题，可得到相应分值，但是选做+必做实验题的总分不超过30分
 
 ---
 
 ### 选择2： 
-  - 四周内完成实验一~五(2025秋实验)：30% 
-  - 课程设计（即大实验）：70%
+  - 3周内：完成实验一~五(2026春实验)：25% 
+  - 7周内：代替期中考试的课程设计（即大实验A）：15%
+  - 16周内：代替期末考试的课程设计（即大实验B）：60%
+  - 平时作业加分：每做一次平时作业加0.5分，最高加5分，且课程总评成绩总分不超过100分
 
-**注：选择大实验的同学如果后续退出课程设计，需参加考试。**
-
----
-
-## 选课问卷
-
-[2025年秋学期操作系统课选课问卷](http://oscourse2019.mikecrm.com/uNEDRhh)
-- 访问密码：PkmG1kd1h
-- 请大家在第二节课前及时填写问卷，以便我们更好地上课。
+**注：选择大实验A或B的同学如果后续退出，需参加所代替的考试。**
 
 ---
 
