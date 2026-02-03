@@ -170,14 +170,16 @@ backgroundColor: white
 ---
 ## 课程设计(Rust语言)
 
-* **用组件来组合操作系统内核**
-  * unikernel: ArceOS
+* **与AI合作编程逐步组合出功能逐渐增强的类Linux操作系统内核**
+<!-- 
+* unikernel: ArceOS
     * [arceos-tutorial-v2](https://github.com/scPointer/arceos-tutorial-v2/)
   * 宏内核: StarryOS
   * hypervisor: AxVisor
   * 微内核: ReL4
   * 异步操作系统: AsyncOS
-* 开源操作系统社区项目
+* 开源操作系统社区项目 
+-->
 
 ![bg right:51% 90% 内核模式](figs/kernel-arch.png)
 
