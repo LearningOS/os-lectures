@@ -200,7 +200,7 @@ backgroundColor: white
 ---
 
 ### 选择2： 
-  - 3周内：完成实验一~五([2025秋季实验](https://classroom.github.com/a/pTgmDIG6))：25% 
+  - 3周内：完成实验一~五([2025秋季实验-Rust版](https://learningos.cn/rCore-Tutorial-Guide/))：25% 
   - 7周内：代替期中考试的课程设计（即大实验A）：15%
   - 16周内：代替期末考试的课程设计（即大实验B）：60%
   - 平时作业加分：每做一次平时作业加0.5分，最高加5分，且课程总评成绩总分不超过100分
