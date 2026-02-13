@@ -66,8 +66,8 @@ backgroundColor: white
 ---
 ## 第六讲  地址空间-虚拟存储管理
 - [第一节  虚拟存储的基本概念](./lec6/p1-vmoverview.html)
-- [第二节 页面置换算法 -- 局部页面置换算法](./lec6/p2-pagereplace-1.html)
-- [第三节 页面置换算法 -- 全局页面置换算法](./lec6/p2-pagereplace-2.html)
+- [第二节 页面置换算法 -- 局部页面置换算法](./lec6/p2-localpagereplace.html )
+- [第三节 页面置换算法 -- 全局页面置换算法](./lec6/p3-globalpagereplace.html)
 
 ---
 ## 第七讲  进程管理与单处理器调度
