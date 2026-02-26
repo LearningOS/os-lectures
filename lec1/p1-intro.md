@@ -23,7 +23,9 @@ backgroundColor: white
 
 2026年春季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/xpvcf129pvf3fuxb)
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/rrop1cwd0kpaz7cl) 
+
+<!--(https://www.yuque.com/xyong-9fuoz/qczol5/xpvcf129pvf3fuxb)-->
 
 ---
 

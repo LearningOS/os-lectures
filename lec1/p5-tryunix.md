@@ -110,7 +110,7 @@ backgroundColor: white
 | ``int exec(char *file，char *argv[])``   |  用参数加载文件并执行；仅当出错时返回。    |
 |   ``char *sbrk(int n)``   |  将进程内存增加n个字节。返回新内存的开始地址。    |
 |   ``int open(char *file，int flags)``   |  打开文件；标志flag表示文件操作的读/写属性；返回一个fd(文件描述符)。    |
-|   ``int write(int fd，char *buf，int n)``   |  从buf向文件描述符fd写入n个字节；返回n。    |
+|   ``int write(int fd，char *buf，int n)``   |  从buf向文件描述符fd写入n个字节；返回n|
 
 ---
 ## UNIX/Linux提供的应用/内核接口？
