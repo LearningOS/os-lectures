@@ -24,7 +24,8 @@ backgroundColor: white
 
 2026年春季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
+<!--[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)-->
+[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/rrop1cwd0kpaz7cl) 
 
 ---
 
@@ -305,7 +306,7 @@ backgroundColor: white
   * 异步操作系统: AsyncOS
 * 开源操作系统社区项目
 
-鼓励糖果：资助同学参加2026年8月的全国大学生OS比赛（顺便旅游）
+鼓励糖果：资助同学参加2026年8月的全国大学生OS比赛
 * 前提：**3周内**完成基础实验1~5。
 
 ---
