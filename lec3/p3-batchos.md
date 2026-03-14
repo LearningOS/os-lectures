@@ -696,7 +696,7 @@ unsafe fn load_app(&self, app_id: usize) {
 ##### 特权级切换后的硬件逻辑
 
 1. sstatus 的 SPP 字段会被修改为 CPU 当前的特权级（U/S）； -- 用于记录和恢复trap前的状态
-2. sepc 会被修改为产生 Trap 的指令地址；
+2. sepc 会被修改为产生 Trap 的指令地址；//保存“断点”位置，以便处理完 Trap 后能回到正确的地方继续执行。
 3. scause/stval 分别会被修改成这次 Trap 的原因以及相关的附加信息； -- scause用于存储trap种类（中断、异常）和类型（时钟、外设、page fault；如果是page fault，stval记录对应的虚拟地址）
 4. CPU 将当前特权级设为 S，跳到 stvec 所设置的 Trap 处理入口地址。
 
