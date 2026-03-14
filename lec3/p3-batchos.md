@@ -640,8 +640,8 @@ unsafe fn load_app(&self, app_id: usize) {
 
 - fence.i ：用来清理 i-cache
 
-- CPU 对物理内存所做的缓存又分成d-cache和i-cache
-- OS将修改会被 CPU 取指的内存区域，这会使得 i-cache 中含有与内存中不一致的内容
+- CPU 对物理内存所做的缓存又分成d-cache（数据）和i-cache（指令）
+- OS可能会修改内存中的代码，这会使得 i-cache 中缓存中的旧代码与内存中最新代码不一致
 - OS在这里必须使用 fence.i 指令手动清空 i-cache ，让里面所有的内容全部失效，才能够**保证CPU访问内存数据和代码的正确性**。
 
 ---
