@@ -1,0 +1,897 @@
+<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{-webkit-tap-highlight-color:transparent;-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;transition:opacity .2s linear}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:disabled,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:disabled{cursor:not-allowed;opacity:.15!important}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover{opacity:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:active,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:active{opacity:.6}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button:hover:not(:disabled),body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button:hover:not(:disabled){transition:none}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-prev{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTAgMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button.bespoke-marp-presenter-info-page-next{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJtMzIgOTAgNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTQwIDcwSDIwVjUwbTIwIDBMMjAgNzBtNDAtNDBoMjB2MjBtLTIwIDAgMjAtMjAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button.exit[data-bespoke-marp-osc=fullscreen]{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTIwIDUwaDIwdjIwbS0yMCAwIDIwLTIwbTQwIDBINjBWMzBtMjAgMEw2MCA1MCIvPjwvc3ZnPg==")}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNODcuOCA0Ny41Qzg5IDUwIDg3LjcgNTIgODUgNTJIMzVhOC43IDguNyAwIDAgMS03LjItNC41bC0xNS42LTMxQzExIDE0IDEyLjIgMTIgMTUgMTJoNTBhOC44IDguOCAwIDAgMSA3LjIgNC41ek02MCA1MnYzNm0tMTAgMGgyME00NSA0MmgyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iNSIvPjwvc3ZnPg==") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-bigger{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMTIgNTBoODBNNTIgOTBWMTAiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjUiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button.bespoke-marp-presenter-note-smaller{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNMTIgNTBoODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9IjUiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;overflow:hidden;text-indent:100%;white-space:nowrap}}.bespoke-marp-note,.bespoke-marp-osc,.bespoke-progress-parent{display:none;transition:none}@media screen{body,html{height:100%;margin:0}body{background:#000;overflow:hidden}svg.bespoke-marp-slide{content-visibility:hidden;opacity:0;pointer-events:none;z-index:-1}svg.bespoke-marp-slide.bespoke-marp-active{content-visibility:visible;opacity:1;pointer-events:auto;z-index:0}svg.bespoke-marp-slide.bespoke-marp-active.bespoke-marp-active-ready *{-webkit-animation-name:__bespoke_marp__!important;animation-name:__bespoke_marp__!important}@supports not (content-visibility:hidden){svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}}[data-bespoke-marp-fragment=inactive]{visibility:hidden}body[data-bespoke-view=""] .bespoke-marp-parent,body[data-bespoke-view=next] .bespoke-marp-parent{bottom:0;left:0;position:absolute;right:0;top:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc{background:rgba(0,0,0,.65);border-radius:7px;bottom:50px;color:#fff;contain:paint;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;transform:translateX(-50%);transition:opacity .2s linear;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;will-change:transform;z-index:1}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>*,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>:first-child,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span,body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=""] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=presenter],body[data-bespoke-view=next] .bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{height:32px;line-height:32px;width:32px}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive{cursor:none}body[data-bespoke-view=""] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc,body[data-bespoke-view=next] .bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}body[data-bespoke-view=""] svg.bespoke-marp-slide,body[data-bespoke-view=next] svg.bespoke-marp-slide{height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent{background:#222;display:flex;height:5px;width:100%}body[data-bespoke-view=""] .bespoke-progress-parent+.bespoke-marp-parent{top:5px}body[data-bespoke-view=""] .bespoke-progress-parent .bespoke-progress-bar{background:#0288d1;flex:0 0 0;transition:flex-basis .2s cubic-bezier(0,1,1,1)}body[data-bespoke-view=next]{background:transparent}body[data-bespoke-view=presenter]{background:#161616}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container{display:grid;font-family:Helvetica,Arial,sans-serif;grid-template:"current dragbar next" minmax(140px,1fr) "current dragbar note" 2fr "info    dragbar note" 3em;grid-template-columns:minmax(3px,var(--bespoke-marp-presenter-split-ratio,66%)) 0 minmax(3px,1fr);height:100%;left:0;position:absolute;top:0;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent{grid-area:current;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide{height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-parent svg.bespoke-marp-slide.bespoke-marp-active{filter:drop-shadow(0 3px 10px rgba(0,0,0,.5))}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container{background:#0288d1;cursor:col-resize;grid-area:dragbar;margin-left:-3px;opacity:0;position:relative;transition:opacity .4s linear .1s;width:6px;z-index:10}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container:hover{opacity:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-dragbar-container.active{opacity:1;transition-delay:0s}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container{background:#222;cursor:pointer;display:none;grid-area:next;overflow:hidden;position:relative}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-next-container iframe.bespoke-marp-presenter-next{background:transparent;border:0;display:block;filter:drop-shadow(0 3px 10px rgba(0,0,0,.5));height:calc(100% - 40px);left:20px;pointer-events:none;position:absolute;top:20px;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container{background:#222;color:#eee;grid-area:note;position:relative;z-index:1}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper{bottom:0;display:block;left:0;position:absolute;right:0;top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons{background:rgba(0,0,0,.65);border-radius:4px;bottom:0;display:flex;gap:4px;margin:12px;opacity:0;padding:6px;pointer-events:none;position:absolute;right:0;transition:opacity .2s linear}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-buttons:focus-within,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-presenter-note-wrapper:focus-within+.bespoke-marp-presenter-note-buttons,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container:hover .bespoke-marp-presenter-note-buttons{opacity:1;pointer-events:auto}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note{word-wrap:break-word;box-sizing:border-box;font-size:calc(1.1em*var(--bespoke-marp-note-font-scale, 1));height:calc(100% - 40px);margin:20px;overflow:auto;padding-right:3px;scrollbar-color:hsla(0,0%,93%,.5) transparent;scrollbar-width:thin;white-space:pre-wrap;width:calc(100% - 40px)}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar{width:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-track{background:transparent}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note::-webkit-scrollbar-thumb{background:hsla(0,0%,93%,.5);border-radius:6px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note:empty{pointer-events:none}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note.active{display:block}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:first-child{margin-top:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-note-container .bespoke-marp-note p:last-child{margin-bottom:0}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container{align-items:center;box-sizing:border-box;color:#eee;display:flex;flex-wrap:nowrap;grid-area:info;justify-content:center;overflow:hidden;padding:0 10px}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time,body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{box-sizing:border-box;display:block;padding:0 10px;white-space:nowrap;width:100%}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container button{height:1.5em;line-height:1.5em;width:1.5em}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page{order:2;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-page .bespoke-marp-presenter-info-page-text{display:inline-block;min-width:120px;text-align:center}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-time{color:#999;order:1;text-align:left}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer{color:#999;order:3;text-align:right}body[data-bespoke-view=presenter] .bespoke-marp-presenter-container .bespoke-marp-presenter-info-container .bespoke-marp-presenter-info-timer:hover{cursor:pointer}}@media print{.bespoke-marp-presenter-info-container,.bespoke-marp-presenter-next-container,.bespoke-marp-presenter-note-container{display:none}}</style><style>div#p>svg>foreignObject>section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center}div#p>svg>foreignObject>section:after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#p>svg>foreignObject>section:not([data-marpit-pagination]):after{display:none}/* Normalization */div#p>svg>foreignObject>section h1{font-size:2em;margin:0.67em 0}div#p>svg>foreignObject>section video::-webkit-media-controls{will-change:transform}@page{size:1280px 720px;margin:0}@media print{body,html{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#p>svg>foreignObject>section{page-break-before:always;break-before:page}div#p>svg>foreignObject>section,div#p>svg>foreignObject>section *{-webkit-print-color-adjust:exact!important;animation-delay:0s!important;animation-duration:0s!important;color-adjust:exact!important;transition:none!important}div#p>svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
+/*!
+ * Marp default theme.
+ *
+ * @theme default
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ */div#p>svg>foreignObject>section{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;word-wrap:break-word;background-color:#fff;color:#24292f;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:16px;line-height:1.5;margin:0}div#p>svg>foreignObject>section{--marpit-root-font-size:16px}div#p>svg>foreignObject>section h1:hover .anchor .octicon-link:before,div#p>svg>foreignObject>section h2:hover .anchor .octicon-link:before,div#p>svg>foreignObject>section h3:hover .anchor .octicon-link:before,div#p>svg>foreignObject>section h4:hover .anchor .octicon-link:before,div#p>svg>foreignObject>section h5:hover .anchor .octicon-link:before,div#p>svg>foreignObject>section h6:hover .anchor .octicon-link:before{background-color:currentColor;content:" ";display:inline-block;height:16px;-webkit-mask-image:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg>');mask-image:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 0 0 1.06 1.06l1.25-1.25a2 2 0 1 1 2.83 2.83l-2.5 2.5a2 2 0 0 1-2.83 0 .75.75 0 0 0-1.06 1.06 3.5 3.5 0 0 0 4.95 0l2.5-2.5a3.5 3.5 0 0 0-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 0 1 0-2.83l2.5-2.5a2 2 0 0 1 2.83 0 .75.75 0 0 0 1.06-1.06 3.5 3.5 0 0 0-4.95 0l-2.5 2.5a3.5 3.5 0 0 0 4.95 4.95l1.25-1.25a.75.75 0 0 0-1.06-1.06l-1.25 1.25a2 2 0 0 1-2.83 0z"/></svg>');width:16px}div#p>svg>foreignObject>section details,div#p>svg>foreignObject>section figcaption,div#p>svg>foreignObject>section figure{display:block}div#p>svg>foreignObject>section summary{display:list-item}div#p>svg>foreignObject>section [hidden]{display:none!important}div#p>svg>foreignObject>section a{background-color:transparent;color:#0969da;text-decoration:none}div#p>svg>foreignObject>section a:active,div#p>svg>foreignObject>section a:hover{outline-width:0}div#p>svg>foreignObject>section abbr[title]{border-bottom:none;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}div#p>svg>foreignObject>section b,div#p>svg>foreignObject>section strong{font-weight:600}div#p>svg>foreignObject>section dfn{font-style:italic}div#p>svg>foreignObject>section h1{border-bottom:1px solid #d8dee4;font-size:2em;font-weight:600;margin:.67em 0;padding-bottom:.3em}div#p>svg>foreignObject>section mark{background-color:#fff8c5;color:#24292f}div#p>svg>foreignObject>section small{font-size:90%}div#p>svg>foreignObject>section sub,div#p>svg>foreignObject>section sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}div#p>svg>foreignObject>section sub{bottom:-.25em}div#p>svg>foreignObject>section sup{top:-.5em}div#p>svg>foreignObject>section img{background-color:#fff;border-style:none;box-sizing:content-box;max-width:100%}div#p>svg>foreignObject>section code,div#p>svg>foreignObject>section kbd,div#p>svg>foreignObject>section pre,div#p>svg>foreignObject>section samp{font-family:monospace,monospace;font-size:1em}div#p>svg>foreignObject>section figure{margin:1em 40px}div#p>svg>foreignObject>section hr{background:transparent;background-color:#d0d7de;border:0;box-sizing:content-box;height:.25em;margin:24px 0;overflow:hidden;padding:0}div#p>svg>foreignObject>section input{font:inherit;font-family:inherit;font-size:inherit;line-height:inherit;margin:0;overflow:visible}div#p>svg>foreignObject>section [type=button],div#p>svg>foreignObject>section [type=reset],div#p>svg>foreignObject>section [type=submit]{-webkit-appearance:button}div#p>svg>foreignObject>section [type=button]::-moz-focus-inner,div#p>svg>foreignObject>section [type=reset]::-moz-focus-inner,div#p>svg>foreignObject>section [type=submit]::-moz-focus-inner{border-style:none;padding:0}div#p>svg>foreignObject>section [type=button]:-moz-focusring,div#p>svg>foreignObject>section [type=reset]:-moz-focusring,div#p>svg>foreignObject>section [type=submit]:-moz-focusring{outline:1px dotted ButtonText}div#p>svg>foreignObject>section [type=checkbox],div#p>svg>foreignObject>section [type=radio]{box-sizing:border-box;padding:0}div#p>svg>foreignObject>section [type=number]::-webkit-inner-spin-button,div#p>svg>foreignObject>section [type=number]::-webkit-outer-spin-button{height:auto}div#p>svg>foreignObject>section [type=search]{-webkit-appearance:textfield;outline-offset:-2px}div#p>svg>foreignObject>section [type=search]::-webkit-search-cancel-button,div#p>svg>foreignObject>section [type=search]::-webkit-search-decoration{-webkit-appearance:none}div#p>svg>foreignObject>section ::-webkit-input-placeholder{color:inherit;opacity:.54}div#p>svg>foreignObject>section ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}div#p>svg>foreignObject>section a:hover{text-decoration:underline}div#p>svg>foreignObject>section hr:after,div#p>svg>foreignObject>section hr:before{content:"";display:table}div#p>svg>foreignObject>section hr:after{clear:both}div#p>svg>foreignObject>section table{border-collapse:collapse;border-spacing:0;display:block;max-width:100%;overflow:auto;width:-webkit-max-content;width:-moz-max-content;width:max-content}div#p>svg>foreignObject>section td,div#p>svg>foreignObject>section th{padding:0}div#p>svg>foreignObject>section details summary{cursor:pointer}div#p>svg>foreignObject>section details:not([open])>:not(summary){display:none!important}div#p>svg>foreignObject>section kbd{background-color:#f6f8fa;border:1px solid rgba(175,184,193,.2);border-radius:6px;box-shadow:inset 0 -1px 0 rgba(175,184,193,.2);color:#24292f;display:inline-block;font:11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;line-height:10px;padding:3px 5px;vertical-align:middle}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2,div#p>svg>foreignObject>section h3,div#p>svg>foreignObject>section h4,div#p>svg>foreignObject>section h5,div#p>svg>foreignObject>section h6{font-weight:600;line-height:1.25;margin-bottom:16px;margin-top:24px}div#p>svg>foreignObject>section h2{border-bottom:1px solid #d8dee4;font-size:1.5em;font-weight:600;padding-bottom:.3em}div#p>svg>foreignObject>section h3{font-size:1.25em;font-weight:600}div#p>svg>foreignObject>section h4{font-size:1em;font-weight:600}div#p>svg>foreignObject>section h5{font-size:.875em;font-weight:600}div#p>svg>foreignObject>section h6{color:#57606a;font-size:.85em;font-weight:600}div#p>svg>foreignObject>section p{margin-bottom:10px;margin-top:0}div#p>svg>foreignObject>section blockquote{border-left:.25em solid #d0d7de;color:#57606a;margin:0;padding:0 1em}div#p>svg>foreignObject>section ol,div#p>svg>foreignObject>section ul{margin-bottom:0;margin-top:0;padding-left:2em}div#p>svg>foreignObject>section ol ol,div#p>svg>foreignObject>section ul ol{list-style-type:lower-roman}div#p>svg>foreignObject>section ol ol ol,div#p>svg>foreignObject>section ol ul ol,div#p>svg>foreignObject>section ul ol ol,div#p>svg>foreignObject>section ul ul ol{list-style-type:lower-alpha}div#p>svg>foreignObject>section dd{margin-left:0}div#p>svg>foreignObject>section code,div#p>svg>foreignObject>section pre,div#p>svg>foreignObject>section tt{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}div#p>svg>foreignObject>section pre{word-wrap:normal;margin-bottom:0;margin-top:0}div#p>svg>foreignObject>section .octicon{fill:currentColor;display:inline-block;overflow:visible!important;vertical-align:text-bottom}div#p>svg>foreignObject>section ::-moz-placeholder{color:#6e7781;opacity:1}div#p>svg>foreignObject>section :-ms-input-placeholder{color:#6e7781;opacity:1}div#p>svg>foreignObject>section ::placeholder{color:#6e7781;opacity:1}div#p>svg>foreignObject>section input::-webkit-inner-spin-button,div#p>svg>foreignObject>section input::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}div#p>svg>foreignObject>section .pl-c{color:#6e7781}div#p>svg>foreignObject>section .pl-c1,div#p>svg>foreignObject>section .pl-s .pl-v{color:#0550ae}div#p>svg>foreignObject>section .pl-e,div#p>svg>foreignObject>section .pl-en{color:#8250df}div#p>svg>foreignObject>section .pl-s .pl-s1,div#p>svg>foreignObject>section .pl-smi{color:#24292f}div#p>svg>foreignObject>section .pl-ent{color:#116329}div#p>svg>foreignObject>section .pl-k{color:#cf222e}div#p>svg>foreignObject>section .pl-pds,div#p>svg>foreignObject>section .pl-s,div#p>svg>foreignObject>section .pl-s .pl-pse .pl-s1,div#p>svg>foreignObject>section .pl-sr,div#p>svg>foreignObject>section .pl-sr .pl-cce,div#p>svg>foreignObject>section .pl-sr .pl-sra,div#p>svg>foreignObject>section .pl-sr .pl-sre{color:#0a3069}div#p>svg>foreignObject>section .pl-smw,div#p>svg>foreignObject>section .pl-v{color:#953800}div#p>svg>foreignObject>section .pl-bu{color:#82071e}div#p>svg>foreignObject>section .pl-ii{background-color:#82071e;color:#f6f8fa}div#p>svg>foreignObject>section .pl-c2{background-color:#cf222e;color:#f6f8fa}div#p>svg>foreignObject>section .pl-sr .pl-cce{color:#116329;font-weight:700}div#p>svg>foreignObject>section .pl-ml{color:#3b2300}div#p>svg>foreignObject>section .pl-mh,div#p>svg>foreignObject>section .pl-mh .pl-en,div#p>svg>foreignObject>section .pl-ms{color:#0550ae;font-weight:700}div#p>svg>foreignObject>section .pl-mi{color:#24292f;font-style:italic}div#p>svg>foreignObject>section .pl-mb{color:#24292f;font-weight:700}div#p>svg>foreignObject>section .pl-md{background-color:#ffebe9;color:#82071e}div#p>svg>foreignObject>section .pl-mi1{background-color:#dafbe1;color:#116329}div#p>svg>foreignObject>section .pl-mc{background-color:#ffd8b5;color:#953800}div#p>svg>foreignObject>section .pl-mi2{background-color:#0550ae;color:#eaeef2}div#p>svg>foreignObject>section .pl-mdr{color:#8250df;font-weight:700}div#p>svg>foreignObject>section .pl-ba{color:#57606a}div#p>svg>foreignObject>section .pl-sg{color:#8c959f}div#p>svg>foreignObject>section .pl-corl{color:#0a3069;text-decoration:underline}div#p>svg>foreignObject>section [data-catalyst]{display:block}div#p>svg>foreignObject>section g-emoji{font-family:Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:1em;font-style:normal!important;font-weight:400;line-height:1;vertical-align:-.075em}div#p>svg>foreignObject>section g-emoji img{height:1em;width:1em}div#p>svg>foreignObject>section:after,div#p>svg>foreignObject>section:before{
+  /* content:""; */display:table}div#p>svg>foreignObject>section:after{clear:both}div#p>svg>foreignObject>section>:first-child{margin-top:0!important}div#p>svg>foreignObject>section>:last-child{margin-bottom:0!important}div#p>svg>foreignObject>section a:not([href]){color:inherit;text-decoration:none}div#p>svg>foreignObject>section .absent{color:#cf222e}div#p>svg>foreignObject>section .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}div#p>svg>foreignObject>section .anchor:focus{outline:none}div#p>svg>foreignObject>section blockquote,div#p>svg>foreignObject>section details,div#p>svg>foreignObject>section dl,div#p>svg>foreignObject>section ol,div#p>svg>foreignObject>section p,div#p>svg>foreignObject>section pre,div#p>svg>foreignObject>section table,div#p>svg>foreignObject>section ul{margin-bottom:16px;margin-top:0}div#p>svg>foreignObject>section blockquote>:first-child{margin-top:0}div#p>svg>foreignObject>section blockquote>:last-child{margin-bottom:0}div#p>svg>foreignObject>section sup>a:before{content:"["}div#p>svg>foreignObject>section sup>a:after{content:"]"}div#p>svg>foreignObject>section h1 .octicon-link,div#p>svg>foreignObject>section h2 .octicon-link,div#p>svg>foreignObject>section h3 .octicon-link,div#p>svg>foreignObject>section h4 .octicon-link,div#p>svg>foreignObject>section h5 .octicon-link,div#p>svg>foreignObject>section h6 .octicon-link{color:#24292f;vertical-align:middle;visibility:hidden}div#p>svg>foreignObject>section h1:hover .anchor,div#p>svg>foreignObject>section h2:hover .anchor,div#p>svg>foreignObject>section h3:hover .anchor,div#p>svg>foreignObject>section h4:hover .anchor,div#p>svg>foreignObject>section h5:hover .anchor,div#p>svg>foreignObject>section h6:hover .anchor{text-decoration:none}div#p>svg>foreignObject>section h1:hover .anchor .octicon-link,div#p>svg>foreignObject>section h2:hover .anchor .octicon-link,div#p>svg>foreignObject>section h3:hover .anchor .octicon-link,div#p>svg>foreignObject>section h4:hover .anchor .octicon-link,div#p>svg>foreignObject>section h5:hover .anchor .octicon-link,div#p>svg>foreignObject>section h6:hover .anchor .octicon-link{visibility:visible}div#p>svg>foreignObject>section h1 code,div#p>svg>foreignObject>section h1 tt,div#p>svg>foreignObject>section h2 code,div#p>svg>foreignObject>section h2 tt,div#p>svg>foreignObject>section h3 code,div#p>svg>foreignObject>section h3 tt,div#p>svg>foreignObject>section h4 code,div#p>svg>foreignObject>section h4 tt,div#p>svg>foreignObject>section h5 code,div#p>svg>foreignObject>section h5 tt,div#p>svg>foreignObject>section h6 code,div#p>svg>foreignObject>section h6 tt{font-size:inherit;padding:0 .2em}div#p>svg>foreignObject>section ol.no-list,div#p>svg>foreignObject>section ul.no-list{list-style-type:none;padding:0}div#p>svg>foreignObject>section ol[type="1"]{list-style-type:decimal}div#p>svg>foreignObject>section ol[type=a]{list-style-type:lower-alpha}div#p>svg>foreignObject>section ol[type=i]{list-style-type:lower-roman}div#p>svg>foreignObject>section div>ol:not([type]){list-style-type:decimal}div#p>svg>foreignObject>section ol ol,div#p>svg>foreignObject>section ol ul,div#p>svg>foreignObject>section ul ol,div#p>svg>foreignObject>section ul ul{margin-bottom:0;margin-top:0}div#p>svg>foreignObject>section li>p{margin-top:16px}div#p>svg>foreignObject>section li+li{margin-top:.25em}div#p>svg>foreignObject>section dl{padding:0}div#p>svg>foreignObject>section dl dt{font-size:1em;font-style:italic;font-weight:600;margin-top:16px;padding:0}div#p>svg>foreignObject>section dl dd{margin-bottom:16px;padding:0 16px}div#p>svg>foreignObject>section table th{font-weight:600}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border:1px solid #d0d7de;padding:6px 13px}div#p>svg>foreignObject>section table tr{background-color:#fff;border-top:1px solid #d8dee4}div#p>svg>foreignObject>section table tr:nth-child(2n){background-color:#f6f8fa}div#p>svg>foreignObject>section table img{background-color:transparent}div#p>svg>foreignObject>section img[align=right]{padding-left:20px}div#p>svg>foreignObject>section img[align=left]{padding-right:20px}div#p>svg>foreignObject>section .emoji{background-color:transparent;max-width:none;vertical-align:text-top}div#p>svg>foreignObject>section span.frame,div#p>svg>foreignObject>section span.frame>span{display:block;overflow:hidden}div#p>svg>foreignObject>section span.frame>span{border:1px solid #d0d7de;float:left;margin:13px 0 0;padding:7px;width:auto}div#p>svg>foreignObject>section span.frame span img{display:block;float:left}div#p>svg>foreignObject>section span.frame span span{clear:both;color:#24292f;display:block;padding:5px 0 0}div#p>svg>foreignObject>section span.align-center{clear:both;display:block;overflow:hidden}div#p>svg>foreignObject>section span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}div#p>svg>foreignObject>section span.align-center span img{margin:0 auto;text-align:center}div#p>svg>foreignObject>section span.align-right{clear:both;display:block;overflow:hidden}div#p>svg>foreignObject>section span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}div#p>svg>foreignObject>section span.align-right span img{margin:0;text-align:right}div#p>svg>foreignObject>section span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}div#p>svg>foreignObject>section span.float-left span{margin:13px 0 0}div#p>svg>foreignObject>section span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}div#p>svg>foreignObject>section span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}div#p>svg>foreignObject>section code,div#p>svg>foreignObject>section tt{background-color:rgba(175,184,193,.2);border-radius:6px;font-size:85%;margin:0;padding:.2em .4em}div#p>svg>foreignObject>section code br,div#p>svg>foreignObject>section tt br{display:none}div#p>svg>foreignObject>section del code{text-decoration:inherit}div#p>svg>foreignObject>section pre code{font-size:100%}div#p>svg>foreignObject>section pre>code{background:transparent;border:0;margin:0;padding:0;white-space:pre;word-break:normal}div#p>svg>foreignObject>section .highlight{margin-bottom:16px}div#p>svg>foreignObject>section .highlight pre{margin-bottom:0;word-break:normal}div#p>svg>foreignObject>section pre{background-color:#f6f8fa;border-radius:6px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}div#p>svg>foreignObject>section pre code,div#p>svg>foreignObject>section pre tt{word-wrap:normal;background-color:transparent;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0}div#p>svg>foreignObject>section .csv-data td,div#p>svg>foreignObject>section .csv-data th{font-size:12px;line-height:1;overflow:hidden;padding:5px;text-align:left;white-space:nowrap}div#p>svg>foreignObject>section .csv-data .blob-num{background:#fff;border:0;padding:10px 8px 9px;text-align:right}div#p>svg>foreignObject>section .csv-data tr{border-top:0}div#p>svg>foreignObject>section .csv-data th{background:#f6f8fa;border-top:0;font-weight:600}div#p>svg>foreignObject>section .footnotes{border-top:1px solid #d0d7de;color:#57606a;font-size:12px}div#p>svg>foreignObject>section div#p>svg>foreignObject>section section.footnotes{--marpit-root-font-size:12px}div#p>svg>foreignObject>section .footnotes ol{padding-left:16px}div#p>svg>foreignObject>section .footnotes li{position:relative}div#p>svg>foreignObject>section .footnotes li:target:before{border:2px solid #0969da;border-radius:6px;bottom:-8px;content:"";left:-24px;pointer-events:none;position:absolute;right:-8px;top:-8px}div#p>svg>foreignObject>section .footnotes li:target{color:#24292f}div#p>svg>foreignObject>section .footnotes .data-footnote-backref g-emoji{font-family:monospace}div#p>svg>foreignObject>section .task-list-item{list-style-type:none}div#p>svg>foreignObject>section .task-list-item label{font-weight:400}div#p>svg>foreignObject>section .task-list-item.enabled label{cursor:pointer}div#p>svg>foreignObject>section .task-list-item+.task-list-item{margin-top:3px}div#p>svg>foreignObject>section .task-list-item .handle{display:none}div#p>svg>foreignObject>section .task-list-item-checkbox{margin:0 .2em .25em -1.6em;vertical-align:middle}div#p>svg>foreignObject>section .contains-task-list:dir(rtl) .task-list-item-checkbox{margin:0 -1.6em .25em .2em}div#p>svg>foreignObject>section ::-webkit-calendar-picker-indicator{filter:invert(50%)}div#p>svg>foreignObject>section .hljs{background:#fff;color:#333;display:block;overflow-x:auto;padding:.5em}div#p>svg>foreignObject>section .hljs-comment,div#p>svg>foreignObject>section .hljs-meta{color:#969896}div#p>svg>foreignObject>section .hljs-emphasis,div#p>svg>foreignObject>section .hljs-quote,div#p>svg>foreignObject>section .hljs-strong,div#p>svg>foreignObject>section .hljs-template-variable,div#p>svg>foreignObject>section .hljs-variable{color:#df5000}div#p>svg>foreignObject>section .hljs-keyword,div#p>svg>foreignObject>section .hljs-selector-tag,div#p>svg>foreignObject>section .hljs-type{color:#d73a49}div#p>svg>foreignObject>section .hljs-attribute,div#p>svg>foreignObject>section .hljs-bullet,div#p>svg>foreignObject>section .hljs-literal,div#p>svg>foreignObject>section .hljs-symbol{color:#0086b3}div#p>svg>foreignObject>section .hljs-name,div#p>svg>foreignObject>section .hljs-section{color:#63a35c}div#p>svg>foreignObject>section .hljs-tag{color:#333}div#p>svg>foreignObject>section .hljs-attr,div#p>svg>foreignObject>section .hljs-selector-attr,div#p>svg>foreignObject>section .hljs-selector-class,div#p>svg>foreignObject>section .hljs-selector-id,div#p>svg>foreignObject>section .hljs-selector-pseudo,div#p>svg>foreignObject>section .hljs-title{color:#6f42c1}div#p>svg>foreignObject>section .hljs-addition{background-color:#eaffea;color:#55a532}div#p>svg>foreignObject>section .hljs-deletion{background-color:#ffecec;color:#bd2c00}div#p>svg>foreignObject>section .hljs-link{text-decoration:underline}div#p>svg>foreignObject>section .hljs-number{color:#005cc5}div#p>svg>foreignObject>section .hljs-string{color:#032f62}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{max-height:563px}div#p>svg>foreignObject>section h1{color:#246;font-size:1.6em}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2{border-bottom:none}div#p>svg>foreignObject>section h2{font-size:1.3em}div#p>svg>foreignObject>section h3{font-size:1.1em}div#p>svg>foreignObject>section h4{font-size:1.05em}div#p>svg>foreignObject>section h5{font-size:1em}div#p>svg>foreignObject>section h6{font-size:.9em}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{color:#48c;font-weight:inherit}div#p>svg>foreignObject>section hr{height:0;padding-top:.25em}div#p>svg>foreignObject>section pre{border:1px solid #999;line-height:1.15;overflow:visible}div#p>svg>foreignObject>section pre code svg[data-marp-fitting=svg]{max-height:529px}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header{color:hsla(0,0%,40%,.75);font-size:18px;left:30px;margin:0;position:absolute}div#p>svg>foreignObject>section header{top:21px}div#p>svg>foreignObject>section footer{bottom:21px}div#p>svg>foreignObject>section{align-items:stretch;background:#fff;display:flex;flex-flow:column nowrap;font-size:29px;height:720px;justify-content:center;padding:78.5px;width:1280px}div#p>svg>foreignObject>section{--marpit-root-font-size:29px}div#p>svg>foreignObject>section>:last-child,div#p>svg>foreignObject>section[data-footer]>:nth-last-child(2){margin-bottom:0}div#p>svg>foreignObject>section>:first-child,div#p>svg>foreignObject>section>header:first-child+*{margin-top:0}div#p>svg>foreignObject>section:after{bottom:21px;color:#777;font-size:24px;padding:0;position:absolute;right:30px}div#p>svg>foreignObject>section:after{--marpit-root-font-size:24px}div#p>svg>foreignObject>section.invert{background-color:#222;color:#e6eaf0}div#p>svg>foreignObject>section.invert:after{color:#999}div#p>svg>foreignObject>section.invert img{background-color:transparent}div#p>svg>foreignObject>section.invert a{color:#50b3ff}div#p>svg>foreignObject>section.invert h1{color:#a3c5e7}div#p>svg>foreignObject>section.invert h2,div#p>svg>foreignObject>section.invert h3,div#p>svg>foreignObject>section.invert h4,div#p>svg>foreignObject>section.invert h5{color:#ebeff5}div#p>svg>foreignObject>section.invert blockquote,div#p>svg>foreignObject>section.invert h6{border-color:#3d3f43;color:#939699}div#p>svg>foreignObject>section.invert h1 strong,div#p>svg>foreignObject>section.invert h2 strong,div#p>svg>foreignObject>section.invert h3 strong,div#p>svg>foreignObject>section.invert h4 strong,div#p>svg>foreignObject>section.invert h5 strong,div#p>svg>foreignObject>section.invert h6 strong{color:#7bf}div#p>svg>foreignObject>section.invert hr{background-color:#3d3f43}div#p>svg>foreignObject>section.invert footer,div#p>svg>foreignObject>section.invert header{color:hsla(0,0%,60%,.75)}div#p>svg>foreignObject>section.invert code,div#p>svg>foreignObject>section.invert kbd{background-color:#111}div#p>svg>foreignObject>section.invert kbd{border-color:#666;box-shadow:inset 0 -1px 0 #555;color:#e6eaf0}div#p>svg>foreignObject>section.invert table tr{background-color:#12181d;border-color:#60657b}div#p>svg>foreignObject>section.invert table tr:nth-child(2n){background-color:#1b2024}div#p>svg>foreignObject>section.invert table td,div#p>svg>foreignObject>section.invert table th{border-color:#5b5e61}div#p>svg>foreignObject>section.invert pre{background-color:#0a0e12;border-color:#777}div#p>svg>foreignObject>section.invert pre code{background-color:transparent}div#p>svg>foreignObject>section[data-color] h1,div#p>svg>foreignObject>section[data-color] h2,div#p>svg>foreignObject>section[data-color] h3,div#p>svg>foreignObject>section[data-color] h4,div#p>svg>foreignObject>section[data-color] h5,div#p>svg>foreignObject>section[data-color] h6{color:currentColor}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]{columns:initial!important;display:block!important;padding:0!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#p>svg>foreignObject>section[data-marpit-advanced-background=content],div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button><button data-bespoke-marp-osc="presenter" tabindex="-1" title="Open presenter view (p)">Open presenter view</button></div><div id="p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1">
+<h1>第一章：rCore-Tutorial ch1 内核架构分析</h1>
+<h2>目录</h2>
+<ul>
+<li><a href="#%E6%80%BB%E4%BD%93%E6%A6%82%E8%BF%B0">总体概述</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E7%9A%84%E9%9C%80%E6%B1%82">解决的需求</a></li>
+<li><a href="#%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84">系统架构</a></li>
+<li><a href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">实现原理</a></li>
+<li><a href="#%E7%BC%96%E8%AF%91%E4%B8%8E%E8%BF%90%E8%A1%8C">编译与运行</a></li>
+<li><a href="#%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B">执行流程</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E8%AF%A6%E8%A7%A3">核心组件详解</a></li>
+<li><a href="#%E5%AD%A6%E4%B9%A0%E8%A6%81%E7%82%B9">学习要点</a></li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2">
+<h2>总体概述</h2>
+<h3>什么是ch1内核？</h3>
+<p>ch1内核是rCore-Tutorial系列的第一个操作系统内核实现，它的核心目标是：<strong>从零开始构建一个能够在裸机上运行的、能够打印&quot;Hello, world!&quot;的最小操作系统内核</strong>。</p>
+<p>这个内核虽然功能简单，但它完整展示了：</p>
+<ul>
+<li>如何脱离标准库独立运行</li>
+<li>如何在裸机环境下初始化硬件</li>
+<li>如何与底层固件（RustSBI）交互</li>
+<li>如何实现最基本的输入输出功能</li>
+</ul>
+<h3>核心特征</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>mindmap
+  root((ch1内核))
+    特征
+      最小化内核
+      无标准库
+      裸机运行
+      RISC-V 64位
+    功能
+      打印输出
+      内存段信息显示
+      优雅退出
+    技术栈
+      Rust语言
+      RISC-V汇编
+      QEMU虚拟机
+      RustSBI固件
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3">
+<h2>解决的需求</h2>
+<h3>1. 学习需求</h3>
+<p>帮助学生理解：</p>
+<ul>
+<li>应用程序与执行环境的关系</li>
+<li>操作系统内核的启动过程</li>
+<li>从用户态到内核态的转变</li>
+<li>裸机编程的基本概念</li>
+</ul>
+<h3>2. 技术需求</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>graph TD
+    A[标准应用程序] --&gt;|依赖| B[标准库 std]
+    B --&gt;|依赖| C[操作系统]
+    C --&gt;|依赖| D[硬件]
+    
+    E[ch1内核] --&gt;|依赖| F[核心库 core]
+    F --&gt;|直接运行| G[RustSBI]
+    G --&gt;|运行在| H[QEMU虚拟硬件]
+    
+    style A fill:#e1f5ff
+    style E fill:#ffe1f5
+    style B fill:#fff4e1
+    style F fill:#fff4e1
+</span></span></foreignObject></svg></code></pre>
+<p><strong>主要解决的问题：</strong></p>
+<ol>
+<li><strong>脱离标准库依赖</strong>：标准库<code>std</code>需要操作系统支持，内核本身不能依赖它</li>
+<li><strong>裸机执行环境</strong>：在没有操作系统的情况下运行程序</li>
+<li><strong>内存布局控制</strong>：精确控制程序在内存中的位置和布局</li>
+<li><strong>底层硬件交互</strong>：直接与硬件和固件通信</li>
+</ol>
+<h3>3. 功能需求对比</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>普通Rust程序</th>
+<th>ch1内核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标准库支持</td>
+<td><img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/> std</td>
+<td><img class="emoji" draggable="false" alt="❌" src="https://twemoji.maxcdn.com/2/svg/274c.svg" data-marp-twemoji=""/> 仅core</td>
+</tr>
+<tr>
+<td>运行环境</td>
+<td>操作系统上</td>
+<td>裸机直接运行</td>
+</tr>
+<tr>
+<td>入口函数</td>
+<td>main()</td>
+<td>rust_main()</td>
+</tr>
+<tr>
+<td>内存管理</td>
+<td>自动</td>
+<td>手动配置</td>
+</tr>
+<tr>
+<td>输出方式</td>
+<td>println!宏</td>
+<td>SBI调用</td>
+</tr>
+<tr>
+<td>退出方式</td>
+<td>正常返回</td>
+<td>SBI关机</td>
+</tr>
+</tbody>
+</table>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4">
+<h2>系统架构</h2>
+<h3>整体架构图</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>graph TB
+    subgraph Hardware[&quot;硬件层&quot;]
+        QEMU[QEMU虚拟机&lt;br/&gt;RISC-V 64]
+    end
+    
+    subgraph Firmware[&quot;固件层&quot;]
+        RustSBI[RustSBI&lt;br/&gt;Machine Mode]
+    end
+    
+    subgraph Kernel[&quot;内核层 - Supervisor Mode&quot;]
+        Entry[entry.asm&lt;br/&gt;启动汇编]
+        RustMain[rust_main&lt;br/&gt;内核入口]
+        
+        subgraph Modules[&quot;内核模块&quot;]
+            Console[console.rs&lt;br/&gt;控制台输出]
+            SBI[sbi.rs&lt;br/&gt;SBI调用]
+            Logging[logging.rs&lt;br/&gt;日志系统]
+            LangItems[lang_items.rs&lt;br/&gt;语义项]
+        end
+        
+        subgraph Board[&quot;板级支持&quot;]
+            QemuBoard[qemu.rs&lt;br/&gt;QEMU退出]
+        end
+    end
+    
+    QEMU --&gt; RustSBI
+    RustSBI --&gt; Entry
+    Entry --&gt; RustMain
+    RustMain --&gt; Console
+    RustMain --&gt; SBI
+    RustMain --&gt; Logging
+    RustMain --&gt; LangItems
+    RustMain --&gt; QemuBoard
+    Console --&gt; SBI
+    SBI --&gt; RustSBI
+    QemuBoard --&gt; QEMU
+    
+    style Hardware fill:#ffebee
+    style Firmware fill:#fff3e0
+    style Kernel fill:#e8f5e9
+</span></span></foreignObject></svg></code></pre>
+<h3>目录结构</h3>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>rCore-Tutorial-Code/
+├── bootloader/              # 固件目录
+│   └── rustsbi-qemu.bin    # RustSBI二进制文件
+├── os/                      # 内核源代码
+│   ├── .cargo/             # Cargo配置
+│   │   └── config          # 编译目标配置
+│   ├── src/                # 源代码
+│   │   ├── main.rs         # 内核主函数
+│   │   ├── entry.asm       # 启动汇编代码
+│   │   ├── linker.ld       # 链接脚本
+│   │   ├── console.rs      # 控制台输出
+│   │   ├── sbi.rs          # SBI调用封装
+│   │   ├── logging.rs      # 日志功能
+│   │   ├── lang_items.rs   # Rust语义项
+│   │   └── boards/         # 板级支持包
+│   │       └── qemu.rs     # QEMU退出实现
+│   ├── Cargo.toml          # Rust项目配置
+│   └── Makefile            # 构建脚本
+└── rust-toolchain.toml     # Rust工具链版本
+</span></span></foreignObject></svg></code></pre>
+<h3>内存布局</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>graph LR
+    subgraph MemoryLayout[&quot;内核内存布局 - 从0x80200000开始&quot;]
+        direction TB
+        A[0x80200000&lt;br/&gt;BASE_ADDRESS] --&gt; B[.text段&lt;br/&gt;代码段]
+        B --&gt; C[.rodata段&lt;br/&gt;只读数据]
+        C --&gt; D[.data段&lt;br/&gt;已初始化数据]
+        D --&gt; E[.bss.stack&lt;br/&gt;栈空间 64KB]
+        E --&gt; F[.bss段&lt;br/&gt;未初始化数据]
+        F --&gt; G[ekernel&lt;br/&gt;内核结束]
+    end
+    
+    style A fill:#ffcccc
+    style G fill:#ccccff
+</span></span></foreignObject></svg></code></pre>
+<p><strong>各段说明：</strong></p>
+<ul>
+<li><strong>.text</strong>: 存放可执行代码，从入口点<code>_start</code>开始</li>
+<li><strong>.rodata</strong>: 存放只读常量数据</li>
+<li><strong>.data</strong>: 存放已初始化的全局变量</li>
+<li><strong>.bss.stack</strong>: 64KB的栈空间</li>
+<li><strong>.bss</strong>: 存放未初始化的全局变量，需要在启动时清零</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5">
+<h2>实现原理</h2>
+<h3>1. 移除标准库依赖</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>flowchart TD
+    Start[标准Rust程序] --&gt; A[添加 #!no_std]
+    A --&gt; B[添加 #!no_main]
+    B --&gt; C[实现 panic_handler]
+    C --&gt; D[移除 println!等标准库宏]
+    D --&gt; E[实现自定义 println!]
+    E --&gt; F[裸机程序]
+    
+    style Start fill:#e1f5ff
+    style F fill:#c8e6c9
+</span></span></foreignObject></svg></code></pre>
+<p><strong>关键步骤：</strong></p>
+<ol>
+<li><strong>禁用标准库</strong>: 使用<code>#![no_std]</code>告诉编译器不链接标准库</li>
+<li><strong>禁用主函数</strong>: 使用<code>#![no_main]</code>因为裸机程序没有标准入口</li>
+<li><strong>实现panic处理</strong>: 必须提供<code>#[panic_handler]</code>处理程序崩溃</li>
+<li><strong>自定义入口</strong>: 通过链接脚本指定<code>_start</code>为程序入口</li>
+</ol>
+<h3>2. 构建最小运行时</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>sequenceDiagram
+    participant C as 编译器
+    participant L as 链接器
+    participant A as entry.asm
+    participant R as rust_main
+    
+    C-&gt;&gt;L: 编译Rust代码
+    L-&gt;&gt;L: 读取linker.ld
+    L-&gt;&gt;L: 设置BASE_ADDRESS=0x80200000
+    L-&gt;&gt;A: 放置在.text.entry段
+    A-&gt;&gt;A: 初始化栈指针
+    A-&gt;&gt;R: 跳转到rust_main
+    R-&gt;&gt;R: 清空BSS段
+    R-&gt;&gt;R: 初始化日志
+    R-&gt;&gt;R: 打印Hello World
+    R-&gt;&gt;R: 显示内存信息
+    R-&gt;&gt;R: 退出QEMU
+</span></span></foreignObject></svg></code></pre>
+<h3>3. SBI调用机制</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>sequenceDiagram
+    participant K as 内核&lt;br/&gt;(Supervisor)
+    participant S as RustSBI&lt;br/&gt;(Machine)
+    participant H as 硬件
+    
+    K-&gt;&gt;K: console_putchar()
+    K-&gt;&gt;K: sbi_call()
+    K-&gt;&gt;S: ecall指令
+    Note over K,S: 特权级切换 S-&gt;M
+    S-&gt;&gt;S: 解析SBI调用号
+    S-&gt;&gt;H: 操作UART硬件
+    H-&gt;&gt;H: 输出字符
+    S--&gt;&gt;K: 返回结果
+    Note over S,K: 特权级切换 M-&gt;S
+</span></span></foreignObject></svg></code></pre>
+<p><strong>SBI调用流程：</strong></p>
+<ol>
+<li>内核准备好参数（a0-a2）和调用号（a17）</li>
+<li>执行<code>ecall</code>指令触发特权级异常</li>
+<li>RustSBI捕获异常并处理</li>
+<li>RustSBI操作硬件完成功能</li>
+<li>返回结果给内核</li>
+</ol>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6">
+<h2>编译与运行</h2>
+<h3>编译流程</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>flowchart LR
+    A[源代码&lt;br/&gt;.rs/.asm] --&gt; B[cargo build&lt;br/&gt;编译]
+    B --&gt; C[ELF文件&lt;br/&gt;os]
+    C --&gt; D[rust-objcopy&lt;br/&gt;转换]
+    D --&gt; E[二进制文件&lt;br/&gt;os.bin]
+    
+    F[linker.ld&lt;br/&gt;链接脚本] -.-&gt; B
+    G[.cargo/config&lt;br/&gt;配置] -.-&gt; B
+    
+    style A fill:#e1f5ff
+    style E fill:#c8e6c9
+</span></span></foreignObject></svg></code></pre>
+<h3>详细编译步骤</h3>
+<h4>1. 环境准备</h4>
+<pre><code class="language-bash"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment"># 安装Rust工具链</span>
+rustup target add riscv64gc-unknown-none-elf
+
+<span class="hljs-comment"># 安装二进制工具</span>
+cargo install cargo-binutils
+rustup component add rust-src
+rustup component add llvm-tools-preview
+</span></span></foreignObject></svg></code></pre>
+<h4>2. 编译过程</h4>
+<pre><code class="language-bash"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-built_in">cd</span> os
+
+<span class="hljs-comment"># 方式1: 使用Makefile</span>
+make build          <span class="hljs-comment"># 编译内核</span>
+make run           <span class="hljs-comment"># 编译并运行</span>
+
+<span class="hljs-comment"># 方式2: 手动编译</span>
+cargo build --release                                    <span class="hljs-comment"># 编译为ELF</span>
+rust-objcopy --strip-all -O binary target/riscv64gc-unknown-none-elf/release/os target/riscv64gc-unknown-none-elf/release/os.bin  <span class="hljs-comment"># 转换为二进制</span>
+</span></span></foreignObject></svg></code></pre>
+<h4>3. 运行内核</h4>
+<pre><code class="language-bash"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment"># 基本运行</span>
+make run
+
+<span class="hljs-comment"># 带日志级别运行</span>
+make run LOG=TRACE
+
+<span class="hljs-comment"># QEMU命令展开</span>
+qemu-system-riscv64 \
+    -machine virt \                           <span class="hljs-comment"># 使用virt虚拟机</span>
+    -nographic \                              <span class="hljs-comment"># 无图形界面</span>
+    -bios ../bootloader/rustsbi-qemu.bin \   <span class="hljs-comment"># 加载RustSBI</span>
+    -device loader,file=os.bin,addr=0x80200000  <span class="hljs-comment"># 加载内核到指定地址</span>
+</span></span></foreignObject></svg></code></pre>
+<h3>Makefile关键目标</h3>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>功能</th>
+<th>命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build</code></td>
+<td>编译内核</td>
+<td><code>cargo build --release</code></td>
+</tr>
+<tr>
+<td><code>run</code></td>
+<td>编译并运行</td>
+<td>编译+QEMU启动</td>
+</tr>
+<tr>
+<td><code>debug</code></td>
+<td>启动调试</td>
+<td>QEMU+GDB调试环境</td>
+</tr>
+<tr>
+<td><code>disasm</code></td>
+<td>反汇编</td>
+<td><code>rust-objdump -d</code></td>
+</tr>
+<tr>
+<td><code>clean</code></td>
+<td>清理</td>
+<td><code>cargo clean</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7">
+<h2>执行流程</h2>
+<h3>完整启动流程</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>sequenceDiagram
+    participant P as 电源/启动
+    participant Q as QEMU
+    participant H as 硬件ROM&lt;br/&gt;0x1000
+    participant S as RustSBI&lt;br/&gt;0x80000000
+    participant K as 内核&lt;br/&gt;0x80200000
+    participant M as rust_main
+    
+    P-&gt;&gt;Q: 加电启动
+    Q-&gt;&gt;H: PC=0x1000
+    H-&gt;&gt;S: 跳转到0x80000000
+    S-&gt;&gt;S: 初始化硬件
+    S-&gt;&gt;S: 设置M模式
+    S-&gt;&gt;K: 跳转到0x80200000
+    Note over K: 执行_start
+    
+    K-&gt;&gt;K: la sp, boot_stack_top&lt;br/&gt;设置栈指针
+    K-&gt;&gt;M: call rust_main
+    
+    M-&gt;&gt;M: clear_bss()&lt;br/&gt;清空BSS段
+    M-&gt;&gt;M: logging::init()&lt;br/&gt;初始化日志
+    M-&gt;&gt;M: println!(&quot;Hello, world!&quot;)
+    M-&gt;&gt;M: 打印内存段信息
+    M-&gt;&gt;M: QEMU_EXIT_HANDLE.exit_success()
+    
+    M--&gt;&gt;Q: 退出QEMU
+</span></span></foreignObject></svg></code></pre>
+<h3>详细执行阶段</h3>
+<h4>阶段1: 硬件初始化（QEMU + RustSBI）</h4>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>stateDiagram-v2
+    [*] --&gt; QEMU启动: 加电
+    QEMU启动 --&gt; ROM代码: PC=0x1000
+    ROM代码 --&gt; RustSBI: 跳转0x80000000
+    RustSBI --&gt; 初始化硬件: M模式
+    初始化硬件 --&gt; 跳转内核: 地址0x80200000
+    跳转内核 --&gt; [*]
+</span></span></foreignObject></svg></code></pre>
+<p><strong>关键地址：</strong></p>
+<ul>
+<li><code>0x1000</code>: QEMU固化ROM代码起始地址</li>
+<li><code>0x80000000</code>: RustSBI加载地址</li>
+<li><code>0x80200000</code>: 内核加载地址（BASE_ADDRESS）</li>
+</ul>
+<h4>阶段2: 内核启动（entry.asm）</h4>
+<pre><code class="language-assembly"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap># os/src/entry.asm
+.section .text.entry
+.globl _start
+_start:
+    la sp, boot_stack_top      # 加载栈顶地址到sp寄存器
+    call rust_main              # 调用Rust主函数
+
+.section .bss.stack
+.globl boot_stack_lower_bound
+boot_stack_lower_bound:
+    .space 4096 * 16           # 分配64KB栈空间
+.globl boot_stack_top
+boot_stack_top:                 # 栈顶标识
+</span></span></foreignObject></svg></code></pre>
+<p><strong>作用：</strong></p>
+<ol>
+<li>设置栈指针，为后续Rust代码执行提供栈空间</li>
+<li>跳转到Rust编写的内核主函数</li>
+</ol>
+<h4>阶段3: 内核初始化（rust_main）</h4>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>flowchart TD
+    A[rust_main] --&gt; B[clear_bss&lt;br/&gt;清空BSS段]
+    B --&gt; C[logging::init&lt;br/&gt;初始化日志系统]
+    C --&gt; D[println!&lt;br/&gt;Hello World]
+    D --&gt; E[打印内存段信息]
+    E --&gt; F{日志级别}
+    F --&gt;|TRACE| G[trace: .text段]
+    F --&gt;|DEBUG| H[debug: .rodata段]
+    F --&gt;|INFO| I[info: .data段]
+    F --&gt;|WARN| J[warn: 栈信息]
+    F --&gt;|ERROR| K[error: .bss段]
+    G --&gt; L
+    H --&gt; L
+    I --&gt; L
+    J --&gt; L
+    K --&gt; L[exit_success&lt;br/&gt;退出QEMU]
+    
+    style A fill:#e1f5ff
+    style L fill:#c8e6c9
+</span></span></foreignObject></svg></code></pre>
+<p><strong>代码流程：</strong></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/main.rs</span>
+<span class="hljs-meta">#[no_mangle]</span>
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">rust_main</span></span>() -&gt; ! {
+    <span class="hljs-comment">// 1. 清空BSS段（未初始化数据段）</span>
+    clear_bss();
+    
+    <span class="hljs-comment">// 2. 初始化日志系统</span>
+    logging::init();
+    
+    <span class="hljs-comment">// 3. 打印欢迎信息</span>
+    <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;[kernel] Hello, world!&quot;</span>);
+    
+    <span class="hljs-comment">// 4. 打印各内存段信息（根据日志级别）</span>
+    trace!(<span class="hljs-string">&quot;[kernel] .text [{:#x}, {:#x})&quot;</span>, stext, etext);
+    debug!(<span class="hljs-string">&quot;[kernel] .rodata [{:#x}, {:#x})&quot;</span>, srodata, erodata);
+    info!(<span class="hljs-string">&quot;[kernel] .data [{:#x}, {:#x})&quot;</span>, sdata, edata);
+    warn!(<span class="hljs-string">&quot;[kernel] boot_stack top={:#x}, lower_bound={:#x}&quot;</span>, ...);
+    error!(<span class="hljs-string">&quot;[kernel] .bss [{:#x}, {:#x})&quot;</span>, sbss, ebss);
+    
+    <span class="hljs-comment">// 5. 退出QEMU</span>
+    crate::board::QEMU_EXIT_HANDLE.exit_success();
+}
+</span></span></foreignObject></svg></code></pre>
+<h3>特权级转换</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>graph LR
+    A[应用程序&lt;br/&gt;User Mode&lt;br/&gt;U特权级] --&gt;|ecall| B[内核&lt;br/&gt;Supervisor Mode&lt;br/&gt;S特权级]
+    B --&gt;|ecall| C[RustSBI&lt;br/&gt;Machine Mode&lt;br/&gt;M特权级]
+    C --&gt;|直接访问| D[硬件]
+    
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#ffe1f5
+    style D fill:#ffebee
+</span></span></foreignObject></svg></code></pre>
+<p><strong>特权级说明：</strong></p>
+<ul>
+<li><strong>User Mode (U)</strong>: 最低特权级，运行应用程序</li>
+<li><strong>Supervisor Mode (S)</strong>: 内核特权级，运行操作系统</li>
+<li><strong>Machine Mode (M)</strong>: 最高特权级，运行RustSBI固件</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8">
+<h2>核心组件详解</h2>
+<h3>1. 链接脚本 (linker.ld)</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>graph TB
+    subgraph LinkerScript[&quot;链接脚本作用&quot;]
+        A[定义内存布局] --&gt; B[设置入口点&lt;br/&gt;ENTRY _start]
+        B --&gt; C[指定基地址&lt;br/&gt;0x80200000]
+        C --&gt; D[组织各段&lt;br/&gt;.text/.rodata/.data/.bss]
+        D --&gt; E[导出符号&lt;br/&gt;stext/etext等]
+    end
+    
+    style A fill:#e1f5ff
+    style E fill:#c8e6c9
+</span></span></foreignObject></svg></code></pre>
+<p><strong>关键内容解析：</strong></p>
+<pre><code class="language-ld"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap># os/src/linker.ld
+OUTPUT_ARCH(riscv)              # 目标架构：RISC-V
+ENTRY(_start)                   # 程序入口点
+BASE_ADDRESS = 0x80200000;      # 内核起始物理地址
+
+SECTIONS {
+    . = BASE_ADDRESS;           # 当前位置设为基地址
+    skernel = .;                # 内核起始标记
+    
+    # 代码段
+    stext = .;
+    .text : {
+        *(.text.entry)          # 入口代码优先
+        *(.text .text.*)
+    }
+    
+    # 只读数据段
+    . = ALIGN(4K);              # 4KB对齐
+    etext = .;
+    srodata = .;
+    .rodata : { *(.rodata .rodata.*) }
+    
+    # 数据段
+    . = ALIGN(4K);
+    erodata = .;
+    sdata = .;
+    .data : { *(.data .data.*) }
+    
+    # BSS段（包括栈）
+    . = ALIGN(4K);
+    edata = .;
+    .bss : {
+        *(.bss.stack)           # 栈空间
+        sbss = .;
+        *(.bss .bss.*)
+    }
+    
+    ebss = .;
+    ekernel = .;                # 内核结束标记
+}
+</span></span></foreignObject></svg></code></pre>
+<h3>2. SBI调用模块 (<a href="http://sbi.rs">sbi.rs</a>)</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>flowchart LR
+    A[内核] --&gt;|console_putchar| B[sbi_call]
+    B --&gt;|参数设置| C[寄存器]
+    C --&gt;|a0-a2: 参数| D[ecall指令]
+    C --&gt;|a17: 调用号| D
+    D --&gt;|触发| E[RustSBI]
+    E --&gt;|执行| F[硬件操作]
+    
+    style A fill:#e1f5ff
+    style E fill:#fff4e1
+    style F fill:#ffebee
+</span></span></foreignObject></svg></code></pre>
+<p><strong>核心实现：</strong></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/sbi.rs</span>
+<span class="hljs-keyword">const</span> SBI_CONSOLE_PUTCHAR: <span class="hljs-built_in">usize</span> = <span class="hljs-number">1</span>;  <span class="hljs-comment">// 控制台输出字符</span>
+
+<span class="hljs-meta">#[inline(always)]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sbi_call</span></span>(which: <span class="hljs-built_in">usize</span>, arg0: <span class="hljs-built_in">usize</span>, arg1: <span class="hljs-built_in">usize</span>, arg2: <span class="hljs-built_in">usize</span>) -&gt; <span class="hljs-built_in">usize</span> {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> ret;
+    <span class="hljs-keyword">unsafe</span> {
+        asm!(
+            <span class="hljs-string">&quot;li x16, 0&quot;</span>,                    <span class="hljs-comment">// 扩展ID设为0</span>
+            <span class="hljs-string">&quot;ecall&quot;</span>,                        <span class="hljs-comment">// 执行SBI调用</span>
+            inlateout(<span class="hljs-string">&quot;x10&quot;</span>) arg0 =&gt; ret,   <span class="hljs-comment">// a0: 参数0/返回值</span>
+            <span class="hljs-keyword">in</span>(<span class="hljs-string">&quot;x11&quot;</span>) arg1,                 <span class="hljs-comment">// a1: 参数1</span>
+            <span class="hljs-keyword">in</span>(<span class="hljs-string">&quot;x12&quot;</span>) arg2,                 <span class="hljs-comment">// a2: 参数2</span>
+            <span class="hljs-keyword">in</span>(<span class="hljs-string">&quot;x17&quot;</span>) which,                <span class="hljs-comment">// a17: SBI调用号</span>
+        );
+    }
+    ret
+}
+
+<span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">console_putchar</span></span>(c: <span class="hljs-built_in">usize</span>) {
+    sbi_call(SBI_CONSOLE_PUTCHAR, c, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+}
+</span></span></foreignObject></svg></code></pre>
+<p><strong>SBI调用规范：</strong></p>
+<ul>
+<li><code>a0-a2</code> (x10-x12): 传递参数</li>
+<li><code>a17</code> (x17): SBI调用号</li>
+<li><code>a0</code> (x10): 返回值</li>
+</ul>
+<h3>3. 控制台输出 (<a href="http://console.rs">console.rs</a>)</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>flowchart TD
+    A[println!宏] --&gt; B[print函数]
+    B --&gt; C[Stdout.write_str]
+    C --&gt; D{遍历字符}
+    D --&gt;|每个字符| E[console_putchar]
+    E --&gt; F[sbi_call]
+    F --&gt; G[RustSBI]
+    G --&gt; H[UART输出]
+    
+    style A fill:#e1f5ff
+    style H fill:#c8e6c9
+</span></span></foreignObject></svg></code></pre>
+<p><strong>实现原理：</strong></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/console.rs</span>
+<span class="hljs-keyword">use</span> core::fmt::{<span class="hljs-keyword">self</span>, Write};
+
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Stdout</span></span>;
+
+<span class="hljs-keyword">impl</span> Write <span class="hljs-keyword">for</span> Stdout {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">write_str</span></span>(&amp;<span class="hljs-keyword">mut</span> <span class="hljs-keyword">self</span>, s: &amp;<span class="hljs-built_in">str</span>) -&gt; fmt::<span class="hljs-built_in">Result</span> {
+        <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> s.chars() {
+            console_putchar(c <span class="hljs-keyword">as</span> <span class="hljs-built_in">usize</span>);  <span class="hljs-comment">// 逐字符输出</span>
+        }
+        <span class="hljs-literal">Ok</span>(())
+    }
+}
+
+<span class="hljs-comment">// println!宏定义</span>
+<span class="hljs-meta">#[macro_export]</span>
+<span class="hljs-built_in">macro_rules!</span> println {
+    ($fmt: literal $(, $($arg: tt)+)?) =&gt; {
+        $crate::console::print(<span class="hljs-built_in">format_args!</span>(<span class="hljs-built_in">concat!</span>($fmt, <span class="hljs-string">&quot;\n&quot;</span>) $(, $($arg)+)?))
+    }
+}
+</span></span></foreignObject></svg></code></pre>
+<h3>4. 日志系统 (<a href="http://logging.rs">logging.rs</a>)</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>graph LR
+    A[日志宏] --&gt; B[Log trait]
+    B --&gt; C[SimpleLogger]
+    C --&gt; D[println!]
+    D --&gt; E[控制台输出]
+    
+    F[ERROR] --&gt; G[红色]
+    H[WARN] --&gt; I[黄色]
+    J[INFO] --&gt; K[绿色]
+    L[DEBUG] --&gt; M[蓝色]
+    N[TRACE] --&gt; O[灰色]
+    
+    style A fill:#e1f5ff
+    style E fill:#c8e6c9
+</span></span></foreignObject></svg></code></pre>
+<p><strong>日志级别：</strong></p>
+<ul>
+<li><strong>ERROR</strong>: 严重错误（红色）</li>
+<li><strong>WARN</strong>: 警告信息（黄色）</li>
+<li><strong>INFO</strong>: 一般信息（绿色）</li>
+<li><strong>DEBUG</strong>: 调试信息（蓝色）</li>
+<li><strong>TRACE</strong>: 详细跟踪（灰色）</li>
+</ul>
+<h3>5. 语义项 (lang_items.rs)</h3>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/lang_items.rs</span>
+<span class="hljs-keyword">use</span> core::panic::PanicInfo;
+
+<span class="hljs-meta">#[panic_handler]</span>
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">panic</span></span>(info: &amp;PanicInfo) -&gt; ! {
+    <span class="hljs-keyword">if</span> <span class="hljs-keyword">let</span> <span class="hljs-literal">Some</span>(location) = info.location() {
+        <span class="hljs-built_in">println!</span>(
+            <span class="hljs-string">&quot;[kernel] Panicked at {}:{} {}&quot;</span>,
+            location.file(),
+            location.line(),
+            info.message().unwrap()
+        );
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">println!</span>(<span class="hljs-string">&quot;[kernel] Panicked: {}&quot;</span>, info.message().unwrap());
+    }
+    shutdown()
+}
+</span></span></foreignObject></svg></code></pre>
+<p><strong>作用：</strong> 为Rust编译器提供必要的语言特性实现，处理程序崩溃情况。</p>
+<h3>6. QEMU退出机制 (<a href="http://qemu.rs">qemu.rs</a>)</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>sequenceDiagram
+    participant K as 内核
+    participant Q as QEMU
+    participant H as sifive_test设备
+    
+    K-&gt;&gt;K: exit_success()
+    K-&gt;&gt;Q: 写入0x5555到0x100000
+    Q-&gt;&gt;H: 触发sifive_test
+    H-&gt;&gt;Q: 执行退出
+    Q-&gt;&gt;Q: 结束模拟
+    
+    Note over K,Q: 通过内存映射IO控制QEMU
+</span></span></foreignObject></svg></code></pre>
+<p><strong>实现细节：</strong></p>
+<pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// os/src/boards/qemu.rs</span>
+<span class="hljs-keyword">const</span> EXIT_SUCCESS: <span class="hljs-built_in">u32</span> = <span class="hljs-number">0x5555</span>;        <span class="hljs-comment">// 成功退出码</span>
+<span class="hljs-keyword">const</span> VIRT_TEST: <span class="hljs-built_in">u64</span> = <span class="hljs-number">0x100000</span>;         <span class="hljs-comment">// sifive_test设备地址</span>
+
+<span class="hljs-keyword">impl</span> QEMUExit <span class="hljs-keyword">for</span> RISCV64 {
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">exit</span></span>(&amp;<span class="hljs-keyword">self</span>, code: <span class="hljs-built_in">u32</span>) -&gt; ! {
+        <span class="hljs-keyword">unsafe</span> {
+            asm!(
+                <span class="hljs-string">&quot;sw {0}, 0({1})&quot;</span>,        # 写入退出码
+                <span class="hljs-keyword">in</span>(reg)code, <span class="hljs-keyword">in</span>(reg)<span class="hljs-keyword">self</span>.addr
+            );
+            <span class="hljs-keyword">loop</span> {
+                asm!(<span class="hljs-string">&quot;wfi&quot;</span>, options(nomem, nostack));  # 等待中断
+            }
+        }
+    }
+    
+    <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">exit_success</span></span>(&amp;<span class="hljs-keyword">self</span>) -&gt; ! {
+        <span class="hljs-keyword">self</span>.exit(EXIT_SUCCESS);
+    }
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9">
+<h2>学习要点</h2>
+<h3>核心概念理解</h3>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>mindmap
+  root((ch1核心概念))
+    执行环境
+      应用层
+      标准库层
+      OS内核层
+      固件层
+      硬件层
+    裸机编程
+      无标准库
+      直接硬件访问
+      内存布局控制
+    RISC-V
+      特权级架构
+      SBI规范
+      ecall机制
+    构建流程
+      交叉编译
+      链接脚本
+      目标三元组
+</span></span></foreignObject></svg></code></pre>
+<h3>关键知识点</h3>
+<h4>1. 目标三元组 (Target Triplet)</h4>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>riscv64gc-unknown-none-elf
+  │     │    │    │   └─ 可执行文件格式
+  │     │    │    └────── 无标准运行时库
+  │     │    └─────────── 操作系统类型（none表示裸机）
+  │     └──────────────── 厂商（unknown）
+  └────────────────────── CPU架构（RISC-V 64位）
+</span></span></foreignObject></svg></code></pre>
+<h4>2. 裸机 vs 有OS环境</h4>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>有OS环境</th>
+<th>裸机环境</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入口点</td>
+<td>main()</td>
+<td>自定义(_start)</td>
+</tr>
+<tr>
+<td>标准库</td>
+<td>可用std</td>
+<td>仅core</td>
+</tr>
+<tr>
+<td>输出</td>
+<td>系统调用</td>
+<td>直接硬件/SBI</td>
+</tr>
+<tr>
+<td>内存管理</td>
+<td>OS提供</td>
+<td>手动管理</td>
+</tr>
+<tr>
+<td>退出</td>
+<td>return</td>
+<td>特殊机制</td>
+</tr>
+</tbody>
+</table>
+<h4>3. 内存段作用</h4>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>graph LR
+    A[.text&lt;br/&gt;代码段] --&gt; B[存放可执行指令]
+    C[.rodata&lt;br/&gt;只读数据] --&gt; D[存放常量]
+    E[.data&lt;br/&gt;数据段] --&gt; F[已初始化全局变量]
+    G[.bss&lt;br/&gt;BSS段] --&gt; H[未初始化全局变量]
+    I[.bss.stack&lt;br/&gt;栈] --&gt; J[函数调用栈]
+    
+    style A fill:#ffebee
+    style C fill:#e3f2fd
+    style E fill:#e8f5e9
+    style G fill:#fff3e0
+    style I fill:#f3e5f5
+</span></span></foreignObject></svg></code></pre>
+<h3>实验目标达成</h3>
+<p>通过ch1内核的学习，你应该能够：</p>
+<p><img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/> <strong>理解</strong>应用程序执行环境的层次结构<br />
+<img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/> <strong>掌握</strong>脱离标准库编写裸机程序的方法<br />
+<img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/> <strong>熟悉</strong>RISC-V特权级架构和SBI调用机制<br />
+<img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/> <strong>学会</strong>使用链接脚本控制内存布局<br />
+<img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/> <strong>了解</strong>内核启动的基本流程<br />
+<img class="emoji" draggable="false" alt="✅" src="https://twemoji.maxcdn.com/2/svg/2705.svg" data-marp-twemoji=""/> <strong>掌握</strong>交叉编译和QEMU调试方法</p>
+<h3>扩展思考</h3>
+<ol>
+<li>
+<p><strong>为什么内核入口地址是0x80200000？</strong></p>
+<ul>
+<li>RustSBI约定</li>
+<li>避免与固件冲突</li>
+<li>留出足够空间给SBI</li>
+</ul>
+</li>
+<li>
+<p><strong>为什么需要清空BSS段？</strong></p>
+<ul>
+<li>BSS段存放未初始化的全局变量</li>
+<li>C/Rust标准要求未初始化变量为0</li>
+<li>硬件不保证内存初始状态</li>
+</ul>
+</li>
+<li>
+<p><strong>SBI与系统调用的区别？</strong></p>
+<ul>
+<li>SBI: 内核→固件（S→M特权级）</li>
+<li>系统调用: 应用→内核（U→S特权级）</li>
+<li>都使用ecall指令，但目标不同</li>
+</ul>
+</li>
+</ol>
+<h3>调试技巧</h3>
+<pre><code class="language-bash"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment"># 1. 反汇编查看</span>
+make disasm
+
+<span class="hljs-comment"># 2. 查看ELF文件信息</span>
+rust-readobj -h target/riscv64gc-unknown-none-elf/release/os
+
+<span class="hljs-comment"># 3. GDB调试</span>
+make debug  <span class="hljs-comment"># 启动调试环境</span>
+
+<span class="hljs-comment"># 4. 不同日志级别</span>
+make run LOG=ERROR   <span class="hljs-comment"># 只显示错误</span>
+make run LOG=INFO    <span class="hljs-comment"># 显示信息及以上</span>
+make run LOG=TRACE   <span class="hljs-comment"># 显示所有日志</span>
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10">
+<h2>总结</h2>
+<p>ch1内核虽然简单，但它完整展示了操作系统内核开发的基础知识体系：</p>
+<pre><code class="language-mermaid"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>graph TD
+    A[ch1内核] --&gt; B[基础]
+    A --&gt; C[技能]
+    A --&gt; D[理解]
+    
+    B --&gt; B1[裸机编程]
+    B --&gt; B2[内存管理]
+    B --&gt; B3[硬件交互]
+    
+    C --&gt; C1[Rust语言]
+    C --&gt; C2[汇编语言]
+    C --&gt; C3[构建工具]
+    
+    D --&gt; D1[执行环境]
+    D --&gt; D2[特权级]
+    D --&gt; D3[启动流程]
+    
+    style A fill:#e1f5ff
+    style B fill:#c8e6c9
+    style C fill:#fff9c4
+    style D fill:#f8bbd0
+</span></span></foreignObject></svg></code></pre>
+<p>这为后续章节学习更复杂的内核功能（如内存管理、任务调度、文件系统等）打下了坚实的基础。</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11">
+<h2>参考资料</h2>
+<ul>
+<li>rCore-Tutorial Book: <a href="https://rcore-os.cn/rCore-Tutorial-Book-v3/">https://rcore-os.cn/rCore-Tutorial-Book-v3/</a></li>
+<li>RISC-V特权架构规范</li>
+<li>Rust嵌入式开发手册</li>
+<li>RustSBI文档</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12">
+<p><strong>文档版本</strong>: v1.0<br />
+<strong>适用代码</strong>: rCore-Tutorial-Code ch1分支<br />
+<strong>最后更新</strong>: 2024年</p>
+</section>
+<script>!function(){"use strict";const t="marpitSVGPolyfill:setZoomFactor,",e=Symbol();let r,o;function n(n){const i="object"==typeof n&&n.target||document,a="object"==typeof n?n.zoom:n;window[e]||(Object.defineProperty(window,e,{configurable:!0,value:!0}),window.addEventListener("message",(({data:e,origin:r})=>{if(r===window.origin)try{if(e&&"string"==typeof e&&e.startsWith(t)){const[,t]=e.split(","),r=Number.parseFloat(t);Number.isNaN(r)||(o=r)}}catch(t){console.error(t)}})));let l=!1;Array.from(i.querySelectorAll("svg[data-marpit-svg]"),(t=>{var e,n,i,s;t.style.transform||(t.style.transform="translateZ(0)");const c=a||o||t.currentScale||1;r!==c&&(r=c,l=c);const d=t.getBoundingClientRect(),{length:u}=t.children;for(let r=0;r<u;r+=1){const o=t.children[r],a=o.getScreenCTM();if(a){const t=null!==(n=null===(e=o.x)||void 0===e?void 0:e.baseVal.value)&&void 0!==n?n:0,r=null!==(s=null===(i=o.y)||void 0===i?void 0:i.baseVal.value)&&void 0!==s?s:0,l=o.firstElementChild,{style:u}=l;u.transformOrigin||(u.transformOrigin=`${-t}px ${-r}px`),u.transform=`scale(${c}) matrix(${a.a}, ${a.b}, ${a.c}, ${a.d}, ${a.e-d.left}, ${a.f-d.top}) translateZ(0.0001px)`}}})),!1!==l&&Array.from(i.querySelectorAll("iframe"),(({contentWindow:e})=>{null==e||e.postMessage(`${t}${l}`,"null"===window.origin?"*":window.origin)}))}r=1,o=void 0;const i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function a({once:t=!1,target:e=document}={}){const r="Apple Computer, Inc."===navigator.vendor?[n]:[];let o=!t;const a=()=>{for(const t of r)t({target:e});!function(t=document){Array.from(t.querySelectorAll('svg[data-marp-fitting="svg"]'),(t=>{var e;const r=t.firstChild,o=r.firstChild,{scrollWidth:n,scrollHeight:a}=o;let l,s=1;if(t.hasAttribute("data-marp-fitting-code")&&(l=null===(e=t.parentElement)||void 0===e?void 0:e.parentElement),t.hasAttribute("data-marp-fitting-math")&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft||"0")-parseFloat(t.paddingRight||"0"));e&&(s=e)}const c=Math.max(n,s),d=Math.max(a,1),u=`0 0 ${c} ${d}`;i(r,"width",`${c}`),i(r,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",u)&&t.classList.toggle("__reflow__")}))}(e),o&&window.requestAnimationFrame(a)};return a(),()=>{o=!1}}const l=Symbol(),s=document.currentScript;((t=document)=>{if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");if(t[l])return t[l];const e=a({target:t}),r=()=>{e(),delete t[l]};Object.defineProperty(t,l,{configurable:!0,value:r})})(s?s.getRootNode():document)}();
+</script></foreignObject></svg></div><script>/*!! License: https://unpkg.com/@marp-team/marp-cli@1.7.0/lib/bespoke.js.LICENSE.txt */
+!function(){"use strict";const e=document.body,t=(...e)=>history.replaceState(...e),n="presenter",r="next",o=["",n,r],a="data-bespoke-marp-",i=(e,{protocol:t,host:n,pathname:r,hash:o}=location)=>{const a=e.toString();return`${t}//${n}${r}${a?"?":""}${a}${o}`},s=()=>e.dataset.bespokeView,l=e=>new URLSearchParams(location.search).get(e),d=(e,n={})=>{var r;const o={location,setter:t,...n},a=new URLSearchParams(o.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?a.set(t,n):a.delete(t)}try{o.setter({...null!==(r=window.history.state)&&void 0!==r?r:{}},"",i(a,o.location))}catch(e){console.error(e)}},c=(()=>{const e="bespoke-marp";try{return localStorage.setItem(e,e),localStorage.removeItem(e),!0}catch(e){return!1}})(),u=e=>{try{return localStorage.getItem(e)}catch(e){return null}},f=(e,t)=>{try{return localStorage.setItem(e,t),!0}catch(e){return!1}},m=e=>{try{return localStorage.removeItem(e),!0}catch(e){return!1}},g=(e,t)=>{const n="aria-hidden";t?e.setAttribute(n,"true"):e.removeAttribute(n)},p=e=>{e.parent.classList.add("bespoke-marp-parent"),e.slides.forEach((e=>e.classList.add("bespoke-marp-slide"))),e.on("activate",(t=>{const n="bespoke-marp-active",r=t.slide,o=r.classList,a=!o.contains(n);if(e.slides.forEach((e=>{e.classList.remove(n),g(e,!0)})),o.add(n),g(r,!1),a){const e=`${n}-ready`;o.add(e),document.body.clientHeight,o.remove(e)}}))},v=e=>{let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map((e=>[null,...e.querySelectorAll("[data-marpit-fragment]")]))});const r=r=>void 0!==e.fragments[t][n+r],o=(r,o)=>{t=r,n=o,e.fragments.forEach(((e,t)=>{e.forEach(((e,n)=>{if(null==e)return;const i=t<r||t===r&&n<=o;e.setAttribute(`${a}fragment`,(i?"":"in")+"active");const s=`${a}current-fragment`;t===r&&n===o?e.setAttribute(s,"current"):e.removeAttribute(s)}))})),e.fragmentIndex=o;const i={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:o};e.fire("fragment",i)};e.on("next",(({fragment:a=!0})=>{if(a){if(r(1))return o(t,n+1),!1;const a=t+1;e.fragments[a]&&o(a,0)}else{const r=e.fragments[t].length;if(n+1<r)return o(t,r-1),!1;const a=e.fragments[t+1];a&&o(t+1,a.length-1)}})),e.on("prev",(({fragment:a=!0})=>{if(r(-1)&&a)return o(t,n-1),!1;const i=t-1;e.fragments[i]&&o(i,e.fragments[i].length-1)})),e.on("slide",(({index:t,fragment:n})=>{let r=0;if(void 0!==n){const o=e.fragments[t];if(o){const{length:e}=o;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}o(t,r)})),o(0,0)},h=document,y=()=>!(!h.fullscreenEnabled&&!h.webkitFullscreenEnabled),b=()=>!(!h.fullscreenElement&&!h.webkitFullscreenElement),x=e=>{e.fullscreen=()=>{y()&&(async()=>{return b()?null===(e=h.exitFullscreen||h.webkitExitFullscreen)||void 0===e?void 0:e.call(h):((e=h.body)=>{var t;return null===(t=e.requestFullscreen||e.webkitRequestFullscreen)||void 0===t?void 0:t.call(e)})();var e})()},document.addEventListener("keydown",(t=>{"f"!==t.key&&"F11"!==t.key||t.altKey||t.ctrlKey||t.metaKey||!y()||(e.fullscreen(),t.preventDefault())}))},w="bespoke-marp-inactive",k=(e=2e3)=>({parent:t,fire:n})=>{const r=t.classList,o=e=>n(`marp-${e?"":"in"}active`);let a;const i=()=>{a&&clearTimeout(a),a=setTimeout((()=>{r.add(w),o()}),e),r.contains(w)&&(r.remove(w),o(!0))};for(const e of["mousedown","mousemove","touchend"])document.addEventListener(e,i);setTimeout(i,0)},E=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"],L=e=>{e.parent.addEventListener("keydown",(e=>{if(!e.target)return;const t=e.target;(E.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()}))},$=e=>{window.addEventListener("load",(()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute(`${a}load`,e)}}))},S=({interval:e=250}={})=>t=>{document.addEventListener("keydown",(e=>{if(" "===e.key&&e.shiftKey)t.prev();else if("ArrowLeft"===e.key||"ArrowUp"===e.key||"PageUp"===e.key)t.prev({fragment:!e.shiftKey});else if(" "!==e.key||e.shiftKey)if("ArrowRight"===e.key||"ArrowDown"===e.key||"PageDown"===e.key)t.next({fragment:!e.shiftKey});else if("End"===e.key)t.slide(t.slides.length-1,{fragment:-1});else{if("Home"!==e.key)return;t.slide(0)}else t.next();e.preventDefault()}));let n,r,o=0;t.parent.addEventListener("wheel",(a=>{let i=!1;const s=(e,t)=>{e&&(i=i||((e,t)=>((e,t)=>{const n="X"===t?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]})(e,t)&&((e,t)=>{const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r})(getComputedStyle(e),t))(e,t)),(null==e?void 0:e.parentElement)&&s(e.parentElement,t)};if(0!==a.deltaX&&s(a.target,"X"),0!==a.deltaY&&s(a.target,"Y"),i)return;a.preventDefault();const l=Math.sqrt(a.deltaX**2+a.deltaY**2);if(void 0!==a.wheelDelta){if(void 0===a.webkitForce&&Math.abs(a.wheelDelta)<40)return;if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<4)return}else if(a.deltaMode===a.DOM_DELTA_PIXEL&&l<12)return;r&&clearTimeout(r),r=setTimeout((()=>{n=0}),e);const d=Date.now()-o<e,c=l<=n;if(n=l,d||c)return;let u;(a.deltaX>0||a.deltaY>0)&&(u="next"),(a.deltaX<0||a.deltaY<0)&&(u="prev"),u&&(t[u](),o=Date.now())}))},P=(e=".bespoke-marp-osc")=>{const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[${a}osc=${JSON.stringify(e)}]`).forEach(n)};return y()||n("fullscreen",(e=>e.style.display="none")),c||n("presenter",(e=>{e.disabled=!0,e.title="Presenter view is disabled due to restricted localStorage."})),e=>{t.addEventListener("click",(t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;n&&t.target.blur();const r={fragment:!t.shiftKey};"next"===n?e.next(r):"prev"===n?e.prev(r):"fullscreen"===n?null==e||e.fullscreen():"presenter"===n&&e.openPresenterView()}})),e.parent.appendChild(t),e.on("activate",(({index:t})=>{n("page",(n=>n.textContent=`Page ${t+1} of ${e.slides.length}`))})),e.on("fragment",(({index:t,fragments:r,fragmentIndex:o})=>{n("prev",(e=>e.disabled=0===t&&0===o)),n("next",(n=>n.disabled=t===e.slides.length-1&&o===r.length-1))})),e.on("marp-active",(()=>g(t,!1))),e.on("marp-inactive",(()=>g(t,!0))),y()&&(e=>{for(const t of["","webkit"])h.addEventListener(t+"fullscreenchange",e)})((()=>n("fullscreen",(e=>e.classList.toggle("exit",y()&&b())))))}},T=e=>{window.addEventListener("message",(t=>{if(t.origin!==window.origin)return;const[n,r]=t.data.split(":");if("navigate"===n){const[t,n]=r.split(",");let o=Number.parseInt(t,10),a=Number.parseInt(n,10)+1;a>=e.fragments[o].length&&(o+=1,a=0),e.slide(o,{fragment:a})}}))};var I=["area","base","br","col","command","embed","hr","img","input","keygen","link","meta","param","source","track","wbr"];let N=e=>String(e).replace(/[&<>"']/g,(e=>`&${C[e]};`)),C={"&":"amp","<":"lt",">":"gt",'"':"quot","'":"apos"},A="dangerouslySetInnerHTML",D={className:"class",htmlFor:"for"},M={};function B(e,t){let n=[],r="";t=t||{};for(let e=arguments.length;e-- >2;)n.push(arguments[e]);if("function"==typeof e)return t.children=n.reverse(),e(t);if(e){if(r+="<"+e,t)for(let e in t)!1!==t[e]&&null!=t[e]&&e!==A&&(r+=` ${D[e]?D[e]:N(e)}="${N(t[e])}"`);r+=">"}if(-1===I.indexOf(e)){if(t[A])r+=t[A].__html;else for(;n.length;){let e=n.pop();if(e)if(e.pop)for(let t=e.length;t--;)n.push(e[t]);else r+=!0===M[e]?e:N(e)}r+=e?`</${e}>`:""}return M[r]=!0,r}const K=({children:e})=>B(null,null,...e),O="bespoke-marp-presenter-",q={container:`${O}container`,dragbar:`${O}dragbar-container`,next:`${O}next`,nextContainer:`${O}next-container`,noteContainer:`${O}note-container`,noteWrapper:`${O}note-wrapper`,noteButtons:`${O}note-buttons`,infoContainer:`${O}info-container`,infoPage:`${O}info-page`,infoPageText:`${O}info-page-text`,infoPagePrev:`${O}info-page-prev`,infoPageNext:`${O}info-page-next`,noteButtonsBigger:`${O}note-bigger`,noteButtonsSmaller:`${O}note-smaller`,infoTime:`${O}info-time`,infoTimer:`${O}info-timer`},_=e=>{const{title:t}=document;document.title="[Presenter view]"+(t?` - ${t}`:"");const n={},r=e=>(n[e]=n[e]||document.querySelector(`.${e}`),n[e]);document.body.appendChild((e=>{const t=document.createElement("div");return t.className=q.container,t.appendChild(e),t.insertAdjacentHTML("beforeend",B(K,null,B("div",{class:q.nextContainer},B("iframe",{class:q.next,src:"?view=next"})),B("div",{class:q.dragbar}),B("div",{class:q.noteContainer},B("div",{class:q.noteWrapper}),B("div",{class:q.noteButtons},B("button",{class:q.noteButtonsSmaller,tabindex:"-1",title:"Smaller notes font size"},"Smaller notes font size"),B("button",{class:q.noteButtonsBigger,tabindex:"-1",title:"Bigger notes font size"},"Bigger notes font size"))),B("div",{class:q.infoContainer},B("div",{class:q.infoPage},B("button",{class:q.infoPagePrev,tabindex:"-1",title:"Previous"},"Previous"),B("span",{class:q.infoPageText}),B("button",{class:q.infoPageNext,tabindex:"-1",title:"Next"},"Next")),B("time",{class:q.infoTime,title:"Current time"}),B("time",{class:q.infoTimer,title:"Timer"})))),t})(e.parent)),(e=>{let t=!1;r(q.dragbar).addEventListener("mousedown",(()=>{t=!0,r(q.dragbar).classList.add("active")})),window.addEventListener("mouseup",(()=>{t=!1,r(q.dragbar).classList.remove("active")})),window.addEventListener("mousemove",(e=>{if(!t)return;const n=e.clientX/document.documentElement.clientWidth*100;r(q.container).style.setProperty("--bespoke-marp-presenter-split-ratio",`${Math.max(0,Math.min(100,n))}%`)})),r(q.nextContainer).addEventListener("click",(()=>e.next()));const n=r(q.next),o=(a=n,(e,t)=>{var n;return null===(n=a.contentWindow)||void 0===n?void 0:n.postMessage(`navigate:${e},${t}`,"null"===window.origin?"*":window.origin)});var a;n.addEventListener("load",(()=>{r(q.nextContainer).classList.add("active"),o(e.slide(),e.fragmentIndex),e.on("fragment",(({index:e,fragmentIndex:t})=>o(e,t)))}));const i=document.querySelectorAll(".bespoke-marp-note");i.forEach((e=>{e.addEventListener("keydown",(e=>e.stopPropagation())),r(q.noteWrapper).appendChild(e)})),e.on("activate",(()=>i.forEach((t=>t.classList.toggle("active",t.dataset.index==e.slide())))));let s=0;const l=e=>{s=Math.max(-5,s+e),r(q.noteContainer).style.setProperty("--bespoke-marp-note-font-scale",(1.2**s).toFixed(4))},d=()=>l(1),c=()=>l(-1),u=r(q.noteButtonsBigger),f=r(q.noteButtonsSmaller);u.addEventListener("click",(()=>{u.blur(),d()})),f.addEventListener("click",(()=>{f.blur(),c()})),document.addEventListener("keydown",(e=>{"+"===e.key&&d(),"-"===e.key&&c()}),!0),e.on("activate",(({index:t})=>{r(q.infoPageText).textContent=`${t+1} / ${e.slides.length}`}));const m=r(q.infoPagePrev),g=r(q.infoPageNext);m.addEventListener("click",(t=>{m.blur(),e.prev({fragment:!t.shiftKey})})),g.addEventListener("click",(t=>{g.blur(),e.next({fragment:!t.shiftKey})})),e.on("fragment",(({index:t,fragments:n,fragmentIndex:r})=>{m.disabled=0===t&&0===r,g.disabled=t===e.slides.length-1&&r===n.length-1}));let p=new Date;const v=()=>{const e=new Date,t=e=>`${Math.floor(e)}`.padStart(2,"0"),n=e.getTime()-p.getTime(),o=t(n/1e3%60),a=t(n/1e3/60%60),i=t(n/36e5%24);r(q.infoTime).textContent=e.toLocaleTimeString(),r(q.infoTimer).textContent=`${i}:${a}:${o}`};v(),setInterval(v,250),r(q.infoTimer).addEventListener("click",(()=>{p=new Date}))})(e)},X=e=>{if(!(e=>e.syncKey&&"string"==typeof e.syncKey)(e))throw new Error("The current instance of Bespoke.js is invalid for Marp bespoke presenter plugin.");Object.defineProperties(e,{openPresenterView:{enumerable:!0,value:F},presenterUrl:{enumerable:!0,get:U}}),c&&document.addEventListener("keydown",(t=>{"p"!==t.key||t.altKey||t.ctrlKey||t.metaKey||(t.preventDefault(),e.openPresenterView())}))};function F(){const{max:e,floor:t}=Math,n=e(t(.85*window.innerWidth),640),r=e(t(.85*window.innerHeight),360);return window.open(this.presenterUrl,O+this.syncKey,`width=${n},height=${r},menubar=no,toolbar=no`)}function U(){const e=new URLSearchParams(location.search);return e.set("view","presenter"),e.set("sync",this.syncKey),i(e)}const V=e=>{const t=s();return t===r&&e.appendChild(document.createElement("span")),{"":X,[n]:_,[r]:T}[t]},R=e=>{e.on("activate",(t=>{document.querySelectorAll(".bespoke-progress-parent > .bespoke-progress-bar").forEach((n=>{n.style.flexBasis=100*t.index/(e.slides.length-1)+"%"}))}))},j=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t},H=(e={})=>{const t={history:!0,...e};return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},o=(t={fragment:!0})=>{((t,n)=>{const{min:r,max:o}=Math,{fragments:a,slides:i}=e,s=o(0,r(t,i.length-1)),l=o(0,r(n||0,a[s].length-1));s===e.slide()&&l===e.fragmentIndex||e.slide(s,{fragment:l})})((j(location.hash.slice(1))||1)-1,t.fragment?j(l("f")||""):null)};e.on("fragment",(({index:e,fragmentIndex:r})=>{n||d({f:0===r||r.toString()},{location:{...location,hash:`#${e+1}`},setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})})),setTimeout((()=>{o(),window.addEventListener("hashchange",(()=>r((()=>{o({fragment:!1}),d({f:void 0})})))),window.addEventListener("popstate",(()=>{n||r((()=>o()))})),n=!1}),0)}},W=(e={})=>{var n;const r=e.key||(null===(n=window.history.state)||void 0===n?void 0:n.marpBespokeSyncKey)||Math.random().toString(36).slice(2),o=`bespoke-marp-sync-${r}`;var a;a={marpBespokeSyncKey:r},d({},{setter:(e,...n)=>t({...e,...a},...n)});const i=()=>{const e=u(o);return e?JSON.parse(e):Object.create(null)},s=e=>{const t=i(),n={...t,...e(t)};return f(o,JSON.stringify(n)),n},l=()=>{window.removeEventListener("pageshow",l),s((e=>({reference:(e.reference||0)+1})))};return e=>{l(),Object.defineProperty(e,"syncKey",{value:r,enumerable:!0});let t=!0;setTimeout((()=>{e.on("fragment",(e=>{t&&s((()=>({index:e.index,fragmentIndex:e.fragmentIndex})))}))}),0),window.addEventListener("storage",(n=>{if(n.key===o&&n.oldValue&&n.newValue){const r=JSON.parse(n.oldValue),o=JSON.parse(n.newValue);if(r.index!==o.index||r.fragmentIndex!==o.fragmentIndex)try{t=!1,e.slide(o.index,{fragment:o.fragmentIndex})}finally{t=!0}}}));const n=()=>{const{reference:e}=i();void 0===e||e<=1?m(o):s((()=>({reference:e-1})))};window.addEventListener("pagehide",(e=>{e.persisted&&window.addEventListener("pageshow",l),n()})),e.on("destroy",n)}},{PI:Y,abs:J,sqrt:z,atan2:G}=Math,Q={passive:!0},Z=({slope:e=-.7,swipeThreshold:t=30}={})=>n=>{let r;const o=n.parent,a=e=>{const t=o.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};o.addEventListener("touchstart",(({touches:e})=>{r=1===e.length?a(e[0]):void 0}),Q),o.addEventListener("touchmove",(e=>{if(r)if(1===e.touches.length){e.preventDefault();const t=a(e.touches[0]),n=t.x-r.x,o=t.y-r.y;r.delta=z(J(n)**2+J(o)**2),r.radian=G(n,o)}else r=void 0})),o.addEventListener("touchend",(o=>{if(r){if(r.delta&&r.delta>=t&&r.radian){const t=(r.radian-e+Y)%(2*Y)-Y;n[t<0?"next":"prev"](),o.stopPropagation()}r=void 0}}),Q)},ee="_tA",te=e=>{const t=document.documentTransition;if(!t)return;let n;e._tP=!1;const r=(n,{back:r,cond:o})=>a=>{var i,s;const l=e.slides[e.slide()].querySelector("section[data-transition]");if(!l)return!0;const d=document.querySelector(".bespoke-marp-osc"),c=d?[d]:void 0;if(e._tP){if(a._tA){e._tP=!1;try{t.start({sharedElements:c}).catch((()=>{}))}catch(e){}return!0}}else{if(!o(a))return!0;const d="transition"+(a.back||r?"Back":""),u=Number.parseInt(null!==(i=l.dataset[`${d}Duration`])&&void 0!==i?i:"",10),f=Number.parseInt(null!==(s=l.dataset[`${d}Delay`])&&void 0!==s?s:"",10),m={};Number.isNaN(u)||(m.duration=u.toString()),Number.isNaN(f)||(m.delay=f.toString()),e._tP=t.prepare({rootTransition:l.dataset[d],rootConfig:m,sharedElements:c}).then((()=>n(a))).catch((()=>n(a)))}return!1};e.on("prev",r((t=>e.prev({...t,[ee]:!0})),{back:!0,cond:e=>{var t;return e.index>0&&!((null===(t=e.fragment)||void 0===t||t)&&n.fragmentIndex>0)}})),e.on("next",r((t=>e.next({...t,[ee]:!0})),{cond:t=>t.index+1<e.slides.length&&!(n.fragmentIndex+1<n.fragments.length)})),setTimeout((()=>{e.on("slide",r((t=>e.slide(t.index,{...t,[ee]:!0})),{cond:t=>{const n=e.slide();return t.index!==n&&(t.back=t.index<n,!0)}}))}),0),e.on("fragment",(e=>{n=e}))};let ne;const re=()=>(void 0===ne&&(ne="wakeLock"in navigator&&navigator.wakeLock),ne),oe=async()=>{const e=re();if(e)try{return await e.request("screen")}catch(e){console.warn(e)}return null},ae=async()=>{if(!re())return;let e;const t=()=>{e&&"visible"===document.visibilityState&&oe()};for(const e of["visibilitychange","fullscreenchange"])document.addEventListener(e,t);return e=await oe(),e};((t=document.getElementById("p"))=>{(()=>{const t=l("view");e.dataset.bespokeView=t===r||t===n?t:""})();const a=(e=>{const t=l(e);return d({[e]:void 0}),t})("sync")||void 0;var i,c,u,f,m,g,h,y,b,w,E,T;i=t,c=((...e)=>{const t=o.findIndex((e=>s()===e));return e.map((([e,n])=>e[t]&&n)).filter((e=>e))})([[1,1,0],W({key:a})],[[1,1,1],V(t)],[[1,1,0],L],[[1,1,1],p],[[1,0,0],k()],[[1,1,1],$],[[1,1,1],H({history:!1})],[[1,1,0],S()],[[1,1,0],x],[[1,0,0],R],[[1,1,0],Z()],[[1,0,0],P()],[[1,0,0],te],[[1,1,1],v],[[1,1,0],ae]),f=1===(i.parent||i).nodeType?i.parent||i:document.querySelector(i.parent||i),m=[].filter.call("string"==typeof i.slides?f.querySelectorAll(i.slides):i.slides||f.children,(function(e){return"SCRIPT"!==e.nodeName})),g={},h=function(e,t){return(t=t||{}).index=m.indexOf(e),t.slide=e,t},w=function(e,t){m[e]&&(u&&b("deactivate",h(u,t)),u=m[e],b("activate",h(u,t)))},E=function(e,t){var n=m.indexOf(u)+e;b(e>0?"next":"prev",h(u,t))&&w(n,t)},T={off:y=function(e,t){g[e]=(g[e]||[]).filter((function(e){return e!==t}))},on:function(e,t){return(g[e]||(g[e]=[])).push(t),y.bind(null,e,t)},fire:b=function(e,t){return(g[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},slide:function(e,t){if(!arguments.length)return m.indexOf(u);b("slide",h(m[e],t))&&w(e,t)},next:E.bind(null,1),prev:E.bind(null,-1),parent:f,slides:m,destroy:function(e){b("destroy",h(u,e)),g={}}},(c||[]).forEach((function(e){e(T)})),u||w(0)})()}();</script></body></html>
