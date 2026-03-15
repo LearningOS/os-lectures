@@ -500,8 +500,8 @@ OS通过硬件隔离手段（三防）来保障计算机的安全可靠
 ##### M-Mode的中断控制和状态寄存器
 
 - mtvec(MachineTrapVector)保存发生中断/异常时要跳转到的**中断处理例程入口地址**
-- mie(Machine Interrupt Enable)中断**使能**寄存器
-- mip(Machine Interrupt Pending)中断**请求**寄存器
+- mie(Machine Interrupt Enable)中断**使能**寄存器-使能或禁用
+- mip(Machine Interrupt Pending)中断**请求**寄存器-已触发但尚未处理
 - mstatus(Machine Status)保存全局中断以及其他的**状态**
 - mepc(Machine Exception PC)指向**发生中断/异常时的指令**
 - mcause(Machine Exception Cause)指示发生**中断/异常的种类**

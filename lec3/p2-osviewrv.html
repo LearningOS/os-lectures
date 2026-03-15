@@ -498,8 +498,8 @@
 <h5>M-Mode的中断控制和状态寄存器</h5>
 <ul>
 <li>mtvec(MachineTrapVector)保存发生中断/异常时要跳转到的<strong>中断处理例程入口地址</strong></li>
-<li>mie(Machine Interrupt Enable)中断<strong>使能</strong>寄存器</li>
-<li>mip(Machine Interrupt Pending)中断<strong>请求</strong>寄存器</li>
+<li>mie(Machine Interrupt Enable)中断<strong>使能</strong>寄存器-使能或禁用</li>
+<li>mip(Machine Interrupt Pending)中断<strong>请求</strong>寄存器-已触发但尚未处理</li>
 <li>mstatus(Machine Status)保存全局中断以及其他的<strong>状态</strong></li>
 <li>mepc(Machine Exception PC)指向<strong>发生中断/异常时的指令</strong></li>
 <li>mcause(Machine Exception Cause)指示发生<strong>中断/异常的种类</strong></li>
