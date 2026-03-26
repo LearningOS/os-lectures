@@ -401,9 +401,16 @@ http://en.wikipedia.org/wiki/Buddy_memory_allocation -->
 * [buddy_system_allocator](https://crates.io/crates/buddy_system_allocator)：用Rust写的伙伴系统算法
 * [buddy-system-in-ucore-test](https://github.com/ucore-test/buddy-system-in-ucore-test#buddy-system-in-ucore-test)：能够在c语言程序中调用buddy-system的接口
 
+
+
+<!--
+
+
 ---
 
 ##### 课后练习
+
+//算法不对
 
 用C或Rust语言实现如下的改进伙伴系统。（[已有参考实现](https://github.com/scPointer/advanced_buddy_system)）
 
@@ -413,6 +420,8 @@ http://en.wikipedia.org/wiki/Buddy_memory_allocation -->
 - 如空闲块大于申请块的4/3，对可用空闲块进行四等分，直到得到合适可用空闲块
 
 分析“改进伙伴系统”的存储利用率和分配释放开销。
+
+-->
 
 ---
 
