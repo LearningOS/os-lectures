@@ -534,13 +534,17 @@ G, global mappings
 ---
 
 ##### 跳板页
+- 为什么需要跳板页？
+  - 用户态到内核态的页表切换
+  - CPU stvec的取指
+  - 内核页表基址
 - 应用与内核的跳板Trampoline页的虚拟地址是相同的，且映射到同一物理页
 - 放置的是``trap.S``中的执行代码
 <!-- - 但用户态无法访问此内存区域
 - 产生异常/中断时，会跳到跳板页的``_all_traps``入口
 - 并在切换页表后，平滑地继续执行 -->
 
-![bg right:65% 100%](figs/trampoline.png)
+![bg right:60% 100%](figs/trampoline.png)
 
 ---
 
