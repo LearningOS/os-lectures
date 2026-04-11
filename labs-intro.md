@@ -11,7 +11,7 @@ backgroundColor: white
 <!-- theme: gaia -->
 <!-- _class: lead -->
 
-# 操作系统课程-2025春
+# 操作系统课程-2026春
 ## 实践与实验介绍
 
 <br>
