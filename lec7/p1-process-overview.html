@@ -721,14 +721,15 @@ Shell: Process 2 exited with code 0
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="55" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="55" data-marpit-pagination-total="61" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h5>重新思考fork</h5>
-<p>但是！</p>
 <ul>
 <li>Fork is no longer simple
 <ul>
 <li>Fork encourages memory overcommit过度分配</li>
-<li>Fork is incompatible with a single address space不兼容单一地址空间模型</li>
-<li>Fork is incompatible with heterogeneous hardware-硬件环境错误</li>
+<li>Fork is incompatible with a single address space不兼容单一地址空间模型（嵌入式场景）</li>
+<li>Fork is incompatible with heterogeneous hardware-硬件环境错误（GPU）</li>
 <li>Fork infects an entire system-感染整个系统</li>
+<li>多线程、锁机制难以有效处理</li>
+<li>安全隐患：fork 炸弹（Fork Bomb）：一个简单的无限循环 while(1) fork(); 就能瞬间创建大量进程</li>
 </ul>
 </li>
 </ul>
