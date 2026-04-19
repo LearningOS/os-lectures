@@ -771,12 +771,14 @@ int  main() {
 
 ##### 重新思考fork
 
-但是！
 -  Fork is no longer simple
    - Fork encourages memory overcommit过度分配
-   - Fork is incompatible with a single address space不兼容单一地址空间模型
-   - Fork is incompatible with heterogeneous hardware-硬件环境错误
+   - Fork is incompatible with a single address space不兼容单一地址空间模型（嵌入式场景）
+   - Fork is incompatible with heterogeneous hardware-硬件环境错误（GPU）
    - Fork infects an entire system-感染整个系统
+   - 多线程、锁机制难以有效处理
+   - 安全隐患：fork 炸弹（Fork Bomb）：一个简单的无限循环 while(1) fork(); 就能瞬间创建大量进程
+  
 
 ---
 
