@@ -586,6 +586,7 @@ make_pipe() -> (Arc<Pipe>, Arc<Pipe>) {
     let write_end = Pipe::write_end_with_buffer();
     ...
     (read_end, write_end)  
+}
 ```
 ![bg right:35% 100%](figs/tcb-ipc-standard-file.png)
 
