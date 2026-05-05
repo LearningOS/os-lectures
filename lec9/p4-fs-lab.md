@@ -709,6 +709,7 @@ let fd = open(filea, OpenFlags::RDONLY);
 ```rust
 pub struct TaskControlBlockInner {
     pub fd_table: ... //文件描述符表
+}
 
 pub struct OSInode {//进程管理的inode
     readable: bool,  writable: bool,
