@@ -220,7 +220,7 @@ bitmap块( `bitmap inode/dnode`)
    - 每个目录项一个(目录和文件)
    - 将目录项数据结构及树型布局编码成树型数据结构
    - 指向文件控制块、父目录、子目录等
-- OS会缓存一个读过目录项来提升效率
+- OS会缓存读过的目录项来提升效率
 ![bg right 100%](figs/efs-direntry.png)
 
 ![bg right 100%](figs/fslayout.png)
