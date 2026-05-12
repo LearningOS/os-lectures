@@ -91,18 +91,19 @@ backgroundColor: white
 - [第三节 支持崩溃一致性的文件系统](./lec9/p3-fsjournal.html)
 - [第四节 实践：支持文件的操作系统](./lec9/p4-fs-lab.html)
 
-
 ---
-## 第十讲  线程与协程
+## 第十讲  进程间通信
+- [第一节 进程间通信(IPC)概述](./lec10/p1-ipcoverview.html)
+- [第二节 实践：支持IPC的OS](./lec10/p2-ipclabs.html)
+- 
+---
+## 第十一讲  线程与协程
 - [第一节 线程](./lec11/p1-thread.html)
 - [第二节 协程](./lec11/p2-coroutine.html)
 - [第三节 实践：支持线程/协程的OS(TCOS)](./lec11/p3-labs.html)
 
 
----
-## 第十一讲  进程间通信
-- [第一节 进程间通信(IPC)概述](./lec10/p1-ipcoverview.html)
-- [第二节 实践：支持IPC的OS](./lec10/p2-ipclabs.html)
+
 
 ---
 ## 第十二讲 同步互斥
