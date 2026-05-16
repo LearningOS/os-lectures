@@ -83,8 +83,8 @@ backgroundColor: white
 永远存在的用户需求 -- **性能**！
 -  并行实体（多个顺序控制流）共享同一个地址空间和所有可用数据
   - 访问数据和共享资源方便
-  - 切换控制流轻量
-  - 管理不同控制流便捷 
+  - 切换控制流要轻量
+  - 管理不同控制流要便捷 
 
 ![bg right:51% 100%](figs/thread-process.png)
 
@@ -370,8 +370,8 @@ main: end
 
 ##### 用户态管理且用户态运行的线程
 
-- 在用户态实现线程的管理与运行，操作系统感知不到这类线程的存在
-   -  GNU Pth (Portable Threads)，Mach C-threads，Solaris threads
+- 在**用户态实现线程的管理与运行**，操作系统感知不到这类线程的存在
+   -  GNU P-threads (Portable Threads)，Mach C-threads，Solaris threads
    - 别名：用户态线程(User-level Thread)、绿色线程(Green Thread)、有栈协程(Stackful Coroutine)、纤程(Fiber)
 
 ![bg right:45% 100%](figs/usr-thread.png)
@@ -380,9 +380,9 @@ main: end
 
 ##### 用户态管理且用户态运行的线程
 
-- 由一组用户级的线程库函数来完成线程的管理，包括线程的创建、终止、同步和调度等
+- 由**一组用户级的线程库函数来完成线程的管理**，包括线程的创建、终止、同步和调度等
 
-   -  GNU Pth (Portable Threads)，Mach C-threads，Solaris threads
+   -  GNU P-threads (Portable Threads)，Mach C-threads，Solaris threads
    - 别名：用户态线程(User-level Thread)、绿色线程(Green Thread)、有栈协程(Stackful Coroutine)、纤程(Fiber)
 ![bg right:45% 100%](figs/usr-thread.png)
 
@@ -395,7 +395,7 @@ main: end
 - 创建和销毁线程、线程切换等线程管理的代价比内核线程少得多。
 - 允许每个进程定制自己的调度算法，线程管理比较灵活。
 <!--- 线程能够利用的表空间和堆栈空间比内核级线程多。-->
-- 同一进程中只能同时有一个线程在运行，如果有一个线程使用了系统调用而阻塞，那么整个进程都会被挂起。
+- 同一进程中**只能同时有一个线程在运行**，如果有一个线程使用了系统调用而阻塞，那么整个进程都会被挂起。
 
 ---
 
@@ -444,8 +444,8 @@ main: end
 
 ##### 内核态管理且用户态运行的线程
 
-- 由内核通过系统调用实现的线程机制，由内核完成线程的创建、终止和管理
-- 由内核维护线程控制块TCB, 在内核实现
+- 由**内核通过系统调用实现的线程机制**，由内核完成线程的创建、终止和管理
+- 由**内核维护线程控制块TCB**, 在内核实现
 - 线程执行系统调用而被阻塞不影响其他线程
 
 ![bg right:45% 100%](figs/kernel-thread.png)
@@ -617,7 +617,7 @@ section {
 ##### 轻量级进程与用户线程的对应关系
 
 - 1 : 1（主流），即一个用户线程对应一个LWP。如Linux内核管理和调度用户线程
-- M : 1（非主流），即多个用户线程对应一个LWP。如Green Thread，内核仅管理包含多个线程的进程，用户态的线程运行时管理线程。
+- M : 1（非主流），即多个用户线程对应一个LWP。如Green Thread，内核仅管理包含多个线程的进程，用户态管理线程运行。
 - M : N（非主流），即多个用户线程对应多个LWP。如Solaris OS通过用户态线程运行时和内核协同，对用户态线程进行管理和调度。
 
 
