@@ -372,7 +372,6 @@ Runtime::new() 主要有三个步骤：
         }
         available.state = State::Ready; //设置任务为就绪态
     }
-}
 ```
 
 ---
@@ -727,7 +726,7 @@ pub fn sys_waittid(tid: usize) -> i32
 
 ##### fork与多个线程
 
-问题：“被fork的子进程是否要复制父进程的多个线程？”
+问题：被fork的子进程是否要复制父进程的多个线程？
 * 选择A：要复制多个线程；
 * 选择B：不复制，只复制当前执行fork的这个线程；
 * 选择C：不支持多线程进程执行fork这种情况
@@ -738,10 +737,10 @@ pub fn sys_waittid(tid: usize) -> i32
 
 ##### fork与多个线程
 
-场景：在fork前，有三个线程Main thread， thread X, thread Y, 且Thread X拿到一个lock，在临界区中执行；Thread Y正在写一个文件。Main thread执行fork.
+场景：在fork前，有三个线程Main thread, thread X, thread Y, 且Thread X拿到一个lock, 在临界区中执行; Thread Y正在写一个文件。Main thread执行fork。
 
 * 选择A：会出现子进程的Thread Y和 父进程的Thread Y都在写一个文件的情况。
-* 选择B，则子进程中只有Main Thread，当它想得到Thread X的那个lock时，这个lock是得不到的（因为Thread X 在子进程中不存在，没法释放锁），会陷入到持续忙等中。
+* 选择B：则子进程中只有Main Thread，当它想得到Thread X的那个lock时，这个lock是得不到的（因为Thread X 在子进程中不存在，没法释放锁），会陷入到持续忙等中。
 
 ---
 
