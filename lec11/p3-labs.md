@@ -372,7 +372,6 @@ Runtime::new() 主要有三个步骤：
         }
         available.state = State::Ready; //设置任务为就绪态
     }
-}
 ```
 
 ---
