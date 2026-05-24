@@ -458,10 +458,12 @@ unsafe fn switch(old: *mut TaskContext, new: *const TaskContext)  {
 ---
 
 ##### 用户态管理的线程执行&调度
+
+- 主线程（通常是 main 函数）初始化完运行时和所有用户线程后，最后调用 run()，将控制权交给调度器，由它不断切换线程执行。当所有用户线程都执行完毕并退出后，run() 返回，程序可以安全结束。
  
 ```rust
     pub fn run(&mut self){
-        while self.t_yield() {} 
+        while self.t_yield() {} // 不断让出 CPU 并调度下一个就绪线程
        println!("All tasks finished!");
     }
 ```
@@ -886,7 +888,7 @@ pub fn exit_current_and_run_next(exit_code: i32) {
 ---
 
 ##### 等待线程结束`sys_waittid`
-- 如果找到 tid 对应的线程，则尝试收集该线程的退出码 exit_tid ，否则返回错误（退出线程不存在）。
+- 如果找到 tid 对应的线程，则尝试收集该线程的退出码 exit_tid，否则返回错误（退出线程不存在）。
 - 如果退出码存在(意味该线程确实退出了)，则清空进程中对应此线程的线程控制块（至此，线程所占资源算是全部清空了），否则返回错误（线程还没退出）。
 
 ---
