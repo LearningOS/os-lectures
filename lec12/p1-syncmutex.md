@@ -700,7 +700,7 @@ flag[i] = IDLE;//结束，自己变idle
 
 ---  
 
-##### 锁(lock)
+##### 锁(TAS lock)
 现代CPU提供一些特殊的原子操作指令
 - 原子操作指令 
   - 测试和置位（Test-and-Set ）指令
@@ -715,7 +715,7 @@ flag[i] = IDLE;//结束，自己变idle
 
 ---  
 
-##### 锁(lock)
+##### 锁(TAS lock)
 现代CPU都提供一些特殊的原子操作指令
 ```
 do {
@@ -730,7 +730,7 @@ do {
  
 ---  
 
-##### 锁(lock)
+##### 锁(TAS lock)
 现代CPU都提供一些特殊的原子操作指令
 ```
 do {
@@ -749,7 +749,7 @@ unlock(): lock=false;
 
 ---  
 
-##### 锁(lock)
+##### 锁(CAS lock)
 - 原子操作：交换指令CaS（Compare and Swap）
 ```
 bool compare_and_swap(int *value, int old, int new) {
@@ -767,28 +767,10 @@ lock=0;                                 // unlock 解锁
 remainder section;
 ```
 
-<!-- ---  
-
-##### 方法3：更高级的抽象方法 -- 锁(lock)
-- 原子操作：交换指令CaS（Compare and Swap）
-```
-bool compare_and_swap(int *value, int old, int new) {
-   if(*value==old) {
-      *value = new; 
-      return true;
-   }
-   return false;
-}
-```
-```
-lock(): while(!compare_and_swap(&lock,0,1)); 
-critical section; 
-unlock(): lock=0; 
-``` -->
 
 ---  
 
-##### 锁(lock)
+##### 锁(CAS lock)
 <!-- CAS是什么？ABA问题又应该如何理解？https://zhuanlan.zhihu.com/p/139635112 
 https://www.zhihu.com/question/23281499/answer/24112589
 关于ABA问题我想了一个例子：在你非常渴的情况下你发现一个盛满水的杯子，你一饮而尽。之后再给杯子里重新倒满水。然后你离开，当杯子的真正主人回来时看到杯子还是盛满水，他当然不知道是否被人喝完重新倒满。解决这个问题的方案的一个策略是每一次倒水假设有一个自动记录仪记录下，这样主人回来就可以分辨在她离开后是否发生过重新倒满的情况。这也是解决ABA问题目前采用的策略。
@@ -803,7 +785,6 @@ https://www.zhihu.com/question/23281499/answer/24112589
 - 解决思路：加上版本号（时间戳）
   - (100,1); (50,2); (100,3) 
 <!---  
-
 ##### 方法3：更高级的抽象方法 -- 锁(lock)
 现代CPU体系结构都提供一些特殊的原子操作指令
 - 原子操作指令 
@@ -812,6 +793,17 @@ https://www.zhihu.com/question/23281499/answer/24112589
 
 ![bg right:50% 100%](figs/exchange.png)
 -->
+
+---  
+
+##### TAS vs CAS
+
+|维度 |	TAS（Test-and-Set）|	CAS（Compare-and-Swap）|
+|---|---|---|
+|缓存友好度	| 较差，多核缓存竞争	| 较好，有效减少总线无效流量
+|竞争性能	| 低竞争表现尚可，高竞争性能下滑明显	| 高并发竞争场景性能更优异|
+|适用场景	|基础简易自旋锁	|自旋锁、无锁数据结构、内核同步机制等|
+|ABA 问题 |	不存在该问题	|存在 ABA 隐患，需版本号等手段规避|
 
 ---  
 

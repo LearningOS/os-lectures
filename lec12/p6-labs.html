@@ -288,7 +288,8 @@ time cost is 919ms
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="23" data-marpit-pagination-total="45" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>程序设计</h4>
-<p>spin mutex和 block mutex 的核心数据结构（<strong>全局变量</strong>）： <code>UPSafeCell</code></p>
+<p>spin mutex和 block mutex 的核心数据结构（<strong>全局变量</strong>）： <code>UPSafeCell</code><br />
+UPSafeCell 是锁的数据容器，利用 RefCell 的借用检查机制，在锁保证互斥的前提下，让内核可以安全、方便地修改全局可变状态，。</p>
 <pre><code class="language-rust"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">pub</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">UPSafeCell</span></span>&lt;T&gt; { <span class="hljs-comment">//允许在单核上安全**使用可变全局变量**</span>
     inner: RefCell&lt;T&gt;,  <span class="hljs-comment">//提供内部可变性和运行时借用检查</span>
 }
@@ -340,12 +341,13 @@ time cost is 919ms
         <span class="hljs-keyword">loop</span> {
             <span class="hljs-keyword">let</span> <span class="hljs-keyword">mut</span> locked = <span class="hljs-keyword">self</span>.locked.exclusive_access(); <span class="hljs-comment">//独占访问locked</span>
             <span class="hljs-keyword">if</span> *locked {
-                <span class="hljs-built_in">drop</span>(locked);
+                <span class="hljs-built_in">drop</span>(locked);<span class="hljs-comment">//主动释放对内部数据的借用,放弃对 self.locked 所保护数据的独占</span>
                 suspend_current_and_run_next(); <span class="hljs-comment">//把当前线程放到就绪队列末尾</span>
                 <span class="hljs-keyword">continue</span>;
             } <span class="hljs-keyword">else</span> {
                 *locked = <span class="hljs-literal">true</span>; <span class="hljs-comment">//得到锁了，可以继续进入临界区执行</span>
                 <span class="hljs-keyword">return</span>;
+            }
         ...
 </span></span></foreignObject></svg></code></pre>
 </section>
