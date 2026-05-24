@@ -317,6 +317,7 @@ time cost is 919ms
 
 ####  程序设计
 spin mutex和 block mutex 的核心数据结构（**全局变量**）： `UPSafeCell`
+UPSafeCell 是锁的数据容器，利用 RefCell 的借用检查机制，在锁保证互斥的前提下，让内核可以安全、方便地修改全局可变状态，。
 ```rust
 pub struct UPSafeCell<T> { //允许在单核上安全**使用可变全局变量**
     inner: RefCell<T>,  //提供内部可变性和运行时借用检查
@@ -376,12 +377,13 @@ impl Mutex for MutexSpin {
         loop {
             let mut locked = self.locked.exclusive_access(); //独占访问locked
             if *locked {
-                drop(locked);
+                drop(locked);//主动释放对内部数据的借用,放弃对 self.locked 所保护数据的独占
                 suspend_current_and_run_next(); //把当前线程放到就绪队列末尾
                 continue;
             } else {
                 *locked = true; //得到锁了，可以继续进入临界区执行
                 return;
+            }
         ...
  ```   
 
