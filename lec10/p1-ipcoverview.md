@@ -287,7 +287,7 @@ $ cat name.fifo #解除 Shell A 的阻塞
 
 ---
 #### ftok
-ftok 会基于文件的 inode 信息和 proj_id 生成一个唯一的键值。
+ftok 会基于文件路径信息和 proj_id 生成一个唯一的键值。
 两个进程必须使用相同的 pathname 和 proj_id，才能生成相同的键值，从而访问同一个 IPC 资源。
 ```
 key_t ftok(const char *pathname, int proj_id);

@@ -317,7 +317,7 @@ $ echo README &gt; name.fifo  #文件类型为p（ls -l，第一个字母p表示
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-background-color="white" data-theme="gaia" data-marpit-pagination="25" data-marpit-pagination-total="65" style="--paginate:true;--background-color:white;--theme:gaia;background-color:white;background-image:none;">
 <h4>ftok</h4>
-<p>ftok 会基于文件的 inode 信息和 proj_id 生成一个唯一的键值。<br />
+<p>ftok 会基于文件路径信息和 proj_id 生成一个唯一的键值。<br />
 两个进程必须使用相同的 pathname 和 proj_id，才能生成相同的键值，从而访问同一个 IPC 资源。</p>
 <pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>key_t ftok(const char *pathname, int proj_id);
 </span></span></foreignObject></svg></code></pre>
