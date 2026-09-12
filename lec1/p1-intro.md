@@ -23,7 +23,7 @@ backgroundColor: white
 
 <br>
 
-2026年春季
+2026年秋季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/rrop1cwd0kpaz7cl) 
 
@@ -42,10 +42,10 @@ backgroundColor: white
 ## 课程信息
 
 ### 主讲教师：
-  - 向勇 陈渝 李国良 任炬 
+  - 向勇 陈渝
 
 ### 助教
-  - 郑友捷、苏明贤、谢祖钧、朱懿、闭浩扬、王铮、徐子航、王乙凡
+  - 李璜华、谢祖钧、洪世金
 
 ---
 
@@ -53,12 +53,10 @@ backgroundColor: white
 
 ### 上课时间地点
 - 时间
-  - 周一 9:50-12:15（陈/李课堂）
-  - 周三 9:50-12:15（任炬课堂）
+  - 周二上午 9:50-11:25
+  - 周五下午 15:20-16:55
 - 地点
-   - 陈渝：舜德/经管西楼302
-   - 李国良：舜德/经管西楼301
-   - 任炬：六教6A216
+   - 三教3304
 
 ----
 
@@ -75,18 +73,17 @@ backgroundColor: white
 
 ## 预备知识
 ### 计算机组成原理
- - 刘总/康总/陆总的 RISC-V 原理 
+ - 刘卫东老师/陆游游老师 RISC-V 原理 
  - Patterson 的 RISC-V 原理
 
 ### 编译原理
  - 没学过影响不大 
  - 但还是要了解高级语言 <–>RISC-V 汇编语言
 
-
 ---
 
 #### 课程参考
-- [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/xpvcf129pvf3fuxb)
+- [课程幻灯片列表](https://oscourse-cn.github.io/Tsinghua-oscourse-OsTrain-2026/lecture-slides.html)
 - 参考书
   - [Operating Systems: Three Easy Pieces](https://pages.cs.wisc.edu/~remzi/OSTEP/)
   - [深入了解计算机系统](https://hansimov.gitbook.io/csapp/)

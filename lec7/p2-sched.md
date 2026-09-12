@@ -19,7 +19,7 @@ backgroundColor: white
 
 向勇 陈渝 李国良 任炬 
 
-2026年春季
+2026年秋季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
 
