@@ -23,7 +23,7 @@ backgroundColor: white
 <br>
 <br>
 
-2026年春季
+2026年秋季
 
 ---
 

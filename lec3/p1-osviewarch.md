@@ -22,7 +22,7 @@ backgroundColor: white
 <br>
 <br>
 
-2026年春季
+2026年秋季
 
 [课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)
 
