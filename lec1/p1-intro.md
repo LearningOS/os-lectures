@@ -73,7 +73,7 @@ backgroundColor: white
 
 ## 预备知识
 ### 计算机组成原理
- - 刘卫东老师/陆游游老师 RISC-V 原理 
+ - 刘卫东/陆游游老师 RISC-V 原理 
  - Patterson 的 RISC-V 原理
 
 ### 编译原理
@@ -139,13 +139,13 @@ backgroundColor: white
 ## 作业与实验
 
 * **平时作业**
-  - 课后练习：包括问答题和编程题目，要求在deadline前提交
+  - 课后练习：包括问答题和编程题目
 
 * **基础实验**
-  - （必做）：面向 RISC-V CPU 用 Rust/C 设计实现操作系统的功能
+  - 面向 RISC-V CPU 用 Rust/C 设计实现操作系统的功能
 
-* **课程设计A/B**
-  - 与AI合作开展操作系统内核相关的设计、实现与探索 
+* **综合实验**
+  - 对开源的操作系统内核中的模块（组件）进行分析、复现的改进 
 
 ---
 
@@ -157,70 +157,64 @@ backgroundColor: white
 - 工具使用者需要对使用工具的后果负责
   - AI工具给出的建议可以能幻觉
   - 许多复杂问题无法完全靠AI工具来完成
-  - 考试时不允许使用AI工具
   - “老师用AI工具出题，同学用AI工具回答”应该不是大家希望的状态
 
----
-## 基础实验
-* 实验一：操作系统的基本支持
-* 实验二：地址空间
-* 实验三：进程管理与调度
-* 实验四：文件系统与进程间通信
-* 实验五：同步互斥
-
-**注意：每次实验的必做题和选做题的提交截止时间相同。**
-
+参考：[MIT’s Ad Hoc Committee on AI Use](https://aiandeducation.mit.edu/report/)（[豆包的总结](https://www.doubao.com/thread/xD6eovmAr2f6hiOLy)）
 
 ---
-## 课程设计(Rust语言)
+## 实验要求
+* 实验一至五：[uCore](https://learningos.github.io/uCore-Tutorial-Guide/)或[rCore](https://learningos.github.io/rCore-Tutorial-Guide/)的实验任务书中选择5章，完成如下任务。
+  * 对源代码进行静态分析和跟踪分析，写出实验报告；
+  * 从自己做分析的章节中选择2章，进行独立实现，并比较与参考实现的异同；
+  * 提供代码仓库中必须包括开发过程的操作日志和AI交互日志；
+* 实验六：综合实验
+  * 选择开源的内核中的模块（组件）进行分析、复现的改进
 
-* **与AI合作编程逐步组合出功能逐渐增强的类Linux操作系统内核**
-<!-- 
-* unikernel: ArceOS
-    * [arceos-tutorial-v2](https://github.com/scPointer/arceos-tutorial-v2/)
-  * 宏内核: StarryOS
-  * hypervisor: AxVisor
-  * 微内核: ReL4
-  * 异步操作系统: AsyncOS
-* 开源操作系统社区项目 
--->
+**注意：每次实验提交截止时间：双周周日晚23点**
 
-![bg right:51% 90% 内核模式](figs/kernel-arch.png)
 
-<!--
-出处： https://www.zhihu.com/question/667354659
--->
+---
+## 综合实验选题参考
 
-* 往届同学的[课程设计成果](https://shimo.im/docs/QTPRT8h8jyGQCqkJ)
+- 2026年春季OS课程设计：[与AI合作编程逐步组合出功能逐渐增强的类Linux操作系统内核](https://ycn7wewvu6vl.feishu.cn/wiki/WXJYwKB30ivHvIkl14wcRSvGnbb)
+* [2023年春季OS课程设计](https://shimo.im/docs/QTPRT8h8jyGQCqkJ)
+- Unikernel：[ArceOS](https://arceos.org/)
+- 宏内核：[Starry-OS](https://github.com/Starry-OS)
+- Hypervisor：[AxVisor](https://arceos-hypervisor.github.io/axvisorbook/docs/introduction)
+- 微内核：[reL4](https://rel4team.github.io/zh/docs/about_rel4/introduction/)
+- 异步操作系统[AsyncOS](https://asyncos.github.io/design/overview/)
+
+![bg right:41% 90% 内核模式](figs/kernel-arch.png)
 
 ---
 
 ## 成绩评定
 
-### 选择1：
-  - 实验一~五必做题目(2026春实验)： 25% ；
-  - 期中考试 15% ； 
-  - 期末考试 60% 。
-  
-  - 平时作业加分：每做一次平时作业加0.5分，最高加5分，且课程总评成绩总分不超过100分
+  - 实验成绩
+    - 实验一~五： 15% ；
+    - 综合实验： 20% ；
+    - 两个独立实现的实验将安排基于抽查的口试；
+      - 口试成绩将计入实验成绩中
+  - 平时作业：5% ；
+    - 每做一次平时作业0.5分，最高加5分，且课程总评成绩总分不超过100分
 
 ---
 
-### 选择2： 
-  - 3周内：完成实验一~五([2025秋季实验-Rust版](https://learningos.cn/rCore-Tutorial-Guide/))：25% 
-  - 7周内：代替期中考试的课程设计（即[大实验A](https://cloud.tsinghua.edu.cn/f/23961098ee87438ba97e/)）：15%
-  - 16周内：代替期末考试的课程设计（即[大实验B](https://cloud.tsinghua.edu.cn/f/c842589c9b6e44a1af44/)）：60%
-  - 平时作业加分：每做一次平时作业加0.5分，最高加5分，且课程总评成绩总分不超过100分
+## 选课问卷
 
-**注：选择大实验A或B的同学如果后续退出，需参加所代替的考试。**
+2026秋季操作系统课选课问卷
+- http://oscourse2019.mikecrm.com/j5wEw5T
+- 访问密码：
+8e2JC8KFxq+Vere
 
 ---
 
 ## 总结
 
 - 操作系统课是计算机系的核心基础课，讲解操作系统的基本原理（资源管理和运行环境），通过实验来学习和运用基本原理
-- 春季学期的操作系统课持续16周，主要要求是实验和期中和期末考试
-  - 大实验可以替代考试
+- 秋季学期的操作系统课持续12周
+- 只进行抽查口试，没有闭卷考试
 - 基于选课目标确定用多少精力来学操作系统课
   - 从事计算机专业的工作，需要了解操作系统的原理
   - 对计算机底层技术有兴趣的同学，通过做好实验来比较透彻地掌握和运用操作系统的原理
+
