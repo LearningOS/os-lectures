@@ -1,3 +1,4 @@
+*.html
 *.zip
 .vscode
 *.org
@@ -303,3 +304,4 @@ dist
 html-docs
 .svn*
 .svn/*
+lec1/p1-intro.html
