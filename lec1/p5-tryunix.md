@@ -76,6 +76,12 @@ backgroundColor: white
 ![bg right 100%](./figs/ucorearch.png)
 
 ---
+<style scoped>
+section li {
+  font-size: 32px;
+}
+</style>
+
 ## UNIX/Linux提供的应用/内核接口？
 
   - APP -> C lib -> Syscall -> Kernel
