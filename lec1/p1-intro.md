@@ -25,9 +25,7 @@ backgroundColor: white
 
 2026年秋季
 
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/rrop1cwd0kpaz7cl) 
-
-<!--(https://www.yuque.com/xyong-9fuoz/qczol5/xpvcf129pvf3fuxb)-->
+[课程幻灯片列表](https://oscourse-cn.github.io/Tsinghua-oscourse-OsTrain-2026/lecture-slides.html) 
 
 ---
 
@@ -122,7 +120,7 @@ backgroundColor: white
   - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code/)
   - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide/)
   - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test/)
-* [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/miqaip1ig4005ogm)
+* [uCore和rCore实验帮助](https://oscourse-cn.github.io/Tsinghua-oscourse-OsTrain-2026/lab-support.html)
   - 讲解视频
   - 部分内容将逐步更新
 </div>
