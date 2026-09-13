@@ -178,13 +178,11 @@ AIoT 系统 (2000- )
 
 ![bg right:40% 100%](./figs/history-aiot.png)
 
-
-<!--
 ---
-## Fuchsia操作系统
+## AIOS ([Ref](https://docs.aios.foundation/aios-docs))
 
-![bg 75%](./figs/fuchsia-os-intro.png)
--->
+![w:900](./figs/AIOS-architecture.png)
+
 ---
 
 ## 小结
