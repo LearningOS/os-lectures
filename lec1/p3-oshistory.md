@@ -184,11 +184,17 @@ AIoT 系统 (2000- )
 ![w:900](./figs/AIOS-architecture.png)
 
 ---
+<style scoped>
+section li {
+  font-size: 30px;
+}
+</style>
 
 ## 小结
 
 - 操作系统的发展历史
-  - 单用户、批处理、多道、分时、Windows & macOS、分布式OS、IoT OS
+  - 单用户、批处理、多道、分时、Windows & macOS
+  - 分布式OS、IoT OS、AIOS
 - 操作系统的历史演化方向
   - 提高性能：
     - 资源效率：中断、进程与调度、虚拟存储、同步互斥
