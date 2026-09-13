@@ -94,27 +94,40 @@ backgroundColor: white
 -  [课程实践代码的API文档](https://github.com/rcore-os/rCore-Tutorial-v3#os-api-docs)
 
 ---
+<style>
+.container{
+    display: flex;
+}
+.col{
+    flex: 1;
+}
+</style>
 
 ### 实验指导
 
+<div class="container">
 
-#### uCore Tutorial
+<div class="col">
 
-- [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code/)
-- [实验文档](https://learningos.github.io/uCore-Tutorial-Guide/)
-- [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test/)
+- uCore Tutorial
 
----
+  - [实验代码](https://github.com/LearningOS/uCore-Tutorial-Code/)
+  - [实验文档](https://learningos.github.io/uCore-Tutorial-Guide/)
+  - [测试用例](https://github.com/LearningOS/uCore-Tutorial-Test/)
+</div>
 
-### 实验指导
+<div class="col">
 
-* rCore Tutorial
+- rCore Tutorial
   - [实验代码](https://github.com/LearningOS/rCore-Tutorial-Code/)
   - [实验文档](https://learningos.github.io/rCore-Tutorial-Guide/)
   - [测试用例](https://github.com/LearningOS/rCore-Tutorial-Test/)
 * [uCore和rCore实验帮助](https://www.yuque.com/xyong-9fuoz/qczol5/miqaip1ig4005ogm)
   - 讲解视频
   - 部分内容将逐步更新
+</div>
+
+</div>
 
 ---
 
@@ -152,14 +165,14 @@ backgroundColor: white
 ### 操作系统课关于AI工具的使用约定
 
 - 操作系统课鼓励使用各种AI工具来帮助学习OS
-  - AI助教可以同学们及时获取可能的帮助
-  - AI助教可以减少助教老师的工作量
-- 工具使用者需要对使用工具的后果负责
-  - AI工具给出的建议可以能幻觉
+  - 同学们可以及时获取可能的帮助
+  - 减少助教老师的答疑工作量
+- 工具使用者需要**对使用工具的后果负责**
+  - AI工具给出的建议可能是幻觉
   - 许多复杂问题无法完全靠AI工具来完成
   - “老师用AI工具出题，同学用AI工具回答”应该不是大家希望的状态
-
-参考：[MIT’s Ad Hoc Committee on AI Use](https://aiandeducation.mit.edu/report/)（[豆包的总结](https://www.doubao.com/thread/xD6eovmAr2f6hiOLy)）
+- 参考：[MIT’s Ad Hoc Committee on AI Use](https://aiandeducation.mit.edu/report/)（[豆包的总结](https://www.doubao.com/thread/xD6eovmAr2f6hiOLy)）
+  - [A Severe Misalignment of AI in Mathematics](https://mathandai.org/)([中文版](https://mp.weixin.qq.com/s/ZLbS0B1l_CDhklthXfQBmQ)）
 
 ---
 ## 实验要求
@@ -176,21 +189,22 @@ backgroundColor: white
 ---
 ## 综合实验选题参考
 
-- 2026年春季OS课程设计：[与AI合作编程逐步组合出功能逐渐增强的类Linux操作系统内核](https://ycn7wewvu6vl.feishu.cn/wiki/WXJYwKB30ivHvIkl14wcRSvGnbb)
+- [2026年春季OS课程设计](https://ycn7wewvu6vl.feishu.cn/wiki/WXJYwKB30ivHvIkl14wcRSvGnbb)
 * [2023年春季OS课程设计](https://shimo.im/docs/QTPRT8h8jyGQCqkJ)
-- Unikernel：[ArceOS](https://arceos.org/)
-- 宏内核：[Starry-OS](https://github.com/Starry-OS)
-- Hypervisor：[AxVisor](https://arceos-hypervisor.github.io/axvisorbook/docs/introduction)
-- 微内核：[reL4](https://rel4team.github.io/zh/docs/about_rel4/introduction/)
-- 异步操作系统[AsyncOS](https://asyncos.github.io/design/overview/)
+- 开源项目
+  - Unikernel：[ArceOS](https://arceos.org/)
+  - 宏内核：[Starry-OS](https://github.com/Starry-OS)
+  - Hypervisor：[AxVisor](https://arceos-hypervisor.github.io/axvisorbook/docs/introduction)
+  - 微内核：[reL4](https://rel4team.github.io/zh/docs/about_rel4/introduction/)
+  - 异步操作系统：[AsyncOS](https://asyncos.github.io/design/overview/)
 
-![bg right:41% 90% 内核模式](figs/kernel-arch.png)
+![bg right:51% 90% 内核模式](figs/kernel-arch.png)
 
 ---
 
 ## 成绩评定
 
-  - 实验成绩
+  - 实验成绩：95%
     - 实验一~五： 15% ；
     - 综合实验： 20% ；
     - 两个独立实现的实验将安排基于抽查的口试；
@@ -202,7 +216,12 @@ backgroundColor: white
 
 ## 选课问卷
 
-2026秋季操作系统课选课问卷
+### 问卷内容
+- 基本信息和已修课情况
+- 对操作系统课的期望和计划
+- 加入操作系统课的微信群
+
+### 2026秋季操作系统课选课问卷
 - http://oscourse2019.mikecrm.com/j5wEw5T
 - 访问密码：
 8e2JC8KFxq+Vere
