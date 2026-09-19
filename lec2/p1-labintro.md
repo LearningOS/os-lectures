@@ -44,24 +44,24 @@ backgroundColor: white
 ---
 
 ##### 满足应用逐渐增加的需求
-* LibOS
-* 批处理OS
-* 多道程序与分时多任务OS
+* 第一章 LibOS
+* 第二章 批处理OS
+* 第三章 多道程序与分时多任务OS
 
 ---
 
 ##### 逐步体现操作系统的概念抽象
 
-* 地址空间抽象的OS
-* 进程抽象的OS
-* 文件抽象的OS
+* 第四章 地址空间抽象的OS
+* 第五章 进程抽象的OS
+* 第六章 文件抽象的OS
 ---
 
 ##### 逐步体现操作系统的关键能力
 
-* 可进程间通信的OS
-* 可并发的OS
-* 管理I/O设备的OS
+* 第七章 可进程间通信的OS
+* 第八章 可并发的OS
+* 第九章 管理I/O设备的OS
 ---
 ### 提纲
 
@@ -71,7 +71,7 @@ backgroundColor: white
 
 ---
 
-#### LibOS
+#### 第一章 LibOS
 
 - 远古操作系统雏形
 - 现代简单嵌入式操作系统
@@ -86,7 +86,7 @@ backgroundColor: white
 
 ---
 
-#### 批处理OS
+#### 第二章 批处理OS
 - 内存只驻留单道程序
 - 支持系统调用
 
@@ -102,7 +102,7 @@ backgroundColor: white
 
 ---
 
-#### 多道程序OS
+#### 第三章 多道程序OS
 - 支持多个程序**同时驻留内存**
 - 支持多个程序**依次执行**
 ##### 相关知识点
@@ -113,7 +113,7 @@ backgroundColor: white
 
 ---
 
-#### 分时多任务OS
+#### 第三章 分时多任务OS
 - 支持多个程序**轮流执行**
 
 ##### 相关知识点
@@ -124,7 +124,7 @@ backgroundColor: white
 ![bg right:57% 100%](figs/timesharing-os.png)
 
 ---
-#### OS的地址空间抽象
+#### 第四章 OS的地址空间抽象
 - 支持程序间**内存空间隔离**
 
 ##### 相关知识点
@@ -136,7 +136,7 @@ backgroundColor: white
 ![bg right:54% 100%](figs/address-space-os.png)
 
 ---
-#### OS的地址空间抽象
+#### 第四章 OS的地址空间抽象
 - **超越物理内存**的虚拟存储
 ##### 相关知识点
 - 局部性原理
@@ -147,7 +147,7 @@ backgroundColor: white
 
 ---
 
-#### OS的进程抽象
+#### 第五章 OS的进程抽象
 
 - 支持**动态创建**程序执行
 
@@ -162,7 +162,7 @@ backgroundColor: white
 
 ---
 
-#### OS的进程抽象
+#### 第五章 OS的进程抽象
 
 - 支持多处理器**并行**
 
@@ -175,7 +175,7 @@ backgroundColor: white
 ![bg right:62% 100%](figs/process-os.png)
 
 ---
-#### OS的文件抽象
+#### 第六章 OS的文件抽象
 - 处理数据的**便捷持久存储**
 
 ##### 相关知识点
@@ -186,7 +186,7 @@ backgroundColor: white
 ![bg right:54% 100%](figs/fs-os.png)
 
 ---
-#### 可进程间通信的OS
+#### 第七章 可进程间通信的OS
 - 进程间可显式/隐式**交互**信息
 ##### 相关知识点
 - 信号、管道
@@ -197,7 +197,7 @@ backgroundColor: white
 
 
 ---
-#### 可并发的OS
+#### 第八章 可并发的OS
 - 提升CPU的**利用率**
 ##### 相关知识点
 - 线程：用户/内核线程
@@ -207,7 +207,7 @@ backgroundColor: white
 ![bg right:54% 100%](figs/sync-os.png)
 
 ---
-#### 可并发的OS
+#### 第八章 可并发的OS
 - 合理**共享资源**
 - 同步与互斥
 ##### 相关知识点
@@ -216,7 +216,7 @@ backgroundColor: white
 - 死锁等问题
 ![bg right:57% 100%](figs/sync-os.png)
 ---
-#### 管理I/O设备的OS
+#### 第九章 管理I/O设备的OS
 - 支持各种外设
 ##### 相关知识点
 - 设备抽象
@@ -296,7 +296,7 @@ backgroundColor: white
 
 ---
 
-#### 扩展实验（即大实验，课程设计）
+#### 综合实验
 
 * 内核组件化
   * unikernel: ArceOS
