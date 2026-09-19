@@ -24,8 +24,8 @@ backgroundColor: white
 
 2026年秋季
 
-<!--[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/glemuu?)-->
-[课程幻灯片列表](https://www.yuque.com/xyong-9fuoz/qczol5/rrop1cwd0kpaz7cl) 
+<!--[课程幻灯片列表](https://oscourse-cn.github.io/Tsinghua-oscourse-OsTrain-2026/lecture-slides.html)-->
+[课程幻灯片列表](https://oscourse-cn.github.io/Tsinghua-oscourse-OsTrain-2026/lecture-slides.html) 
 
 ---
 
