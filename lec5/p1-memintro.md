@@ -97,14 +97,14 @@ backgroundColor: white
 ![w:700](figs/mem-layers.png)
 
 比较新的各种存储介质的访问速度参数：
-* [金字塔层次结构](https://www.cnblogs.com/binarylei/p/12588928.html)：越靠近CPU速度越快，容量越小，价格越贵
+* [金字塔层次结构](https://www.cnblogs.com/binarylei/p/12588928.html)([ref](https://lca.ece.utexas.edu/pubs/hanindhito_ijhpca26_p2.pdf))：越靠近CPU速度越快，容量越小，价格越贵
 
 ---
 
 ##### 操作系统对内存资源的抽象
 ![w:850](figs/os-mem-mgr.png)
 
-回顾：[操作系统内核的特征](https://learningos.github.io/os-lectures/lec1/p2-whatisos.html#9)（并发、共享、虚拟、异步）
+回顾：[操作系统内核的特征](https://learningos.cn/os-lectures/lec1/p2-whatisos.html#10)（并发、共享、虚拟、异步）
 
 ---
 
