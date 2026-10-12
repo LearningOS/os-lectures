@@ -1049,15 +1049,3 @@ match scause.cause() {
 - 抢占式调度：时钟中断触发进程切换
 - 任务与任务切换：taskContext & switch_to()
 
----
-
-### 课程实验一
-
-* 实验任务：增加一个系统调用`sys_task_info()`
-    * [uCore实验一任务描述](https://learningos.github.io/uCore-Tutorial-Guide/chapter3/5exercise.html#id1)
-    * [rCore实验一任务描述](https://learningos.github.io/rCore-Tutorial-Guide/chapter3/5exercise.html#chapter3)
-* 实验提交要求
-    * 在自己的已创建实验仓库中提交完整的代码和文档；
-    * 在荷塘雨课中提交实验一报告链接和commit ID；
-    * 实验截止时间：布置实验任务后的第13天; 
-  
