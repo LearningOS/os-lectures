@@ -229,7 +229,7 @@ backgroundColor: white
 
 ---
 
-#### 最低松弛度优先算法（LLF）
+#### 最低松弛度优先算法（LLF, Least Laxity First）
 
 - 根据**任务紧急或者松弛程度**，来确定任务优先级
   - 任务紧急度越高，优先级越高
