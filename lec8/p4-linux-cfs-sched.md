@@ -345,15 +345,3 @@ signed char d = b - 250;
 -  https://developer.ibm.com/tutorials/l-completely-fair-scheduler/
 -  http://www.wowotech.net/process_management/scheduler-history.html
 
----
-
-### 实验三 进程及进程管理
-
-* 实验目标
-    * spawn 系统调用
-    * stride 调度算法
-* 实验任务描述
-    * [rCore](https://learningos.github.io/rCore-Tutorial-Guide/chapter5/4exercise.html)
-    * [uCore](https://learningos.github.io/uCore-Tutorial-Guide/chapter5/4exercise.html)
-* 实验提交要求
-    * 布置实验任务后的第13天; <!--（11月10日24点）；-->
